@@ -5,7 +5,7 @@
 int main()
 {
     int32_t a = -16;
-    int32_t b = a >> 1;
-    fprintf(stdout, "%d\n", b);
+    uint32_t b = a >> 1;
+    fprintf(stdout, "%u\n", b);
     return EXIT_SUCCESS;
 }
