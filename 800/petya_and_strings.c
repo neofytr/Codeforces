@@ -48,21 +48,18 @@ int main()
 
     for (size_t counter = 0; counter < len_one; counter++)
     {
-        if (tolower(str_one[counter]) < tolower(str_one[counter]))
+        if (tolower(str_one[counter]) < tolower(str_two[counter]))
         {
             fprintf(stdout, "-1");
-            break;
+            return EXIT_SUCCESS;
         }
         else if (tolower(str_one[counter]) > tolower(str_two[counter]))
         {
             fprintf(stdout, "1");
-            break;
-        }
-        else
-        {
-            fprintf(stdout, "0");
-            break;
+            return EXIT_SUCCESS;
         }
     }
+
+    fprintf(stdout, "0");
     return EXIT_SUCCESS;
 }
