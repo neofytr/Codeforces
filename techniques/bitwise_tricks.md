@@ -23,6 +23,12 @@ bool isPowerOfTwo(int n) {
 // (n) && (n & (n - 1)) is 1 iff n is NOT a power of 2
 ```
 
+## Extra
+
+Suppose x is an unsigned number
+Doing x - 1 sets all the bits to the right of it's leftmost set bit and clears the leftmost set bit
+So doing x & (x - 1) clears the leftmost set bit
+
 ## Even/Odd Checks
 
 ```c
@@ -96,6 +102,25 @@ is equivalent to
 ```c
 
 x = x ^ a ^ b
+
+```
+
+## Finding Number of Set Bits
+
+```c
+
+// Brian-Kernighan Algorithm
+uint32_t findSetBits(uint32_t x)
+{
+    uint32_t count = 0;
+    while(x)
+    {
+        count++;
+        x &= (x - 1);
+    }
+
+    return count;
+}
 
 ```
 
