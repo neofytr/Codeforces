@@ -61,7 +61,7 @@ int toggleKthBit(int n, int k) {
 }
 ```
 
-# Getting Remainder with 2^k
+## Getting Remainder with 2^k
 
 ```c
 
@@ -73,12 +73,39 @@ uint32_t getRem(uint32_t x)
 
 ```
 
+## Toggling with XOR
+
+Suppose than x can only be one of 5 or 10
+Then, the code,
+
+```c
+
+if (x == 5)
+{
+    x = 10;
+}
+else if (x == 10)
+{
+    x = 5
+}
+
+```
+
+is equivalent to
+
+```c
+
+x = x ^ a ^ b
+
+```
+
 ## Common Bit Properties
 
 - XOR properties:
   - `x ^ 0 = x` (XOR with 0 returns the original number)
   - `x ^ x = 0` (XOR of a number with itself is 0)
   - `x ^ y ^ x = y` (XOR is commutative and applying twice cancels out)
+  - `x ^ a` is `0` iff `a = x`; it's `1` otherwise
 
 - AND properties:
   - `x & 0 = 0` (AND with 0 always returns 0)
