@@ -13,6 +13,10 @@ int main(int argc, char **argv)
     uint32_t a = strtoul(argv[1], NULL, 10);
     for (int32_t counter = 31; counter >= 0; counter--)
     {
+        if (1U << counter > a)
+        {
+            continue;
+        }
         if ((1U << counter) & a)
         {
             fprintf(stdout, "1");
