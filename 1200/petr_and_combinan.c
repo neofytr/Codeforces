@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 int main()
 {
@@ -14,10 +13,21 @@ int main()
         scanf("%d", &rotations[i]);
     }
 
-    for (size_t counter = 0; counter < n; counter++)
+    for (int set = 0; set < (1 << n); set++)
     {
-        fprintf("%d\n", rotations[counter]);
+        int sum = 0;
+        for (int test = 0; test < n; test++)
+        {
+            sum += ((1 << test) & set) ? -rotations[test] : rotations[test];
+        }
+
+        if (!(sum % 360))
+        {
+            fprintf(stdout, "YES");
+            return EXIT_SUCCESS;
+        }
     }
 
-    return 0;
+    fprintf(stdout, "NO");
+    return EXIT_SUCCESS;
 }
