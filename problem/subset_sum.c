@@ -33,7 +33,6 @@ int main()
     scanf("%d", &target);
 
     bool found = false;
-    // Optimize: Use long for larger subset ranges
     for (long subset = 1; subset < (1L << n); subset++)
     {
         int sum = 0;
