@@ -77,6 +77,7 @@ worker2 >>= 3; // Shift bits right by 3 positions
 - **Count Set Bits (`count()`)**: \(O(1)\) for small bitsets, \(O(D/64)\) otherwise.
 - **Bitwise Shifts (`<<, >>`)**: \(O(1)\) for small bitsets, \(O(D/64)\) otherwise.
 - **Access (`test(i)`, `set(i)`, `reset(i)`)**: \(O(1)\).
+- The complexity of bitwise operations is O(size / 32) or O(size / 64), it depends on the architecture of your computer.
 
 ### Summary
 
