@@ -23,6 +23,12 @@ bool isPowerOfTwo(int n) {
 // (n) && (n & (n - 1)) is 1 iff n is NOT a power of 2
 ```
 
+# Built-in O(1) functions
+
+__builtin_popcount(x) returns popcount of a number — the number of ones in the binary representation of x. Use __builtin_popcountll(x) for long longs.
+
+There are also __builtin_clz and __builtin_ctz (and their long long versions) for counting the number of leading or trailing zeros in a positive number.
+
 ## Extra
 
 Suppose x is an unsigned number
