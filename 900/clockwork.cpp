@@ -9,5 +9,9 @@ int main()
     size_t n;
     scanf("%zu", &n);
 
+    for (size_t counter = 0; counter < n; counter++)
+    {
+        
+    }
     return EXIT_SUCCESS;
 }
