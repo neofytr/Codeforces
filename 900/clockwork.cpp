@@ -1,38 +1,24 @@
-#include <vector>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <stdint.h>
+#include <iostream>
 
 using namespace std;
-
 int main()
 {
-    int64_t t;
-    scanf("%ld", &t);
-
-    for (int64_t counter = 0; counter < t; counter++)
+    ios::sync_with_stdio(false), cin.tie(0);
+    int T, n, i, t, flag;
+    for (cin >> T; T > 0; T--)
     {
-        int64_t n;
-        scanf("%ld", &n);
-        vector<int64_t> init_state(n);
-        for (int64_t &value : init_state)
+        cin >> n;
+        flag = 0;
+        for (i = 0; i < n; i++)
         {
-            scanf("%ld", &value);
+            cin >> t;
+            if (t <= i * 2 || t <= (n - i - 1) * 2)
+                flag = 1;
         }
-
-        bool possible = true;
-
-        for (size_t index = 0; index < n; index++)
-        {
-            if (init_state[index] <= 2 * max(index, n - 1 - index))
-            {
-                possible = false;
-                break;
-            }
-        }
-
-        printf("%s\n", possible ? "YES" : "NO");
+        if (flag)
+            cout << "NO\n";
+        else
+            cout << "YES\n";
     }
-    return EXIT_SUCCESS;
+    return 0;
 }
