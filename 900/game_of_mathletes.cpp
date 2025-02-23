@@ -1,36 +1,56 @@
-#include <iostream>
-#include <vector>
-#include <stdlib.h>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-void speedUpIO(void)
+void solve()
 {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    int n, k;
+    cin >> n >> k;
+    vector<int> arr(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+
+    sort(arr.begin(), arr.end());
+
+    unordered_map<int, int> freq;
+    for (int num : arr)
+    {
+        freq[num]++;
+    }
+
+    int score = 0;
+
+    for (int num : arr)
+    {
+        if (freq[num] > 0 && freq[k - num] > 0)
+        {
+            // ensure that we're not pairing a number with itself unless there are two of them
+            if (num != k - num || freq[num] > 1)
+            {
+                score++;
+                freq[num]--;
+                freq[k - num]--;
+            }
+        }
+    }
+
+    cout << score << "\n";
 }
 
 int main()
 {
-    speedUpIO();
-    int64_t t, n, k;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
+    int t;
     cin >> t;
-    for (int64_t counter = 0; counter < t; counter++)
+
+    while (t--)
     {
-        cin >> n >> k;
-        int64_t score = 0;
-        vector<int64_t> arr(n);
-        for (int64_t &val : arr)
-        {
-            cin >> val;
-        }
-
-        for (int64_t game = 0; game < n / 2; game++)
-        {   
-            
-        }
-
-        cout << score << endl;
+        solve();
     }
+
+    return 0;
 }
