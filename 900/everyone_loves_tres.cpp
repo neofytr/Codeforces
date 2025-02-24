@@ -4,6 +4,28 @@
 
 using namespace std;
 
+int even_sum(vector<int> &num)
+{
+    int sum;
+    for (int counter = 0; counter < num.size(); counter += 2)
+    {
+        sum += num[counter];
+    }
+
+    return sum;
+}
+
+int odd_sum(vector<int> &num)
+{
+    int sum = 0;
+    for (int counter = 1; counter < num.size(); counter += 2)
+    {
+        sum += num[counter];
+    }
+
+    return sum;
+}
+
 int main()
 {
     int t, n;
@@ -23,7 +45,7 @@ int main()
 
         for (int counter = 0; counter < n - 1; counter++)
         {
-            
+            num[counter] = 3;
         }
     }
 }
