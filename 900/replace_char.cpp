@@ -1,53 +1,64 @@
-#include <iostream>
-#include <unordered_map>
-#include <vector>
-#include <climits>
-
+#include <bits/stdc++.h>
 using namespace std;
+
+int factorial(int x)
+{
+    return (x <= 1) ? 1 : x * factorial(x - 1);
+}
+
+int count_permutations(string s)
+{
+    int freq[26] = {0};
+    for (char c : s)
+        freq[c - 'a']++;
+
+    int n = s.size();
+    int denom = 1;
+    for (int f : freq)
+        denom *= factorial(f);
+
+    return factorial(n) / denom;
+}
+
+void solve()
+{
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+
+    string best_s = s;
+    int min_perms = count_permutations(s);
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            string temp = s;
+            temp[i] = temp[j];
+            int perms = count_permutations(temp);
+            if (perms < min_perms)
+            {
+                min_perms = perms;
+                best_s = temp;
+            }
+        }
+    }
+
+    cout << best_s << endl;
+}
 
 int main()
 {
-    int t, n;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t;
     cin >> t;
-
-    for (int counter = 0; counter < t; counter++)
+    while (t--)
     {
-        cin >> n;
-        vector<char> str(n + 1);
-        cin >> str.data();
-
-        unordered_map<char, int> freq;
-        for (char c : str)
-        {
-            freq[c]++;
-        }
-
-        char max_char = str[0], min_char = str[0];
-        int max_freq = freq[str[0]], min_freq = freq[str[0]];
-
-        for (auto &[ch, count] : freq)
-        {
-            if (count > max_freq)
-            {
-                max_freq = count;
-                max_char = ch;
-            }
-            if (count < min_freq)
-            {
-                min_freq = count;
-                min_char = ch;
-            }
-        }
-
-        for (char &c : str)
-        {
-            if (c == min_char)
-            {
-                c = max_char;
-                break;
-            }
-        }
-
-        cout << str.data() << endl;
+        solve();
     }
+
+    return 0;
 }
