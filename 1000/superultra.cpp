@@ -1,67 +1,79 @@
 #include <iostream>
 #include <vector>
-#include <stdlib.h>
-#include <math.h>
-#include <algorithm>
+#include <cmath>
 
 using namespace std;
 
 bool is_composite(int num)
 {
-    int till = (int)sqrt(num);
-    for (int counter = 2; counter <= till; counter++)
+    if (num < 4)
+        return false;
+    for (int i = 2; i * i <= num; i++)
     {
-        if (!(num % counter))
-        {
+        if (num % i == 0)
             return true;
-        }
+    }
+    return false;
+}
+
+void solve(int n)
+{
+    vector<int> evens, odds;
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (i & 1)
+            evens.push_back(i);
+        else
+            odds.push_back(i);
     }
 
-    return false;
+    int chosen_even = -1, chosen_odd = -1;
+    for (int even : evens)
+    {
+        for (int odd : odds)
+        {
+            if (is_composite(even + odd))
+            {
+                chosen_even = even;
+                chosen_odd = odd;
+                break;
+            }
+        }
+        if (chosen_even != -1)
+            break;
+    }
+
+    if (chosen_even == -1)
+    {
+        cout << -1 << "\n";
+        return;
+    }
+
+    for (int x : evens)
+    {
+        if (x != chosen_even)
+            cout << x << " ";
+    }
+
+    cout << chosen_even << " " << chosen_odd << " ";
+
+    for (int x : odds)
+    {
+        if (x != chosen_odd)
+            cout << x << " ";
+    }
+
+    cout << "\n";
 }
 
 int main()
 {
     int t, n;
     cin >> t;
-
     while (t--)
     {
         cin >> n;
-        vector<int> arr(n);
-
-        for (int index = 1; index <= n; index++)
-        {
-            arr[index - 1] = index;
-        }
-
-        bool found = false;
-        do
-        {
-            bool no = false;
-            for (int index = 0; index < n - 1; index++) // n is guaranteed to be greater than equal to 2
-            {
-                if (!is_composite(arr[index] + arr[index + 1]))
-                {
-                    no = true;
-                    break;
-                }
-            }
-
-            if (!no)
-            {
-                found = true;
-                for (size_t i = 0; i < n; i++)
-                {
-                    cout << arr[i] << (i == n - 1 ? "\n" : " ");
-                }
-                break;
-            }
-        } while (next_permutation(arr.begin(), arr.end()));
-
-        if (!found)
-        {
-            cout << -1 << "\n";
-        }
+        solve(n);
     }
 }
