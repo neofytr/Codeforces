@@ -66,10 +66,61 @@ void solve()
     cin >> t_one_curr >> t_two_curr;
     cin >> david_curr;
 
+    int moves = 0;
+
     do
     {
+        // ideal david move
+        // increase his distance from the closest teacher, or don't move if you can't
 
+        int dist_one = t_one_curr - david_curr;
+        int dist_two = t_two_curr - david_curr;
+
+        if (abs(dist_one) > abs(dist_two))
+        {
+            if (dist_one > 0 && david_curr)
+            {
+                david_curr--;
+            }
+            else if (dist_one < 0 && david_curr != n - 1)
+            {
+                david_curr++;
+            }
+        }
+        else if (abs(dist_one) < abs(dist_two))
+        {
+            if (dist_two > 0 && david_curr)
+            {
+                david_curr--;
+            }
+            else if (dist_two < 0 && david_curr != n - 1)
+            {
+                david_curr++;
+            }
+        }
+
+        if (dist_one > 0)
+        {
+            t_one_curr--;
+        }
+        else if (dist_one < 0)
+        {
+            t_one_curr++;
+        }
+
+        if (dist_two > 0)
+        {
+            t_two_curr--;
+        }
+        else if (dist_two < 0)
+        {
+            t_two_curr++;
+        }
+
+        moves++;
     } while (!is_caught(t_one_curr, t_two_curr, david_curr));
+
+    printf("%d\n", moves);
 }
 
 int main()
