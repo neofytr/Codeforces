@@ -78,7 +78,7 @@ int main()
 
     while (index < len)
     {
-        if (index < len - 3 && is_combo(index, moves))
+        if (index < len - 2 && is_combo(index, moves))
         {
             printf("C");
             index += 3;
