@@ -6,76 +6,61 @@ using namespace std;
     cin.tie(nullptr);
 
 using ll = long long;
-using ld = long double;
 using vi = vector<int>;
-using vll = vector<ll>;
 using pii = pair<int, int>;
-using pll = pair<ll, ll>;
-
 #define all(v) (v).begin(), (v).end()
-#define rall(v) (v).rbegin(), (v).rend()
 #define pb push_back
-#define eb emplace_back
-#define fi first
-#define se second
 #define rep(i, a, b) for (int i = (a); i < (b); ++i)
-#define rev(i, a, b) for (int i = (a); i >= (b); --i)
-#define sz(x) (int)(x).size()
-#define yes cout << "YES\n"
-#define no cout << "NO\n"
 
-#ifdef LOCAL
-#define debug(x) cerr << #x << " = " << (x) << endl;
-#else
-#define debug(x)
-#endif
-
-const int INF = 1e9;
-const ll LINF = 1e18;
-const int MOD = 1e9 + 7;
-
-ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
-ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
-
-ll power(ll a, ll b, ll m = MOD)
+struct subarr_t
 {
-    ll res = 1;
-    while (b)
+    vector<pii> data;
+    void compute_diffs(const vector<int> &arr, int base, const vector<int> &indexes)
     {
-        if (b & 1)
-            res = res * a % m;
-        a = a * a % m;
-        b >>= 1;
+        for (int idx : indexes)
+            data.pb({idx, base - arr[idx]});
     }
-    return res;
+};
+
+void print_subarr(const subarr_t &sub)
+{
+    for (auto &[idx, diff] : sub.data)
+        cout << "(" << idx << ", " << diff << ") ";
+    cout << endl;
 }
-
-typedef struct
-{
-    int base;
-    vector<int> indexes;
-    vector<int> diffs;
-
-    void compute_diffs()
-    {
-        diffs.clear();
-        for (int val : indexes)
-        {
-            diffs.push_back(base - val);
-        }
-    }
-} subarr_t;
 
 void solve()
 {
     int n;
     cin >> n;
-
     vector<int> arr(n);
     for (int &val : arr)
-    {
         cin >> val;
+
+    vector<subarr_t> arr_of_subarr;
+    int index = 0;
+
+    while (index < n)
+    {
+        if (index >= 1 && arr[index - 1] > arr[index])
+        {
+            subarr_t sub;
+            int base = arr[index - 1];
+            vector<int> indexes;
+            while (index < n && arr[index] < base)
+            {
+                indexes.pb(index);
+                index++;
+            }
+            sub.compute_diffs(arr, base, indexes);
+            arr_of_subarr.pb(sub);
+            continue;
+        }
+        index++;
     }
+
+    sort(all(arr_of_subarr), [](const subarr_t &a, const subarr_t &b)
+         { return a.data < b.data; });
 }
 
 int main()
@@ -83,7 +68,6 @@ int main()
     FAST_IO;
     int t;
     cin >> t;
-
     while (t--)
     {
         solve();
