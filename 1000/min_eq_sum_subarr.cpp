@@ -67,22 +67,30 @@ void solve()
         return;
     }
 
-    vector<int> new_perm(n);
-    new_perm = given_perm;
+    vector<int> new_perm = given_perm;
 
-    reverse(new_perm.begin(), new_perm.end());
-
-    if (!(n & 1))
+    // Handle n == 2 specially
+    if (n == 2)
     {
-        // n >= 3
-        swap(new_perm[n / 2], new_perm[n / 2 + 1]);
+        swap(new_perm[0], new_perm[1]);
+    }
+    else
+    {
+        reverse(new_perm.begin(), new_perm.end());
+
+        if ((n & 1))
+        {
+            swap(new_perm[n / 2 - 1], new_perm[n / 2]);
+        }
+        else
+        {
+        }
     }
 
     for (int &val : new_perm)
     {
-        cout << val;
+        cout << val << " ";
     }
-
     cout << endl;
 }
 
