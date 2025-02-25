@@ -31,5 +31,35 @@ int main()
         // operate
     }
 
+    int a, b;
+
+    // print blank line after each test case (except the last) and label the case no
+    // terminated by EOF
+
+    int count = 0;
+    while (scanf("%d %d\n", &a, &b) != EOF)
+    {
+        if (count)
+        {
+            printf("\n");
+        }
+        printf("case %d: %d\n", count++, a + b);
+    }
+
+    int k;
+    while (scanf("%d ", &k) != EOF) // a single space matches any number of whitespace characters
+    {
+        int ans = 0, temp;
+        while (k--)
+        {
+            scanf("%d ", &temp);
+            ans += temp;
+        }
+
+        printf("%d\n", ans);
+    }
+
+    // we are not given the integer k at the beginning
+
     return 0;
 }
