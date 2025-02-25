@@ -61,5 +61,27 @@ int main()
 
     // we are not given the integer k at the beginning
 
+    while (true)
+    {
+        int ans = 0, v;
+        char dummy;
+
+        while (scanf("%d%c", &v, &dummy) != EOF)
+        {
+            ans += v;
+            if (dummy == '\n')
+            {
+                break;
+            }
+        }
+
+        printf("%d\n", ans);
+
+        // even if we have detected an EOF by a scanf call, any number of scanf calls
+        // after it will return the EOF
+        if (feof(stdin))
+            break; // test EOF
+    }
+
     return 0;
 }
