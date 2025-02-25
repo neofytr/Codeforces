@@ -4,15 +4,31 @@ using namespace std;
 
 int main()
 {
-    int N;
-    scanf("%d\n", &N);
+    int t, a, b;
+    scanf("%d\n", &t);
 
-    while (N--)
+    while (t--)
     {
-        char x[110];
-        scanf("0.%[0-9]...\n", x);
+        scanf("%d %d\n", &a, &b);
 
-        printf("the digits are: 0.%s\n", x);
+        // operate
+    }
+
+    int a, b;
+
+    // stop when both a and b are zero
+    while (scanf("%d %d\n", &a, &b), a || b)
+    {
+        // operate
+    }
+
+    int a, b;
+
+    // stop when EOF reached
+
+    while (scanf("%d %d\n", &a, &b) != EOF)
+    {
+        // operate
     }
 
     return 0;
