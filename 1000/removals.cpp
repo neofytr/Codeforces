@@ -50,8 +50,54 @@ ll power(ll a, ll b, ll m = MOD)
     return res;
 }
 
+bool find(vector<int> &arr, int start, int end, int val)
+{
+    for (int index = start; index <= end; index++)
+    {
+        if (arr[index] == val)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void solve()
 {
+    int n;
+
+    cin >> n;
+
+    vector<int> alice(n);
+    vector<int> bob(n);
+
+    for (int counter = 0; counter < n; counter++)
+    {
+        cin >> alice[counter];
+    }
+
+    for (int counter = 0; counter < n; counter++)
+    {
+        cin >> bob[counter];
+    }
+
+    if (alice == bob)
+    {
+        cout << "Bob\n";
+        return;
+    }
+
+    reverse(alice.begin(), alice.end());
+
+    if (alice == bob)
+    {
+        cout << "Bob\n";
+        return;
+    }
+
+    cout << "Alice\n";
+    return;
 }
 
 int main()
