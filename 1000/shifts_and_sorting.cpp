@@ -5,61 +5,52 @@ using namespace std;
     ios::sync_with_stdio(false); \
     cin.tie(nullptr);
 
-using ll = long long;
-using ld = long double;
-using vi = vector<int>;
-using vll = vector<ll>;
-using pii = pair<int, int>;
-using pll = pair<ll, ll>;
-
-#define all(v) (v).begin(), (v).end()
-#define rall(v) (v).rbegin(), (v).rend()
-#define pb push_back
-#define eb emplace_back
-#define fi first
-#define se second
-#define rep(i, a, b) for (int i = (a); i < (b); ++i)
-#define rev(i, a, b) for (int i = (a); i >= (b); --i)
-#define sz(x) (int)(x).size()
-#define yes cout << "YES\n"
-#define no cout << "NO\n"
-
-#ifdef LOCAL
-#define debug(x) cerr << #x << " = " << (x) << endl;
-#else
-#define debug(x)
-#endif
-
-const int INF = 1e9;
-const ll LINF = 1e18;
-const int MOD = 1e9 + 7;
-
-ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
-ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
-
-ll power(ll a, ll b, ll m = MOD)
-{
-    ll res = 1;
-    while (b)
-    {
-        if (b & 1)
-            res = res * a % m;
-        a = a * a % m;
-        b >>= 1;
-    }
-    return res;
-}
-
 void solve()
 {
+    string str;
+    cin >> str;
+
+    long long n = str.length();
+
+    long long cost = 0, index = 0, substr_len = 0;
+    while (index < n)
+    {
+        if (str[index] == '1')
+        {
+            substr_len++;
+        }
+        else if (str[index] == '0' && substr_len)
+        {
+            long long count = 0;
+            while (index < n)
+            {
+                if (str[index] == '0')
+                {
+                    count++;
+                }
+                else
+                {
+                    break;
+                }
+
+                index++;
+            }
+
+            cost += (substr_len + 1) * count;
+            continue;
+        }
+
+        index++;
+    }
+
+    cout << cost << endl;
 }
 
 int main()
 {
     FAST_IO;
-    int t;
+    long long t;
     cin >> t;
-
     while (t--)
     {
         solve();
