@@ -5,53 +5,58 @@ using namespace std;
     ios::sync_with_stdio(false); \
     cin.tie(nullptr);
 
-using ll = long long;
-using ld = long double;
-using vi = vector<int>;
-using vll = vector<ll>;
-using pii = pair<int, int>;
-using pll = pair<ll, ll>;
-
-#define all(v) (v).begin(), (v).end()
-#define rall(v) (v).rbegin(), (v).rend()
-#define pb push_back
-#define eb emplace_back
-#define fi first
-#define se second
-#define rep(i, a, b) for (int i = (a); i < (b); ++i)
-#define rev(i, a, b) for (int i = (a); i >= (b); --i)
-#define sz(x) (int)(x).size()
-#define yes cout << "YES\n"
-#define no cout << "NO\n"
-
-#ifdef LOCAL
-#define debug(x) cerr << #x << " = " << (x) << endl;
-#else
-#define debug(x)
-#endif
-
-const int INF = 1e9;
-const ll LINF = 1e18;
-const int MOD = 1e9 + 7;
-
-ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
-ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
-
-ll power(ll a, ll b, ll m = MOD)
-{
-    ll res = 1;
-    while (b)
-    {
-        if (b & 1)
-            res = res * a % m;
-        a = a * a % m;
-        b >>= 1;
-    }
-    return res;
-}
-
 void solve()
 {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+    for (int &val : arr)
+    {
+        cin >> val;
+    }
+
+    if (n == 1)
+    {
+        cout << 0 << endl;
+        return;
+    }
+
+    int left = 0, right = n - 1;
+
+    if (arr[left] == arr[right])
+    {
+        int eq = arr[left];
+        while (left <= right && arr[left] == eq)
+        {
+            left++;
+        }
+        while (right >= left && arr[right] == eq)
+        {
+            right--;
+        }
+
+        cout << max(0, right - left + 1) << endl;
+    }
+    else
+    {
+        int left_num = arr[left];
+        int right_num = arr[right];
+
+        int left_ptr = 0, right_ptr = n - 1;
+
+        while (left_ptr < n && arr[left_ptr] == left_num)
+        {
+            left_ptr++;
+        }
+
+        while (right_ptr >= 0 && arr[right_ptr] == right_num)
+        {
+            right_ptr--;
+        }
+
+        cout << min(n - left_ptr, right_ptr + 1) << endl;
+    }
 }
 
 int main()
