@@ -52,6 +52,35 @@ ll power(ll a, ll b, ll m = MOD)
 
 void solve()
 {
+    long long n;
+    cin >> n;
+
+    vector<long long> arr(n);
+    for (long long &val : arr)
+    {
+        cin >> val;
+    }
+
+    long long curr_max = LONG_LONG_MIN;
+    long long curr_sum = 0;
+    long long count = 0;
+
+    for (long long index = 0; index < n; index++)
+    {
+        curr_sum += arr[index];
+        if (arr[index] > curr_max)
+        {
+            curr_max = arr[index];
+        }
+
+        // only the curr_max has a chance of being the sum of all other
+        if (curr_sum == 2 * curr_max)
+        {
+            count++;
+        }
+    }
+
+    cout << count << endl;
 }
 
 int main()
