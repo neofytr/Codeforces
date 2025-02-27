@@ -52,9 +52,17 @@ ll power(ll a, ll b, ll m = MOD)
     return res;
 }
 
-vull get_divisors(ull n)
+ull gcd(ull a, ull b)
 {
-    vull divs;
+    if (!b)
+    {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+void get_divisors(ull n, vull &divs)
+{
     for (ull index = 0; index * index <= n; index++)
     {
         if (n % index)
@@ -67,7 +75,7 @@ vull get_divisors(ull n)
         }
     }
 
-    return divs;
+    sort(all(divs));
 }
 
 void solve()
