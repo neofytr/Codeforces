@@ -52,6 +52,26 @@ ll power(ll a, ll b, ll m = MOD)
 
 void solve()
 {
+    int n, m, k;
+
+    cin >> n >> m >> k;
+    vector<int> a(n);
+    vector<int> b(m);
+
+    for (int &val : a)
+    {
+        cin >> val;
+    }
+
+    for (int &val : b)
+    {
+        cin >> val;
+    }
+
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+
+    
 }
 
 int main()
