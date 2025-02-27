@@ -77,7 +77,7 @@ void solve()
 
     size_t div_no = 0;
 
-    for (size_t index = 0; index < n; index++)
+    for (size_t index = 1; index < n; index++)
     {
         if (!(n % index))
         {
