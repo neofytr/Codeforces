@@ -5,9 +5,11 @@ using namespace std;
     ios::sync_with_stdio(false); \
     cin.tie(nullptr);
 
+using ull = unsigned long long;
 using ll = long long;
 using ld = long double;
 using vi = vector<int>;
+using vull = vector<ull>;
 using vll = vector<ll>;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
@@ -48,6 +50,24 @@ ll power(ll a, ll b, ll m = MOD)
         b >>= 1;
     }
     return res;
+}
+
+vull get_divisors(ull n)
+{
+    vull divs;
+    for (ull index = 0; index * index <= n; index++)
+    {
+        if (n % index)
+        {
+            divs.push_back(index);
+            if (n / index != n)
+            {
+                divs.push_back(index);
+            }
+        }
+    }
+
+    return divs;
 }
 
 void solve()
