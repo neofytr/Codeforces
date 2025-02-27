@@ -1,68 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define FAST_IO                  \
-    ios::sync_with_stdio(false); \
-    cin.tie(nullptr);
+int max_sum = INT_MIN;
 
-using ll = long long;
-using ld = long double;
-using vi = vector<int>;
-using vll = vector<ll>;
-using pii = pair<int, int>;
-using pll = pair<ll, ll>;
-
-#define all(v) (v).begin(), (v).end()
-#define rall(v) (v).rbegin(), (v).rend()
-#define pb push_back
-#define eb emplace_back
-#define fi first
-#define se second
-#define rep(i, a, b) for (int i = (a); i < (b); ++i)
-#define rev(i, a, b) for (int i = (a); i >= (b); --i)
-#define sz(x) (int)(x).size()
-#define yes cout << "YES\n"
-#define no cout << "NO\n"
-
-#ifdef LOCAL
-#define debug(x) cerr << #x << " = " << (x) << endl;
-#else
-#define debug(x)
-#endif
-
-const int INF = 1e9;
-const ll LINF = 1e18;
-const int MOD = 1e9 + 7;
-
-ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
-ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
-
-ll power(ll a, ll b, ll m = MOD)
+int knapsack(int i, int w, vector<int> &weights, vector<int> &values)
 {
-    ll res = 1;
-    while (b)
+    // i is the number of items left to consider
+    // w is the remaining weight capacity of the knapsack
+    // weights and values store the weight and value of each item
+
+    // base case (if there are no more items (i == 0) or no more capacity (w == 0)), we cannot take
+    // anything, so we return 0
+
+    if (!i || !w)
     {
-        if (b & 1)
-            res = res * a % m;
-        a = a * a % m;
-        b >>= 1;
+        return 0;
     }
-    return res;
-}
 
-void solve()
-{
+    // if the current item's weight is more than the remaining weight, skip the item and move to the next
+
+    if (weights[i - 1] > w)
+    {
+        return knapsack(i - 1, w, weights, values);
+    }
+
+    // otherwise, we have two choices
+    // take the item -> add it's value and reduce weight
+    // skip the item -> ignore it and move to the next
+    // we return the max of both cases since we want the max value
+
+    return max(knapsack(i - 1, w, weights, values), values[i - 1] + knapsack(i - 1, w - weights[i - 1], weights, values));
 }
 
 int main()
 {
-    FAST_IO;
-    int t;
-    cin >> t;
+    int n, w;
+    cin >> n >> w;
 
-    while (t--)
+    vector<int> weights(n);
+    vector<int> values(n);
+
+    for (int index = 0; index < n; index++)
     {
-        solve();
+        cin >> weights[index] >> values[index];
     }
+
+    vector<int> used_index;
+
+    cout << knapsack(n, w, weights, values) << endl;
+
     return 0;
 }
