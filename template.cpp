@@ -52,6 +52,11 @@ ll power(ll a, ll b, ll m = MOD)
     return res;
 }
 
+ull lcm(ull a, ull b)
+{
+    return (a * b) / gcd(a, b);
+}
+
 ull gcd(ull a, ull b)
 {
     if (!b)
