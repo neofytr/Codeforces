@@ -58,6 +58,8 @@ void solve()
     vector<int> a(n);
     vector<int> b(m);
 
+    vector<int> final(k);
+
     for (int &val : a)
     {
         cin >> val;
@@ -71,7 +73,44 @@ void solve()
     sort(a.begin(), a.end());
     sort(b.begin(), b.end());
 
-    
+    int a_index = 0, b_index = 0;
+    int curr = 0;
+
+    while (curr < k)
+    {
+        if (a[a_index] == curr + 1 && b[b_index] != curr + 1)
+        {
+            final[curr] = a[a_index];
+            a_index++;
+        }
+
+        if (b[b_index] == curr + 1 && a[a_index] != curr + 1)
+        {
+            final[curr] = b[b_index];
+            b_index++;
+        }
+
+        if (a[a_index] == curr + 1 && b[b_index] == curr + 1)
+        {
+            final[curr] = b[b_index];
+            a_index++;
+            b_index++;
+        }
+
+        if (a[a_index] != curr + 1 && b[b_index] != curr + 1)
+        {
+            no;
+            return;
+        }
+    }
+
+    if (a_index != b_index)
+    {
+        no;
+        return;
+    }
+
+    yes;
 }
 
 int main()
