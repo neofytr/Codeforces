@@ -72,17 +72,30 @@ vull get_divisors(ull n)
 
 void solve()
 {
+    size_t n, k;
+    cin >> n >> k;
+
+    size_t div_no = 0;
+
+    for (size_t index = 0; index < n; index++)
+    {
+        if (!(n % index))
+        {
+            div_no++;
+            if (div_no == k)
+            {
+                cout << index << endl;
+                return;
+            }
+        }
+    }
+
+    cout << -1 << endl;
 }
 
 int main()
 {
     FAST_IO;
-    int t;
-    cin >> t;
-
-    while (t--)
-    {
-        solve();
-    }
+    solve();
     return 0;
 }
