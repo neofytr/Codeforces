@@ -1,76 +1,64 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
 
-#define FAST_IO                  \
-    ios::sync_with_stdio(false); \
-    cin.tie(nullptr);
-
-using ll = long long;
-using vi = vector<int>;
-using pii = pair<int, int>;
-#define all(v) (v).begin(), (v).end()
-#define pb push_back
-#define rep(i, a, b) for (int i = (a); i < (b); ++i)
-
-struct subarr_t
-{
-    vector<pii> data;
-    void compute_diffs(const vector<int> &arr, int base, const vector<int> &indexes)
-    {
-        for (int idx : indexes)
-            data.pb({idx, base - arr[idx]});
-    }
-};
-
-void print_subarr(const subarr_t &sub)
-{
-    for (auto &[idx, diff] : sub.data)
-        cout << "(" << idx << ", " << diff << ") ";
-    cout << endl;
-}
-
-void solve()
-{
-    int n;
-    cin >> n;
-    vector<int> arr(n);
-    for (int &val : arr)
-        cin >> val;
-
-    vector<subarr_t> arr_of_subarr;
-    int index = 0;
-
-    while (index < n)
-    {
-        if (index >= 1 && arr[index - 1] > arr[index])
-        {
-            subarr_t sub;
-            int base = arr[index - 1];
-            vector<int> indexes;
-            while (index < n && arr[index] < base)
-            {
-                indexes.pb(index);
-                index++;
-            }
-            sub.compute_diffs(arr, base, indexes);
-            arr_of_subarr.pb(sub);
-            continue;
-        }
-        index++;
-    }
-
-    sort(all(arr_of_subarr), [](const subarr_t &a, const subarr_t &b)
-         { return a.data < b.data; });
-}
+typedef long long ll;
 
 int main()
 {
-    FAST_IO;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int t;
     cin >> t;
+
     while (t--)
     {
-        solve();
+        int n;
+        cin >> n;
+
+        vector<ll> a(n);
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
+
+        // Find the target non-decreasing array
+        vector<ll> target = a;
+        for (int i = 1; i < n; i++)
+        {
+            target[i] = max(target[i], target[i - 1]);
+        }
+
+        // Count how many times each position needs to be incremented
+        vector<ll> increments;
+        for (int i = 0; i < n; i++)
+        {
+            ll diff = target[i] - a[i];
+            if (diff > 0)
+            {
+                // Add this position diff times to our list
+                for (ll j = 0; j < diff; j++)
+                {
+                    increments.push_back(i);
+                }
+            }
+        }
+
+        ll answer = 0;
+
+        // Process in batches - each batch is one operation
+        for (int i = 0; i < increments.size(); i += n)
+        {
+            // For each operation, we take min(n, remaining) positions
+            ll k = min(n, (ll)increments.size() - i);
+            answer += k + 1; // Cost of the operation is k+1
+        }
+
+        cout << answer << "\n";
     }
+
     return 0;
 }
