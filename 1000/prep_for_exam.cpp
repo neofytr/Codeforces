@@ -7,7 +7,6 @@ using namespace std;
 
 using ull = unsigned long long;
 using ll = long long;
-using ld = long double;
 using vi = vector<int>;
 using vull = vector<ull>;
 using vll = vector<ll>;
@@ -39,52 +38,86 @@ const int MOD = 1e9 + 7;
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
 
-ll power(ll a, ll b, ll m = MOD)
-{
-    ll res = 1;
-    while (b)
-    {
-        if (b & 1)
-            res = res * a % m;
-        a = a * a % m;
-        b >>= 1;
-    }
-    return res;
-}
-
-ull lcm(ull a, ull b)
-{
-    return (a * b) / gcd(a, b);
-}
-
-ull gcd(ull a, ull b)
-{
-    if (!b)
-    {
-        return a;
-    }
-    return gcd(b, a % b);
-}
-
 void get_divisors(ull n, vull &divs)
 {
-    for (ull index = 0; index * index <= n; index++)
+    for (ull index = 1; index * index <= n; index++)
     {
-        if (n % index)
+        if (n % index == 0)
         {
             divs.push_back(index);
-            if (n / index != n)
+            if (n / index != index)
             {
-                divs.push_back(index);
+                divs.push_back(n / index);
             }
         }
     }
-
     sort(all(divs));
 }
 
 void solve()
 {
+    int n, m, k;
+    cin >> n >> m >> k;
+
+    vector<int> lists(m);
+    for (int i = 0; i < m; i++)
+    {
+        cin >> lists[i];
+    }
+
+    vector<int> known(k);
+    for (int i = 0; i < k; i++)
+    {
+        cin >> known[i];
+    }
+
+    sort(known.begin(), known.end()); // Ensure binary_search works
+
+    if (k < n - 1)
+    {
+        for (int counter = 0; counter < m; counter++)
+        {
+            cout << 0;
+        }
+        cout << '\n';
+        return;
+    }
+
+    if (k == n)
+    {
+        for (int counter = 0; counter < m; counter++)
+        {
+            cout << 1;
+        }
+        cout << '\n';
+        return;
+    }
+
+    for (int counter = 0; counter < m; counter++)
+    {
+        int elt_to_exclude = lists[counter];
+        bool good = true;
+
+        for (int num : known)
+        {
+            if (num == elt_to_exclude)
+                continue;
+
+            if (!binary_search(known.begin(), known.end(), num))
+            {
+                good = false;
+                cout << 0;
+                break;
+            }
+        }
+
+        if (good)
+        {
+            cout << 1;
+        }
+    }
+
+    cout << '\n';
 }
 
 int main()

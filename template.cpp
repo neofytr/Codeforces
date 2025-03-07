@@ -52,28 +52,14 @@ ll power(ll a, ll b, ll m = MOD)
     return res;
 }
 
-ull lcm(ull a, ull b)
-{
-    return (a * b) / gcd(a, b);
-}
-
-ull gcd(ull a, ull b)
-{
-    if (!b)
-    {
-        return a;
-    }
-    return gcd(b, a % b);
-}
-
 void get_divisors(ull n, vull &divs)
 {
-    for (ull index = 0; index * index <= n; index++)
+    for (ull index = 1; index * index <= n; index++)
     {
         if (n % index)
         {
             divs.push_back(index);
-            if (n / index != n)
+            if (n / index != index)
             {
                 divs.push_back(index);
             }
