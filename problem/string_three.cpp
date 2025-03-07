@@ -4,6 +4,7 @@ using namespace std;
 int main()
 {
     string token;
+    vector<string> tokens;
     char delimeter = ' ';
     while (getline(cin, token, delimeter))
     {
@@ -12,7 +13,7 @@ int main()
             token.pop_back();
         }
 
-        cout << token << "\n";
+        tokens.push_back(token);
     }
 
     return EXIT_SUCCESS;
