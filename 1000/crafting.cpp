@@ -85,6 +85,20 @@ void get_divisors(ull n, vull &divs)
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    vector<int> b(n);
+
+    for (int &val : a)
+    {
+        cin >> val;
+    }
+
+    for (int &val : b)
+    {
+        cin >> val;
+    }
 }
 
 int main()
