@@ -99,6 +99,29 @@ void solve()
     {
         cin >> val;
     }
+
+    vector<int> diff(n);
+    for (int counter = 0; counter < n; counter++)
+    {
+        diff[counter] = a[counter] - b[counter];
+    }
+
+    sort(diff.begin(), diff.end());
+
+    if (diff[0] >= 0)
+    {
+        yes;
+        return;
+    }
+
+    if (diff[1] < 0 || -diff[0] > diff[1])
+    {
+        no;
+        return;
+    }
+
+    yes;
+    return;
 }
 
 int main()
