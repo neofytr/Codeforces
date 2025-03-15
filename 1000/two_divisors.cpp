@@ -80,7 +80,7 @@ void solve()
         return;
     }
 
-    
+    return;
 }
 
 int main()
