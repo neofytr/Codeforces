@@ -74,26 +74,21 @@ void solve()
     int n, k;
     cin >> n >> k;
 
-    vector<int> nums(n);
+    vector<int> num(n);
 
-    for (int &val : nums)
+    for (int &val : num)
     {
         cin >> val;
     }
 
-    if (k == 2)
-    {
-        for (int index = 0; index < n; index++)
-        {
-            if (!(nums[index] & 1)) // if divisible by 2
-            {
-                cout << 0 << endl;
-                return;
-            }
-        }
+    vector<int> rem(n);
 
-        cout << 1 << endl;
+    for (int index = 0; index < n; index++)
+    {
+        rem[index] = num[index] % k;
     }
+
+    
 }
 
 int main()
