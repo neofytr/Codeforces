@@ -1,112 +1,89 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define FAST_IO                  \
-    ios::sync_with_stdio(false); \
-    cin.tie(nullptr);
-
 void solve()
 {
-    size_t n, k;
+    int n, k;
     cin >> n >> k;
 
-    vector<size_t> num(n);
-
-    for (size_t &val : num)
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
     {
-        cin >> val;
+        cin >> a[i];
     }
 
-    vector<size_t> rem_count(k, 0); // Stores count of each remainder mod k
-
-    for (size_t &val : num)
+    if (k == 2 || k == 3 || k == 5)
     {
-        size_t rem = val % k;
-        rem_count[rem]++;
-    }
-
-    // If any number is already divisible by k, answer is 0
-    if (rem_count[0] > 0)
-    {
-        cout << 0 << endl;
-        return;
-    }
-
-    // Handling k = 2
-    if (k == 2)
-    {
-        cout << 1 << endl;
-        return;
-    }
-
-    // Handling k = 3
-    if (k == 3)
-    {
-        if (rem_count[2] > 0)
+        for (int i = 0; i < n; i++)
         {
-            cout << 1 << endl;
+            if (a[i] % k == 0)
+            {
+                cout << 0 << endl;
+                return;
+            }
         }
-        else
+
+        int min_ops = INT_MAX;
+        for (int i = 0; i < n; i++)
         {
-            cout << 2 << endl; // Only 1s exist
+            int ops = (k - (a[i] % k)) % k;
+            min_ops = min(min_ops, ops);
         }
+
+        cout << min_ops << endl;
         return;
     }
 
-    // Handling k = 4
     if (k == 4)
     {
-        if (rem_count[2] >= 2)
+        for (int i = 0; i < n; i++)
         {
-            cout << 0 << endl;
-            return;
+            if (a[i] % 4 == 0)
+            {
+                cout << 0 << endl;
+                return;
+            }
         }
-        if (rem_count[3] > 0)
-        {
-            cout << 1 << endl;
-            return;
-        }
-        if (rem_count[2] == 1)
-        {
-            cout << 1 << endl;
-            return;
-        }
-        cout << 3 << endl;
-        return;
-    }
 
-    // Handling k = 5
-    if (k == 5)
-    {
-        if (rem_count[4] > 0)
+        int cnt = 0;
+        for (int i = 0; i < n; i++)
         {
-            cout << 1 << endl;
-            return;
+            if (a[i] % 2 == 0)
+            {
+                cnt++;
+            }
         }
-        if (rem_count[3] > 0)
+
+        int min_ops_for_one = INT_MAX;
+        for (int i = 0; i < n; i++)
         {
-            cout << 2 << endl;
-            return;
+            int ops = (4 - (a[i] % 4)) % 4;
+            min_ops_for_one = min(min_ops_for_one, ops);
         }
-        if (rem_count[2] > 0)
+
+        int min_ops_for_two = INT_MAX;
+        if (n >= 2)
         {
-            cout << 3 << endl;
-            return;
+            min_ops_for_two = max(0, 2 - cnt);
         }
-        cout << 4 << endl;
+
+        cout << min(min_ops_for_one, min_ops_for_two) << endl;
         return;
     }
 }
 
 int main()
 {
-    FAST_IO;
-    size_t t;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
     cin >> t;
 
     while (t--)
     {
         solve();
     }
+
     return 0;
 }
