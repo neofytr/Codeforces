@@ -71,6 +71,45 @@ void get_divisors(ull n, vull &divs)
 
 void solve()
 {
+    string str;
+    cin >> str;
+
+    vector<int> indexes;
+
+    int zero = 0, one = 0;
+    for (char ch : str)
+    {
+        if (ch == '0')
+        {
+            zero++;
+        }
+        else
+        {
+            one++;
+        }
+    }
+
+    if (zero == one)
+    {
+        cout << 0 << endl;
+        return;
+    }
+
+    if (zero > one)
+    {
+        for (int index = 0; index < str.length(); index++)
+        {
+            if (str[index] == '1')
+            {
+                indexes.push_back(index);
+            }
+        }
+
+        for (int index = 0; index < str.length(); index++)
+        {
+            
+        }
+    }
 }
 
 int main()
