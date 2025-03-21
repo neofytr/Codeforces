@@ -74,13 +74,21 @@ void solve()
     string str;
     cin >> str;
 
+    string original = str;
+
+    vector<int> indexes;
+
     int zero = 0, one = 0;
     for (char ch : str)
     {
         if (ch == '0')
+        {
             zero++;
+        }
         else
+        {
             one++;
+        }
     }
 
     if (zero == one)
@@ -93,59 +101,59 @@ void solve()
 
     if (zero > one)
     {
-        vector<int> ones;
-        for (int i = 0; i < str.length(); i++)
+        for (int index = str.length() - 1; index >= 0; index--)
         {
-            if (str[i] == '1')
-                ones.push_back(i);
+            if (str[index] == '1')
+            {
+                indexes.push_back(index);
+            }
         }
 
-        for (int i = 0; i < str.length(); i++)
+        for (int index = 0; index < str.length(); index++)
         {
-            if (str[i] == '0')
+            if (str[index] == '0' && original[index] == '0')
             {
-                if (ones.empty())
+                if (!indexes.size())
                 {
                     cost++;
-                    str.erase(i, 1);
-                    i--;
+                    str.erase(index, 1);
+                    index--;
+                    continue;
                 }
-                else
-                {
-                    int swap = ones.back();
-                    ones.pop_back();
-                    str[i] = '1';
-                    str[swap] = '0';
-                }
+                int swap = indexes.back();
+                indexes.pop_back();
+
+                str[index] = '1';
+                str[swap] = '0';
             }
         }
     }
     else
     {
-        vector<int> zeros;
-        for (int i = 0; i < str.length(); i++)
+        for (int index = str.length() - 1; index >= 0; index--)
         {
-            if (str[i] == '0')
-                zeros.push_back(i);
+            if (str[index] == '0')
+            {
+                indexes.push_back(index);
+            }
         }
 
-        for (int i = 0; i < str.length(); i++)
+        for (int index = 0; index < str.length(); index++)
         {
-            if (str[i] == '1')
+            if (str[index] == '1' && original[index] == '1')
             {
-                if (zeros.empty())
+                if (!indexes.size())
                 {
                     cost++;
-                    str.erase(i, 1);
-                    i--;
+                    str.erase(index, 1);
+                    index--;
+                    continue;
                 }
-                else
-                {
-                    int swap = zeros.back();
-                    zeros.pop_back();
-                    str[swap] = '1';
-                    str[i] = '0';
-                }
+                int swap = indexes.back();
+                indexes.pop_back();
+
+                str[index] = '0';
+                str[swap] = '1';
             }
         }
     }
