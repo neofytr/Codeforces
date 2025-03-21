@@ -69,26 +69,47 @@ void get_divisors(ull n, vull &divs)
     sort(all(divs));
 }
 
+int compute_product(vector<int> &rem)
+{
+    int mul = 1;
+    int n = rem.size();
+    for (int index = 0; index < n; index++)
+    {
+        mul *= rem[index];
+    }
+}
+
 void solve()
 {
     int n, k;
     cin >> n >> k;
 
     vector<int> num(n);
-
     for (int &val : num)
     {
         cin >> val;
     }
 
     vector<int> rem(n);
-
     for (int index = 0; index < n; index++)
     {
         rem[index] = num[index] % k;
     }
 
-    
+    if (!compute_product(rem))
+    {
+        cout << 0 << endl;
+    }
+
+    for (int index = 0; index < n; index++)
+    {
+        rem[index]++;
+        if (!compute_product(rem))
+        {
+            cout << 1 << endl;
+        }
+        rem[index]--;
+    }
 }
 
 int main()
