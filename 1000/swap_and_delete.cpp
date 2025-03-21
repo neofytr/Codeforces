@@ -74,19 +74,13 @@ void solve()
     string str;
     cin >> str;
 
-    vector<int> indexes;
-
     int zero = 0, one = 0;
     for (char ch : str)
     {
         if (ch == '0')
-        {
             zero++;
-        }
         else
-        {
             one++;
-        }
     }
 
     if (zero == one)
@@ -95,21 +89,68 @@ void solve()
         return;
     }
 
+    int cost = 0;
+
     if (zero > one)
     {
-        for (int index = 0; index < str.length(); index++)
+        vector<int> ones;
+        for (int i = 0; i < str.length(); i++)
         {
-            if (str[index] == '1')
-            {
-                indexes.push_back(index);
-            }
+            if (str[i] == '1')
+                ones.push_back(i);
         }
 
-        for (int index = 0; index < str.length(); index++)
+        for (int i = 0; i < str.length(); i++)
         {
-            
+            if (str[i] == '0')
+            {
+                if (ones.empty())
+                {
+                    cost++;
+                    str.erase(i, 1);
+                    i--;
+                }
+                else
+                {
+                    int swap = ones.back();
+                    ones.pop_back();
+                    str[i] = '1';
+                    str[swap] = '0';
+                }
+            }
         }
     }
+    else
+    {
+        vector<int> zeros;
+        for (int i = 0; i < str.length(); i++)
+        {
+            if (str[i] == '0')
+                zeros.push_back(i);
+        }
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            if (str[i] == '1')
+            {
+                if (zeros.empty())
+                {
+                    cost++;
+                    str.erase(i, 1);
+                    i--;
+                }
+                else
+                {
+                    int swap = zeros.back();
+                    zeros.pop_back();
+                    str[swap] = '1';
+                    str[i] = '0';
+                }
+            }
+        }
+    }
+
+    cout << cost << endl;
 }
 
 int main()
