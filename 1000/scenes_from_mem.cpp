@@ -1,118 +1,85 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Function to check if a number is prime
+bool isPrime(long long n)
+{
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+
+    for (long long i = 5; i * i <= n; i += 6)
+    {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    }
+    return true;
+}
+
 void solve()
 {
     int k;
     string num;
-
     cin >> k >> num;
 
-    if (k == 1)
+    // Try to find a single digit that is not prime
+    for (int i = 0; i < k; i++)
     {
-        // since its not possible to delete and not obtain a not prime
-        cout << 1 << endl;
-        cout << num << endl;
-        return;
-    }
-
-    for (int index = 0; index < k; index++)
-    {
-        if (num[index] == '1' || num[index] == '4' || num[index] == '6' || num[index] == '8' || num[index] == '9')
+        int digit = num[i] - '0';
+        if (digit == 1 || digit == 4 || digit == 6 || digit == 8 || digit == 9)
         {
             cout << 1 << endl;
-            cout << num[index] << endl;
-            return;
-        }
-
-        if (index)
-        {
-            cout << index + 1 << endl;
-            for (int counter = 0; counter <= index; counter++)
-            {
-                cout << num[counter];
-            }
-            cout << endl;
+            cout << digit << endl;
             return;
         }
     }
 
-    if (num[0] == '2')
+    // Try to find a two-digit number that is not prime
+    for (int i = 0; i < k; i++)
     {
-        for (int index = 0; index < k; index++)
+        for (int j = i + 1; j < k; j++)
         {
-            if (num[index] == '1')
-            {
-                cout << 2 << endl;
-                cout << 21 << endl;
-                return;
-            }
+            int first = num[i] - '0';
+            int second = num[j] - '0';
+            int twoDigit = first * 10 + second;
 
-            if (num[index] == '7')
+            if (!isPrime(twoDigit))
             {
                 cout << 2 << endl;
-                cout << 27 << endl;
+                cout << twoDigit << endl;
                 return;
             }
         }
-
-        // now no 1 and 7 are present
-        // 23 isnt possible
-        // so there are at least two threes
-        // we are done
-
-        cout << 2 << endl;
-        cout << 33 << endl;
-
-        return;
     }
 
-    // now only numbers present are 3, 5, and 7
-    // if any of them are present atleast two times we are done
-
-    unordered_map<char, int> map;
-    for (int index = 0; index < k; index++)
+    // Try three digits if needed
+    for (int i = 0; i < k; i++)
     {
-        map[num[index]]++;
+        for (int j = i + 1; j < k; j++)
+        {
+            for (int l = j + 1; l < k; l++)
+            {
+                int first = num[i] - '0';
+                int second = num[j] - '0';
+                int third = num[l] - '0';
+                int threeDigit = first * 100 + second * 10 + third;
+
+                if (!isPrime(threeDigit))
+                {
+                    cout << 3 << endl;
+                    cout << threeDigit << endl;
+                    return;
+                }
+            }
+        }
     }
 
-    if (map['3'] >= 2)
-    {
-        cout << 2 << endl;
-        cout << 33 << endl;
-        return;
-    }
-
-    if (map['5'] >= 2)
-    {
-        cout << 2 << endl;
-        cout << 55 << endl;
-        return;
-    }
-
-    if (map['7'] >= 2)
-    {
-        cout << 2 << endl;
-        cout << 77 << endl;
-        return;
-    }
-
-    // now only the numbers 3, 5 and 7 are present and at most once;
-    // k >= 2
-
-    // the possibilities are 35, 57, 73, 357
-    // 73 isnt even possible
-
-    if (k == 2)
-    {
-        cout << 2 << endl;
-        cout << num << endl;
-        return;
-    }
-
-    // only possibility is 357 now
-    cout << 2 << endl;
-    cout << 35 << endl;
+    // We're guaranteed to find a solution with less than k digits
+    // If we reach here, there might be an issue with our implementation
+    cout << "No solution found!" << endl;
 }
 
 int main()
@@ -125,5 +92,5 @@ int main()
         solve();
     }
 
-    return EXIT_SUCCESS;
+    return 0;
 }
