@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to check if a number is prime
 bool isPrime(long long n)
 {
     if (n <= 1)
@@ -25,7 +24,6 @@ void solve()
     string num;
     cin >> k >> num;
 
-    // Try to find a single digit that is not prime
     for (int i = 0; i < k; i++)
     {
         int digit = num[i] - '0';
@@ -37,7 +35,6 @@ void solve()
         }
     }
 
-    // Try to find a two-digit number that is not prime
     for (int i = 0; i < k; i++)
     {
         for (int j = i + 1; j < k; j++)
@@ -55,7 +52,6 @@ void solve()
         }
     }
 
-    // Try three digits if needed
     for (int i = 0; i < k; i++)
     {
         for (int j = i + 1; j < k; j++)
@@ -77,8 +73,6 @@ void solve()
         }
     }
 
-    // We're guaranteed to find a solution with less than k digits
-    // If we reach here, there might be an issue with our implementation
     cout << "No solution found!" << endl;
 }
 
