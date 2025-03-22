@@ -1,67 +1,47 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-void solve()
+void generatePermutation(int n)
 {
-    int n;
-    cin >> n;
+    vector<int> a;
+    a.push_back(1);
 
-    if (n == 2)
+    for (int x = 2; x <= n; x *= 2)
     {
-        // For n=2, any permutation gives only 1 distinct GCD
-        cout << "1 2" << endl;
-        return;
-    }
-
-    // For n >= 3, we can create a permutation with exactly n distinct GCDs
-    vector<int> perm;
-
-    // Add all powers of 2 first (they will create distinct GCDs with each other)
-    for (int i = 1; i <= n; i *= 2)
-    {
-        perm.push_back(i);
+        a.push_back(x);
     }
 
     for (int i = 3; i <= n; i += 2)
     {
-        if (find(perm.begin(), perm.end(), i) == perm.end())
+        if (find(a.begin(), a.end(), i) == a.end())
         {
-            perm.push_back(i);
+            for (int x = i; x <= n; x *= 2)
+            {
+                if (find(a.begin(), a.end(), x) == a.end())
+                {
+                    a.push_back(x);
+                }
+            }
         }
     }
 
-    for (int i = 6; i <= n; i += 4)
+    for (int i = 0; i < n; i++)
     {
-        if (find(perm.begin(), perm.end(), i) == perm.end())
-        {
-            perm.push_back(i);
-        }
+        cout << a[i] << " ";
     }
-
-    for (int i = 1; i <= n; i++)
-    {
-        if (find(perm.begin(), perm.end(), i) == perm.end())
-        {
-            perm.push_back(i);
-        }
-    }
-
-    for (int val : perm)
-    {
-        cout << val << " ";
-    }
-    cout << endl;
+    cout << "\n";
 }
 
 int main()
 {
     int t;
     cin >> t;
-
     while (t--)
     {
-        solve();
+        int n;
+        cin >> n;
+        generatePermutation(n);
     }
-
     return 0;
 }
