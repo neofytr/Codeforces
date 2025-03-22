@@ -1,64 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int gcd(int a, int b)
-{
-    return (b == 0) ? a : gcd(b, a % b);
-}
-
 void solve()
 {
     int n;
     cin >> n;
 
-    set<int> available;
-    for (int i = 1; i <= n; i++)
-    {
-        available.insert(i);
-    }
-
-    vector<int> perm(n);
-
     if (n == 2)
     {
+        // For n=2, any permutation gives only 1 distinct GCD
         cout << "1 2" << endl;
         return;
     }
 
-    perm[0] = 1;
-    perm[1] = 2;
-    perm[2] = 3;
+    // For n >= 3, we can create a permutation with exactly n distinct GCDs
+    vector<int> perm;
 
-    available.erase(1);
-    available.erase(2);
-    available.erase(3);
-
-    for (int i = 3; i < n; i++)
+    // Add all powers of 2 first (they will create distinct GCDs with each other)
+    for (int i = 1; i <= n; i *= 2)
     {
-        int candidate = 0;
+        perm.push_back(i);
+    }
 
-        if (i % 2 == 1)
+    for (int i = 3; i <= n; i += 2)
+    {
+        if (find(perm.begin(), perm.end(), i) == perm.end())
         {
-            candidate = 2 * perm[i - 1];
+            perm.push_back(i);
         }
-        else
-        {
-            if (i - 2 >= 0)
-            {
-                candidate = 2 * perm[i - 2];
-            }
-        }
+    }
 
-        if (candidate > 0 && candidate <= n && available.find(candidate) != available.end())
+    for (int i = 6; i <= n; i += 4)
+    {
+        if (find(perm.begin(), perm.end(), i) == perm.end())
         {
-            perm[i] = candidate;
+            perm.push_back(i);
         }
-        else
-        {
-            perm[i] = *available.begin();
-        }
+    }
 
-        available.erase(perm[i]);
+    for (int i = 1; i <= n; i++)
+    {
+        if (find(perm.begin(), perm.end(), i) == perm.end())
+        {
+            perm.push_back(i);
+        }
     }
 
     for (int val : perm)
