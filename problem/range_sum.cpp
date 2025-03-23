@@ -21,6 +21,7 @@ int main()
     while (q--)
     {
         cin >> a >> b;
+        a--, b--; // since we have one based indexes in the question
         cout << prefix[b + 1] - prefix[a] << "\n";
     }
 
