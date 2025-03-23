@@ -3,43 +3,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int MOD = 998244353;
+
 void solve()
 {
-    int n, k;
+    long long n, k;
     cin >> n >> k;
 
-    vector<int> selections(n + 1, 0);
+    vector<pair<long long, long long>> segments(k);
 
-    // for computing the union
-    // for each segment, we put 1 in the corresponding segment in the selection
-    // to put the one, we use propagation
-    // since the segments are given to be non-intersecting, the indexes in the final union will
-    // all have exactly 1 as their value; in general, they are positive
+    // all segments are non-long longersecting
 
-    int l, r;
-    for (int index = 0; index < k; index++)
+    long long l, r;
+    for (auto &seg : segments)
     {
         cin >> l >> r;
-
-        // convert to zero based index
-        l--, r--;
-
-        selections[l] += 1;
-        selections[r + 1] -= 1;
+        seg.first = l;
+        seg.second = r;
     }
 
-    // propagate
-    for (int index = 1; index < n; index++)
+    // dp[r] is the number of ways to get to r from the starting position (1)
+    vector<long long> dp(n + 1, 0);
+    vector<long long> prefix(n + 1, 0);
+    dp[1] = 1; // since we are starting at 1
+    prefix[1] = 1;
+
+    for (long long index = 2; index < n + 1; index++)
     {
-        selections[index] += selections[index - 1];
+        for (auto seg : segments)
+        {
+            long long left = index - seg.second;
+            long long right = index - seg.first;
+
+            if (right >= 1)
+            {
+                dp[index] = (dp[index] + prefix[right] - (left > 1 ? prefix[left - 1] : 0) + MOD) % MOD;
+            }
+        }
+
+        prefix[index] = (prefix[index - 1] + dp[index]) % MOD;
     }
 
-    for (int index = 0; index < n; index++)
-    {
-        cout << selections[index] << " ";
-    }
-
-    cout << endl;
+    cout << dp[n] % MOD << endl;
 }
 
 int main()
