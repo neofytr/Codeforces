@@ -20,8 +20,8 @@ void solve()
         get<1>(trips)--;
     }
 
-    // count how many times each operation is applied
-    vector<long long> op_counts(m, 0);
+    // use a prefix array to count operation applications
+    vector<long long> op_counts(m + 1, 0);
 
     for (size_t query = 0; query < k; query++)
     {
@@ -29,18 +29,23 @@ void solve()
         cin >> x >> y;
         x--, y--;
 
-        // increment count for operations x through y
-        for (size_t i = x; i <= y; i++)
-        {
-            op_counts[i]++;
-        }
+        // mark the range [x,y] using prefix technique
+        op_counts[x]++;
+        op_counts[y + 1]--; // decrement at y+1 to end the range
     }
 
+    // propagate the prefix sum to get the actual count of each operation
+    for (size_t i = 1; i < m; i++)
+    {
+        op_counts[i] += op_counts[i - 1];
+    }
+
+    // apply operations with their counts using another prefix array
     vector<long long> prefix(n, 0);
 
     for (size_t i = 0; i < m; i++)
     {
-        if (!op_counts[i])
+        if (op_counts[i] == 0)
             continue;
 
         auto [l, r, d] = operations[i];
@@ -51,11 +56,13 @@ void solve()
         }
     }
 
+    // propagate the final prefix sum
     for (size_t i = 1; i < n; i++)
     {
         prefix[i] += prefix[i - 1];
     }
 
+    // apply to original array and output
     for (size_t i = 0; i < n; i++)
     {
         arr[i] += prefix[i];
