@@ -29,4 +29,15 @@ int main()
             prefix[i][j] = matrix[i - 1][j - 1] + prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1];
         }
     }
+
+    // suppose we want sum of all elements in the matrix inside the rectangle
+    // made by the indices (x_one, y_one) and (x_two, y_two)
+    // 0 <= x_one <= x_two < m
+    // 0 <= y_one <= y_two < n
+    // sum = prefix[y_two + 1][x_two + 1] - prefix[y_two + 1][x_one] - prefix[y_one][x_two + 1] - prefix[y_one][x_one];
+
+    int x_one, x_two, y_one, y_two;
+    cin >> x_one >> x_two >> y_one >> y_two;
+
+    int sum = prefix[y_two + 1][x_two + 1] - prefix[y_two + 1][x_one] - prefix[y_one][x_two + 1] - prefix[y_one][x_one];
 }
