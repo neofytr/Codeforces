@@ -13,6 +13,7 @@ int main()
     for (int index = 1; index < n + 1; index++)
     {
         cin >> temp;
+
         prefix[index] = prefix[index - 1] + temp;
     }
 
