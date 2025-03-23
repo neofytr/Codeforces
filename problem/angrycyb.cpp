@@ -3,6 +3,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// second order differences in the subarrays is constant
+// so we need two propagations; first to accumulate the second order differences and the next to accumulate
+// the first order differences
+
 void solve()
 {
     int n, q;
