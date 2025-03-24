@@ -6,6 +6,8 @@ using namespace std;
 int main()
 {
     int n, q;
+    cin >> n >> q;
+
     vector<long long> arr(n + 1, 0);
     vector<long long> prefix(n + 2, 0);
 
@@ -25,7 +27,8 @@ int main()
         cin >> a >> b;
 
         // 1 based indexing; no change to a and b
-
-        cout << (prefix[b] ^ prefix[a - 1]) << "\n";
+        cout << (prefix[b + 1] ^ prefix[a]) << "\n";
     }
+
+    return EXIT_SUCCESS;
 }
