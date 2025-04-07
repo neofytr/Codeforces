@@ -1,6 +1,5 @@
 
 import java.util.Scanner;
-import java.util.Set;
 
 class quickUnion {
 
@@ -45,7 +44,12 @@ class quickUnion {
             return -1;
         }
 
-        return find(element);
+        int get = find(element);
+        if (get == this.numOfElements) {
+            return -1;
+        }
+
+        return get;
     }
 }
 
