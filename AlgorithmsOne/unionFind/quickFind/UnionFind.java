@@ -6,7 +6,7 @@ public class UnionFind {
     UnionFind(int numOfObjects) {
         arr = new int[numOfObjects];
         for (int i = 0; i < numOfObjects; i++) {
-            arr[i] = -1;
+            arr[i] = i;
         }
     }
 
@@ -38,6 +38,6 @@ public class UnionFind {
     }
 
     boolean connected(int nodeOne, int nodeTwo) {
-        return arr[nodeOne] == arr[nodeTwo] && arr[nodeOne] != -1;
+        return arr[nodeOne] == arr[nodeTwo];
     }
 }
