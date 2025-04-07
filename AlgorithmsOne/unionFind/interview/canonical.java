@@ -6,16 +6,19 @@ class quickUnion {
     private final int arr[];
     private final int size[];
     private int components;
+    private final int max[]; // max[i] is the largest element in the component whose root node is i
     private final int numOfObjects;
 
     public quickUnion(int numOfObjects) {
         this.numOfObjects = numOfObjects;
         arr = new int[numOfObjects];
         size = new int[numOfObjects];
+        this.max = new int[numOfObjects];
         components = numOfObjects;
         for (int index = 0; index < numOfObjects; index++) {
             arr[index] = index; // each element is a tree of single root, with the element at the root
             size[index] = 1;
+            this.max[index] = index; // maximum element in the component containing index
         }
     }
 
@@ -48,11 +51,15 @@ class quickUnion {
             return true;
         }
 
+        int newMax = Math.max(max[firstRoot], max[secondRoot]);
+
         if (size[firstRoot] > size[secondRoot]) {
             arr[secondRoot] = firstRoot;
+            max[firstRoot] = newMax;
             size[firstRoot] += size[secondRoot];
         } else {
             arr[firstRoot] = secondRoot;
+            max[secondRoot] = newMax;
             size[secondRoot] += size[firstRoot];
         }
 
@@ -69,6 +76,10 @@ class quickUnion {
         return components == 1;
     }
 
+    public int getMax(int node) {
+        return max[getRoot(node)];
+    }
+
 }
 
 public class canonical {
@@ -81,7 +92,7 @@ public class canonical {
 
             int firstNode, secondNode;
 
-            while (scanner.hasNextLine())  {
+            while (scanner.hasNextLine()) {
                 firstNode = scanner.nextInt();
                 secondNode = scanner.nextInt();
 
