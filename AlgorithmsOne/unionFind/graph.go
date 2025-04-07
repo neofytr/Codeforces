@@ -44,6 +44,7 @@ func (graph *graph_t) print() {
 func search(graph *graph_t, visited map[int]bool, start, end int, found *bool) {
 	if start == end {
 		*found = true
+		return
 	}
 
 	if visited[start] {
@@ -166,6 +167,6 @@ func main() {
 	graph := createGraph()
 	graph.load("graph.txt")
 
-	found, err := graph.pathExists(2, 800)
+	found, _ := graph.pathExists(1, 800)
 	fmt.Println(found)
 }
