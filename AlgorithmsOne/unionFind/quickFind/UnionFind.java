@@ -1,7 +1,7 @@
 
 public class UnionFind {
 
-    int[] arr;
+    private int[] arr;
 
     UnionFind(int numOfObjects) {
         arr = new int[numOfObjects];
@@ -10,7 +10,7 @@ public class UnionFind {
         }
     }
 
-    boolean union(int nodeOne, int nodeTwo) {
+    public boolean union(int nodeOne, int nodeTwo) {
         int size = arr.length;
         if (nodeOne >= size || nodeTwo >= size) {
             return false;
@@ -30,7 +30,7 @@ public class UnionFind {
         return true;
     }
 
-    boolean connected(int nodeOne, int nodeTwo) {
+    public boolean connected(int nodeOne, int nodeTwo) {
         return arr[nodeOne] == arr[nodeTwo];
     }
 }
