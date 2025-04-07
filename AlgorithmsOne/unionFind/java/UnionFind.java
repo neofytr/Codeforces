@@ -23,6 +23,9 @@ public class UnionFind {
             arr[nodeOne] = valTwo;
         } else if (valTwo == -1 && valOne != -1) {
             arr[nodeTwo] = valOne;
+        } else if (valOne == -1 && valTwo == -1) {
+            arr[nodeOne] = nodeOne;
+            arr[nodeTwo] = nodeOne;
         } else {
             for (int index = 0; index < size; index++) {
                 if (arr[index] == valTwo) {
@@ -35,6 +38,6 @@ public class UnionFind {
     }
 
     boolean connected(int nodeOne, int nodeTwo) {
-        return arr[nodeOne] == arr[nodeTwo];
+        return arr[nodeOne] == arr[nodeTwo] && arr[nodeOne] != -1;
     }
 }

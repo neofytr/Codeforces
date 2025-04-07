@@ -13,7 +13,7 @@ public class test {
             int secondNode = scanner.nextInt();
 
             if (!unionFind.union(firstNode, secondNode)) {
-                System.err.println("Invalid Nodes " + firstNode + " and " + secondNode + ". Must be in the range 0 to " + numOfObjects);
+                System.err.println("Invalid Nodes " + firstNode + " and " + secondNode + ". Must be in the range 0 to " + (numOfObjects - 1));
                 return;
             }
         }
