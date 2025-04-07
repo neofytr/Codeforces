@@ -19,9 +19,11 @@ public class UnionFind {
         int valOne = arr[nodeOne];
         int valTwo = arr[nodeTwo];
 
-        for (int index = 0; index < size; index++) {
-            if (arr[index] == valTwo) {
-                arr[index] = valOne;
+        if (valOne != valTwo) { // not already connected
+            for (int index = 0; index < size; index++) {
+                if (arr[index] == valTwo) {
+                    arr[index] = valOne;
+                }
             }
         }
 
