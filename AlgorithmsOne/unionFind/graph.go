@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"math/rand"
 	"os"
+	"time"
 )
 
 const defaultGraphSize = 10
@@ -142,18 +144,28 @@ func (graph *graph_t) addConnection(firstNode, secondNode int) error {
 }
 
 func main() {
+	file, err := os.Create("graph.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	rand.Seed(time.Now().UnixNano())
+	edges := 1000000
+	nodeCount := 500000
+
+	for i := 0; i < edges; i++ {
+		a := rand.Intn(nodeCount)
+		b := rand.Intn(nodeCount)
+		if a == b {
+			b = (b + 1) % nodeCount // avoid self-loop
+		}
+		fmt.Fprintf(file, "%d %d\n", a, b)
+	}
+
 	graph := createGraph()
-	graph.addConnection(4, 3)
-	graph.addConnection(3, 8)
-	graph.addConnection(6, 5)
-	graph.addConnection(9, 4)
-	graph.addConnection(2, 1)
-	graph.addConnection(5, 0)
-	graph.addConnection(7, 2)
-	graph.addConnection(6, 1)
-	graph.addConnection(1, 0)
+	graph.load("graph.txt")
 
-	found, _ := graph.pathExists(9, 5)
-
+	found, err := graph.pathExists(2, 800)
 	fmt.Println(found)
 }
