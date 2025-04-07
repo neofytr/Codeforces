@@ -35,6 +35,7 @@ public class WeightedQuickUnion {
             return true;
         }
 
+        // attach the smaller tree to the root of the larger tree
         if (size[rootOne] > size[rootTwo]) {
             arr[rootTwo] = rootOne;
             size[rootOne] += size[rootTwo];
