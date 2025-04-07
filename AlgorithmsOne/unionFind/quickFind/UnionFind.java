@@ -1,7 +1,7 @@
 
 public class UnionFind {
 
-    private int[] arr;
+    private final int[] arr;
 
     UnionFind(int numOfObjects) {
         arr = new int[numOfObjects];

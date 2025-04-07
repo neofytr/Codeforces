@@ -1,7 +1,7 @@
 public class QuickUnion {
 
-    private int[] arr;
-    private int numOfObjects;
+    private final int[] arr;
+    private final int numOfObjects;
 
     public QuickUnion(int numOfObjects) {
         arr = new int[numOfObjects];
