@@ -1,82 +1,68 @@
 
 import java.util.Scanner;
+import java.util.Set;
 
 class quickUnion {
 
-    private final int arr[];
-    private final int size[];
-    private int components;
-    private final int numOfObjects;
+    private final int[] arr;
+    private final int numOfElements;
 
-    public quickUnion(int numOfObjects) {
-        this.numOfObjects = numOfObjects;
-        arr = new int[numOfObjects];
-        size = new int[numOfObjects];
-        components = numOfObjects;
-        for (int index = 0; index < numOfObjects; index++) {
-            arr[index] = index; // each element is a tree of single root, with the element at the root
-            size[index] = 1;
+    public quickUnion(int numOfElements) {
+        arr = new int[numOfElements + 1]; // the value numOfElements means does not exist; sentinel value
+        this.numOfElements = numOfElements;
+        for (int index = 0; index <= numOfElements; index++) {
+            arr[index] = index;
         }
     }
 
-    private int getRoot(int index) {
-        int initIndex = index;
-        while (index != arr[index]) {
-            index = arr[index];
+    private int find(int element) {
+        int init = element;
+        while (element != arr[element]) {
+            element = arr[element];
         }
 
-        // path compression loop
+        // path compression
         int temp;
-        while (initIndex != arr[initIndex]) {
-            temp = arr[initIndex]; // store the current parent of the current node
-            arr[initIndex] = index; // set the parent of the current node to the root
-            initIndex = temp;
+        while (init != arr[init]) {
+            temp = arr[init];
+            arr[init] = element; // assign the current node to the root
+            init = temp;
         }
 
-        return index;
+        return element;
     }
 
-    public boolean union(int firstNode, int secondNode) {
-        if (firstNode >= this.numOfObjects || secondNode >= this.numOfObjects) {
+    public boolean deleteElement(int element) {
+        if (element >= this.numOfElements || element < 0) {
             return false;
         }
 
-        int firstRoot = getRoot(firstNode);
-        int secondRoot = getRoot(secondNode);
+        arr[element] = find(element + 1);
+    }
 
-        if (firstRoot == secondRoot) {
-            return true;
+    public int getSuccessor(int element) {
+        if (element < 0 || element >= this.numOfElements) {
+            return -1;
         }
 
-        if (size[firstRoot] > size[secondRoot]) {
-            arr[secondRoot] = firstRoot;
-            size[firstRoot] += size[secondRoot];
-        } else {
-            arr[firstRoot] = secondRoot;
-            size[secondRoot] += size[firstRoot];
-        }
-
-        components--; // we connected two unconnected component sets; reduce the number of components by 1
-
-        return true;
+        return find(element);
     }
-
-    public boolean connected(int firstNode, int secondNode) {
-        return getRoot(firstNode) == getRoot(secondNode);
-    }
-
-    public boolean isFullyConnected() {
-        return components == 1;
-    }
-
 }
 
 public class Successor {
 
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            int numOfElements = scanner.nextLine();
-            quickUnion set = new quickUnion(numOfElements);
+            int numOfElements = scanner.nextInt();
+            quickUnion numSet = new quickUnion(numOfElements);
+
+            numSet.deleteElement(4);
+            numSet.deleteElement(5);
+            numSet.deleteElement(6);
+
+            System.out.println(numSet.getSuccessor(4));
+            System.out.println(numSet.getSuccessor(5));
+            System.out.println(numSet.getSuccessor(6));
         }
     }
 }
