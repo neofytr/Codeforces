@@ -37,6 +37,7 @@ class quickUnion {
         }
 
         arr[element] = find(element + 1);
+        return true;
     }
 
     public int getSuccessor(int element) {
