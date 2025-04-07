@@ -1,38 +1,40 @@
 
-import java.util.ArrayList;
-
 public class UnionFind {
 
-    ArrayList<Integer> arr;
+    int[] arr;
 
     UnionFind(int numOfObjects) {
-        arr = new ArrayList<>(numOfObjects);
+        arr = new int[numOfObjects];
         for (int i = 0; i < numOfObjects; i++) {
-            arr.add(-1);
+            arr[i] = -1;
         }
     }
 
     boolean union(int nodeOne, int nodeTwo) {
-        int size = arr.size();
+        int size = arr.length;
         if (nodeOne >= size || nodeTwo >= size) {
             return false;
         }
 
-        int valOne = arr.get(nodeOne);
-        int valTwo = arr.get(nodeTwo);
+        int valOne = arr[nodeOne];
+        int valTwo = arr[nodeTwo];
 
         if (valOne == -1 && valTwo != -1) {
-            arr.set(nodeOne, valTwo);
+            arr[nodeOne] = valTwo;
         } else if (valTwo == -1 && valOne != -1) {
-            arr.set(nodeTwo, valOne);
+            arr[nodeTwo] = valOne;
         } else {
             for (int index = 0; index < size; index++) {
-                if (arr.get(index) == valTwo) {
-                    arr.set(index, valOne);
+                if (arr[index] == valTwo) {
+                    arr[index] = valOne;
                 }
             }
         }
 
         return true;
+    }
+
+    boolean connected(int nodeOne, int nodeTwo) {
+        return arr[nodeOne] == arr[nodeTwo];
     }
 }
