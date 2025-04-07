@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
+	"os"
 )
 
 const defaultGraphSize = 10
@@ -49,9 +51,9 @@ func search(graph *graph_t, visited map[int]bool, start, end int, found *bool) {
 	visited[start] = true
 
 	curr_node := graph.nodes[start]
-	for val := range curr_node.connections {
-		if !visited[val] {
-			search(graph, visited, val, end, found)
+	for neighbour := range curr_node.connections {
+		if !visited[neighbour] {
+			search(graph, visited, neighbour, end, found)
 		}
 	}
 }
@@ -81,6 +83,31 @@ func (graph *graph_t) pathExists(firstNode, secondNode int) (bool, error) {
 	}
 
 	return false, nil
+}
+
+func (graph *graph_t) load(filePath string) (bool, error) {
+	file, err := os.Open(filePath)
+	if err != nil {
+		return false, err
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		var first, second int
+		_, err := fmt.Sscanf(line, "%d %d", &first, &second)
+		if err != nil {
+			return false, fmt.Errorf("invalid line format: %q", line)
+		}
+		graph.addConnection(first, second)
+	}
+
+	if err = scanner.Err(); err != nil {
+		return false, err
+	}
+
+	return true, nil
 }
 
 func (graph *graph_t) addConnection(firstNode, secondNode int) error {
@@ -126,5 +153,7 @@ func main() {
 	graph.addConnection(6, 1)
 	graph.addConnection(1, 0)
 
-	fmt.Println(graph.pathExists(9, 5))
+	found, _ := graph.pathExists(9, 5)
+
+	fmt.Println(found)
 }
