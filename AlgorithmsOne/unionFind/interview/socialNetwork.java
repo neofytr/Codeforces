@@ -1,17 +1,18 @@
 
 import java.util.Scanner;
 
-
 class quickUnion {
 
     private final int arr[];
     private final int size[];
+    private int components;
     private final int numOfObjects;
 
     public quickUnion(int numOfObjects) {
         this.numOfObjects = numOfObjects;
         arr = new int[numOfObjects];
         size = new int[numOfObjects];
+        components = numOfObjects;
         for (int index = 0; index < numOfObjects; index++) {
             arr[index] = index; // each element is a tree of single root, with the element at the root
             size[index] = 1;
@@ -29,7 +30,6 @@ class quickUnion {
         while (initIndex != arr[initIndex]) {
             temp = arr[initIndex]; // store the current parent of the current node
             arr[initIndex] = index; // set the parent of the current node to the root
-
             initIndex = temp;
         }
 
@@ -44,6 +44,10 @@ class quickUnion {
         int firstRoot = getRoot(firstNode);
         int secondRoot = getRoot(secondNode);
 
+        if (firstRoot == secondRoot) {
+            return true;
+        }
+
         if (size[firstRoot] > size[secondRoot]) {
             arr[secondRoot] = firstRoot;
             size[firstRoot] += size[secondRoot];
@@ -52,6 +56,8 @@ class quickUnion {
             size[secondRoot] += size[firstRoot];
         }
 
+        components--; // we connected two unconnected component sets; reduce the number of components by 1
+
         return true;
     }
 
@@ -59,12 +65,16 @@ class quickUnion {
         return getRoot(firstNode) == getRoot(secondNode);
     }
 
+    public boolean isFullyConnected() {
+        return components == 1;
+    }
+
 }
 
 public class socialNetwork {
 
     public static void main(String[] args) {
-        try(Scanner scanner = new Scanner(System.in)) {
+        try (Scanner scanner = new Scanner(System.in)) {
             int numOfObjects = scanner.nextInt();
             int numOfTimestamps = scanner.nextInt();
 
@@ -72,12 +82,16 @@ public class socialNetwork {
 
             int firstNode, secondNode;
 
-            for(int index =  1; index <= numOfTimestamps; index++) {
+            for (int index = 1; index <= numOfTimestamps; index++) {
                 firstNode = scanner.nextInt();
                 secondNode = scanner.nextInt();
 
                 friendships.union(firstNode, secondNode);
-                
+
+                if (friendships.isFullyConnected()) {
+                    System.out.println("fully connected at timestamp: " + index);
+                    break;
+                }
             }
         }
     }
