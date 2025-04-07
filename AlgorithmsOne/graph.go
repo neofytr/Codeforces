@@ -37,19 +37,50 @@ func (graph *graph_t) print() {
 	}
 }
 
+func search(graph *graph_t, visited map[int]bool, start, end int, found *bool) {
+	if start == end {
+		*found = true
+	}
+
+	if visited[start] {
+		return
+	}
+
+	visited[start] = true
+
+	curr_node := graph.nodes[start]
+	for val := range curr_node.connections {
+		if !visited[val] {
+			search(graph, visited, val, end, found)
+		}
+	}
+}
+
 func (graph *graph_t) pathExists(firstNode, secondNode int) (bool, error) {
 	if graph == nil {
 		return false, errors.New("ERROR: the graph instance is uninitialized")
 	}
 
-	first, ok := graph.nodes[firstNode]
-	second, yes := graph.nodes[secondNode]
+	_, ok := graph.nodes[firstNode]
+	_, yes := graph.nodes[secondNode]
 
-	if !ok && !yes {
+	if !ok || !yes { // if any one of the nodes doesn't exist, we are done, there is no path between them
 		return false, nil
 	}
 
-	return true, nil
+	visited := make(map[int]bool)
+	for val := range graph.nodes { // initialize the map with all the nodes as false (since we haven't visited any of them yet)
+		visited[val] = false
+	}
+
+	found := false
+
+	search(graph, visited, firstNode, secondNode, &found)
+	if found {
+		return true, nil
+	}
+
+	return false, nil
 }
 
 func (graph *graph_t) addConnection(firstNode, secondNode int) error {
@@ -85,8 +116,15 @@ func (graph *graph_t) addConnection(firstNode, secondNode int) error {
 
 func main() {
 	graph := createGraph()
-	graph.addConnection(1, 3)
-	graph.addConnection(1, 2)
-	graph.addConnection(2, 3)
-	graph.print()
+	graph.addConnection(4, 3)
+	graph.addConnection(3, 8)
+	graph.addConnection(6, 5)
+	graph.addConnection(9, 4)
+	graph.addConnection(2, 1)
+	graph.addConnection(5, 0)
+	graph.addConnection(7, 2)
+	graph.addConnection(6, 1)
+	graph.addConnection(1, 0)
+
+	fmt.Println(graph.pathExists(9, 5))
 }
