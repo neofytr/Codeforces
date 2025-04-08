@@ -1,9 +1,9 @@
-class quickUnion {
+class quickunion {
     private final int[] parent; // parent[i] contains the parent of the node i
     private final int[] rank; // rank[i] contains the number of elements in the tree rooted at i
     private final int numOfObjects;
 
-    public quickUnion(int numOfObjects) {
+    public quickunion(int numOfObjects) {
         parent = new int[numOfObjects];
         rank = new int[numOfObjects];
         this.numOfObjects = numOfObjects;
@@ -69,21 +69,21 @@ class quickUnion {
     }
 }
 
-public class Perlocation {
+public class Percolation {
     private final int gridSize;
-    private final quickUnion grid;
+    private final quickunion grid;
     private final boolean[] siteOpen;
     private int numOfOpenSites;
     private final int topVirtualSite;
     private final int bottomVirtualSite;
 
-    public Perlocation(int gridSize) {
+    public Percolation(int gridSize) {
         if (gridSize <= 0) {
             throw new IllegalArgumentException("Invalid grid size; Must be positive!");
         }
 
         this.gridSize = gridSize;
-        grid = new quickUnion(gridSize * gridSize + 2); // + 2 for two virtual nodes
+        grid = new quickunion(gridSize * gridSize + 2); // + 2 for two virtual nodes
 
         topVirtualSite = gridSize * gridSize;
         bottomVirtualSite = gridSize * gridSize + 1;
@@ -100,7 +100,7 @@ public class Perlocation {
     }
 
     public boolean isOpen(int row, int column) {
-        row--, column--; // coversion to 0-based indexing
+        row--; column--; // coversion to 0-based indexing
         if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }
@@ -111,7 +111,7 @@ public class Perlocation {
     }
 
     public void open(int row, int column) { // row and column are given in 1-based indexing
-        row--, column--; // coversion to 0-based indexing
+        row--; column--; // coversion to 0-based indexing
         if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }
@@ -147,7 +147,7 @@ public class Perlocation {
     }
 
     public boolean isFull(int row, int column) {
-        row--, column--; // coversion to 0-based indexing
+        row--; column--; // coversion to 0-based indexing
         if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }

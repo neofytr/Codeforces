@@ -1,35 +1,53 @@
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
-    private Percolation percolation;
-    private final double mean;
+    private final double trialMean;
     private final double stdDeviation;
     private final double confidenceHigh;
     private final double confidenceLow;
 
     public PercolationStats(int n, int trials) {
-        int sum = 0;
+        double[] fraction = new double[trials];
         for (int index = 0; index < trials; index++) {
-            percolation = new Percolation(n);
+            Percolation perc = new Percolation(n); // all sites are initially blocked
             int row, column;
-            while(!percolation.percolates()) {
-                row = Std
+            while(!perc.percolates()) {
+                row = StdRandom.uniformInt(n);
+                column = StdRandom.uniformInt(n);
+                perc.open(row, column);
             }
+
+            fraction[index] = perc.numberOfOpenSites() / (double)(n * n); // fraction of open sites at the time of percolation
         }
+
+        trialMean = StdStats.mean(fraction); // percolation threshold
+        stdDeviation = StdStats.stddev(fraction);
+        confidenceLow = trialMean - (1.96 * stdDeviation) / Math.sqrt(trials);
+        confidenceHigh = trialMean + (1.96  * stdDeviation) / Math.sqrt(trials);
     }
 
-    // sample mean of percolation threshold
-    public double mean()
+    public double mean() {
+        return this.trialMean;
+    }
 
-    // sample standard deviation of percolation threshold
-    public double stddev()
+    public double stddev() {
+        return this.stdDeviation;
+    }
 
-    // low endpoint of 95% confidence interval
-    public double confidenceLo()
+    public double confidenceLo() {
+        return this.confidenceLow;
+    }
 
-    // high endpoint of 95% confidence interval
-    public double confidenceHi()
+    public double confidenceHi() {
+        return this.confidenceHigh;
+    }
 
-    // test client (see below)
-    public static void main(String[] args)
+    public static void main(String[] args) {
+        PercolationStats stats = new PercolationStats(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        StdOut.printf("mean                    = %lf\n", stats.mean());
+        StdOut.printf("stddev                  = %f\n", stats.stddev());
+        StdOut.printf("95% confidence interval = [%f, %f]\n", stats.confidenceLo(), stats.confidenceHi());
+    }
 }
