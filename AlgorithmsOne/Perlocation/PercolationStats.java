@@ -14,8 +14,8 @@ public class PercolationStats {
             Percolation perc = new Percolation(n); // all sites are initially blocked
             int row, column;
             while(!perc.percolates()) {
-                row = StdRandom.uniformInt(n);
-                column = StdRandom.uniformInt(n);
+                row = StdRandom.uniformInt(n) + 1;
+                column = StdRandom.uniformInt(n) + 1;
                 if (!perc.isOpen(row, column)) {
                     perc.open(row, column);
                 }
@@ -48,8 +48,8 @@ public class PercolationStats {
 
     public static void main(String[] args) {
         PercolationStats stats = new PercolationStats(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-        StdOut.printf("mean                    = %lf\n", stats.mean());
+        StdOut.printf("mean                    = %f\n", stats.mean());
         StdOut.printf("stddev                  = %f\n", stats.stddev());
-        StdOut.printf("95% confidence interval = [%f, %f]\n", stats.confidenceLo(), stats.confidenceHi());
+        StdOut.printf("95%% confidence interval = [%f, %f]\n", stats.confidenceLo(), stats.confidenceHi());
     }
 }

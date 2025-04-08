@@ -100,7 +100,8 @@ public class Percolation {
     }
 
     public boolean isOpen(int row, int column) {
-        row--; column--; // coversion to 0-based indexing
+        row--;
+        column--; // coversion to 0-based indexing
         if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }
@@ -111,7 +112,8 @@ public class Percolation {
     }
 
     public void open(int row, int column) { // row and column are given in 1-based indexing
-        row--; column--; // coversion to 0-based indexing
+        row--;
+        column--; // coversion to 0-based indexing
         if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }
