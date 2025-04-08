@@ -99,22 +99,24 @@ public class Perlocation {
         numOfOpenSites = 0;
     }
 
-    public void isOpen(int row, int column) {
+    public boolean isOpen(int row, int column) {
         row--, column--; // coversion to 0-based indexing
-        int index = row * this.gridSize + column;
-        if (index < 0 && index >= this.gridSize) {
+        if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }
+
+        int index = row * this.gridSize + column;
 
         return siteOpen[index];
     }
 
     public void open(int row, int column) { // row and column are given in 1-based indexing
         row--, column--; // coversion to 0-based indexing
-        int index = row * this.gridSize + column;
-        if (index < 0 && index >= this.gridSize) {
+        if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }
+
+        int index = row * this.gridSize + column;
 
         if (siteOpen[index]) {
             return;
@@ -123,19 +125,19 @@ public class Perlocation {
         siteOpen[index] = true;
         numOfOpenSites++;
 
-        if (index - 1 >= 0 && siteOpen[index - 1]) {
+        if (column - 1 >= 0 && siteOpen[index - 1]) {
             grid.union(index, index - 1);
         }
 
-        if (index + 1 < this.gridSize && siteOpen[index + 1]) {
-            grid.union(index, index - 1);
+        if (column + 1 < this.gridSize && siteOpen[index + 1]) {
+            grid.union(index, index + 1);
         }
 
-        if (index - this.gridSize >= 0 && siteOpen[index - this.gridSize]) {
+        if (row - 1 >= 0 && siteOpen[index - this.gridSize]) {
             grid.union(index, index - this.gridSize);
         }
 
-        if (index + this.gridSize < this.gridSize) {
+        if (row + 1 < this.gridSize && siteOpen[index + this.gridSize]) {
             grid.union(index, index + this.gridSize);
         }
     }
@@ -144,12 +146,13 @@ public class Perlocation {
         return this.numOfOpenSites;
     }
 
-    public void isFull(int row, int column) {
+    public boolean isFull(int row, int column) {
         row--, column--; // coversion to 0-based indexing
-        int index = row * this.gridSize + column;
-        if (index < 0 && index >= this.gridSize) {
+        if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
             throw new IllegalArgumentException("Invalid row and column arguments");
         }
+
+        int index = row * this.gridSize + column;
 
         return grid.isConnected(topVirtualSite, index);
     }
