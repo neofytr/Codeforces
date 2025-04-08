@@ -1,7 +1,7 @@
-
+import edu.princeton.cs.algs4.StdRandom;
 
 public class PercolationStats {
-    private final Percolation percolation;
+    private Percolation percolation;
     private final double mean;
     private final double stdDeviation;
     private final double confidenceHigh;
@@ -11,7 +11,10 @@ public class PercolationStats {
         int sum = 0;
         for (int index = 0; index < trials; index++) {
             percolation = new Percolation(n);
-            
+            int row, column;
+            while(!percolation.percolates()) {
+                row = Std
+            }
         }
     }
 
