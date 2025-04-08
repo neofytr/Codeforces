@@ -43,5 +43,28 @@ class quickUnion {
 
         int firstRoot = getRoot(firstNode);
         int secondRoot = getRoot(secondNode);
+
+        if (firstRoot == secondRoot) {
+            return; // they are already connected
+        }
+
+        int firstRank = rank[firstRoot];
+        int secondRank = rank[secondRoot];
+
+        if (firstRank < secondRank) {
+            parent[firstRoot] = secondRoot;
+            rank[secondRoot] += firstRank;
+        } else {
+            parent[secondRoot] = firstRoot;
+            rank[firstRoot] += secondRank;
+        }
+    }
+
+    public boolean isConnected(int firstNode, int secondNode) {
+        if (firstNode < 0 || secondNode < 0 || firstNode >= this.numOfObjects || secondNode >= this.numOfObjects) {
+            throw new IllegalArgumentException("Invalid node arguments");
+        }
+
+        return getRoot(firstNode) == getRoot(secondNode);
     }
 }
