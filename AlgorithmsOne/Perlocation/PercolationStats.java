@@ -16,7 +16,9 @@ public class PercolationStats {
             while(!perc.percolates()) {
                 row = StdRandom.uniformInt(n);
                 column = StdRandom.uniformInt(n);
-                perc.open(row, column);
+                if (!perc.isOpen(row, column)) {
+                    perc.open(row, column);
+                }
             }
 
             fraction[index] = perc.numberOfOpenSites() / (double)(n * n); // fraction of open sites at the time of percolation
