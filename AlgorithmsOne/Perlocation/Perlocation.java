@@ -68,3 +68,24 @@ class quickUnion {
         return getRoot(firstNode) == getRoot(secondNode);
     }
 }
+
+public class Perlocation {
+    private final int numOfObjects;
+    private final quickUnion grid;
+    private final boolean[] open;
+
+    public Perlocation(int gridSize) {
+        if (gridSize <= 0) {
+            throw new IllegalArgumentException("Invalid grid size; Must be positive!")
+        }
+
+        this.numOfObjects = gridSize * gridSize;
+        grid = new quickUnion(this.numOfObjects);
+
+        for (int index = 0; index < this.numOfObject; index++) {
+
+        }
+    }
+
+
+}
