@@ -9,6 +9,10 @@ public class PercolationStats {
     private final double confidenceLow;
 
     public PercolationStats(int n, int trials) {
+        if (n <= 0 || trials <= 0) {
+            throw new IllegalArgumentException("Grid size and trials must be positive");
+        }
+
         double[] fraction = new double[trials];
         for (int index = 0; index < trials; index++) {
             Percolation perc = new Percolation(n); // all sites are initially blocked

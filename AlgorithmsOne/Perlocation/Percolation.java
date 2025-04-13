@@ -88,13 +88,6 @@ public class Percolation {
         topVirtualSite = gridSize * gridSize;
         bottomVirtualSite = gridSize * gridSize + 1;
 
-        // all the top row sites are connected to the topVirtualSite
-        // and all the bottom row sites are connected to the bottomVirtualSite
-        for (int index = 0; index < gridSize; index++) {
-            grid.union(topVirtualSite, index);
-            grid.union(bottomVirtualSite, gridSize * gridSize - index - 1);
-        }
-
         siteOpen = new boolean[gridSize * gridSize]; // automatically initialized to all false
         numOfOpenSites = 0;
     }
@@ -127,6 +120,16 @@ public class Percolation {
         siteOpen[index] = true;
         numOfOpenSites++;
 
+        // Connect to top virtual site if in the top row
+        if (row == 0) {
+            grid.union(index, topVirtualSite);
+        }
+
+        // Connect to bottom virtual site if in the bottom row
+        if (row == gridSize - 1) {
+            grid.union(index, bottomVirtualSite);
+        }
+
         if (column - 1 >= 0 && siteOpen[index - 1]) {
             grid.union(index, index - 1);
         }
@@ -156,7 +159,7 @@ public class Percolation {
 
         int index = row * this.gridSize + column;
 
-        return grid.isConnected(topVirtualSite, index);
+        return siteOpen[index] && grid.isConnected(topVirtualSite, index);
     }
 
     public boolean percolates() { // does the system percolate

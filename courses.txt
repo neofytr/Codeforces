@@ -1,0 +1,16 @@
+Discrete Mathematics:
+https://nptel.ac.in/courses/106104573
+
+
+Data Structures and Algorithms:
+https://archive.nptel.ac.in/courses/106/102/106102064/
+
+Analysis of Algorithms:
+https://archive.nptel.ac.in/courses/106/101/106101060/
+
+
+
+Logic (for CS, or general):
+https://nptel.ac.in/courses/106102013 
+https://nptel.ac.in/courses/111104416 (along with set theory)
+https://nptel.ac.in/courses/111106052
