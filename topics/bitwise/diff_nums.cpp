@@ -8,7 +8,7 @@ int main()
     size_t n;
     cin >> n;
 
-    bitset<MAX> visited; // initialized to all zeroes;
+    bitset<MAX + 1> visited; // initialized to all zeroes;
     size_t num;
 
     for (size_t index = 0; index < n; index++)
