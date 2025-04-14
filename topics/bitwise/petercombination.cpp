@@ -29,7 +29,7 @@ int main()
             }
         }
 
-        if (!sum)
+        if (!(sum % 360))
         {
             cout << "YES" << endl;
             return EXIT_SUCCESS;
