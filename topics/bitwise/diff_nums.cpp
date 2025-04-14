@@ -21,5 +21,5 @@ int main()
         visited[index] = true;
     }
 
-    cout << visited.count();
+    cout << visited.count() << endl;
 }
