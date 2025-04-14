@@ -20,7 +20,6 @@ void solve()
         cin >> val;
 
         // update all reachable values by val
-        reachable[val] = true;
         reachable |= reachable << val;
     }
 
