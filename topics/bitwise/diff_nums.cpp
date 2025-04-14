@@ -5,20 +5,16 @@ using namespace std;
 
 int main()
 {
-    long long n;
+    size_t n;
     cin >> n;
 
-    vector<long long> arr(n);
-    bitset<MAX> visited;
+    bitset<MAX> visited; // initialized to all zeroes;
+    size_t num;
 
-    for (long long &val : arr)
+    for (size_t index = 0; index < n; index++)
     {
-        cin >> val;
-    }
-
-    for (long long index = 0; index < n; index++)
-    {
-        visited[index] = true;
+        cin >> num;
+        visited[num] = true;
     }
 
     cout << visited.count() << endl;
