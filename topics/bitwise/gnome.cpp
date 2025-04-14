@@ -5,6 +5,17 @@ using namespace std;
 
 #define MAX 500
 
+void send_message(bitset<MAX + 1> &got_message, vector<vector<int>> &gnome, int x)
+{
+    for (int index = 0; index < gnome[0].size(); index++)
+    {
+        if (gnome[x][index])
+        {
+            got_message[index] = true;
+        }
+    }
+}
+
 int main()
 {
     int n;
@@ -25,7 +36,13 @@ int main()
     int m;
     cin >> m;
 
+    int k, x;
+
     while (m--)
     {
+        cin >> k >> x;
+        for (int minute = 1; minute <= k; minute++)
+        {
+        }
     }
 }
