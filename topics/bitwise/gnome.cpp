@@ -1,5 +1,7 @@
 // https://www.codechef.com/problems/SHAIKHGN
 
+// do again when learning graphs
+
 #include <bits/stdc++.h>
 using namespace std;
 
