@@ -31,7 +31,8 @@ int countSetBits(long long n)
 
 long long findNextSuperLucky(long long n)
 {
-    = if (n <= 47) return 47;
+    if (n <= 47)
+        return 47;
 
     int digits = 0;
     long long temp = n;
