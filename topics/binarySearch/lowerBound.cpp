@@ -6,8 +6,6 @@ int main()
     int n, target;
     cin >> n >> target;
 
-    cin >> target;
-
     vector<int> arr(n);
 
     for (int &val : arr)
@@ -19,8 +17,8 @@ int main()
     // array is sorted
     int ans = -1;
 
-    int left = n - 1;
-    int right = 0;
+    int left = 0;
+    int right = n - 1;
     int mid;
 
     while (left <= right)
