@@ -21,6 +21,10 @@ int main()
         {
             if ((1 << test) & combination)
             {
+                sum += -angle[test];
+            }
+            else
+            {
                 sum += angle[test];
             }
         }
