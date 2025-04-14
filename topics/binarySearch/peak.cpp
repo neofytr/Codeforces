@@ -20,6 +20,8 @@ int main()
     // the given array first increases and then decreases
     // find the maximum element in it in logn time
 
+    // a peak always exists in this case
+
     int left = 0;
     int right = n - 1;
     int mid;
@@ -28,10 +30,18 @@ int main()
     while (left <= right)
     {
         mid = left + (right - left) / 2;
-        if (mid >= 1 && mid <= n - 2 && arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1])
+        if (mid == 0 || arr[mid] > arr[mid - 1])
         {
-            max = arr[mid];
-            break;
+            if (arr[mid] > max)
+            {
+                max = arr[mid];
+            }
+
+            left = mid + 1;
+        }
+        else
+        {
+            right = mid - 1;
         }
     }
 
