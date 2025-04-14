@@ -1,3 +1,6 @@
-basic: https://codeforces.com/blog/entry/73490
-basic: https://codeforces.com/blog/entry/73558
+basic1: https://codeforces.com/blog/entry/73490
+basic2: https://codeforces.com/blog/entry/73558
 advanced: https://www.topcoder.com/thrive/articles/A%20bit%20of%20fun:%20fun%20with%20bits
+submask enumeration: https://cp-algorithms.com/algebra/all-submasks.html
+
+have to do bonuses on basic2 and the harder funny gnomes problem in that page 
