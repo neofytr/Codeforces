@@ -3,11 +3,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int stringToInt(const string &str)
+long long stringTolong(const string &str)
 {
     try
     {
-        return stoi(str);
+        return stoll(str);
     }
     catch (const invalid_argument &e)
     {
@@ -21,19 +21,52 @@ int stringToInt(const string &str)
     }
 }
 
+long long computeExpressionValue(const string &expression)
+{
+    long long result = 0;
+    stringstream ss(expression);
+    string number;
+
+    while (getline(ss, number, '+'))
+    {
+        result += stringTolong(number);
+    }
+
+    return result;
+}
+
 int main()
 {
     string str;
     cin >> str;
 
-    int length = str.length();
-    int total = 0, sum = 0;
+    string copied = str;
 
-    for (size_t plus = 0; plus < (1 << length); plus++)
+    long long length = str.length();
+
+    if (length == 1)
     {
-        int curr_num = 0;
-        for (int bit = 0; bit < length; bit++)
-        {
-        }
+        cout << stringTolong(str) << endl;
+        return EXIT_SUCCESS;
     }
+
+    long long total = 0;
+
+    for (long long plus = 0; plus < (1 << (length - 1)); plus++)
+    {
+        long long inserted = 0;
+        for (long long bit = 0; bit < length - 1; bit++)
+        {
+            if (plus & (1 << bit))
+            {
+                copied.insert(bit + inserted + 1, "+");
+                inserted++;
+            }
+        }
+
+        total += computeExpressionValue(copied);
+        copied = str;
+    }
+
+    cout << total << endl;
 }
