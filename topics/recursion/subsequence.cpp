@@ -11,30 +11,44 @@ void printVector(vector<int> &arr)
     cout << endl;
 }
 
-void helper(int index, vector<int> &arr, vector<int> &current)
+int getSum(vector<int> &arr)
 {
-    if (index == arr.size())
+    int sum = 0;
+    for (int val : arr)
+    {
+        sum += val;
+    }
+
+    return sum;
+}
+
+void helper(int index, vector<int> &arr, vector<int> &current, int target)
+{
+    if (index == arr.size()) // the empty subsequence won't be printed now
     {
         if (current.size())
         {
-            printVector(current); // the empty subsequence won't be printed now
+            if (getSum(current) == target)
+            {
+                printVector(current);
+            }
         }
         return;
     }
 
     // include the current index
     current.push_back(arr[index]);
-    helper(index + 1, arr, current);
+    helper(index + 1, arr, current, target);
 
     // exclude the current element
     current.pop_back();
-    helper(index + 1, arr, current);
+    helper(index + 1, arr, current, target);
 }
 
-void subsequence(vector<int> &arr)
+void subsequence(vector<int> &arr, int target)
 {
     vector<int> current;
-    helper(0, arr, current);
+    helper(0, arr, current, target);
 }
 
 int main()
@@ -48,5 +62,5 @@ int main()
         cin >> val;
     }
 
-    subsequence(arr);
+    subsequence(arr, 10);
 }
