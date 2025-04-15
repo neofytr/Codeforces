@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> sums;
+set<int> sums;
 
 void helper(vector<int> &arr, int curr_sum, int index)
 {
     if (index >= arr.size())
     {
-        sums.push_back(curr_sum);
+        sums.insert(curr_sum);
         return;
     }
 
@@ -33,7 +33,6 @@ int main()
     }
 
     getSums(arr);
-    sort(sums.begin(), sums.end());
 
     for (int val : sums)
     {
