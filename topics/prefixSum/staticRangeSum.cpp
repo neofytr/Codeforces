@@ -3,18 +3,18 @@ using namespace std;
 
 int main()
 {
-    int n, q;
+    size_t n, q;
     cin >> n >> q;
 
-    vector<int> prefix(n + 1, 0);
-    int val;
-    for (int index = 1; index <= n; index++)
+    vector<size_t> prefix(n + 1, 0);
+    size_t val;
+    for (size_t index = 1; index <= n; index++)
     {
         cin >> val;
         prefix[index] = prefix[index - 1] + val;
     }
 
-    int a, b;
+    size_t a, b;
     while (q--)
     {
         cin >> a >> b;
