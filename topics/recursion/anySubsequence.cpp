@@ -22,27 +22,34 @@ int getSum(vector<int> &arr)
     return sum;
 }
 
-void helper(int index, vector<int> &arr, vector<int> &current, int target)
+bool helper(int index, vector<int> &arr, vector<int> &current, int target)
 {
     if (index == arr.size()) // the empty subsequence won't be printed now
     {
-        if (current.size())
+        if (getSum(current) == target)
         {
-            if (getSum(current) == target)
-            {
-                printVector(current);
-            }
+            printVector(current);
+            return true;
         }
-        return;
+        return false;
     }
 
     // include the current index
     current.push_back(arr[index]);
-    helper(index + 1, arr, current, target);
+    if (helper(index + 1, arr, current, target))
+    {
+        current.pop_back();
+        return true;
+    }
 
     // exclude the current element
     current.pop_back();
-    helper(index + 1, arr, current, target);
+    if (helper(index + 1, arr, current, target))
+    {
+        return true;
+    }
+
+    return false;
 }
 
 void subsequence(vector<int> &arr, int target)
