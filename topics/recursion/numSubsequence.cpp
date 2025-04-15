@@ -22,7 +22,7 @@ int getSum(vector<int> &arr)
     return sum;
 }
 
-void helper(int index, vector<int> &arr, vector<int> &current, int target, int *count)
+int helper(int index, vector<int> &arr, vector<int> &current, int target)
 {
     if (index == arr.size()) // the empty subsequence won't be printed now
     {
@@ -30,28 +30,27 @@ void helper(int index, vector<int> &arr, vector<int> &current, int target, int *
         {
             if (getSum(current) == target)
             {
-                (*count)++;
+                return 1;
             }
         }
-        return;
+        return 0;
     }
 
     // include the current index
     current.push_back(arr[index]);
-    helper(index + 1, arr, current, target, count);
+    int include = helper(index + 1, arr, current, target);
 
     // exclude the current element
     current.pop_back();
-    helper(index + 1, arr, current, target, count);
+    int exclude = helper(index + 1, arr, current, target);
+
+    return include + exclude;
 }
 
 int subsequence(vector<int> &arr, int target)
 {
     vector<int> current;
-    int count = 0;
-    helper(0, arr, current, target, &count);
-
-    return count;
+    return helper(0, arr, current, target);
 }
 
 int main()
