@@ -30,7 +30,7 @@ void helper(int index, vector<int> &arr, vector<int> &current, int target, int *
         {
             if (getSum(current) == target)
             {
-                count++;
+                (*count)++;
             }
         }
         return;
@@ -48,7 +48,7 @@ void helper(int index, vector<int> &arr, vector<int> &current, int target, int *
 int subsequence(vector<int> &arr, int target)
 {
     vector<int> current;
-    int count;
+    int count = 0;
     helper(0, arr, current, target, &count);
 
     return count;
@@ -65,5 +65,5 @@ int main()
         cin >> val;
     }
 
-    subsequence(arr, 10);
+    cout << subsequence(arr, 10) << endl;
 }
