@@ -15,7 +15,10 @@ void helper(int index, vector<int> &arr, vector<int> &current)
 {
     if (index == arr.size())
     {
-        printVector(current);
+        if (current.size())
+        {
+            printVector(current); // the empty subsequence won't be printed now
+        }
         return;
     }
 
@@ -44,4 +47,6 @@ int main()
     {
         cin >> val;
     }
+
+    subsequence(arr);
 }
