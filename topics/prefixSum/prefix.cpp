@@ -12,7 +12,9 @@ int main()
         cin >> val;
     }
 
+    // prefix[r] is the sum of first r elements of arr
     vector<int> prefix(n + 1, 0);
+
     for (int index = 1; index <= n; index++)
     {
         prefix[index] = prefix[index - 1] + arr[index - 1];
