@@ -38,11 +38,11 @@ void helper(int index, vector<int> &arr, vector<int> &current, int target, int *
 
     // include the current index
     current.push_back(arr[index]);
-    helper(index + 1, arr, current, target);
+    helper(index + 1, arr, current, target, count);
 
     // exclude the current element
     current.pop_back();
-    helper(index + 1, arr, current, target);
+    helper(index + 1, arr, current, target, count);
 }
 
 int subsequence(vector<int> &arr, int target)
@@ -50,6 +50,8 @@ int subsequence(vector<int> &arr, int target)
     vector<int> current;
     int count;
     helper(0, arr, current, target, &count);
+
+    return count;
 }
 
 int main()
