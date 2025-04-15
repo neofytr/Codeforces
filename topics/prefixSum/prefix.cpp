@@ -3,8 +3,8 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
+    int n, l, r;
+    cin >> n >> l >> r;
 
     vector<int> arr(n);
     for (int &val : arr)
@@ -19,4 +19,7 @@ int main()
     {
         prefix[index] = prefix[index - 1] + arr[index - 1];
     }
+
+    // sum of values from index l to index r in arr is: (l and r are in 0-based indexing)
+    cout << prefix[r + 1] - prefix[l] << endl;
 }
