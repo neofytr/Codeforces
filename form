@@ -1,0 +1,23 @@
+Microcontroller Programming: STM32 (HAL/LL), Arduino, ESP32 (ESP-IDF, Arduino Core)
+Sensor Integration & Real-time Systems: GPS tracking, ECU diagnostics, IoT hardware, low-latency protocols
+C/C++ & CUDA C++: Systems programming, GPU-accelerated computing
+Go Programming: Systems programming, concurrent programming, network programming, IoT development
+Device Driver Development: Linux kernel modules, peripheral interfacing, low-level debugging
+Compiler Development: VM, compiler, assembler, disassembler
+Artificial Intelligence: Neural networks development and usage
+Network Programming: POSIX sockets, TCP/UDP, pthreads
+App Development: Android apps (Java/Kotlin), Flutter for cross-platform development
+Version Control & Collaboration: Git, GitHub, CI workflows
+IoT & Communication Protocols: UART, SPI, I2C, CAN, LoRa, BLE, Go-based IoT apps
+Linux & System Tools: Shell scripting, Make, CMake, gdb
+Reverse Engineering & Exploitation: Ghidra, pwndbg, gdb, x86/x64 disassembly
+
+1. An Embedded Project for real-time vehicle monitoring for BharatNav Systems
+2. A 2D-particle physics engine with hardware acceleration in C/C++
+3. A compiler for the C programming language developed in C
+4. neoRTOS: A real-time operating system kernel for the STM32F4 boards
+5. neobuild: A build system for C/C++ projects
+6. Strix: A multithread safe string manipulation library for C
+7.A custom neural network implementation in C
+8. neovec: A macro-only vector library for C
+9. neoRoom: A multi-platform chat-application supporting Linux, Windows, MacOS and Android
