@@ -12,6 +12,8 @@ bool isPalindrome(string str, int start, int end)
     {
         return isPalindrome(str, start + 1, end - 1);
     }
+
+    return false;
 }
 
 int main()
