@@ -10,7 +10,7 @@ int helper(vector<int> &arr, vector<int> &current, int remaining, int index)
         return 1;
     }
 
-    if (remaining < 0)
+    if (remaining < 0 || index >= arr.size())
     {
         return 0;
     }
@@ -22,6 +22,12 @@ int helper(vector<int> &arr, vector<int> &current, int remaining, int index)
     int exclude = helper(arr, current, remaining, index + 1);
 
     return include + exclude;
+}
+
+int getCount(vector<int> &arr, int target)
+{
+    vector<int> current;
+    return helper(arr, current, target, 0);
 }
 
 int main()
@@ -36,4 +42,6 @@ int main()
     }
 
     // get number of subsets with sum = target
+    cout << getCount(arr, target) << endl;
+    return EXIT_SUCCESS;
 }
