@@ -11,12 +11,6 @@ int helper(vector<int> &arr, vector<int> &current, int remaining, int index)
     }
 
     int length = arr.size();
-
-    if (remaining < 0 || index >= length)
-    {
-        return 0;
-    }
-
     int sum = 0;
     for (int curr_index = index; curr_index < length; curr_index++)
     {
@@ -24,6 +18,11 @@ int helper(vector<int> &arr, vector<int> &current, int remaining, int index)
         if (curr_index > index && arr[curr_index] == arr[curr_index - 1])
         {
             continue;
+        }
+
+        if (arr[curr_index] > remaining) // no need to continue further
+        {
+            break;
         }
 
         // choose an element at the current level to be in the subset
