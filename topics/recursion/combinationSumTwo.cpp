@@ -31,7 +31,7 @@ public:
 
             // first occurence of an element at the current level
             current.push_back(candidates[curr_index]); // pick it
-            getCombinations(candidates, current, answer, remaining - candidates[curr_index], index + 1);
+            getCombinations(candidates, current, answer, remaining - candidates[curr_index], curr_index + 1);
             current.pop_back(); // remove it so we can pick a diff one at the current level
         }
     }
