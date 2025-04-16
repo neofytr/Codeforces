@@ -5,56 +5,38 @@ using namespace std;
 
 #define MOD 998244353
 
-int calculate(vector<int> &allowed, vector<int> &memoized, int index)
-{
-    if (index < 1)
-    {
-        return 0;
-    }
-
-    if (index == 1)
-    {
-        return 1;
-    }
-
-    int sum = 0;
-    for (int i = 1; i < allowed.size(); i++)
-    {
-        if (allowed[i])
-        {
-            if (memoized[index - i] == -1)
-            {
-                memoized[index - i] = calculate(allowed, memoized, index - i) % MOD;
-            }
-            sum += memoized[index - i] % MOD;
-        }
-    }
-
-    return sum % MOD;
-}
-
 int main()
 {
     int n, k;
     cin >> n >> k;
 
-    vector<int> allowed(n + 2, 0);
+    vector<int> arr(n + 1, 0);
+    arr[1] = 1;
 
-    int l, r;
-    while (k--)
+    vector<pair<int, int>> segments(k);
+    for (auto &segment : segments)
     {
-        cin >> l >> r;
-
-        allowed[l] += 1;
-        allowed[r + 1] -= 1;
+        cin >> segment.first >> segment.second;
     }
 
-    // propagate
-    for (int index = 1; index <= n + 1; index++)
+    vector<int> prefix(n + 2, 0);
+    prefix[1] = 1;
+    for (int index = 2; index <= n; index++)
     {
-        allowed[index] += allowed[index - 1];
+        for (auto [l, r] : segments)
+        {
+            int left = max(1, index - r);
+            int right = index - l;
+            if (right < 1)
+                continue;
+
+            int add = (prefix[right] - prefix[left - 1] + MOD) % MOD;
+            arr[index] = (arr[index] + add) % MOD;
+        }
+
+        prefix[index] = (prefix[index - 1] + arr[index]) % MOD;
     }
 
-    vector<int> memoized(n + 1, -1);
-    cout << calculate(allowed, memoized, n) << endl;
+    cout << arr[n] << endl;
+    return EXIT_SUCCESS;
 }
