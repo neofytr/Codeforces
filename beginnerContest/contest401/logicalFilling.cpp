@@ -3,17 +3,17 @@ using namespace std;
 
 int main()
 {
-    size_t n, k;
+    long long n, k;
     cin >> n >> k;
     string s;
     cin >> s;
 
     string answer(n, '?');
 
-    int num_o = 0;
-    int definite_qs = 0;
+    long long num_o = 0;
+    long long definite_qs = 0;
 
-    for (int i = 0; i < n; ++i)
+    for (long long i = 0; i < n; ++i)
     {
         if (s[i] == 'o')
             num_o++;
@@ -26,7 +26,7 @@ int main()
         }
     }
 
-    for (int i = 0; i < n; ++i)
+    for (long long i = 0; i < n; ++i)
     {
         if (s[i] == '.')
             answer[i] = '.';
