@@ -18,14 +18,16 @@ int main()
             cout << "inf" << endl;
             return 0;
         }
-        if (power > LIMIT)
-            break;
 
-        if (N > 0 && power > LIMIT / N)
+        if (i < M)
         {
-            break;
+            if (power > LIMIT / N)
+            {
+                cout << "inf" << endl;
+                return 0;
+            }
+            power *= N;
         }
-        power *= N;
     }
     cout << X << endl;
     return 0;
