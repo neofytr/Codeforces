@@ -17,10 +17,15 @@ int main()
 
     for (int index = 1; index <= n; index++)
     {
-        prefix[index] = (prefix[index - 1] + arr[index - 1]) % n;
+        prefix[index] = (prefix[index - 1] + arr[index - 1]);
     }
 
-    unordered_map<int, long long> map;
+    for (int index = 1; index <= n; index++)
+    {
+        prefix[index] = ((prefix[index] % n) + n) % n;
+    }
+
+    unordered_map<long long, long long> map;
     map[0] = 1;
     long long count = 0;
 
