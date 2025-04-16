@@ -14,18 +14,14 @@ int main()
     vector<long long> prefix(n + 1, 0);
     vector<long long> suffix(n + 1, 0);
 
-    for (int index = 1; index <= n; index++)
-    {
-        prefix[index] = __gcd(prefix[index - 1], arr[index - 1]);
-    }
-
     for (int index = n - 1; index >= 0; index--)
     {
         suffix[index] = __gcd(suffix[index + 1], arr[index]);
+        prefix[n - index] = __gcd(prefix[n - index - 1], arr[n - index - 1]);
     }
 
     long long gcdWithout;
-    long long maxgcd = __gcd(prefix[0], suffix[1]);
+    long long maxgcd = 0;
 
     for (int index = 0; index < n; index++)
     {
