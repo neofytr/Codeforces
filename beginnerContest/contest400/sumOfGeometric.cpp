@@ -1,36 +1,32 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-
-long long int_pow(long long base, int exponent)
-{
-    long long result = 1;
-    while (exponent > 0)
-    {
-        if (exponent % 2 == 1)
-            result *= base;
-        base *= base;
-        exponent /= 2;
-    }
-    return result;
-}
 
 int main()
 {
-    int n, m;
-    cin >> n >> m;
+    long long N, M;
+    cin >> N >> M;
 
-    if (n == 1)
+    const long long LIMIT = 1000000000;
+    long long X = 0;
+    long long power = 1;
+
+    for (int i = 0; i <= M; ++i)
     {
-        cout << m + 1 << endl;
-        return EXIT_SUCCESS;
-    }
+        X += power;
+        if (X > LIMIT)
+        {
+            cout << "inf" << endl;
+            return 0;
+        }
+        if (power > LIMIT)
+            break;
 
-    long long x = (int_pow(n, m + 1) - 1) / (n - 1);
-    if (x > 1000000000)
-    {
-        cout << "inf\n";
-        return EXIT_SUCCESS;
+        if (N > 0 && power > LIMIT / N)
+        {
+            break;
+        }
+        power *= N;
     }
-
-    cout << x << endl;
+    cout << X << endl;
+    return 0;
 }
