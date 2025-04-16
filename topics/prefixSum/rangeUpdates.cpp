@@ -23,7 +23,7 @@ int main()
         updates[r + 1] = -x;
     }
 
-    // accumulate all the updates
+    // accumulate/propagate all the updates
     for (int index = 1; index <= n; index++)
     {
         updates[index] += updates[index - 1];
