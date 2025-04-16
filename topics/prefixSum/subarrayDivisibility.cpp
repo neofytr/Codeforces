@@ -6,38 +6,23 @@ int main()
     int n;
     cin >> n;
 
-    vector<long long> arr(n);
-    vector<long long> prefix(n + 1);
-    prefix[0] = 0;
-
-    for (long long &val : arr)
-    {
-        cin >> val;
-    }
-
-    for (int index = 1; index <= n; index++)
-    {
-        prefix[index] = (prefix[index - 1] + arr[index - 1]);
-    }
-
-    for (int index = 1; index <= n; index++)
-    {
-        prefix[index] = ((prefix[index] % n) + n) % n;
-    }
-
     unordered_map<long long, long long> map;
     map[0] = 1;
     long long count = 0;
+    long long val;
+    long long sum = 0;
 
     for (int index = 1; index <= n; index++)
     {
-        if (map.count(prefix[index]))
+        cin >> val;
+        sum = (sum + val % n + n) % n;
+        if (map.count(sum))
         {
             // if already present
-            count += map[prefix[index]];
+            count += map[sum];
         }
 
-        map[prefix[index]]++;
+        map[sum]++;
     }
 
     cout << count << endl;
