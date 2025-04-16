@@ -16,11 +16,11 @@ void solve()
     unordered_map<long long, long long> map;
     map[0] = 1;
 
-    for (int index = 0; index < n; index++)
+    for (int index = 1; index <= n; index++)
     {
-        value = str[index] - '0';
+        value = str[index - 1] - '0';
         sum += value;
-        key = sum - (index + 1);
+        key = sum - index;
         if (map.count(key))
         {
             count += map[key];
