@@ -15,7 +15,8 @@ int main()
     for (int index = 1; index <= n; index++)
     {
         cin >> val;
-        sum = (sum + val % n + n) % n;
+        sum = (sum + val % n + n) % n; // make the remainders in the range 0 to n-1
+        // we should be careful while handling modulo of negative numbers
         if (map.count(sum))
         {
             // if already present
