@@ -7,7 +7,7 @@ void solve()
     cin >> n;
 
     vector<pair<int, int>> positions(n + 1);
-    vector<int> value_at_pos(2 * n + 1);
+    vector<int> value_at_pos(2 * n + 1, 0);
 
     for (int i = 1; i <= 2 * n; i++)
     {
@@ -21,37 +21,44 @@ void solve()
             positions[val].second = i;
     }
 
-    set<pair<int, int>> counted_pairs;
-
-    for (int i = 1; i <= 2 * n; i++)
+    vector<int> non_adjacent;
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 1; j <= 2 * n; j++)
+        if (abs(positions[i].first - positions[i].second) != 1)
+            non_adjacent.push_back(i);
+    }
+
+    set<pair<int, int>> valid_pairs;
+
+    for (int pos1 = 1; pos1 <= 2 * n; pos1++)
+    {
+        int val1 = value_at_pos[pos1];
+
+        if (abs(positions[val1].first - positions[val1].second) == 1)
+            continue;
+
+        int other_pos1 = (positions[val1].first == pos1) ? positions[val1].second : positions[val1].first;
+
+        for (int adj_pos : {pos1 - 1, pos1 + 1})
         {
-            if (i == j)
+            if (adj_pos < 1 || adj_pos > 2 * n)
                 continue;
 
-            int val_i = value_at_pos[i];
-            int val_j = value_at_pos[j];
+            int val2 = value_at_pos[adj_pos];
 
-            if (val_i == val_j ||
-                abs(positions[val_i].first - positions[val_i].second) == 1 ||
-                abs(positions[val_j].first - positions[val_j].second) == 1)
+            if (val1 == val2 || abs(positions[val2].first - positions[val2].second) == 1)
                 continue;
 
-            if (counted_pairs.count({min(val_i, val_j), max(val_i, val_j)}))
-                continue;
+            int other_pos2 = (positions[val2].first == adj_pos) ? positions[val2].second : positions[val2].first;
 
-            int other_i = (positions[val_i].first == i) ? positions[val_i].second : positions[val_i].first;
-            int other_j = (positions[val_j].first == j) ? positions[val_j].second : positions[val_j].first;
-
-            if (abs(j - other_i) == 1 && abs(i - other_j) == 1)
+            if (abs(other_pos1 - other_pos2) == 1)
             {
-                counted_pairs.insert({min(val_i, val_j), max(val_i, val_j)});
+                valid_pairs.insert({min(val1, val2), max(val1, val2)});
             }
         }
     }
 
-    cout << counted_pairs.size() << endl;
+    cout << valid_pairs.size() << endl;
 }
 
 int main()
