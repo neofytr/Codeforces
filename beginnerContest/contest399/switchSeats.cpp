@@ -3,50 +3,41 @@ using namespace std;
 
 bool can_make_adjacent(int a1, int a2, int b1, int b2)
 {
-    // Try all possible swaps
 
-    // Try (a1, b1)
     {
         int new_a1 = b1;
         int new_b1 = a1;
 
-        // Check if a's are adjacent after swap
         if ((abs(new_a1 - a2) == 1) && (abs(new_b1 - b2) == 1))
         {
             return true;
         }
     }
 
-    // Try (a1, b2)
     {
         int new_a1 = b2;
         int new_b2 = a1;
 
-        // Check if a's are adjacent after swap
         if ((abs(new_a1 - a2) == 1) && (abs(b1 - new_b2) == 1))
         {
             return true;
         }
     }
 
-    // Try (a2, b1)
     {
         int new_a2 = b1;
         int new_b1 = a2;
 
-        // Check if a's are adjacent after swap
         if ((abs(a1 - new_a2) == 1) && (abs(new_b1 - b2) == 1))
         {
             return true;
         }
     }
 
-    // Try (a2, b2)
     {
         int new_a2 = b2;
         int new_b2 = a2;
 
-        // Check if a's are adjacent after swap
         if ((abs(a1 - new_a2) == 1) && (abs(b1 - new_b2) == 1))
         {
             return true;
