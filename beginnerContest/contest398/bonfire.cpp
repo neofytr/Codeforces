@@ -8,42 +8,48 @@ int main()
     string str;
     cin >> str;
 
-    set<pair<int, int>> smokes;
-    smokes.insert({0, 0});
+    // change the perspective to moving all the smoke points to shifting the origin and
+    // takahasi itself
 
-    for (int i = 0; i < n; ++i)
+    pair<int, int> origin(0, 0);
+    pair<int, int> takahashi(r, c);
+    set<pair<int, int>> smoke;
+    smoke.insert(origin);
+
+    for (int index = 0; index < n; index++)
     {
-        set<pair<int, int>> new_smokes;
-
-        for (auto &[x, y] : smokes)
+        if (str[index] == 'N')
         {
-            switch (str[i])
-            {
-            case 'N':
-                new_smokes.insert({x - 1, y});
-                break;
-            case 'S':
-                new_smokes.insert({x + 1, y});
-                break;
-            case 'W':
-                new_smokes.insert({x, y - 1});
-                break;
-            case 'E':
-                new_smokes.insert({x, y + 1});
-                break;
-            }
+            origin.first++;
+            takahashi.first++;
+        }
+        else if (str[index] == 'W')
+        {
+            origin.second++;
+            takahashi.second++;
+        }
+        else if (str[index] == 'S')
+        {
+            origin.first--;
+            takahashi.first--;
+        }
+        else
+        {
+            origin.second--;
+            takahashi.second--;
         }
 
-        if (!new_smokes.count({0, 0}))
-            new_smokes.insert({0, 0});
-
-        smokes = move(new_smokes);
-
-        if (smokes.count({r, c}))
-            cout << 1;
-        else
+        smoke.insert(origin);
+        if (smoke.find(takahashi) == smoke.end())
+        {
             cout << 0;
+        }
+        else
+        {
+            cout << 1;
+        }
     }
-    cout << '\n';
-    return 0;
+
+    cout << endl;
+    return EXIT_SUCCESS;
 }
