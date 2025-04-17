@@ -1,40 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool is_full_house(vector<int> &cards)
+{
+    map<int, int> freq;
+    for (int card : cards)
+        freq[card]++;
+
+    if (freq.size() != 2)
+        return false;
+
+    auto it = freq.begin();
+    int count1 = it->second;
+    ++it;
+    int count2 = it->second;
+
+    return (count1 == 3 && count2 == 2) || (count1 == 2 && count2 == 3);
+}
+
 int main()
 {
-    int val;
-    vector<int> arr(14, 0); // 1-based indexing
-    for (int index = 1; index <= 7; index++)
+    vector<int> a(7);
+    for (int i = 0; i < 7; ++i)
+        cin >> a[i];
+
+    for (int i = 0; i < 7; ++i)
     {
-        cin >> val;
-        arr[val]++;
-    }
-
-    bool twoFound = false;
-    bool threeFound = false;
-
-    for (int index = 1; index <= 13; index++)
-    {
-        if (arr[index] == 2)
+        for (int j = i + 1; j < 7; ++j)
         {
-            twoFound = true;
-        }
-
-        if (arr[index] == 3)
-        {
-            threeFound = true;
+            vector<int> temp;
+            for (int k = 0; k < 7; ++k)
+            {
+                if (k != i && k != j)
+                    temp.push_back(a[k]);
+            }
+            if (is_full_house(temp))
+            {
+                cout << "Yes\n";
+                return 0;
+            }
         }
     }
 
-    if (twoFound && threeFound)
-    {
-        cout << "Yes\n";
-    }
-    else
-    {
-        cout << "No\n";
-    }
-
-    return EXIT_SUCCESS;
+    cout << "No\n";
+    return 0;
 }
