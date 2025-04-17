@@ -1,98 +1,57 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool can_make_adjacent(int a1, int a2, int b1, int b2)
-{
-
-    {
-        int new_a1 = b1;
-        int new_b1 = a1;
-
-        if ((abs(new_a1 - a2) == 1) && (abs(new_b1 - b2) == 1))
-        {
-            return true;
-        }
-    }
-
-    {
-        int new_a1 = b2;
-        int new_b2 = a1;
-
-        if ((abs(new_a1 - a2) == 1) && (abs(b1 - new_b2) == 1))
-        {
-            return true;
-        }
-    }
-
-    {
-        int new_a2 = b1;
-        int new_b1 = a2;
-
-        if ((abs(a1 - new_a2) == 1) && (abs(new_b1 - b2) == 1))
-        {
-            return true;
-        }
-    }
-
-    {
-        int new_a2 = b2;
-        int new_b2 = a2;
-
-        if ((abs(a1 - new_a2) == 1) && (abs(b1 - new_b2) == 1))
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 void solve()
 {
     int n;
     cin >> n;
+
     vector<pair<int, int>> positions(n + 1);
+    vector<int> value_at_pos(2 * n + 1);
 
     for (int i = 1; i <= 2 * n; i++)
     {
         int val;
         cin >> val;
+        value_at_pos[i] = val;
 
         if (positions[val].first == 0)
-        {
             positions[val].first = i;
-        }
         else
-        {
             positions[val].second = i;
-        }
     }
 
-    int ans = 0;
+    set<pair<int, int>> counted_pairs;
 
-    for (int a = 1; a <= n; a++)
+    for (int i = 1; i <= 2 * n; i++)
     {
-        if (abs(positions[a].first - positions[a].second) == 1)
-            continue;
-
-        for (int b = a + 1; b <= n; b++)
+        for (int j = 1; j <= 2 * n; j++)
         {
-            if (abs(positions[b].first - positions[b].second) == 1)
+            if (i == j)
                 continue;
 
-            int a1 = positions[a].first;
-            int a2 = positions[a].second;
-            int b1 = positions[b].first;
-            int b2 = positions[b].second;
+            int val_i = value_at_pos[i];
+            int val_j = value_at_pos[j];
 
-            if (can_make_adjacent(a1, a2, b1, b2))
+            if (val_i == val_j ||
+                abs(positions[val_i].first - positions[val_i].second) == 1 ||
+                abs(positions[val_j].first - positions[val_j].second) == 1)
+                continue;
+
+            if (counted_pairs.count({min(val_i, val_j), max(val_i, val_j)}))
+                continue;
+
+            int other_i = (positions[val_i].first == i) ? positions[val_i].second : positions[val_i].first;
+            int other_j = (positions[val_j].first == j) ? positions[val_j].second : positions[val_j].first;
+
+            if (abs(j - other_i) == 1 && abs(i - other_j) == 1)
             {
-                ans++;
+                counted_pairs.insert({min(val_i, val_j), max(val_i, val_j)});
             }
         }
     }
 
-    cout << ans << endl;
+    cout << counted_pairs.size() << endl;
 }
 
 int main()
@@ -106,5 +65,6 @@ int main()
     {
         solve();
     }
+
     return 0;
 }
