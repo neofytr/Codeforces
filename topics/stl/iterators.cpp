@@ -58,11 +58,15 @@ int main()
 
     */
 
-    // to fix this, do
+    // to fix this, dohttps://en.cppreference.com/w/cpp/container
 
     it = arr.insert(it, 100);
 
     cout << "*it -> " << *it << endl; // it now points to 100
+
+    // iterator invalidation rules at:
+
+    // https://en.cppreference.com/w/cpp/container
 
     return EXIT_SUCCESS;
 }
