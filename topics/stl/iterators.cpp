@@ -68,5 +68,15 @@ int main()
 
     // https://en.cppreference.com/w/cpp/container
 
+    /*
+
+    An iterator is a pointer-like object representing an
+    element's pisition in a container. Its used to iterate over
+    elements in a container
+
+    arr.begin() + i points to arr[i];
+
+    */
+
     return EXIT_SUCCESS;
 }
