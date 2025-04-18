@@ -1,46 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void quickSort(vector<int> &arr, int start, int len)
+void quickSort(vector<int> &arr, int low, int high)
 {
-    if (len <= 0 || len == 1)
-    {
-        // do nothing; already sorted
+    if (low >= high)
         return;
-    }
 
-    int pivot = arr[start]; // choose first element as the pivot
+    int pivot = arr[low];
+    int i = low - 1, j = high + 1;
 
-    // first find the correct place of the pivot in the array
-    int placeOfPivot = start;
-    for (int index = start; index < start + len; index++)
+    while (true)
     {
-        if (arr[index] < pivot)
+        // move i to the right until arr[i] >= pivot
+        do
         {
-            placeOfPivot++;
-        }
+            i++;
+        } while (arr[i] < pivot);
+
+        // move j to the left until arr[j] <= pivot
+        do
+        {
+            j--;
+        } while (arr[j] > pivot);
+
+        if (i >= j)
+            break;
+
+        swap(arr[i], arr[j]);
     }
 
-    // place smaller elements (smaller than pivot) before the pivot and larger elements (>= pivot) after it
-    int smallerCurr = start;
-    int largerCurr = placeOfPivot + 1;
-    for (int index = start; index < start + len; index++)
-    {
-        if (arr[index] < pivot)
-        {
-            swap(arr[smallerCurr++], arr[index]);
-        }
-        else
-        {
-            swap(arr[largerCurr++], arr[index]);
-        }
-    }
-
-    arr[placeOfPivot] = pivot;
-
-    // do recursion
-    quickSort(arr, start, placeOfPivot - start);
-    quickSort(arr, placeOfPivot + 1, largerCurr - placeOfPivot);
+    quickSort(arr, low, j);      // j is the last index of left partition
+    quickSort(arr, j + 1, high); // right partition
 }
 
 int main()
@@ -50,16 +40,13 @@ int main()
 
     vector<int> arr(n);
     for (int &val : arr)
-    {
         cin >> val;
-    }
 
-    quickSort(arr, 0, n);
+    quickSort(arr, 0, n - 1);
+
     for (int val : arr)
-    {
         cout << val << " ";
-    }
-
     cout << endl;
+
     return EXIT_SUCCESS;
 }
