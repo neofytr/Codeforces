@@ -27,4 +27,34 @@ void sorting()
     sort(arr.rbegin(), arr.rend());
 }
 
-void binar
+int binarySearch()
+{
+    int n, target;
+    cin >> n >> target;
+
+    vector<int> arr(n);
+    for (int &val : arr)
+    {
+        cin >> val;
+    }
+
+    sort(arr.begin(), arr.end());
+
+    // returns iterator to the first element that is not less than target
+    auto first = lower_bound(arr.begin(), arr.end(), target);
+    int first_index = first - arr.begin();
+
+    // returns iterator to the first element that is greater than target
+    auto second = upper_bound(arr.begin(), arr.end(), target);
+    int second_index = second - arr.begin();
+
+    // checks if the target exists in the array
+    if (binary_search(arr.begin(), arr.end(), target))
+    {
+        return first_index;
+    }
+    else
+    {
+        return -1;
+    }
+}
