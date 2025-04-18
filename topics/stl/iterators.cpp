@@ -48,5 +48,21 @@ int main()
 
     */
 
+    auto it = arr.begin() + 3;
+    cout << "*it -> " << *it << endl;
+
+    /*
+
+    arr.insert(it, 100); // it now points to some garbage
+    cout << "*it -> " << *it << endl;
+
+    */
+
+    // to fix this, do
+
+    it = arr.insert(it, 100);
+
+    cout << "*it -> " << *it << endl; // it now points to 100
+
     return EXIT_SUCCESS;
 }
