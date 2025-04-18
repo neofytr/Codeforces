@@ -4,33 +4,48 @@ using namespace std;
 void quickSort(vector<int> &arr, int low, int high)
 {
     if (low >= high)
-        return;
-
-    int pivot = arr[low];
-    int i = low - 1, j = high + 1;
-
-    while (true)
     {
-        // move i to the right until arr[i] >= pivot
-        do
-        {
-            i++;
-        } while (arr[i] < pivot);
-
-        // move j to the left until arr[j] <= pivot
-        do
-        {
-            j--;
-        } while (arr[j] > pivot);
-
-        if (i >= j)
-            break;
-
-        swap(arr[i], arr[j]);
+        // nothing to do, return
+        return;
     }
 
-    quickSort(arr, low, j);      // j is the last index of left partition
-    quickSort(arr, j + 1, high); // right partition
+    // get a random pivot
+    int pivotIndex = low + rand() % (high - low + 1);
+    swap(arr[low], arr[pivotIndex]);
+    int pivot = arr[low];
+
+    int i = low, j = high;
+    while (true)
+    {
+        // find next index which is larger than pivot
+        while (i <= high && arr[i] <= pivot)
+        {
+            i++;
+        }
+
+        // find the next index (from the back) which is smaller (or equal) than pivot
+        while (j >= low && arr[j] > pivot)
+        {
+            j--;
+        }
+
+        if (i >= j)
+        {
+            break;
+        }
+        else
+        {
+            swap(arr[i], arr[j]);
+        }
+    }
+
+    // put pivot into the correct place
+    // j now points to the end of the smaller than pivot array portion
+    swap(arr[low], arr[j]);
+
+    // sort recursively
+    quickSort(arr, low, j - 1);
+    quickSort(arr, j + 1, high);
 }
 
 int main()
