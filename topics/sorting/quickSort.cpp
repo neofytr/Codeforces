@@ -1,51 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int partition(vector<int> &arr, int low, int high)
+{
+    // randomly select the pivot
+    int pivotIndex = low + rand() % (high - low + 1);
+    swap(arr[pivotIndex], arr[high]); // move pivot to the end
+    int pivot = arr[high];
+
+    int currLow = low - 1;
+    for (int index = low; index <= high; index++)
+    {
+        if (arr[index] <= pivot)
+        {
+            swap(arr[++currLow], arr[index]);
+        }
+    }
+
+    // pivot is also now in it's correct place (at currLow)
+    return currLow;
+}
+
 void quickSort(vector<int> &arr, int low, int high)
 {
-    if (low >= high)
+    if (low < high)
     {
-        // nothing to do, return
-        return;
+        int partitionIndex = partition(arr, low, high);
+        quickSort(arr, low, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, high);
     }
-
-    // get a random pivot
-    int pivotIndex = low + rand() % (high - low + 1);
-    swap(arr[low], arr[pivotIndex]);
-    int pivot = arr[low];
-
-    int i = low, j = high;
-    while (true)
-    {
-        // find next index which is larger than pivot
-        while (i <= high && arr[i] <= pivot)
-        {
-            i++;
-        }
-
-        // find the next index (from the back) which is smaller (or equal) than pivot
-        while (j >= low && arr[j] > pivot)
-        {
-            j--;
-        }
-
-        if (i >= j)
-        {
-            break;
-        }
-        else
-        {
-            swap(arr[i], arr[j]);
-        }
-    }
-
-    // put pivot into the correct place
-    // j now points to the end of the smaller than pivot array portion
-    swap(arr[low], arr[j]);
-
-    // sort recursively
-    quickSort(arr, low, j - 1);
-    quickSort(arr, j + 1, high);
 }
 
 int main()
