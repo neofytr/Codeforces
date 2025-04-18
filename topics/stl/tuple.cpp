@@ -20,4 +20,13 @@ int main()
 
     humanOne.swap(humanTwo); // swaps the values in humanOne and humanTwo
     // the tuples should have the same types and number of elements
+
+    // decomposing a tuple
+    int age;
+    string name;
+
+    tie(age, name) = humanOne;
+
+    cout << age << endl;
+    cout << name << endl;
 }
