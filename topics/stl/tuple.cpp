@@ -11,4 +11,7 @@ int main()
 
     get<0>(tupleOne) = 100;
     cout << get<0>(tupleOne) << endl;
+
+    tuple<int, char, bool, float> thing;
+    thing = make_tuple(10, 'R', false, 98.9);
 }
