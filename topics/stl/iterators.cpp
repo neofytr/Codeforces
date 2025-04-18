@@ -26,4 +26,27 @@ int main()
     // incrementing a reverse iterator increments it in reverse
 
     cout << *(last + 1) << endl;
+
+    // returns a reverse iterator pointing to the theoretical element
+    // right before the first element in the container
+    vector<int>::reverse_iterator first = arr.rend();
+
+    cout << *(first - 1) << endl;
+
+    /*
+
+    Iterator invalidation
+
+    Due to update(insert/delete) of container that is using iterators
+
+    No runtime error but iterator no longer guaranteed to have access to the same
+    element after the update
+
+    Well documented rules
+
+    Depends on container implementation
+
+    */
+
+    return EXIT_SUCCESS;
 }
