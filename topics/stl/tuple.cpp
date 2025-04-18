@@ -29,4 +29,11 @@ int main()
 
     cout << age << endl;
     cout << name << endl;
+
+    tuple<int, string> tupOne(20, "hello");
+    tuple<double, string> tupTwo(20.9, "world!");
+
+    // the following creates a new tuple with the two tuples concatenated, the second after the first
+    auto tupThree = tuple_cat(tupOne, tupTwo); // or equivalently
+    tuple<int, string, double, string> tupFour = tuple_cat(tupOne, tupTwo);
 }
