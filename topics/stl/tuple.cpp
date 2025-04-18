@@ -14,4 +14,10 @@ int main()
 
     tuple<int, char, bool, float> thing;
     thing = make_tuple(10, 'R', false, 98.9);
+
+    tuple<int, string> humanOne = make_tuple(20, "raj");
+    tuple<int, string> humanTwo = make_tuple(17, "rishika");
+
+    humanOne.swap(humanTwo); // swaps the values in humanOne and humanTwo
+    // the tuples should have the same types and number of elements
 }
