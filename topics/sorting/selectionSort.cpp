@@ -5,21 +5,25 @@ int main()
 {
     int n;
     cin >> n;
-
     vector<int> arr(n);
     for (int &val : arr)
     {
         cin >> val;
     }
 
-    for (int index = 1; index < n; index++)
+    int smallest;
+    for (int index = 0; index < n; index++)
     {
-        int counter = index - 1;
-        while (counter >= 0 && arr[counter] > arr[counter + 1])
+        smallest = index;
+        for (int counter = index; counter < n; counter++)
         {
-            swap(arr[counter], arr[counter + 1]);
-            counter--;
+            if (arr[counter] < arr[smallest])
+            {
+                smallest = counter;
+            }
         }
+
+        swap(arr[index], arr[smallest]);
     }
 
     for (int val : arr)
