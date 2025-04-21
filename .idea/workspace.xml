@@ -23,19 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5dcdff1e-a763-43dc-8636-f7961f545892" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/topics/stl/queue/children.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.clang-tidy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Codeforces2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/c_cpp_properties.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/algs4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codeforces.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vec" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/topics/heap/binaryTree.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +85,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -151,7 +140,7 @@
       <workItem from="1745240686161" duration="212000" />
       <workItem from="1745240910293" duration="121000" />
       <workItem from="1745241038683" duration="74000" />
-      <workItem from="1745241625221" duration="688000" />
+      <workItem from="1745241625221" duration="1940000" />
     </task>
     <servers />
   </component>
