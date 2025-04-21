@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/AlgorithmsOne/knuth" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/AlgorithmsOne/unionFind" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/AlgorithmsOne/Perlocation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/topics" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -10,5 +10,14 @@ int main()
     arr.shrink_to_fit(); // fit capacity to size of the array (5)
     cout << arr.capacity() << endl;
 
+    cout << arr.front() << endl; // first element
+    cout << arr.back() << endl;  // last element
+
+    // iterating over arrays
+    for (auto itr = arr.begin(); itr != arr.end(); ++itr)
+    {
+        cout << *itr << endl;
+    }
+
     return EXIT_SUCCESS;
 }
