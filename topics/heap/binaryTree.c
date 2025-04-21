@@ -29,7 +29,7 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
         return NULL;
     }
 
-    size_t max_nodes = (1ULL << (binary_tree->height + 1)) - 1;
+    size_t max_nodes = (1ULL << (binary_tree->height + 1)) - 1 + 1; // + 1 for 1-based indexing
     int *arr = (int *)calloc(max_nodes, sizeof(int));
     if (!arr)
     {
@@ -54,7 +54,7 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
         return NULL;
     }
 
-    struct search_t root = {.binary_node = binary_tree->top_node, .index = 0};
+    struct search_t root = {.binary_node = binary_tree->top_node, .index = 1};
     enqueue(queue, &root);
 
     while (!isEmpty(queue))
@@ -66,17 +66,37 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
 
         if (temp.binary_node->left_node)
         {
+            int corrected_index = temp.index;
+            if (!temp.index)
+            {
+                corrected_index = 1;
+            }
+            else
+            {
+                corrected_index = 2 * temp.index;
+            }
+
             struct search_t left = {
                 .binary_node = temp.binary_node->left_node,
-                .index = temp.index * 2};
+                .index = corrected_index};
             enqueue(queue, &left);
         }
 
         if (temp.binary_node->right_node)
         {
+            int corrected_index = temp.index;
+            if (!temp.index)
+            {
+                corrected_index = 1;
+            }
+            else
+            {
+                corrected_index = 2 * temp.index + 1;
+            }
+
             struct search_t right = {
                 .binary_node = temp.binary_node->right_node,
-                .index = temp.index * 2 + 1};
+                .index = corrected_index};
             enqueue(queue, &right);
         }
     }
