@@ -381,3 +381,26 @@ bool dyn_arr_append(dyn_arr_t *dyn_arr, const void *item)
 
     return dyn_arr_set(dyn_arr, dyn_arr->last_index + 1, item);
 }
+
+bool dyn_arr_pop(dyn_arr_t *dyn_arr, const void *item)
+{
+    if (!dyn_arr || !item)
+    {
+        return false;
+    }
+
+    if (dyn_arr->is_empty)
+    {
+        return false;
+    }
+
+    if (!dyn_arr_get(dyn_arr, dyn_arr->last_index, item))
+    {
+        return false;
+    }
+
+    dyn_arr->last_index--;
+    dyn_arr->len--;
+
+    return true;
+}
