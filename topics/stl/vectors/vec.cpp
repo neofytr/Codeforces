@@ -31,7 +31,11 @@ int main()
 
     cout << "max size that can be allocated : " << arr.max_size();
 
+    list<int> intList = {100, 200, 300};
+    arr.insert(arr.begin(), intList.begin(), intList.end()); // insert elements
+    // at arr.begin() from intList.begin() to intList.end() - 1
 
-
+    arr.erase(arr.begin(), arr.begin() + 3);
+    // remomve elements from arr.begin() to arr.begin() + 3 - 1;
     return EXIT_SUCCESS;
 }
