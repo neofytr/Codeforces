@@ -23,8 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5dcdff1e-a763-43dc-8636-f7961f545892" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/topics/heap/binaryTree.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/topics/heap/queue.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/topics/heap/queue.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topics/heap/binaryTree.c" beforeDir="false" afterPath="$PROJECT_DIR$/topics/heap/binaryTree.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +41,7 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/topics/heap/binaryTree.c" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/topics/stl/queue/children.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/topics/stl/stack/validParenthesis.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -140,7 +143,7 @@
       <workItem from="1745240686161" duration="212000" />
       <workItem from="1745240910293" duration="121000" />
       <workItem from="1745241038683" duration="74000" />
-      <workItem from="1745241625221" duration="1940000" />
+      <workItem from="1745241625221" duration="3639000" />
     </task>
     <servers />
   </component>

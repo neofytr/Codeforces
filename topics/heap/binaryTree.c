@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "queue.h"
+
 typedef struct node_ node_t;
 typedef struct binary_tree_ binary_tree_t;
 
@@ -24,14 +26,12 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree) {
         return NULL;
     }
 
-    int *arr = (int *) calloc(-1, sizeof(int) * ((1ULL << (binary_tree->height + 1)) - 1));
+    size_t max_nodes = (1ULL << (binary_tree->height + 1)) - 1;
+    int *arr = (int *) calloc(sizeof(int), max_nodes);
     if (!arr) {
         fprintf(stderr, "ERROR: array allocation failed: %s\n", strerror(errno));
         return NULL;
     }
 
-    size_t num_of_levels = binary_tree->height + 1;
-    for (size_t level = 0; level < num_of_levels; ++level) {
-
-    }
+    
 }
