@@ -4,6 +4,9 @@ using namespace std;
 int main()
 {
     queue<int> qu;
+
+    // queue is last in first out
+
     qu.push(10); // pushes an element at the back of the queue
     qu.pop();    // pops an element from the front of queue
 
