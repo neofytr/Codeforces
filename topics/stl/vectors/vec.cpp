@@ -11,7 +11,7 @@ int main()
     cout << arr.capacity() << endl;
 
     cout << arr.front() << endl; // first element
-    cout << arr.back() << endl;  // last element
+    cout << arr.back() << endl; // last element
 
     cout << arr.at(3) << endl;
     arr.at(0) = 4;
@@ -36,6 +36,12 @@ int main()
     // at arr.begin() from intList.begin() to intList.end() - 1
 
     arr.erase(arr.begin(), arr.begin() + 3);
-    // remomve elements from arr.begin() to arr.begin() + 3 - 1;
+    // remove elements from arr.begin() to arr.begin() + 3 - 1;
+
+    // efficiently exchange the contents of two vectors (or other containers) without copying elements
+    // O(1)
+    vector<int> arrTwo = {1, 2, 3, 4};
+    arrTwo.swap(arr);
+
     return EXIT_SUCCESS;
 }

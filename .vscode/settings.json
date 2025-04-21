@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "bitset": "cpp",
-        "iostream": "cpp",
-        "ostream": "cpp",
-        "regex": "cpp"
-    }
-}
