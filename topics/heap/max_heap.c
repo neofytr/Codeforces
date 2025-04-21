@@ -143,3 +143,141 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
 
     return true;
 }
+
+dyn_arr_t *heap_sort(max_heap_t *max_heap)
+{
+    if (!max_heap)
+    {
+        fprintf(stderr, "ERROR: invalid max heap argument\n");
+        return NULL;
+    }
+
+    if (max_heap->is_empty)
+    {
+        fprintf(stderr, "ERROR: max heap is empty; can't sort\n");
+        return NULL;
+    }
+
+    dyn_arr_t *arr = dyn_arr_create(max_heap->len, sizeof(int), NULL);
+    if (!arr)
+    {
+        fprintf(stderr, "ERROR: array creation failed: %s\n", strerror(errno));
+        return NULL;
+    }
+
+    // copy the max heap into the new array
+    for (size_t index = 0; index < max_heap->len; index++)
+    {
+        int element;
+        dyn_arr_get(max_heap, index, &element);
+        dyn_arr_set(arr, index, element);
+    }
+
+    size_t index = arr->last_index;
+    while (index >= 0)
+    {
+        int element;
+        max_heap_delete(arr, &element);
+        dyn_arr_set(arr, index, element);
+        index--;
+    }
+
+    return arr;
+}
+
+static void sift_down(max_heap_t *max_heap, long long index)
+{
+    int element;
+
+    dyn_arr_get(max_heap, index, &element);
+
+    size_t left_child_index;
+    size_t right_child_index;
+    size_t max_child_index;
+
+    int left_child;
+    int right_child;
+    int max_child;
+
+    left_child_index = 2 * index + 1;
+    right_child_index = 2 * index + 2;
+
+    // if there is no left child, there is no right child too and we are done
+    if (left_child_index > max_heap->last_index)
+    {
+        return;
+    }
+
+    dyn_arr_get(max_heap, left_child_index, &left_child);
+
+    // if there is a left child, check if there is a right child
+    if (right_child_index > max_heap->last_index)
+    {
+        // there is no right child
+        max_child_index = left_child_index;
+        max_child = left_child;
+    }
+    else
+    {
+        // there is a right child
+        dyn_arr_get(max_heap, right_child_index, &right_child);
+
+        if (left_child > right_child)
+        {
+            max_child_index = left_child_index;
+            max_child = left_child;
+        }
+        else
+        {
+            max_child_index = right_child_index;
+            max_child = right_child;
+        }
+    }
+
+    // we got the max child
+    if (max_child < element)
+    {
+        // already a heap
+        return;
+    }
+    else
+    {
+        // swap with max child and call sift_down on it recursively
+        dyn_arr_set(max_heap, index, max_child);
+        dyn_arr_set(max_heap, max_child_index, element);
+
+        sift_down(max_heap, max_child_index);
+    }
+}
+
+max_heap_t *conv_to_max_heap(binary_tree_t *binary_tree)
+{
+    if (!binary_tree || !binary_tree->top_node)
+    {
+        fprintf(stderr, "ERROR: invalid binary tree\n");
+        return NULL;
+    }
+
+    dyn_arr_t *arr = conv_to_arr(binary_tree);
+    if (!arr)
+    {
+        fprintf(stderr, "ERROR: cannot convert to array representation\n");
+        return NULL;
+    }
+
+    if (arr->is_empty || arr->len == 1)
+    {
+        return (max_heap_t *)arr;
+    }
+
+    // trivial cases are done
+    long long index = (long long)arr->last_index;
+
+    while (index >= 0) // if we use size_t, we'll enter infinite loop
+    {
+        sift_down(arr, index);
+        index--;
+    }
+
+    return (max_heap_t *)arr;
+}
