@@ -62,41 +62,21 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
         struct search_t temp;
         dequeue(queue, &temp);
 
-        arr[temp.index] = temp.binary_node->data;
+        arr[temp.index - 1] = temp.binary_node->data;
 
         if (temp.binary_node->left_node)
         {
-            int corrected_index = temp.index;
-            if (!temp.index)
-            {
-                corrected_index = 1;
-            }
-            else
-            {
-                corrected_index = 2 * temp.index;
-            }
-
             struct search_t left = {
                 .binary_node = temp.binary_node->left_node,
-                .index = corrected_index};
+                .index = 2 * temp.index};
             enqueue(queue, &left);
         }
 
         if (temp.binary_node->right_node)
         {
-            int corrected_index = temp.index;
-            if (!temp.index)
-            {
-                corrected_index = 2;
-            }
-            else
-            {
-                corrected_index = 2 * temp.index + 1;
-            }
-
             struct search_t right = {
                 .binary_node = temp.binary_node->right_node,
-                .index = corrected_index};
+                .index = 2 * temp.index + 1};
             enqueue(queue, &right);
         }
     }
