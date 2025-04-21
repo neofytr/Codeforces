@@ -29,5 +29,9 @@ int main()
         cout << val << endl;
     }
 
+    cout << "max size that can be allocated : " << arr.max_size();
+
+
+
     return EXIT_SUCCESS;
 }
