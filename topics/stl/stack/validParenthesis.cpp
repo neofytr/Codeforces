@@ -6,27 +6,31 @@ class Solution
 public:
     bool isValid(string s)
     {
-        stack<char> bracket;
-        unordered_map<char, char> matching = {
+        stack<char> brackets;
+        unordered_map<char, char> map = {
+            {'}', '{'},
             {')', '('},
             {']', '['},
-            {'}', '{'}};
+        };
 
-        for (char ch : s)
+        for (char character : s)
         {
-            if (ch == '(' || ch == '[' || ch == '{')
+            if (character == '{' || character == '[' || character == '(')
             {
-                bracket.push(ch);
+                brackets.push(character);
             }
             else
             {
-                if (bracket.empty() || bracket.top() != matching[ch])
+                // must be closing
+                if (brackets.empty() || map[character] != brackets.top())
                 {
                     return false;
                 }
-                bracket.pop();
+
+                brackets.pop();
             }
         }
-        return bracket.empty();
+
+        return !brackets.size();
     }
 };
