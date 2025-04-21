@@ -13,6 +13,9 @@ int main()
     cout << arr.front() << endl; // first element
     cout << arr.back() << endl;  // last element
 
+    cout << arr.at(3) << endl;
+    arr.at(0) = 4;
+
     // iterating over arrays
     for (auto itr = arr.begin(); itr != arr.end(); ++itr)
     {
