@@ -1,42 +1,25 @@
 #include "queue.h"
+#include <stdlib.h>
+#include <errno.h>
+#include <stdio.h>
 
 queue_t *create_queue()
 {
-    queue_t *queue = (queue_t *)malloc(sizeof(queue));
+    queue_t *queue = (queue_t *)malloc(sizeof(queue_t));
     if (!queue)
     {
-        fprintf(stderr, "ERROR: queue creation failed: %s\n", strerr(errno));
+        fprintf(stderr, "ERROR: queue creation failed: %s\n", strerror(errno));
         return NULL;
     }
-
-    queue->front = (node_t *)malloc(sizeof(node_t));
-    if (!queue->front)
-    {
-        fprintf(stderr, "ERROR: queue front allocation failed: %s\n", strerr(errno));
-        return NULL;
-    }
-
-    queue->back = (node_t *)malloc(sizeof(node_t));
-    if (queue->back)
-    {
-        fprintf(stderr, "ERROR: queue back allocation failed: %s\n", strerr(errno));
-        return NULL;
-    }
-
-    queue->front->next = NULL;
-    queue->front->data = 0;
-
-    queue->back->next = NULL;
-    queue->back->data = 0;
-
+    queue->front = NULL;
+    queue->back = NULL;
     queue->length = 0;
-
     return queue;
 }
 
-bool enqueue(queue_t *queue, int element)
+bool enqueue(queue_t *queue, void *element)
 {
-    if (!queue || !queue->back || !queue->front)
+    if (!queue)
     {
         fprintf(stderr, "ERROR: invalid queue argument\n");
         return false;
@@ -45,22 +28,26 @@ bool enqueue(queue_t *queue, int element)
     node_t *node = (node_t *)malloc(sizeof(node_t));
     if (!node)
     {
-        fprintf(stderr, "ERROR: new node allocation failed: %s\n", strerr(errno));
+        fprintf(stderr, "ERROR: new node allocation failed: %s\n", strerror(errno));
         return false;
     }
 
     node->data = element;
     node->next = NULL;
 
-    queue->back->next = node;
-    queue->length++;
+    if (queue->back)
+        queue->back->next = node;
+    else
+        queue->front = node;
 
+    queue->back = node;
+    queue->length++;
     return true;
 }
 
-bool front(queue_t *queue, int *element)
+bool front(queue_t *queue, void **element)
 {
-    if (!queue || !queue->back || !queue->front)
+    if (!queue || !element)
     {
         fprintf(stderr, "ERROR: invalid queue argument\n");
         return false;
@@ -76,9 +63,9 @@ bool front(queue_t *queue, int *element)
     return true;
 }
 
-bool back(queue_t *queue, int *element)
+bool back(queue_t *queue, void **element)
 {
-    if (!queue || !queue->back || !queue->front)
+    if (!queue || !element)
     {
         fprintf(stderr, "ERROR: invalid queue argument\n");
         return false;
@@ -96,12 +83,12 @@ bool back(queue_t *queue, int *element)
 
 bool isEmpty(queue_t *queue)
 {
-    return !queue->length;
+    return !queue || queue->length == 0;
 }
 
 bool dequeue(queue_t *queue)
 {
-    if (!queue || !queue->back || !queue->front)
+    if (!queue)
     {
         fprintf(stderr, "ERROR: invalid queue argument\n");
         return false;
@@ -113,10 +100,23 @@ bool dequeue(queue_t *queue)
         return false;
     }
 
-    node_t *new_front = queue->front->next;
-    free(queue->front);
-    queue->front = new_front;
+    node_t *old_front = queue->front;
+    queue->front = old_front->next;
+
+    if (!queue->front)
+        queue->back = NULL;
+
+    free(old_front);
     queue->length--;
 
     return true;
+}
+
+void free_queue(queue_t *queue)
+{
+    if (!queue)
+        return;
+    while (!isEmpty(queue))
+        dequeue(queue);
+    free(queue);
 }
