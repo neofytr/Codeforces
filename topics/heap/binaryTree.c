@@ -4,19 +4,19 @@
 
 #include "queue.h"
 
-typedef struct node_ node_t;
+typedef struct binary_node_ binary_node_t;
 typedef struct binary_tree_ binary_tree_t;
 
-struct node_
+struct binary_node_
 {
-    node_t *left_node;
-    node_t *right_node;
+    binary_node_t *left_node;
+    binary_node_t *right_node;
     int data;
 };
 
 struct binary_tree_
 {
-    node_t *top_node;
+    binary_node_t *top_node;
     size_t size;
     size_t height;
 };
@@ -38,20 +38,4 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
     }
 
     // traverse the tree level wise from left to right (BFS)
-
-    queue_t *queue = create_queue();
-    if (!queue)
-    {
-        fprintf(stderr, "ERROR: dfs on the tree failed\n");
-        return NULL;
-    }
-
-    search_t search = {binary_tree->top_node->data, 0};
-    enqueue(queue, search);
-
-    // removal at front of the queue
-    // insertion at back of the queue
-    while (!isEmpty(queue))
-    {
-    }
 }
