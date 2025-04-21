@@ -192,7 +192,7 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
     // Bubble down the new root to restore heap property
     size_t index = 0;
 
-    while (1)
+    while (true)
     {
         size_t left = 2 * index + 1;  // Left child index
         size_t right = 2 * index + 2; // Right child index

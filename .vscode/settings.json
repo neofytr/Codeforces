@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "queue.h": "c",
-        "dynarr.h": "c"
+        "dynarr.h": "c",
+        "stdbool.h": "c"
     }
 }
