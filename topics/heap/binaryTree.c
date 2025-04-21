@@ -87,7 +87,7 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
             int corrected_index = temp.index;
             if (!temp.index)
             {
-                corrected_index = 1;
+                corrected_index = 2;
             }
             else
             {
