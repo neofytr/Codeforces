@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <stdio.h>
+#include <string.h>
 
 queue_t *create_queue()
 {
@@ -17,7 +18,7 @@ queue_t *create_queue()
     return queue;
 }
 
-bool enqueue(queue_t *queue, void *element)
+bool enqueue(queue_t *queue, search_t search)
 {
     if (!queue)
     {
@@ -32,7 +33,18 @@ bool enqueue(queue_t *queue, void *element)
         return false;
     }
 
-    node->data = element;
+    search_t *search_data = (search_t *)malloc(sizeof(search_t));
+    if (!search_data)
+    {
+        fprintf(stderr, "ERROR: search data allocation failed: %s\n", strerror(errno));
+        free(node);
+        return false;
+    }
+
+    search_data->data = search.data;
+    search_data->index = search.index;
+
+    node->data = search_data;
     node->next = NULL;
 
     if (queue->back)
@@ -45,11 +57,11 @@ bool enqueue(queue_t *queue, void *element)
     return true;
 }
 
-bool front(queue_t *queue, void **element)
+bool front(queue_t *queue, search_t *search)
 {
-    if (!queue || !element)
+    if (!queue || !search)
     {
-        fprintf(stderr, "ERROR: invalid queue argument\n");
+        fprintf(stderr, "ERROR: invalid queue or search argument\n");
         return false;
     }
 
@@ -59,15 +71,17 @@ bool front(queue_t *queue, void **element)
         return false;
     }
 
-    *element = queue->front->data;
+    search_t *front_data = (search_t *)queue->front->data;
+    search->data = front_data->data;
+    search->index = front_data->index;
     return true;
 }
 
-bool back(queue_t *queue, void **element)
+bool back(queue_t *queue, search_t *search)
 {
-    if (!queue || !element)
+    if (!queue || !search)
     {
-        fprintf(stderr, "ERROR: invalid queue argument\n");
+        fprintf(stderr, "ERROR: invalid queue or search argument\n");
         return false;
     }
 
@@ -77,7 +91,9 @@ bool back(queue_t *queue, void **element)
         return false;
     }
 
-    *element = queue->back->data;
+    search_t *back_data = (search_t *)queue->back->data;
+    search->data = back_data->data;
+    search->index = back_data->index;
     return true;
 }
 
@@ -106,9 +122,26 @@ bool dequeue(queue_t *queue)
     if (!queue->front)
         queue->back = NULL;
 
+    // Free the search_t data stored in the node
+    free(old_front->data);
     free(old_front);
     queue->length--;
 
+    return true;
+}
+
+bool destroy_queue(queue_t *queue)
+{
+    if (!queue)
+    {
+        fprintf(stderr, "ERROR: invalid queue argument\n");
+        return false;
+    }
+
+    while (!isEmpty(queue))
+        dequeue(queue);
+
+    free(queue);
     return true;
 }
 
@@ -116,7 +149,9 @@ void free_queue(queue_t *queue)
 {
     if (!queue)
         return;
+
     while (!isEmpty(queue))
         dequeue(queue);
+
     free(queue);
 }

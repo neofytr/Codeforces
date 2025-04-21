@@ -46,11 +46,12 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
         return NULL;
     }
 
-    struct dfs_t
-    {
-        int data;
-        int index;
-    };
+    search_t search = {binary_tree->top_node->data, 0};
+    enqueue(queue, search);
 
-    
+    // removal at front of the queue
+    // insertion at back of the queue
+    while (!isEmpty(queue))
+    {
+    }
 }
