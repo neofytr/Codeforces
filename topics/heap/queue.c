@@ -18,7 +18,7 @@ queue_t *create_queue()
     return queue;
 }
 
-bool enqueue(queue_t *queue, search_t search)
+bool enqueue(queue_t *queue, void *data)
 {
     if (!queue)
     {
@@ -33,18 +33,7 @@ bool enqueue(queue_t *queue, search_t search)
         return false;
     }
 
-    search_t *search_data = (search_t *)malloc(sizeof(search_t));
-    if (!search_data)
-    {
-        fprintf(stderr, "ERROR: search data allocation failed: %s\n", strerror(errno));
-        free(node);
-        return false;
-    }
-
-    search_data->data = search.data;
-    search_data->index = search.index;
-
-    node->data = search_data;
+    node->data = data;
     node->next = NULL;
 
     if (queue->back)
@@ -57,11 +46,11 @@ bool enqueue(queue_t *queue, search_t search)
     return true;
 }
 
-bool front(queue_t *queue, search_t *search)
+bool front(queue_t *queue, void **data)
 {
-    if (!queue || !search)
+    if (!queue || !data)
     {
-        fprintf(stderr, "ERROR: invalid queue or search argument\n");
+        fprintf(stderr, "ERROR: invalid queue or data argument\n");
         return false;
     }
 
@@ -71,17 +60,15 @@ bool front(queue_t *queue, search_t *search)
         return false;
     }
 
-    search_t *front_data = (search_t *)queue->front->data;
-    search->data = front_data->data;
-    search->index = front_data->index;
+    *data = queue->front->data;
     return true;
 }
 
-bool back(queue_t *queue, search_t *search)
+bool back(queue_t *queue, void **data)
 {
-    if (!queue || !search)
+    if (!queue || !data)
     {
-        fprintf(stderr, "ERROR: invalid queue or search argument\n");
+        fprintf(stderr, "ERROR: invalid queue or data argument\n");
         return false;
     }
 
@@ -91,9 +78,7 @@ bool back(queue_t *queue, search_t *search)
         return false;
     }
 
-    search_t *back_data = (search_t *)queue->back->data;
-    search->data = back_data->data;
-    search->index = back_data->index;
+    *data = queue->back->data;
     return true;
 }
 
@@ -102,7 +87,7 @@ bool isEmpty(queue_t *queue)
     return !queue || queue->length == 0;
 }
 
-bool dequeue(queue_t *queue)
+bool dequeue(queue_t *queue, void **data)
 {
     if (!queue)
     {
@@ -119,18 +104,19 @@ bool dequeue(queue_t *queue)
     node_t *old_front = queue->front;
     queue->front = old_front->next;
 
+    if (data)
+        *data = old_front->data;
+
     if (!queue->front)
         queue->back = NULL;
 
-    // Free the search_t data stored in the node
-    free(old_front->data);
     free(old_front);
     queue->length--;
 
     return true;
 }
 
-bool destroy_queue(queue_t *queue)
+bool destroy_queue(queue_t *queue, void (*free_data)(void *))
 {
     if (!queue)
     {
@@ -138,20 +124,30 @@ bool destroy_queue(queue_t *queue)
         return false;
     }
 
+    void *item = NULL;
     while (!isEmpty(queue))
-        dequeue(queue);
+    {
+        dequeue(queue, &item);
+        if (free_data && item)
+            free_data(item);
+    }
 
     free(queue);
     return true;
 }
 
-void free_queue(queue_t *queue)
+void free_queue(queue_t *queue, void (*free_data)(void *))
 {
     if (!queue)
         return;
 
+    void *item = NULL;
     while (!isEmpty(queue))
-        dequeue(queue);
+    {
+        dequeue(queue, &item);
+        if (free_data && item)
+            free_data(item);
+    }
 
     free(queue);
 }
