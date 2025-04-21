@@ -93,4 +93,6 @@ bool dyn_arr_max(dyn_arr_t *dyn_arr, size_t start_index, size_t end_index, dyn_c
  */
 bool dyn_arr_min(dyn_arr_t *dyn_arr, size_t start_index, size_t end_index, dyn_compare_t is_less, void *output);
 
+bool dyn_arr_pop(dyn_arr_t *dyn_arr, const void *item);
+
 #endif // DYN_ARR_H

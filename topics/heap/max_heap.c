@@ -97,4 +97,6 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
 
     dyn_arr_set(max_heap, 0, last);
     dyn_arr_set(max_heap, max_heap->last_index, root);
+
+    dyn_arr_pop(max_heap, element); 
 }
