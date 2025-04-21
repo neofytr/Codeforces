@@ -38,35 +38,46 @@ int *conv_to_binary_arr(binary_tree_t *binary_tree)
     }
 
     // traverse the tree level wise from left to right (BFS)
-
-    queue_t *queue = create_queue();
-    if (!queue)
-    {
-        fprintf(stderr, "ERROR: tree traversal failed\n");
-        return NULL;
-    }
-
     struct search_t
     {
         binary_node_t *binary_node;
         size_t index;
     };
 
+    queue_t *queue = create_queue(sizeof(struct search_t), NULL, NULL);
+    if (!queue)
+    {
+        fprintf(stderr, "ERROR: tree traversal failed\n");
+        return NULL;
+    }
+
     struct search_t root = {.binary_node = binary_tree->top_node, .index = 0};
     enqueue(queue, &root);
 
-    struct search_t *temp;
+    struct search_t temp;
     binary_node_t *binary_node;
 
     while (!isEmpty(queue))
     {
-        front(queue, (void **)&temp);
-        binary_node = temp->binary_node;
-        arr[temp->index] = binary_node->data;
+        dequeue(queue, &temp); // the data is copied into temp upon dequeue (and the queue's copy is freed)
+        binary_node = temp.binary_node;
+        arr[temp.index] = binary_node->data;
 
         if (binary_node->left_node) // left node is available, put it into the queue
         {
-            
+            root.binary_node = binary_node->left_node;
+            root.index = temp.index * 2;
+            enqueue(queue, &root);
+        }
+
+        if (binary_node->right_node)
+        {
+            root.binary_node = binary_node->right_node;
+            root.index = temp.index * 2 + 1;
+            enqueue(queue, &root);
         }
     }
+
+    destroy_queue(queue);
+    return arr;
 }
