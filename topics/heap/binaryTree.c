@@ -63,7 +63,6 @@ dyn_arr_t *conv_to_arr(binary_tree_t *binary_tree)
     }
 
     // traverse the binary tree in BFS
-
     queue_t *queue = create_queue(sizeof(struct search_t), NULL, NULL);
     if (!queue)
     {
@@ -78,5 +77,32 @@ dyn_arr_t *conv_to_arr(binary_tree_t *binary_tree)
     {
         struct search_t current;
         dequeue(queue, &current);
+
+        binary_node_t *binary_node = current.binary_node;
+        dyn_arr_set(arr, current.index, &binary_node->node_data); // add to the array at the correct position
+
+        if (binary_node->left_node)
+        {
+            // if there is left node, add it to the queue
+            struct search_t left_node_temp =
+                {
+                    .binary_node = binary_node->left_node,
+                    .index = 2 * current.index + 1,
+                };
+
+            enqueue(queue, &left_node_temp);
         }
+
+        if (binary_node->right_node)
+        {
+            // there is right node, add it to the queue
+            struct search_t right_node_temp =
+                {
+                    .binary_node = binary_node->right_node,
+                    .index = 2 * current.index + 2,
+                };
+
+            enqueue(queue, &right_node_temp);
+        }
+    }
 }
