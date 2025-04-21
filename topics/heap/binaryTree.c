@@ -1,23 +1,4 @@
-#include <stdlib.h>
-#include <errno.h>
-#include <stdio.h>
-
-#include "queue.h"
-#include "dynarr.h"
-
-typedef struct binary_node_
-{
-    struct binary_node_ *left_node;
-    struct binary_node_ *right_node;
-    int node_data;
-} binary_node_t;
-
-typedef struct binary_tree_
-{
-    binary_node_t *top_node;
-    size_t size;
-    size_t height;
-} binary_tree_t;
+#include "binary_tree.h"
 
 // a full binary tree is the one which has the maximum number of nodes possible in it's height
 // in a binary tree of height h, the maximum number of nodes possible is (2 ^ (h + 1) - 1)

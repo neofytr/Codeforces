@@ -1,4 +1,5 @@
 #include "max_heap.h"
+#include "binary_tree.h"
 
 #define DEFAULT_SIZE 1024
 max_heap_t *max_heap_create()
