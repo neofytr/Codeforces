@@ -5,10 +5,11 @@ int main()
 {
     string str;
     stack<int> st; // stores the base of the current substring
+    st.push(-1);
 
     cin >> str;
     int count = 0;
-    int maxLen = 0; // Changed to 0 instead of -1
+    int maxLen = -1;
     for (int index = 0; index < str.length(); ++index)
     {
         if (str[index] == '(')
@@ -19,34 +20,31 @@ int main()
         {
             if (!st.empty())
             {
-                st.pop(); // Pop the opening parenthesis
-
-                int len = 0;
+                st.pop();
                 if (!st.empty())
                 {
-                    len = index - st.top(); 
+                    int length = index - st.top();
+                    if (length > maxLen)
+                    {
+                        count = 1;
+                        maxLen = length;
+                    }
+                    else if (length == maxLen)
+                    {
+                        count++;
+                    }
                 }
                 else
                 {
-                    len = index + 1; // This case handles the scenario when the stack is empty after popping
-                }
-
-                if (len > maxLen)
-                {
-                    count = 1;
-                    maxLen = len;
-                }
-                else if (len == maxLen)
-                {
-                    count++;
+                    st.push(index); // change the current base if the stack is empty
                 }
             }
         }
     }
 
-    if (maxLen == 0)
+    if (count == 0)
     {
-        cout << "0 1\n"; // If no valid substring is found
+        cout << "0 1\n";
         return 0;
     }
 
