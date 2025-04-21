@@ -1,4 +1,4 @@
-#include "../inc/dynarr.h"
+#include "dynarr.h"
 #include <math.h>
 
 dyn_arr_t *dyn_arr_create(size_t min_size, size_t item_size, void *default_value)

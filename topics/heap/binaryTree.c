@@ -1,10 +1,13 @@
 #include <stdlib.h>
+#include <errno.h>
+#include <stdio.h>
+
 #include "queue.h"
 #include "dynarr.h"
 
 typedef struct binary_node_
 {
-    struct binart_node_ *left_node;
+    struct binary_node_ *left_node;
     struct binary_node_ *right_node;
     int node_data;
 } binary_node_t;
@@ -35,3 +38,45 @@ typedef struct binary_tree_
 //   - Right child is at index 2*i + 2
 //   - Parent is at index (i - 1) / 2 (only if i > 0)
 // This continues until all levels of the tree are filled.
+
+dyn_arr_t *conv_to_arr(binary_tree_t *binary_tree)
+{
+    if (!binary_tree || !binary_tree->top_node)
+    {
+        fprintf(stderr, "ERROR: invalid binary tree\n");
+        return NULL;
+    }
+
+    size_t max_size = (1ULL << (binary_tree->height + 1)) - 1;
+
+    struct search_t
+    {
+        binary_node_t *binary_node;
+        size_t index;
+    };
+
+    dyn_arr_t *arr = dyn_arr_create(max_size, sizeof(binary_tree->top_node->node_data), NULL);
+    if (!arr)
+    {
+        fprintf(stderr, "ERROR: dynamic array creation failed: %s\n", strerror(errno));
+        return NULL;
+    }
+
+    // traverse the binary tree in BFS
+
+    queue_t *queue = create_queue(sizeof(struct search_t), NULL, NULL);
+    if (!queue)
+    {
+        fprintf(stderr, "ERROR: cannot traverse the binary tree\n");
+        return NULL;
+    }
+
+    struct search_t root = {.binary_node = binary_tree->top_node, .index = 0};
+    enqueue(queue, (void *)&root);
+
+    while (!isEmpty(queue))
+    {
+        struct search_t current;
+        dequeue(queue, &current);
+        }
+}
