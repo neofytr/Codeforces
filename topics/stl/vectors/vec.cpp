@@ -16,6 +16,8 @@ int main()
     cout << arr.at(3) << endl;
     arr.at(0) = 4;
 
+    cout << arr.empty() << endl; // returns true if the vector is empty
+
     // iterating over arrays
     for (auto itr = arr.begin(); itr != arr.end(); ++itr)
     {
