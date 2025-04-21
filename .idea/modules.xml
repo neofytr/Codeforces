@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Codeforces.iml" filepath="$PROJECT_DIR$/Codeforces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Codeforces2.iml" filepath="$PROJECT_DIR$/.idea/Codeforces2.iml" />
     </modules>
   </component>
 </project>

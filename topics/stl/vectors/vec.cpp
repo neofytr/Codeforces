@@ -19,5 +19,10 @@ int main()
         cout << *itr << endl;
     }
 
+    for (const auto val : arr)
+    {
+        cout << val << endl;
+    }
+
     return EXIT_SUCCESS;
 }
