@@ -8,12 +8,12 @@ typedef struct node_
 {
     void *data;
     struct node_ *next;
-} node_t;
+} queue_node_t;
 
 typedef struct queue_
 {
-    node_t *front;
-    node_t *back;
+    queue_node_t *front;
+    queue_node_t *back;
     size_t length;
     size_t elem_size;
     void *(*copy_func)(const void *);

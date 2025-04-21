@@ -29,7 +29,7 @@ bool enqueue(queue_t *queue, const void *data)
         return false;
     }
 
-    node_t *node = (node_t *)malloc(sizeof(node_t));
+    queue_node_t *node = (queue_node_t *)malloc(sizeof(queue_node_t));
     if (!node)
     {
         fprintf(stderr, "ERROR: new node allocation failed: %s\n", strerror(errno));
@@ -140,7 +140,7 @@ bool dequeue(queue_t *queue, void *data)
         return false;
     }
 
-    node_t *old_front = queue->front;
+    queue_node_t *old_front = queue->front;
     queue->front = old_front->next;
 
     if (data)
