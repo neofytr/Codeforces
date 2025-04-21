@@ -5,6 +5,8 @@ int main()
 {
     stack<int> intStack;
 
+    // stacks are last in first out
+
     intStack.push(10); // pushes 10 onto the stack
     cout << intStack.top() << endl; // returns the top element of the stack
     cout << intStack.size() << endl; // returns the size of the stack
