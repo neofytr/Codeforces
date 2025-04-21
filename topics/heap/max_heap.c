@@ -7,13 +7,14 @@
 
 // a max heap is a complete binary tree such that the parent >= its two children
 
-// elements of the max heap are positive integers
+// elements of the max heap are non-negative integers
 typedef dyn_arr_t max_heap_t;
 
 #define DEFAULT_SIZE 1024
 max_heap_t *max_heap_create()
 {
-    dyn_arr_t *arr = dyn_arr_create(DEFAULT_SIZE, sizeof(int), NULL);
+    int default_val = -1; // signifies no element is there
+    dyn_arr_t *arr = dyn_arr_create(DEFAULT_SIZE, sizeof(int), &default_val);
     if (!arr)
     {
         fprintf(stderr, "ERROR: max heap creation failed: %s\n", strerror(errno));
@@ -78,9 +79,12 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
 
     if (max_heap->len == 1)
     {
-        if (!dyn_arr_get(max_heap, 0, (void *)element))
+        if (!dyn_arr_get(max_heap, 0, element))
         {
+            fprintf(stderr, "ERROR: could not get root element\n");
+            return false;
         }
+        dyn_arr_pop(max_heap, NULL); // remove the only element
 
         return true;
     }
@@ -92,11 +96,59 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
     int root;
     int last;
 
+    // swap
     dyn_arr_get(max_heap, 0, &root);
     dyn_arr_get(max_heap, max_heap->last_index, &last);
 
     dyn_arr_set(max_heap, 0, last);
     dyn_arr_set(max_heap, max_heap->last_index, root);
 
-    dyn_arr_pop(max_heap, element); 
+    // pop the last element storing it in element
+    dyn_arr_pop(max_heap, element);
+
+    // bubble down
+    size_t index = 0;
+
+    while (1)
+    {
+        size_t left = 2 * index + 1;
+        size_t right = 2 * index + 2;
+
+        int current, left_val = -1, right_val = -1;
+        dyn_arr_get(max_heap, index, &current);
+        dyn_arr_get(max_heap, left, &left_val);
+        dyn_arr_get(max_heap, right, &right_val);
+
+        // stop if no children
+        if (left_val == -1 && right_val == -1)
+            break;
+
+        size_t max_child_index;
+        int max_child_val;
+
+        if (left_val > right_val)
+        {
+            max_child_index = left;
+            max_child_val = left_val;
+        }
+        else
+        {
+            max_child_index = right;
+            max_child_val = right_val;
+        }
+
+        if (max_child_val > current)
+        {
+            // swap
+            dyn_arr_set(max_heap, index, max_child_val);
+            dyn_arr_set(max_heap, max_child_index, current);
+            index = max_child_index;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return true;
 }
