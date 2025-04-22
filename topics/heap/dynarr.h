@@ -8,12 +8,11 @@
 
 #define MAX_NODE_SIZE (1U << 16) // must be a power of two
 
-typedef struct
-{
-    size_t len;        // Number of nodes
+typedef struct {
+    size_t len; // Number of nodes
     size_t last_index; // Index of the last element in the array
-    size_t item_size;  // Size of each data item in bytes
-    void **nodes;      // Array of node pointers
+    size_t item_size; // Size of each data item in bytes
+    void **nodes; // Array of node pointers
     void *default_value;
     bool is_empty;
 } dyn_arr_t;
@@ -93,6 +92,6 @@ bool dyn_arr_max(dyn_arr_t *dyn_arr, size_t start_index, size_t end_index, dyn_c
  */
 bool dyn_arr_min(dyn_arr_t *dyn_arr, size_t start_index, size_t end_index, dyn_compare_t is_less, void *output);
 
-bool dyn_arr_pop(dyn_arr_t *dyn_arr, const void *item);
+bool dyn_arr_pop(dyn_arr_t *dyn_arr, void *item);
 
 #endif // DYN_ARR_H

@@ -697,7 +697,8 @@
 				146,
 				186,
 				193,
-				209
+				209,
+				211
 			]
 		}
 	],
@@ -925,7 +926,8 @@
 				206,
 				207,
 				208,
-				209
+				209,
+				211
 			]
 		},
 		{
@@ -2202,6 +2204,12 @@
 			"backtrace" : 1,
 			"path" : "topics/linkedList/linked_list.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "topics/linkedList/main.c",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"

@@ -1,33 +1,9 @@
-also implement the remove and insert function and gimme the whole code completed and fixed
-with
-small
-letter
-beginning
-comments
-
-I
-'l
-l implement both the remove and insert functions and provide the complete implementation with
-comments
-starting
-with
-lowercase
-letters
-.
-
-
-Complete Linked
-List
-Implementation
-Code
-
-
-/* linked_list.h */
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 #include <stdlib.h>
+#include <stddef.h>
 #include <stdbool.h>
-#include "dynarr.h"
+#include "../heap/dynarr.h"
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
@@ -41,18 +17,9 @@ typedef struct list_ {
     int head_index;
 } list_t;
 
-// Macro for easy list traversal
-// Example usage:
-// TYPE item;
-// LIST_FOREACH(list, index, item) {
-//     // Use index and item here
-// }
-#define LIST_FOREACH(list, index_var, element_var) \
-size_t index_var = 0; \
-TYPE element_var; \
-for (int _current = (list)->head_index; \
-_current != -1 && dyn_arr_get((list)->arr, _current, &element_var); \
-dyn_arr_get((list)->next, _current, &_current), index_var++)
+// macro for list traversal
+#define LIST_FOREACH(list, index_ptr, element_ptr) \
+    for (*(index_ptr) = (list)->head_index; *(index_ptr) != -1 && dyn_arr_get((list)->arr, *(index_ptr), (element_ptr)); dyn_arr_get((list)->next, *(index_ptr), index_ptr)) \
 
 
 bool list_append(list_t *list, TYPE *element);

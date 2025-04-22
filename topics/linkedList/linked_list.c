@@ -71,7 +71,7 @@ bool list_insert(list_t *list, int index, TYPE *element) {
         if (list->holes->is_empty) {
             dyn_arr_append(list->arr, element);
             dyn_arr_append(list->next, &list->head_index);
-            index_to_add_to = list->arr->last_index;
+            index_to_add_to = (int) list->arr->last_index;
         } else {
             dyn_arr_pop(list->holes, &index_to_add_to);
             dyn_arr_set(list->arr, index_to_add_to, element);
