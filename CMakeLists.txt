@@ -254,4 +254,6 @@ add_executable(Codeforces
         topics/linkedList/linked_list.c
         topics/linkedList/linked_list.h
         topics/linkedList/main.c
+        topics/linkedList/memalloc.c
+        topics/linkedList/memalloc.h
 )
