@@ -21,6 +21,82 @@ typedef struct block_ {
 #endif
 } block_t;
 
+#ifdef LINKED_LIST_IMPLEMENTATION
+
+// global free list of available blocks
+block_t *free_list = NULL;
+// current number of blocks in the system
+size_t current_block_count = 0;
+
+// allocate a new set of blocks and add them to the free list
+bool allocate_more_blocks(size_t num_blocks) {
+    // allocate a batch of blocks using malloc
+    for (size_t i = 0; i < num_blocks; i++) {
+        // allocate a single block
+        block_t *new_block = (block_t *)malloc(sizeof(block_t));
+        if (!new_block) {
+            fprintf(stderr, "malloc failed in allocate_more_blocks\n");
+            return false;  // allocation failed
+        }
+
+        // add the block to the front of the free list
+        new_block->next = free_list;
+        free_list = new_block;
+    }
+
+    // update the count of total blocks
+    current_block_count += num_blocks;
+
+    return true;
+}
+
+bool mem_init(size_t min_blocks) {
+    // ensure we have no existing allocation
+    if (free_list != NULL) {
+        return false;
+    }
+
+    // allocate the initial set of blocks
+    return allocate_more_blocks(min_blocks);
+}
+
+void *mem_alloc() {
+    // if no free blocks are available, double the capacity
+    if (!free_list) {
+        size_t new_blocks = current_block_count > 0 ? current_block_count * 2 : 1;
+        if (!allocate_more_blocks(new_blocks)) {
+            return NULL;  // allocation failed
+        }
+    }
+
+    // take the first block from the free list
+    block_t *block = free_list;
+    free_list = free_list->next;
+
+    // clear next pointer to prevent use-after-free issues
+    block->next = NULL;
+
+    // return the block itself as the allocated memory
+    return (void *)block;
+}
+
+void mem_free(void *ptr) {
+    if (!ptr) {
+        return;  // nothing to free
+    }
+
+    // cast back to block_t
+    block_t *block = (block_t *)ptr;
+
+    // add the block to the front of the free list
+    block->next = free_list;
+    free_list = block;
+}
+
+#endif
+
+#ifdef SYSTEM_CALL_IMPLEMENTATION
+
 // global free list of available blocks
 block_t *free_list = NULL;
 // current number of blocks in the system
@@ -123,3 +199,6 @@ void mem_free(void *ptr) {
     block->next = free_list;
     free_list = block;
 }
+
+#endif
+

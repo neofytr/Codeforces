@@ -1,7 +1,7 @@
 #include "./linked_list.h"
 
 int main() {
-    list_t *list = list_create();
+    list_t *list = list_create(100000);
 
     for (int index = 0; index < 100000; index++) {
         list_insert(list, index, &index);

@@ -2,6 +2,7 @@
 #define MEMALLOC_H
 
 #define BLOCK_SIZE (64)
+#define LINKED_LIST_IMPLEMENTATION
 
 #include <stdbool.h>
 #include <stddef.h>

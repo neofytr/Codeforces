@@ -1,5 +1,9 @@
 #include "linked_list.h"
 #include "memalloc.h"
+#include <string.h>
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 list_t *list_create(size_t min_size) {
     list_t *list = (list_t *) malloc(sizeof(list_t));
@@ -8,8 +12,8 @@ list_t *list_create(size_t min_size) {
         return NULL;
     }
 
-    if (!mem_init(min_size)) {
-        fprintf(stderr, "ERROR: memory pool initialization failed: %s\n");
+    if (!MEM_INIT(min_size)) {
+        fprintf(stderr, "ERROR: memory pool initialization failed\n");
         free(list);
         return NULL;
     }
@@ -53,7 +57,7 @@ bool list_remove(list_t *list, int index, TYPE *element) {
         if (element) {
             memcpy((void *) element, (void *) &node->data, sizeof(TYPE));
         }
-        free(node);
+        MEM_FREE(node);
         list->len--;
         return true;
     }
@@ -72,7 +76,7 @@ bool list_remove(list_t *list, int index, TYPE *element) {
             if (element) {
                 memcpy((void *) element, (void *) &next->data, sizeof(TYPE));
             }
-            free(next);
+            MEM_FREE(next);
             list->len--;
             return true;
         }
@@ -160,7 +164,7 @@ bool list_insert(list_t *list, int index, const TYPE *element) {
     // handle the case when list is empty
     if (list_empty(list)) {
         if (!index) {
-            list->head = (node_t *) malloc(sizeof(node_t));
+            list->head = (node_t *) MEM_ALLOC(sizeof(node_t));
             if (!list->head) {
                 fprintf(stderr, "ERROR: error creating new node: %s\n", strerror(errno));
                 return false;
@@ -186,7 +190,7 @@ bool list_insert(list_t *list, int index, const TYPE *element) {
 
     // handle the case when list is non-empty and index == 0
     if (!index) {
-        node_t *new_node = (node_t *) malloc(sizeof(node_t));
+        node_t *new_node = (node_t *) MEM_ALLOC(sizeof(node_t));
         if (!new_node) {
             fprintf(stderr, "ERROR: error creating new node: %s\n", strerror(errno));
             return false;
@@ -212,7 +216,7 @@ bool list_insert(list_t *list, int index, const TYPE *element) {
         if (traversed == index - 1) {
             // this is the position just before insertion
             node_t *next = curr->next;
-            node_t *new_node = (node_t *) malloc(sizeof(node_t));
+            node_t *new_node = (node_t *) MEM_ALLOC(sizeof(node_t));
             if (!new_node) {
                 fprintf(stderr, "ERROR: error creating new node: %s\n", strerror(errno));
                 return false;
