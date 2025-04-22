@@ -8,6 +8,7 @@ int main() {
     // priority value and elements are served based on their priority
 
     // by default, the stl priority queue gives the largest element the highest priority
+    // thus, by default, the stl priority queue is a max heap
 
     priority_queue<int> line;
 
@@ -25,6 +26,12 @@ int main() {
         cout << line.top() << endl;
         line.pop();
     }
+
+    // to create a min heap priority queue, that gives off elements in ascending order of priority
+    // priority_queue<type, vector<type>, greater<type>> name;
+    priority_queue<int, vector<int>, greater<> > minLine;
+
+    // in this type of priority queue, the smallest element gets the highest priority
 
     return EXIT_SUCCESS;
 }
