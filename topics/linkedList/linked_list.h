@@ -15,7 +15,7 @@
 
 // memory allocation method selection
 // set to 1 to use custom memory allocator, 0 to use standard malloc/free
-#define USE_CUSTOM_ALLOCATOR 1
+#define USE_CUSTOM_ALLOCATOR 0
 
 // there is definitely a real performance gain when using the custom allocator
 // and appending popping into the list a lot of times
