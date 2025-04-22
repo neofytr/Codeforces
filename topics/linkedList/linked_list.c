@@ -19,6 +19,7 @@ list_t *list_create() {
     list->next = dyn_arr_create(MIN_SIZE, sizeof(size_t), NULL);
     if (!list->next) {
         fprintf(stderr, "error: list allocation failed: %s\n", strerror(errno));
+        dyn_arr_free(list->arr); // Fixed: Free already allocated array
         free(list);
         return NULL;
     }
@@ -26,6 +27,8 @@ list_t *list_create() {
     list->holes = dyn_arr_create(MIN_SIZE, sizeof(size_t), NULL);
     if (!list->holes) {
         fprintf(stderr, "error: list allocation failed: %s\n", strerror(errno));
+        dyn_arr_free(list->arr); // Fixed: Free already allocated arrays
+        dyn_arr_free(list->next);
         free(list);
         return NULL;
     }
@@ -52,6 +55,7 @@ bool list_insert(list_t *list, int index, TYPE *element) {
             dyn_arr_set(list->arr, 0, element);
             const int next = -1;
             dyn_arr_set(list->next, 0, &next);
+            list->head_index = 0; // Fixed: Set head_index
             return true;
         } else {
             fprintf(stderr, "error: can't insert at index %d; list is empty\n", index);
@@ -89,13 +93,16 @@ bool list_insert(list_t *list, int index, TYPE *element) {
         if (traversed == index - 1) {
             int index_to_insert_at;
             if (list->holes->is_empty) {
+                dyn_arr_append(list->arr, element);
                 index_to_insert_at = list->arr->last_index;
+
+                // also need to append to the next array
+                int dummy = -1;
+                dyn_arr_append(list->next, &dummy);
             } else {
                 dyn_arr_pop(list->holes, &index_to_insert_at);
+                dyn_arr_set(list->arr, index_to_insert_at, element);
             }
-
-            // insert the new element at the new position
-            dyn_arr_set(list->arr, index_to_insert_at, element);
 
             // set the new element to point to the previous element at position index
             int next_to_new;
@@ -198,11 +205,12 @@ bool list_append(list_t *list, TYPE *element) {
     }
 
     // handle the empty list case
-    if (list->arr->is_empty) {
-        dyn_arr_set(list->arr, 0, element);
+    if (list->head_index == -1) {
+        const int index_to_use = 0;
+        dyn_arr_set(list->arr, index_to_use, element);
         const int next = -1;
-        dyn_arr_set(list->next, 0, &next);
-        list->head_index = 0;
+        dyn_arr_set(list->next, index_to_use, &next);
+        list->head_index = index_to_use;
         return true;
     }
 
@@ -214,14 +222,31 @@ bool list_append(list_t *list, TYPE *element) {
         dyn_arr_get(list->next, curr, &next);
         if (next == -1) {
             // we found the last element
-            // add the new element to the end
-            dyn_arr_append(list->arr, element);
+            int new_index;
+
+            // check for holes first
+            if (!list->holes->is_empty) {
+                dyn_arr_pop(list->holes, &new_index);
+                dyn_arr_set(list->arr, new_index, element);
+            } else {
+                // add the new element to the end
+                dyn_arr_append(list->arr, element);
+                new_index = list->arr->last_index;
+            }
+
             // set the last element to point to the new one
-            const int new_index = list->arr->last_index;
             dyn_arr_set(list->next, curr, &new_index);
+
             // set the new element's next to -1
             const int end = -1;
-            dyn_arr_append(list->next, &end);
+
+            // check if we need to append or set
+            if (new_index == list->arr->last_index) {
+                dyn_arr_append(list->next, &end);
+            } else {
+                dyn_arr_set(list->next, new_index, &end);
+            }
+
             return true;
         }
         curr = next;
@@ -239,7 +264,7 @@ bool list_pop(list_t *list, TYPE *element) {
     }
 
     // handle the empty list case
-    if (list->arr->is_empty) {
+    if (list->head_index == -1) {
         fprintf(stderr, "error: can't pop from empty list\n");
         return false;
     }
@@ -257,6 +282,9 @@ bool list_pop(list_t *list, TYPE *element) {
             if (element) {
                 dyn_arr_get(list->arr, curr, element);
             }
+
+            // Add the freed index to holes
+            dyn_arr_append(list->holes, &curr);
 
             // handle the case where there's only one element
             if (prev == -1) {
@@ -284,7 +312,7 @@ bool list_empty(list_t *list) {
         return true; // returning true as it's technically empty
     }
 
-    return list->arr->is_empty;
+    return list->head_index == -1;
 }
 
 bool list_free(list_t *list) {
@@ -299,6 +327,10 @@ bool list_free(list_t *list) {
 
     if (list->next) {
         dyn_arr_free(list->next);
+    }
+
+    if (list->holes) {
+        dyn_arr_free(list->holes);
     }
 
     free(list);
