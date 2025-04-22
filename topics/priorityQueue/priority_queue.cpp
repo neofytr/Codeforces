@@ -53,5 +53,10 @@ int main() {
      * std::vector and std::dequeue satisfy these requirements
      */
 
+    /* A compare type is one providing strict weak ordering
+     * Compare parameter is defined such that, it returns true if its first argument comes before
+     * its second argument in a weak ordering
+     */
+
     return EXIT_SUCCESS;
 }
