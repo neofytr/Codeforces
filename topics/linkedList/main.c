@@ -3,14 +3,15 @@
 int main() {
     list_t *list = list_create(100000);
 
-    for (int index = 0; index < 100000; index++) {
-        list_insert(list, index, &index);
-    }
+    for (int index = 0; index < 50; index++) {
+        for (int counter = 0; counter < 10000; counter++) {
+            list_insert(list, counter, &counter);
+        }
 
-    for (int index = 0; index < 10; index++) {
         int element;
-        list_get(list, index, &element);
-        fprintf(stdout, "%d => %d\n", index, element);
+        for (int counter = 0; counter < 10000; counter++) {
+            list_pop(list, &element);
+        }
     }
 
     return EXIT_SUCCESS;
