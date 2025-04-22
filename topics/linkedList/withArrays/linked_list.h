@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define MAX_LIST_LEN (1 << 16)
+#define MAX_LIST_LEN (1000000)
 #define TYPE int
 
 typedef struct {
