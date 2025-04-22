@@ -247,8 +247,10 @@ add_executable(Codeforces
         topics/priorityQueue/potions.cpp
         topics/linkedList/linked_list.c
         topics/linkedList/linked_list.h
-        topics/linkedList/main.c
+        topics/linkedList/withArrays/main.c
         topics/linkedList/linked_list.c
         topics/linkedList/linked_list.h
-        topics/linkedList/main.c
+        topics/linkedList/withArrays/main.c
+        topics/linkedList/linked_list.c
+        topics/linkedList/linked_list.h
 )
