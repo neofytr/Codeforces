@@ -14,6 +14,7 @@
 typedef struct list_ {
     dyn_arr_t *arr;
     dyn_arr_t *next;
+    size_t head_index;
 } list_t;
 
 bool list_append(list_t *list, TYPE *element);
