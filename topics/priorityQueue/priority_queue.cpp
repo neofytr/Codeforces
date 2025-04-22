@@ -58,5 +58,20 @@ int main() {
      * its second argument in a weak ordering
      */
 
+    auto cmp = [](int a, int b) {
+        return a < b;
+    };
+
+    std::priority_queue<int, std::vector<int>, decltype(cmp)> newLine(cmp);
+
+    vector<int> vecLine = {
+        9, 4, 5, 8, 7, 2, 1, 6, 0, 3
+    };
+
+    for (int val: vecLine) {
+        newLine.push(val);
+    }
+
+
     return EXIT_SUCCESS;
 }
