@@ -1,9 +1,16 @@
 #include "linked_list.h"
+#include "memalloc.h"
 
-list_t *list_create() {
+list_t *list_create(size_t min_size) {
     list_t *list = (list_t *) malloc(sizeof(list_t));
     if (!list) {
         fprintf(stderr, "ERROR: list creation failed: %s\n", strerror(errno));
+        return NULL;
+    }
+
+    if (!mem_init(min_size)) {
+        fprintf(stderr, "ERROR: memory pool initialization failed: %s\n");
+        free(list);
         return NULL;
     }
 

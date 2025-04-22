@@ -1,7 +1,7 @@
 #ifndef MEMALLOC_H
 #define MEMALLOC_H
 
-#define BLOCK_SIZE (4)
+#define BLOCK_SIZE (64)
 
 #include <stdbool.h>
 #include <stddef.h>

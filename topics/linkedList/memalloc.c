@@ -93,7 +93,7 @@ bool mem_init(size_t min_blocks) {
 
 void *mem_alloc() {
     // if no free blocks are available, double the capacity
-    if (free_list == NULL) {
+    if (!free_list) {
         size_t new_blocks = current_block_count > 0 ? current_block_count : 1;
         if (!allocate_more_blocks(new_blocks)) {
             return NULL; // allocation failed
@@ -112,7 +112,7 @@ void *mem_alloc() {
 }
 
 void mem_free(void *ptr) {
-    if (ptr == NULL) {
+    if (!ptr) {
         return; // nothing to free
     }
 
