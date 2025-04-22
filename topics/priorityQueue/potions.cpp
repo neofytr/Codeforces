@@ -12,24 +12,23 @@ int main() {
     priority_queue<long long> negatives;
 
     for (int index = 0; index < n; index++) {
+        // drink every potion
         cin >> potion_value;
-        if (potion_value >= 0) {
-            health += potion_value;
-            num_of_potions_drank++;
-        } else {
-            negatives.push(potion_value);
+        health += potion_value;
+        num_of_potions_drank++;
+
+        if (potion_value < 0) {
+            negatives.push(-potion_value);
+        }
+
+        if (health < 0) {
+            // don't drink the max negative potion drank until now
+            num_of_potions_drank--;
+            health += negatives.top();
+            negatives.pop();
         }
     }
 
-    while (!negatives.empty()) {
-        const long long top = negatives.top();
-        if (health + top >= 0) {
-            health += top;
-            num_of_potions_drank++;
-        } else {
-            break;
-        }
-    }
 
     cout << num_of_potions_drank << endl;
     return EXIT_SUCCESS;
