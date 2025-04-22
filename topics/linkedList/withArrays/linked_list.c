@@ -213,7 +213,7 @@ list_t *list_create() {
 }
 
 bool list_empty(const list_t *list) {
-    return !list->list_len;
+    return list->head == -1;
 }
 
 bool list_insert(list_t *list, const int index, const TYPE *element) {
@@ -227,11 +227,6 @@ bool list_insert(list_t *list, const int index, const TYPE *element) {
         return false;
     }
 
-    if (index >= list->list_len) {
-        fprintf(stderr, "ERROR: index out of bounds\n");
-        return false;
-    }
-
     if (list->list_len >= MAX_LIST_LEN) {
         fprintf(stderr, "ERROR: list is full\n");
         return false;
@@ -239,13 +234,24 @@ bool list_insert(list_t *list, const int index, const TYPE *element) {
 
     // handle the case when list is empty
     if (list_empty(list)) {
-        // list is empty
-        list->head = 0;
-        // list has its own copy of the element
-        memcpy((void *) &list->arr[0], element, sizeof(TYPE)); // place element into the list
-        list->next[0] = -1;
-        list->list_len++;
-        return true;
+        if (!index) {
+            // list is empty
+            list->head = 0;
+            // list has its own copy of the element
+            memcpy((void *) &list->arr[0], element, sizeof(TYPE)); // place element into the list
+            list->next[0] = -1;
+            list->list_len++;
+            return true;
+        } else {
+            fprintf(stderr, "ERROR: can't insert at index %d; list is empty\n", index);
+            return false;
+        }
+    }
+
+    // list is non-empty but the index is out of bounds
+    if (index > list->list_len && index < MAX_LIST_LEN) {
+        fprintf(stderr, "ERROR: index out of bounds\n");
+        return false;
     }
 
     // handle the case when index is 0
@@ -283,7 +289,7 @@ bool list_insert(list_t *list, const int index, const TYPE *element) {
             int index_to_insert_at;
             if (list->hole_index == -1) {
                 // there are no holes
-                index_to_insert_at = list->list_len++;
+                index_to_insert_at = list->list_len;
             } else {
                 // there are holes
                 index_to_insert_at = list->holes[list->hole_index--];
@@ -296,6 +302,8 @@ bool list_insert(list_t *list, const int index, const TYPE *element) {
             // it previously pointed to will be pointed to by this new element
             list->next[index_to_insert_at] = list->next[curr];
             list->next[curr] = index_to_insert_at;
+
+            list->list_len++;
 
             return true;
         }
