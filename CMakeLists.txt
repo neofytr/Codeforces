@@ -239,4 +239,5 @@ add_executable(Codeforces
         topics/stl/template.cpp
         topics/stl/tuple.cpp
         template.cpp
-        usual_temp.cpp)
+        usual_temp.cpp
+        topics/priorityQueue/priority_queue.cpp)
