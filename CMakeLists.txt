@@ -1,0 +1,242 @@
+cmake_minimum_required(VERSION 3.31)
+project(Codeforces)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(.)
+include_directories(1000)
+include_directories(1100)
+include_directories(1200)
+include_directories(1400)
+include_directories(800)
+include_directories(900)
+include_directories(atcoder)
+include_directories(beginnerContest)
+include_directories(codechef)
+include_directories(cses)
+include_directories(kattis)
+include_directories(prefix_arr)
+include_directories(prefix_xor)
+include_directories(problem)
+include_directories(Strix)
+include_directories(Strix/allocator)
+include_directories(Strix/allocator/src)
+include_directories(Strix/allocator/src/allocator_implementations)
+include_directories(Strix/allocator/src/checksum_implementations)
+include_directories(Strix/header)
+include_directories(Strix/source)
+include_directories(techniques)
+include_directories(test)
+include_directories(topics)
+include_directories(topics/bitwise)
+include_directories(topics/heap)
+include_directories(topics/prefixSum)
+include_directories(topics/recursion)
+include_directories(topics/sorting)
+include_directories(topics/stl)
+
+add_executable(Codeforces
+        1000/assembly.cpp
+        1000/card_game.cpp
+        1000/cards.cpp
+        1000/choose_the_diff_ones.cpp
+        1000/crafting.cpp
+        1000/game_with_doors.c
+        1000/gcdperm.cpp
+        1000/gd_pref.cpp
+        1000/k_sort.cpp
+        1000/make_eq_again.cpp
+        1000/max_cost_delt.cpp
+        1000/min_eq_sum_subarr.cpp
+        1000/mocha.cpp
+        1000/nastia.cpp
+        1000/paint_a_strip.cpp
+        1000/perm_print.cpp
+        1000/prep_for_exam.cpp
+        1000/raksh_revival.cpp
+        1000/raspberries.cpp
+        1000/removals.cpp
+        1000/rudolf.cpp
+        1000/scenes_from_mem.cpp
+        1000/shifts_and_sorting.cpp
+        1000/strict_teacher.cpp
+        1000/superultra.cpp
+        1000/swap_and_delete.cpp
+        1000/template.cpp
+        1000/two_bin_str.cpp
+        1000/two_divisors.cpp
+        1000/xor_seq.cpp
+        1100/fence.cpp
+        1200/kuriyama.cpp
+        1200/petr_and_combinan.c
+        1200/prefsumaddicts.cpp
+        1400/gregarr.cpp
+        1400/preparing_olympiad.c
+        800/beautiful_matrices.c
+        800/bit++.c
+        800/divisibility_problem.cpp
+        800/domino_piling.c
+        800/petya_and_strings.c
+        800/read_lines.c
+        800/team.c
+        800/Watermelon.cpp
+        800/way_too_long_words.c
+        900/clockwork.cpp
+        900/colored_marbles.cpp
+        900/everyone_loves_tres.cpp
+        900/game_of_mathletes.cpp
+        900/kevin_and_perm.cpp
+        900/replace_char.cpp
+        900/satay.cpp
+        atcoder/400/leapingtak.cpp
+        beginnerContest/contest397/cube.cpp
+        beginnerContest/contest397/thermometer.cpp
+        beginnerContest/contest397/ticketGateLog.cpp
+        beginnerContest/contest397/varietySplit.cpp
+        beginnerContest/contest398/bonfire.cpp
+        beginnerContest/contest398/doorsInTheCentre.cpp
+        beginnerContest/contest398/fullHouse.cpp
+        beginnerContest/contest398/uniqueness.cpp
+        beginnerContest/contest399/hammingDistance.cpp
+        beginnerContest/contest399/makeItForest.cpp
+        beginnerContest/contest399/powerRangeSum.cpp
+        beginnerContest/contest399/rankingWithTies.cpp
+        beginnerContest/contest399/switchSeats.cpp
+        beginnerContest/contest400/abc400.cpp
+        beginnerContest/contest400/C.cpp
+        beginnerContest/contest400/sumOfGeometric.cpp
+        beginnerContest/contest401/k-bonacci.cpp
+        beginnerContest/contest401/logicalFilling.cpp
+        beginnerContest/contest401/unauthorized.cpp
+        beginnerContest/contest402/cbc.cpp
+        beginnerContest/contest402/dislikeFoods.cpp
+        beginnerContest/contest402/lineCrossing.cpp
+        beginnerContest/contest402/restrauntQueue.cpp
+        beginnerContest/buyBalls.cpp
+        beginnerContest/cardPile.cpp
+        beginnerContest/tripleFour.cpp
+        codechef/cherrybits.cpp
+        codechef/twodimprefix.cpp
+        cses/subarr_div.cpp
+        cses/subarr_sums_two.cpp
+        kattis/battlesim.cpp
+        kattis/hissing.c
+        prefix_arr/subarr_div.cpp
+        prefix_arr/subarr_sums_two.cpp
+        prefix_arr/twodimprefix.cpp
+        prefix_xor/range_xor.cpp
+        problem/angrycyb.cpp
+        problem/apple_division.cpp
+        problem/base10_to_base2.c
+        problem/basic_string_one.cpp
+        problem/chef_and_queries.cpp
+        problem/forming_teams.cpp
+        problem/knap.cpp
+        problem/knapsack.cpp
+        problem/kth_div.cpp
+        problem/max_subarr_sum.c
+        problem/num_of_ways.cpp
+        problem/odd_topic.cpp
+        problem/range_sum.cpp
+        problem/reach_val.cpp
+        problem/string_three.cpp
+        problem/string_two.cpp
+        problem/subseq_summing_to_seven.cpp
+        problem/subset_sum.c
+        problem/three_sum.cpp
+        problem/unique_num.cpp
+        Strix/allocator/src/allocator_implementations/inline_allocator.h
+        Strix/allocator/src/allocator_implementations/segmented_allocator.h
+        Strix/allocator/src/checksum_implementations/crc32.h
+        Strix/allocator/src/checksum_implementations/xxh32.h
+        Strix/allocator/allocator.h
+        Strix/allocator/mem_alloc.h
+        Strix/header/string_search.h
+        Strix/header/strix.h
+        Strix/header/strix_errno.h
+        Strix/source/main.c
+        Strix/source/string_search.c
+        Strix/source/strix.c
+        Strix/source/strix_errno.c
+        techniques/generating_all_perms.cpp
+        test/scanf.cpp
+        topics/bitwise/appleDivision.cpp
+        topics/bitwise/bars.cpp
+        topics/bitwise/chefqueries.cpp
+        topics/bitwise/diff_nums.cpp
+        topics/bitwise/elephant.cpp
+        topics/bitwise/gnome.cpp
+        topics/bitwise/knapsack.cpp
+        topics/bitwise/lucky.cpp
+        topics/bitwise/manyformulas.cpp
+        topics/bitwise/oddthings.cpp
+        topics/bitwise/olympiad.cpp
+        topics/bitwise/petercombination.cpp
+        topics/bitwise/submaskEnumeration.cpp
+        topics/bitwise/subset_sum.cpp
+        topics/heap/binary_tree.h
+        topics/heap/binary_tree.c
+        topics/heap/dynarr.c
+        topics/heap/dynarr.h
+        topics/heap/max_heap.c
+        topics/heap/max_heap.h
+        topics/heap/priority_queue.c
+        topics/heap/priority_queue.h
+        topics/heap/queue.c
+        topics/heap/queue.h
+        topics/prefixSum/angryCyborg.cpp
+        topics/prefixSum/gcdOnBlackboard.cpp
+        topics/prefixSum/good.cpp
+        topics/prefixSum/goodSubarrays.cpp
+        topics/prefixSum/haybale.cpp
+        topics/prefixSum/leapingTak.cpp
+        topics/prefixSum/prefix.cpp
+        topics/prefixSum/product.cpp
+        topics/prefixSum/rangeUpdates.cpp
+        topics/prefixSum/staticRangeSum.cpp
+        topics/prefixSum/subarrayDivisibility.cpp
+        topics/prefixSum/subarraySums2.cpp
+        topics/prefixSum/subarrSum.cpp
+        topics/prefixSum/subseqSummingToSevens.cpp
+        topics/recursion/choosingCombinations/combinationFour.cpp
+        topics/recursion/choosingCombinations/combinationOne.cpp
+        topics/recursion/choosingCombinations/combinationThree.cpp
+        topics/recursion/choosingCombinations/combinationTwo.cpp
+        topics/recursion/anySubsequence.cpp
+        topics/recursion/combinationSum.cpp
+        topics/recursion/combinationSumTwo.cpp
+        topics/recursion/countingInversions.cpp
+        topics/recursion/kthPermutation.cpp
+        topics/recursion/numSubsequence.cpp
+        topics/recursion/palindrome.cpp
+        topics/recursion/permutation.cpp
+        topics/recursion/permutationTwo.cpp
+        topics/recursion/reverse.cpp
+        topics/recursion/subsequence.cpp
+        topics/recursion/subsetOfMultiset.cpp
+        topics/recursion/subsetSum.cpp
+        topics/recursion/summation.cpp
+        topics/sorting/bubbleSort.cpp
+        topics/sorting/insertionSort.cpp
+        topics/sorting/mergeSort.cpp
+        topics/sorting/quickSort.cpp
+        topics/sorting/selectionSort.cpp
+        topics/stl/queue/children.cpp
+        topics/stl/queue/queue.c
+        topics/stl/queue/queue.cpp
+        topics/stl/queue/team.cpp
+        topics/stl/queue/teamQueue.cpp
+        topics/stl/stack/longest.cpp
+        topics/stl/stack/longestRegularBracketSequence.cpp
+        topics/stl/stack/nearestSmallestInt.cpp
+        topics/stl/stack/stack.c
+        topics/stl/stack/stack.cpp
+        topics/stl/stack/validParenthesis.cpp
+        topics/stl/vectors/vec.cpp
+        topics/stl/indianSummer.cpp
+        topics/stl/iterators.cpp
+        topics/stl/pairs.cpp
+        topics/stl/template.cpp
+        topics/stl/tuple.cpp
+        template.cpp
+        usual_temp.cpp)

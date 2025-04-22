@@ -5,17 +5,16 @@
 
 #define DEFAULT_SIZE 1024
 
+
 /**
  * Creates a new max heap data structure
  *
  * @return A pointer to the newly created max heap, or NULL if creation failed
  */
-max_heap_t *max_heap_create()
-{
+max_heap_t *max_heap_create() {
     int default_val = -1; // signifies no element is there (sentinel value)
     dyn_arr_t *arr = dyn_arr_create(DEFAULT_SIZE, sizeof(int), &default_val);
-    if (!arr)
-    {
+    if (!arr) {
         fprintf(stderr, "ERROR: max heap creation failed: %s\n", strerror(errno));
         return NULL;
     }
@@ -33,10 +32,8 @@ max_heap_t *max_heap_create()
  * @param element The integer element to insert
  * @return true if successful, false if insertion failed
  */
-bool max_heap_insert(max_heap_t *max_heap, int element)
-{
-    if (!max_heap)
-    {
+bool max_heap_insert(max_heap_t *max_heap, int element) {
+    if (!max_heap) {
         fprintf(stderr, "ERROR: invalid max heap argument\n");
         return false;
     }
@@ -49,8 +46,7 @@ bool max_heap_insert(max_heap_t *max_heap, int element)
     }
 
     size_t new_element_index = max_heap->last_index;
-    if (!new_element_index)
-    {
+    if (!new_element_index) {
         // The element is now the root, no need to bubble up
         return true;
     }
@@ -59,39 +55,33 @@ bool max_heap_insert(max_heap_t *max_heap, int element)
     size_t parent_index = (new_element_index - 1) / 2;
 
     // Get the parent element
-    if (!dyn_arr_get(max_heap, parent_index, &parent))
-    {
+    if (!dyn_arr_get(max_heap, parent_index, &parent)) {
         fprintf(stderr, "ERROR: failed to get parent element from max heap\n");
         return false;
     }
 
     // Bubble up if necessary
-    while (parent <= element)
-    {
+    while (parent <= element) {
         // swap if the parent is less than or equal to the element being inserted
-        if (!dyn_arr_set(max_heap, parent_index, &element))
-        {
+        if (!dyn_arr_set(max_heap, parent_index, &element)) {
             fprintf(stderr, "ERROR: failed to set parent in max heap\n");
             return false;
         }
 
-        if (!dyn_arr_set(max_heap, new_element_index, &parent))
-        {
+        if (!dyn_arr_set(max_heap, new_element_index, &parent)) {
             fprintf(stderr, "ERROR: failed to set element in max heap\n");
             return false;
         }
 
         // Move up the tree
         new_element_index = parent_index;
-        if (!new_element_index)
-        {
+        if (!new_element_index) {
             // Reached the root, we're done
             return true;
         }
 
         parent_index = (new_element_index - 1) / 2;
-        if (!dyn_arr_get(max_heap, parent_index, &parent))
-        {
+        if (!dyn_arr_get(max_heap, parent_index, &parent)) {
             fprintf(stderr, "ERROR: failed to get parent element during bubble up\n");
             return false;
         }
@@ -110,31 +100,25 @@ bool max_heap_insert(max_heap_t *max_heap, int element)
  * @param element Pointer to store the deleted element
  * @return true if successful, false if deletion failed
  */
-bool max_heap_delete(max_heap_t *max_heap, int *element)
-{
-    if (!max_heap)
-    {
+bool max_heap_delete(max_heap_t *max_heap, int *element) {
+    if (!max_heap) {
         fprintf(stderr, "ERROR: invalid max heap argument\n");
         return false;
     }
 
-    if (!element)
-    {
+    if (!element) {
         fprintf(stderr, "ERROR: invalid output parameter\n");
         return false;
     }
 
-    if (max_heap->is_empty)
-    {
+    if (max_heap->is_empty) {
         fprintf(stderr, "ERROR: max heap is empty; can't delete\n");
         return false;
     }
 
-    // Handle the case when there's only one element
-    if (max_heap->len == 1)
-    {
-        if (!dyn_arr_get(max_heap, 0, element))
-        {
+    // handle the case when there's only one element
+    if (max_heap->len == 1) {
+        if (!dyn_arr_get(max_heap, 0, element)) {
             fprintf(stderr, "ERROR: could not get root element\n");
             return false;
         }
@@ -157,34 +141,29 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
     int last;
 
     // Get the root and last elements
-    if (!dyn_arr_get(max_heap, 0, &root))
-    {
+    if (!dyn_arr_get(max_heap, 0, &root)) {
         fprintf(stderr, "ERROR: failed to get root element\n");
         return false;
     }
 
-    if (!dyn_arr_get(max_heap, max_heap->last_index, &last))
-    {
+    if (!dyn_arr_get(max_heap, max_heap->last_index, &last)) {
         fprintf(stderr, "ERROR: failed to get last element\n");
         return false;
     }
 
     // Swap root and last elements
-    if (!dyn_arr_set(max_heap, 0, &last))
-    {
+    if (!dyn_arr_set(max_heap, 0, &last)) {
         fprintf(stderr, "ERROR: failed to set root element\n");
         return false;
     }
 
-    if (!dyn_arr_set(max_heap, max_heap->last_index, &root))
-    {
+    if (!dyn_arr_set(max_heap, max_heap->last_index, &root)) {
         fprintf(stderr, "ERROR: failed to set last element\n");
         return false;
     }
 
     // Pop the last element (the original root) and store it in the output
-    if (!dyn_arr_pop(max_heap, element))
-    {
+    if (!dyn_arr_pop(max_heap, element)) {
         fprintf(stderr, "ERROR: failed to pop element from max heap\n");
         return false;
     }
@@ -192,35 +171,29 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
     // Bubble down the new root to restore heap property
     size_t index = 0;
 
-    while (true)
-    {
-        size_t left = 2 * index + 1;  // Left child index
+    while (true) {
+        size_t left = 2 * index + 1; // Left child index
         size_t right = 2 * index + 2; // Right child index
 
         int current, left_val = -1, right_val = -1;
 
         // Get current node value
-        if (!dyn_arr_get(max_heap, index, &current))
-        {
+        if (!dyn_arr_get(max_heap, index, &current)) {
             fprintf(stderr, "ERROR: failed to get current element during bubble down\n");
             return false;
         }
 
         // Try to get left child value (if it exists)
-        if (left <= max_heap->last_index)
-        {
-            if (!dyn_arr_get(max_heap, left, &left_val))
-            {
+        if (left <= max_heap->last_index) {
+            if (!dyn_arr_get(max_heap, left, &left_val)) {
                 fprintf(stderr, "ERROR: failed to get left child during bubble down\n");
                 return false;
             }
         }
 
         // Try to get right child value (if it exists)
-        if (right <= max_heap->last_index)
-        {
-            if (!dyn_arr_get(max_heap, right, &right_val))
-            {
+        if (right <= max_heap->last_index) {
+            if (!dyn_arr_get(max_heap, right, &right_val)) {
                 fprintf(stderr, "ERROR: failed to get right child during bubble down\n");
                 return false;
             }
@@ -234,37 +207,29 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
         int max_child_val;
 
         // Find the larger child
-        if (right > max_heap->last_index || left_val > right_val)
-        {
+        if (right > max_heap->last_index || left_val > right_val) {
             max_child_index = left;
             max_child_val = left_val;
-        }
-        else
-        {
+        } else {
             max_child_index = right;
             max_child_val = right_val;
         }
 
         // If current is less than the larger child, swap and continue
-        if (max_child_val > current)
-        {
+        if (max_child_val > current) {
             // Swap current with the larger child
-            if (!dyn_arr_set(max_heap, index, &max_child_val))
-            {
+            if (!dyn_arr_set(max_heap, index, &max_child_val)) {
                 fprintf(stderr, "ERROR: failed to set current element during bubble down\n");
                 return false;
             }
 
-            if (!dyn_arr_set(max_heap, max_child_index, &current))
-            {
+            if (!dyn_arr_set(max_heap, max_child_index, &current)) {
                 fprintf(stderr, "ERROR: failed to set child element during bubble down\n");
                 return false;
             }
 
             index = max_child_index; // Move down to the child position
-        }
-        else
-        {
+        } else {
             // Heap property is restored
             break;
         }
@@ -282,41 +247,34 @@ bool max_heap_delete(max_heap_t *max_heap, int *element)
  * @param max_heap Pointer to the max heap
  * @return A sorted dynamic array containing the elements, or NULL if sorting failed
  */
-dyn_arr_t *heap_sort(max_heap_t *max_heap)
-{
-    if (!max_heap)
-    {
+dyn_arr_t *heap_sort(max_heap_t *max_heap) {
+    if (!max_heap) {
         fprintf(stderr, "ERROR: invalid max heap argument\n");
         return NULL;
     }
 
-    if (max_heap->is_empty)
-    {
+    if (max_heap->is_empty) {
         fprintf(stderr, "ERROR: max heap is empty; can't sort\n");
         return NULL;
     }
 
     // Create a new array to store the sorted result
     dyn_arr_t *arr = dyn_arr_create(max_heap->len, sizeof(int), NULL);
-    if (!arr)
-    {
+    if (!arr) {
         fprintf(stderr, "ERROR: array creation failed: %s\n", strerror(errno));
         return NULL;
     }
 
     // Copy the max heap into the new array
-    for (size_t index = 0; index <= max_heap->last_index; index++)
-    {
+    for (size_t index = 0; index <= max_heap->last_index; index++) {
         int element;
-        if (!dyn_arr_get(max_heap, index, &element))
-        {
+        if (!dyn_arr_get(max_heap, index, &element)) {
             fprintf(stderr, "ERROR: failed to get element during heap sort\n");
             dyn_arr_free(arr); // Clean up on error
             return NULL;
         }
 
-        if (!dyn_arr_set(arr, index, &element))
-        {
+        if (!dyn_arr_set(arr, index, &element)) {
             fprintf(stderr, "ERROR: failed to set element during heap sort\n");
             dyn_arr_free(arr); // Clean up on error
             return NULL;
@@ -329,15 +287,13 @@ dyn_arr_t *heap_sort(max_heap_t *max_heap)
     while (index > 0) // Can't use >= 0 with size_t as it would cause underflow
     {
         int element;
-        if (!max_heap_delete(arr, &element))
-        {
+        if (!max_heap_delete(arr, &element)) {
             fprintf(stderr, "ERROR: deletion failed during heap sort\n");
             dyn_arr_free(arr); // Clean up on error
             return NULL;
         }
 
-        if (!dyn_arr_set(arr, index, &element))
-        {
+        if (!dyn_arr_set(arr, index, &element)) {
             fprintf(stderr, "ERROR: failed to set element during final heap sort placement\n");
             dyn_arr_free(arr); // Clean up on error
             return NULL;
@@ -347,18 +303,15 @@ dyn_arr_t *heap_sort(max_heap_t *max_heap)
     }
 
     // Handle index 0 separately (since we can't go below 0 with size_t)
-    if (arr->len > 0)
-    {
+    if (arr->len > 0) {
         int element;
-        if (!max_heap_delete(arr, &element))
-        {
+        if (!max_heap_delete(arr, &element)) {
             fprintf(stderr, "ERROR: deletion failed for final element during heap sort\n");
             dyn_arr_free(arr); // Clean up on error
             return NULL;
         }
 
-        if (!dyn_arr_set(arr, 0, &element))
-        {
+        if (!dyn_arr_set(arr, 0, &element)) {
             fprintf(stderr, "ERROR: failed to set final element during heap sort\n");
             dyn_arr_free(arr); // Clean up on error
             return NULL;
@@ -378,16 +331,13 @@ dyn_arr_t *heap_sort(max_heap_t *max_heap)
  * @param max_heap Pointer to the max heap
  * @param index Index of the node to sift down
  */
-static void sift_down(max_heap_t *max_heap, long long index)
-{
-    if (!max_heap || index < 0 || (size_t)index > max_heap->last_index)
-    {
+static void sift_down(max_heap_t *max_heap, long long index) {
+    if (!max_heap || index < 0 || (size_t) index > max_heap->last_index) {
         return; // Invalid arguments
     }
 
     int element;
-    if (!dyn_arr_get(max_heap, index, &element))
-    {
+    if (!dyn_arr_get(max_heap, index, &element)) {
         fprintf(stderr, "ERROR: failed to get element during sift down\n");
         return;
     }
@@ -404,68 +354,54 @@ static void sift_down(max_heap_t *max_heap, long long index)
     right_child_index = 2 * index + 2;
 
     // If there is no left child, there is no right child too and we are done
-    if (left_child_index > max_heap->last_index)
-    {
+    if (left_child_index > max_heap->last_index) {
         return;
     }
 
-    if (!dyn_arr_get(max_heap, left_child_index, &left_child))
-    {
+    if (!dyn_arr_get(max_heap, left_child_index, &left_child)) {
         fprintf(stderr, "ERROR: failed to get left child during sift down\n");
         return;
     }
 
     // If there is a left child, check if there is a right child
-    if (right_child_index > max_heap->last_index)
-    {
+    if (right_child_index > max_heap->last_index) {
         // There is no right child
         max_child_index = left_child_index;
         max_child = left_child;
-    }
-    else
-    {
+    } else {
         // There is a right child
-        if (!dyn_arr_get(max_heap, right_child_index, &right_child))
-        {
+        if (!dyn_arr_get(max_heap, right_child_index, &right_child)) {
             fprintf(stderr, "ERROR: failed to get right child during sift down\n");
             return;
         }
 
         // Choose the larger child
-        if (left_child > right_child)
-        {
+        if (left_child > right_child) {
             max_child_index = left_child_index;
             max_child = left_child;
-        }
-        else
-        {
+        } else {
             max_child_index = right_child_index;
             max_child = right_child;
         }
     }
 
     // We got the max child, check if we need to swap
-    if (max_child <= element)
-    {
+    if (max_child <= element) {
         // Already a heap, no need to sift down further
         return;
-    }
-    else
-    {
+    } else {
         // Swap with max child and call sift_down on it recursively
-        if (!dyn_arr_set(max_heap, index, &max_child))
-        {
+        if (!dyn_arr_set(max_heap, index, &max_child)) {
             fprintf(stderr, "ERROR: failed to set current element during sift down\n");
             return;
         }
 
-        if (!dyn_arr_set(max_heap, max_child_index, &element))
-        {
+        if (!dyn_arr_set(max_heap, max_child_index, &element)) {
             fprintf(stderr, "ERROR: failed to set child element during sift down\n");
             return;
         }
 
-        sift_down(max_heap, max_child_index);
+        sift_down(max_heap, (long long) max_child_index);
     }
 }
 
@@ -478,31 +414,27 @@ static void sift_down(max_heap_t *max_heap, long long index)
  * @param binary_tree Pointer to the binary tree
  * @return A pointer to the max heap, or NULL if conversion failed
  */
-max_heap_t *conv_to_max_heap(binary_tree_t *binary_tree)
-{
-    if (!binary_tree || !binary_tree->top_node)
-    {
+max_heap_t *conv_to_max_heap(binary_tree_t *binary_tree) {
+    if (!binary_tree || !binary_tree->top_node) {
         fprintf(stderr, "ERROR: invalid binary tree\n");
         return NULL;
     }
 
     // Convert binary tree to array representation
     dyn_arr_t *arr = conv_to_arr(binary_tree);
-    if (!arr)
-    {
+    if (!arr) {
         fprintf(stderr, "ERROR: cannot convert to array representation\n");
         return NULL;
     }
 
     // For empty or single-element trees, no heapify needed
-    if (arr->is_empty || arr->len == 1)
-    {
-        return (max_heap_t *)arr;
+    if (arr->is_empty || arr->len == 1) {
+        return (max_heap_t *) arr;
     }
 
     // Heapify the array from bottom up (Floyd's algorithm)
     // Start from the parent of the last node and move up
-    long long index = (long long)(arr->last_index - 1) / 2;
+    long long index = (long long) (arr->last_index - 1) / 2;
 
     while (index >= 0) // If we use size_t, we'll enter infinite loop when wrapping around
     {
@@ -510,7 +442,7 @@ max_heap_t *conv_to_max_heap(binary_tree_t *binary_tree)
         index--;
     }
 
-    return (max_heap_t *)arr;
+    return (max_heap_t *) arr;
 }
 
 /**
@@ -518,10 +450,8 @@ max_heap_t *conv_to_max_heap(binary_tree_t *binary_tree)
  *
  * @param max_heap Pointer to the max heap
  */
-void max_heap_free(max_heap_t *max_heap)
-{
-    if (!max_heap)
-    {
+void max_heap_free(max_heap_t *max_heap) {
+    if (!max_heap) {
         return;
     }
 
