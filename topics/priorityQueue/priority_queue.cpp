@@ -34,10 +34,24 @@ int main() {
     // priority_queue<type, vector<type>, greater<type>> name;
     priority_queue<int, vector<int>, greater<> > minLine;
 
+    // in this type of priority queue, the smallest element gets the highest priority
+
     // a user provided compare can be supplied to calculate the priority
     // ask chatgpt when this is required
 
-    // in this type of priority queue, the smallest element gets the highest priority
+    /*
+     * template<
+     *  class T,
+     *  class Container = std::vector<T>,
+     *  class Compare = std::less<typename Container::<value_type>
+     *> class priority_queue
+     */
+
+    /* The type of the underlying container to use to store the elements must satisfy the requirements
+     * of SequenceContainer, and it's iterators must satisfy the requirements of LegacyRandomAccessIterator.
+     * Additionally, it must provide the following functions with the usual semantics: front(), push_back(), pop_back()
+     * std::vector and std::dequeue satisfy these requirements
+     */
 
     return EXIT_SUCCESS;
 }
