@@ -101,4 +101,48 @@ bool list_remove(list_t *list, int index, TYPE *element) {
         fprintf(stderr, "ERROR: invalid list argument\n");
         return false;
     }
+
+    // handle the empty list case
+    if (list->arr->is_empty) {
+        fprintf(stderr, "ERROR: can't insert at index %d; list is empty\n", index);
+        return false;
+    }
+
+    // handle the index zero case
+    if (!index) {
+        // git the index after the head, make the current head point to it
+        int next_to_head;
+        dyn_arr_get(list->next, list->head_index, &next_to_head);
+        list->head_index = next_to_head;
+        return true;
+    }
+
+    // handle the rest of the cases
+
+    int traversed = 0;
+    int curr = list->head_index;
+    int next;
+
+    do {
+        traversed++;
+        if (traversed == index - 1) {
+            // get the index of element to be deleted
+            dyn_arr_get(list->next, curr, &next);
+
+            // get the next to next
+            int next_to_next;
+            dyn_arr_get(list->next, next, &next_to_next);
+
+            // set the element at curr to point to this next to next
+            dyn_arr_set(list->next, curr, &next_to_next);
+            return true;
+        }
+
+        dyn_arr_get(list->next, curr, &next);
+        curr = next;
+    } while (curr != -1);
+
+    fprintf(stderr, "ERROR: index %d out of bounds\n", index);
+
+    return false;
 }
