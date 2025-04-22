@@ -530,7 +530,8 @@
 				203,
 				204,
 				205,
-				206
+				206,
+				207
 			]
 		},
 		{
@@ -919,7 +920,8 @@
 				203,
 				204,
 				205,
-				206
+				206,
+				207
 			]
 		},
 		{
@@ -2171,6 +2173,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/priorityQueue/room_allocation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/priorityQueue/task_scheduler.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

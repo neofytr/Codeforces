@@ -243,4 +243,5 @@ add_executable(Codeforces
         topics/priorityQueue/priority_queue.cpp
         topics/priorityQueue/powering_the_hero.cpp
         topics/priorityQueue/room_allocation.cpp
+        topics/priorityQueue/task_scheduler.cpp
 )
