@@ -37,6 +37,6 @@ bool list_pop(list_t *list, TYPE *element);
 
 bool list_delete(list_t *list, TYPE *element);
 
-bool list_get(list_t *list, TYPE *element);
+bool list_get(list_t *list, int index, TYPE *element);
 
 #endif //LINKED_LIST_H
