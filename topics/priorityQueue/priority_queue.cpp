@@ -5,7 +5,10 @@ int main() {
     // the stl priority_queue provides the functionality of a priority queue data structure
 
     // a priority queue is a special type of queue in which each element is associated with a
-    // priority value and elements are served based on their priority
+    // priority value and elements are served in descending order of priority
+
+    // provides constant time lookup of the element with the highest priority
+    // at the expense of logarithmic insertion and deletion
 
     // by default, the stl priority queue gives the largest element the highest priority
     // thus, by default, the stl priority queue is a max heap
@@ -30,6 +33,9 @@ int main() {
     // to create a min heap priority queue, that gives off elements in ascending order of priority
     // priority_queue<type, vector<type>, greater<type>> name;
     priority_queue<int, vector<int>, greater<> > minLine;
+
+    // a user provided compare can be supplied to calculate the priority
+    // ask chatgpt when this is required
 
     // in this type of priority queue, the smallest element gets the highest priority
 
