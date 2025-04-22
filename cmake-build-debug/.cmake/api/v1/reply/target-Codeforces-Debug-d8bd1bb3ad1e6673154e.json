@@ -696,7 +696,8 @@
 				144,
 				146,
 				186,
-				193
+				193,
+				209
 			]
 		}
 	],
@@ -923,7 +924,8 @@
 				205,
 				206,
 				207,
-				208
+				208,
+				209
 			]
 		},
 		{
@@ -943,7 +945,8 @@
 				141,
 				143,
 				145,
-				147
+				147,
+				210
 			]
 		}
 	],
@@ -2188,6 +2191,17 @@
 			"compileGroupIndex" : 0,
 			"path" : "topics/priorityQueue/potions.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "topics/linkedList/linked_list.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "topics/linkedList/linked_list.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

@@ -245,4 +245,6 @@ add_executable(Codeforces
         topics/priorityQueue/room_allocation.cpp
         topics/priorityQueue/task_scheduler.cpp
         topics/priorityQueue/potions.cpp
+        topics/linkedList/linked_list.c
+        topics/linkedList/linked_list.h
 )
