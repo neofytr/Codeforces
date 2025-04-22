@@ -13,7 +13,7 @@ list_t *list_create() {
     return list;
 }
 
-bool list_empty(list_t *list) {
+bool list_empty(const list_t *list) {
     return !list || !list->head;
 }
 
@@ -44,9 +44,10 @@ bool list_remove(list_t *list, int index, TYPE *element) {
 
         // free the node being deleted
         if (element) {
-            memcpy((void *) element, (void *) node, sizeof(TYPE));
+            memcpy((void *) element, (void *) &node->data, sizeof(TYPE));
         }
         free(node);
+        list->len--;
         return true;
     }
 
@@ -62,9 +63,10 @@ bool list_remove(list_t *list, int index, TYPE *element) {
             // set the current node to point to next_to_next and free next
             curr->next = next->next;
             if (element) {
-                memcpy((void *) element, (void *) next, sizeof(TYPE));
+                memcpy((void *) element, (void *) &next->data, sizeof(TYPE));
             }
             free(next);
+            list->len--;
             return true;
         }
 
@@ -159,6 +161,7 @@ bool list_insert(list_t *list, int index, const TYPE *element) {
 
             list->head->next = NULL;
             memcpy((void *) &list->head->data, element, sizeof(TYPE));
+            list->len++;
             return true;
         } else {
             fprintf(stderr, "ERROR: list is empty; cannot insert at index %d\n", index);
@@ -189,6 +192,7 @@ bool list_insert(list_t *list, int index, const TYPE *element) {
 
         new_node->next = list->head;
         list->head = new_node;
+        list->len++;
 
         return true;
     }
@@ -207,11 +211,14 @@ bool list_insert(list_t *list, int index, const TYPE *element) {
                 return false;
             }
 
+            memcpy((void *) &new_node->data, (void *) element, sizeof(TYPE));
+
             // set the new node to the next node of the current node
             // also set the next node of the new node to the next node of the current node
             curr->next = new_node;
             new_node->next = next;
 
+            list->len++;
             return true;
         }
 

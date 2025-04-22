@@ -33,15 +33,12 @@ bool list_remove(list_t *list, int index, TYPE *element);
 
 bool list_empty(const list_t *list);
 
-bool list_append(list_t *list, TYPE *element);
+bool list_append(list_t *list, const TYPE *element);
 
 bool list_pop(list_t *list, TYPE *element);
 
 bool list_delete(list_t *list, TYPE *element);
 
 bool list_get(list_t *list, int index, TYPE *element);
-
-#endif //LINKED_LIST_H
-
 
 #endif //LINKED_LIST_H
