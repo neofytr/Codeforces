@@ -1,36 +1,53 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+
 using namespace std;
 
+struct Customer {
+    long long arrival, departure, index;
+};
+
 int main() {
-    int n;
+    long long n;
     cin >> n;
 
-    unordered_map<long long, long long> min_arrival_date_to_room;
-    priority_queue<long long, vector<long long>, greater<> > min_arrival_date;
-    min_arrival_date.push(LLONG_MAX);
-    long long curr_room_number = 0;
-    vector<long long> room_number(n);
+    vector<Customer> customers(n);
+    for (long long i = 0; i < n; ++i) {
+        cin >> customers[i].arrival >> customers[i].departure;
+        customers[i].index = i;
+    }
 
-    long long arrival, departure;
-    for (int index = 0; index < n; ++index) {
-        cin >> arrival >> departure;
-        if (arrival >= min_arrival_date.top()) {
-            room_number[index] = min_arrival_date_to_room[min_arrival_date.top()];
-            min_arrival_date.pop();
-            min_arrival_date.push(departure + 1);
+    // sort by arrival time
+    sort(customers.begin(), customers.end(), [](const Customer &a, const Customer &b) {
+        return a.arrival < b.arrival;
+    });
+
+    // min-heap to track (departure day, room number)
+    priority_queue<pair<long long, long long>, vector<pair<long long, long long> >, greater<pair<long long, long long>> > pq;
+    vector<long long> result(n);
+    long long roomCount = 0;
+
+    for (const auto &cust: customers) {
+        // free up room if earliest departure is before current arrival
+        if (!pq.empty() && pq.top().first < cust.arrival) {
+            auto [dep, room] = pq.top();
+            pq.pop();
+            result[cust.index] = room;
+            pq.emplace(cust.departure, room);
         } else {
-            curr_room_number++;
-            room_number[index] = curr_room_number;
-            min_arrival_date_to_room[departure + 1] = curr_room_number;
-            min_arrival_date.push(departure + 1);
+            // need new room
+            ++roomCount;
+            result[cust.index] = roomCount;
+            pq.emplace(cust.departure, roomCount);
         }
     }
 
-    cout << curr_room_number << endl;
-    for (int index = 0; index < room_number.size(); index++) {
-        cout << room_number[index] << " ";
-    }
+    cout << roomCount << '\n';
+    for (const long long room: result)
+        cout << room << ' ';
+    cout << '\n';
 
-    cout << endl;
-    return EXIT_SUCCESS;
+    return 0;
 }
