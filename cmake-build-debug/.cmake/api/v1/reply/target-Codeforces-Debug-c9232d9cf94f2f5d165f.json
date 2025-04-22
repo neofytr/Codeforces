@@ -528,7 +528,8 @@
 				201,
 				202,
 				203,
-				204
+				204,
+				205
 			]
 		},
 		{
@@ -915,7 +916,8 @@
 				201,
 				202,
 				203,
-				204
+				204,
+				205
 			]
 		},
 		{
@@ -935,7 +937,8 @@
 				141,
 				143,
 				145,
-				147
+				147,
+				206
 			]
 		}
 	],
@@ -2156,6 +2159,17 @@
 			"compileGroupIndex" : 0,
 			"path" : "topics/priorityQueue/priority_queue.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/priorityQueue/powering_the_hero.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "topics/priorityQueue/powering_the_hero.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
