@@ -2208,7 +2208,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
-			"path" : "topics/linkedList/main.c",
+			"path" : "topics/linkedList/withArrays/main.c",
 			"sourceGroupIndex" : 0
 		}
 	],

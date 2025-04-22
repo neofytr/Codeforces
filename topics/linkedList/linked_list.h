@@ -22,7 +22,7 @@ typedef struct node_ {
 
 typedef struct {
     node_t *head;
-    size_t len;
+    int len;
 } list_t;
 
 list_t *list_create();
