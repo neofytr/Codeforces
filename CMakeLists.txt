@@ -256,4 +256,9 @@ add_executable(Codeforces
         topics/linkedList/main.c
         topics/linkedList/memalloc.c
         topics/linkedList/memalloc.h
+        topics/dequeue/dequeue.cpp
+        topics/dequeue/dequeue.c
+        topics/dequeue/dequeue.h
+        topics/dequeue/memalloc.c
+        topics/dequeue/memalloc.h
 )
