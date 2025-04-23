@@ -256,7 +256,6 @@ add_executable(Codeforces
         topics/linkedList/main.c
         topics/linkedList/memalloc.c
         topics/linkedList/memalloc.h
-        topics/dequeue/implementation/dequeue.cpp
         topics/dequeue/implementation/dequeue.c
         topics/dequeue/implementation/dequeue.h
         topics/dequeue/implementation/memalloc.c
@@ -264,4 +263,5 @@ add_executable(Codeforces
         topics/dequeue/implementation/main.c
         topics/dequeue/dequeue.cpp
         topics/dequeue/dequeue.cpp
+        topics/dequeue/social_network.cpp
 )
