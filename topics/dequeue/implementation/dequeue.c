@@ -7,7 +7,7 @@
 #include "memalloc.h"
 
 #if USE_CUSTOM_ALLOCATOR
-#define MEM_ALLOC(size) ((size) > BLOCK_SIZE ? mem_alloc() : malloc(size))
+#define MEM_ALLOC(size) ((size) <= BLOCK_SIZE ? mem_alloc() : malloc(size))
 #define MEM_FREE(ptr) (mem_free(ptr))
 #define MEM_INIT(size) (mem_init(size))
 #else
@@ -115,7 +115,7 @@ bool push_front(queue_t *queue, const TYPE *element) {
     front->prev = new_node;
     new_node->next = front;
     new_node->prev = NULL;
-    queue->back = new_node;
+    queue->front = new_node;
     queue->len++;
     return true;
 }

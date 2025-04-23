@@ -27,9 +27,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1892b3bb-c77d-4c3a-81b9-9198178cec20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/topics/dequeue/implementation/dequeue.c" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/implementation/dequeue.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topics/dequeue/implementation/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/implementation/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topics/dequeue/implementation/dequeue.h" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/implementation/dequeue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topics/dequeue/implementation/main" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/implementation/main" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745305714058</updated>
       <workItem from="1745305715488" duration="29020000" />
-      <workItem from="1745342973020" duration="12075000" />
+      <workItem from="1745342973020" duration="12840000" />
     </task>
     <servers />
   </component>

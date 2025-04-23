@@ -6,7 +6,7 @@
 
 #define TYPE int
 
-#define USE_CUSTOM_ALLOCATOR 1 // 1 enables the custom allocator, 0 uses malloc/free
+#define USE_CUSTOM_ALLOCATOR 0 // 1 enables the custom allocator, 0 uses malloc/free
 
 typedef struct node_ {
     struct node_ *next;
