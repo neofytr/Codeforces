@@ -268,4 +268,5 @@ add_executable(Codeforces
         topics/dequeue/e_one.cpp
         topics/dequeue/bananini.cpp
         topics/dequeue/valeriy.cpp
+        topics/recursion/reverseTraversal.cpp
 )

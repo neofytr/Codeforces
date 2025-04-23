@@ -27,10 +27,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1892b3bb-c77d-4c3a-81b9-9198178cec20" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/topics/recursion/reverseTraversal.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topics/dequeue/main" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/main" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topics/dequeue/test" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topics/dequeue/valeriy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/valeriy.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-4b0b0d5b3bbf237fd35e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2025-04-23T09-40-59-0671.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Codeforces-Debug-36e1cddfe2a7a1fbe891.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topics/recursion/main" beforeDir="false" afterPath="$PROJECT_DIR$/topics/recursion/main" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745305714058</updated>
       <workItem from="1745305715488" duration="29020000" />
-      <workItem from="1745342973020" duration="26111000" />
+      <workItem from="1745342973020" duration="29048000" />
     </task>
     <servers />
   </component>
