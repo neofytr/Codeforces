@@ -57,16 +57,16 @@ bool push_back(queue_t *queue, const TYPE *element) {
         return false;
     }
 
-    queue->len++;
-
     // handle the case when the queue is empty
     if (isEmpty(queue)) {
         new_node->next = NULL;
         new_node->prev = NULL;
         memcpy((void *) &new_node->data, element, sizeof(TYPE));
 
-        queue->back = queue->front = new_node;
+        queue->back = new_node;
+        queue->front = new_node;
 
+        queue->len++;
         return true;
     }
 
@@ -77,6 +77,7 @@ bool push_back(queue_t *queue, const TYPE *element) {
     new_node->next = NULL;
     queue->back = new_node;
 
+    queue->len++;
     return true;
 }
 
@@ -97,8 +98,6 @@ bool push_front(queue_t *queue, const TYPE *element) {
         return false;
     }
 
-    queue->len++;
-
     // handle the case when the queue is empty
     if (isEmpty(queue)) {
         new_node->next = NULL;
@@ -107,6 +106,7 @@ bool push_front(queue_t *queue, const TYPE *element) {
 
         queue->back = queue->front = new_node;
 
+        queue->len++;
         return true;
     }
 
@@ -116,6 +116,7 @@ bool push_front(queue_t *queue, const TYPE *element) {
     new_node->next = front;
     new_node->prev = NULL;
     queue->back = new_node;
+    queue->len++;
     return true;
 }
 
@@ -130,17 +131,33 @@ bool pop_back(queue_t *queue, TYPE *element) {
         return false;
     }
 
-    // queue has length of at least one now
-    queue->len--;
+    // queue is non-empty now
+    if (queue->len == 1) {
+        // it is the last element we're deleting
+        node_t *node = queue->back;
+        queue->back = NULL;
+        queue->front = NULL;
 
+        if (element) {
+            memcpy((void *) element, (void *) &node->data, sizeof(TYPE));
+        }
+
+        MEM_FREE(node);
+
+        queue->len--;
+        return true;
+    }
+
+    // not the last element
     node_t *back = queue->back;
     queue->back = back->prev;
     queue->back->next = NULL;
 
     if (element) {
-        memcpy((void *) element, (void *) &front->data, sizeof(TYPE));
+        memcpy((void *) element, (void *) &back->data, sizeof(TYPE));
     }
 
+    queue->len--;
     MEM_FREE(back);
     return true;
 }
@@ -157,7 +174,21 @@ bool pop_front(queue_t *queue, TYPE *element) {
     }
 
     // queue has length of at least one now
-    queue->len--;
+    if (queue->len == 1) {
+        // it is the last element we're deleting
+        node_t *node = queue->front;
+        queue->back = NULL;
+        queue->front = NULL;
+
+        if (element) {
+            memcpy((void *) element, (void *) &node->data, sizeof(TYPE));
+        }
+
+        MEM_FREE(node);
+
+        queue->len--;
+        return true;
+    }
 
     node_t *front = queue->front;
     queue->front = front->next;
@@ -167,6 +198,7 @@ bool pop_front(queue_t *queue, TYPE *element) {
         memcpy((void *) element, (void *) &front->data, sizeof(TYPE));
     }
 
+    queue->len--;
     MEM_FREE(front);
     return true;
 }
