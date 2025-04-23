@@ -41,14 +41,30 @@ bool push_back(queue_t *queue, const TYPE *element) {
         return false;
     }
 
+    node_t *new_node = mem_alloc();
+    if (!new_node) {
+        fprintf(stderr, "ERROR: couldn't allocate memory for the node: %s\n", strerror(errno));
+        return false;
+    }
+
     // handle the case when the queue is empty
     if (isEmpty(queue)) {
-        node_t *new_node = mem_alloc();
-        if (!new_node) {
-#if CUSTOM
-            fprintf(stderr, "ERROR: couldn't allocate memory for the node\n");
-        }
+        new_node->next = NULL;
+        new_node->prev = NULL;
+        memcpy((void *) &new_node->data, element, sizeof(TYPE));
+
+        queue->back = queue->front = new_node;
+
+        return true;
     }
+
+    // queue has atleast one element now
+    node_t *back = queue->back;
+    back->next = new_node;
+    new_node->prev = back;
+    new_node->next = NULL;
+
+    return true;
 }
 
 queue_t *push_front(queue_t *queue, const TYPE *element);
