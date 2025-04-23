@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// read this article on custom hashing
+// https://codeforces.com/blog/entry/62393
 struct CustomHash {
     size_t operator()(long long x) const {
         static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
