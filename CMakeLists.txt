@@ -265,4 +265,5 @@ add_executable(Codeforces
         topics/dequeue/dequeue.cpp
         topics/dequeue/social_network.cpp
         topics/dequeue/cards.cpp
+        topics/dequeue/e_one.cpp
 )

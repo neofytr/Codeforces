@@ -5,42 +5,56 @@ int main() {
     int n;
     cin >> n;
 
+    int k1;
+    cin >> k1;
     deque<int> first;
+    for (int i = 0; i < k1; i++) {
+        int card;
+        cin >> card;
+        first.push_back(card);
+    }
+
+    int k2;
+    cin >> k2;
     deque<int> second;
-
-    int k;
-    cin >> k;
-    for (int index = 0; index < k; index++) {
-        cin >> first[index];
+    for (int i = 0; i < k2; i++) {
+        int card;
+        cin >> card;
+        second.push_back(card);
     }
 
-    cin >> k;
-    for (int index = 0; index < k; index++) {
-        cin >> second[index];
-    }
+    set<pair<deque<int>, deque<int>>> seen;
+    int turns = 0;
 
-    long long count = 0;
+    while (!first.empty() && !second.empty()) {
+        if (seen.count({first, second})) {
+            cout << -1 << endl;
+            return 0;
+        }
 
-    while (true) {
-        int first_front = first.front();
-        int second_front = second.front();
-        count++;
-        if (first_front > second_front) {
-            first.push_front(second_front);
-            second.pop_front();
+        seen.insert({first, second});
 
-            if (second.empty()) {
-                cout << count << " 1";
-                return EXIT_SUCCESS;
-            }
+        int f_card = first.front();
+        int s_card = second.front();
+        first.pop_front();
+        second.pop_front();
+
+        turns++;
+
+        if (f_card > s_card) {
+            first.push_back(s_card);
+            first.push_back(f_card);
         } else {
-            second.push_front(first_front);
-            first.pop_front();
-
-            if (first.empty()) {
-                cout << count << " 2";
-                return EXIT_SUCCESS;
-            }
+            second.push_back(f_card);
+            second.push_back(s_card);
         }
     }
+
+    if (first.empty()) {
+        cout << turns << " 2" << endl;
+    } else {
+        cout << turns << " 1" << endl;
+    }
+
+    return 0;
 }
