@@ -8,16 +8,6 @@
 
 #define USE_CUSTOM_ALLOCATOR 1 // 1 enables the custom allocator, 0 uses malloc/free
 
-#if USE_CUSTOM_ALLOCATOR
-#define MEM_ALLOC(size) ((size) == sizeof(node_t) ? mem_alloc() : malloc(size))
-#define MEM_FREE(ptr) (mem_free(ptr))
-#define MEM_INIT(size) (mem_init(size))
-#else
-#define MEM_ALLOC(size) (malloc(size))
-#define MEM_FREE(ptr) (free(ptr))
-#define MEM_INIT(size) (true)
-#endif
-
 typedef struct node_ {
     struct node_ *next;
     struct node_ *prev;
