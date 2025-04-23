@@ -172,10 +172,49 @@ bool pop_front(queue_t *queue, TYPE *element) {
 }
 
 bool front(queue_t *queue, TYPE *element) {
+    if (!queue) {
+        fprintf(stderr, "ERROR: invalid queue argument\n");
+        return false;
+    }
+
+    if (!element) {
+        fprintf(stderr, "ERROR: invalid element argument\n");
+        return false;
+    }
+
+    if (isEmpty(queue)) {
+        fprintf(stderr, "ERROR: the queue is empty; can't get front\n");
+        return false;
+    }
+
+    memcpy((void *) element, (void *) &queue->front->data, sizeof(TYPE));
+    return true;
 }
 
-bool back(queue_t *queue, TYPE *element);
+bool back(queue_t *queue, TYPE *element) {
+    if (!queue) {
+        fprintf(stderr, "ERROR: invalid queue argument\n");
+        return false;
+    }
 
-size_t length(queue_t *queue);
+    if (!element) {
+        fprintf(stderr, "ERROR: invalid element argument\n");
+        return false;
+    }
 
-bool isEmpty(queue_t *queue);
+    if (isEmpty(queue)) {
+        fprintf(stderr, "ERROR: the queue is empty; can't get front\n");
+        return false;
+    }
+
+    memcpy((void *) element, (void *) &queue->back->data, sizeof(TYPE));
+    return true;
+}
+
+size_t length(queue_t *queue) {
+    if (!queue) {
+        return 0;
+    }
+
+    return queue->len;
+}
