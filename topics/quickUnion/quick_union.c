@@ -3,26 +3,29 @@
 //
 
 #include "quick_union.h"
+
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 tree_t *create_tree(size_t size) {
     tree_t *tree = malloc(sizeof(tree_t));
     if (!tree) {
-        fprintf(stderr, "ERROR: failed to allocate the tree structure: %s\n");
+        fprintf(stderr, "ERROR: failed to allocate the tree structure: %s\n", strerror(errno));
         return NULL;
     }
 
     tree->arr = malloc(sizeof(size_t) * size);
     if (!tree->arr) {
-        fprintf(stderr, "ERROR: failed to allocate the element array in the tree structure: %s\n");
+        fprintf(stderr, "ERROR: failed to allocate the element array in the tree structure: %s\n", strerror(errno));
         free(tree);
         return NULL;
     }
 
     tree->size = malloc(sizeof(size_t) * size);
     if (!tree->size) {
-        fprintf(stderr, "ERROR: failed to allocate the size array in the tree structure: %s\n");
+        fprintf(stderr, "ERROR: failed to allocate the size array in the tree structure: %s\n", strerror(errno));
         free(tree->arr);
         free(tree);
         return NULL;
@@ -38,7 +41,7 @@ tree_t *create_tree(size_t size) {
     return tree;
 }
 
-inline size_t getRoot(const tree_t *tree, size_t p) {
+static size_t getRoot(const tree_t *tree, size_t p) {
     size_t temp = p;
     while (p != tree->arr[p]) {
         p = tree->arr[p];

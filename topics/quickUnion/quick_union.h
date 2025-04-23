@@ -14,10 +14,10 @@ typedef struct {
     size_t len;
 } tree_t;
 
-tree_t *create_tree();
+tree_t *create_tree(size_t size);
 
-bool do_union(tree_t *tree, int p, int q);
+bool do_union(tree_t *tree, size_t p, size_t q);
 
-bool find(tree_t *tree, int p, int q);
+bool find(const tree_t *tree, size_t p, size_t q);
 
 #endif //QUICK_UNION_H
