@@ -3,7 +3,7 @@
 CMake Error at CMakeLists.txt:38 (add_executable):
   Cannot find source file:
 
-    topics/dequeue/dequeue.c
+    topics/dequeue/implementation/dequeue.cpp
 
 
 CMake Error at CMakeLists.txt:38 (add_executable):

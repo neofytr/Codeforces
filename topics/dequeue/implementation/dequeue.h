@@ -6,7 +6,9 @@
 
 #define TYPE int
 
-#define USE_CUSTOM_ALLOCATOR 0 // 1 enables the custom allocator, 0 uses malloc/free
+// since the bottleneck is the memory allocation this time, using a custom allocator improves the performance two folds
+// allocation is the bottleneck since except for the allocation, pushing and popping are constant time
+#define USE_CUSTOM_ALLOCATOR 1 // 1 enables the custom allocator, 0 uses malloc/free
 
 typedef struct node_ {
     struct node_ *next;
