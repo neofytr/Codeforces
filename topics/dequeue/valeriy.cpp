@@ -48,10 +48,14 @@ int main() {
         if (m <= max_index) {
             cout << operations[m].first << " " << operations[m].second << endl;
         } else {
-            uint64_t cyclic_offset = m - max_index; // how many steps into the cycle we are
-            uint64_t cycle_length = n - 1; // the length of the cycle (excluding max_elem)
-            uint64_t zero_based_index = (cyclic_offset - 1) % cycle_length; // zero-based index into the cycle
-            uint64_t index_in_deque = zero_based_index + 1; // actual index in deque (starts from dq[1])
+            uint64_t op = m - max_index; // operation number into the cycle part
+            uint64_t act = op % (n - 1);
+            uint64_t index_in_deque;
+            if (!act) {
+                index_in_deque = n - 1;
+            } else {
+                index_in_deque = act;
+            }
 
             cout << max_elem << " " << dq[index_in_deque] << endl;
         }
