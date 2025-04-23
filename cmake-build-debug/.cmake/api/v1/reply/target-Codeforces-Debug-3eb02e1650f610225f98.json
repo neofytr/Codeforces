@@ -711,7 +711,8 @@
 				215,
 				217,
 				219,
-				227
+				227,
+				229
 			]
 		}
 	],
@@ -953,7 +954,8 @@
 				224,
 				225,
 				226,
-				227
+				227,
+				229
 			]
 		},
 		{
@@ -2338,6 +2340,12 @@
 			"backtrace" : 1,
 			"path" : "topics/quickUnion/quick_union.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "topics/quickUnion/main.c",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"

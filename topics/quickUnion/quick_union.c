@@ -68,6 +68,11 @@ bool do_union(tree_t *tree, size_t p, size_t q) {
     const size_t root_p = getRoot(tree, p);
     const size_t root_q = getRoot(tree, q);
 
+    if (root_q == root_p) {
+        // early return if they are already in the same set
+        return true;
+    }
+
     const size_t size_p = tree->size[root_p];
     const size_t size_q = tree->size[root_q];
 

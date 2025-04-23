@@ -271,4 +271,5 @@ add_executable(Codeforces
         topics/recursion/reverseTraversal.cpp
         topics/quickUnion/quick_union.c
         topics/quickUnion/quick_union.h
+        topics/quickUnion/main.c
 )
