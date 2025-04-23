@@ -22,6 +22,11 @@ int main() {
 
     cout << dq.empty() << endl; // returns true if empty
 
+    // iterate through the queue
+    for (int val: dq) {
+        cout << val << endl;
+    }
+
     // has iterators begin(), end(), rbegin() and rend()
     // insert, erase and emplace behave as they did with vectors
     // there is push_back(), pop_back(), push_front(), pop_front(), emplace_back(), and emplace_front() which do what they usually do
