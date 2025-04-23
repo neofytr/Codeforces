@@ -27,16 +27,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1892b3bb-c77d-4c3a-81b9-9198178cec20" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/topics/dequeue/e_one.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/topics/dequeue/bananini.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-998d20bd4733ff7e5a99.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2025-04-23T06-49-44-0983.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Codeforces-Debug-1d33e4c8c062bda84bf0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-b455425513f7444ea8f3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2025-04-23T07-52-24-0394.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Codeforces-Debug-a27ee20ed56d17c8f140.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topics/dequeue/cards.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/cards.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/topics/dequeue/main" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/main" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/topics/dequeue/test" beforeDir="false" afterPath="$PROJECT_DIR$/topics/dequeue/test" afterDir="false" />
     </list>
@@ -108,7 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745305714058</updated>
       <workItem from="1745305715488" duration="29020000" />
-      <workItem from="1745342973020" duration="18480000" />
+      <workItem from="1745342973020" duration="21560000" />
     </task>
     <servers />
   </component>
