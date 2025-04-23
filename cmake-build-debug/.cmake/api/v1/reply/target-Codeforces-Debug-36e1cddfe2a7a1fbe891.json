@@ -537,7 +537,8 @@
 				221,
 				222,
 				223,
-				224
+				224,
+				225
 			]
 		},
 		{
@@ -947,7 +948,8 @@
 				221,
 				222,
 				223,
-				224
+				224,
+				225
 			]
 		},
 		{
@@ -2307,6 +2309,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dequeue/bananini.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dequeue/valeriy.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

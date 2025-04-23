@@ -267,4 +267,5 @@ add_executable(Codeforces
         topics/dequeue/cards.cpp
         topics/dequeue/e_one.cpp
         topics/dequeue/bananini.cpp
+        topics/dequeue/valeriy.cpp
 )
