@@ -50,4 +50,16 @@ int main() {
     } else {
         cout << "10 does not exist\n";
     }
+
+    /*
+     *An associative container that contains a sorted set of unique objects of type Key
+     *A user provided Compare can be supplied to change the ordering (sorting)
+     *Search, removal, and insertion times are logarithmic
+     *Usually implemented as Red-Black trees
+     * template <
+     * class Key,
+     * class Compare = std::less<Key>,
+     * class Allocator = std::allocator<key>,
+     * > class set;
+     */
 }
