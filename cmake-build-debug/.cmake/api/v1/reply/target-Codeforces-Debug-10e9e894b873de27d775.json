@@ -553,7 +553,8 @@
 				240,
 				241,
 				242,
-				243
+				243,
+				244
 			]
 		},
 		{
@@ -983,7 +984,8 @@
 				240,
 				241,
 				242,
-				243
+				243,
+				244
 			]
 		},
 		{
@@ -2457,6 +2459,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/bitsets/ada.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/bitsets/oddly_similar.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
