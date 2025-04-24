@@ -282,4 +282,5 @@ add_executable(Codeforces
         topics/maps/twoSum.cpp
         topics/maps/subarrSumsTwo.cpp
         topics/maps/subarrayDivisibility.cpp
+        topics/maps/threeSum.cpp
 )
