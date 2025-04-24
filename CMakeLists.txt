@@ -278,4 +278,5 @@ add_executable(Codeforces
         topics/sets/concert_tickets.cpp
         topics/sets/collecting_numbers.cpp
         topics/sets/towers.cpp
+        topics/maps/maps.cpp
 )
