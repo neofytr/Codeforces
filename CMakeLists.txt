@@ -276,4 +276,5 @@ add_executable(Codeforces
         topics/sets/distinctNumbers.cpp
         topics/sets/unexpressed.cpp
         topics/sets/concert_tickets.cpp
+        topics/sets/collecting_numbers.cpp
 )

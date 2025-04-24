@@ -543,7 +543,8 @@
 				230,
 				231,
 				232,
-				233
+				233,
+				234
 			]
 		},
 		{
@@ -963,7 +964,8 @@
 				230,
 				231,
 				232,
-				233
+				233,
+				234
 			]
 		},
 		{
@@ -2377,6 +2379,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/sets/concert_tickets.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/sets/collecting_numbers.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
