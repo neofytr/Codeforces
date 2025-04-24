@@ -272,4 +272,5 @@ add_executable(Codeforces
         topics/quickUnion/quick_union.c
         topics/quickUnion/quick_union.h
         topics/quickUnion/main.c
+        topics/sets/sets.cpp
 )
