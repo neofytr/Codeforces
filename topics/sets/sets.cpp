@@ -84,5 +84,19 @@ int main() {
 
     setTwo.erase(10); // removed element 10 if present; returns the number of elements removed
 
+    // unordered sets
+
+    /*
+     *An associative container that contains a set of unique objects of type Key
+     *Search, removal, and insertion times are constant
+     *Implemented as Hash Table.
+     *template<
+     *class Key,
+     *class Hash = std::hash<Key>,
+     *class KeyEqual = std::equal_to<Key>,
+     *class Allocator = std:allocator<Key>,
+     *> class unordered_set;
+     */
+
     return EXIT_SUCCESS;
 }
