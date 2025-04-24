@@ -285,4 +285,5 @@ add_executable(Codeforces
         topics/maps/threeSum.cpp
         topics/maps/restrauntCustomers.cpp
         topics/bitsets/bitset.cpp
+        topics/bitsets/ada.cpp
 )
