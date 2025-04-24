@@ -1,18 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// use this hash function when using unordered maps
+struct custom_hash {
+    static uint64_t splitmix64(uint64_t x) {
+        // http://xorshift.di.unimi.it/splitmix64.c
+        x += 0x9e3779b97f4a7c15;
+        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+        return x ^ (x >> 31);
+    }
+
+    size_t operator()(uint64_t x) const {
+        static const uint64_t fixed_random = chrono::steady_clock::now().time_since_epoch().count();
+        return splitmix64(x + fixed_random);
+    }
+};
+
+
 int main() {
     // map
     /*
-     *An associative container that contains key-value pairs with unique keys (sorted)
-     *A user-provided compare can be supplied to change the ordering(sorting)
-     *Search, removal, and insertion times are logarithmic
-     *Usually implemented as RB trees
+     *an associative container that contains key-value pairs with unique keys (sorted)
+     *a user-provided compare can be supplied to change the ordering(sorting)
+     *search, removal, and insertion times are logarithmic
+     *usually implemented as rb trees
      *template<
-     *class Key,
-     *class T,
-     *class Compare = std::less<Key>,
-     *class Allocator = std::allocator<std::pair<const Key, T>>,
+     *class key,
+     *class t,
+     *class compare = std::less<key>,
+     *class allocator = std::allocator<std::pair<const key, t>>,
      *> class map;
      */
 
@@ -56,5 +73,8 @@ int main() {
     // their functions behave the same way as maps
     // however, they don't store their elements in any particular order
 
-    return EXIT_SUCCESS;
+    // itr++ is allowed but not itr + 1, + 2, etc.
+    // similar for --itr
+
+    return exit_success;
 }
