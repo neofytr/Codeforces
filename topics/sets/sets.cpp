@@ -130,5 +130,13 @@ int main() {
     // insert(key) always inserts (at the index upper_bound(key)); returns iterator to the inserted element
     // erase(key) removes all elements with key (if present); returns the number of elements removed
 
+    // store elements of the same type in sorted order, where multiple elements can have equivalent values
+    // duplicate values are allowed
+    // the value of each element acts as its own key
+    // the value of element can't be modified after they have been inserted
+
+    // to get the elements of a multiset sorted in descending order (ascending by default):
+    multiset<int, greater<int> > descending;
+
     return EXIT_SUCCESS;
 }
