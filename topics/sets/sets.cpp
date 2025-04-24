@@ -8,10 +8,14 @@ int main() {
 
     set<int> setOne = {1, 2, 3, 3}; // initialize the set; the duplicate will be ignored
 
-    setOne.insert(10); // 10 has been inserted
+    // they work the same way as in vectors
+    setOne.insert(10);
+    // 10 has been inserted; returns a pair (itr, bool); itr is the iterator to the element inserted (or element present)
+    // and bool indicates the success/failure of insertion
     setOne.erase(3); // erase 3 from the set
 
     if (setOne.find(2) == setOne.end()) {
+        // find returns the iterator to the element of end() if it doesn't find it
         // element doesn't exist
         cout << "Couldn't find 2\n";
     } else {
@@ -62,4 +66,23 @@ int main() {
      * class Allocator = std::allocator<key>,
      * > class set;
      */
+
+    auto itr = setTwo.upper_bound(10); // returns the iterator to the first element greater than 10
+    auto itr_two = setTwo.lower_bound(4); // returns the iterator to the first element greater than or equal to 4
+
+    cout << *itr << endl;
+    cout << *itr_two << endl;
+
+    // insert all elements of a vector into a set
+    vector<int> arr = {1, 6, 144, 69, 100};
+    setOne.insert(arr.begin(), arr.end()); // inserts from beginning to end - 1; returns nothing
+
+    setOne.erase(setOne.begin());
+    // erases the first element; returns the iterator to the element following the deleted element
+    setOne.erase(setOne.begin(), setOne.end()); // erases all the elements in the set from beginning to end - 1;
+    // returns iterator following the last element removed
+
+    setTwo.erase(10); // removed element 10 if present; returns the number of elements removed
+
+    return EXIT_SUCCESS;
 }
