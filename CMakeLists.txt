@@ -273,4 +273,5 @@ add_executable(Codeforces
         topics/quickUnion/quick_union.h
         topics/quickUnion/main.c
         topics/sets/sets.cpp
+        topics/sets/distinctNumbers.cpp
 )
