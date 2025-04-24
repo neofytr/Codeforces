@@ -38,4 +38,23 @@ int main() {
     for (auto itr = mapping.begin(); itr != mapping.end(); ++itr) {
         cout << itr->first << endl;
     }
+
+    // maps are associative containers that store data in the form of key value pairs sorted on the basis of keys
+    // no two mapped values can have the same keys. by default, it stores the data in ascending order of keys
+
+    // if the element with the given already exists, the insert() method skips the insertion but
+    // [] operator updates the associated value to the new value
+
+    // map elements can be accessed by using the corresponding key inside operator[]
+    // if the key exists, it will return the associated value but if the key doesn't exist, it will
+    // create a new element with the given key and the default value (of the value type for the map)
+    // to avoid this, we can use .at() which returns error if key not present
+
+    // the iterator of a map stores pointer to pairs (key, value)
+
+    // unordered maps are hash tables
+    // their functions behave the same way as maps
+    // however, they don't store their elements in any particular order
+
+    return EXIT_SUCCESS;
 }
