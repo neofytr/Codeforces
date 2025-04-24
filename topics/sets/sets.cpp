@@ -11,7 +11,7 @@ int main() {
     // they work the same way as in vectors
     setOne.insert(10);
     // 10 has been inserted; returns a pair (itr, bool); itr is the iterator to the element inserted (or element present)
-    // and bool indicates the success/failure of insertion
+    // and bool indicates if the insertion was done or not
     setOne.erase(3); // erase 3 from the set
 
     if (setOne.find(2) == setOne.end()) {
@@ -97,6 +97,38 @@ int main() {
      *class Allocator = std:allocator<Key>,
      *> class unordered_set;
      */
+
+    // all the functions of unordered_set are same as that of set
+
+    const unordered_set<int> unordered = {10, 4, 9, 3, 11};
+    for (auto iterator = unordered.begin(); iterator != unordered.end(); ++iterator) {
+        cout << *iterator << endl;
+    } // begin() points to 11 and end() - 1 points to 10
+    // the order of values in an unordered_set is undefined, we cannot make any assumptions about it
+
+    // multi-set
+    /*
+    * An associative container that contains a sorted set of objects of type Key
+    * A user-provided compare can be supplied to change the ordering(sorting)
+    * Search, removal, and insertion times are logarithmic
+    * Usually implemented as Red-Black trees
+    * template<
+    * class Key,
+    * class Compare = std::less<Key>,
+    * class Allocator = std::allocator<Key>,
+    * > class multiset;
+    */
+
+    multiset<int> multi;
+
+    // all functions work more or less the same as set
+    // count returns the number of times the element appears in the multiset
+    // find returns the iterator to the first occurrence of the element if present. end() if not
+    // upper bound returns the iterator to the first element greater than the provided element
+    // lower bound returns the iterator to the first element greater than or equal to the provided element
+
+    // insert(key) always inserts (at the index upper_bound(key)); returns iterator to the inserted element
+    // erase(key) removes all elements with key (if present); returns the number of elements removed
 
     return EXIT_SUCCESS;
 }
