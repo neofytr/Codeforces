@@ -284,4 +284,5 @@ add_executable(Codeforces
         topics/maps/subarrayDivisibility.cpp
         topics/maps/threeSum.cpp
         topics/maps/restrauntCustomers.cpp
+        topics/bitsets/bitset.cpp
 )

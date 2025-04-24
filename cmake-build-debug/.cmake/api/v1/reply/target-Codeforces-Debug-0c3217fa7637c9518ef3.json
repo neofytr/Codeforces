@@ -551,7 +551,8 @@
 				238,
 				239,
 				240,
-				241
+				241,
+				242
 			]
 		},
 		{
@@ -979,7 +980,8 @@
 				238,
 				239,
 				240,
-				241
+				241,
+				242
 			]
 		},
 		{
@@ -2441,6 +2443,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/maps/restrauntCustomers.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/bitsets/bitset.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
