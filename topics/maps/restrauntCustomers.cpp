@@ -1,38 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct custom_hash {
-    static uint64_t splitmix64(uint64_t x) {
-        // http://xorshift.di.unimi.it/splitmix64.c
-        x += 0x9e3779b97f4a7c15;
-        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
-        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
-        return x ^ (x >> 31);
-    }
-
-    size_t operator()(uint64_t x) const {
-        static const uint64_t fixed_random = chrono::steady_clock::now().time_since_epoch().count();
-        return splitmix64(x + fixed_random);
-    }
-};
-
-
 int main() {
     int n;
     cin >> n;
 
     long long a, b;
+
+    // this map keeps track of changes in the number of people at specific times
     map<long long, long long> timeToPersonChange;
+
+    // process each customer's arrival and departure
     while (n--) {
         cin >> a >> b;
+        // one person arrives at time a
         timeToPersonChange[a] += 1;
+        // one person leaves at time b
         timeToPersonChange[b] -= 1;
     }
 
+    // count will track the current number of people
     long long count = 0;
+    // max will store the maximum number of people seen at any time
     long long max = -1;
 
+    // iterate over all-time points in order
     for (auto change: timeToPersonChange) {
+        // update the current count based on the change at this time
         count += change.second;
         if (count > max) {
             max = count;
@@ -40,5 +34,6 @@ int main() {
     }
 
     cout << max << endl;
+
     return EXIT_SUCCESS;
 }
