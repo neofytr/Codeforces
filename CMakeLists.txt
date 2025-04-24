@@ -274,4 +274,5 @@ add_executable(Codeforces
         topics/quickUnion/main.c
         topics/sets/sets.cpp
         topics/sets/distinctNumbers.cpp
+        topics/sets/unexpressed.cpp
 )
