@@ -29,5 +29,11 @@ int main() {
 
     arr.remove(10); // removes the first occurrence of 10 in the list, from the start
 
+    for (auto itr = arr.begin(); itr != arr.end(); ++itr) {
+        cout << *itr << endl;
+    }
+
+    // the STL list implements the doubly linked list
+
     return EXIT_SUCCESS;
 }
