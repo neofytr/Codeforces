@@ -24,7 +24,7 @@ int main() {
     int left = -1; // hypothetical element to the left of 0 that is less than target
     int right = n; // hypothetical element to the right of n - 1 that is greater than or equal to target
     int mid;
-    while (left < right) {
+    while (right != left + 1) {
         mid = left + (right - left) / 2;
         if (arr[mid] < target) {
             left = mid;
