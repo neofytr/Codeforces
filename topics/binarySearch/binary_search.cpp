@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 bool binary_search(vector<long long> &arr, long long target) {
     long long left = 0;
     long long right = arr.size() - 1;
