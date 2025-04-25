@@ -291,4 +291,5 @@ add_executable(Codeforces
         topics/binarySearch/binary_search.cpp
         topics/binarySearch/closestRight.cpp
         topics/binarySearch/closestLeft.cpp
+        topics/binarySearch/closestToTheLeft.cpp
 )
