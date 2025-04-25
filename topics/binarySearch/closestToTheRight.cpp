@@ -32,7 +32,7 @@ int main() {
     while (k--) {
         cin >> target;
         int ans = search(arr, target);
-        if (ans == -1) {
+        if (ans == n) {
             cout << 0 << endl;
         } else {
             cout << ans + 1 << endl;
