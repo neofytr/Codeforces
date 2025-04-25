@@ -559,7 +559,8 @@
 				246,
 				247,
 				248,
-				249
+				249,
+				250
 			]
 		},
 		{
@@ -995,7 +996,8 @@
 				246,
 				247,
 				248,
-				249
+				249,
+				250
 			]
 		},
 		{
@@ -2505,6 +2507,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/closestToTheLeft.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/closestToTheRight.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

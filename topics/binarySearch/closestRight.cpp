@@ -10,7 +10,7 @@ int main() {
         cin >> val;
     }
 
-    // we need to find the smallest element in arr that is greater than or equal to target (if there are multiple such elements, we get the one with the highest index)
+    // we need to find the smallest element in arr that is greater than or equal to target (if there are multiple such elements, we get the one with the minimum index)
     // i.e., all the elements to the left of it are strictly less than
     // and all elements to its right (including itself) are greater than or equal to target
     // we maintain the following invariant
