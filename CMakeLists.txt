@@ -289,4 +289,5 @@ add_executable(Codeforces
         toLookAtLater/oddly_similar.cpp
         topics/list/list.cpp
         topics/binarySearch/binary_search.cpp
+        topics/binarySearch/closest.cpp
 )
