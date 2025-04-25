@@ -287,4 +287,5 @@ add_executable(Codeforces
         topics/bitsets/bitset.cpp
         topics/bitsets/ada.cpp
         toLookAtLater/oddly_similar.cpp
+        topics/list/list.cpp
 )
