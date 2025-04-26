@@ -565,7 +565,8 @@
 				252,
 				253,
 				254,
-				255
+				255,
+				256
 			]
 		},
 		{
@@ -1007,7 +1008,8 @@
 				252,
 				253,
 				254,
-				255
+				255,
+				256
 			]
 		},
 		{
@@ -2553,6 +2555,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/ropes.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/task.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
