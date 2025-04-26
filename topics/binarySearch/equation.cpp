@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-double func(double x, double c) {
+bool func(double x, double c) {
     return (x * x + sqrt(x) - c) >= 0;
 }
 
