@@ -297,4 +297,5 @@ add_executable(Codeforces
         topics/binarySearch/good.cpp
         topics/binarySearch/goodTwo.cpp
         topics/binarySearch/onRealNums.cpp
+        topics/binarySearch/ropes.cpp
 )

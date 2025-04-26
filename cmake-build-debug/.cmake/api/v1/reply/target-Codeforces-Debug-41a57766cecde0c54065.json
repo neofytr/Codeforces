@@ -564,7 +564,8 @@
 				251,
 				252,
 				253,
-				254
+				254,
+				255
 			]
 		},
 		{
@@ -1005,7 +1006,8 @@
 				251,
 				252,
 				253,
-				254
+				254,
+				255
 			]
 		},
 		{
@@ -2545,6 +2547,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/onRealNums.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/ropes.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
