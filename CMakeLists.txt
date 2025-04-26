@@ -295,4 +295,5 @@ add_executable(Codeforces
         topics/binarySearch/closestToTheRight.cpp
         topics/binarySearch/fast_search.cpp
         topics/binarySearch/good.cpp
+        topics/binarySearch/goodTwo.cpp
 )

@@ -24,9 +24,9 @@ int main() {
 
     // n >= 1
 
-    // we have a function isGood(int x) that returns if the element at index x is good or not
+    // we have a function isGood(int x) that returns 1 if the element at index x is good or 0 if it's not good (bad)
 
-    // it's given that, in the array, if index x is good, then so is index x + 1, for all but the last index
+    // it's given that the function isGood is increasing, that is, in the array, if index x is good, then so is index x + 1, for all but the last index
 
     // from this, we can infer that either all the numbers in the array are bad (not good), or there is an index in the array
     // x which is good, and it's true that all indexes x <= i <= n - 1 are good
@@ -59,6 +59,9 @@ int main() {
     } else {
         cout << "YES " << right << endl;
     }
+
+    // this method is useful to solve a large class of problems where the indexes of an array
+    // can be associated with either a value 0 or 1 by a monotone function f
 
     return EXIT_SUCCESS;
 }
