@@ -561,7 +561,8 @@
 				248,
 				249,
 				250,
-				251
+				251,
+				252
 			]
 		},
 		{
@@ -999,7 +1000,8 @@
 				248,
 				249,
 				250,
-				251
+				251,
+				252
 			]
 		},
 		{
@@ -2521,6 +2523,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/fast_search.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/good.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
