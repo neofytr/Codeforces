@@ -299,4 +299,5 @@ add_executable(Codeforces
         topics/binarySearch/onRealNums.cpp
         topics/binarySearch/ropes.cpp
         topics/binarySearch/task.cpp
+        topics/binarySearch/equation.cpp
 )

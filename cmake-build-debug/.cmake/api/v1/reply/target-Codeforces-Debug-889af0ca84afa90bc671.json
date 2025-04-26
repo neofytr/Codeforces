@@ -566,7 +566,8 @@
 				253,
 				254,
 				255,
-				256
+				256,
+				257
 			]
 		},
 		{
@@ -1009,7 +1010,8 @@
 				253,
 				254,
 				255,
-				256
+				256,
+				257
 			]
 		},
 		{
@@ -2561,6 +2563,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/task.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/equation.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
