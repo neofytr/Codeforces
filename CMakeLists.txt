@@ -300,4 +300,5 @@ add_executable(Codeforces
         topics/binarySearch/ropes.cpp
         topics/binarySearch/task.cpp
         topics/binarySearch/equation.cpp
+        topics/binarySearch/stringGame.cpp
 )

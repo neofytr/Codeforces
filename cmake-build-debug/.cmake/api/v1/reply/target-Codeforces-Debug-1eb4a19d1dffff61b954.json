@@ -567,7 +567,8 @@
 				254,
 				255,
 				256,
-				257
+				257,
+				258
 			]
 		},
 		{
@@ -1011,7 +1012,8 @@
 				254,
 				255,
 				256,
-				257
+				257,
+				258
 			]
 		},
 		{
@@ -2569,6 +2571,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/equation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/stringGame.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
