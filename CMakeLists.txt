@@ -289,18 +289,18 @@ add_executable(Codeforces
         toLookAtLater/oddly_similar.cpp
         topics/list/list.cpp
         topics/binarySearch/binary_search.cpp
-        topics/binarySearch/closestRight.cpp
-        topics/binarySearch/closestLeft.cpp
-        topics/binarySearch/closestToTheLeft.cpp
-        topics/binarySearch/closestToTheRight.cpp
-        topics/binarySearch/fast_search.cpp
-        topics/binarySearch/good.cpp
-        topics/binarySearch/goodTwo.cpp
-        topics/binarySearch/onRealNums.cpp
-        topics/binarySearch/ropes.cpp
-        topics/binarySearch/task.cpp
-        topics/binarySearch/equation.cpp
-        topics/binarySearch/stringGame.cpp
-        topics/binarySearch/studentCouncils.cpp
-        topics/binarySearch/hamburgers.cpp
+        topics/binarySearch/monotoneSearch/closestRight.cpp
+        topics/binarySearch/monotoneSearch/closestLeft.cpp
+        topics/binarySearch/monotoneSearch/closestToTheLeft.cpp
+        topics/binarySearch/monotoneSearch/closestToTheRight.cpp
+        topics/binarySearch/monotoneSearch/fast_search.cpp
+        topics/binarySearch/monotoneSearch/good.cpp
+        topics/binarySearch/monotoneSearch/goodTwo.cpp
+        topics/binarySearch/monotoneSearch/onRealNums.cpp
+        topics/binarySearch/monotoneSearch/ropes.cpp
+        topics/binarySearch/monotoneSearch/task.cpp
+        topics/binarySearch/monotoneSearch/equation.cpp
+        topics/binarySearch/monotoneSearch/stringGame.cpp
+        topics/binarySearch/monotoneSearch/studentCouncils.cpp
+        topics/binarySearch/monotoneSearch/hamburgers.cpp
 )
