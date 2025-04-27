@@ -305,4 +305,5 @@ add_executable(Codeforces
         topics/binarySearch/monotoneSearch/hamburgers.cpp
         topics/binarySearch/minOfMax/getTogether.cpp
         topics/binarySearch/minOfMax/splitArray.cpp
+        topics/binarySearch/minOfMax/cows.cpp
 )
