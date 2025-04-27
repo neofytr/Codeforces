@@ -571,7 +571,8 @@
 				258,
 				259,
 				260,
-				261
+				261,
+				262
 			]
 		},
 		{
@@ -1019,7 +1020,8 @@
 				258,
 				259,
 				260,
-				261
+				261,
+				262
 			]
 		},
 		{
@@ -2601,6 +2603,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/minOfMax/getTogether.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/minOfMax/splitArray.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
