@@ -569,7 +569,8 @@
 				256,
 				257,
 				258,
-				259
+				259,
+				260
 			]
 		},
 		{
@@ -1015,7 +1016,8 @@
 				256,
 				257,
 				258,
-				259
+				259,
+				260
 			]
 		},
 		{
@@ -2585,6 +2587,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/studentCouncils.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/hamburgers.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
