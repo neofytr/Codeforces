@@ -570,7 +570,8 @@
 				257,
 				258,
 				259,
-				260
+				260,
+				261
 			]
 		},
 		{
@@ -1017,7 +1018,8 @@
 				257,
 				258,
 				259,
-				260
+				260,
+				261
 			]
 		},
 		{
@@ -2514,85 +2516,91 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/closestRight.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/closestRight.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/closestLeft.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/closestLeft.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/closestToTheLeft.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/closestToTheLeft.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/closestToTheRight.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/closestToTheRight.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/fast_search.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/fast_search.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/good.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/good.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/goodTwo.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/goodTwo.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/onRealNums.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/onRealNums.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/ropes.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/ropes.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/task.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/task.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/equation.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/equation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/stringGame.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/stringGame.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/studentCouncils.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/studentCouncils.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/binarySearch/hamburgers.cpp",
+			"path" : "topics/binarySearch/monotoneSearch/hamburgers.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/minOfMax/getTogether.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
