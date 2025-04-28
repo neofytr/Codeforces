@@ -10,7 +10,7 @@ int main() {
         cin >> val;
     }
 
-    // arr is sorted but maybe rotated clockwise at some pivot
+    // arr is sorted but maybe rotated clockwise at some pivot (doesn't have duplicates)
     // the array is first increasing, then possibly decreases once, then increasing again
 
     int left = 0;
