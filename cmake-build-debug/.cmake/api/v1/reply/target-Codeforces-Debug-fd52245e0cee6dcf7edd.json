@@ -575,7 +575,8 @@
 				262,
 				263,
 				264,
-				265
+				265,
+				266
 			]
 		},
 		{
@@ -1027,7 +1028,8 @@
 				262,
 				263,
 				264,
-				265
+				265,
+				266
 			]
 		},
 		{
@@ -2633,6 +2635,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/upper_bound.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/first_last.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
