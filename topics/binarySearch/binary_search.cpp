@@ -1,6 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool binary_search_recursive(const vector<long long> &arr, const long long target, const long long left,
+                             const long long right) {
+    if (right == left + 1) {
+        return right < arr.size() && arr[right] == target;
+    }
+
+    long long mid = left + (right - left) / 2;
+    if (arr[mid] >= target) {
+        return binary_search_recursive(arr, target, left, mid);
+    } else {
+        return binary_search_recursive(arr, target, mid, right);
+    }
+}
+
 
 bool binary_search(const vector<long long> &arr, const long long target) {
     // we maintain the invariant that
@@ -55,7 +69,7 @@ int main() {
     long long query;
     while (k--) {
         cin >> query;
-        if (binary_search(arr, query)) {
+        if (binary_search_recursive(arr, query, -1, n)) {
             cout << "YES\n";
         } else {
             cout << "NO\n";
