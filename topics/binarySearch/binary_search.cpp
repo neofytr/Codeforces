@@ -17,6 +17,20 @@ bool binary_search_recursive(const vector<long long> &arr, const long long targe
 
 
 bool binary_search(const vector<long long> &arr, const long long target) {
+    // we assume arr[-1] < target and arr[arr.size()] >= target
+
+    // in the array, since it's sorted
+    // if arr[index] >= target, then arr[index + 1] >= target, for all 0 <= index < arr.size()
+    // if arr[index] < target, then arr[index - 1] < target for all 0 <= index < arr.size()
+
+    // let f(index) = 0 if arr[index] < target, and 1 otherwise
+    // it is not possible that there are 0 <= r, s < arr.size() such that r < s and f(s) < f(r)
+    // that is, f is monotonically increasing
+    // then, since f(-1) = 0 and f(arr.size()) = 1, there is an index alpha such that
+    // f(index) = 0 for all index < alpha
+    // and f(index) = 1 for all index >= alpha
+    // Thus, arr[alpha] is the minimum index in the array whose value is greater than equal to target
+
     // we maintain the invariant that
     // for every index <= left, arr[index] < target
     // for every index >= right, arr[index] >= target
