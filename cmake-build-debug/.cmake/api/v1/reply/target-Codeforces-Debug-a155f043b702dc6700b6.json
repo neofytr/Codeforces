@@ -580,7 +580,8 @@
 				267,
 				268,
 				269,
-				270
+				270,
+				271
 			]
 		},
 		{
@@ -1037,7 +1038,8 @@
 				267,
 				268,
 				269,
-				270
+				270,
+				271
 			]
 		},
 		{
@@ -2673,6 +2675,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/rotArrMin.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/rot_arr.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

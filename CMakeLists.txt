@@ -313,4 +313,5 @@ add_executable(Codeforces
         topics/binarySearch/rotArr.cpp
         topics/binarySearch/rotArrDuplicate.cpp
         topics/binarySearch/rotArrMin.cpp
+        topics/binarySearch/rot_arr.cpp
 )
