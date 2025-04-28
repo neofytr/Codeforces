@@ -576,7 +576,8 @@
 				263,
 				264,
 				265,
-				266
+				266,
+				267
 			]
 		},
 		{
@@ -1029,7 +1030,8 @@
 				263,
 				264,
 				265,
-				266
+				266,
+				267
 			]
 		},
 		{
@@ -2641,6 +2643,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/first_last.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/rotatedArr.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
