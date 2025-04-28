@@ -318,5 +318,5 @@ add_executable(Codeforces
         topics/binarySearch/peak_finding.cpp
         topics/binarySearch/squareRoot.cpp
         topics/binarySearch/koko.cpp
-        topics/bouquet.cpp
+        topics/binarySearch/bouquet.cpp
 )
