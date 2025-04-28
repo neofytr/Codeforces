@@ -573,7 +573,8 @@
 				260,
 				261,
 				262,
-				263
+				263,
+				264
 			]
 		},
 		{
@@ -1023,7 +1024,8 @@
 				260,
 				261,
 				262,
-				263
+				263,
+				264
 			]
 		},
 		{
@@ -2617,6 +2619,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/minOfMax/cows.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/lower_bound.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
