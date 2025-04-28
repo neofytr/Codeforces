@@ -312,4 +312,5 @@ add_executable(Codeforces
         topics/binarySearch/rotatedArr.cpp
         topics/binarySearch/rotArr.cpp
         topics/binarySearch/rotArrDuplicate.cpp
+        topics/binarySearch/rotArrMin.cpp
 )
