@@ -10,8 +10,19 @@ Analysis of Algorithms:
 https://archive.nptel.ac.in/courses/106/101/106101060/
 
 
-
 Logic (for CS, or general):
 https://nptel.ac.in/courses/106102013 
 https://nptel.ac.in/courses/111104416 (along with set theory)
 https://nptel.ac.in/courses/111106052
+
+CP:
+
+Colin Galen Topic Streams (DP, Constructive, PnC/Prob, Number Theory, Graphs, Bitwise)
+https://www.youtube.com/playlist?list=PLDjGkpToBsYCaRoQ-_S5MRxYMuKgHD62w
+
+Errichto:
+https://www.youtube.com/playlist?list=PLl0KD3g-oDOEbtmoKT5UWZ-0_JbyLnHPZ
+
+Errichto and Errichto Hard Algorithms
+
+Take U Forward
