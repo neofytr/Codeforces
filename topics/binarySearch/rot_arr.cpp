@@ -74,5 +74,7 @@ int main() {
     }
 
     cout << mini << endl;
+    // if there are no duplicates in the array, then the index of this minimum element would be
+    // the number of times the sorted array has been rotated to get arr
     return EXIT_SUCCESS;
 }
