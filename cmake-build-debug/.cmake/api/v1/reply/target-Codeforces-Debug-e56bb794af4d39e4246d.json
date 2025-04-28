@@ -586,7 +586,8 @@
 				273,
 				274,
 				275,
-				276
+				276,
+				277
 			]
 		},
 		{
@@ -1049,7 +1050,8 @@
 				273,
 				274,
 				275,
-				276
+				276,
+				277
 			]
 		},
 		{
@@ -2720,7 +2722,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/bouquet.cpp",
+			"path" : "topics/binarySearch/bouquet.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/ship.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

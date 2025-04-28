@@ -319,4 +319,5 @@ add_executable(Codeforces
         topics/binarySearch/squareRoot.cpp
         topics/binarySearch/koko.cpp
         topics/binarySearch/bouquet.cpp
+        topics/binarySearch/ship.cpp
 )
