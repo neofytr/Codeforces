@@ -582,7 +582,8 @@
 				269,
 				270,
 				271,
-				272
+				272,
+				273
 			]
 		},
 		{
@@ -1041,7 +1042,8 @@
 				269,
 				270,
 				271,
-				272
+				272,
+				273
 			]
 		},
 		{
@@ -2689,6 +2691,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/single_element.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/peak_finding.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
