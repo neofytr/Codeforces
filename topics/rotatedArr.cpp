@@ -15,17 +15,15 @@ public:
             }
 
             if (nums[mid] >= nums[left]) {
-                // the subarray [left, mid] is sorted
-                if (target < nums[mid]) {
+                // [left, mid] is sorted
+                if (nums[left] <= target && target < nums[mid]) {
                     right = mid - 1;
                 } else {
                     left = mid + 1;
                 }
-            }
-
-            if (nums[mid] <= nums[right]) {
-                // the subarray [mid, right] is sorted
-                if (target > nums[mid]) {
+            } else {
+                // [mid, right] is sorted
+                if (nums[mid] < target && target <= nums[right]) {
                     left = mid + 1;
                 } else {
                     right = mid - 1;
