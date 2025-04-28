@@ -584,7 +584,8 @@
 				271,
 				272,
 				273,
-				274
+				274,
+				275
 			]
 		},
 		{
@@ -1045,7 +1046,8 @@
 				271,
 				272,
 				273,
-				274
+				274,
+				275
 			]
 		},
 		{
@@ -2705,6 +2707,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/squareRoot.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/koko.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
