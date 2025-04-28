@@ -307,7 +307,7 @@ add_executable(Codeforces
         topics/binarySearch/minOfMax/splitArray.cpp
         topics/binarySearch/minOfMax/cows.cpp
         topics/binarySearch/lower_bound.cpp
-        topics/upper_bound.cpp
+        topics/binarySearch/upper_bound.cpp
         topics/binarySearch/first_last.cpp
-        topics/rotatedArr.cpp
+        topics/binarySearch/rotatedArr.cpp
 )
