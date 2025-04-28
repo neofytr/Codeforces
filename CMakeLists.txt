@@ -316,4 +316,5 @@ add_executable(Codeforces
         topics/binarySearch/rot_arr.cpp
         topics/binarySearch/single_element.cpp
         topics/binarySearch/peak_finding.cpp
+        topics/binarySearch/squareRoot.cpp
 )

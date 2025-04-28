@@ -583,7 +583,8 @@
 				270,
 				271,
 				272,
-				273
+				273,
+				274
 			]
 		},
 		{
@@ -1043,7 +1044,8 @@
 				270,
 				271,
 				272,
-				273
+				273,
+				274
 			]
 		},
 		{
@@ -2697,6 +2699,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/peak_finding.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/squareRoot.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
