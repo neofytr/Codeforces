@@ -310,4 +310,5 @@ add_executable(Codeforces
         topics/binarySearch/upper_bound.cpp
         topics/binarySearch/first_last.cpp
         topics/binarySearch/rotatedArr.cpp
+        topics/binarySearch/rotArr.cpp
 )

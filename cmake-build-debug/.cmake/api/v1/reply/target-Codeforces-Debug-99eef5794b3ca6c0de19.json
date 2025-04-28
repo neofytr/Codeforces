@@ -577,7 +577,8 @@
 				264,
 				265,
 				266,
-				267
+				267,
+				268
 			]
 		},
 		{
@@ -1031,7 +1032,8 @@
 				264,
 				265,
 				266,
-				267
+				267,
+				268
 			]
 		},
 		{
@@ -2636,7 +2638,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/upper_bound.cpp",
+			"path" : "topics/binarySearch/upper_bound.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -2648,7 +2650,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/rotatedArr.cpp",
+			"path" : "topics/binarySearch/rotatedArr.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/rotArr.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
