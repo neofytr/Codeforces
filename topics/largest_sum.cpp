@@ -69,11 +69,13 @@ public:
         // we maintain the invariant
         // f[left] = 0
         // f[right] = 1
+        // and that right > left
+        // we end when right == left + 1
 
         int left = 0;
         int right = accumulate(arr.begin(), arr.end(), 0);
 
-        // this will fail if left == right, i.e, all elements are zero
+        // this will fail if left == right, i.e, all elements are zero (the invariant can't be maintained in that case)
         // in that case return 0
         if (left == right) {
             return 0;
