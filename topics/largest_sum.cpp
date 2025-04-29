@@ -37,11 +37,6 @@ public:
         // n >= 1
         // 1 <= k <= n
 
-        // if n == 1, then k == 1
-        if (n == 1) {
-            return arr[0];
-        }
-
         // given an integer array arr and an integer k
         // split arr into k non-empty subarrays such that the
         // largest sum of any subarray is minimized
@@ -77,6 +72,12 @@ public:
 
         int left = 0;
         int right = accumulate(arr.begin(), arr.end(), 0);
+
+        // this will fail if left == right, i.e, all elements are zero
+        // in that case return 0
+        if (left == right) {
+            return 0;
+        }
 
         while (right != left + 1) {
             const int mid = left + (right - left) / 2;
