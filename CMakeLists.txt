@@ -320,4 +320,5 @@ add_executable(Codeforces
         topics/binarySearch/koko.cpp
         topics/binarySearch/bouquet.cpp
         topics/binarySearch/ship.cpp
+        topics/binarySearch/missing_positive.cpp
 )

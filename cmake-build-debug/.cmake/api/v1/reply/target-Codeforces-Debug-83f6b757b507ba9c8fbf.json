@@ -587,7 +587,8 @@
 				274,
 				275,
 				276,
-				277
+				277,
+				278
 			]
 		},
 		{
@@ -1051,7 +1052,8 @@
 				274,
 				275,
 				276,
-				277
+				277,
+				278
 			]
 		},
 		{
@@ -2729,6 +2731,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/ship.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/missing_positive.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
