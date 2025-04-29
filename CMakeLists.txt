@@ -324,4 +324,5 @@ add_executable(Codeforces
         topics/binarySearch/agressive_cows.cpp
         topics/binarySearch/book_allocation.cpp
         topics/binarySearch/largest_sum.cpp
+        topics/binarySearch/median.cpp
 )

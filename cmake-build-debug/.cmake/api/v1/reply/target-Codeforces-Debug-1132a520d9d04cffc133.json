@@ -591,7 +591,8 @@
 				278,
 				279,
 				280,
-				281
+				281,
+				282
 			]
 		},
 		{
@@ -1059,7 +1060,8 @@
 				278,
 				279,
 				280,
-				281
+				281,
+				282
 			]
 		},
 		{
@@ -2760,7 +2762,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "topics/largest_sum.cpp",
+			"path" : "topics/binarySearch/largest_sum.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/binarySearch/median.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
