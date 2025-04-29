@@ -323,5 +323,5 @@ add_executable(Codeforces
         topics/binarySearch/missing_positive.cpp
         topics/binarySearch/agressive_cows.cpp
         topics/binarySearch/book_allocation.cpp
-        topics/largest_sum.cpp
+        topics/binarySearch/largest_sum.cpp
 )
