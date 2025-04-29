@@ -322,4 +322,5 @@ add_executable(Codeforces
         topics/binarySearch/ship.cpp
         topics/binarySearch/missing_positive.cpp
         topics/binarySearch/agressive_cows.cpp
+        topics/binarySearch/book_allocation.cpp
 )
