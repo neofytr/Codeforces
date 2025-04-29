@@ -321,4 +321,5 @@ add_executable(Codeforces
         topics/binarySearch/bouquet.cpp
         topics/binarySearch/ship.cpp
         topics/binarySearch/missing_positive.cpp
+        topics/binarySearch/agressive_cows.cpp
 )
