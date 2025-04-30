@@ -327,4 +327,5 @@ add_executable(Codeforces
         topics/binarySearch/median.cpp
         topics/binarySearch/medianTwo.cpp
         topics/dynamicProgramming/dynamic.cpp
+        topics/dynamicProgramming/1D/climbing_stairs.cpp
 )
