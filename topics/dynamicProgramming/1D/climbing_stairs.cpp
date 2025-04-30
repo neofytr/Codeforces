@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    int climbStairs(int n) {
+    static int climbStairs(const int n) {
         if (n == 1) {
             return 1;
         }
