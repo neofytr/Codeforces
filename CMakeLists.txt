@@ -326,4 +326,5 @@ add_executable(Codeforces
         topics/binarySearch/largest_sum.cpp
         topics/binarySearch/median.cpp
         topics/binarySearch/medianTwo.cpp
+        topics/dynamicProgramming/dynamic.cpp
 )

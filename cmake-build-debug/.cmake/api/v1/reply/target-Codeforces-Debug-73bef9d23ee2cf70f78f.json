@@ -593,7 +593,8 @@
 				280,
 				281,
 				282,
-				283
+				283,
+				284
 			]
 		},
 		{
@@ -1063,7 +1064,8 @@
 				280,
 				281,
 				282,
-				283
+				283,
+				284
 			]
 		},
 		{
@@ -2777,6 +2779,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/binarySearch/medianTwo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/dynamic.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
