@@ -17,13 +17,18 @@ int main() {
     vector<int> dp(target + 1, 0);
     dp[0] = 1; // there's exactly 1 way to make amount 0 — use no coins at all
 
+    // we build amounts in a lexicographical order (in the order in which they appear in the array)
     // loop over each coin first — this fixes the order in which coins are considered
     for (const int coin: arr) {
+        // all of dp[r]; 0 <= r <= target currently contain the number of ways to make r using coins that
+        // are lexicographically smaller than the current coin (come before the current coin in the array)
         // for the current coin, update all amounts it can contribute to
         for (int amount = coin; amount <= target; amount++) {
             // add the number of ways to make (amount - coin) to dp[amount]
             // because for each way to make (amount - coin), we can add one coin to make 'amount'
             dp[amount] += dp[amount - coin];
+            // we can make amount by adding the current coin to the number of ways it takes to make (amount - coin)
+            // by using coins lexicographically equal or smaller to coin
 
             // for example, if coin = 2 and amount = 5, we add dp[3] to dp[5]
             // this means: take all the ways to make 3, and add a 2 at the end to make 5
