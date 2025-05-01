@@ -24,6 +24,29 @@ public:
         if (obstacleGrid[0][0] == 1) return 0;
 
         vector<vector<int> > dp(m, vector<int>(n, -1));
-        return solve(dp, obstacleGrid, n - 1, m - 1);
+        solve(dp, obstacleGrid, n - 1, m - 1);
+
+        // with tabulation
+        for (int x = 0; x < n; x++) {
+            for (int y = 0; y < m; y++) {
+                if (obstacleGrid[y][x]) {
+                    // is an obstacle
+                    dp[y][x] = 0; // can't ever reach this place
+                } else {
+                    // is a space
+                    if (x && y) {
+                        dp[y][x] = dp[y - 1][x] + dp[y][x - 1];
+                    } else if (x > 0) {
+                        dp[y][x] = dp[y][x - 1];
+                    } else if (y > 0) {
+                        dp[y][x] = dp[y - 1][x];
+                    } else {
+                        dp[y][x] = 1;
+                    }
+                }
+            }
+        }
+
+        return dp[m - 1][n - 1];
     }
 };
