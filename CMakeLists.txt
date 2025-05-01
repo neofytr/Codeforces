@@ -330,4 +330,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/1D/climbing_stairs.cpp
         topics/dynamicProgramming/1D/robber.cpp
         topics/dynamicProgramming/1D/robber_two.cpp
+        topics/dynamicProgramming/1D/unique_paths.cpp
 )
