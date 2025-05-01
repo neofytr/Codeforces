@@ -4,7 +4,7 @@ using namespace std;
 class Solution {
 public:
     static int solve(vector<vector<int> > &dp, const int x, const int y) {
-        if (x == y && x == 0) {
+        if (x == y && !x) {
             return 1;
         }
 
@@ -32,8 +32,6 @@ public:
         // from the initial point
 
         vector<vector<int> > dp(m, vector<int>(n, -1));
-        dp[0][0] = 1;
-
         solve(dp, m - 1, n - 1);
 
         return dp[m - 1][n - 1];
