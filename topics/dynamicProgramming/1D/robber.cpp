@@ -49,8 +49,8 @@ public:
 
         int prev = 0;
         int prev_prev = 0;
-        for (int val: arr) {
-            int curr = max(prev, prev_prev + val);
+        for (const int val: arr) {
+            const int curr = max(prev, prev_prev + val);
             prev_prev = prev;
             prev = curr;
         }
