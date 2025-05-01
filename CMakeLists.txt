@@ -337,4 +337,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/grid/falling_path.cpp
         topics/dynamicProgramming/walls.cpp
         topics/dynamicProgramming/1D/knapsack.cpp
+        topics/dynamicProgramming/1D/knapsack_recursive.cpp
 )
