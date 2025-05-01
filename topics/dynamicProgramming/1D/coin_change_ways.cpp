@@ -17,6 +17,7 @@ int main() {
     vector<int> dp(target + 1, 0);
     dp[0] = 1; // there's exactly 1 way to make amount 0 — use no coins at all
 
+    // this counts combinations (iterating over coins and then the sums)
     // we build amounts in a lexicographical order (in the order in which they appear in the array)
     // loop over each coin first — this fixes the order in which coins are considered
     for (const int coin: arr) {

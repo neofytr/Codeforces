@@ -11,6 +11,7 @@ int main() {
 
     vector<int> dp(target + 1, 0);
     dp[0] = 1;
+    // this counts permutation (iterating over sums then coins)
     for (int sum = 1; sum <= target; sum++) {
         // for each possible sum, we count the ways it can be made using previous sums
         // and a coin
