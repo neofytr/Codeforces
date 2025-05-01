@@ -333,4 +333,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/grid/unique_paths.cpp
         topics/dynamicProgramming/grid/unique_paths_two.cpp
         topics/dynamicProgramming/grid/path_sum.cpp
+        topics/dynamicProgramming/grid/triangle.cpp
 )
