@@ -335,9 +335,9 @@ add_executable(Codeforces
         topics/dynamicProgramming/grid/path_sum.cpp
         topics/dynamicProgramming/grid/triangle.cpp
         topics/dynamicProgramming/grid/falling_path.cpp
-        topics/dynamicProgramming/walls.cpp
         topics/dynamicProgramming/1D/knapsack.cpp
         topics/dynamicProgramming/1D/knapsack_recursive.cpp
         topics/dynamicProgramming/1D/combination_sum.cpp
         topics/dynamicProgramming/1D/coin_change.cpp
+        topics/dynamicProgramming/1D/coin_change_ways.cpp
 )
