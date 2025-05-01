@@ -3,31 +3,26 @@ using namespace std;
 
 class Solution {
 public:
-    static void loot(const vector<int> &arr, const int index, int &sum, int &max) {
+    static int loot(const vector<int> &arr, const int index, vector<int> &dp) {
+        // returns the maximum loot obtainable starting from position index
         if (index >= arr.size()) {
-            return;
+            return 0;
         }
 
-        // we can either loot the current one or choose to skip it
-
-        // loot the current one and move 2 step forward
-        sum += arr[index];
-        if (max < sum) {
-            max = sum;
+        if (dp[index] != -1) {
+            return dp[index];
         }
 
-        loot(arr, index + 2, sum, max);
+        const int take = arr[index] + loot(arr, index + 2, dp);
+        const int skip = loot(arr, index + 1, dp);
 
-        // or don't loot the current one and move forward
-        sum -= arr[index];
-        loot(arr, index + 1, sum, max);
+        return dp[index] = max(take, skip);
     }
 
     static int rob(const vector<int> &arr) {
-        int max = 0;
-        int sum = 0;
-        loot(arr, 0, sum, max);
+        const int n = static_cast<int>(arr.size());
+        vector<int> dp(n, -1); // dp[r] stores the maximum loot we can get starting from the house at index r
 
-        return max;
+        return loot(arr, 0, dp);
     }
 };
