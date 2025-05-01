@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumTotal(const vector<vector<int> > &triangle) {
+    static int minimumTotal(const vector<vector<int> > &triangle) {
         const int n = static_cast<int>(triangle.size()); // number of rows in the triangular grid
         vector<vector<int> > dp(n);
 
