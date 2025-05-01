@@ -4,7 +4,7 @@ using namespace std;
 class Solution {
 public:
     static int loot(const vector<int> &arr, const int index, vector<int> &dp) {
-        // returns the maximum loot obtainable starting from position index
+        // this returns the maximum loot we can get starting from the house at position index
         if (index >= arr.size()) {
             return 0;
         }
@@ -21,8 +21,7 @@ public:
 
     static int rob(const vector<int> &arr) {
         const int n = static_cast<int>(arr.size());
-        vector<int> dp(n, -1); // dp[r] stores the maximum loot we can get starting from the house at index r
-
+        vector<int> dp(n, -1); // dp[i] stores the maximum loot we can get starting from the house at index i
         return loot(arr, 0, dp);
     }
 };
