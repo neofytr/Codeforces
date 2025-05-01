@@ -598,7 +598,8 @@
 				285,
 				286,
 				287,
-				288
+				288,
+				289
 			]
 		},
 		{
@@ -1073,7 +1074,8 @@
 				285,
 				286,
 				287,
-				288
+				288,
+				289
 			]
 		},
 		{
@@ -2817,6 +2819,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/1D/unique_paths.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/1D/unique_paths_two.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

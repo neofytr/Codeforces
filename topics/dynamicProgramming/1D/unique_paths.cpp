@@ -5,19 +5,16 @@ class Solution {
 public:
     static int solve(vector<vector<int> > &dp, const int x, const int y) {
         // returns the number of ways to get to (x, y) from the origin
-        if (x == y && !x) {
-            return 1;
-        }
 
         if (dp[x][y] != -1) {
             return dp[x][y];
         }
 
-        if (x > 0 && y > 0) {
+        if (x && y) {
             return dp[x][y] = solve(dp, x - 1, y) + solve(dp, x, y - 1);
-        } else if (y > 0) {
+        } else if (y) {
             return dp[x][y] = solve(dp, x, y - 1);
-        } else if (x > 0) {
+        } else if (x) {
             return dp[x][y] = solve(dp, x - 1, y);
         }
 
@@ -33,6 +30,7 @@ public:
         // from the initial point
 
         vector<vector<int> > dp(m, vector<int>(n, -1));
+        dp[0][0] = 1; // base case
         const int ans = solve(dp, m - 1, n - 1);
 
         // approach with tabulation
