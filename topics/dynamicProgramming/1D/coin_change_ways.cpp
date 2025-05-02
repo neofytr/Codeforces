@@ -27,6 +27,8 @@ int main() {
         // for the current coin, update all amounts it can contribute to
         for (int amount = coin; amount <= target; amount++) {
             // add the number of ways to make (amount - coin) to dp[amount]
+            // we do this starting from amount = coin since we want multi-sets
+            // if we started from amount = target, we would count subsets (no repetitions allowed)
             // because for each way to make (amount - coin), we can add one coin to make 'amount'
             dp[amount] += dp[amount - coin];
             // we can make amount by adding the current coin to the number of ways it takes to make (amount - coin)
