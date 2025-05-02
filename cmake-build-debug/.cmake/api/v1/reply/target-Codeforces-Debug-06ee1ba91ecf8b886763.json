@@ -611,7 +611,8 @@
 				298,
 				299,
 				300,
-				301
+				301,
+				302
 			]
 		},
 		{
@@ -1099,7 +1100,8 @@
 				298,
 				299,
 				300,
-				301
+				301,
+				302
 			]
 		},
 		{
@@ -2921,6 +2923,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/1D/partition_min_any.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/1D/subsetsSumCount.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
