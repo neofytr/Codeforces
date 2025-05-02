@@ -610,7 +610,8 @@
 				297,
 				298,
 				299,
-				300
+				300,
+				301
 			]
 		},
 		{
@@ -1097,7 +1098,8 @@
 				297,
 				298,
 				299,
-				300
+				300,
+				301
 			]
 		},
 		{
@@ -2913,6 +2915,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/1D/partition_min.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/1D/partition_min_any.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

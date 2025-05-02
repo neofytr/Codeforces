@@ -31,6 +31,7 @@ public:
     int minimumDifference(const vector<int> &arr) {
         vector<int> first, second;
         solve(arr, first, second, 0);
-        return minimum;
+
+        // dp solution
     }
 };
