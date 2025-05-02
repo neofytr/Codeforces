@@ -340,4 +340,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/1D/combination_sum.cpp
         topics/dynamicProgramming/1D/coin_change.cpp
         topics/dynamicProgramming/1D/coin_change_ways.cpp
+        topics/dynamicProgramming/1D/subset_sum.cpp
 )
