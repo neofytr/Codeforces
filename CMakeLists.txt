@@ -347,4 +347,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/1D/subsetsSumCount.cpp
         topics/dynamicProgramming/1D/cookies.cpp
         topics/dynamicProgramming/1D/coin_change_again.cpp
+        topics/dynamicProgramming/1D/target_sum.cpp
 )

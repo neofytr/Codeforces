@@ -614,7 +614,8 @@
 				301,
 				302,
 				303,
-				304
+				304,
+				305
 			]
 		},
 		{
@@ -1105,7 +1106,8 @@
 				301,
 				302,
 				303,
-				304
+				304,
+				305
 			]
 		},
 		{
@@ -2945,6 +2947,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/1D/coin_change_again.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/1D/target_sum.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
