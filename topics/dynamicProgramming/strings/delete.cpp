@@ -38,7 +38,9 @@ public:
         n = static_cast<int>(larger.length());
         m = static_cast<int>(smaller.length());
 
-        // To convert 'smaller' into 'larger',
+        // this is the logic we use to convert any one string into another (in this case smaller into larger; but the logic
+        // will mostly be the same when doing the other way round too)
+        // to convert 'smaller' into 'larger',
         // we find the longest common subsequence (LCS) between them.
         // We delete elements in 'smaller' not in LCS, and insert elements from 'larger' not in LCS (equivalent to deletions in 'larger').
         // The minimum number of steps = deletions plus insertions = (len(smaller) - LCS) + (len(larger) - LCS)
