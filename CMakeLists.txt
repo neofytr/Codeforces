@@ -350,4 +350,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/1D/target_sum.cpp
         topics/dynamicProgramming/strings/common_subseq.cpp
         topics/dynamicProgramming/strings/palindromic.cpp
+        topics/dynamicProgramming/strings/missing.cpp
 )

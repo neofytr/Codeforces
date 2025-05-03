@@ -617,7 +617,8 @@
 				304,
 				305,
 				306,
-				307
+				307,
+				308
 			]
 		},
 		{
@@ -1111,7 +1112,8 @@
 				304,
 				305,
 				306,
-				307
+				307,
+				308
 			]
 		},
 		{
@@ -2969,6 +2971,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/strings/palindromic.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/strings/missing.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
