@@ -46,7 +46,8 @@ public:
         vector<vector<int> > iter(n + 1, vector<int>(m + 1, 0));
 
         // we now find the length of the longest common subsequence of smaller and larger
-        // be careful of the order while doing iterative dp
+        // be careful of the order in which we iterate
+        // (depends on what back values are we using to calculate current) while doing iterative dp
         for (int left = 1; left <= n; left++) {
             for (int right = 1; right <= m; right++) {
                 if (smaller[right - 1] == larger[left - 1]) {
