@@ -619,7 +619,8 @@
 				306,
 				307,
 				308,
-				309
+				309,
+				310
 			]
 		},
 		{
@@ -1115,7 +1116,8 @@
 				306,
 				307,
 				308,
-				309
+				309,
+				310
 			]
 		},
 		{
@@ -2985,6 +2987,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/strings/delete.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/colin_galen_set/broken_keyboard.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
