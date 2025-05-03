@@ -349,4 +349,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/1D/coin_change_again.cpp
         topics/dynamicProgramming/1D/target_sum.cpp
         topics/dynamicProgramming/strings/common_subseq.cpp
+        topics/dynamicProgramming/strings/palindromic.cpp
 )

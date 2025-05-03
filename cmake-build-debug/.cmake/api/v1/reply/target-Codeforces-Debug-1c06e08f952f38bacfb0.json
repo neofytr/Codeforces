@@ -616,7 +616,8 @@
 				303,
 				304,
 				305,
-				306
+				306,
+				307
 			]
 		},
 		{
@@ -1109,7 +1110,8 @@
 				303,
 				304,
 				305,
-				306
+				306,
+				307
 			]
 		},
 		{
@@ -2961,6 +2963,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/strings/common_subseq.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/strings/palindromic.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
