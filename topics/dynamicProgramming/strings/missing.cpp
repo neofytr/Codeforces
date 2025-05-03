@@ -4,18 +4,19 @@ using namespace std;
 class Solution {
 public:
     int solve(const string &str, const int left, const int right, vector<vector<int> > &dp) {
-        if (left >= right) return 0;
-        if (dp[left][right] != -1) return dp[left][right];
+        if (left >= right) {
+            return 0;
+        }
+
+        if (dp[left][right] != -1) {
+            return dp[left][right];
+        }
 
         if (str[left] == str[right]) {
-            dp[left][right] = solve(str, left + 1, right - 1, dp);
-        } else {
-            dp[left][right] = 1 + min(
-                                  solve(str, left + 1, right, dp),
-                                  solve(str, left, right - 1, dp)
-                              );
+            return dp[left][right] = solve(str, left + 1, right - 1, dp);
         }
-        return dp[left][right];
+
+        return dp[left][right] = 1 + min(solve(str, left, right - 1, dp), solve(str, left + 1, right, dp));
     }
 
     int minInsertions(const string &s) {

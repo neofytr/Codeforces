@@ -618,7 +618,8 @@
 				305,
 				306,
 				307,
-				308
+				308,
+				309
 			]
 		},
 		{
@@ -1113,7 +1114,8 @@
 				305,
 				306,
 				307,
-				308
+				308,
+				309
 			]
 		},
 		{
@@ -2977,6 +2979,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/strings/missing.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/strings/delete.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

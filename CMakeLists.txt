@@ -351,4 +351,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/strings/common_subseq.cpp
         topics/dynamicProgramming/strings/palindromic.cpp
         topics/dynamicProgramming/strings/missing.cpp
+        topics/dynamicProgramming/strings/delete.cpp
 )
