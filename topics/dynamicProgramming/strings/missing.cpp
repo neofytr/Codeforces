@@ -18,8 +18,8 @@ public:
         return dp[left][right];
     }
 
-    int minInsertions(string s) {
-        int n = s.size();
+    int minInsertions(const string &s) {
+        const int n = static_cast<int>(s.size());
         vector<vector<int> > dp(n, vector<int>(n, -1));
         return solve(s, 0, n - 1, dp);
     }
