@@ -345,4 +345,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/1D/partition_min.cpp
         topics/dynamicProgramming/1D/partition_min_any.cpp
         topics/dynamicProgramming/1D/subsetsSumCount.cpp
+        topics/dynamicProgramming/1D/cookies.cpp
 )

@@ -612,7 +612,8 @@
 				299,
 				300,
 				301,
-				302
+				302,
+				303
 			]
 		},
 		{
@@ -1101,7 +1102,8 @@
 				299,
 				300,
 				301,
-				302
+				302,
+				303
 			]
 		},
 		{
@@ -2929,6 +2931,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "topics/dynamicProgramming/1D/subsetsSumCount.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "topics/dynamicProgramming/1D/cookies.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

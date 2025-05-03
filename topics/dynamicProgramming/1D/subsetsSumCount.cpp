@@ -41,7 +41,8 @@ int main() {
     // iter[r] is the number of subsets of arr that sum to r
     iter[0] = 1;
 
-    for (long long num: arr) {
+    for (const long long num: arr) {
+        // reverse iteration for subsets (combinations)
         for (long long sum = target; sum >= num; sum--) {
             iter[sum] += iter[sum - num];
         }
