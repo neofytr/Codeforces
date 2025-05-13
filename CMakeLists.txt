@@ -353,4 +353,5 @@ add_executable(Codeforces
         topics/dynamicProgramming/strings/missing.cpp
         topics/dynamicProgramming/strings/delete.cpp
         topics/dynamicProgramming/colin_galen_set/broken_keyboard.cpp
+        topics/dynamicProgramming/colin_galen_set/vitamins.cpp
 )
