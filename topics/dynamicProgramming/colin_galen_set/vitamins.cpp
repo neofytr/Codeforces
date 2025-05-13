@@ -1,26 +1,59 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(const vector<pair<int, string> > &juices, const int index, string &vitamins) {
-    // returns -1 if there is no way to get all three vitamins from [0, index]
-    // otherwise; returns the minimum total price of juices that Petya has to buy to get all
-    // three vitamins
-
-    if (index >= juices.size()) {
+int solve(vector<pair<int, string>> &juices, vector<vector<int>> &dp, int index, int mask)
+{
+    if (mask == 0b111) // all vitamins collected
         return 0;
+    if (index >= juices.size())
+        return -1;
+    if (dp[index][mask] != -2)
+        return dp[index][mask];
+
+    // calculate new mask if we include this juice
+    int new_mask = mask;
+    for (char c : juices[index].second)
+    {
+        if (c == 'A')
+            new_mask |= 1 << 0;
+        if (c == 'B')
+            new_mask |= 1 << 1;
+        if (c == 'C')
+            new_mask |= 1 << 2;
     }
 
-    pair<int, string> juice = juices[index];
-    // we can either choose this juice or not
+    // include the juice
+    int buy = solve(juices, dp, index + 1, new_mask);
+    if (buy != -1)
+        buy += juices[index].first;
+
+    // don't include the juice
+    int dont_buy = solve(juices, dp, index + 1, mask);
+
+    // choose the best valid option
+    if (buy == -1 && dont_buy == -1)
+        return dp[index][mask] = -1;
+    if (buy == -1)
+        return dp[index][mask] = dont_buy;
+    if (dont_buy == -1)
+        return dp[index][mask] = buy;
+    return dp[index][mask] = min(buy, dont_buy);
 }
 
-int main() {
+int main()
+{
     int n;
     cin >> n;
 
-    vector<pair<int, string> > juices(n); // each juice from 0 to n - 1 will have a price and
-    // vitamins it contains
+    vector<pair<int, string>> juices(n);
+    for (auto &juice : juices)
+    {
+        cin >> juice.first >> juice.second;
+    }
 
-    // print -1 if there is no way to get all three vitamins
-    // otherwise; print minimum total price of juices that Petya has to buy to get all three vitamins
+    // dp[index][vitamin mask]
+    vector<vector<int>> dp(n + 1, vector<int>(8, -2));
+    cout << solve(juices, dp, 0, 0) << endl;
+
+    return 0;
 }
