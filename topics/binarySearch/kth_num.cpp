@@ -35,34 +35,35 @@ int main()
 
     vector<pair<long long, long long>> segments(n);
     long long maximum = -1;
+    long long minimum = LONG_LONG_MAX;
     for (auto &segment : segments)
     {
         cin >> segment.first >> segment.second;
         long long temp = max(segment.first, segment.second);
         maximum = max(maximum, temp);
+
+        temp = min(segment.first, segment.second);
+        minimum = min(minimum, temp);
     }
 
-    // we are to find the (k + 1)th element in the final multiset (its given that it exists)
-    // so we find the maximum element with count(x) <= k + 1
-
-    long long left = -1;
+    long long left = minimum - 1;
     long long right = maximum + 1;
 
-    // we maintain f(right) > k and f(left) <= k + 1
+    // we want the smallest x such that count(x) >= k + 1
     while (right != left + 1)
     {
         long long mid = left + (right - left) / 2;
-        if (count(mid, segments) <= k + 1)
-        {
-            left = mid;
-        }
-        else
+        if (count(mid, segments) >= k + 1)
         {
             right = mid;
         }
+        else
+        {
+            left = mid;
+        }
     }
 
-    cout << left << endl;
+    cout << right << endl;
 
     return EXIT_SUCCESS;
 }
