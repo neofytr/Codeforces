@@ -3,9 +3,8 @@ using namespace std;
 
 long long count(long long x, vector<pair<long long, long long>> &segments)
 {
-    // this returns the count of the elements in the final multiset that are less than
-    // or equal to x
-    long long cnt = 0;
+    // returns the number of elements in the final sorted array that are less than or equal to x
+    long long ans = 0;
     for (auto segment : segments)
     {
         long long left = segment.first;
@@ -18,14 +17,13 @@ long long count(long long x, vector<pair<long long, long long>> &segments)
 
         if (x > right)
         {
-            cnt += (right - left + 1);
-            continue;
+            ans += (right - left + 1);
         }
 
-        cnt += (x - left + 1);
+        ans += (x - left + 1);
     }
 
-    return cnt;
+    return ans;
 }
 
 int main()
@@ -33,23 +31,37 @@ int main()
     long long n, k;
     cin >> n >> k;
 
-    vector<pair<long long, long long>> segments(n);
-    long long maximum = -1;
     long long minimum = LONG_LONG_MAX;
+    long long maximum = LONG_LONG_MIN;
+
+    vector<pair<long long, long long>> segments(n);
     for (auto &segment : segments)
     {
         cin >> segment.first >> segment.second;
+
         long long temp = max(segment.first, segment.second);
-        maximum = max(maximum, temp);
+        maximum = max(temp, maximum);
 
         temp = min(segment.first, segment.second);
-        minimum = min(minimum, temp);
+        minimum = min(temp, minimum);
     }
+
+    // we are to find the element at the kth index in the final array
+    // that is, we are to find the element x in the final array whose count(x) = k + 1
+    // such an element is guaranteed to exist (given in the problem statement)
+
+    // that is, we have to find the minimum element x such that count(x) >= k + 1
+    // let f(x) = 0 if count(x) <= k
+    //          = 1 if count(x) >= k + 1
+    // f is monotonically increasing
 
     long long left = minimum - 1;
     long long right = maximum + 1;
 
-    // we want the smallest x such that count(x) >= k + 1
+    // we maintain the invariant that
+    // f(left) = 0
+    // f(right) = 1
+
     while (right != left + 1)
     {
         long long mid = left + (right - left) / 2;
@@ -64,6 +76,5 @@ int main()
     }
 
     cout << right << endl;
-
     return EXIT_SUCCESS;
 }
