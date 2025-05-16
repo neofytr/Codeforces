@@ -18,6 +18,7 @@ long long count(long long x, vector<pair<long long, long long>> &segments)
         if (x > right)
         {
             ans += (right - left + 1);
+            continue;
         }
 
         ans += (x - left + 1);
