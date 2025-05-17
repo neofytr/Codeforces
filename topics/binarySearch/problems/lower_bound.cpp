@@ -59,11 +59,7 @@ int main()
         }
     }
 
-    if (left == -1)
-    {
-        // all elements in the array are >= target
-        cout << "All elements >= " << target << endl;
-    }
+    // left == -1 -> all elements are >= target
 
     if (right == n)
     {
@@ -71,5 +67,33 @@ int main()
     }
 
     cout << "Minimum index for " << target << " in the array is " << right << endl;
+
+    // method two
+
+    left = 0;
+    right = n - 1;
+    int ans = -1;
+
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] >= target)
+        {
+            ans = arr[mid];
+            right = mid - 1;
+        }
+        else
+        {
+            left = mid + 1;
+        }
+    }
+
+    if (ans == -1)
+    {
+        cout << "All elements < " << target << endl;
+    }
+
+    cout << "Minimum index for " << target << " in the array is " << right << endl;
+
     return EXIT_SUCCESS;
 }
