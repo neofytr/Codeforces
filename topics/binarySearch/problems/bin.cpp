@@ -40,7 +40,7 @@ int main()
     // we are to find this x
     // this is the minimum index for which f(r) = 1, for any -1 <= r <= n
 
-    // we maintain the invariant that
+    // we maintain the following invariant at the start of each iteration (if it occurs):
     // f(left) = 0, f(right) = 1, and left < right
 
     int left = -1;
