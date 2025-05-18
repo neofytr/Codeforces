@@ -3,25 +3,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool canMake(long long target, int k, const vector<long long> &arr)
+bool canMake(long long target, int k, vector<long long> &arr)
 {
     int count = 1;
     long long curr = 0;
-    for (int i = 0; i < (int)arr.size(); ++i)
+    for (int index = 0; index < arr.size(); index++)
     {
-        if (arr[i] > target)
-            return false; // cannot split if one element is too big
-
-        if (curr + arr[i] > target)
+        if (arr[index] > target)
         {
-            count++;
-            curr = arr[i];
+            return false;
+        }
+
+        if (arr[index] + curr <= target)
+        {
+            curr += arr[index];
         }
         else
         {
-            curr += arr[i];
+            curr = arr[index];
+            count++;
         }
     }
+
     return count <= k;
 }
 
@@ -29,21 +32,29 @@ int main()
 {
     int n, k;
     cin >> n >> k;
+
     vector<long long> arr(n);
-    for (auto &x : arr)
-        cin >> x;
+    for (long long &val : arr)
+    {
+        cin >> val;
+    }
 
-    long long left = 0, right = 1e18; // large enough upper bound
+    long long left = 0;
+    long long right = accumulate(arr.begin(), arr.end(), 0LL);
 
-    while (left < right)
+    while (right != left + 1)
     {
         long long mid = left + (right - left) / 2;
         if (canMake(mid, k, arr))
+        {
             right = mid;
+        }
         else
-            left = mid + 1;
+        {
+            left = mid;
+        }
     }
 
-    cout << left << '\n';
-    return 0;
+    cout << right << endl;
+    return EXIT_SUCCESS;
 }
