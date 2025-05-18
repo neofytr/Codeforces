@@ -1,37 +1,39 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
-
-using ll = long long;
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     int q;
     cin >> q;
+
     while (q--)
     {
-        ll k;
+        long long k;
         cin >> k;
 
-        ll digits = 1;
-        ll count = 9;
-        ll total = 0;
+        long long start = 1;
+        long long length = 1;
+        long long count = 9;
 
-        // Step 1: Find the digit length
-        while (k > total + digits * count)
+        while (k > length * count) // strictly greater only
         {
-            total += digits * count;
-            digits++;
+            k -= count * length;
+            start *= 10;
+            length++;
             count *= 10;
         }
 
-        // Step 2: Find the exact number and digit
-        k -= total;                  // now k is offset in this digit range
-        ll index = (k - 1) / digits; // which number in this digit length
-        ll digit_index = (k - 1) % digits;
+        long long number = start + (k - 1) / length;
+        long long position = (k - 1) % length;
 
-        ll start = pow(10, digits - 1);
-        ll number = start + index;
-        string s = to_string(number);
-        cout << s[digit_index] << '\n';
+        string numStr = to_string(number);
+
+        cout << numStr[position] << endl;
     }
+
+    return 0;
 }
