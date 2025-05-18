@@ -3,5 +3,6 @@
         "queue.h": "c",
         "dynarr.h": "c",
         "stdbool.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
