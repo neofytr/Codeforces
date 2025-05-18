@@ -24,11 +24,11 @@ int main()
     while (left <= right)
     {
         int mid = left + (right - left) / 2;
-        ans = arr[mid];
 
-        if (arr[mid] <= arr[mid + 1]) // mid + 1 will always be in bound
+        if (!mid || arr[mid] >= arr[mid - 1])
         {
             left = mid + 1;
+            ans = arr[mid];
         }
         else
         {
