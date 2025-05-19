@@ -26,7 +26,7 @@ void solve()
     for (long long i = 0; i < n; i++)
         cin >> cooldown[i];
 
-    long long left = 0, right = 1e15;
+    long long left = 0, right = 1e12;
 
     while (right != left + 1)
     {
