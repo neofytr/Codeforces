@@ -90,8 +90,8 @@ int main()
         cin >> a[index] >> p[index] >> b[index] >> q[index];
     }
 
-    long long left = 0;     // maximum production cap of atleat 0 is achievable
-    long long right = 1e18; // maximum production cap of atleast 1e18 is not achievable
+    long long left = 0;        // maximum production cap of atleat 0 is achievable
+    long long right = 1e9 + 1; // maximum production cap of atleast 1e7 + 1 is not achievable
 
     while (right != left + 1)
     {
