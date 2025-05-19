@@ -32,7 +32,7 @@ int main()
     }
 
     long long left = 0;
-    long long right = 1e15;
+    long long right = accumulate(emp.begin(), emp.end(), 0LL) / k + 1;
 
     while (right != left + 1)
     {
