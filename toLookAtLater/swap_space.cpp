@@ -1,0 +1,1 @@
+// problem A in binarySearch/problems/icpc
