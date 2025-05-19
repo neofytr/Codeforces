@@ -19,10 +19,9 @@ void solve()
     // max-heap of pairs: (value, index)
     priority_queue<pair<long long, long long>> pq;
 
-    for (long long i = 0; i < n; i++)
+    for (long long index = 0; index < n; index++)
     {
-        if (a[i] > 0)
-            pq.push({a[i], i});
+        pq.push({a[index], index});
     }
 
     long long score = 0;
