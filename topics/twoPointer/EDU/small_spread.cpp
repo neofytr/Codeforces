@@ -33,7 +33,7 @@ int main()
             if (max_elt - min_elt > k)
             {
                 // undo the changes and stop; there's no point going forward
-                num.erase(arr[right]);
+                num.erase(num.find(arr[right]));
                 break;
             }
             else
@@ -44,7 +44,7 @@ int main()
 
         count += (right - left);
 
-        num.erase(arr[left++]);
+        num.erase(num.find(arr[left++]));
     }
 
     cout << count << endl;
