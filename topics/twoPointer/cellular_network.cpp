@@ -3,32 +3,64 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool canCover(long long r, vector<long long> &city, vector<long long> &tower)
+bool canSolve(long long r, vector<long long> &city, vector<long long> &tower)
 {
-    for (long long curr_city : city)
+    for (int index = 0; index < city.size(); index++)
     {
-        // binary search to find tower closest to curr_city
-        long long left = -1, right = tower.size();
+        // for each city check if it can be reached in r by its nearest towers
+        long long curr_city = city[index];
+        // find the max index x in tower such that tower[x] <= curr_city
+        int left = -1;
+        int right = tower.size();
+
         while (right != left + 1)
         {
-            long long mid = left + (right - left) / 2;
+            int mid = left + (right - left) / 2;
             if (tower[mid] <= curr_city)
+            {
                 left = mid;
+            }
             else
+            {
                 right = mid;
+            }
         }
 
-        // candidates: tower[left] (<= curr_city) and tower[right] (>= curr_city)
-        long long min_dist = LLONG_MAX;
+        if (left == -1)
+        {
+            // all > curr_city
+            if (tower[right] - curr_city <= r)
+            {
+                continue;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-        if (left >= 0)
-            min_dist = min(min_dist, curr_city - tower[left]);
-
-        if (right < tower.size())
-            min_dist = min(min_dist, tower[right] - curr_city);
-
-        if (min_dist > r)
-            return false;
+        if (curr_city - tower[left] <= r)
+        {
+            continue;
+        }
+        else
+        {
+            if (right == tower.size())
+            {
+                return false;
+            }
+            else
+            {
+                if (tower[right] - curr_city <= r)
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 
     return true;
@@ -36,7 +68,7 @@ bool canCover(long long r, vector<long long> &city, vector<long long> &tower)
 
 int main()
 {
-    long long n, m;
+    int n, m;
     cin >> n >> m;
 
     vector<long long> city(n);
@@ -52,23 +84,13 @@ int main()
         cin >> val;
     }
 
-    // city and tower array are in non-decreasing order
-    // if all cities can be covered with r range, they can also be covered with r + 1 range; for any r >= 0
-
-    if (city[0] == city[n - 1] && binary_search(tower.begin(), tower.end(), city[0]))
-    {
-        // this is the only case in which 0 range is sufficient
-        cout << 0 << endl;
-        return EXIT_SUCCESS;
-    }
-
-    long long left = 0; // cannot be covered with zero range (until and unless all cities and all towers are in the same place, which is not the case(we handled it already))
-    long long right = 5 * 1e18;
+    long long left = -1;
+    long long right = 1e10;
 
     while (right != left + 1)
     {
         long long mid = left + (right - left) / 2;
-        if (canCover(mid, city, tower))
+        if (canSolve(mid, city, tower))
         {
             right = mid;
         }
