@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    int n, m;
+    long long n, m;
     cin >> n >> m;
 
     vector<long long> a(n);
@@ -15,37 +15,35 @@ int main()
     for (long long &val : b)
         cin >> val;
 
-    // Sort both vectors (if not already sorted)
-    sort(a.begin(), a.end());
-    sort(b.begin(), b.end());
-
+    long long count = 0;
     int i = 0, j = 0;
-    int count = 0;
 
-    while (i < m)
+    while (j < m)
     {
-        long long target = b[i];
+        long long freqB = 0;
+        long long elt = b[j];
 
-        int freqB = 0;
-        while (i < m && b[i] == target)
+        while (j < m && b[j] == elt)
         {
             freqB++;
+            j++;
+        }
+
+        while (i < n && a[i] < elt)
+        {
             i++;
         }
 
-        int freqA = 0;
-        while (j < n && a[j] < target)
-            j++;
-        while (j < n && a[j] == target)
+        long long freqA = 0;
+        while (i < m && a[i] == elt)
         {
             freqA++;
-            j++;
+            i++;
         }
 
         count += freqA * freqB;
     }
 
     cout << count << endl;
-
     return 0;
 }
