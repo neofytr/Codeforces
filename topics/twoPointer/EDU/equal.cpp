@@ -19,11 +19,11 @@ int main()
         cin >> val;
     }
 
+    int j = 0;
     for (int i = 0; i < m; i++)
     {
         // we find the number of a[j] for which a[j] = b[i]
 
-        int j = 0;
         while (j < n && a[j] < b[i])
         {
             j++;
