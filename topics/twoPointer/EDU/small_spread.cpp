@@ -16,31 +16,35 @@ int main()
     long long right = 0;
     long long count = 0;
 
-    multiset<long long> window;
+    multiset<long long> num; // keeps (possibly duplicate) elements in sorted order
 
     while (left < n)
     {
-        // expand the window to the right
+        // count number of good segments starting at left
+
+        // expand segment as much as possible to the right
         while (right < n)
         {
-            window.insert(arr[right]);
-            long long current_max = *window.rbegin();
-            long long current_min = *window.begin();
+            num.insert(arr[right]);
 
-            if (current_max - current_min > k)
+            long long min_elt = *num.begin();
+            long long max_elt = *num.rbegin();
+
+            if (max_elt - min_elt > k)
             {
-                // undo the insert that made it invalid
-                window.erase(window.find(arr[right]));
+                // undo the changes and stop; there's no point going forward
+                num.erase(arr[right]);
                 break;
             }
-            right++;
+            else
+            {
+                right++;
+            }
         }
 
         count += (right - left);
 
-        // remove the current left element from the window
-        window.erase(window.find(arr[left]));
-        left++;
+        num.erase(arr[left++]);
     }
 
     cout << count << endl;
