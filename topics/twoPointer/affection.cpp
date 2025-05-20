@@ -1,45 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool canAchieve(int target, int m, int c, vector<char> &garland)
+bool canAchieve(int len, int m, char c, const vector<vector<int>> &prefix)
 {
-    int left = 0;
-    int right = 0;
-    int n = garland.size();
-    int repaint_left = m;
-
-    while (left < n)
+    int id = c - 'a';
+    for (int i = 0; i + len <= prefix[0].size() - 1; ++i)
     {
-        while (right < n)
-        {
-            if (garland[right] != c && repaint_left)
-            {
-                repaint_left--;
-            }
-            else if (garland[right] != c && !repaint_left)
-            {
-                break;
-            }
-
-            right++;
-
-            if (right - left >= target)
-            {
-                return true;
-            }
-        }
-
-        if (garland[left++] != c)
-        {
-            repaint_left++;
-        }
+        int diff = prefix[id][i + len] - prefix[id][i];
+        if (diff <= m)
+            return true;
     }
-
     return false;
 }
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     int n;
     cin >> n;
 
@@ -55,6 +33,16 @@ int main()
     int m;
     char c;
 
+    vector<vector<int>> prefix(26, vector<int>(n + 1, 0));
+
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < 26; ++j)
+        {
+            prefix[j][i + 1] = prefix[j][i] + (garland[i] - 'a' != j);
+        }
+    }
+
     while (q--)
     {
         cin >> m >> c;
@@ -63,12 +51,12 @@ int main()
 
         // a koyomity of atleast this much is possible since we can choose to repaint none (we can repaint atmost m)
         int left = 0;
-        int right = garland.size() + 1; // a koyomity of this much is impossible
+        int right = n + 1; // a koyomity of this much is impossible
 
         while (right != left + 1)
         {
             int mid = left + (right - left) / 2;
-            if (canAchieve(mid, m, c, garland))
+            if (canAchieve(mid, m, c, prefix))
             {
                 left = mid;
             }
@@ -78,7 +66,7 @@ int main()
             }
         }
 
-        cout << left << endl;
+        cout << left << "\n";
     }
 
     return EXIT_SUCCESS;
