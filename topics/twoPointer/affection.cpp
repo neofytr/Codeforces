@@ -1,13 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool canAchieve(int len, int m, char c, const vector<vector<int>> &prefix)
+bool canAchieve(int target, int m, char c, int n, const vector<vector<int>> &prefix)
 {
-    int id = c - 'a';
-    for (int i = 0; i + len <= prefix[0].size() - 1; ++i)
+    int cIndex = c - 'a';
+
+    for (int left = 0; left + target <= n; ++left)
     {
-        int diff = prefix[id][i + len] - prefix[id][i];
-        if (diff <= m)
+        int right = left + target - 1;
+        int count = prefix[cIndex][right + 1] - prefix[cIndex][left];
+        if (target - count <= m)
             return true;
     }
     return false;
@@ -15,59 +17,46 @@ bool canAchieve(int len, int m, char c, const vector<vector<int>> &prefix)
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
     int n;
     cin >> n;
 
     vector<char> garland(n);
-    for (char &color : garland)
-    {
-        cin >> color;
-    }
+    for (char &val : garland)
+        cin >> val;
 
     int q;
     cin >> q;
 
-    int m;
-    char c;
-
+    // prefix[ch][i] = count of char ch in garland[0..i-1]
     vector<vector<int>> prefix(26, vector<int>(n + 1, 0));
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < 26; ++j)
+        for (int ch = 0; ch < 26; ch++)
         {
-            prefix[j][i + 1] = prefix[j][i] + (garland[i] - 'a' != j);
+            prefix[ch][i + 1] = prefix[ch][i] + (garland[i] - 'a' == ch ? 1 : 0);
         }
     }
 
     while (q--)
     {
+        int m;
+        char c;
         cin >> m >> c;
 
-        // if we can repaint to achieve a koyomity of atleast x, we can repaint to achieve a koyomity of x - 1; x > 1
-
-        // a koyomity of atleast this much is possible since we can choose to repaint none (we can repaint atmost m)
-        int left = 0;
-        int right = n + 1; // a koyomity of this much is impossible
+        int left = 0, right = n + 1;
 
         while (right != left + 1)
         {
-            int mid = left + (right - left) / 2;
-            if (canAchieve(mid, m, c, prefix))
-            {
+            int mid = (left + right) / 2;
+            if (canAchieve(mid, m, c, n, prefix))
                 left = mid;
-            }
             else
-            {
                 right = mid;
-            }
         }
 
-        cout << left << "\n";
+        cout << left << '\n';
     }
 
-    return EXIT_SUCCESS;
+    return 0;
 }
