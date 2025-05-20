@@ -20,6 +20,7 @@ int main()
     }
 
     int j = 0;
+    int count = 0;
     for (int i = 0; i < m; i++)
     {
         // we find the number of a[j] for which a[j] = b[i]
@@ -35,8 +36,10 @@ int main()
             k++;
         }
 
-        cout << k << endl;
+        count += k;
     }
+
+    cout << count << endl;
 
     return EXIT_SUCCESS;
 }
