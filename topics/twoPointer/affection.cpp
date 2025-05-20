@@ -1,62 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool canAchieve(int target, int m, char c, int n, const vector<vector<int>> &prefix)
-{
-    int cIndex = c - 'a';
+#define FAST_IO                  \
+    ios::sync_with_stdio(false); \
+    cin.tie(nullptr)
 
-    for (int left = 0; left + target <= n; ++left)
+int maxLengthWithReplacement(const vector<char> &garland, int m, char target)
+{
+    int n = garland.size();
+    int maxLen = 0;
+    int change_left = m;
+    int left = 0;
+    int right = 0;
+
+    while (left < n)
     {
-        int right = left + target - 1;
-        int count = prefix[cIndex][right + 1] - prefix[cIndex][left];
-        if (target - count <= m)
-            return true;
+        while (right < n)
+        {
+            if (garland[right] != target && change_left)
+            {
+                change_left--;
+            }
+            else if (garland[right] != target && !change_left)
+            {
+                break;
+            }
+
+            right++;
+        }
+
+        maxLen = max(maxLen, right - left);
+
+        if (garland[left] != target)
+        {
+            change_left++;
+        }
+
+        left++;
     }
-    return false;
+
+    return maxLen;
 }
 
 int main()
 {
+    FAST_IO;
+
     int n;
     cin >> n;
-
     vector<char> garland(n);
-    for (char &val : garland)
-        cin >> val;
+    for (char &color : garland)
+        cin >> color;
 
     int q;
     cin >> q;
-
-    // prefix[ch][i] = count of char ch in garland[0..i-1]
-    vector<vector<int>> prefix(26, vector<int>(n + 1, 0));
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int ch = 0; ch < 26; ch++)
-        {
-            prefix[ch][i + 1] = prefix[ch][i] + (garland[i] - 'a' == ch ? 1 : 0);
-        }
-    }
-
     while (q--)
     {
         int m;
-        char c;
-        cin >> m >> c;
-
-        int left = 0, right = n + 1;
-
-        while (right != left + 1)
-        {
-            int mid = (left + right) / 2;
-            if (canAchieve(mid, m, c, n, prefix))
-                left = mid;
-            else
-                right = mid;
-        }
-
-        cout << left << '\n';
+        char ch;
+        cin >> m >> ch;
+        cout << maxLengthWithReplacement(garland, m, ch) << "\n";
     }
-
     return 0;
 }
