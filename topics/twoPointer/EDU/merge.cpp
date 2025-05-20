@@ -29,11 +29,11 @@ int main()
     {
         if (a[i] < b[j])
         {
-            c[k++] = b[j++];
+            c[k++] = a[i++];
         }
         else
         {
-            c[k++] = a[i++];
+            c[k++] = b[j++];
         }
     }
 
