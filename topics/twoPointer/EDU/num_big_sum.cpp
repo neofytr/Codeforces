@@ -12,24 +12,22 @@ int main()
         cin >> val;
     }
 
+    // each good segment either ends at index 0, 1, ..., n - 1
+    // these cases are mutually exclusive and exhaustive
+
     long long left = 0;
     long long right = 0;
-    long long sum = 0;
     long long count = 0;
-
-    // the subarrays can either start at index 0, 1, .., n - 1
-    // all these cases are mutually exclusive and exhaustive
+    long long sum = 0;
 
     while (left < n)
     {
-        // count the number of subarrays starting at left
-        while (sum + arr[right] <= s && right < n) // should i add the element at current right ptr?
+        while (right < n && sum + arr[right] < s)
         {
             sum += arr[right++];
         }
 
-        count += right - left;
-
+        count += (n - right);
         sum -= arr[left++];
     }
 
