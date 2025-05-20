@@ -12,24 +12,32 @@ int main()
         cin >> val;
     }
 
-    unordered_map<long long, int> freq;
-    long long left = 0, count = 0;
+    long long count = 0;
+    long long right = 0;
+    long long left = 0;
+    long long size = 0;
 
-    for (long long right = 0; right < n; ++right)
+    unordered_map<long long, long long> freq;
+
+    while (left < n)
     {
-        freq[arr[right]]++;
+        // count good segments starting at left
 
-        while ((long long)freq.size() > k)
+        while (right < n && size + (!freq[arr[right]] ? 1 : 0) <= k)
         {
-            freq[arr[left]]--;
-            if (freq[arr[left]] == 0)
+            if (!freq[arr[right]])
             {
-                freq.erase(arr[left]);
+                size++;
             }
-            left++;
+            freq[arr[right++]]++;
         }
 
-        count += right - left + 1;
+        count += (right - left);
+
+        if (!(--freq[arr[left++]]))
+        {
+            size--;
+        }
     }
 
     cout << count << endl;
