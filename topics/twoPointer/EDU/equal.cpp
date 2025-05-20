@@ -10,36 +10,42 @@ int main()
     vector<long long> b(m);
 
     for (long long &val : a)
-    {
         cin >> val;
-    }
 
     for (long long &val : b)
-    {
         cin >> val;
-    }
 
-    int j = 0;
+    // Sort both vectors (if not already sorted)
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+
+    int i = 0, j = 0;
     int count = 0;
-    for (int i = 0; i < m; i++)
-    {
-        // we find the number of a[j] for which a[j] = b[i]
 
-        while (j < n && a[j] < b[i])
+    while (i < m)
+    {
+        long long target = b[i];
+
+        int freqB = 0;
+        while (i < m && b[i] == target)
         {
+            freqB++;
+            i++;
+        }
+
+        int freqA = 0;
+        while (j < n && a[j] < target)
+            j++;
+        while (j < n && a[j] == target)
+        {
+            freqA++;
             j++;
         }
 
-        int k = 0;
-        while (j + k < n && a[j + k] == b[i])
-        {
-            k++;
-        }
-
-        count += k;
+        count += freqA * freqB;
     }
 
     cout << count << endl;
 
-    return EXIT_SUCCESS;
+    return 0;
 }
