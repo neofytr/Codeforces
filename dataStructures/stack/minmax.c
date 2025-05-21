@@ -67,13 +67,14 @@ int main()
             delete(max_stack);
             return EXIT_FAILURE;
         }
+
+        int max, min;
+        top(min_stack, &min);
+        top(max_stack, &max);
+
+        fprintf(stdout, "MIN: %d, MAX: %d\n", min, max);
     }
 
-    int max, min;
-    top(min_stack, &min);
-    top(max_stack, &max);
-
-    fprintf(stdout, "MIN: %d, MAX: %d\n", min, max);
     delete(stack);
     delete(min_stack);
     delete(max_stack);
