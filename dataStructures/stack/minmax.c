@@ -4,79 +4,53 @@
 
 int main()
 {
-    stack_t *max_stack = create_stack(sizeof(int));
-    stack_t *min_stack = create_stack(sizeof(int));
-    stack_t *stack = create_stack(sizeof(int));
+    stack_t *stack = create_stack(sizeof(int), NULL);
 
-    if (!min_stack || !max_stack || !stack)
+    if (!stack)
     {
+        fprintf(stderr, "Failed to create stack\n");
         return EXIT_FAILURE;
     }
 
     int n;
-    scanf("%d\n", &n);
+    scanf("%d", &n);
 
     while (n--)
     {
         int op, x;
-        scanf("%d %d\n", &op, &x);
+        scanf("%d %d", &op, &x);
 
         if (op == 1)
         {
-            // push(x)
-            push(stack, &x);
-
-            if (!is_empty(max_stack))
+            if (!push(stack, &x))
             {
-                int maxelt;
-                top(max_stack, &maxelt);
-
-                maxelt = (x > maxelt ? x : maxelt);
-                push(max_stack, &maxelt);
-            }
-            else
-            {
-                push(max_stack, &x);
-            }
-
-            if (!is_empty(min_stack))
-            {
-                int minelt;
-                top(min_stack, &minelt);
-
-                minelt = (x < minelt ? x : minelt);
-                push(min_stack, &minelt);
-            }
-            else
-            {
-                push(min_stack, &x);
+                fprintf(stderr, "Push operation failed\n");
+                delete(stack);
+                return EXIT_FAILURE;
             }
         }
-        else if (!op)
+        else if (op == 0)
         {
-            // pop(x)
-            pop(stack);
-            pop(min_stack);
-            pop(max_stack);
+            if (!is_empty(stack))
+                pop(stack);
         }
         else
         {
             fprintf(stderr, "INVALID OPERATION CODE %d\n", op);
             delete(stack);
-            delete(min_stack);
-            delete(max_stack);
             return EXIT_FAILURE;
         }
 
-        int max, min;
-        top(min_stack, &min);
-        top(max_stack, &max);
-
-        fprintf(stdout, "MIN: %d, MAX: %d\n", min, max);
+        if (!is_empty(stack))
+        {
+            int max_val, min_val;
+            if (max(stack, &max_val) && min(stack, &min_val))
+            {
+                // printf("MIN: %d, MAX: %d\n", min_val, max_val);
+            }
+        }
     }
 
     delete(stack);
-    delete(min_stack);
-    delete(max_stack);
     return EXIT_SUCCESS;
 }
