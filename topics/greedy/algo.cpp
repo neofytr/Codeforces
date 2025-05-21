@@ -18,7 +18,7 @@ int main()
     int count = 0;
     for (int index = 0; index < n; index++)
     {
-        if (x > arr[index])
+        if (x >= arr[index])
         {
             x -= arr[index];
             count++;
