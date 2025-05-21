@@ -2,7 +2,8 @@
     "files.associations": {
         "queue.h": "c",
         "dynarr.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "iostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
