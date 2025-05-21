@@ -47,5 +47,34 @@ int main()
     }
 
     // method 2
+
+    left = right = sum = 0;
+    min_len = INT_MAX;
+
+    while (right < n)
+    {
+        // include the element at the right ptr
+        sum += arr[right++];
+
+        while (sum - arr[left] >= s)
+        {
+            sum -= arr[left++];
+        }
+
+        if (sum >= s)
+        {
+            min_len = min(min_len, right - left);
+        }
+    }
+
+    if (min_len == INT_MAX)
+    {
+        cout << -1 << endl;
+    }
+    else
+    {
+        cout << min_len << endl;
+    }
+
     return EXIT_SUCCESS;
 }
