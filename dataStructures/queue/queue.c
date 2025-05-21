@@ -54,7 +54,7 @@ stack_t *create_stack()
     return stack;
 }
 
-queue_t *create()
+queue_t *create(compare_t comparator)
 {
     queue_t *queue = malloc(sizeof(queue_t));
     if (!queue)
@@ -68,6 +68,7 @@ queue_t *create()
     queue->right = create_stack();
     queue->right_max = create_stack();
     queue->right_min = create_stack();
+    queue->compare = comparator;
 
     if (!queue->left || !queue->left_max || !queue->left_min ||
         !queue->right || !queue->right_max || !queue->right_min)
@@ -79,9 +80,6 @@ queue_t *create()
     return queue;
 }
 
-// if pop fails, we are in serious trouble
-// the queue structure is completely altered beyond repair
-// let's hope it never fails
 bool pop(queue_t *queue)
 {
     if (!queue || !queue->left || !queue->left_max || !queue->left_min ||
@@ -90,62 +88,139 @@ bool pop(queue_t *queue)
         return false;
     }
 
-    // we pop from the back (left end)
-
     if (is_empty_stack(queue->left))
     {
-        // if the left stack has become empty, convert right stack into left, and then pop
-        while (!is_empty_stack(queue->right))
+#define MAX_RETRIES 3
+        TYPE temp_data[MAX_ELEMENTS];
+        int count = 0;
+        int retries = 0;
+        bool success = true;
+
+        while (!is_empty_stack(queue->right) && success)
         {
             TYPE data;
             top_stack(queue->right, &data);
+            temp_data[count++] = data;
 
             pop_stack(queue->right);
             pop_stack(queue->right_max);
             pop_stack(queue->right_min);
 
+        retry_push:
             if (!push_stack(queue->left, &data))
             {
-                return false;
+                if (++retries < MAX_RETRIES)
+                    goto retry_push;
+
+                success = false;
+                break;
             }
+            retries = 0;
 
             if (is_empty_stack(queue->left_min))
             {
+            retry_min:
                 if (!push_stack(queue->left_min, &data))
                 {
-                    return false;
+                    if (++retries < MAX_RETRIES)
+                        goto retry_min;
+
+                    success = false;
+                    break;
                 }
+                retries = 0;
             }
             else
             {
                 TYPE top;
                 top_stack(queue->left_min, &top);
+                TYPE min = (queue->compare(&top, &data) < 0) ? top : data;
 
-                TYPE min = (top < data) ? top : data;
+            retry_min2:
                 if (!push_stack(queue->left_min, &min))
                 {
-                    return false;
+                    if (++retries < MAX_RETRIES)
+                        goto retry_min2;
+
+                    success = false;
+                    break;
                 }
+                retries = 0;
             }
 
             if (is_empty_stack(queue->left_max))
             {
+            retry_max:
                 if (!push_stack(queue->left_max, &data))
                 {
-                    return false;
+                    if (++retries < MAX_RETRIES)
+                        goto retry_max;
+
+                    success = false;
+                    break;
                 }
+                retries = 0;
             }
             else
             {
                 TYPE top;
                 top_stack(queue->left_max, &top);
+                TYPE max = (queue->compare(&top, &data) > 0) ? top : data;
 
-                TYPE max = (top > data) ? top : data;
+            retry_max2:
                 if (!push_stack(queue->left_max, &max))
                 {
-                    return false;
+                    if (++retries < MAX_RETRIES)
+                        goto retry_max2;
+
+                    success = false;
+                    break;
+                }
+                retries = 0;
+            }
+        }
+
+        if (!success)
+        {
+            for (int i = count - 1; i >= 0; i--)
+            {
+                push_stack(queue->right, &temp_data[i]);
+
+                if (is_empty_stack(queue->right_min))
+                {
+                    push_stack(queue->right_min, &temp_data[i]);
+                }
+                else
+                {
+                    TYPE top;
+                    top_stack(queue->right_min, &top);
+                    TYPE min = (queue->compare(&top, &temp_data[i]) < 0) ? top : temp_data[i];
+                    push_stack(queue->right_min, &min);
+                }
+
+                if (is_empty_stack(queue->right_max))
+                {
+                    push_stack(queue->right_max, &temp_data[i]);
+                }
+                else
+                {
+                    TYPE top;
+                    top_stack(queue->right_max, &top);
+                    TYPE max = (queue->compare(&top, &temp_data[i]) > 0) ? top : temp_data[i];
+                    push_stack(queue->right_max, &max);
                 }
             }
+
+            while (!is_empty_stack(queue->left))
+            {
+                TYPE data;
+                top_stack(queue->left, &data);
+                pop_stack(queue->left);
+                pop_stack(queue->left_max);
+                pop_stack(queue->left_min);
+            }
+
+            return false;
         }
     }
 
@@ -156,7 +231,6 @@ bool pop(queue_t *queue)
     return true;
 }
 
-// if push fails, we can be sure that our queue isn't altered
 bool push(queue_t *queue, TYPE *data)
 {
     if (!queue || !queue->left || !queue->left_max || !queue->left_min ||
@@ -183,7 +257,7 @@ bool push(queue_t *queue, TYPE *data)
         TYPE max;
         top_stack(queue->right_max, &max);
 
-        max = (max > *data) ? max : *data;
+        max = (queue->compare(&max, data) > 0) ? max : *data;
         if (!push_stack(queue->right_max, &max))
         {
             pop_stack(queue->right);
@@ -205,7 +279,7 @@ bool push(queue_t *queue, TYPE *data)
         TYPE min;
         top_stack(queue->right_min, &min);
 
-        min = (min < *data) ? min : *data;
+        min = (queue->compare(&min, data) < 0) ? min : *data;
         if (!push_stack(queue->right_min, &min))
         {
             pop_stack(queue->right);
@@ -245,7 +319,7 @@ bool min(queue_t *queue, TYPE *data)
         return false;
     }
 
-    *data = (left_min < right_min) ? left_min : right_min;
+    *data = (queue->compare(&left_min, &right_min) < 0) ? left_min : right_min;
     return true;
 }
 
@@ -277,7 +351,7 @@ bool max(queue_t *queue, TYPE *data)
         return false;
     }
 
-    *data = (left_max > right_max) ? left_max : right_max;
+    *data = (queue->compare(&left_max, &right_max) > 0) ? left_max : right_max;
     return true;
 }
 
