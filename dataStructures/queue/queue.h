@@ -11,4 +11,25 @@ struct node_
     TYPE data;
 };
 
+typedef struct
+{
+    node_t *top;
+    size_t size;
+} stack_t;
 
+typedef struct
+{
+    stack_t *left;
+    stack_t *left_min;
+    stack_t *left_max;
+    stack_t *right;
+    stack_t *right_max;
+    stack_t *right_min;
+} queue_t;
+
+queue_t *create();
+bool pop(queue_t *queue);
+bool push(queue_t *queue, TYPE *data);
+bool min(queue_t *queue, TYPE *data);
+bool max(queue_t *queue, TYPE *data);
+bool is_empty(queue_t *queue);
