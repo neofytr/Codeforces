@@ -1,3 +1,6 @@
+#ifndef STACK_H
+#define STACK_H
+
 #include <stdlib.h>
 
 typedef struct node_ node_t;
@@ -21,3 +24,5 @@ bool pop(stack_t *stack);
 bool top(stack_t *stack, void *data);
 bool is_empty(stack_t *stack);
 bool delete(stack_t *stack);
+
+#endif
