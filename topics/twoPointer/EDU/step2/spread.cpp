@@ -32,6 +32,11 @@ int main()
     int left = 0, right = 0;
     long long count = 0;
 
+    // since we move both left and right pointers in the same direction(forward)
+    // all the time, we essentially have a queue from [left, right - 1] (we insert at right and delete at left)
+    // also, since we want to be able to get max and min in O(1) even after both queue operations, we 
+    // simulate the queue using a classical technique of two stacks
+
     // move the left boundary of the window from 0 to n - 1
     while (left < n)
     {
