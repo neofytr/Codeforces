@@ -1,40 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Item
+{
+    double ratio;
+    long long profit;
+    long long weight;
+
+    bool operator<(const Item &other) const
+    {
+        return ratio > other.ratio; // descending order
+    }
+};
+
 int main()
 {
     int n;
     long long m;
     cin >> n >> m;
 
-    vector<long long> weight(n), profit(n);
-    vector<tuple<double, long long, long long>> unit(n);
+    vector<Item> items(n);
 
     for (int i = 0; i < n; ++i)
-        cin >> weight[i];
+        cin >> items[i].weight;
 
     for (int i = 0; i < n; ++i)
     {
-        cin >> profit[i];
-        unit[i] = make_tuple((double)profit[i] / weight[i], profit[i], weight[i]);
+        cin >> items[i].profit;
+        items[i].ratio = (double)items[i].profit / items[i].weight;
     }
 
-    sort(unit.begin(), unit.end(), [](const auto &a, const auto &b)
-         {
-             return std::get<0>(a) > std::get<0>(b); // descending order
-         });
+    sort(items.begin(), items.end());
 
-    int index = 0;
-    double max_prof = 0;
-    while (index < n && m > 0)
+    double max_profit = 0;
+
+    for (const auto &item : items)
     {
-        auto [ratio, prof, wt] = unit[index];
-        long long quantity = min(m, wt);
-        max_prof += quantity * ratio;
-        m -= quantity;
-        index++;
+        if (m == 0)
+            break;
+
+        long long take = min(m, item.weight);
+        max_profit += take * item.ratio;
+        m -= take;
     }
 
-    cout << fixed << setprecision(10) << max_prof << endl;
-    return EXIT_SUCCESS;
+    cout << fixed << setprecision(10) << max_profit << '\n';
+    return 0;
 }
