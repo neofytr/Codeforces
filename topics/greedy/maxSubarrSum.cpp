@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long solve(int index, vector<long long> &arr, vector<long long> &dp)
+long long solve(int index, vector<long long> &arr, vector<long long> &dp, long long *sum)
 {
     if (index >= arr.size())
     {
@@ -13,9 +13,10 @@ long long solve(int index, vector<long long> &arr, vector<long long> &dp)
         return dp[index];
     }
 
-    long long more = solve(index + 1, arr, dp);
+    long long more = solve(index + 1, arr, dp, sum);
+    *sum = max(*sum, dp[index] = max(more + arr[index], arr[index]));
 
-    return dp[index] = max(more + arr[index], arr[index]);
+    return dp[index];
 }
 
 int main()
@@ -30,13 +31,8 @@ int main()
 
     vector<long long> dp(n, -1);
     // dp[r] is the maximum subarray sum for a subarray starting at r; 0 <= r < n
-
-    solve(0, arr, dp);
     long long max_sum = LLONG_MIN;
-    for (int index = 0; index < n; index++)
-    {
-        max_sum = max(max_sum, dp[index]);
-    }
+    solve(0, arr, dp, &max_sum);
 
     cout << max_sum << endl;
     return EXIT_SUCCESS;
