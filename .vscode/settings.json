@@ -3,7 +3,8 @@
         "queue.h": "c",
         "dynarr.h": "c",
         "stdbool.h": "c",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
