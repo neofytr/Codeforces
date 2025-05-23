@@ -34,6 +34,7 @@ void solve()
             }
         }
 
+        // since we couldn't have included index in the change, we add it afterwards
         if (arr[index] > 0)
         {
             max_heap.push(arr[index]);
