@@ -36,36 +36,6 @@ bool check(int len, vector<char> &str, vector<char> &substr, vector<vector<int>>
     return true;
 }
 
-bool backtrack(int pos, int n, int k, vector<char> &current, vector<char> &str, vector<vector<int>> &table)
-{
-    if (pos >= n)
-    {
-        return true;
-    }
-
-    for (int index = 0; index < k; index++)
-    {
-        current[pos] = index;
-        if (!check(pos + 1, str, current, table))
-        {
-            cout << "NO\n";
-            for (int i = 0; i <= pos; i++)
-            {
-                cout << (char)(current[i] + 'a'); // Convert back to character
-            }
-            cout << endl;
-            return false;
-        }
-
-        if (!backtrack(pos + 1, n, k, current, str, table))
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 void solve()
 {
     int n, k, m;
@@ -94,12 +64,6 @@ void solve()
                 next = i;
             table[c][i] = next;
         }
-    }
-
-    vector<char> current(n);
-    if (backtrack(0, n, k, current, str, table))
-    {
-        cout << "YES\n";
     }
 }
 
