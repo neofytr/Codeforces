@@ -1,84 +1,89 @@
 // https://codeforces.com/problemset/problem/1924/A
+
 #include <bits/stdc++.h>
 using namespace std;
-
-#define ALPHABET 26
-
-// checks if substr is a subsequence of str using the precomputed jump table
-bool check(int len, vector<char> &str, vector<char> &substr, vector<vector<int>> &table)
-{
-    // start from the beginning of str
-    int next = 0;
-
-    // go through each character in the substr
-    for (int index = 0; index < len; index++)
-    {
-        // if we've gone past the end of str, it's not a subsequence
-        if (next >= str.size())
-        {
-            return false;
-        }
-
-        // jump to the next occurrence of c in str at or after index 'next'
-        next = table[substr[index]][next];
-
-        // if character not found, return false
-        if (next >= str.size())
-        {
-            return false;
-        }
-
-        // move to the next character position in str
-        next++;
-    }
-
-    // all characters in substr were found in order in str
-    return true;
-}
 
 void solve()
 {
     int n, k, m;
     cin >> n >> k >> m;
 
-    string input;
-    cin >> input;
-
     vector<char> str(m);
-    for (int i = 0; i < m; i++)
+    char temp;
+    for (char &val : str)
     {
-        str[i] = input[i] - 'a';
+        cin >> temp;
+        val = temp - 'a';
     }
 
-    // create a jump table to efficiently check whether a string x is a subsequence
-    // of str
-    vector<vector<int>> table(ALPHABET, vector<int>(m));
-    // table[c][r] gives the next index of character c in str on and after r; 0 <= r < m; 0 <= c < 26
+    // if all possible strings of length n, using the first k small letters
+    // of the alphabet are the subsequences of the string str, print yes
 
-    for (int c = 0; c < ALPHABET; ++c)
+    // if there is some string of length n, constructed using the first k small
+    // letters of the alphabet that is not a subsequence of the string str, print no
+    // and that string too
+
+    // all possible strings of length n, using the first k small letters of the
+    // alphabet are subsequences of the string str if and only if
+    // there are atleast n sets containing at least one of each of the first k characters of the alphabet in str, one after the other
+
+    int sets = 0;
+    int count = 0;
+    vector<bool> found(k, false);
+
+    string res = "";
+    for (char c : str)
     {
-        int next = m; // start with m, meaning "not found"
-        for (int i = m - 1; i >= 0; --i)
+        if (sets >= n)
         {
-            if (str[i] == c)
-                next = i;
-            table[c][i] = next;
+            break;
         }
+
+        if (c < k)
+        {
+            if (!found[c])
+            {
+                count++;
+            }
+            found[c] = true;
+        }
+
+        if (count == k)
+        {
+            fill(found.begin(), found.end(), false);
+            sets++;
+            count = 0;
+            res += 'a' + c;
+        }
+    }
+
+    if (sets >= n)
+    {
+        cout << "YES\n";
+    }
+    else
+    {
+        cout << "NO\n";
+        for (int ch = 0; ch < k; ch++)
+        {
+            if (!found[ch])
+            {
+                while (res.size() < n)
+                {
+                    res += 'a' + ch;
+                }
+            }
+        }
+        cout << res << "\n";
     }
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
     int t;
     cin >> t;
-
     while (t--)
     {
         solve();
     }
-
-    return 0;
 }
