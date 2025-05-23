@@ -27,6 +27,12 @@ void solve()
     // alphabet are subsequences of the string str if and only if
     // there are atleast n sets containing at least one of each of the first k characters of the alphabet in str, one after the other
 
+    // in general consider a sequence x of some symbols from universe S
+    // consider a subset s of S
+    // we want to check if all the sequences that can be made from s of at most length k are subsequences of x
+    // this is possible if and only if
+    // there are atleast k sets containing at least one of each of the symbols in s, in the sequence x, one after the other
+
     int sets = 0;
     int count = 0;
     vector<bool> found(k, false);
