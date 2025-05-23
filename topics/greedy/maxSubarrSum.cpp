@@ -35,5 +35,20 @@ int main()
     solve(0, arr, dp, &max_sum);
 
     cout << max_sum << endl;
+
+    // second approach
+
+    vector<long long> iter(n, 0);
+    // iter[r] is the maximum subarray sum ending at r; 0 <= r < n
+    iter[0] = arr[0];
+    max_sum = LLONG_MIN;
+    for (int index = 1; index < n; index++)
+    {
+        iter[index] = max(iter[index - 1] + arr[index], arr[index]);
+        max_sum = max(iter[index], max_sum);
+    }
+
+    cout << max_sum << endl;
+
     return EXIT_SUCCESS;
 }
