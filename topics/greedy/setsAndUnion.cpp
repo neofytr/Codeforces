@@ -1,6 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int popcount(uint64_t x)
+{
+    // return the number of ones in x
+    int count = 0;
+    while (x)
+    {
+        x &= (x - 1);
+        count++;
+    }
+
+    return count;
+}
+
 void solve()
 {
     int n;
@@ -25,46 +38,37 @@ void solve()
         totalUnion |= sets[i];
     }
 
-    vector<uint64_t> maximal;
-    for (int i = 0; i < n; i++)
+    // T = union of all sets
+    // S is the set we want to find
+    // S is the maximal set that is a union of some of the sets S1, ..., Sn but S != T
+
+    // Let S is a set such that it's a union of some of S1, ..., Sn but S != T
+    // then, there is some i in T such that i is not in S
+
+    // to find the maximal such S, exhaustively loop through all possible i, calculate
+    // the maximal set S that is a union of some of the sets, that doesn't contain i,
+    // and then take the maximum of these maximal sets
+
+    // the possible elements are in the range 1 to 50
+    int max_count = INT_MIN;
+    for (uint64_t i = 1; i <= 50; i++)
     {
-        bool isSubset = false;
-        for (int j = 0; j < n; j++)
+        if (totalUnion & (1ULL << i))
         {
-            if (i != j && (sets[i] | sets[j]) == sets[j])
+            // i is in the total union
+            uint64_t un = 0;
+            for (int index = 0; index < n; index++)
             {
-                isSubset = true;
-                break;
+                if (!((1ULL << i) & sets[index]))
+                {
+                    un |= sets[index];
+                }
             }
-        }
-        if (!isSubset)
-        {
-            maximal.push_back(sets[i]);
+            max_count = max(max_count, popcount(un));
         }
     }
 
-    int maxSize = 0;
-
-    for (int exclude = 0; exclude < maximal.size(); exclude++)
-    {
-        uint64_t currentUnion = 0;
-        for (int i = 0; i < maximal.size(); i++)
-        {
-            if (i != exclude)
-            {
-                currentUnion |= maximal[i];
-            }
-        }
-
-        if (currentUnion != totalUnion)
-        {
-            maxSize = max(maxSize, __builtin_popcountll(currentUnion));
-        }
-    }
-
-    maxSize = max(maxSize, 0);
-
-    cout << maxSize << endl;
+    cout << max_count << endl;
 }
 
 int main()
