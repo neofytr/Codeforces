@@ -35,6 +35,56 @@ void solve()
     cout << penalty << endl;
 }
 
+void solveme()
+{
+    int n;
+    cin >> n;
+
+    int penalty = 0;
+    int temp;
+
+    int left = INT_MAX, right = INT_MAX;
+    while (n--)
+    {
+        cin >> temp;
+        if (left >= temp && right >= temp)
+        {
+            if (left < right)
+            {
+                left = temp;
+            }
+            else
+            {
+                right = temp;
+            }
+        }
+        else if (left >= temp && right < temp)
+        {
+            left = temp;
+        }
+        else if (left < temp && right >= temp)
+        {
+            right = temp;
+        }
+        else
+        {
+            // left < temp && right < temp
+            if (left < right)
+            {
+                left = temp;
+            }
+            else
+            {
+                right = temp;
+            }
+
+            penalty++;
+        }
+    }
+
+    cout << penalty << endl;
+}
+
 int main()
 {
     int t;
@@ -42,6 +92,6 @@ int main()
 
     while (t--)
     {
-        solve();
+        solveme();
     }
 }
