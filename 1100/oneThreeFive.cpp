@@ -7,6 +7,7 @@ int answer(vector<int> &dp, int num)
 {
     if (num <= 0)
         return 0;
+
     if (dp[num] != -1)
         return dp[num];
 
