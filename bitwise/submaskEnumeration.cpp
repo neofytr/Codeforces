@@ -21,5 +21,7 @@ int main()
         }
     }
 
+    // this will iterate through each of the submasks of mask, in strictly decreasing order (so no duplicates)
+
     return EXIT_SUCCESS;
 }
