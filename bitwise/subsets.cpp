@@ -44,5 +44,18 @@ int main()
 	}
 
 	cout << "No\n";
+
+	// target can be at max 1000
+	bitset<1000 + 1> reachable;
+	reachable[0] = true; // 0 is already reachable (empty subset)
+	for (int index = 0; index < n; index++)
+	{
+		reachable |= reachable << arr[index]; // old sums are reachable but it can now reach old + arr[index] for each old sum
+	}
+
+	if (reachable[target])
+		cout << "Yes\n";
+	else
+		cout << "No\n";
 	return EXIT_SUCCESS;
 }
