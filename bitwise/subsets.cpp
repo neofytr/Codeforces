@@ -30,12 +30,15 @@ int main()
 
 	for (int subset = 0; subset < (1 << n); subset++) // loop over all 2^n possible subsets
 	{
-		if (isPowerOfTwo(subset))  // if 'subset' is a power of 2, it means a new subset is starting
+		if (isPowerOfTwo(subset)) // if 'subset' is a power of 2, it means a new subset is starting
+		{
 			curr = arr[highest++]; // start a new subset with the next single element
-		else
+			iter = 0;			   // restart iter
+		}
+		else if (subset)
 			curr += arr[iter++]; // continue adding elements to the current subset
 
-		if (curr == target) // if the current sum matches the target
+		if (curr == target) // if the current sum matches the target; also would take care of subset = 0 case
 		{
 			cout << "Yes\n";	 // a subset with required sum is found
 			return EXIT_SUCCESS; // exit successfully
