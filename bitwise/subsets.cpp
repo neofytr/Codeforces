@@ -24,24 +24,22 @@ int main()
 	// there are also a total of 2^n binary numbers from 0 to 2^n - 1
 	// to each of these numbers, we can associate a unique subset and vice-versa
 
-	curr = 0;	 // holds the current sum of elements in the current subset
-	highest = 0; // index to pick the next new element when starting a new subset
-	iter = 0;	 // index to iterate through elements when adding to existing subset
-
 	for (int subset = 0; subset < (1 << n); subset++) // loop over all 2^n possible subsets
 	{
-		if (isPowerOfTwo(subset)) // if 'subset' is a power of 2, it means a new subset is starting
+		curr = 0;
+		for (int bit = 0; bit < n; bit++)
 		{
-			curr = arr[highest++]; // start a new subset with the next single element
-			iter = 0;			   // restart iter
-		}
-		else if (subset)
-			curr += arr[iter++]; // continue adding elements to the current subset
+			if (subset & (1 << bit))
+				curr += arr[bit];
 
-		if (curr == target) // if the current sum matches the target; also would take care of subset = 0 case
+			if (curr > target)
+				break;
+		}
+
+		if (curr == target)
 		{
-			cout << "Yes\n";	 // a subset with required sum is found
-			return EXIT_SUCCESS; // exit successfully
+			cout << "Yes\n";
+			return EXIT_SUCCESS;
 		}
 	}
 
