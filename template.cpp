@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define FAST_IO()                \
+    ios::sync_with_stdio(false); \
+    cin.tie(NULL)
+
 /*
 
 num &= (num - 1) turns off the last 1 in num (for num > 0)
