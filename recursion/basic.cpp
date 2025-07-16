@@ -66,6 +66,14 @@ int recursionSum(int curr, int n)
     return curr + recursionSum(curr + 1, n);
 }
 
+int factorial(int num)
+{
+    if (!num)
+        return 1;
+
+    return num * factorial(num - 1);
+}
+
 int main()
 {
     int n;
@@ -88,5 +96,8 @@ int main()
 
     cout << endl;
     cout << recursionSum(1, n) << endl;
+
+    cout << endl;
+    cout << factorial(n) << endl;
     return EXIT_SUCCESS;
 }
