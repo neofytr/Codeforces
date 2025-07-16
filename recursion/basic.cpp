@@ -1,6 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool checkPalindrome(int left, int right, string str)
+{
+    if (left >= right)
+        return true;
+
+    return str[left] == str[right] && checkPalindrome(left + 1, right - 1, str);
+}
+
+void reverseVector(int left, int right, vector<int> &arr)
+{
+    if (left >= right)
+        return;
+
+    swap(arr[left], arr[right]);
+    reverseVector(left + 1, right - 1, arr);
+}
+
 // this function prints numbers from 1 to n using recursion and backtracking
 void linearOneBacktrack(int curr, int n)
 {
