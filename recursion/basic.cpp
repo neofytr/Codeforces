@@ -58,6 +58,14 @@ void linearTwo(int curr, int n)
     // and only then we start printing while returning
 }
 
+int recursionSum(int curr, int n)
+{
+    if (curr > n)
+        return 0;
+
+    return curr + recursionSum(curr + 1, n);
+}
+
 int main()
 {
     int n;
@@ -69,10 +77,16 @@ int main()
 
     // recursion to print numbers from 1 to n (in increasing order)
     linearOne(1, n); // forward recursion → work before recursive call
+    cout << endl;
 
     // recursion to print numbers from n to 1 (in decreasing order)
     linearTwo(1, n); // backtracking → work after recursive call
 
-    // optionally: another function showing backtracking from n to 1
-    // linearOneBacktrack(n, n);
+    cout << endl;
+    // another function showing backtracking from n to 1
+    linearOneBacktrack(n, n);
+
+    cout << endl;
+    cout << recursionSum(1, n) << endl;
+    return EXIT_SUCCESS;
 }
