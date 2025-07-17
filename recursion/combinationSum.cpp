@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <mutex>
 #include <vector>
 using namespace std;
 
@@ -14,19 +15,37 @@ class Solution {
         if (index >= (int)candidates.size())
             return;
 
+        // either we choose the current element in the multiSet (again), or we don't
+        multiSet.push_back(candidates[index]);
+        getMultiset(candidates, multiSet, ans, target - candidates[index], index);
+        multiSet.pop_back();
+        getMultiset(candidates, multiSet, ans, target, index + 1);
+        return;
+    }
+
+    void getMultisetTwo(vector<int> &candidates, vector<int> &multiSet, vector<vector<int>> &ans, int target, int index) {
+        if (!target) {
+            ans.push_back(multiSet);
+            return;
+        }
+        if (target < 0)
+            return;
+        if (index >= (int)candidates.size())
+            return;
+
         int initTarget = target;
         int counter = 0;
         while (target > 0) {
             target -= candidates[index];
             multiSet.push_back(candidates[index]);
-            getMultiset(candidates, multiSet, ans, target, index + 1);
+            getMultisetTwo(candidates, multiSet, ans, target, index + 1);
             counter++;
         }
 
         while (counter--) {
             multiSet.pop_back();
         }
-        getMultiset(candidates, multiSet, ans, initTarget, index + 1);
+        getMultisetTwo(candidates, multiSet, ans, initTarget, index + 1);
     }
 
   public:
@@ -35,7 +54,7 @@ class Solution {
         // we want to return all multi-sets of the array candidates whose element-sum is target
         vector<vector<int>> ans;
         vector<int> multiset;
-        getMultiset(candidates, multiset, ans, target, 0);
+        getMultisetTwo(candidates, multiset, ans, target, 0);
         return ans;
     }
 };
