@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// this function returns the number of subsequences starting from index with sum equal to target
 int countSubsequenceWithSum(int index, int target, vector<int> &arr) {
     if (index >= (int)arr.size()) {
         if (!target) {
