@@ -1,10 +1,35 @@
 #include <bits/stdc++.h>
 #include <cstdlib>
+#include <vector>
 using namespace std;
 
+int offset;
 int config = 0;
 
-void placeQueenInRow(int y, vector<vector<int>> &target, vector<vector<bool>> &board) {
+void placeQueenInRowOptimized(int y, vector<int> &targetColumn, vector<int> &targetDiagnolRight, vector<int> &targetDiagnolLeft) {
+    int n = (int)targetColumn.size();
+    if (y >= n) {
+        config++;
+        return;
+    }
+
+    // where should we place the queen in the current row?
+    for (int x = 0; x < n; x++) {
+        if (!targetColumn[x] && !targetDiagnolRight[y - x + offset] && !targetDiagnolLeft[x + y]) {
+            // we can place the queen here
+            targetColumn[x]++;
+            targetDiagnolRight[y - x + offset]++;
+            targetDiagnolLeft[x + y]++;
+            placeQueenInRowOptimized(y + 1, targetColumn, targetDiagnolRight, targetDiagnolLeft);
+            // backtrack
+            targetColumn[x]--;
+            targetDiagnolRight[y - x + offset]--;
+            targetDiagnolLeft[x + y]--;
+        }
+    }
+}
+
+void placeQueenInRow(int y, vector<vector<int>> &target) {
     int n = (int)target.size();
     if (y >= n) {
         config++;
@@ -22,10 +47,8 @@ void placeQueenInRow(int y, vector<vector<int>> &target, vector<vector<bool>> &b
                 target[row][x]++;
             for (int row = y + 1, col = x - 1; row < n && col >= 0; row++, col--)
                 target[row][col]++;
-            board[y][x] = true;
-            placeQueenInRow(y + 1, target, board);
+            placeQueenInRow(y + 1, target);
             // backtrack
-            board[y][x] = false;
             target[y][x]--;
             for (int row = y + 1, col = x + 1; row < n && col < n; row++, col++)
                 target[row][col]--;
@@ -40,12 +63,13 @@ void placeQueenInRow(int y, vector<vector<int>> &target, vector<vector<bool>> &b
 int main() {
     int n;
     cin >> n;
+    offset = n - 1;
 
     vector<vector<int>> target(n, vector<int>(n, 0));
-    vector<vector<bool>> board(n, vector<bool>(n, false));
+    vector<int> targetColumn(n, 0), targetDiagnolLeft(2 * n, 0), targetDiagnolRight(2 * n, 0);
 
-    // possible[y][x] is true if we can place a queen there; false otherwise
-    placeQueenInRow(0, target, board);
+    // placeQueenInRow(0, target);
+    placeQueenInRowOptimized(0, targetColumn, targetDiagnolRight, targetDiagnolLeft);
     cout << config << endl;
     return EXIT_SUCCESS;
 }
