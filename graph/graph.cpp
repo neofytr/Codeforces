@@ -7,9 +7,6 @@ int main() {
 
     int a, b, w; // a and b are endpoints of an edge, w is the weight
 
-    // in weighted graphs, we usually assume that there can only be one undirected, or two directed edges
-    // between any two nodes
-
     // -------------------------------------
     // undirected unweighted graph
     // -------------------------------------
