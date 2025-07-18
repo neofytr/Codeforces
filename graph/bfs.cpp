@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include <cstdlib>
+#include <deque>
 #include <vector>
 using namespace std;
 
@@ -36,6 +38,44 @@ int main() {
                                    // and v1 is pushed first, then v2, and when v1 is visited, v2 isnt visited yet, but v2 is one
                                    // of the neighbours of v1 and isn't marked visited yet and thus gets added to the queue again.
                                    // eg -> 1 - 2 - 3 - 1
+                que.push_back(v);
+            }
+        }
+    }
+
+    return EXIT_SUCCESS;
+}
+
+int mainCopy() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<int>> adjList(n + 1, vector<int>());
+    int a, b;
+    for (int index = 1; index <= m; index++) {
+        cin >> a >> b;
+        adjList[a].push_back(b);
+        adjList[b].push_back(a);
+    }
+
+    int start, node;
+    cin >> start;
+
+    vector<bool> visited(n);
+    deque<int> que;
+    visited[start] = true;
+    que.push_back(start);
+
+    vector<int> bfs;
+    while (!que.empty()) {
+        node = que.front();
+        que.pop_front();
+
+        bfs.push_back(node);
+
+        for (int v : adjList[node]) {
+            if (!visited[v]) {
+                visited[v] = true;
                 que.push_back(v);
             }
         }
