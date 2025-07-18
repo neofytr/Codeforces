@@ -34,6 +34,12 @@ void printPermutations(int index, vector<int> &arr) {
         return;
     }
 
+    // we can always prove that the subarray [index, n - 1] is always sorted at the beginning of a call if array is initially sorted
+    // since we swap with elements to the right
+
+    // thus, at any index, we first put the minimum available element, then the second smallest and so on..
+    // thus, we print the permutations in ascending order
+
     // for the position index in the permutation, we can choose any element
     // in the array arr from index to n - 1 (we have already placed the elements at position 0 to index - 1,
     // so, we can't pick those)
