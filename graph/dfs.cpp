@@ -40,3 +40,39 @@ int main() {
     traverse(start, dfs, visited, adjList);
     return EXIT_SUCCESS;
 }
+
+void traverseCopy(int node, vector<bool> &visited, vector<int> &dfs, vector<vector<int>> &adjList) {
+    visited[node] = true;
+    dfs.push_back(node);
+
+    for (int v : adjList[node]) {
+        if (!visited[v]) {
+            traverseCopy(node, visited, dfs, adjList);
+        }
+    }
+
+    return;
+}
+
+int mainCopy() {
+    int n, m; // nodes, edges
+    cin >> n >> m;
+
+    // 1-based node indexing
+    vector<vector<int>> adjList(n + 1, vector<int>());
+    int a, b;
+    for (int index = 0; index < m; index++) {
+        cin >> a >> b;
+        adjList[a].push_back(b);
+        adjList[b].push_back(a);
+    }
+
+    int start;
+    cin >> start; // starting node
+
+    vector<bool> visited;
+    vector<int> dfs;
+
+    traverseCopy(start, visited, dfs, adjList);
+    return EXIT_SUCCESS;
+}
