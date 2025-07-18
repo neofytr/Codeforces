@@ -3,4 +3,4 @@ IndentWidth: 4
 UseTab: Never
 BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: Inline
-ColumnLimit: 180
+ColumnLimit: 400
