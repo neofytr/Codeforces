@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <cstdlib>
-#include <queue>
 #include <vector>
 using namespace std;
 
@@ -21,6 +19,7 @@ int main() {
     int start, node;
     cin >> start; // starting node
     vector<bool> visited(n + 1, 0);
+    vector<int> bfs;
     deque<int> que;
     visited[start] = true;
     que.push_back(start);
@@ -29,6 +28,7 @@ int main() {
         node = que.front();
         que.pop_front();
 
+        bfs.push_back(node);
         // do work on the vertex number node
 
         for (int v : adjList[node]) {
