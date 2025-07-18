@@ -34,7 +34,8 @@ int main() {
             if (!visited[v]) {     // so that we don't do unnecessary cycles
                 visited[v] = true; // since we don't visit the vertices v immediately, it may so happen that some v1 is linked to v2,
                                    // and v1 is pushed first, then v2, and when v1 is visited, v2 isnt visited yet, but v2 is one
-                                   // of the neighbours of v1 and isn't marked visited yet and thus gets added to the queue again
+                                   // of the neighbours of v1 and isn't marked visited yet and thus gets added to the queue again.
+                                   // eg -> 1 - 2 - 3 - 1
                 que.push_back(v);
             }
         }
