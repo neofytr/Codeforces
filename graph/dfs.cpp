@@ -4,7 +4,7 @@
 using namespace std;
 
 void traverse(int node, vector<int> &dfs, vector<int> &visited, vector<vector<int>> &adjList) {
-    visited[node] = true;
+    visited[node] = true; // we can mark a node visited after actually visiting it in DFS since we immediately visit a node
     dfs.push_back(node);
 
     // do work on the vertex node
