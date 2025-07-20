@@ -1,25 +1,28 @@
 #include <bits/stdc++.h>
+#include <cstdlib>
 #include <deque>
 #include <vector>
 using namespace std;
 
-bool detectCycleFromSrc(int srcNode, vector<bool> &visited, vector<vector<int>> &adjList) {
-    deque<pair<int, int>> que; // stores (node, it's parent)
+// checks if a cycle is reachable from the starting node srcNode
+bool detectCycleFromSrc(int srcNode, vector<vector<int>> &adjList, vector<bool> &visited) {
+    int n = (int)visited.size();
+    deque<pair<int, int>> que; // (node, parentNode)
     visited[srcNode] = true;
-    que.push_back({srcNode, -1});
+    que.push_back({srcNode, -1}); // srcNode has no parent
 
     while (!que.empty()) {
         auto elt = que.front();
         int node = elt.first;
         int parent = elt.second;
-        que.pop_front();
 
         for (int v : adjList[node]) {
             if (!visited[v]) {
                 visited[v] = true;
                 que.push_back({v, node});
             } else if (v != parent) {
-                // found a cycle (a node that is connected to the current node that is visited but isnt where it came from)
+                // v is visited during traversal but is not the parent node
+                // of the current node; this means we have a cycle somewhere
                 return true;
             }
         }
@@ -28,11 +31,12 @@ bool detectCycleFromSrc(int srcNode, vector<bool> &visited, vector<vector<int>> 
     return false;
 }
 
-bool detectCycle(vector<bool> &visited, vector<vector<int>> &adjList) {
+// checks if there is a cycle in the connected components
+bool detectCycle(vector<vector<int>> &adjList, vector<bool> &visited) {
     int n = (int)visited.size();
     for (int node = 0; node < n; node++) {
         if (!visited[node]) {
-            if (detectCycleFromSrc(node, visited, adjList)) {
+            if (detectCycleFromSrc(node, adjList, visited)) {
                 return true;
             }
         }
@@ -42,17 +46,19 @@ bool detectCycle(vector<bool> &visited, vector<vector<int>> &adjList) {
 }
 
 int main() {
-    int n, m; // nodes, edges
+    int n, m; // vertices, edges
     cin >> n >> m;
 
     // undirected, unweighted graph
-    // 0-indexed nodes
+    // 0-indexed nodes (0 to n - 1)
     vector<vector<int>> adjList(n, vector<int>());
+    vector<bool> visited(n, false);
     int a, b;
-    for (int index = 1; index <= m; index++) {
+    for (int index = 0; index < m; index++) {
         cin >> a >> b;
         adjList[a].push_back(b);
         adjList[b].push_back(a);
     }
-    vector<bool> visited(n, false);
+
+    return EXIT_SUCCESS;
 }
