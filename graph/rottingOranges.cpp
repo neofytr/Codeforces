@@ -14,6 +14,8 @@ class Solution {
         int minutes = 0;
         int freshCount = 0;
         deque<pair<int, int>> que;
+        int drow[] = {-1, 0, +1, 0};
+        int dcol[] = {0, -1, 0, +1};
 
         for (int row = 0; row < m; row++) {
             for (int col = 0; col < n; col++) {
@@ -40,40 +42,18 @@ class Solution {
                 int row = elt.first;
                 int col = elt.second;
 
-                if (row > 0 && grid[row - 1][col] == FRESH) {
-                    que.push_back({row - 1, col});
-                    // since this pushed elt won't be analyzed until later, it may so happen
-                    // that it's pushed again; so, we edit it's metadata
-                    grid[row - 1][col] = ROTTEN;
-                    freshCount--;
-                    infected = true;
-                }
+                for (int index = 0; index < 4; index++) {
+                    int nrow = row + drow[index];
+                    int ncol = col + dcol[index];
 
-                if (row < m - 1 && grid[row + 1][col] == FRESH) {
-                    que.push_back({row + 1, col});
-                    // since this pushed elt won't be analyzed until later, it may so happen
-                    // that it's pushed again; so, we edit it's metadata
-                    grid[row + 1][col] = ROTTEN;
-                    freshCount--;
-                    infected = true;
-                }
-
-                if (col > 0 && grid[row][col - 1] == FRESH) {
-                    que.push_back({row, col - 1});
-                    // since this pushed elt won't be analyzed until later, it may so happen
-                    // that it's pushed again; so, we edit it's metadata
-                    grid[row][col - 1] = ROTTEN;
-                    freshCount--;
-                    infected = true;
-                }
-
-                if (col < n - 1 && grid[row][col + 1] == FRESH) {
-                    que.push_back({row, col + 1});
-                    // since this pushed elt won't be analyzed until later, it may so happen
-                    // that it's pushed again; so, we edit it's metadata
-                    grid[row][col + 1] = ROTTEN;
-                    freshCount--;
-                    infected = true;
+                    if (nrow < m && nrow >= 0 && ncol < n && ncol >= 0 && grid[nrow][ncol] == FRESH) {
+                        que.push_back({nrow, ncol});
+                        // since this pushed elt won't be analyzed until later, it may so happen
+                        // that it's pushed again; so, we edit it's metadata
+                        grid[nrow][ncol] = ROTTEN;
+                        freshCount--;
+                        infected = true;
+                    }
                 }
             }
 
