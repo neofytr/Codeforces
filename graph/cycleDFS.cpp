@@ -2,31 +2,29 @@
 #include <vector>
 using namespace std;
 
-bool detectCycleFromSrc(int currNode, int parent, vector<bool> &visited, vector<vector<int>> &adjList) {
+bool detectCycleFromNode(int node, int parent, vector<bool> &visited, vector<vector<int>> &adjList) {
     int n = (int)visited.size();
-    visited[currNode] = true;
+    visited[node] = true;
 
-    for (int v : adjList[currNode]) {
+    for (int v : adjList[node]) {
         if (!visited[v]) {
-            if (detectCycleFromSrc(v, currNode, visited, adjList)) {
+            if (detectCycleFromNode(v, node, visited, adjList))
                 return true;
-            }
         } else if (v != parent) {
-            // cycle found; a node that is not the current node's parent is already visited
+            // found a node that has been visited but isnt' the current node's parent
             return true;
         }
     }
-
     return false;
 }
 
 bool detectCycle(vector<bool> &visited, vector<vector<int>> &adjList) {
     int n = (int)visited.size();
-    // check for all connected components
     for (int node = 0; node < n; node++) {
         if (!visited[node]) {
-            if (detectCycleFromSrc(node, -1, visited, adjList))
+            if (detectCycleFromNode(node, -1, visited, adjList)) {
                 return true;
+            }
         }
     }
     return false;
