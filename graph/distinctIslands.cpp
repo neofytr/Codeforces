@@ -6,7 +6,7 @@
 using namespace std;
 
 class Solution {
-    void visitIsland(int row, int col, vector<vector<bool>> &visited, vector<vector<int>> &grid, vector<int> &island) {
+    void visitIsland(int row, int col, vector<vector<bool>> &visited, vector<vector<int>> &grid, vector<pair<int, int>> &island) {
         int n = (int)visited.size();
         int m = (int)visited[0].size();
         visited[row][col] = true;
@@ -14,12 +14,13 @@ class Solution {
         int dr[] = {0, -1, 0, +1};
         int dc[] = {-1, 0, +1, 0};
         que.push({row, col});
-        island.push_back(0);
+        island.push_back({0, 0});
 
         while (!que.empty()) {
             auto elt = que.front();
             int r = elt.first;
             int c = elt.second;
+            island.push_back({r - row, c - col});
             que.pop();
 
             for (int index = 0; index < 4; index++) {
@@ -28,7 +29,6 @@ class Solution {
                 if (nrow >= 0 && ncol >= 0 && nrow < n && ncol < m && !visited[nrow][ncol] && grid[nrow][ncol]) {
                     visited[nrow][ncol] = true;
                     que.push({nrow, ncol});
-                    island.push_back(2 * dc[index] + dr[index]);
                 }
             }
         }
@@ -39,12 +39,12 @@ class Solution {
         int n = (int)grid.size();
         int m = (int)grid[0].size();
         vector<vector<bool>> visited(n, vector<bool>(m, false));
-        set<vector<int>> islands;
+        set<vector<pair<int, int>>> islands;
 
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < m; col++) {
                 if (!visited[row][col] && grid[row][col]) {
-                    vector<int> island;
+                    vector<pair<int, int>> island;
                     visitIsland(row, col, visited, grid, island);
                     islands.insert(island);
                 }
