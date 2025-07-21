@@ -14,6 +14,9 @@ bool detectCycleDFS(int node, vector<bool> &onPath, vector<bool> &visited, vecto
         } else if (onPath[v]) {
             // we have already encountered this node during our path
             // we have a cycle
+            // just using visited won't do the trick since we can't be sure of a cycle even if
+            // we encounter a visited node again since it may not be possible to reach from that visited
+            // node to the cycle start due to the graph being directed
             return true;
         }
     }
