@@ -3,19 +3,21 @@
 #include <vector>
 using namespace std;
 
-bool detectCycleDFS(int node, int parent, vector<bool> &visited, vector<vector<int>> &graph) {
+bool detectCycleDFS(int node, vector<bool> &onPath, vector<bool> &visited, vector<vector<int>> &graph) {
     visited[node] = true;
+    onPath[node] = true;
     for (int v : graph[node]) {
         if (!visited[v]) {
-            if (detectCycleDFS(v, node, visited, graph)) {
+            if (detectCycleDFS(v, onPath, visited, graph)) {
                 return true;
             }
-        } else if (v != parent) {
-            // we found a node that we already visited but isnt' the current parent
-            // detected a cycle
+        } else if (onPath[v]) {
+            // we have already encountered this node during our path
+            // we have a cycle
             return true;
         }
     }
+    onPath[node] = false;
 
     return false;
 }
@@ -36,7 +38,8 @@ int main() {
     vector<bool> visited(n, false);
     for (int node = 0; node < n; node++) {
         if (!visited[node]) {
-            if (detectCycleDFS(node, -1, visited, graph)) {
+            vector<bool> onPath(n, false);
+            if (detectCycleDFS(node, onPath, visited, graph)) {
                 cout << "Cycle detected!" << endl;
                 return EXIT_SUCCESS;
             }
