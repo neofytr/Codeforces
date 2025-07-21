@@ -92,6 +92,7 @@ class Solution {
                 auto elt = que.front();
                 int row = elt.first;
                 int col = elt.second;
+                que.pop_front();
 
                 // each 1 is visited exactly once (due to the use of visited array)
                 // only the shortest distance for a 1 is stored since a 1 is visited exactly once
@@ -103,7 +104,7 @@ class Solution {
                 // again by one for all, and so on; so, if a source bfs reaches some 1, it will be due to the
                 // 0 that is closest to that 1
                 dist[row][col] = currDist;
-                for (int index = 0; index < sizeof(dr); index++) {
+                for (int index = 0; index < 4; index++) {
                     int nrow = row + dr[index];
                     int ncol = col + dc[index];
                     if (nrow >= 0 && nrow < m && ncol >= 0 && ncol < n && !visited[nrow][ncol]) {
