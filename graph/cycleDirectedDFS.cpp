@@ -21,7 +21,6 @@ bool detectCycleDFS(int node, vector<bool> &onPath, vector<bool> &visited, vecto
         }
     }
     onPath[node] = false;
-
     return false;
 }
 
