@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <cstdlib>
 #include <queue>
 #include <vector>
 using namespace std;
@@ -9,7 +10,21 @@ class UndirectedGraph {
     int nodes;
     enum Color { UNCOLORED = -1, RED = 1, BLUE = 2 };
 
-    bool startColoring(int node, vector<Color> &color) {
+    bool startColoringDFS(int node, vector<Color> &color) { // the first call to this function should assign a color to node
+        for (int v : adjList[node]) {
+            if (color[v] == UNCOLORED) {
+                color[v] = (color[node] == RED) ? BLUE : RED;
+                if (!startColoringDFS(v, color))
+                    return false;
+            } else if (color[v] == color[node]) {
+                return false;
+            } // else, the node v has a color that is not the parent's color; we don't care about this case
+        }
+
+        return true;
+    }
+
+    bool startColoringBFS(int node, vector<Color> &color) {
         queue<int> que;
         color[node] = RED; // arbitrary assignment
         que.push(node);
@@ -49,15 +64,29 @@ class UndirectedGraph {
             adjList[b].push_back(a);
         }
     }
-    bool isBipartite() {
+    bool isBipartiteBFS() {
         // a graph is said to be bipartite if it can be colored with just two colors such that
         // no two adjacent nodes have the same color
 
         vector<Color> color(nodes, UNCOLORED); // -1 is uncolored
         // iterate over all the distinct connected components
         for (int node = 0; node < nodes; node++) {
-            if (color[node] == -1) { // uncolored means not yet visited too
-                if (!startColoring(node, color))
+            if (color[node] == UNCOLORED) { // uncolored means not yet visited too
+                if (!startColoringBFS(node, color))
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool isBipartiteDFS() {
+        vector<Color> color(nodes, UNCOLORED); // -1 is uncolored
+        // iterate over all the distinct connected components
+        for (int node = 0; node < nodes; node++) {
+            if (color[node] == UNCOLORED) { // uncolored means not yet visited too
+                color[node] = RED;          // arbitrary
+                if (!startColoringDFS(node, color))
                     return false;
             }
         }
@@ -69,4 +98,14 @@ class UndirectedGraph {
 int main() {
     int n, m; // vertices, edges
     cin >> n >> m;
+
+    UndirectedGraph graph(n, m);
+
+    if (graph.isBipartiteDFS()) {
+        cout << "The graph is bipartite." << endl;
+    } else {
+        cout << "The graph is not bipartite." << endl;
+    }
+
+    return EXIT_SUCCESS;
 }
