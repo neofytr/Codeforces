@@ -1,44 +1,25 @@
 #include <bits/stdc++.h>
 #include <cstdlib>
-#include <queue>
 #include <vector>
 using namespace std;
 
-void bfs(int node, vector<bool> &visited, vector<int> &topSort, vector<vector<int>> &graph) {
-    queue<int> que;
-    bool addAtEnd = false;
-    que.push(node);
-    if (graph[node].size()) {
-        topSort.push_back(node);
-    } else {
-        addAtEnd = true;
-    }
-
-    while (!que.empty()) {
-        int n = que.front();
-        que.pop();
-
-        for (int v : graph[n]) {
-            if (!visited[v]) {
-                topSort.push_back(v);
-                visited[v] = true;
-                que.push(v);
-            }
+void traverse(int node, vector<bool> &visited, vector<vector<int>> &graph, stack<int> &st) {
+    visited[node] = true;
+    for (int v : graph[node]) {
+        if (!visited[v]) {
+            traverse(v, visited, graph, st);
         }
     }
 
-    if (addAtEnd) {
-        topSort.push_back(node);
-    }
+    st.push(node);
     return;
 }
 
 int main() {
-    // Directed, Acyclic Graph
+    // directed, acyclic graph
     // 0-indexed nodes
     int n, m;
     cin >> n >> m;
-
     vector<vector<int>> graph(n, vector<int>());
     int a, b;
     while (m--) {
@@ -46,23 +27,27 @@ int main() {
         graph[a].push_back(b);
     }
 
-    vector<int> topSort;
-    // if some nodes a, b in the graph are such that a -> b, then
-    // the index of a and b in topSort, say, i and j, should be such that i < j
-    // if the graph is acylic, such a ordering always exists
+    vector<int> topoSort;
+    // topological ordering for the nodes of a graph is a linear ordering of the nodes of
+    // the graph such that if there are nodes a and b in the graph such that a -> b, then, in the
+    // ordering, if i and j are the indexed of a and b respectively, then i < j
 
     vector<bool> visited(n, false);
+    stack<int> st;
     for (int node = 0; node < n; node++) {
         if (!visited[node]) {
-            visited[node] = true;
-            bfs(node, visited, topSort, graph);
+            traverse(node, visited, graph, st);
         }
     }
 
-    for (int v : topSort) {
-        cout << v << " ";
+    while (!st.empty()) {
+        topoSort.push_back(st.top());
+        st.pop();
     }
 
-    cout << "\n";
+    for (int node : topoSort) {
+        cout << node << " ";
+    }
+    cout << endl;
     return EXIT_SUCCESS;
 }
