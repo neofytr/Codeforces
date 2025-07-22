@@ -15,12 +15,14 @@ int main() {
     }
 
     int pos = 1;
-    while (pos != n) {
+    while (true) {
         if (pos == t) {
             cout << "YES\n";
             return EXIT_SUCCESS;
         }
 
+        if (pos == n)
+            break;
         pos += arr[pos];
     }
 
