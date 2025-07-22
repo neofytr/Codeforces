@@ -33,12 +33,11 @@ class Solution {
         vector<int> safe;
         vector<int> isSafe(n, -1);
         vector<bool> path(n, false);
-        for (int node = 0; node < n; node++) {
+        for (int node = 0; node < n; node++) { // this ensures the nodes are pushed in ascending order
             if (checkSafe(node, isSafe, path, graph)) {
                 safe.push_back(node);
             }
         }
-
         return safe;
     }
 };
