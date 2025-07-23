@@ -70,8 +70,8 @@ int main() {
     ll maximum = LLONG_MIN;
     for (int node = 1; node <= n; node++) {
         if (!visited[node]) {
-            memset((void *)path, 0, (n + 1) * sizeof(bool));
             string str;
+            memset((void *)path, 0, (n + 1) * sizeof(bool));
             ll result = dfs(node, str);
             if (result == -1) {
                 cout << -1 << endl;
