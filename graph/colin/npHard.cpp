@@ -31,7 +31,7 @@ int main() {
 
                 for (int v : graph[x]) {
                     if (cover[v] == -1) {
-                        cover[v] = !cover[x] ? 1 : 0;
+                        cover[v] = cover[x] ^ 1; // select the opposite color (xoring with 1 inverts the bit)
                         que.push(v);
                     } else if (cover[v] == cover[x]) {
                         cout << -1 << "\n";
