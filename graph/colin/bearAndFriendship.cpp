@@ -21,8 +21,8 @@ int main() {
             q.push(node);
             visited[node] = true;
 
-            int componentSize = 0;
-            int edge_count = 0;
+            long long componentSize = 0;
+            long long edge_count = 0;
 
             while (!q.empty()) {
                 int u = q.front();
