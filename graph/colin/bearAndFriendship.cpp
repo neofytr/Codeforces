@@ -21,13 +21,13 @@ int main() {
             q.push(node);
             visited[node] = true;
 
-            vector<int> component;
+            int componentSize = 0;
             int edge_count = 0;
 
             while (!q.empty()) {
                 int u = q.front();
                 q.pop();
-                component.push_back(u);
+                componentSize++;
                 edge_count += graph[u].size(); // each edge counted twice
 
                 for (int v : graph[u]) {
@@ -38,8 +38,7 @@ int main() {
                 }
             }
 
-            int k = component.size();
-            if (edge_count != k * (k - 1)) { // since each edge counted twice
+            if (edge_count != componentSize * (componentSize - 1)) { // since each edge counted twice
                 cout << "NO\n";
                 return 0;
             }
