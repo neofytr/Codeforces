@@ -14,7 +14,7 @@ class Solution {
             inDegree[elt[0]]++;
         }
 
-        vector<int> topoSort;
+        int count = 0;
         queue<int> que;
         for (int node = 0; node < numCourses; node++) {
             if (!inDegree[node])
@@ -24,7 +24,7 @@ class Solution {
         while (!que.empty()) {
             int node = que.front();
             que.pop();
-            topoSort.push_back(node);
+            count++;
 
             for (int v : graph[node]) {
                 if (!(--inDegree[v])) {
@@ -33,6 +33,6 @@ class Solution {
             }
         }
 
-        return topoSort.size() == numCourses;
+        return count == numCourses;
     }
 };
