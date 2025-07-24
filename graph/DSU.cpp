@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <cstdlib>
+#include <utility>
 #include <vector>
 using namespace std;
 
@@ -61,17 +62,15 @@ class disjointSetUnion {
             return true;
         }
 
-        if (sizeX > sizeY) {
-            // join y to x
-            parent[rootY] = rootX;
-            size[rootX] += size[rootY];
-            edge[rootX] += edge[rootY] + 1;
-        } else {
-            // join x to y
-            parent[rootX] = rootY;
-            size[rootY] += size[rootX];
-            edge[rootY] += edge[rootX] + 1;
+        if (sizeX <= sizeY) {
+            swap(sizeX, sizeY);
+            swap(rootX, rootY);
         }
+
+        // join y to x
+        parent[rootY] = rootX;
+        size[rootX] += size[rootY];
+        edge[rootX] += edge[rootY] + 1;
 
         numOfComponents--;
         return true;
