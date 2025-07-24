@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 #include <climits>
 #include <cstdlib>
+#include <queue>
 #include <vector>
 using namespace std;
 
-int absMax = INT_MIN;
+/* int absMax = INT_MIN;
 
 bool traverse(int node, vector<int> &letters, vector<vector<int>> &freq, vector<vector<int>> &graph, vector<bool> &done, vector<bool> &path) {
     if (done[node]) {
@@ -67,4 +68,70 @@ int main() {
 
     cout << absMax << endl;
     return EXIT_SUCCESS;
+} */
+
+// method 2
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<int> letters(n + 1);
+    for (int i = 1; i <= n; ++i) {
+        char c;
+        cin >> c;
+        letters[i] = c - 'a';
+    }
+
+    vector<vector<int>> graph(n + 1);
+    vector<vector<int>> rev(n + 1); // rev[r] tracks which nodes come into r
+    vector<int> inDegree(n + 1, 0);
+    for (int i = 0; i < m; ++i) {
+        int a, b;
+        cin >> a >> b;
+        graph[a].push_back(b);
+        rev[b].push_back(a); // a comes into b
+        inDegree[b]++;
+    }
+
+    queue<int> q;
+    for (int i = 1; i <= n; ++i)
+        if (!inDegree[i])
+            q.push(i);
+
+    vector<int> topo;
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        topo.push_back(node);
+        for (int neighbor : graph[node]) {
+            if (!(--inDegree[neighbor]))
+                q.push(neighbor);
+        }
+    }
+
+    if (topo.size() != n) {
+        cout << -1 << endl; // cycle detected
+        return 0;
+    }
+
+    // dp[node][letter] = max count of 'letter' on any path ending at 'node'
+    vector<vector<int>> dp(n + 1, vector<int>(26, 0));
+    int initNode = topo[0];
+    dp[initNode][letters[initNode]]++;
+    int ans = 0;
+    ans = max(dp[initNode][letters[initNode]], ans);
+    for (int index = 1; index < n; index++) {
+        int node = topo[index];
+        for (int back : rev[node]) {
+            for (int c = 0; c < 26; c++) {
+                dp[node][c] = max(dp[back][c], dp[node][c]);
+                ans = max(ans, dp[node][c]);
+            }
+        };
+        ans = max(ans, ++dp[node][letters[node]]);
+    }
+
+    cout << ans << endl;
+    return 0;
 }
