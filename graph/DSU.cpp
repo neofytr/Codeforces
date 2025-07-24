@@ -7,6 +7,7 @@ using namespace std;
 class disjointSetUnion {
   private:
     long long n;
+    long long numOfComponents;
     vector<long long> size;   // only really valid if you do size[rootNode], which gives the size of the component the rootNode belongs to
     vector<long long> parent; // parent[r] stores the parent of r in a node tree; parent[r] = r for root node r
     vector<long long> edge;   // edge[r] only really valid if r is a rootNode; stores the number of edges in the component rooted at r
@@ -31,6 +32,7 @@ class disjointSetUnion {
   public:
     disjointSetUnion(long long numOfNodes) {
         n = numOfNodes;
+        numOfComponents = n;
         size.resize(n);
         parent.resize(n);
         edge.resize(n);
@@ -43,7 +45,7 @@ class disjointSetUnion {
         return;
     }
 
-    bool unite(long long x, long long y) { // there is an edge between x and y
+    bool createEdge(long long x, long long y) { // connect x and y via a direct edge
         if (x >= n || y >= n || x < 0 || y < 0) {
             return false;
         }
@@ -71,6 +73,7 @@ class disjointSetUnion {
             edge[rootY] += edge[rootX] + 1;
         }
 
+        numOfComponents--;
         return true;
     }
 
@@ -89,6 +92,8 @@ class disjointSetUnion {
         return getRoot(x) == getRoot(y);
     }
 
+    long long getNumOfComponents(void) { return numOfComponents; }
+
     long long getComponentSize(long long x) { // returns the size of the component node x is part of
         if (x >= n || x < 0)
             return -1;
@@ -96,28 +101,3 @@ class disjointSetUnion {
         return size[getRoot(x)];
     }
 };
-
-int main() {
-    // 1-indexed nodes; undirected graph
-    long long n, m;
-    cin >> n >> m;
-
-    long long x, y;
-    disjointSetUnion ds(n);
-    while (m--) {
-        cin >> x >> y;
-        x--, y--;
-        ds.unite(x, y);
-    }
-
-    for (long long node = 0; node < n; node++) {
-        long long size = ds.getComponentSize(node);
-        if (ds.getEdges(node) != (size * (size - 1)) / 2) {
-            cout << "NO\n";
-            return EXIT_SUCCESS;
-        }
-    }
-
-    cout << "YES\n";
-    return EXIT_SUCCESS;
-}
