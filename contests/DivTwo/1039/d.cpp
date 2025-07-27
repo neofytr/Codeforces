@@ -5,8 +5,9 @@
 
 using namespace std;
 
-const int INF = 1e9;
+const int INF = 1e9 + 7;
 
+// Segment Tree for Range Minimum Query
 vector<int> seg_tree;
 int seg_n;
 
@@ -20,7 +21,7 @@ void update(int idx, int val, int node, int start, int end) {
         seg_tree[node] = min(seg_tree[node], val);
         return;
     }
-    int mid = (start + end) / 2;
+    int mid = start + (end - start) / 2;
     if (start <= idx && idx <= mid) {
         update(idx, val, 2 * node, start, mid);
     } else {
@@ -36,7 +37,7 @@ int query(int l, int r, int node, int start, int end) {
     if (l <= start && end <= r) {
         return seg_tree[node];
     }
-    int mid = (start + end) / 2;
+    int mid = start + (end - start) / 2;
     return min(query(l, r, 2 * node, start, mid), query(l, r, 2 * node + 1, mid + 1, end));
 }
 
@@ -51,16 +52,15 @@ void solve() {
     long long total_subarrays = (long long)n * (n + 1) / 2;
 
     long long increasing_subarrays = 0;
-    int current_block_len = 0;
-    for (int i = 0; i < n; ++i) {
-        if (i > 0 && p[i] > p[i - 1]) {
-            current_block_len++;
-        } else {
-            increasing_subarrays += (long long)current_block_len * (current_block_len + 1) / 2;
-            current_block_len = 1;
+    for (int i = 0; i < n;) {
+        int j = i;
+        while (j + 1 < n && p[j + 1] > p[j]) {
+            j++;
         }
+        long long len = j - i + 1;
+        increasing_subarrays += len * (len + 1) / 2;
+        i = j + 1;
     }
-    increasing_subarrays += (long long)current_block_len * (current_block_len + 1) / 2;
     long long num_lds_ge_2 = total_subarrays - increasing_subarrays;
 
     vector<int> nse(n);
@@ -76,7 +76,10 @@ void solve() {
     build(n + 1);
     vector<int> r_l(n + 1, n);
     for (int l = n - 1; l >= 0; --l) {
-        int min_k = query(1, p[l] - 1, 1, 1, n);
+        int min_k = INF;
+        if (p[l] > 1) {
+            min_k = query(1, p[l] - 1, 1, 1, n);
+        }
         r_l[l] = min(r_l[l + 1], min_k);
         update(p[l], nse[l], 1, 1, n);
     }
@@ -84,7 +87,7 @@ void solve() {
     long long num_lds_ge_3 = 0;
     for (int l = 0; l < n; ++l) {
         if (r_l[l] < n) {
-            num_lds_ge_3 += (n - r_l[l]);
+            num_lds_ge_3 += (long long)(n - r_l[l]);
         }
     }
 
