@@ -3,15 +3,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int node, vector<vector<int>> &graph, vector<bool> &visited, int &nodes, int &degree) {
+bool dfs(int node, vector<vector<int>> &graph, vector<bool> &visited) {
     visited[node] = true;
-    nodes++;
-    degree += graph[node].size();
+    bool ans = true;
+    if (graph[node].size() != 2)
+        ans = false;
     for (int neighbor : graph[node]) {
         if (!visited[neighbor]) {
-            dfs(neighbor, graph, visited, nodes, degree);
+            if (!dfs(neighbor, graph, visited)) {
+                ans = false;
+            }
         }
     }
+
+    return ans;
 }
 
 int main() {
@@ -32,9 +37,7 @@ int main() {
 
     for (int i = 0; i < n; ++i) {
         if (!visited[i]) {
-            int nodes = 0, degree = 0;
-            dfs(i, graph, visited, nodes, degree);
-            if (degree == 2 * nodes) {
+            if (dfs(i, graph, visited)) {
                 cycles++;
             }
         }
