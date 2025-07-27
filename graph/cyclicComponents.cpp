@@ -1,99 +1,45 @@
-// https://codeforces.com/problemset/problem/977/E
+// https://codeforces.com/contest/977/problem/E
 
 #include <bits/stdc++.h>
-#include <cctype>
-#include <cmath>
-#include <cstdlib>
-#include <queue>
-#include <vector>
 using namespace std;
 
-bool traverse(int node, vector<bool> &visited, vector<vector<int>> &graph) {
+void dfs(int node, vector<vector<int>> &graph, vector<bool> &visited, int &nodes, int &degree) {
     visited[node] = true;
-    queue<pair<int, int>> que;
-    que.push({node, -1});
-    int result = -1;
-    int tempNode = -1;
-
-    while (!que.empty()) {
-        auto elt = que.front();
-        int vert = elt.first;
-        int parent = elt.second;
-        que.pop();
-
-        if (parent == -1) {
-            int count = 0;
-            for (int v : graph[vert]) {
-                if (!visited[v]) {
-                    visited[v] = true;
-                    que.push({v, vert});
-                    count++;
-                }
-
-                if (count >= 3)
-                    result = 0;
-            }
-
-            if (count == 2) {
-                auto temp = que.front();
-                que.pop();
-                tempNode = temp.first;
-                visited[temp.first] = false;
-            }
-        } else {
-            int count = 0;
-            bool seenFinal = false;
-            for (int v : graph[vert]) {
-                if (!visited[v]) {
-                    visited[v] = true;
-                    que.push({v, vert});
-                    count++;
-                }
-
-                if (count >= 2)
-                    result = 0;
-
-                if (v == node && parent != node) {
-                    seenFinal = true;
-                }
-            }
-
-            if (seenFinal && result == -1) {
-                result = 1;
-            }
+    nodes++;
+    degree += graph[node].size();
+    for (int neighbor : graph[node]) {
+        if (!visited[neighbor]) {
+            dfs(neighbor, graph, visited, nodes, degree);
         }
     }
-
-    if (tempNode != -1) {
-        visited[tempNode] = true;
-    }
-    if (result == 1)
-        return true;
-    else
-        return false;
 }
 
 int main() {
     int n, m;
     cin >> n >> m;
-
     vector<vector<int>> graph(n);
-    int a, b;
-    while (m--) {
-        cin >> a >> b;
-        a--, b--;
-        graph[a].push_back(b);
-        graph[b].push_back(a);
+    for (int i = 0; i < m; ++i) {
+        int u, v;
+        cin >> u >> v;
+        --u;
+        --v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
     }
 
     vector<bool> visited(n, false);
-    int count = 0;
-    for (int node = 0; node < n; node++) {
-        if (!visited[node]) {
-            count += traverse(node, visited, graph) ? 1 : 0;
+    int cycles = 0;
+
+    for (int i = 0; i < n; ++i) {
+        if (!visited[i]) {
+            int nodes = 0, degree = 0;
+            dfs(i, graph, visited, nodes, degree);
+            if (degree == 2 * nodes) {
+                cycles++;
+            }
         }
     }
 
-    cout << count << endl;
-    return EXIT_SUCCESS;
+    cout << cycles << endl;
+    return 0;
 }
