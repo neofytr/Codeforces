@@ -1,0 +1,5 @@
+{
+  "editor_command": "code",
+  "cpp_template": "#include <bits/stdc++.h>\nusing namespace std;\n\n// Problem: {problem_name}\n// URL: {problem_url}\n// Difficulty: {difficulty}\n// Tags: \n// Strategy: \n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    \n    // Solution here\n    \n    return 0;\n}",
+  "md_template": "# {problem_name}\n\n{problem_link}\n\n## Problem Statement\n<!-- Describe the problem here -->\n\n## Approach\n<!-- Explain your approach -->\n\n## Key Insights\n<!-- List key insights and tricks -->\n\n## Complexity\n- Time: O()\n- Space: O()\n\n## Code\n```cpp\n{code}\n```\n\n## Notes\n<!-- Any additional notes -->\n"
+}

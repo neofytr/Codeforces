@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+import sys
+import os
+from pathlib import Path
+sys.path.append('/home/raj/Desktop/Codeforces')
+from cf-manager import ProblemManager
+
+if __name__ == "__main__":
+    manager = ProblemManager("graphs")
+    manager.run()
