@@ -18,6 +18,13 @@ int traverse(int x, int m, vector<int> &dist) {
             int node = que.front();
             que.pop();
 
+            if (node == m) {
+                // will become really fast due to this
+                // only need to process that much depth as much is required
+                // since after reaching the required depth, we exit
+                return dist[m];
+            }
+
             if (node - 1 >= 0 && dist[node - 1] == -1) {
                 dist[node - 1] = dist[node] + 1;
                 que.push(node - 1);
@@ -29,7 +36,8 @@ int traverse(int x, int m, vector<int> &dist) {
         }
     }
 
-    return dist[m];
+    // should never reach here
+    return -1;
 }
 
 int main() {
