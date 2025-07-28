@@ -27,14 +27,14 @@ using namespace std;
 // Tags: 
 // Strategy: 
 
-int main() {
+int main() {{
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
     // Solution here
     
     return 0;
-}''',
+}}''',
             'md_template': '''# {problem_name}
 
 {problem_link}
@@ -178,6 +178,9 @@ class ProblemManager:
         elif command == 'open' and len(sys.argv) >= 3:
             problem_name = sys.argv[2]
             self.open_problem(problem_name)
+        elif command == 'run':
+            problem_name = sys.argv[2]
+            self.test_problem(problem_name)
         else:
             # Default behavior: create new problem
             problem_name = sys.argv[1]
@@ -206,6 +209,48 @@ Examples:
   ./prog list
 """)
     
+    def test_problem(self, problem_name):
+        problem_dir = self.problems_dir / problem_name
+        if not problem_dir.exists():
+            print(f"Problem '{problem_name}' doesn't exist!")
+            return
+
+        source_file = problem_dir / f"{problem_name}.cpp"
+        if not source_file.exists():
+            print(f"No 'main.cpp' found in {problem_dir}")
+            return
+
+        input_file = self.topic_path / "test"
+        if not input_file.exists():
+            print(f"Input file '{input_file}' doesn't exist!")
+            return
+
+        binary_file = problem_dir / "main"
+
+        print("Compiling...")
+        compile_cmd = ["g++", "-std=c++17", "-O2", str(source_file), "-o", str(binary_file)]
+        try:
+            subprocess.run(compile_cmd, check=True)
+        except subprocess.CalledProcessError:
+            print("Compilation failed!")
+            return
+
+        print("Running...")
+        try:
+            result = subprocess.run(
+            [str(binary_file)],
+            stdin=open(input_file),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+            )
+            print(f"Output:\n{result.stdout}", end="")  # Properly formatted output
+            if result.stderr:
+                print("Errors:\n", result.stderr)
+        except Exception as e:
+            print("Execution failed:", e)
+
+        
     def create_problem(self, problem_name, difficulty="Unknown", problem_url=None):
         """Create a new problem"""
         problem_dir = self.problems_dir / problem_name
