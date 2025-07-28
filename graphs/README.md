@@ -6,6 +6,7 @@ Collection of problems and solutions for graphs.
 ## Problems Solved
 - ✅ **mortalKombat** (hard) - solved
 - ✅ **longJumps** (easy) - solved
+- ✅ **sakurako** (medium) - solved
 - ⏳ **test** (ballInBerland) - unsolved
 - ✅ **ballInBerland** (medium) - solved
 
@@ -14,9 +15,9 @@ Collection of problems and solutions for graphs.
 - Graph Algorithms
 
 ## Progress
-- Total Problems: 4
-- Solved: 3
-- Success Rate: 75.0%
+- Total Problems: 5
+- Solved: 4
+- Success Rate: 80.0%
 
 ---
-*Last updated on 2025-07-28 21:33:11*
+*Last updated on 2025-07-28 22:58:48*
