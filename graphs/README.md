@@ -6,6 +6,7 @@ Collection of problems and solutions for graphs.
 ## Problems Solved
 - ✅ **bersu** (medium) - solved
 - ✅ **shortestPathInDAG** (easy) - solved
+- ✅ **wordLadder** (hard) - solved
 - ✅ **shortestPathInUndirectedGraph** (easy) - solved
 - ✅ **mortalKombat** (hard) - solved
 - ✅ **longJumps** (easy) - solved
@@ -19,9 +20,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 8
-- Solved: 8
+- Total Problems: 9
+- Solved: 9
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-07-30 14:31:33*
+*Last updated on 2025-07-31 00:22:41*
