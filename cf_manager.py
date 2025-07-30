@@ -337,7 +337,6 @@ Examples:
             print(f"❌ Failed to open VS Code: {e}")
     
     def mark_done(self, problem_name):
-        """Mark problem as solved and generate AI documentation"""
         problem_dir = self.problems_dir / problem_name
         
         if not problem_dir.exists():
@@ -348,7 +347,6 @@ Examples:
         md_file = problem_dir / f"{problem_name}.md"
         meta_file = problem_dir / 'meta.json'
         
-        # Update metadata
         with open(meta_file, 'r') as f:
             metadata = json.load(f)
         
@@ -359,14 +357,20 @@ Examples:
         with open(meta_file, 'w') as f:
             json.dump(metadata, f, indent=2)
         
-        # Generate AI documentation
         self.generate_ai_docs(cpp_file, md_file, problem_name)
         
-        # Update global summary
         self.update_global_summary()
         
         print(f"🎉 Marked '{problem_name}' as solved!")
         print(f"📝 Generated AI documentation")
+        
+        print("Pushing to github...")
+        gitCommitMsg = f"Done with {problem_name}"
+        command = f"cd .. && git add . && git commit -m '{gitCommitMsg}' && git push -u origin main"
+        result = subprocess.run(command, shell=True, capture_output=True)
+        print(result.stdout)
+        print("Done!")
+        
     
     def generate_ai_docs(self, cpp_file, md_file, problem_name):
         """Generate documentation using Gemini AI"""

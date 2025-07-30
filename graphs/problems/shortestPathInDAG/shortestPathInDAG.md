@@ -3,78 +3,66 @@
 ```markdown
 ## Shortest Path in a Directed Acyclic Graph (DAG)
 
+This document provides a detailed explanation of a C++ solution for finding the shortest path from a source node (node 0) to all other nodes in a Directed Acyclic Graph (DAG). The problem is based on the "Shortest path in Directed Acyclic Graph" problem available on GeeksforGeeks: [https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1](https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1).  While the URL mentions "undirected graph," the code solves the directed version as specified in the problem description of the linked page.
+
 ### 1. Problem Description
 
-The problem, as indicated by the inline comments and URL (`https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1`), requires finding the shortest path from a source node (node 0) to all other nodes in a given Directed Acyclic Graph (DAG). The graph is represented by a list of edges, where each edge has a source node, a destination node, and a weight. The goal is to return a vector containing the shortest distance from the source node (0) to each other node. If a node is unreachable from the source, its distance should be represented as -1 in the output vector. Note that the problem description on GeeksforGeeks uses the term 'undirected graph', but the solution implemented here correctly finds shortest paths in a DAG.
+Given a DAG represented by a list of edges, where each edge `(u, v, w)` indicates a directed edge from node `u` to node `v` with weight `w`, find the shortest path from source node 0 to all other nodes in the graph. If a node is unreachable from the source, its shortest distance should be represented as -1.
 
 ### 2. Approach Explanation
 
-The solution utilizes a combination of Topological Sort and Distance Relaxation to find the shortest paths in the DAG. The main steps are:
+The solution utilizes the following steps:
 
-1.  **Graph Construction:** The input `edges` vector is used to construct an adjacency list representation of the graph, where each node stores a list of its adjacent nodes along with the corresponding edge weights.
+1.  **Graph Representation:** The input edges are used to construct an adjacency list representation of the DAG. Each element `graph[u]` contains a vector of pairs `(v, w)`, indicating a directed edge from node `u` to node `v` with weight `w`.
 
-2.  **Topological Sort:** A Depth-First Search (DFS) based topological sort is performed on the graph. The `dfs` function recursively visits all reachable nodes from a given node, marking them as visited. After exploring all adjacent nodes, the current node is pushed onto a stack (`st`). This ensures that nodes are added to the stack in reverse topological order.
+2.  **Topological Sort:** A topological sort of the DAG is performed using Depth-First Search (DFS). A stack `st` is used to store the nodes in reverse topological order.  This is crucial because processing nodes in topological order ensures that when we're calculating shortest paths, we've already considered all possible paths leading *to* the current node.
 
-3.  **Distance Initialization:** A `dist` vector is initialized with `INT_MAX` for all nodes, representing infinite distance from the source. The `source` node (node 0) is the starting point for finding shortest paths.
+3.  **Shortest Path Calculation:** After obtaining the topological order, the algorithm iterates through the nodes in the stack. It maintains a `dist` vector to store the shortest distance from the source node to each node.  It initializes all distances to `INT_MAX`.  The following key logic applies:
 
-4.  **Distance Relaxation:** The algorithm iterates through the nodes in the order provided by the topological sort (popping nodes from the `st` stack).  For each node, it relaxes the distances to its adjacent nodes.  Relaxation means checking if the distance to an adjacent node can be reduced by going through the current node.  If `dist[v] > dist[node] + w`, where `v` is an adjacent node, `w` is the weight of the edge between `node` and `v`, then `dist[v]` is updated to `dist[node] + w`.
+    *   If a node is encountered *before* the source node in the topological order, its distance is set to -1, indicating that it is unreachable from the source (0).  This is implemented via the `found` flag.
+    *   For each node, the algorithm iterates through its neighbors and updates the shortest distance to each neighbor. If the distance to a neighbor can be reduced by going through the current node, the `dist` vector is updated using the formula: `dist[v] = min(dist[v], dist[node] + w)`.
 
-5.  **Unreachable Nodes:** A crucial optimization is present to handle unreachable nodes from the source node. During the processing of the topological order, the algorithm uses a boolean `found` to track if the source node (0) has been encountered. Before the source node is reached, all distances remain at `INT_MAX`. Nodes that appear in the topological sort before the source are automatically marked as unreachable (distance -1) since there's no path *from* the source *to* them. This cleverly leverages topological order to identify and handle unreachable nodes efficiently.
-
-6.  **Result:** The `dist` vector, now containing the shortest distances from the source to all nodes, is returned. Distances that remain `INT_MAX` after the relaxation step indicate that the corresponding nodes are unreachable from the source. They are implicitly kept as `INT_MAX`, but the unreachable nodes logic above sets some to -1 even before any distance relaxations.
+4.  **Return Value:**  The `dist` vector, containing the shortest distances from the source node to all other nodes, is returned. Nodes unreachable from the source have a distance of -1.
 
 ### 3. Key Insights and Algorithmic Techniques Used
 
-*   **Topological Sort:**  Topological sort is a fundamental algorithm for DAGs.  It provides an ordering of nodes such that for every directed edge `u -> v`, node `u` comes before node `v` in the ordering. This ordering is crucial for processing nodes in a way that allows distances to be correctly relaxed.
-
-*   **Distance Relaxation:**  Distance relaxation is a core concept in shortest path algorithms.  It iteratively updates the estimated shortest distances until the optimal distances are found. The topological sort ensures that when relaxing the distance to a node, the distances to all its predecessors have already been finalized.
-
-*   **DAG Property:** The algorithm leverages the property of DAGs that shortest paths are well-defined and can be found efficiently using dynamic programming (through relaxation) along the topological order.  No negative cycles exist in a DAG, eliminating the need for more complex algorithms like Bellman-Ford.
-
-*   **Handling Unreachable Nodes:** The `found` flag and the logic of setting distances to -1 *before* the source node is encountered in the topological sort is a smart and efficient way to handle nodes that are not reachable from the source. This avoids the need for a separate post-processing step to identify unreachable nodes based on distances remaining as `INT_MAX`.
+*   **Topological Sort:** Topological sort is a fundamental algorithm for DAGs.  It allows us to process nodes in an order such that all dependencies of a node are processed before the node itself. This makes it ideal for shortest path problems in DAGs because we can guarantee that we've considered all possible paths to a node before calculating its shortest distance.
+*   **Relaxation:** The core of the shortest path algorithm is the relaxation step. This step checks if the current shortest distance to a node can be improved by going through another node. This technique forms the basis for many shortest path algorithms.
+*   **DAG Property:** This solution exploits the property of DAGs that there are no cycles. This guarantees that the shortest path algorithm will converge, as there is no possibility of infinitely decreasing the distance due to a negative weight cycle.  The topological sort is only possible on a DAG.
+*   **Initialization:** Initializing the `dist` vector to `INT_MAX` is essential.  It ensures that the relaxation step correctly updates the shortest distances.
 
 ### 4. Time and Space Complexity Analysis
 
 *   **Time Complexity:**
-    *   Graph Construction: O(E), where E is the number of edges.
-    *   Topological Sort: O(V + E), where V is the number of vertices and E is the number of edges.  The DFS traversal visits each node and edge once.
-    *   Distance Relaxation: O(V + E). We iterate through each node in the topological order (O(V)) and relax the distances to its neighbors (O(E) in total across all nodes).
-    *   Overall: O(V + E).
+    *   DFS for topological sort: O(V + E)
+    *   Iterating through the topological order and relaxing edges: O(V + E)
+    *   Total Time Complexity: **O(V + E)**, where V is the number of vertices and E is the number of edges.
 
 *   **Space Complexity:**
     *   `graph`: O(V + E) to store the adjacency list.
-    *   `vis`: O(V) for the visited array in DFS.
-    *   `st`: O(V) for the stack used in topological sort.
+    *   `vis`: O(V) for visited nodes during topological sort.
+    *   `st`: O(V) to store the topological order.
     *   `dist`: O(V) to store the shortest distances.
-    *   Overall: O(V + E).
+    *   Total Space Complexity: **O(V + E)**
 
 ### 5. Important Code Patterns or Tricks Used
 
-*   **Adjacency List Representation:**  Using an adjacency list to represent the graph is efficient for sparse graphs (graphs with relatively few edges).
-
-*   **Pair<int, int> for Weighted Edges:** Using `pair<int, int>` to represent edges allows storing both the destination node and the weight associated with the edge in the adjacency list.
-
-*   **Stack for Topological Sort:**  Using a stack to store the nodes in reverse topological order is a common technique in topological sort implementations.
-
-*   **INT_MAX for Infinity:**  Using `INT_MAX` to represent infinity for initial distances is a standard practice in shortest path algorithms.
-
-*   **Early Unreachable Node Marking:** Marking unreachable nodes before processing the source node by inspecting the topological sort order is an elegant optimization.
-
+*   **Adjacency List Representation:** Using an adjacency list to represent the graph is efficient for sparse graphs (graphs with relatively few edges compared to the number of vertices).
+*   **Pair for Edge Representation:** Storing edges as pairs `(neighbor, weight)` in the adjacency list makes it easy to access both the neighbor node and the edge weight.
+*   **Stack for Topological Order:** The stack data structure is used naturally in DFS to maintain the reverse topological order of the graph's nodes.
+*   **INT_MAX Initialization:**  Initializing distances to `INT_MAX` facilitates the relaxation process, as any finite distance will be smaller.
+*   **`found` flag for unreachability**: Using the `found` flag simplifies the determination and handling of unreachable nodes. It ensures only the vertices from the source vertex and beyond in the topological order are processed.
 ### 6. Edge Cases Handled
 
-*   **Unreachable Nodes:** As described above, the solution explicitly handles nodes unreachable from the source node by marking their distances as -1.
+*   **Unreachable Nodes:** The `found` flag and the initial `INT_MAX` initialization of the `dist` vector handle unreachable nodes.  If a node remains at `INT_MAX` after the shortest path calculation, it is guaranteed to be unreachable from the source, and will be set to -1.
+*   **Source Node Not Present:** The initial part of the `while(!st.empty())` loop effectively skips processing any node that comes *before* the source in the topological sort, ensuring they are set to -1 (unreachable).
+*   **DAG Guarantee:** This solution explicitly relies on the input being a DAG. It does *not* handle cycles. If the graph had cycles, topological sort would not be possible, and the algorithm would likely enter an infinite loop or produce incorrect results. No specific error handling exists for non-DAG input.
 
-*   **DAG Property:** Although not explicitly checked, the algorithm assumes that the input graph is a DAG. It will not work correctly if the graph contains cycles.
-
-*   **Source Node Only:** If the source node is the only node in the graph, or if all other nodes are unreachable, the distances will be handled correctly; unreachable nodes will have a distance of -1, and the source will have a distance of 0.
-
-```
 
 ## Original Code
 ```cpp
 #include <bits/stdc++.h>
 #include <climits>
-#include <queue>
 #include <vector>
 using namespace std;
 
@@ -122,13 +110,12 @@ class Solution {
         while (!st.empty()) {
             int node = st.top();
             st.pop();
-            if (!found && node != source) {
-                dist[node] = -1;
-                continue;
-            }
             if (node == source) {
                 found = true;
-                dist[node] = 0;
+            }
+            if (!found) {
+                dist[node] = -1;
+                continue;
             }
 
             for (auto elt : graph[node]) {
@@ -145,4 +132,4 @@ class Solution {
 ```
 
 ---
-*Documentation generated on 2025-07-30 13:12:58*
+*Documentation generated on 2025-07-30 13:33:43*

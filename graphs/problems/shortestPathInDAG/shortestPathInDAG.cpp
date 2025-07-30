@@ -47,13 +47,12 @@ class Solution {
         while (!st.empty()) {
             int node = st.top();
             st.pop();
-            if (!found && node != source) {
-                dist[node] = -1;
-                continue;
-            }
             if (node == source) {
                 found = true;
-                dist[node] = 0;
+            }
+            if (!found) {
+                dist[node] = -1;
+                continue;
             }
 
             for (auto elt : graph[node]) {
