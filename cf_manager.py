@@ -368,7 +368,7 @@ Examples:
         gitCommitMsg = f"Done with {problem_name}"
         command = f"cd .. && git add . && git commit -m '{gitCommitMsg}' && git push -u origin main"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        print(result.stdout)
+        print(result.stdout, end="")
         print("Done!")
         
     
