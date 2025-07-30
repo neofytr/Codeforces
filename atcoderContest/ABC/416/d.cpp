@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <queue>
-#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -10,34 +8,31 @@ void solve() {
     int n, m;
     cin >> n >> m;
 
-    vector<int> b(n);
+    vector<int> a(n), b(n);
+    for (int &val : a)
+        cin >> val;
+    for (int &val : b)
+        cin >> val;
 
-    unordered_map<int, int> freq;
-    vector<bool> assigned(n, false);
-    priority_queue<int, vector<int>, greater<>> que;
-    for (int index = 0; index < n; index++) {
-        int x;
-        cin >> x;
-        freq[x]++;
-    }
-
+    multiset<int> ms(a.begin(), a.end());
     int total = 0;
-    for (int index = 0; index < n; index++) {
-        if (freq[m - b[index]]) {
-            freq[m - b[index]]--;
-            assigned[index] = true;
-            continue;
-        }
-        total = (total + b[index]) % m;
-    }
 
-    for (auto &elt : freq) {
-        int a = elt.first;
-        total = (total + (a * freq[a]) % m) % m;
+    for (int &eltB : b) {
+        int target = m - eltB; // i want to get as close to m as possible so that the mod operation gives the closest possible to zero
+        auto itr = ms.lower_bound(target);
+
+        if (itr == ms.end()) {
+            // there is nothing in the array that is >= target
+            // pick the smallest one (since there is nothing >= target, this will give the smallest value of (a + b) mod m)
+            itr = ms.begin();
+        }
+
+        int eltA = *itr;
+        ms.erase(itr);
+        total += (eltA + eltB) % m;
     }
 
     cout << total << endl;
-    return;
 }
 
 int32_t main() {
