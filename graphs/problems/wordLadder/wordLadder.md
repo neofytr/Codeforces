@@ -1,69 +1,92 @@
 # wordLadder
 
 ```markdown
-## Word Ladder Problem Documentation
+## Word Ladder Solution Documentation
 
-This document provides a comprehensive analysis of the provided C++ code, which solves the "Word Ladder" problem.
+This document provides a comprehensive analysis of the provided C++ code, which solves the "Word Ladder" problem, originally found on [LeetCode](https://leetcode.com/problems/word-ladder/description/).
 
 ### 1. Problem Description
 
-The "Word Ladder" problem, as defined on LeetCode (https://leetcode.com/problems/word-ladder/description/), asks us to find the length of the shortest transformation sequence from a `beginWord` to an `endWord`, using a given `wordList`. The transformation must follow these rules:
+Given a `beginWord`, an `endWord`, and a `wordList`, find the length of the shortest transformation sequence from `beginWord` to `endWord`, such that:
 
 1.  Only one letter can be changed at a time.
 2.  Each transformed word must exist in the `wordList`.
 
-If no such transformation sequence exists, the function should return 0.
+Return 0 if no such transformation sequence exists.
+
+For example:
+
+```
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log","cog"]
+
+Output: 5
+
+Explanation: As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
+return its length 5.
+```
 
 ### 2. Approach Explanation
 
-The provided code uses a graph-based Breadth-First Search (BFS) approach to find the shortest path. Here's a breakdown:
+The solution uses a Breadth-First Search (BFS) algorithm to explore the possible word transformations. The algorithm can be summarized as follows:
 
-1.  **Graph Construction:**  The `wordList` and `beginWord` are treated as nodes in a graph.  An edge exists between two words if they differ by only one letter (are neighbors).
-2.  **Adjacency Check:** The `isNeighbour` function efficiently determines if two words are neighbors by comparing them character by character.
-3.  **Handling `beginWord`:** The code checks if the `beginWord` is present in `wordList`. If not, it's treated as an extra node (`n`) and its neighbors are determined.  This ensures we can always start the BFS from the `beginWord`.
-4.  **Handling `endWord`:** If the `endWord` is not present in the `wordList`, the code immediately returns 0 because a transformation is impossible.
-5.  **Breadth-First Search (BFS):** BFS is used to traverse the graph starting from the `beginWord` (source).  The distance from the source to each node is tracked.
-6.  **Result:** The distance from the `beginWord` to the `endWord` is returned, incremented by 1 to include the `beginWord` itself in the transformation count.
+1. **Initialization:**
+   - Store the given `wordList` in an `unordered_set` for efficient word lookup.
+   - Check if the `endWord` is present in the `wordList`. If not, return 0 (no solution).
+   - Initialize a `queue` to store words to be processed, starting with the `beginWord`.
+   - Initialize a `vis` (visited) `unordered_set` to keep track of visited words, preventing cycles.
+   - Initialize a `depth` variable to 1, representing the length of the current transformation sequence.
+
+2. **BFS Iteration:**
+   - While the `queue` is not empty:
+     - Process all words at the current `depth`.
+     - For each word in the current level of the BFS:
+       - If the current word is equal to the `endWord`, return the current `depth` (solution found).
+       - Generate all possible one-letter-different words from the current word.
+       - For each generated word:
+         - If the generated word exists in the `wordList` and has not been visited:
+           - Add the generated word to the `vis` set.
+           - Add the generated word to the `queue` for processing in the next level.
+     - Increment the `depth` after processing all words at the current level.
+
+3. **No Solution:**
+   - If the `queue` becomes empty and the `endWord` is not found, return 0 (no solution).
 
 ### 3. Key Insights and Algorithmic Techniques Used
 
-*   **Graph Representation:**  Representing the problem as a graph allows us to leverage graph traversal algorithms like BFS to find the shortest path.
-*   **Breadth-First Search (BFS):** BFS is crucial for finding the *shortest* path in an unweighted graph. The algorithm explores all neighbors at the current depth before moving to the next depth, guaranteeing that the first time the `endWord` is reached, it's via the shortest possible path.
-*   **Adjacency List:** The `graph` is represented using an adjacency list (`vector<vector<int>>`), which is efficient for sparse graphs (graphs where most nodes are not connected to each other). In this case, the number of neighbors for each word is likely to be relatively small compared to the total number of words.
-*   **Virtual Node for `beginWord`:** The code intelligently handles the case where the `beginWord` is not in the `wordList` by adding a "virtual" node representing it and connecting it to its neighbors in the `wordList`.  This avoids special-case handling during the BFS.
+*   **Breadth-First Search (BFS):** BFS guarantees finding the *shortest* path from the `beginWord` to the `endWord`. Each level of the BFS represents one transformation step.
+*   **`unordered_set` for Efficient Lookup:** Using an `unordered_set` (`dict`) to store the `wordList` allows for fast `O(1)` average-case lookup of words when generating potential transformations.  Similarly, `vis` is used for efficient checking of visited words.
+*   **Generating One-Letter-Different Words:** The code iterates through each character of the current word and tries every possible letter from 'a' to 'z' at that position.  This is the core of the transformation logic.
 
 ### 4. Time and Space Complexity Analysis
 
-*   **Time Complexity:**
-    *   `isNeighbour`: O(L), where L is the length of the words.
-    *   Graph Construction: O(N^2 * L), where N is the number of words in `wordList`. This comes from the nested loops comparing each pair of words.
-    *   BFS: O(V + E), where V is the number of vertices (words + potentially the beginWord) and E is the number of edges. In the worst case, E could be close to V^2, but often it's significantly less.  The BFS itself is O(N + E) or approximately O(N^2) if we assume a dense graph.
-
-    Therefore, the overall time complexity is dominated by the graph construction: **O(N^2 * L)**.
-*   **Space Complexity:**
-    *   `graph`: O(V + E), where V is the number of vertices (words + potentially the beginWord) and E is the number of edges.  This can be O(N^2) in the worst case.
-    *   `vis` and `dist`: O(N), where N is the number of words.
-    *   Queue: O(N) in the worst case.
-
-    Therefore, the overall space complexity is **O(N^2)** in the worst case, due to the adjacency list representation of the graph.
+*   **Time Complexity:** O(M\*N\*26), where:
+    *   N is the number of words in `wordList`.
+    *   M is the length of the words in `wordList`.  The outer `while (!que.empty())` loop runs at most N times (in the worst case, we visit all words in the wordList). The inner `while (size--)` loop also runs O(N) times in the worst case.  Inside the inner loop, we generate all possible one-letter-different words. Generating these words takes O(M\*26) time (iterating through each position and changing it to all 26 characters). The `dict.count()` and `vis.count()` operations take O(1) on average due to the use of unordered sets.  Therefore, the time complexity is O(N + N * (M * 26)) which simplifies to O(M\*N\*26).
+*   **Space Complexity:** O(N), where N is the number of words in `wordList`.
+    *   `dict`: Stores the `wordList` as an `unordered_set` (O(N)).
+    *   `vis`: Stores visited words (O(N) in the worst case).
+    *   `que`: Stores words to be processed in the BFS (O(N) in the worst case).
 
 ### 5. Important Code Patterns or Tricks Used
 
-*   **Adjacency List Representation:** Using an adjacency list is very common when dealing with graph problems, especially when the graph is sparse.
-*   **`INT_MAX` for Unreachable Nodes:** Using `INT_MAX` as the initial distance value in the `dist` vector is a standard way to represent unreachable nodes in BFS-based shortest path algorithms.
-*   **`isNeighbour` Function:**  Encapsulating the neighbor check logic into a separate function makes the code more readable and maintainable.
-*   **Handling Edge Cases:** Properly handling cases where the `beginWord` or `endWord` are not in the `wordList` is crucial for robustness.
+*   **Using `unordered_set` for efficient lookups:** This is a standard technique when you need to quickly check if an element exists in a collection.
+*   **Generating all possible transformations:** The nested loops efficiently explore all possible one-letter-different words.  The `orig` variable is used to restore the original character after each transformation attempt.
+*   **Standard BFS Implementation:** The code follows the standard BFS template, using a `queue` and a `vis` set to explore the graph level by level.  The `size` variable is used to iterate through all nodes in a single level of the BFS.
 
-### 6. Edge Cases Handled
+### 6. Any Edge Cases Handled
 
-*   **`endWord` Not in `wordList`:**  The code explicitly checks if the `endWord` is present in the `wordList`. If not, it returns 0 because no transformation is possible.
-*   **`beginWord` Not in `wordList`:** The code handles the case where the `beginWord` is not in the `wordList` by creating a virtual node and connecting it to its neighbors.  This allows the BFS to start correctly.
-*   **No Transformation Sequence Exists:** If the BFS completes and the `endWord` is not reachable (i.e., `dist[end] == INT_MAX`), the code returns 0, indicating that no transformation sequence exists.
+*   **`endWord` not in `wordList`:** The code explicitly checks if the `endWord` is present in the `wordList` before starting the BFS. If it's not there, it returns 0, indicating no possible transformation.
+*   **Empty `wordList` or `beginWord` == `endWord`:** The algorithm correctly handles the case where the `wordList` is empty, or if `beginWord` is the same as the `endWord`. In those cases, it will either return 0 or 1 respectively.
+*   **No valid transformation sequence:** If the BFS completes without finding the `endWord`, the code returns 0, indicating that no valid transformation sequence exists.
 ```
 
 ## Original Code
 ```cpp
 #include <bits/stdc++.h>
+#include <string>
+#include <vector>
 using namespace std;
 
 // Problem: wordLadder
@@ -73,86 +96,47 @@ using namespace std;
 // Strategy:
 
 class Solution {
-  private:
-    bool isNeighbour(string &u, string &v) {
-        int n = (int)u.size();
-        int count = 0;
-        for (int index = 0; index < n; index++) {
-            if (u[index] != v[index])
-                count++;
-            if (count > 1)
-                return false;
-        }
-        return count == 1;
-    }
-
   public:
     int ladderLength(string beginWord, string endWord, vector<string> &wordList) {
-        int n = (int)wordList.size();
-        vector<vector<int>> graph(n + 1);
-        bool found = false;
-        int src = -1;
-        bool foundEnd = false;
-        int end = -1;
-
-        for (int u = 0; u < n; u++) {
-            if (wordList[u] == beginWord) {
-                found = true;
-                src = u;
-            }
-            if (wordList[u] == endWord) {
-                foundEnd = true;
-                end = u;
-            }
-            for (int v = u + 1; v < n; v++) {
-                if (isNeighbour(wordList[u], wordList[v])) {
-                    graph[u].push_back(v);
-                    graph[v].push_back(u);
-                }
-            }
-        }
-
-        if (!found) {
-            for (int v = 0; v < n; v++) {
-                if (isNeighbour(beginWord, wordList[v])) {
-                    graph[n].push_back(v);
-                    graph[v].push_back(n); // bidirectional
-                }
-            }
-            src = n;
-        }
-
-        if (!foundEnd) {
+        int wordLen = (int)beginWord.length();
+        unordered_set<string> dict(wordList.begin(), wordList.end());
+        if (dict.find(endWord) == dict.end())
             return 0;
-        }
 
-        vector<bool> vis(n + 1, false);
-        vector<int> dist(n + 1, INT_MAX);
-        queue<int> que;
-
-        dist[src] = 0;
-        vis[src] = true;
-        que.push(src);
+        unordered_set<string> vis;
+        queue<string> que;
+        int depth = 1;
+        que.push(beginWord);
+        vis.insert(beginWord);
 
         while (!que.empty()) {
-            int node = que.front();
-            que.pop();
-            for (int v : graph[node]) {
-                if (!vis[v]) {
-                    vis[v] = true;
-                    dist[v] = dist[node] + 1;
-                    que.push(v);
+            int size = (int)que.size();
+            while (size--) {
+                string node = que.front();
+                que.pop();
+
+                if (node == endWord)
+                    return depth;
+                for (int i = 0; i < wordLen; i++) {
+                    char orig = node[i];
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        node[i] = c;
+                        if (dict.count(node) && !vis.count(node)) {
+                            vis.insert(node);
+                            que.push(node);
+                        }
+                    }
+                    node[i] = orig;
                 }
             }
+            depth++;
         }
 
-        if (dist[end] == INT_MAX)
-            return 0;
-        return dist[end] + 1; // add 1 to include the beginWord
+        return 0;
     }
 };
 
 ```
 
 ---
-*Documentation generated on 2025-07-31 00:22:41*
+*Documentation generated on 2025-07-31 21:23:13*

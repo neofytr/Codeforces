@@ -13,6 +13,7 @@ Collection of problems and solutions for graphs.
 - ✅ **sakurako** (medium) - solved
 - ✅ **mocha** (easy) - solved
 - ✅ **ballInBerland** (medium) - solved
+- ⏳ **wordLadderTwo** (hard) - unsolved
 
 ## Key Techniques
 - Dynamic Programming
@@ -20,9 +21,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 9
+- Total Problems: 10
 - Solved: 9
-- Success Rate: 100.0%
+- Success Rate: 90.0%
 
 ---
-*Last updated on 2025-07-31 00:22:41*
+*Last updated on 2025-07-31 21:23:13*
