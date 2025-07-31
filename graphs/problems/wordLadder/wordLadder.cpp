@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
+#include <queue>
 #include <string>
+#include <unordered_set>
 #include <vector>
 using namespace std;
 
@@ -12,31 +14,31 @@ using namespace std;
 class Solution {
   public:
     int ladderLength(string beginWord, string endWord, vector<string> &wordList) {
-        int wordLen = (int)beginWord.length();
-        unordered_set<string> dict(wordList.begin(), wordList.end());
-        if (dict.find(endWord) == dict.end())
-            return 0;
+        int wordLength = (int)beginWord.length();
+        unordered_set<string> list(wordList.begin(), wordList.end());
 
-        unordered_set<string> vis;
-        queue<string> que;
+        if (!list.count(endWord))
+            return 0;
+        list.insert(beginWord);
+
         int depth = 1;
+        queue<string> que;
         que.push(beginWord);
-        vis.insert(beginWord);
 
         while (!que.empty()) {
             int size = (int)que.size();
             while (size--) {
                 string node = que.front();
                 que.pop();
-
                 if (node == endWord)
                     return depth;
-                for (int i = 0; i < wordLen; i++) {
+
+                for (int i = 0; i < wordLength; i++) {
                     char orig = node[i];
                     for (char c = 'a'; c <= 'z'; c++) {
                         node[i] = c;
-                        if (dict.count(node) && !vis.count(node)) {
-                            vis.insert(node);
+                        if (list.count(node)) {
+                            list.erase(node);
                             que.push(node);
                         }
                     }
