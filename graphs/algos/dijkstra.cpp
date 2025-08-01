@@ -17,7 +17,7 @@ int main() {
     // read m edges and construct the graph
     for (int i = 0; i < m; i++) {
         int u, v, w;
-        cin >> u >> v >> w;
+        cin >> u >> v >> w; // the weight is non-negative, since dijkstra's algorithm only works with non-negative weight
         graph[u].push_back({v, w});
         graph[v].push_back({u, w}); // since the graph is undirected
     }
