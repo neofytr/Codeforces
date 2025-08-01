@@ -2,7 +2,6 @@
 #include <climits>
 #include <cstdlib>
 #include <ostream>
-#include <queue>
 #include <vector>
 using namespace std;
 
@@ -27,21 +26,26 @@ int main() {
     for (int x = 0; x < n; x++) {
         parent[x] = x;
     }
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> minHeap;
+    set<pair<int, int>> minHeap;
 
     dist[start] = 0;
-    minHeap.push({dist[start], start});
+    minHeap.insert({dist[start], start});
     while (!minHeap.empty()) {
-        int x = minHeap.top().second;
-        minHeap.pop();
+        auto elt = *(minHeap.begin());
+        int x = elt.second;
+        minHeap.erase(elt);
         for (auto elt : graph[x]) {
             int v = elt.first;
             int w = elt.second;
 
             if (dist[x] + w < dist[v]) {
+                // since we've reached v again with a smaller distance than it was last time visited with,
+                // this path isn't coming from the original {dist[v], v}; so it's already in the queue
+                // remove it
+                minHeap.erase({dist[v], v});
                 parent[v] = x;
                 dist[v] = dist[x] + w;
-                minHeap.push({dist[v], v});
+                minHeap.insert({dist[v], v});
             }
         }
     }
