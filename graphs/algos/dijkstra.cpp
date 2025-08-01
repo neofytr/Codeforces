@@ -16,6 +16,8 @@ using namespace std;
 // will be processed first. Even though the smaller distance is correct,
 // the earlier (worse) entry gets processed, wasting cycles.
 
+// Nonetheless, the answer returned by the queue approach is also correct
+
 //
 // This is why Dijkstra uses a priority queue — it always processes the node
 // with the smallest known distance next, maintaining correctness and efficiency.
