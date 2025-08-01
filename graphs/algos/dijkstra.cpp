@@ -5,6 +5,29 @@
 #include <vector>
 using namespace std;
 
+// If we use a regular queue (FIFO), nodes may be processed in the wrong order —
+// specifically, not in increasing order of their current shortest distances.
+//
+// This means a node might be processed before we've discovered the true shortest
+// path to it, leading to wasted work.
+//
+// For example, if two distance updates for a node `v` are added to the queue,
+// one with a larger distance first and a smaller one later, the larger one
+// will be processed first. Even though the smaller distance is correct,
+// the earlier (worse) entry gets processed, wasting cycles.
+
+//
+// This is why Dijkstra uses a priority queue — it always processes the node
+// with the smallest known distance next, maintaining correctness and efficiency.
+
+// Even when using a priority queue, multiple entries for the same node can be inserted —
+// some with outdated (larger) distances.
+//
+// To ensure efficiency, we should ignore any entry if we've already found a better
+// (shorter) distance to that node. This avoids unnecessary work and keeps the algorithm fast.
+//
+// Typically, this is done by checking: if the current distance is greater than dist[u], skip it.
+
 int main() {
     int n, m;
     cin >> n >> m;                           // n = number of nodes, m = number of edges
