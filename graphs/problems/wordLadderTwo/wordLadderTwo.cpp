@@ -49,6 +49,11 @@ class Solution {
         dist[beginWord] = 0;
         bool stop = false;
 
+        // we would want all paths from the beginWord to endWord that are the shortest
+
+        // we take into account paths from the current level to the next level; to do this either we set
+        // all nodes to visited when we finish a level, or see if a node is a level below and visited (visited during the same level traversal)
+
         while (!que.empty() && !stop) {
             int size = (int)que.size();
             while (size--) {
