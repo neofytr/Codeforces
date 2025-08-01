@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <climits>
+#include <cstdlib>
 #include <ostream>
 #include <queue>
 #include <vector>
@@ -22,6 +23,10 @@ int main() {
     }
 
     vector<int> dist(n, INT_MAX);
+    vector<int> parent(n);
+    for (int x = 0; x < n; x++) {
+        parent[x] = x;
+    }
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> minHeap;
 
     dist[start] = 0;
@@ -34,16 +39,34 @@ int main() {
             int w = elt.second;
 
             if (dist[x] + w < dist[v]) {
+                parent[v] = x;
                 dist[v] = dist[x] + w;
                 minHeap.push({dist[v], v});
             }
         }
     }
+
+    // print one of the shortest paths from start to node
+    // print -1 if there is no path
     for (int node = 0; node < n; node++) {
-        cout << start << " -> " << node << " = ";
         if (dist[node] == INT_MAX)
             cout << -1 << endl;
-        else
-            cout << dist[node] << endl;
+        else {
+            stack<int> path;
+            int x = node;
+            while (parent[x] != x) {
+                path.push(x);
+                x = parent[x];
+            }
+            path.push(start);
+
+            while (!path.empty()) {
+                cout << path.top() << " ";
+                path.pop();
+            }
+            cout << endl;
+        }
     }
+
+    return EXIT_SUCCESS;
 }
