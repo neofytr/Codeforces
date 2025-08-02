@@ -42,7 +42,7 @@ class Solution {
             int node = elt.second;
             for (auto e : graph[node]) {
                 int v = e.first;
-                int w = e.second;
+                int w = e.second; 
                 if (dist[node] + w < dist[v]) {
                     heap.erase({dist[v], v});
                     dist[v] = dist[node] + w;
