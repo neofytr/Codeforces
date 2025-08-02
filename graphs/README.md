@@ -5,6 +5,7 @@ Collection of problems and solutions for graphs.
 
 ## Problems Solved
 - ✅ **bersu** (medium) - solved
+- ✅ **shortestPathWeightedUndirectedGraph** (medium) - solved
 - ✅ **shortestPathInDAG** (easy) - solved
 - ✅ **wordLadder** (hard) - solved
 - ✅ **shortestPathInUndirectedGraph** (easy) - solved
@@ -21,9 +22,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 10
-- Solved: 10
+- Total Problems: 11
+- Solved: 11
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-01 11:12:00*
+*Last updated on 2025-08-02 11:17:22*
