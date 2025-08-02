@@ -7,6 +7,7 @@ Collection of problems and solutions for graphs.
 - ✅ **shortestBinary** (medium) - solved
 - ✅ **bersu** (medium) - solved
 - ✅ **shortestPathWeightedUndirectedGraph** (medium) - solved
+- ✅ **minEffort** (medium) - solved
 - ✅ **shortestPathInDAG** (easy) - solved
 - ✅ **wordLadder** (hard) - solved
 - ✅ **shortestPathInUndirectedGraph** (easy) - solved
@@ -23,9 +24,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 12
-- Solved: 12
+- Total Problems: 13
+- Solved: 13
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-02 14:41:04*
+*Last updated on 2025-08-02 15:58:48*
