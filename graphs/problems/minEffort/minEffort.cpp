@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 #include <climits>
+#include <queue>
+#include <utility>
 #include <vector>
 using namespace std;
 
@@ -14,38 +16,41 @@ class Solution {
     int minimumEffortPath(vector<vector<int>> &heights) {
         int n = (int)heights.size();
         int m = (int)heights[0].size();
-        int dr[] = {0, -1, 0, +1};
-        int dc[] = {-1, 0, +1, 0};
-        // effort[y][x] is the min effort required to move from 0,0 to y,x along any path
-        // a path's effort is the maximum of the absolute difference between any two consecutive nodes in it
+        int dy[] = {0, -1, 0, 1};
+        int dx[] = {-1, 0, +1, 0};
+
+        // effort[y][x] is the min effort needed to go from 0, 0 to y, x along any path
+        // the effort of a path is the maximum value of absolute diff of heights of any two consecutive nodes in the path
         vector<vector<int>> effort(n, vector<int>(m, INT_MAX));
-        set<pair<int, pair<int, int>>> minHeap;
+        set<pair<int, pair<int, int>>> heap;
 
         effort[0][0] = 0;
-        minHeap.insert({0, {0, 0}});
-        while (!minHeap.empty()) {
-            auto elt = *(minHeap.begin());
-            int currEffort = elt.first;
-            int nodeY = elt.second.first;
-            int nodeX = elt.second.second;
-            minHeap.erase(elt);
+        heap.insert({effort[0][0], {0, 0}});
+        while (!heap.empty()) {
+            auto elt = *(heap.begin());
+            int currMinEffort = elt.first;
+            int currX = elt.second.second;
+            int currY = elt.second.first;
+            heap.erase(elt);
+
+            if (currX == m - 1 && currY == n - 1)
+                return currMinEffort;
 
             for (int index = 0; index < 4; index++) {
-                int dy = nodeY + dr[index];
-                int dx = nodeX + dc[index];
+                int ny = currY + dy[index];
+                int nx = currX + dx[index];
 
-                if (dy >= 0 && dx >= 0 && dx < m && dy < n) {
-                    int newCurrEffort = max(currEffort, abs(heights[dy][dx] - heights[nodeY][nodeX])); // effort value along the current path
-                    if (effort[dy][dx] > newCurrEffort) {
-                        minHeap.erase({effort[dy][dx], {dy, dx}});
-                        // wont traverse back to the parent since the parent's effort would necessarily be <= currEffort
-                        effort[dy][dx] = newCurrEffort;
-                        minHeap.insert({effort[dy][dx], {dy, dx}});
+                if (ny >= 0 && nx >= 0 && nx < m && ny < n) {
+                    int newEffort = max(currMinEffort, abs(heights[ny][nx] - heights[currY][currX]));
+                    if (effort[ny][nx] > newEffort) {
+                        heap.erase({effort[ny][nx], {ny, nx}});
+                        effort[ny][nx] = newEffort;
+                        heap.insert({effort[ny][nx], {ny, nx}});
                     }
                 }
             }
         }
 
-        return effort[n - 1][m - 1];
+        return -1;
     }
 };
