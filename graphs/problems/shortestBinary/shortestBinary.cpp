@@ -38,7 +38,14 @@ class Solution {
                     if (ny >= 0 && ny < n && nx >= 0 && nx < n && !vis[ny][nx] && !grid[ny][nx]) {
                         vis[ny][nx] = true;
                         que.push({ny, nx});
-                        
+                        /*
+
+                        if (ny == n-1 && nx == n-1) {
+                            return depth + 1;
+                        }
+                            
+                        This will fail only for n = 1
+                        */
                     }
                 }
             }
