@@ -1,70 +1,62 @@
 # shortestBinary
 
 ```markdown
-## Shortest Path in Binary Matrix - Problem Analysis and Solution
+## Documentation: Shortest Path in Binary Matrix
+
+This document describes a C++ solution to the "Shortest Path in Binary Matrix" problem on LeetCode ([https://leetcode.com/problems/shortest-path-in-binary-matrix/description/](https://leetcode.com/problems/shortest-path-in-binary-matrix/description/)).
 
 ### 1. Problem Description
 
-The problem, as indicated in the code comments and the linked LeetCode URL ([https://leetcode.com/problems/shortest-path-in-binary-matrix/description/](https://leetcode.com/problems/shortest-path-in-binary-matrix/description/)), is "Shortest Path in Binary Matrix".  The task is to find the length of the shortest path from the top-left cell (0, 0) to the bottom-right cell (n-1, n-1) in a square binary matrix (grid) of size n x n.  The path must satisfy the following conditions:
-
-*   The path can only traverse cells with a value of 0 (representing an open cell).
-*   The path can move in 8 directions (up, down, left, right, and diagonally).
-*   The length of the path is the number of cells visited.
-
-If no such path exists, the function should return -1.
+Given an *n x n* binary matrix `grid`, where `0` represents an empty cell and `1` represents a blocked cell, find the length of the shortest clear path from the top-left cell (0, 0) to the bottom-right cell (n - 1, n - 1). A clear path is a path where all the cells are `0`, and you can move to one of the eight adjacent cells (including diagonals). If there is no such path, return `-1`. The length of the path is the number of cells in the path.
 
 ### 2. Approach Explanation
 
-The solution employs a Breadth-First Search (BFS) algorithm to find the shortest path.  Here's a breakdown:
+The solution utilizes a Breadth-First Search (BFS) algorithm to find the shortest path.  BFS is suitable because it explores the graph layer by layer, guaranteeing that the first time the target cell is reached, it's via the shortest path. The algorithm can be summarized as follows:
 
 1.  **Initialization:**
-    *   `dist[i][j]` array:  A 2D array of size `n x n` is initialized with `INT_MAX` representing the shortest distance from the source (0, 0) to each cell (i, j).  `INT_MAX` means initially, no path is known to any cell.
-    *   `que`: A queue is used to store the cells to be visited during the BFS traversal. It contains pairs of (row, col) coordinates.
-    *   `vis[i][j]` array: A 2D boolean array `vis[i][j]` is used to keep track of visited cells.  It prevents revisiting cells and thus avoids infinite loops.
-    *   Check for initial blockage: If the starting cell `grid[0][0]` is 1, there's no path, and the function cannot even start searching.
+    *   Check if the starting cell `grid[0][0]` or the target cell `grid[n-1][n-1]` is blocked (equal to 1). If so, return `-1` because no path exists.
+    *   Create a queue `que` to store the cells to be visited.
+    *   Create a `vis` (visited) matrix to keep track of visited cells to avoid cycles.
+    *   Initialize the queue with the starting cell (0, 0) and mark it as visited.
+    *   Initialize `depth` to 1 (representing the starting cell).
 
 2.  **BFS Traversal:**
-    *   The algorithm starts by adding the source cell (0, 0) to the queue and marking it as visited (`vis[0][0] = true`).  The initial distance from the source to itself is set to 0 (`dist[0][0] = 0`).
-    *   The `while` loop continues as long as the queue is not empty. Inside the loop:
-        *   The `s` variable gets the current queue size to process all elements at the same "level" before advancing further, ensuring shortest-path logic.
-        *   The cell at the front of the queue (`que.front()`) is dequeued.
-        *   The algorithm iterates through all 8 possible neighbors of the current cell using nested loops.
-        *   For each neighbor:
-            *   It checks if the neighbor is within the grid boundaries (`x >= 0 && x < n && y >= 0 && y < n`).
-            *   It ensures the neighbor is not the current cell itself (`!(x == nodeX && y == nodeY)`).
-            *   It checks if the neighbor is an open cell (`!grid[y][x]`).
-            *   It checks if the neighbor has not been visited before (`!vis[y][x]`).
-            *   If all conditions are met, the neighbor is marked as visited (`vis[y][x] = true`), its distance is updated (`dist[y][x] = dist[nodeY][nodeX] + 1`), and it is added to the queue for further exploration.
+    *   While the queue is not empty:
+        *   Process all the cells at the current level (indicated by `sz = que.size()`).
+        *   For each cell (y, x) in the current level:
+            *   If the cell is the target cell (n - 1, n - 1), return the current `depth`.
+            *   Explore all 8 adjacent cells (ny, nx):
+                *   Check if the new cell (ny, nx) is within the bounds of the grid (ny >= 0 && ny < n && nx >= 0 && nx < n).
+                *   Check if the new cell has not been visited (`!vis[ny][nx]`) and is not blocked (`!grid[ny][nx]`).
+                *   If all conditions are met, mark the new cell as visited and add it to the queue.
+        *   Increment `depth` to represent the next level in the search.
 
-3.  **Result:**
-    *   After the BFS traversal is complete, the algorithm checks the distance to the destination cell (`dist[n-1][n-1]`).
-    *   If the distance is still `INT_MAX`, it means there is no path to the destination, and the function returns -1.
-    *   Otherwise, it returns `dist[n-1][n-1] + 1`.  The `+ 1` is crucial because the `dist` array stores the number of *edges* (moves) from the starting cell, not the total number of cells visited. We need the number of *cells* in the path.
+3.  **No Path Found:**
+    *   If the queue becomes empty and the target cell has not been reached, return `-1`, indicating that no clear path exists.
 
 ### 3. Key Insights and Algorithmic Techniques Used
 
-*   **Breadth-First Search (BFS):** BFS is the perfect algorithm for finding the shortest path in an unweighted graph (or a graph where all edges have the same weight). In this case, each valid move (to an adjacent cell) has a weight of 1.  BFS guarantees finding the shortest path because it explores nodes level by level.
-*   **Distance Tracking:**  The `dist` array efficiently stores the minimum distance from the source to each cell found so far during the BFS traversal.
-*   **Visited Set:** The `vis` array is essential to prevent cycles and redundant computations. Without it, the algorithm would potentially loop infinitely.
-*   **8-Directional Movement:** The nested loops `for (int x = nodeX - 1; x <= nodeX + 1; x++)` and `for (int y = nodeY - 1; y <= nodeY + 1; y++)` efficiently handle all eight possible directions.
+*   **Breadth-First Search (BFS):**  BFS is crucial for finding the shortest path in an unweighted graph (or a graph where all edges have the same weight, as is the case here). It explores the graph level by level, so the first path found is guaranteed to be the shortest.
+*   **Visited Matrix:**  The `vis` matrix is essential to prevent infinite loops and to ensure that each cell is visited at most once, optimizing the search.
+*   **8-Directional Movement:** The problem requires moving in all 8 directions (up, down, left, right, and diagonals). The `dx` and `dy` arrays conveniently represent the offsets for these directions.
+*   **Early Exit:** The solution incorporates an early exit check. If the start or end cell is a `1`, then it immediately exits. This is an important optimization.
+*   **Level-by-Level Processing:** The inner `while(sz--)` loop allows processing nodes level by level in BFS, which is key to correctly tracking the path length/depth.
 
 ### 4. Time and Space Complexity Analysis
 
-*   **Time Complexity: O(N^2)**, where N is the side length of the square matrix.  In the worst case, BFS might visit every cell in the grid. The nested loops inside the main while loop iterate a constant number of times (8 neighbors).
-*   **Space Complexity: O(N^2)**.  The space is primarily used by the `dist` and `vis` arrays, both of size `N x N`. The queue `que` can, in the worst case, hold all the nodes of the grid.
+*   **Time Complexity:** O(n<sup>2</sup>), where *n* is the size of the grid. In the worst case, we might need to visit every cell in the grid once. The BFS operations (queue operations and neighbor exploration) take constant time per cell.
+*   **Space Complexity:** O(n<sup>2</sup>) due to the queue `que` and the visited matrix `vis`. In the worst case, the queue could hold all the cells in the grid.
 
 ### 5. Important Code Patterns or Tricks Used
 
-*   **Using `INT_MAX` for Initialization:**  Initializing the `dist` array with `INT_MAX` is a common technique in shortest-path algorithms. It allows us to easily identify unvisited or unreachable nodes.
-*   **Visited Array ( `vis`) Importance:** This is a standard trick in graph traversals. Without the visited array, the algorithm would be stuck in a loop, and would probably have a StackOverflow error if the input size is large enough.
-*   **Iterating Through 8 Directions:** The nested loop structure used to iterate through the 8 directions is concise and efficient.
-*   **`dist + 1`:** Remembering to add `1` to the final `dist` value to get the number of *cells* visited is crucial for satisfying the problem's requirement.
+*   **`dx` and `dy` arrays:**  These arrays are a common trick for simplifying the exploration of neighboring cells in grid-based problems. They eliminate the need to write repetitive code for each direction.
+*   **`auto [y, x] = que.front();`:** This is a convenient C++17 feature (structured binding) to unpack the `pair` retrieved from the queue, making the code more readable.
+*   **Level Order Traversal with Size:** The `sz = que.size()` and the inner `while(sz--)` loop implement level-order traversal. This pattern correctly tracks the distance (depth) from the starting node.  Without it, the `depth` variable would not be incremented correctly reflecting the path length.
 
 ### 6. Edge Cases Handled
 
-*   **Starting Cell Blocked:** The code explicitly checks if the starting cell `grid[0][0]` is blocked (equal to 1). If it is, the algorithm cannot proceed, and no path exists.
-*   **No Path:**  If after the BFS traversal, the distance to the destination cell `dist[n-1][n-1]` is still `INT_MAX`, it means there is no path, and the function returns -1.
-*   **Single Cell Matrix:** The code will still work correctly for a 1x1 matrix.
+*   **Blocked Starting or Ending Cell:** The solution explicitly checks if the starting cell or the ending cell is blocked.  If either is blocked, it immediately returns -1.
+*   **No Path Exists:** If the BFS traversal completes without finding a path to the target cell (i.e., the queue becomes empty), the solution returns -1, indicating that no path exists.
 ```
 
 ## Original Code
@@ -84,45 +76,38 @@ using namespace std;
 class Solution {
   public:
     int shortestPathBinaryMatrix(vector<vector<int>> &grid) {
-        int n = (int)grid.size();
-        vector<vector<int>> dist(n, vector<int>(n, INT_MAX));
+        int n = grid.size();
+        if (grid[0][0] != 0 || grid[n - 1][n - 1] != 0)
+            return -1;
+
         queue<pair<int, int>> que;
         vector<vector<bool>> vis(n, vector<bool>(n, false));
+        const int dx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+        const int dy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
-        int srcX = 0, srcY = 0;
-        int destX = n - 1, destY = n - 1;
-        if (!grid[srcY][srcX]) {
-            dist[srcY][srcX] = 0;
-            vis[srcY][srcY] = true;
-            que.push({srcY, srcX});
-        }
+        que.push({0, 0});
+        vis[0][0] = true;
+        int depth = 1;
 
         while (!que.empty()) {
-            int s = (int)que.size();
-            while (s--) {
-                auto elt = que.front();
-                int nodeX = elt.second;
-                int nodeY = elt.first;
+            int sz = que.size();
+            while (sz--) {
+                auto [y, x] = que.front();
                 que.pop();
-
-                for (int x = nodeX - 1; x <= nodeX + 1; x++) {
-                    for (int y = nodeY - 1; y <= nodeY + 1; y++) {
-                        if (x >= 0 && x < n && y >= 0 && y < n && !(x == nodeX && y == nodeY)) {
-                            if (!grid[y][x] && !vis[y][x]) {
-                                vis[y][x] = true;
-                                dist[y][x] = dist[nodeY][nodeX] + 1;
-                                que.push({y, x});
-                            }
-                        }
+                if (y == n - 1 && x == n - 1) // checking and returning here is much safer and correct; what will happen if there is only one element, we can't check in the loop
+                    return depth;
+                for (int dir = 0; dir < 8; ++dir) {
+                    int ny = y + dy[dir], nx = x + dx[dir];
+                    if (ny >= 0 && ny < n && nx >= 0 && nx < n && !vis[ny][nx] && !grid[ny][nx]) {
+                        vis[ny][nx] = true;
+                        que.push({ny, nx});
                     }
                 }
             }
+            depth++;
         }
 
-        if (dist[destY][destX] == INT_MAX)
-            return -1;
-
-        return dist[destY][destX] + 1; // since we've to return the number of visited cells and not distance
+        return -1;
     }
 };
 
@@ -143,4 +128,4 @@ int main() {
 ```
 
 ---
-*Documentation generated on 2025-08-02 14:30:54*
+*Documentation generated on 2025-08-02 14:40:16*

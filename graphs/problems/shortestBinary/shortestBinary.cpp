@@ -13,45 +13,39 @@ using namespace std;
 class Solution {
   public:
     int shortestPathBinaryMatrix(vector<vector<int>> &grid) {
-        int n = (int)grid.size();
-        vector<vector<int>> dist(n, vector<int>(n, INT_MAX));
+        int n = grid.size();
+        if (grid[0][0] != 0 || grid[n - 1][n - 1] != 0)
+            return -1;
+
         queue<pair<int, int>> que;
         vector<vector<bool>> vis(n, vector<bool>(n, false));
+        const int dx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+        const int dy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
-        int srcX = 0, srcY = 0;
-        int destX = n - 1, destY = n - 1;
-        if (!grid[srcY][srcX]) {
-            dist[srcY][srcX] = 0;
-            vis[srcY][srcY] = true;
-            que.push({srcY, srcX});
-        }
+        que.push({0, 0});
+        vis[0][0] = true;
+        int depth = 1;
 
         while (!que.empty()) {
-            int s = (int)que.size();
-            while (s--) {
-                auto elt = que.front();
-                int nodeX = elt.second;
-                int nodeY = elt.first;
+            int sz = que.size();
+            while (sz--) {
+                auto [y, x] = que.front();
                 que.pop();
-
-                for (int x = nodeX - 1; x <= nodeX + 1; x++) {
-                    for (int y = nodeY - 1; y <= nodeY + 1; y++) {
-                        if (x >= 0 && x < n && y >= 0 && y < n && !(x == nodeX && y == nodeY)) {
-                            if (!grid[y][x] && !vis[y][x]) {
-                                vis[y][x] = true;
-                                dist[y][x] = dist[nodeY][nodeX] + 1;
-                                que.push({y, x});
-                            }
-                        }
+                if (y == n - 1 && x == n - 1) // checking and returning here is much safer and correct; what will happen if there is only one element, we can't check in the loop
+                    return depth;
+                for (int dir = 0; dir < 8; ++dir) {
+                    int ny = y + dy[dir], nx = x + dx[dir];
+                    if (ny >= 0 && ny < n && nx >= 0 && nx < n && !vis[ny][nx] && !grid[ny][nx]) {
+                        vis[ny][nx] = true;
+                        que.push({ny, nx});
+                        
                     }
                 }
             }
+            depth++;
         }
 
-        if (dist[destY][destX] == INT_MAX)
-            return -1;
-
-        return dist[destY][destX] + 1; // since we've to return the number of visited cells and not distance
+        return -1;
     }
 };
 
