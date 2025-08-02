@@ -28,7 +28,6 @@ int main() {
     }
 
     vector<vector<long long>> final_mood(n + 2, vector<long long>(k_bound + 1));
-
     for (int m = 0; m <= k_bound; ++m) {
         final_mood[n + 1][m] = m;
     }
