@@ -98,6 +98,42 @@ class SolutionThree {
     }
 };
 
+class SolutionFour {
+  public:
+    int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
+        vector<vector<pair<int, int>>> graph(n);
+        for (auto &f : flights) {
+            int from = f[0], to = f[1], price = f[2];
+            graph[from].emplace_back(to, price);
+        }
+
+        // we do dijkstra in increasing order of pathLen
+        set<tuple<int, int, int>> heap; // pathLen, currNode, pathDist
+        vector<int> dist(n, INT_MAX);
+
+        dist[src] = 0;
+        heap.insert({1, src, dist[src]});
+        while (!heap.empty()) {
+            auto [pathLen, currNode, pathDist] = *(heap.begin());
+            heap.erase(heap.begin());
+
+            if (pathLen >= k + 2)
+                continue;
+
+            for (auto &[v, w] : graph[currNode]) {
+                if (pathDist + w < dist[v]) {
+                    // we have visited v probably with a greater number of stops, but with a shorter distance
+                    // we need to consider this path
+                    dist[v] = pathDist + w;
+                    heap.insert({pathLen + 1, v, dist[v]});
+                }
+            }
+        }
+
+        return dist[dst] == INT_MAX ? -1 : dist[dst];
+    }
+};
+
 class Solution {
   public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
@@ -154,7 +190,7 @@ class Solution {
                 continue;
 
             // explore all neighbors of the current node
-            for (auto &[next, price] : graph[currNode]) { 
+            for (auto &[next, price] : graph[currNode]) {
                 int newCost = currCost + price; // if multiple paths lead to currNode, using minCost[currNode] may give us the minimum cost to reach currNode via previously explored paths
                                                 // and that may not be equal to the cost to reach currNode from the current path
 
