@@ -17,6 +17,7 @@ Collection of problems and solutions for graphs.
 - ✅ **mocha** (easy) - solved
 - ✅ **ballInBerland** (medium) - solved
 - ✅ **wordLadderTwo** (hard) - solved
+- ✅ **numDest** (hard) - solved
 - ✅ **cheapestFlights** (hard) - solved
 
 ## Key Techniques
@@ -25,9 +26,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 14
-- Solved: 14
+- Total Problems: 15
+- Solved: 15
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-03 12:46:52*
+*Last updated on 2025-08-03 20:42:52*
