@@ -59,21 +59,49 @@ class SolutionTwo {
             graph[from].emplace_back(to, price);
         }
 
-        // queue holds: (current total cost, current node, number of stops so far)
+        // queue holds: (current total cost, current node, number of nodes seen so far)
         queue<tuple<int, int, int>> que;
-        que.push({0, src, 0});
+        que.push({0, src, 1});
 
         // this stores the minimum cost to reach each node
         // if a cheaper cost is found via a path with allowed stops, update it
         vector<int> minCost(n, INT_MAX);
         minCost[src] = 0;
 
+        // the algorithm explores the graph in increasing number of steps
+        // if currDist + w < dist[v], this means we can reach v in possibly greater number of nodes, but in a smaller distance
+        // we can try this path out since we may reach dst from this lesser cost path in a total lesser cost than
+        // dst was previously visited with
+        // however, if currDist + w >= dist[v], this means we again reached v, with a greater number of nodes, but also
+        // at a greater cost, there's no need to consider this path
+
+        // The algorithm explores the graph in increasing number of steps (or "stops").
+        // For each neighbor `v` of the current node `currNode`, we compute a possible new cost: `currDist + w`.
+
+        // Now, we consider two scenarios:
+
+        // 1. If (currDist + w < dist[v]):
+        //    - This means we have found a **cheaper path to node `v`** than any previous one.
+        //    - Although this new path may involve **more stops** than before,
+        //      the **lower cost may allow us to reach the destination `dst` more cheaply overall**.
+        //    - So, we should explore this path further, as it may lead to a cheaper route to the destination.
+
+        // 2. If (currDist + w >= dist[v]):
+        //    - This means we're reaching node `v` again, possibly with **more stops** and at a **higher cost** than before.
+        //    - Since we already found a cheaper way to reach `v`, exploring this path further is unlikely to improve our result.
+        //    - Therefore, we **skip** this path to avoid unnecessary work and potential cycles.
+
+        // Summary:
+        // -> We only continue exploring a neighbor `v` if we've found a cheaper way to get there (`currDist + w < dist[v]`).
+        // -> This approach balances between exploring all possible paths and pruning inefficient ones,
+        //    helping us find the minimum-cost path to the destination within the allowed number of stops.
+
         while (!que.empty()) {
             auto [currCost, currNode, stops] = que.front();
             que.pop();
 
-            // if we’ve used more than k stops, this path is not allowed
-            if (stops > k)
+            // if we’ve used atleast k + 2 nodes, this path is not allowed
+            if (stops >= k + 2)
                 continue;
 
             // explore all neighbors of the current node
