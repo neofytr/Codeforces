@@ -154,7 +154,7 @@ class Solution {
                 continue;
 
             // explore all neighbors of the current node
-            for (auto &[next, price] : graph[currNode]) {
+            for (auto &[next, price] : graph[currNode]) { 
                 int newCost = currCost + price; // if multiple paths lead to currNode, using minCost[currNode] may give us the minimum cost to reach currNode via previously explored paths
                                                 // and that may not be equal to the cost to reach currNode from the current path
 
