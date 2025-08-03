@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include <climits>
+#include <vector>
 using namespace std;
 
 // Problem: cheapestFlights
@@ -8,6 +10,46 @@ using namespace std;
 // Strategy:
 
 class Solution {
+  public:
+    int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
+        vector<vector<pair<int, int>>> graph(n);
+        for (auto &f : flights) {
+            int from = f[0], to = f[1], price = f[2];
+            graph[from].emplace_back(to, price);
+        }
+
+        // min-heap: (cost_so_far, current_node, stops_used)
+        set<tuple<int, int, int>> pq;
+        pq.insert({0, src, 0});
+
+        // visited[node][stops] = minimum cost to reach `node` with `stops` stops
+        vector<vector<int>> visited(n, vector<int>(k + 2, INT_MAX));
+        visited[src][0] = 0;
+
+        while (!pq.empty()) {
+            auto [cost, u, stops] = *pq.begin();
+            pq.erase(pq.begin());
+
+            if (u == dst)
+                return cost;
+
+            if (stops > k)
+                continue;
+
+            for (auto &[v, price] : graph[u]) {
+                int newCost = cost + price;
+                if (newCost < visited[v][stops + 1]) {
+                    visited[v][stops + 1] = newCost;
+                    pq.insert({newCost, v, stops + 1});
+                }
+            }
+        }
+
+        return -1;
+    }
+};
+
+class SolutionTwo {
   public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
         // build adjacency list: graph[u] = {v, price}
