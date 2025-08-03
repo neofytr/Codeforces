@@ -1,89 +1,74 @@
 # cheapestFlights
 
 ```markdown
-# Cheapest Flights Within K Stops
+## Cheapest Flights Within K Stops
 
-## 1. Problem Description
+This document analyzes a C++ solution to the "Cheapest Flights Within K Stops" problem, found on LeetCode: [https://leetcode.com/problems/cheapest-flights-within-k-stops/description/](https://leetcode.com/problems/cheapest-flights-within-k-stops/description/)
 
-The problem, found on LeetCode as "[Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/description/)", asks to find the cheapest price from a source city (`src`) to a destination city (`dst`) with at most `k` stops.  You are given `n` cities labeled from `0` to `n - 1`, and a list of flights where `flights[i] = [from_i, to_i, price_i]` indicates a flight from city `from_i` to city `to_i` with a price of `price_i`. If there's no such route, return `-1`.
+### 1. Problem Description
 
-## 2. Approach Explanation
+Given a set of flights represented as a list of edges `flights`, where each edge `flights[i] = [from_i, to_i, price_i]` represents a flight from city `from_i` to city `to_i` with a cost of `price_i`.  Also given the number of cities `n`, a source city `src`, a destination city `dst`, and a maximum number of stops `k`, find the cheapest price from `src` to `dst` with at most `k` stops. If there is no such route, return -1.
 
-The code provides two solutions to this problem, `Solution` and `SolutionTwo`, both leveraging graph traversal to find the cheapest flight.  They use slightly different approaches to accomplish the same goal:
+### 2. Approach Explanation
 
-**Solution (Dijkstra-like with visited array):**
+The problem can be solved using graph traversal algorithms.  The solutions provided showcase three approaches:
 
-1.  **Graph Representation:** Builds an adjacency list (`graph`) to represent the flights, where `graph[u]` stores a list of pairs `(v, price)` representing flights from city `u` to city `v` with the associated price.
+*   **SolutionTwo (Dijkstra with Stops):** This solution employs a modified Dijkstra's algorithm using a priority queue (implemented as a `std::set` in this case) to explore the graph.  It maintains a `visited` array to store the minimum cost to reach each node with a specific number of stops.  The priority queue stores tuples of (cost, node, stops), prioritizing nodes with lower costs.
 
-2.  **Priority Queue (Min-Heap):** Uses a `set` as a min-heap (`pq`) to store tuples of the form `(cost_so_far, current_node, stops_used)`.  The heap is prioritized by the cost, ensuring that nodes with lower costs are explored first.
+*   **SolutionThree (DFS with Memoization):** This solution uses Depth-First Search (DFS) with memoization to avoid redundant calculations. The `dfs` function recursively explores possible paths from the source to the destination. The `dp` array stores the minimum cost to reach each node with a given number of remaining flights.
 
-3.  **Visited Array:** Utilizes a `visited` 2D vector to track the minimum cost to reach each node (`node`) with a certain number of stops (`stops`). `visited[node][stops]` stores the minimum cost to reach `node` using `stops` stops.
+*   **Solution (BFS with Cost Optimization):** This is generally the optimal solution and uses Breadth-First Search (BFS) and a cost optimization approach. The solution constructs an adjacency list representation of the flights. It then uses a queue to perform a BFS traversal of the graph, keeping track of the current cost, the current node, and the number of stops taken. It also uses a `minCost` array to store the minimum cost to reach each node seen so far. It only enqueues a neighbor if a cheaper path is found to that neighbor.
 
-4.  **Traversal:**
-    *   Starts by adding the source node (`src`) to the priority queue with a cost of `0` and `0` stops.
-    *   While the priority queue is not empty:
-        *   Extracts the node with the minimum cost from the queue.
-        *   If the current node is the destination (`dst`), it returns the current cost.
-        *   If the number of stops used exceeds `k`, it skips the current path (because we can only have up to `k` stops).
-        *   Iterates through the neighbors of the current node.
-        *   For each neighbor, calculates the new cost to reach it.
-        *   If the new cost is less than the current minimum cost to reach the neighbor with `stops + 1` stops (i.e., `newCost < visited[v][stops + 1]`), updates `visited[v][stops + 1]` and adds the neighbor to the priority queue.
+### 3. Key Insights and Algorithmic Techniques Used
 
-5.  **Return -1:** If the destination is not reached after exploring all possible paths, it returns `-1`.
+*   **Graph Representation:** Using an adjacency list (`vector<vector<pair<int, int>>> graph`) is efficient for representing the flight connections, where `graph[u]` stores a list of pairs `(v, price)` representing flights from city `u` to city `v` with a given price.
 
-**SolutionTwo (BFS with Cost Optimization):**
+*   **Dijkstra's Algorithm (Modified):**  SolutionTwo utilizes Dijkstra's algorithm, which finds the shortest path from a source node to all other nodes in a graph. The modification lies in the `stops` parameter, which ensures that we explore paths with at most `k` stops.  The `visited` array with `k+2` columns is crucial to tracking the minimum cost to a node with a *specific* number of stops. This prevents the algorithm from choosing a more costly route simply because it has fewer steps initially.  Using a `std::set` ensures the lowest cost node is always processed next.
 
-1.  **Graph Representation:** Same as in Solution.
+*   **DFS with Memoization (Dynamic Programming):** SolutionThree combines DFS with memoization to optimize performance. Memoization stores intermediate results in the `dp` array, so redundant computations are avoided. The state `dp[node][remainingFlights]` represents the minimum cost to reach the destination from `node` with `remainingFlights` allowed. This top-down dynamic programming approach improves efficiency.
 
-2.  **Queue (BFS):** Uses a queue (`que`) to perform a Breadth-First Search (BFS). The queue stores tuples of the form `(current total cost, current node, number of nodes seen so far)`.
+*   **BFS for Shortest Paths (with Optimization):** The core insight in the `Solution` class is to use BFS, along with the crucial optimization of only enqueuing a neighbor if a strictly *cheaper* path to it is found.  The `minCost` array holds the minimum cost found so far to reach each node.  The condition `newCost < minCost[next]` is vital for pruning the search space and preventing revisiting nodes unnecessarily, leading to significant performance gains. This approach guarantees finding the shortest path (least cost) while adhering to the `k` stops constraint.
 
-3.  **`minCost` Array:** An array `minCost` is maintained to keep track of the minimum cost to reach each city.  `minCost[i]` stores the minimum cost to reach city `i`.
+*   **Stops vs. Flights:**  It's essential to understand that `k` represents the *maximum number of stops*, which translates to a maximum of `k+1` flights. This is reflected in the size of the `visited` array (SolutionTwo), the bounds of the `dfs` recursion in SolutionThree, and the termination condition in the main BFS loop (`stops >= k + 2` in Solution).
 
-4.  **Traversal:**
+### 4. Time and Space Complexity Analysis
 
-    * Starts by adding the source node (`src`) to the queue with cost 0 and number of nodes seen as 1.
-    * While the queue is not empty:
-        * Dequeue the element from the front of the queue.
-        * If the number of nodes visited (`stops`) so far is more than `k + 1` (meaning `k` stops), then the path is discarded.
-        * Iterate through the neighbors of the current node.
-        *  Calculate the new cost to reach the neighboring city.
-        *  If the `newCost` is less than the current minimum cost to reach that neighbor city, then update `minCost[next]` to `newCost` and enqueue the neighbor city with an updated stop count of `stops + 1`.
+*   **SolutionTwo (Dijkstra with Stops):**
 
-5.  **Return -1:** If the destination is not reached or `minCost[dst]` is still INT\_MAX, returns -1. Otherwise, returns `minCost[dst]`.
+    *   **Time Complexity:** O(E * K * log(N * K)), where E is the number of flights (edges), N is the number of cities (nodes), and K is the maximum number of stops.  The `set` operations (`insert`, `erase`) take O(log(N*K)), and each edge is potentially visited up to K times.
+    *   **Space Complexity:** O(N * K) for the `visited` array.
 
-## 3. Key Insights and Algorithmic Techniques
+*   **SolutionThree (DFS with Memoization):**
 
-*   **Graph Traversal:** Both solutions use graph traversal to explore the possible flight routes. `Solution` uses a variant of Dijkstra's algorithm (although it doesn't guarantee optimality if there are negative edge weights or cycles, which are not present in this problem definition).  `SolutionTwo` leverages BFS.
-*   **Dynamic Programming (implicit):**  The `visited` array in `Solution` and the `minCost` array in `SolutionTwo` are forms of dynamic programming. They store intermediate results (minimum cost to reach a node with a certain number of stops) to avoid recomputation.
-*   **Optimization:** Both solutions optimize their search by pruning paths that are unlikely to lead to a cheaper solution. In `Solution`, this is done by checking if `newCost < visited[v][stops + 1]`. In `SolutionTwo`, it's done by checking if `newCost < minCost[next]`.
+    *   **Time Complexity:** O(N * E * K), where N is the number of cities, E is the number of flights, and K is the maximum number of stops. Each state `dp[node][remainingFlights]` is computed at most once, and the DFS explores at most E neighbors for each node.
+    *   **Space Complexity:** O(N * K) for the `dp` array and O(N+K) for the recursion call stack, which in worst case can grow to O(N) or O(K).
 
-## 4. Time and Space Complexity Analysis
+*   **Solution (BFS with Cost Optimization):**
 
-**Solution:**
+    *   **Time Complexity:** O(V * E) where V is the number of vertices (cities) and E is the number of edges (flights). While it appears similar to a standard BFS, the optimization of only enqueuing a node if a cheaper path is found drastically reduces the number of nodes visited.  In the worst case, we might still visit all edges but practical performance is very high.
+    *   **Space Complexity:** O(V + E) for the graph representation, the `minCost` array (size V), and the queue, where V is the number of cities and E is the number of flights.
 
-*   **Time Complexity:** O(E * K * log(N * K)), where E is the number of flights, N is the number of cities, and K is the maximum number of stops. The `set` operations (insert, erase) take log(N*K) time. The outer loop runs at most E * K times.
-*   **Space Complexity:** O(N * K), due to the `graph` adjacency list, the priority queue (set), and the `visited` array.
+### 5. Important Code Patterns or Tricks Used
 
-**SolutionTwo:**
+*   **Adjacency List Representation:**  Efficiently storing graph connections.
 
-*   **Time Complexity:** O(V + E), in the worst case if we traverse every edge once and enqueue every vertex once. The queue can hold at most V vertices at any given time. In this specific case the complexity is actually higher. Every node `v` can enter the queue K times so the complexity is O(V*K + E) where K is the number of stops.
-*   **Space Complexity:** O(V + E + V*K), for the adjacency list, the queue, and the `minCost` array.
+*   **Tuple Usage:**  Using `std::tuple` to store multiple related values (cost, node, stops) for each entry in the priority queue or the main queue for BFS.
 
-## 5. Important Code Patterns or Tricks Used
+*   **INT_MAX Initialization:**  Initializing cost/distance arrays with `INT_MAX` to represent initially unreachable nodes.  This is a common pattern in shortest path algorithms.
 
-*   **Adjacency List:** The use of an adjacency list is a standard way to represent graphs efficiently.
-*   **Priority Queue/Queue**: Selection of the right data structure allows for efficient sorting and exploration of the possible options.
-*   **2D Visited Array:** Using a 2D array `visited[node][stops]` to store the minimum cost to reach a node with a specific number of stops is a useful technique in problems that involve limiting the number of steps or hops.  It is very efficient to keep track of the minimum cost to reach the node.
-*   **Tuples**: Using `std::tuple` to group related data together is a clear and concise way to manage the cost, node, and stop information.
-*   **Early Exit (Pruning):** The `if (stops > k)` or `if (stops >= k+2)` check allows to exit early from paths that are invalid, improving efficiency.
-*   **`emplace_back`:** Instead of using `push_back`, `emplace_back` can avoid creating a temporary object, which can improve performance in some cases.
+*   **Early Exit/Pruning:**  The `if (stops >= k + 2) continue;` statement in `Solution` is a crucial optimization that prevents exploring paths that exceed the allowed number of stops. The `if (newCost < minCost[next])` condition ensures that only cheaper paths are explored.
 
-## 6. Edge Cases Handled
+*   **Memoization with -1:** SolutionThree employs -1 to denote uncomputed states in the DP array, distinguishing them from valid costs of 0.
 
-*   **No Path:** The code returns `-1` if no path exists from the source to the destination within the allowed number of stops.
-*   **Source == Destination:** Although not explicitly handled, if the source and destination are the same, the algorithms should return 0, assuming that the graph doesn't have negative edge weights (which is true for this problem).
-*   **`k = 0`:** The code works correctly even when `k = 0` (meaning no stops allowed).
-*   **INT_MAX Initialization:** Using `INT_MAX` to initialize the `visited` and `minCost` arrays is a common practice to represent "infinity" or "unvisited" states.  It's important to ensure that adding costs doesn't cause overflow issues (which are avoided in the comparisons).
+### 6. Edge Cases Handled
+
+*   **No Path Found:**  All solutions return -1 if no path from `src` to `dst` is found within the allowed number of stops. This is achieved by checking if the cost to reach `dst` remains `INT_MAX` after the graph traversal.
+
+*   **Source and Destination Same:** If `src` and `dst` are the same, the algorithm should ideally return 0. This scenario might not be explicitly handled in the code but would naturally result in the correct answer. However, an explicit check would make the code more robust and readable.
+
+*   **Empty Flights List:** The code gracefully handles the case where the `flights` list is empty, as the loops iterating through the flights would simply be skipped.
+
+*   **Zero Stops Allowed:** The algorithms correctly handle the case where `k` is 0, meaning only direct flights from `src` to `dst` are considered.
 ```
 
 ## Original Code
@@ -99,7 +84,7 @@ using namespace std;
 // Tags:
 // Strategy:
 
-class Solution {
+class SolutionTwo {
   public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
         vector<vector<pair<int, int>>> graph(n);
@@ -139,7 +124,56 @@ class Solution {
     }
 };
 
-class SolutionTwo {
+class SolutionThree {
+  public:
+    int dfs(int node, int dst, int remainingFlights, vector<vector<int>> &dp, vector<vector<pair<int, int>>> &graph) {
+        // Base Case 1: If we've reached the destination, the cost from here is 0.
+        if (node == dst) {
+            return 0;
+        }
+
+        // Base Case 2: If we have no more flights left but haven't reached the destination.
+        if (remainingFlights == 0) {
+            return INT_MAX;
+        }
+
+        // Memoization Check: Use -1 to check if state is already computed.
+        if (dp[node][remainingFlights] != -1) {
+            return dp[node][remainingFlights];
+        }
+
+        int minCost = INT_MAX;
+        for (auto &[neighbor, cost] : graph[node]) {
+            int costFromNeighbor = dfs(neighbor, dst, remainingFlights - 1, dp, graph);
+
+            // If a valid path exists from the neighbor
+            if (costFromNeighbor != INT_MAX) {
+                minCost = min(minCost, cost + costFromNeighbor);
+            }
+        }
+
+        // Store the result (which could be INT_MAX) and return.
+        return dp[node][remainingFlights] = minCost;
+    }
+
+    int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
+        vector<vector<pair<int, int>>> graph(n);
+        for (auto &f : flights) {
+            graph[f[0]].emplace_back(f[1], f[2]);
+        }
+
+        // DP State: dp[node][flights_left]
+        // Initialize with -1 to distinguish from a computed cost of 0 or INT_MAX.
+        vector<vector<int>> dp(n, vector<int>(k + 2, -1));
+
+        // k stops means k+1 flights.
+        int result = dfs(src, dst, k + 1, dp, graph);
+
+        return (result == INT_MAX) ? -1 : result;
+    }
+};
+
+class Solution {
   public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
         // build adjacency list: graph[u] = {v, price}
@@ -227,4 +261,4 @@ class SolutionTwo {
 ```
 
 ---
-*Documentation generated on 2025-08-03 10:26:57*
+*Documentation generated on 2025-08-03 11:37:09*

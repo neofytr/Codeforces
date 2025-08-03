@@ -9,7 +9,7 @@ using namespace std;
 // Tags:
 // Strategy:
 
-class Solution {
+class SolutionTwo {
   public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
         vector<vector<pair<int, int>>> graph(n);
@@ -49,7 +49,56 @@ class Solution {
     }
 };
 
-class SolutionTwo {
+class SolutionThree {
+  public:
+    int dfs(int node, int dst, int remainingFlights, vector<vector<int>> &dp, vector<vector<pair<int, int>>> &graph) {
+        // Base Case 1: If we've reached the destination, the cost from here is 0.
+        if (node == dst) {
+            return 0;
+        }
+
+        // Base Case 2: If we have no more flights left but haven't reached the destination.
+        if (remainingFlights == 0) {
+            return INT_MAX;
+        }
+
+        // Memoization Check: Use -1 to check if state is already computed.
+        if (dp[node][remainingFlights] != -1) {
+            return dp[node][remainingFlights];
+        }
+
+        int minCost = INT_MAX;
+        for (auto &[neighbor, cost] : graph[node]) {
+            int costFromNeighbor = dfs(neighbor, dst, remainingFlights - 1, dp, graph);
+
+            // If a valid path exists from the neighbor
+            if (costFromNeighbor != INT_MAX) {
+                minCost = min(minCost, cost + costFromNeighbor);
+            }
+        }
+
+        // Store the result (which could be INT_MAX) and return.
+        return dp[node][remainingFlights] = minCost;
+    }
+
+    int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
+        vector<vector<pair<int, int>>> graph(n);
+        for (auto &f : flights) {
+            graph[f[0]].emplace_back(f[1], f[2]);
+        }
+
+        // DP State: dp[node][flights_left]
+        // Initialize with -1 to distinguish from a computed cost of 0 or INT_MAX.
+        vector<vector<int>> dp(n, vector<int>(k + 2, -1));
+
+        // k stops means k+1 flights.
+        int result = dfs(src, dst, k + 1, dp, graph);
+
+        return (result == INT_MAX) ? -1 : result;
+    }
+};
+
+class Solution {
   public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
         // build adjacency list: graph[u] = {v, price}
