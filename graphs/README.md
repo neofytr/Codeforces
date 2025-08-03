@@ -17,6 +17,7 @@ Collection of problems and solutions for graphs.
 - ✅ **mocha** (easy) - solved
 - ✅ **ballInBerland** (medium) - solved
 - ✅ **wordLadderTwo** (hard) - solved
+- ✅ **cheapestFlights** (hard) - solved
 
 ## Key Techniques
 - Dynamic Programming
@@ -24,9 +25,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 13
-- Solved: 13
+- Total Problems: 14
+- Solved: 14
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-02 16:37:22*
+*Last updated on 2025-08-03 08:35:58*
