@@ -1,72 +1,69 @@
 # findTheCity
 
 ```markdown
-## Documentation: Find the City With the Smallest Number of Neighbors at a Threshold Distance
+# Problem: Find the City With the Smallest Number of Neighbors at a Threshold Distance
 
-This document provides a comprehensive analysis of the provided C++ code, which solves the "Find the City With the Smallest Number of Neighbors at a Threshold Distance" problem on LeetCode ([https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/)).
+## 1. Problem Description
 
-### 1. Problem Description
+The problem, as found on LeetCode at [https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/), asks to find the city with the smallest number of reachable cities within a given distance threshold.  Given a graph representing cities and roads (edges) between them, where each road has a weight (distance), we need to determine, for each city, how many other cities are reachable within a specific `distanceThreshold`. The goal is to return the city that has the minimum number of reachable cities within that threshold.  If there are multiple cities with the same minimum number of reachable cities, return the city with the greatest city number.
 
-Given `n` cities numbered from `0` to `n-1`, and a list of bidirectional edges `edges` where `edges[i] = [ui, vi, weighti]` represents a bidirectional edge between cities `ui` and `vi` with weight `weighti`. Also, given an integer `distanceThreshold`.  The distance between two cities is defined as the length of the shortest path between them.
+## 2. Approach Explanation
 
-The task is to find the city that has the smallest number of cities reachable from it within the `distanceThreshold`. If there are multiple such cities, return the city with the greatest number.
+The provided code contains two distinct solutions to the problem:
 
-### 2. Approach Explanation
+**Solution 1 (Dijkstra's Algorithm):**
 
-The code implements the following steps:
+*   **Graph Representation:** The code first builds an adjacency list `graph` to represent the network of cities.  Each element `graph[u]` is a vector of pairs, where each pair represents a neighbor `v` of city `u` and the weight `w` of the edge connecting them.
+*   **Dijkstra's for Each City:**  For each city `src`, it performs Dijkstra's algorithm to find the shortest distance from `src` to all other cities.
+*   **Reachability Count:** After running Dijkstra's for a given `src`, the code counts the number of cities that are reachable from `src` within the given `distanceThreshold`.
+*   **Tracking the Best City:** It then keeps track of the city with the smallest count of reachable neighbors. The comparison function `cmp` in the `set` `ans` ensures that if there are ties in the number of neighbors, the city with the *larger* index is preferred, addressing the requirement that ties should be resolved by returning the largest city index.
+*   **Return Result:** Finally, it returns the city index with the minimum reachable cities.
 
-1.  **Build the Graph:** Construct an adjacency list representation of the graph from the given `edges`.  Each city is a node, and each edge is a connection between two nodes with a specific weight. The graph is undirected, meaning edges are bidirectional.
+**Solution 2 (Floyd-Warshall Algorithm):**
 
-2.  **Iterate Through Cities (Source Nodes):** For each city from `0` to `n-1`, treat it as the source node and calculate the shortest distances to all other cities using Dijkstra's algorithm.
+*   **Distance Matrix:** This solution uses the Floyd-Warshall algorithm to compute the shortest distance between *every pair* of cities. It initializes a distance matrix `dist` where `dist[i][j]` represents the shortest distance from city `i` to city `j`. Initially, all distances are set to `INT_MAX`, except for the distance from a city to itself, which is set to 0. Direct edges have their distances set accordingly.
+*   **Floyd-Warshall Iteration:** The core of the algorithm is three nested loops. The outer loop iterates through all possible intermediate cities (`via`). The inner loops iterate through all pairs of source and destination cities (`u` and `v`). The algorithm updates `dist[u][v]` if going from `u` to `v` via `via` results in a shorter path.
+*   **Reachability Count:** After the Floyd-Warshall algorithm completes, the `dist` matrix contains the shortest distance between every pair of cities.  For each city, the code counts the number of cities reachable within the `distanceThreshold`.
+*   **Tracking the Best City:** Similar to the Dijkstra solution, it keeps track of the city with the smallest count of reachable neighbors, also preferring the larger city index in case of ties, though without the need for a custom comparator as the loop order ensures ties are resolved correctly.
+*   **Return Result:** Finally, it returns the city with the minimum reachable cities.
 
-3.  **Dijkstra's Algorithm:** For each source city:
-    *   Initialize a `dist` vector to store the shortest distances from the source city to all other cities. Initially, all distances are set to `INT_MAX`.
-    *   Use a `set` (implemented as a min-heap with custom comparator) called `heap` to efficiently extract the node with the smallest distance.  The `heap` stores pairs of `(distance, city_index)`.
-    *   The main loop of Dijkstra's algorithm continues as long as the heap is not empty. In each iteration, it extracts the node with the smallest distance from the heap, explores its neighbors, and updates their distances if a shorter path is found. The comparator `cmp` within the set ensures cities with smaller number of reachable neighbors are preferred and among neighbors, the one with the higher number is returned.
-    *   If a shorter path to a neighbor `v` is found (i.e., `dist[x] + w < dist[v]` ) AND the distance to that neighbor is within the `distanceThreshold` (i.e. `dist[x] + w <= distanceThreshold`), update `dist[v]` and insert the updated distance and node into the heap.
+## 3. Key Insights and Algorithmic Techniques Used
 
-4.  **Count Reachable Cities:** After running Dijkstra's algorithm for a source city, iterate through the `dist` vector and count the number of cities reachable from the source city within the `distanceThreshold` (i.e., where `dist[node] != INT_MAX`).
+*   **Dijkstra's Algorithm:** A classic algorithm for finding the shortest paths from a single source node to all other nodes in a weighted graph.  It relies on a priority queue (implemented as a `set` in the code) to efficiently select the next node to visit. The crucial property is that Dijkstra's algorithm finds the shortest paths in order of increasing distance from the source. It's well-suited for single-source shortest path problems.
+*   **Floyd-Warshall Algorithm:** An algorithm for finding the shortest paths between *all pairs* of nodes in a weighted graph.  It's based on dynamic programming and iteratively updates the distance matrix. Floyd-Warshall is more suitable for all-pairs shortest path problems. It can also handle negative edge weights (as long as there are no negative cycles), which Dijkstra's algorithm cannot.
+*   **Adjacency List Representation:**  Using an adjacency list is efficient for sparse graphs (graphs with relatively few edges). It stores only the existing edges, saving space compared to an adjacency matrix.
+*   **Priority Queue (set in C++):** The use of a `set` in the Dijkstra solution acts as a priority queue, enabling efficient selection of the next node to visit based on its distance from the source. C++ sets are implemented as self-balancing binary search trees, providing logarithmic time complexity for insertion, deletion, and finding the minimum element.
+*   **Distance Matrix (Floyd-Warshall):** An intuitive way to store all-pairs shortest path information, allowing for efficient updates and lookups.
 
-5.  **Store Results:** Store the number of reachable cities and the corresponding city index in a `set` called `ans`. The custom comparator `cmp` in the `set` ensures that the city with the smallest number of reachable neighbors is at the beginning of the set. If two cities have the same number of reachable cities, the city with the larger index is prioritized.
+## 4. Time and Space Complexity Analysis
 
-6.  **Return Result:** Return the city index of the first element in the `ans` set. This will be the city with the smallest number of reachable neighbors (and largest index if there's a tie).
+**Solution 1 (Dijkstra's):**
 
-### 3. Key Insights and Algorithmic Techniques Used
+*   **Time Complexity:** O(N * (E log V)), where N is the number of cities (source nodes), E is the number of edges, and V is the number of vertices (cities).  Dijkstra's algorithm itself takes O(E log V) time because the set operations are logarithmic. This is run N times, once for each source node.
+*   **Space Complexity:** O(E + N), where E is the space used to store the adjacency list, and N is the space used to store distances for each node during a run of Dijkstra.
 
-*   **Dijkstra's Algorithm:**  This is a fundamental algorithm for finding the shortest paths from a single source node to all other nodes in a weighted graph.  Its efficiency relies on using a priority queue (in this case, a `set`) to efficiently extract the node with the smallest distance in each iteration.
-*   **Adjacency List Representation:** Using an adjacency list to represent the graph is efficient for sparse graphs, as it only stores the connections that exist.
-*   **Custom Comparator for the Priority Queue:**  The `cmp` struct defines a custom comparator for the `set`.  This allows us to prioritize nodes based on their distance from the source node *and* break ties based on the city index to satisfy the requirement in the problem that in case of ties, the city with the largest index is chosen.
-*   **Set for Automatic Sorting and Tie-Breaking:** The `set` data structure is used with the custom comparator `cmp` to maintain a sorted list of reachable city counts and their corresponding city indices.  This simplifies the process of finding the city with the smallest number of reachable neighbors.
+**Solution 2 (Floyd-Warshall):**
 
-### 4. Time and Space Complexity Analysis
+*   **Time Complexity:** O(N^3), where N is the number of cities.  The Floyd-Warshall algorithm has three nested loops, each iterating through all the cities.
+*   **Space Complexity:** O(N^2) because the distance matrix `dist` is of size N x N.
 
-*   **Time Complexity:**
-    *   Building the graph: O(E), where E is the number of edges.
-    *   Outer loop iterating through all cities (source nodes): O(N), where N is the number of cities.
-    *   Dijkstra's algorithm within each iteration: O((N + E) log N). In this problem, since we're exploring and potentially inserting each node into the heap, the time complexity for Dijkstra's is O(E log N) as E is generally greater than N.
-    *   Counting reachable cities: O(N) within each iteration of the outer loop.
-    *   Overall time complexity: O(N * (E log N + N)) =  O(N * E log N) in the worst case.  Note that E can be O(N^2) in a dense graph, in which case the complexity becomes O(N^3 log N).
+**Choice of Algorithm:**
 
-*   **Space Complexity:**
-    *   Graph (adjacency list): O(E)
-    *   `dist` vector: O(N)
-    *   `heap` (priority queue): O(N) in the worst case.
-    *   `ans` set: O(N)
-    *   Overall space complexity: O(E + N) = O(N^2) in the worst case (dense graph)
+For sparse graphs, where E is much smaller than N^2, Dijkstra's algorithm (Solution 1) might be more efficient.  However, for dense graphs, where E is close to N^2, or if the problem requires finding the shortest paths between *all pairs* of nodes regardless, Floyd-Warshall (Solution 2) can be a good choice due to its simpler implementation. Also, consider the problem constraints. If `n` is sufficiently small, O(N^3) can be acceptable. In this particular problem on LeetCode, the constraints allow for either approach.
 
-### 5. Important Code Patterns or Tricks Used
+## 5. Important Code Patterns or Tricks Used
 
-*   **Using `std::set` as a Min-Heap with a Custom Comparator:**  This is a common technique in C++ competitive programming for implementing priority queues.  The custom comparator allows for more flexible prioritization rules. In this case, the custom comparator orders nodes based on the shortest distance calculated by Dijkstra's algorithm and when distances are equal, picks the city with the larger index.
-*   **`auto &[v, w] : graph[x]`**: Using structured bindings (C++17) to concisely iterate through the neighbors and weights of a node. This makes the code more readable.
-*   **Initialization with `INT_MAX`:** Initializing the `dist` vector with `INT_MAX` is a common pattern for representing "infinity" in shortest-path algorithms. It ensures that any actual path will be shorter than the initial "infinite" distance.
+*   **Adjacency List Construction:** Building the adjacency list from the edge list is a common pattern in graph algorithms.
+*   **Initialization of Distance Array/Matrix:**  Setting initial distances to `INT_MAX` and the distance from a node to itself to 0 is crucial for both Dijkstra's and Floyd-Warshall algorithms.
+*   **Custom Comparator in `set`:** Solution 1 uses a custom comparator (`cmp`) in the `set` to handle ties in the number of reachable neighbors. It ensures that when two cities have the same number of reachable neighbors, the city with the higher index is chosen.
+*   **`auto &[v, w] : graph[x]`:** C++'s structured binding syntax simplifies iteration through the adjacency list, making the code more readable.
 
-### 6. Edge Cases Handled
+## 6. Edge Cases Handled
 
-*   **Disconnected Graph:** The algorithm correctly handles disconnected graphs. Cities that are unreachable from the source city will have a distance of `INT_MAX` in the `dist` vector and will not be counted as reachable neighbors.
-*   **Zero-Weight Edges:**  The algorithm correctly handles zero-weight edges. Dijkstra's algorithm works correctly even with zero-weight edges.
-*   **Ties for the Smallest Number of Neighbors:**  The custom comparator in the `set` `ans` ensures that if multiple cities have the same number of neighbors within the `distanceThreshold`, the city with the largest index will be selected. This fulfills the problem requirement.
-*   **All nodes are reachable:** If all nodes are reachable from a source within `distanceThreshold`, the algorithm counts `n-1` reachable cities (excluding itself). The comparison is `node != src`, which prevents counting the source city as a neighbor.
-
+*   **Unreachable Nodes:** The algorithms correctly handle cases where some nodes are unreachable from a given source. The distances to these nodes remain `INT_MAX`, and they are not counted as reachable within the `distanceThreshold`.
+*   **Self-Loops:** The distance matrix in the Floyd-Warshall solution is initialized such that `dist[node][node] = 0`, correctly handling self-loops (though the problem description doesn't specifically mention self-loops, this initialization ensures they don't cause issues).
+*   **Ties:** The custom comparator (`cmp`) in Dijkstra's version, and the later assignment `ans = node;` in Floyd-Warshall, ensure that when multiple cities have the same minimum number of reachable cities, the city with the largest index is returned, as required by the problem statement.
+*   **No Edges:** Both solutions gracefully handle the case where the input `edges` vector is empty.  In this case, the graph will have no connections, and the number of reachable cities for each city will be 0, and either city index will be a valid answer, but the loop and if conditions will lead to the right result (the largest numbered node).
 ```
 
 ## Original Code
@@ -135,7 +132,60 @@ class Solution {
         return (ans.begin())->second;
     }
 };
+
+class SolutionTwo {
+  public:
+    int findTheCity(int n, vector<vector<int>> &edges, int distanceThreshold) {
+        // we find the distance from each to node to every other node
+        // using floyd-warshall
+        vector<vector<int>> dist(n, vector<int>(n, INT_MAX));
+
+        // initialize the distance array
+        for (int node = 0; node < n; node++) {
+            dist[node][node] = 0;
+        }
+
+        for (auto &vec : edges) {
+            int u = vec[0];
+            int v = vec[1];
+            int w = vec[2];
+            dist[u][v] = w;
+            dist[v][u] = w;
+        }
+
+        for (int via = 0; via < n; via++) {
+            for (int u = 0; u < n; u++) {
+                for (int v = 0; v < n; v++) {
+                    int uvia = dist[u][via];
+                    int viav = dist[via][v];
+                    int uv = dist[u][v];
+                    if (uvia != INT_MAX && viav != INT_MAX && uvia + viav < uv) {
+                        dist[u][v] = uvia + viav;
+                    }
+                }
+            }
+        }
+
+        int minCount = INT_MAX;
+        int ans = -1;
+
+        for (int node = 0; node < n; node++) {
+            int count = 0;
+            for (int x = 0; x < n; x++) {
+                if (x != node && dist[node][x] <= distanceThreshold)
+                    count++;
+            }
+
+            if (count <= minCount) {
+                minCount = count;
+                ans = node;
+            }
+        }
+
+        return ans;
+    }
+};
 ```
 
 ---
-*Documentation generated on 2025-08-04 20:06:35*
+*Documentation generated on 2025-08-04 20:16:07*

@@ -64,5 +64,54 @@ class Solution {
 };
 
 class SolutionTwo {
-    
-}
+  public:
+    int findTheCity(int n, vector<vector<int>> &edges, int distanceThreshold) {
+        // we find the distance from each to node to every other node
+        // using floyd-warshall
+        vector<vector<int>> dist(n, vector<int>(n, INT_MAX));
+
+        // initialize the distance array
+        for (int node = 0; node < n; node++) {
+            dist[node][node] = 0;
+        }
+
+        for (auto &vec : edges) {
+            int u = vec[0];
+            int v = vec[1];
+            int w = vec[2];
+            dist[u][v] = w;
+            dist[v][u] = w;
+        }
+
+        for (int via = 0; via < n; via++) {
+            for (int u = 0; u < n; u++) {
+                for (int v = 0; v < n; v++) {
+                    int uvia = dist[u][via];
+                    int viav = dist[via][v];
+                    int uv = dist[u][v];
+                    if (uvia != INT_MAX && viav != INT_MAX && uvia + viav < uv) {
+                        dist[u][v] = uvia + viav;
+                    }
+                }
+            }
+        }
+
+        int minCount = INT_MAX;
+        int ans = -1;
+
+        for (int node = 0; node < n; node++) {
+            int count = 0;
+            for (int x = 0; x < n; x++) {
+                if (x != node && dist[node][x] <= distanceThreshold)
+                    count++;
+            }
+
+            if (count <= minCount) {
+                minCount = count;
+                ans = node;
+            }
+        }
+
+        return ans;
+    }
+};
