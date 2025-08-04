@@ -18,6 +18,7 @@ Collection of problems and solutions for graphs.
 - ✅ **ballInBerland** (medium) - solved
 - ✅ **wordLadderTwo** (hard) - solved
 - ✅ **numDest** (hard) - solved
+- ✅ **findTheCity** (medium) - solved
 - ✅ **cheapestFlights** (hard) - solved
 
 ## Key Techniques
@@ -26,9 +27,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 15
-- Solved: 15
+- Total Problems: 16
+- Solved: 16
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-03 20:42:52*
+*Last updated on 2025-08-04 20:06:35*
