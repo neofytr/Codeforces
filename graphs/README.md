@@ -13,6 +13,7 @@ Collection of problems and solutions for graphs.
 - ✅ **spanningTree** (medium) - solved
 - ✅ **networkConnected** (medium) - solved
 - ✅ **wordLadder** (hard) - solved
+- ✅ **accountsMerge** (medium) - solved
 - ✅ **shortestPathInUndirectedGraph** (easy) - solved
 - ✅ **mortalKombat** (hard) - solved
 - ✅ **longJumps** (easy) - solved
@@ -30,9 +31,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 19
-- Solved: 19
+- Total Problems: 20
+- Solved: 20
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-05 19:36:36*
+*Last updated on 2025-08-05 20:19:27*
