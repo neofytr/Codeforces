@@ -6,6 +6,7 @@ Collection of problems and solutions for graphs.
 ## Problems Solved
 - ✅ **shortestBinary** (medium) - solved
 - ✅ **bersu** (medium) - solved
+- ✅ **mostStones** (medium) - solved
 - ✅ **shortestPathWeightedUndirectedGraph** (medium) - solved
 - ✅ **minEffort** (medium) - solved
 - ✅ **shortestPathInDAG** (easy) - solved
@@ -29,9 +30,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 18
-- Solved: 18
+- Total Problems: 19
+- Solved: 19
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-05 18:40:42*
+*Last updated on 2025-08-05 19:36:36*
