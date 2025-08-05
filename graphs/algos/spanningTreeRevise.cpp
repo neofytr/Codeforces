@@ -30,7 +30,10 @@ int main() {
             continue;
 
         sum += weight;
-        mst.push_back({node, parent});
+        vis[node] = true; 
+        if (parent != -1) {
+            mst.push_back({node, parent});
+        }
         for (auto &[v, w] : graph[node]) {
             if (!vis[v]) {
                 pq.push({w, v, node});
