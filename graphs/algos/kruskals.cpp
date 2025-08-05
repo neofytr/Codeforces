@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <cstdlib>
 #include <queue>
+#include <unistd.h>
 #include <vector>
 using namespace std;
 
@@ -43,22 +44,22 @@ class disjointSetUnion {
         return;
     }
 
-    bool join(int x, int y) { // joins node x and y via an edge if they are not already joined
+    int join(int x, int y) { // joins node x and y via an edge if they are not already joined
         if (!checkNodes(x, y))
-            return false;
+            return -1;
 
         int rootX = getRoot(x);
         int rootY = getRoot(y);
 
         if (rootX == rootY) // already in the same component
-            return true;
+            return false;
 
         // x and y are not in the same component
         // they will be after these operations
         // so decrease the component number by 1
         numComp--;
-        int sizeX = getSize(x);
-        int sizeY = getSize(y);
+        int sizeX = size[rootX];
+        int sizeY = size[rootY];
 
         if (sizeX > sizeY) {
             swap(sizeX, sizeY);
@@ -103,12 +104,10 @@ int main() {
         auto [w, u, v] = heap.top();
         heap.pop();
 
-        if (dsu.isConnected(u, v))
-            continue;
-
-        dsu.join(u, v);
-        mst.push_back({u, v});
-        sum += w;
+        if (dsu.join(u, v) == true) {
+            sum += w;
+            mst.push_back({u, v});
+        }
 
         if (mst.size() == n - 1)
             break;
