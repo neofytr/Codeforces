@@ -1,8 +1,139 @@
-5 7
-0 1 10
-0 2 20
-1 2 5
-1 3 15
-2 3 30
-2 4 25
-3 4 8
+class Rule(ABC):
+    # abstract base class for data cleaning rules
+    
+    @abstractmethod
+    def apply(self, df):
+        # apply the cleaning rule to a DataFrame
+        pass
+
+class DropDuplicatesRule(Rule):
+    # removes duplicate rows from DataFrame
+    
+    def apply(self, df):
+        # remove duplicate rows, keeping first occurrence.
+        return df.drop_duplicates().reset_index(drop=True)
+    
+    def __repr__(self):
+        return "DropDuplicatesRule()"
+
+class FillMissingPriceRule(Rule):
+    # fills missing price values with median price by category.
+    
+    def apply(self, df):
+        # fill missing prices with category median.
+        df = df.copy()
+        if 'price' in df.columns and 'category' in df.columns:
+            df['price'] = df.groupby('category')['price'].transform(
+                lambda x: x.fillna(x.median())
+            )
+        return df
+    
+    def __repr__(self):
+        return "FillMissingPriceRule()"
+
+class NoNegativeQtyRule(Rule):
+    # removes rows with negative quantities.
+    
+    def apply(self, df):
+        # remove rows where quantity is negative.
+        if 'quantity' in df.columns:
+            return df[df['quantity'] >= 0].reset_index(drop=True)
+        return df
+    
+    def __repr__(self):
+        return "NoNegativeQtyRule()"
+
+class Pipeline:
+    # data cleaning pipeline that applies multiple rules sequentially.
+    
+    def __init__(self, rules):
+        """
+        Initialize pipeline with list of rules.
+        
+        Args:
+            rules: List of Rule objects to apply
+        """
+        self.rules = rules
+    
+    def run(self, raw_df):
+        """
+        Apply all rules to the DataFrame sequentially.
+        
+        Args:
+            raw_df: Input DataFrame to clean
+            
+        Returns:
+            Cleaned DataFrame
+        """
+        df = raw_df.copy()
+        for rule in self.rules:
+            df = rule.apply(df)
+        return df
+    
+    def __repr__(self):
+        rule_names = [rule.__class__.__name__ for rule in self.rules]
+        return f"Pipeline(rules={rule_names})"
+
+def aggregate_daily(df):
+    """
+    Aggregate data by category and date, with zero-filling for missing dates.
+    
+    Args:
+        df: DataFrame with merged orders and products data
+        
+    Returns:
+        DataFrame with daily aggregates per category
+    """
+    # extract date from timestamp
+    df['date'] = pd.to_datetime(df['timestamp']).dt.date
+    
+    # xalculate revenue
+    df['revenue'] = df['quantity'] * df['price']
+    
+    # aggregate by category and date
+    daily_agg = df.groupby(['category', 'date']).agg({
+        'revenue': 'sum',
+        'quantity': 'sum'
+    }).reset_index()
+    daily_agg.columns = ['category', 'date', 'revenue', 'units']
+    
+    # get all dates in range
+    min_date = df['date'].min()
+    max_date = df['date'].max()
+    date_range = pd.date_range(start=min_date, end=max_date, freq='D').date
+    
+    # create complete index with all category-date combinations
+    categories = df['category'].unique()
+    complete_index = pd.MultiIndex.from_product(
+        [categories, date_range], 
+        names=['category', 'date']
+    ).to_frame(index=False)
+    
+    # merge and fill missing values with 0
+    result = complete_index.merge(daily_agg, on=['category', 'date'], how='left')
+    result[['revenue', 'units']] = result[['revenue', 'units']].fillna(0)
+    
+    # convert date back to string for JSON serialization
+    result['date'] = result['date'].astype(str)
+    
+    return result.sort_values(['category', 'date']).reset_index(drop=True)
+
+def export_json(df):
+    """
+    Export DataFrame as JSON Lines format.
+    
+    Args:
+        df: DataFrame to export
+        
+    Returns:
+        JSON Lines string (one JSON object per line)
+    """
+    json_lines = []
+    for _, row in df.iterrows():
+        json_obj = row.to_dict()
+        # round revenue to 2 decimal places
+        if 'revenue' in json_obj:
+            json_obj['revenue'] = round(json_obj['revenue'], 2)
+        json_lines.append(json.dumps(json_obj))
+    
+    return '\n'.join(json_lines)

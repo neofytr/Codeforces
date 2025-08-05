@@ -10,6 +10,7 @@ Collection of problems and solutions for graphs.
 - ✅ **minEffort** (medium) - solved
 - ✅ **shortestPathInDAG** (easy) - solved
 - ✅ **spanningTree** (medium) - solved
+- ✅ **networkConnected** (medium) - solved
 - ✅ **wordLadder** (hard) - solved
 - ✅ **shortestPathInUndirectedGraph** (easy) - solved
 - ✅ **mortalKombat** (hard) - solved
@@ -28,9 +29,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 17
-- Solved: 17
+- Total Problems: 18
+- Solved: 18
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-04 23:23:35*
+*Last updated on 2025-08-05 18:40:42*
