@@ -1,0 +1,29 @@
+Competitive Programming Roadmap:
+  Newbie:
+    - Master a programming language
+    - Learn time and space complexity
+    - Learn Standard Template Library (STL)
+    - Mathematics: [LCM, HCF, Primes, Divisors, Multiples, Modular arithmetic]
+    - Recursion
+
+  Pupil:
+    - Binary Search/Ternary Search (monotonic functions)
+    - Number Theory: [Binary Exponentiation, Euclidean Algorithm, Sieve of Eratosthenes]
+    - Prefix Sum (Advanced)
+    - Greedy Algorithms (Standard and Non-standard)
+    - Bit Manipulation
+    - Solve ad-hoc problems (random)
+    - Upsolve (review and solve missed problems)
+    - Participate in more contests
+
+  Specialist (Top 10%):
+    - Two Pointers
+    - Advanced Number Theory: [Fermat’s and Euler’s Theorem, Modular Inverse, Combinatorics]
+    - Dynamic Programming (DP)
+    - Graphs: [Basics, DFS, BFS] (done)
+    - Trees: [Basic subtree operations, Binary Lifting]
+
+  Resources
+    - CP Algorithms:
+    - CSES Problem Set
+    - TLE Eliminators Sheet
