@@ -7,16 +7,17 @@ using namespace std;
 // Tags:
 // Strategy:
 
+#include <bits/stdc++.h>
+using namespace std;
+
 #define int long long
 
-bool check(int t, int a, int b, int n) {
-    int copies = 0;
+bool check(int t, int x, int y, int n) {
+    if (t < min(x, y))
+        return false;
 
-    // make the first copy so that we have atleast two copies at anytime to put simultaneously into the copier
-    t -= a;
-    copies++;
-
-    copies += (t / a + t / b);
+    t -= min(x, y);
+    int copies = 1 + t / x + t / y;
     return copies >= n;
 }
 
@@ -27,23 +28,19 @@ int32_t main() {
     int n, x, y;
     cin >> n >> x >> y;
 
-    int a = min(x, y);
-    int b = max(x, y);
+    int left = 0;
+    int right = min(x, y) + (n - 1) * max(x, y); // safe upper bound
 
-    // if they can copy in t seconds, then can in t + 1
-    int left = 0;          // impossible
-    int right = n / a + 1; // possible
-
-    while (right != left + 1) {
+    while (left < right) {
         int mid = left + (right - left) / 2;
-        if (check(mid, a, b, n)) {
+        if (check(mid, x, y, n)) {
             right = mid;
         } else {
-            left = mid;
+            left = mid + 1;
         }
     }
 
-    cout << right << endl;
+    cout << left << endl;
 
     return 0;
 }
