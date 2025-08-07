@@ -4,6 +4,7 @@
 Collection of problems and solutions for binarySearch.
 
 ## Problems Solved
+- ✅ **ropes** (easy) - solved
 - ✅ **closestRight** (easy) - solved
 - ✅ **cellularNetwork** (hard) - solved
 - ✅ **closestLeft** (easy) - solved
@@ -16,9 +17,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 6
-- Solved: 6
+- Total Problems: 7
+- Solved: 7
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-06 18:56:48*
+*Last updated on 2025-08-07 07:20:40*
