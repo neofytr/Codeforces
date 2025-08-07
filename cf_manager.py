@@ -64,13 +64,12 @@ int32_t main() {{
 '''
         }
         
-        """if self.config_file.exists():
+        if self.config_file.exists():
             with open(self.config_file, 'r') as f:
                 self.config = json.load(f)
-        else:"""
-        
-        self.config = default_config
-        self.save_config()
+        else:
+            self.config = default_config
+            self.save_config()
     
     def save_config(self):
         """Save current configuration"""
@@ -151,9 +150,9 @@ class ProblemManager:
         self.journal_dir = self.topic_path / 'journal'
         self.summary_file = self.topic_path / 'README.md'
         
-        """config_file = self.topic_path.parent / '.cf_config.json'
+        config_file = self.topic_path.parent / '.cf_config.json'
         with open(config_file, 'r') as f:
-            self.config = json.load(f)"""
+            self.config = json.load(f)
     
     def run(self):
         """Main entry point for problem management"""
