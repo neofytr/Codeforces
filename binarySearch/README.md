@@ -8,6 +8,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **ropes** (easy) - solved
 - ✅ **equation** (medium) - solved
 - ✅ **closestRight** (easy) - solved
+- ✅ **getTogether** (medium) - solved
 - ✅ **cellularNetwork** (hard) - solved
 - ✅ **closestLeft** (easy) - solved
 - ✅ **countingHaybales** (easy) - solved
@@ -20,9 +21,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 10
-- Solved: 10
+- Total Problems: 11
+- Solved: 11
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-08 09:39:17*
+*Last updated on 2025-08-08 10:38:55*
