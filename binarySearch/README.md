@@ -16,17 +16,18 @@ Collection of problems and solutions for binarySearch.
 - ✅ **countingHaybales** (easy) - solved
 - ✅ **veryEasyTask** (easy) - solved
 - ✅ **fastSearch** (medium) - solved
+- ✅ **maxMinPath** (hard) - solved
 - ✅ **binarySearch** (easy) - solved
 
 ## Key Techniques
 - Binary Search
-- Dynamic Programming
+- Graph Algorithms
 - Sorting
 
 ## Progress
-- Total Problems: 13
-- Solved: 13
+- Total Problems: 14
+- Solved: 14
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-08 11:35:12*
+*Last updated on 2025-08-08 13:43:12*
