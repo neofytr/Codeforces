@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <iomanip>
 using namespace std;
 
 #define int long long
@@ -23,8 +24,18 @@ int32_t main() {
     // f is a strictly increasing function
     // we find a point y such that f(r) >= c for all r >= y and f(r) < c for all r < y
 
-    double left = 0; // not possible
-    double right = 1e12;
+    double left = 0;     // not possible
+    double right = 1e12; // possible
+
+    for (int i = 0; i < 100; i++) {
+        double mid = left + (right - left) / 2;
+        if (mid * mid + sqrt(mid) >= c)
+            right = mid;
+        else
+            left = mid;
+    }
+
+    cout << setprecision(16) << right << endl;
 
     return 0;
 }
