@@ -21,6 +21,7 @@ Collection of problems and solutions for binarySearch.
 
 ## Key Techniques
 - Binary Search
+- Dynamic Programming
 - Graph Algorithms
 - Sorting
 
@@ -30,4 +31,4 @@ Collection of problems and solutions for binarySearch.
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-08 13:43:12*
+*Last updated on 2025-08-08 16:59:12*

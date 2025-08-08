@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <climits>
 #include <vector>
 using namespace std;
 
@@ -11,116 +10,126 @@ using namespace std;
 // Tags:
 // Strategy:
 
-// there are n nodes and m edges between them, each edge having a weight
-// each edge leads from a lower number node to a higher number one (i guess one way of saying there are no cycles in the graph?)
-// all edges are directed
+bool pathExists(int maxWt, int maxEdges, vector<vector<pair<int, int>>> &graph) {
+    // we are to find if there is a path from 1 to n such that all the edge weights are atmost maxWt
+    // we will build the shortest such path, so, if its within d edges, we are done
+    int n = graph.size(); // n + 1 since 1-based
+    vector<int> parent(n);
+    vector<int> dist(n, 1e9); // number of edges to reach each node
+    queue<int> que;
 
-// we are to find all the paths from node 1 to node n that have atmost d edges
-// on each of the paths, we take the maximum of all the edge weights on the path, and then
-// find the minimum among these maximums
+    int src = 1;
+    dist[src] = 0;
+    que.push(src);
 
-// since each edge leads from a lower number edge to a higher one, we can't revisit nodes
-// so, there's no need for a visited array
-// so, there are no cycles in the graph
+    while (!que.empty()) {
+        int u = que.front();
+        que.pop();
 
-#include <algorithm>
-#include <iostream>
-#include <queue>
-#include <vector>
-
-using namespace std;
-
-struct Edge {
-    int u, v, w;
-};
-
-// It returns true if a path of at most 'd' edges exists with a max weight of 'max_w'.
-// It also populates the 'path_output' vector if a path is found.
-bool check(int max_w, int n, int d, const vector<Edge> &all_edges, vector<int> &path_output) {
-    vector<vector<int>> graph(n + 1);
-    for (const auto &edge : all_edges) {
-        if (edge.w <= max_w) {
-            graph[edge.u].push_back(edge.v);
-        }
-    }
-
-    vector<int> dist(n + 1, -1);
-    vector<int> parent(n + 1, 0);
-    queue<int> q;
-
-    q.push(1);
-    dist[1] = 0;
-
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-
-        if (dist[u] >= d) {
-            continue;
-        }
-
-        for (int v : graph[u]) {
-            if (dist[v] == -1) {
+        for (auto &[v, w] : graph[u]) {
+            if (w <= maxWt && dist[v] > dist[u] + 1) {
                 dist[v] = dist[u] + 1;
-                parent[v] = u;
-                q.push(v);
+                que.push(v);
             }
         }
     }
 
-    if (dist[n] != -1 && dist[n] <= d) {
-        path_output.clear();
-        int curr = n;
-        while (curr != 0) {
-            path_output.push_back(curr);
-            curr = parent[curr];
-        }
-        reverse(path_output.begin(), path_output.end());
-        return true;
-    }
-
-    return false;
+    return dist[n - 1] <= maxEdges;
 }
 
-void solve() {
-    int n, m, d;
-    cin >> n >> m >> d;
+pair<vector<int>, int> buildPath(int maxWt, int maxEdges, const vector<vector<pair<int, int>>> &graph) {
+    int n = graph.size();
+    vector<int> dist(n, 1e9);
+    vector<int> parent(n, -1);
+    queue<int> que;
 
-    vector<Edge> all_edges(m);
-    for (int i = 0; i < m; ++i) {
-        cin >> all_edges[i].u >> all_edges[i].v >> all_edges[i].w;
-    }
+    int src = 1;
+    dist[src] = 0;
+    parent[src] = src;
+    que.push(src);
 
-    int low = 0, high = 1e9 + 7;
-    int ans_weight = -1;
-    vector<int> best_path;
+    while (!que.empty()) {
+        int u = que.front();
+        que.pop();
 
-    while (low <= high) {
-        int mid = low + (high - low) / 2;
-        vector<int> current_path;
-        if (check(mid, n, d, all_edges, current_path)) {
-            ans_weight = mid;
-            best_path = current_path;
-            high = mid - 1;
-        } else {
-            low = mid + 1;
+        for (auto &[v, w] : graph[u]) {
+            if (w <= maxWt && dist[v] > dist[u] + 1) {
+                dist[v] = dist[u] + 1;
+                parent[v] = u;
+                que.push(v);
+            }
         }
     }
 
-    if (ans_weight == -1) {
-        cout << -1 << endl;
-    } else {
-        cout << best_path.size() - 1 << endl;
-        for (size_t i = 0; i < best_path.size(); ++i) {
-            cout << best_path[i] << (i == best_path.size() - 1 ? "" : " ");
-        }
-        cout << endl;
+    vector<int> path;
+    int dst = n - 1;
+    if (parent[dst] == -1 || dist[dst] > maxEdges)
+        return {{}, -1};
+
+    while (dst != parent[dst]) {
+        path.push_back(dst);
+        dst = parent[dst];
     }
+    path.push_back(dst);
+    reverse(path.begin(), path.end());
+
+    return {path, (int)path.size() - 1}; // edges = nodes - 1
 }
 
 int32_t main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    solve();
+
+    int n, m, d;
+    cin >> n >> m >> d;
+
+    vector<vector<pair<int, int>>> graph(n + 1);
+    int a, b, c;
+    int maxwt = -1;
+    while (m--) {
+        cin >> a >> b >> c;
+        maxwt = max(maxwt, c);
+        graph[a].push_back({b, c}); // directed edges since we can only travel along the road one way
+    }
+
+    // there are n nodes labelled 1 to n and m directed edges between them
+    // each edge is directed from a lower number node to a higher number node
+    // this means, that is graph is acylic (a DAG basically)
+
+    // Let x is a path from 1 to n with atmost d edges
+    // We define m(x) to be the maximum edge weight in the path x
+    // We are to determine min(m(x) for all paths x from 1 to n with atmost d edges)
+
+    // We define a predicate f as follows
+    // f(r) = 1 if there is a path from 1 to n with atmost d edges that has all the edge weights atmost r
+    //      = 0 otherwise
+
+    // if there is a path from 1 to n with atmost d edges that has all the edge weights atmost r, then
+    // such a path with edge weights atmost r + 1 will exist
+
+    // thus, f is monotonic
+
+    int left = -1;     // since all edge weights are non-negative, this isnt' possible
+    int right = maxwt; // since edge weights range from 0 to 1e9, this is possible
+
+    while (right != left + 1) {
+        int mid = left + (right - left) / 2;
+        if (pathExists(mid, d, graph))
+            right = mid;
+        else
+            left = mid;
+    }
+
+    if (!pathExists(right, d, graph)) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    auto [path, numEdges] = buildPath(right, d, graph);
+    cout << numEdges << '\n';
+    for (int v : path)
+        cout << v << ' ';
+    cout << '\n';
+
     return 0;
 }
