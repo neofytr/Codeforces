@@ -668,8 +668,14 @@ void Kruskal() {
         }
     }
 
-    /*  
-        When implementing
+    /*
+        When implementing kruskal's algo, its convenient to use the edge list representation of the graph
+        The first phase of the algo sorts the list representation in O(mlog(m)) time
+        After this, the second phase of the algorithm buils the minimum spanning tree
+
+        The loop goes through the edges in the list and always processes an edge (a, b) where a and b are two nodes
+        The dsu.join function runs in amortized constant time (almost), so, the time complexity of this algo is
+        O(mlog(m))
     */
 
     return;
