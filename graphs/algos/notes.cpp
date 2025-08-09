@@ -620,6 +620,61 @@ class disjointSetUnion {
     int numComponents() { return numComp; }
 };
 
+void Kruskal() {
+    /*
+        This algorithm builds a minimum spanning tree by greedily adding edges to a graph
+        that initally only contains the nodes of the original graph and no edges
+
+        The algorithm goes through the edges of the original graph ordered by their weight, and
+        always adds an edge to a new graph if the edge does not create a cycle
+
+        The algorithm maintains the components of the new graph. Initially, each node of the graph
+        belongs to a separate component. Always when an edge is added to the graph, two components are joined
+        Finally, all nodes belong to the same component, and a minimum spanning tree has been found.
+
+        The first step is to sort the edges in order of the edge weights
+        Then, we go through the list and add each edge to the graph if it joins two separate components, since
+        if two nodes belong to the same component, there is a path from one to another, so adding this edge would create a cycle
+
+        We sort the edges by weight and then process the edges in increasing order of the weights
+        The tree initially consists of all the nodes but no edges
+        During each iteration, we add the edge in the tree if both nodes aren't already in the same component
+        This is optimal since suppose that two nodes aren't in the same component and we find an edge connecting these nodes during the iteration
+        This will be the minimum weighted edge that can connect the two components since we process the edges in increasing order of weights
+        If we don't connect these components via this edge, later edges that connect these components will have their weigts >= this edge's weight,
+        thus increasing the total weight of the tree
+        Thus, this addition is optimial
+    */
+
+    int n, m;
+    cin >> n >> m;
+
+    set<tuple<int, int, int>> edges;
+    vector<pair<int, int>> mst;
+    disjointSetUnion dsu(n);
+    int u, v, w;
+    while (m--) {
+        cin >> u >> v >> w;
+        edges.insert({w, u, v});
+    }
+
+    int sum = 0;
+    while (!edges.empty()) {
+        auto [w, u, v] = *edges.begin();
+        edges.erase(edges.begin());
+        if (!dsu.join(u, v)) {
+            sum += w;
+            mst.push_back({u, v});
+        }
+    }
+
+    /*  
+        When implementing
+    */
+
+    return;
+}
+
 int main() {
     // dfs is a simple way to visit all nodes that can be reached from a starting node, and bfs
     // visits the nodes in increasing order of their distance from the starting node
@@ -785,7 +840,7 @@ int main() {
     A minimum spanning tree is a spanning tree whose weight is as small as possible
     In a similar way, a maximum spanning tree is a spanning tree whose weight is as large as possible
     Note that a graph may have several minimum and maximum spanning trees, so the trees are not unique
-    
+
     It turns out that several greedy methods can be used to construct minimum/maximum spanning trees
     We see Kruskal's algorithm that processes the edges of the graph ordered by their weight
     We focus on finding the minimum spanning tree, but the same algorithm can also find the maximum spanning trees
