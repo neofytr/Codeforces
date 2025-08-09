@@ -18,10 +18,10 @@ void bellmanFord() {
     // to reduce any distance
 
     int n, m;
-    cin >> n >> n;
+    cin >> n >> m;
 
     // 0-indexed nodes, undirected, weighted graph
-    vector<tuple<int, int, int>> edges(n);
+    vector<tuple<int, int, int>> edges;
     int u, v, w;
     while (m--) {
         cin >> u >> v >> w;
@@ -188,7 +188,7 @@ void dijkstra() {
     // the graph is stored as an adjacency list
 
     int n, m;
-    cin >> n >> n;
+    cin >> n >> m;
 
     // 0-indexed nodes, undirected, weighted graph
     vector<vector<pair<int, int>>> graph(n);
@@ -225,6 +225,7 @@ void dijkstra() {
             if (d + w < dist[v]) {
                 dist[v] = d + w;
                 parent[v] = x;
+                pq.push({dist[v], v});
             }
         }
     }
@@ -274,7 +275,7 @@ void dfsInfo() {
     // the algo keeps track of visited nodes, so that it processes each node only once
 
     int n, m;
-    cin >> n >> n;
+    cin >> n >> m;
 
     // 0-indexed nodes, undirected, unweighted graph
     vector<vector<int>> graph(n);
@@ -282,7 +283,7 @@ void dfsInfo() {
     while (m--) {
         cin >> u >> v;
         graph[u].push_back(v);
-        graph[v].push_back(v);
+        graph[v].push_back(u);
     }
 
     // dfs can be conveniently implemented using recursion
@@ -321,7 +322,7 @@ void bfsInfo() {
     // at each step, the next node in the queue will be processed
 
     int n, m;
-    cin >> n >> n;
+    cin >> n >> m;
 
     // 0-indexed nodes, undirected, unweighted graph
     vector<vector<int>> graph(n);
@@ -329,7 +330,7 @@ void bfsInfo() {
     while (m--) {
         cin >> u >> v;
         graph[u].push_back(v);
-        graph[v].push_back(v);
+        graph[v].push_back(u);
     }
 
     queue<int> que;
@@ -402,6 +403,65 @@ bool dfsTopo(int node, vector<int> &state, vector<int> &topo, vector<vector<int>
     return true;
 }
 
+// Multi-source BFS — Shortest distance from any of multiple starting nodes
+// Why it works:
+// BFS explores in "layers". If multiple sources start at distance 0,
+// they expand simultaneously, so the first time we visit a node is via
+// the shortest path from any source.
+// Time: O(V+E)
+void multi_source_bfs(int n, vector<vector<int>> &graph, vector<int> &sources) {
+    vector<int> dist(n, INT_MAX);
+    queue<int> q;
+
+    for (int s : sources) {
+        dist[s] = 0;
+        q.push(s);
+    }
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int v : graph[u]) {
+            if (dist[v] == INT_MAX) {
+                dist[v] = dist[u] + 1;
+                q.push(v);
+            }
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+        cout << "Dist from nearest source to " << i << " = " << dist[i] << "\n";
+}
+
+// Prim's Algorithm — Minimum Spanning Tree (Proof idea: MST grows greedily)
+// Why it works:
+// 1. Start from any node, grow the tree by always choosing the smallest weight edge
+//    that connects a visited node to an unvisited one.
+// 2. This works by the cut property of MST: the smallest crossing edge is always in some MST.
+// Time: O((V+E) log V) with priority queue
+void prims(int n, vector<vector<pair<int, int>>> &graph) {
+    vector<int> visited(n, 0);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq; // {weight, node}
+    int total = 0;
+
+    pq.push({0, 0}); // start from node 0
+
+    while (!pq.empty()) {
+        auto [w, u] = pq.top();
+        pq.pop();
+        if (visited[u])
+            continue;
+        visited[u] = 1;
+        total += w; // add edge weight to MST
+
+        for (auto [v, wt] : graph[u]) {
+            if (!visited[v])
+                pq.push({wt, v});
+        }
+    }
+    cout << "MST weight = " << total << "\n";
+}
+
 void topoSort() {
     // a topological sort is an ordering of the nodes of a directed graph such that if there is a
     // path from node u to node v, then u appears before v in the ordering
@@ -432,7 +492,7 @@ void topoSort() {
     // a topo sort for a DAG is not unique; there can be several topo sorts for a graph
 
     int n, m;
-    cin >> n >> n;
+    cin >> n >> m;
 
     // 0-indexed nodes, directed graph
     vector<vector<int>> graph(n);
@@ -662,7 +722,7 @@ void Kruskal() {
     while (!edges.empty()) {
         auto [w, u, v] = *edges.begin();
         edges.erase(edges.begin());
-        if (!dsu.join(u, v)) {
+        if (dsu.join(u, v)) {
             sum += w;
             mst.push_back({u, v});
         }
@@ -851,6 +911,8 @@ int main() {
     We see Kruskal's algorithm that processes the edges of the graph ordered by their weight
     We focus on finding the minimum spanning tree, but the same algorithm can also find the maximum spanning trees
     by processing the edges in reverse order
+
+    We also see Prims algorithm and multi source bfs
 
     */
 }
