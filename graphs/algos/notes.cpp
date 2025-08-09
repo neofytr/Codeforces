@@ -91,6 +91,78 @@ void bellmanFord() {
     return;
 }
 
+void floydWarshall() {
+    int n, m;
+    cin >> n >> m;
+
+    // 0-indexed nodes, undirected, weighted graph
+    vector<vector<pair<int, int>>> graph(n);
+    int u, v, w;
+    while (m--) {
+        cin >> u >> v >> w;
+        graph[u].push_back({v, w});
+        graph[v].push_back({u, w});
+    }
+
+    // this algo provides an alternative way to approach the problem of finding shortest paths
+    // it finds the shortest paths between all node pairs of the graph in a single run
+
+    // the algo maintains a matrix that contains distances between the nodes
+    // the initial matrix is constructed based on the adjacency list of the graph
+    // then, the algo consists of consecutive rounds, and on each round, it selects a new node that
+    // can act as an intermediate node in paths from now on, and reduces distances using this node
+
+    // this algo finds the shortest path only when there are no negative cycles in the graph
+    // it can also detect if there is a negative cycle
+
+    vector<vector<int>> dist(n, vector<int>(n, INT_MAX));
+    vector<vector<int>> next(n, vector<int>(n, -1));
+    for (int node = 0; node < n; node++) {
+        dist[node][node] = 0;
+        next[node][node] = node;
+    }
+    for (int node = 0; node < n; node++) {
+        for (auto &[v, w] : graph[node]) {
+            dist[node][v] = w;
+            next[node][v] = v;
+        }
+    }
+
+    for (int via = 0; via < n; via++) {
+        for (int u = 0; u < n; u++) {
+            for (int v = 0; v < n; v++) {
+                int uvia = dist[u][via];
+                int viav = dist[via][v];
+                int uv = dist[u][v];
+                if (uvia != INT_MAX && viav != INT_MAX && uvia + viav < uv) {
+                    next[u][v] = next[u][via];
+                    dist[u][v] = uvia + viav;
+                }
+            }
+        }
+    }
+
+    // there is a negative cycle in the graph if any dist[node][node] < 0 now
+    for (int node = 0; node < n; node++) {
+        if (dist[node][node] < 0)
+            return; // there is a negative cycle in the graph
+    }
+
+    int src, dst;
+    cin >> src >> dst;
+    if (dist[src][dst] == INT_MAX)
+        return; // no path from src to dst
+
+    vector<int> path = {src};
+    int r = next[src][dst];
+    while (r != dst) {
+        path.push_back(r);
+        r = next[r][dst];
+    }
+    path.push_back(dst);
+    return;
+}
+
 void dijkstra() {
     // this algo finds shortest paths from the starting node to all nodes of the graph
     // the benefit of this is that its more efficient that bellman-ford and can be used for
