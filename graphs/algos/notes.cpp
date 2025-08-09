@@ -603,4 +603,29 @@ int main() {
 
     // directed graphs that do not contain a cycle are called DAGs
     // we can always construct a topological sort for the graph and then apply dynamic programming
+
+    // using DP, we can efficiently answer many questions regarding paths in DAGs; for eg ->
+    // 1. what is the shortest/longest path from node a to node b
+    // 2. how many different paths are there from node a to node b
+    // 3. what is the minimum/maximum number of edges in a path
+    // 4. which nodes appear in every possible paths
+
+    // node that many of the above problems are difficult to solve or not well-defined for general graphs
+
+    // as an example, consider the problem of calculating the number of paths from node a to node b
+    // let paths(x) denote the number of paths from node a to node x
+    // as a base case paths(a) = 1
+    // then, to calculate other values of paths(x), we can use the recursive formula
+    // paths(x) = paths(s1) + ... + paths(sk)
+    // where s1, ..., sk are all the nodes that have an edge s -> x
+    // since the graph is acyclic, the value of paths can be calculated in the order of a topo sort
+
+    /*
+
+    For a DAG, if for calculating dp(x) for some node x, we need the values of all dp(s) such that
+    there is an edge s -> x, we can process the nodes in a topo sort ordering since when we reach
+    some node x in the ordering, it's guaranteed that we've processed all nodes s such that s -> x
+    by the definition of a topo sort ordering.
+
+    */
 }
