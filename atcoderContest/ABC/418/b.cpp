@@ -1,65 +1,61 @@
-#include <bits/stdc++.h>
-#include <cstdlib>
-using namespace std;
+#include <algorithm>
+#include <iomanip>
+#include <iostream>
+#include <string>
+#include <vector>
 
 #define int long long
 
-double search(int left, int right, string &str) {
-    if (left == -1 || right == -1)
-        return 0;
-    if (left > right)
-        return 0;
-    if (right - left + 1 < 3)
-        return 0;
-    int n = (int)str.length();
+using namespace std;
 
-    int count = 0;
-    for (int index = left; index <= right; index++) {
-        if (str[index] == 't')
-            count++;
+double solve(int i, int j, const vector<int> &t_indices, vector<vector<double>> &memo) {
+    if (i > j || (j - i + 1) < 3) {
+        return 0.0;
     }
 
-    int next = -1;
-    for (int index = left + 1; index <= right; index++) {
-        if (str[index] == 't') {
-            next = index;
-            break;
-        }
+    if (memo[i][j] != -1.0) {
+        return memo[i][j];
     }
 
-    int last = -1;
-    for (int index = right - 1; index >= left; index--) {
-        if (str[index] == 't') {
-            last = index;
-            break;
-        }
-    }
+    double numerator = j - i - 1;
+    double denominator = t_indices[j] - t_indices[i] - 1;
+    double current_rate = numerator / denominator;
 
-    double rate = ((double)count - 2) / (double)(right - left + 1 - 2);
-    return fmax(rate, fmax(search(next, right, str), search(left, last, str)));
+    double res_sub1 = solve(i + 1, j, t_indices, memo);
+
+    double res_sub2 = solve(i, j - 1, t_indices, memo);
+
+    double max_val = max({current_rate, res_sub1, res_sub2});
+    memo[i][j] = max_val;
+    return memo[i][j];
 }
 
 int32_t main() {
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     string str;
     cin >> str;
 
-    int next = -1;
-    for (int index = 0; index < str.length(); index++) {
-        if (str[index] == 't') {
-            next = index;
-            break;
+    vector<int> t_indices;
+    for (int i = 0; i < str.length(); ++i) {
+        if (str[i] == 't') {
+            t_indices.push_back(i);
         }
     }
 
-    int last = -1;
-    for (int index = str.length() - 1; index >= 0; index--) {
-        if (str[index] == 't') {
-            last = index;
-            break;
-        }
+    int k = t_indices.size();
+
+    if (k < 3) {
+        cout << fixed << setprecision(24) << 0.0 << endl;
+        return EXIT_SUCCESS;
     }
 
-    cout << setprecision(24) << search(next, last, str) << endl;
+    vector<vector<double>> memo(k, vector<double>(k, -1.0));
+    double result = solve(0, k - 1, t_indices, memo);
+
+    cout << fixed << setprecision(24) << result << endl;
 
     return EXIT_SUCCESS;
 }
