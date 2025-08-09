@@ -1,6 +1,93 @@
 #include <bits/stdc++.h>
+#include <climits>
 #include <vector>
 using namespace std;
+
+void bellmanFord() {
+    // this algo finds shortest paths from a starting node to all nodes of a graph
+
+    // the algo can process all kinds of graphs, provided that the graph does not contain
+    // a cycle with a total negative length (called a negative cycle)
+    // if the graph contains a negative cycle, the algorithm can detect this
+
+    // the algo keeps track of distances from the starting node to all nodes of the graph
+    // initially, the distance to the starting node is 0 and the distances to any other node is infinite
+    // the algo reduces the distances by finding edges that shorten the paths until it is not possible
+    // to reduce any distance
+
+    int n, m;
+    cin >> n >> n;
+
+    // 0-indexed nodes, undirected, weighted graph
+    vector<tuple<int, int, int>> edges(n);
+    int u, v, w;
+    while (m--) {
+        cin >> u >> v >> w;
+        edges.push_back({u, v, w});
+    }
+
+    int start;
+    cin >> start;
+
+    // the below algo determines the shortest path from start to all other nodes
+    // the code assumes that the graph is stored as an edge list that contains tuples of the form (a, b, w)
+    // meaning there is an edge from a to b with weight w
+
+    // the algo consists of n - 1 rounds, and on each round the algorithm goes through all edges
+    // of the graph and attempts to reduce the distances
+    // the algo constructs and array dist that will contain the distances from node x to all nodes
+
+    vector<int> parent(n);
+    for (int node = 0; node < n; node++)
+        parent[node] = node;
+    vector<int> dist(n, INT_MAX);
+    dist[start] = 0;
+
+    for (int iter = 1; iter < n; iter++) {
+        for (auto &[u, v, w] : edges) {
+            if (dist[u] != INT_MAX && dist[u] + w < dist[v]) {
+                dist[v] = dist[u] + w;
+                parent[v] = u;
+            }
+        }
+    }
+
+    /*
+    The  time  complexity  of  the  algorithm  is O(nm),  because  the  algorithm  consists  of
+    n − 1 rounds  and  iterates  through  all m edges  during  a  round.  If  there  are  no  negative
+    cycles  in  the  graph (reachable from x),  all  distances  are  final  after n − 1 rounds,  because  each  shortest
+    path  can  contain  at  most n − 1 edges.
+    */
+
+    // shortest path length in a weighted graph is defined only when there is no negative cycle in the
+    // graph reachable from x
+
+    // to see if there is a negative cycle in the graph, iterate through the edges one more time
+    // if we find a distance reduction again, we have a negative cycle in the graph
+    for (auto &[u, v, w] : edges) {
+        if (dist[u] != INT_MAX && dist[u] + w < dist[v]) {
+            // the graph contains a negative cycle
+            return;
+        }
+    }
+
+    int dst;
+    cin >> dst;
+    if (dist[dst] == INT_MAX) // there is no path from start to dst
+        return;
+
+    // we construct a path from start to dst;
+    vector<int> path;
+    while (dst != parent[dst]) {
+        path.push_back(dst);
+        dst = parent[dst];
+    }
+    path.push_back(dst);
+
+    reverse(path.begin(), path.end()); // this is a shortest path from start to dst
+
+    return;
+}
 
 void dfs(int x, vector<bool> &vis, vector<vector<int>> &graph) {
     vis[x] = true;
@@ -92,6 +179,11 @@ void bfsInfo() {
     int start;
     cin >> start;
 
+    vector<int> parent(n);
+    for (int node = 0; node < n; node++) {
+        parent[node] = node;
+    }
+
     // if we do this way, we don't really need a visited array
     // since bfs visits level by level, the first time we visit a node, it will be through the
     // minimum number of edges and thus through the shortest path
@@ -105,11 +197,27 @@ void bfsInfo() {
 
         for (int v : graph[x]) {
             if (dist[x] + 1 < dist[v]) {
+                parent[v] = x;
                 dist[v] = dist[x] + 1;
                 que.push(v);
             }
         }
     }
+
+    int dst;
+    cin >> dst;
+    if (dist[dst] == INT_MAX) // there is no path from start to dst
+        return;
+
+    // we construct a path from start to dst;
+    vector<int> path;
+    while (dst != parent[dst]) {
+        path.push_back(dst);
+        dst = parent[dst];
+    }
+    path.push_back(dst);
+
+    reverse(path.begin(), path.end()); // this is a shortest path from start to dsts
 
     // the tc of bfs is O(n + m)
     return;
@@ -210,5 +318,32 @@ int main() {
     */
 
     // 3. Bipartiteness Check
-    // a graph is
+    // a graph is bipartite if its node can be colored so that there are no adjacent nodes with the same color
+    // its easy to check if a graph is bipartite using traversal algorithms
+    // the idea is to pick two colors X and Y, color the starting node X, all its neighbours Y,
+    // and all their neighbours X, and so on
+    // if at some point of the search we notice that two adjacent nods have the same color, this means
+    // that the graph is not bipartite
+    // otherwise, the graph is bipartite and one coloring has been found
+
+    // in the general case it is difficult to find out if the nodes in a graph can be colored using k colors
+    // so that no adjacent nodes have the same color
+    // the problem is NP-hard already for k = 3
+
+    /*
+
+    Shortest Paths
+
+    In an unweighted graph, the length of a path equals the number of its edges, and we can simply use
+    bfs to find a shortest path
+
+    In a weighted graph, the length of a path is the sum of weights of the edges in the path
+    A negative cycle in a weighted graph is a cyclic path that has a negative length
+
+    There are three algorithms we discuss
+    1. Bellman-Ford
+    2. Dijkstra's
+    3. Floyd-Warshall
+
+    */
 }
