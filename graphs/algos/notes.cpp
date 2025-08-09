@@ -160,6 +160,10 @@ void floydWarshall() {
         r = next[r][dst];
     }
     path.push_back(dst);
+
+    for (int v : path)
+        cout << v << " ";
+    cout << endl;
     return;
 }
 
@@ -447,6 +451,9 @@ int main() {
     // finding out if we can reach all the other nodes
     // in a similar way, we can find all the connected components of a graph by iterating through
     // the nodes and always starting a new dfs if the current node does not belong to any component yet
+
+    floydWarshall();
+    return 0;
 
     int n, m;
     cin >> n >> n;
