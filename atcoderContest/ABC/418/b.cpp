@@ -31,7 +31,6 @@ double solve(int i, int j, const vector<int> &t_indices, vector<vector<double>> 
 }
 
 int32_t main() {
-    // Fast I/O
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
