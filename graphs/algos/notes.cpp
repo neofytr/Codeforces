@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 #include <climits>
+#include <functional>
+#include <queue>
 #include <vector>
 using namespace std;
 
@@ -86,6 +88,95 @@ void bellmanFord() {
 
     reverse(path.begin(), path.end()); // this is a shortest path from start to dst
 
+    return;
+}
+
+void dijkstra() {
+    // this algo finds shortest paths from the starting node to all nodes of the graph
+    // the benefit of this is that its more efficient that bellman-ford and can be used for
+    // processing large graphs
+    // however, the algo requires that there are no negative weight edges in the graph
+
+    // dijkstras algo maintains distances to the nodes and reduces them during the search
+    // at each step, this algo selects a node that has not been processed yet and whose distance is as small as possible
+    // then the algo goes through all edges that start at the node and reduces the distances using them
+    // this algo is efficient, because it only processes each edge in the graph once, using the fact that
+    // there are no negative edges
+
+    // an efficient implementation of the algo requires that we can efficiently find the min-distance node
+    // that has not been processed
+
+    // an appropriate data structure for this is a priority queue that contains the remaining nodes
+    // ordered by their distances
+    // using a pq, the next node to be processed can be retrieved in logarithmic time
+
+    // the following implementation calculates min distances from a node x to all other nodes in the graph
+    // the graph is stored as an adjacency list
+
+    int n, m;
+    cin >> n >> n;
+
+    // 0-indexed nodes, undirected, weighted graph
+    vector<vector<pair<int, int>>> graph(n);
+    int u, v, w;
+    while (m--) {
+        cin >> u >> v >> w;
+        graph[u].push_back({v, w});
+        graph[v].push_back({u, w});
+    }
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq; // (dist, node)
+    vector<int> dist(n, INT_MAX);
+    vector<bool> vis(n, false);
+    vector<int> parent(n);
+    for (int node = 0; node < n; node++)
+        parent[node] = node;
+
+    // while there may be several instances of a node in the pq, only the instance with the minimum distance
+    // will be processed
+
+    int src;
+    cin >> src;
+
+    // the maintained invariant is that once a node is popped from the pq, it's minimum distance has been finalized
+    // the visited array is not needed, since a node will be pushed into the queue again only when a shorter path to it
+    // is found
+    dist[src] = 0;
+    pq.push({dist[src], src});
+    while (!pq.empty()) {
+        auto [d, x] = pq.top();
+        pq.pop();
+
+        for (auto &[v, w] : graph[x]) {
+            if (d + w < dist[v]) {
+                dist[v] = d + w;
+                parent[v] = x;
+            }
+        }
+    }
+
+    /*
+
+    The  time  complexity  of  the  above  implementation  is O(n + m log m),  because
+    the  algorithm  goes  through  all  nodes  of  the  graph  and  adds  for  each  edge  at  most
+    one  distance  to  the  priority  queue.
+
+    */
+
+    int dst;
+    cin >> dst;
+    if (dist[dst] == INT_MAX) // there is no path from start to dst
+        return;
+
+    // we construct a path from start to dst;
+    vector<int> path;
+    while (dst != parent[dst]) {
+        path.push_back(dst);
+        dst = parent[dst];
+    }
+    path.push_back(dst);
+
+    reverse(path.begin(), path.end()); // this is a shortest path from start to dsts
     return;
 }
 
@@ -217,7 +308,7 @@ void bfsInfo() {
     }
     path.push_back(dst);
 
-    reverse(path.begin(), path.end()); // this is a shortest path from start to dsts
+    reverse(path.begin(), path.end()); // this is a shortest path from start to dst
 
     // the tc of bfs is O(n + m)
     return;
