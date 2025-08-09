@@ -148,6 +148,8 @@ void floydWarshall() {
             return; // there is a negative cycle in the graph
     }
 
+    // the algorithm runs in O(n^3) time
+
     int src, dst;
     cin >> src >> dst;
     if (dist[src][dst] == INT_MAX)
@@ -160,10 +162,6 @@ void floydWarshall() {
         r = next[r][dst];
     }
     path.push_back(dst);
-
-    for (int v : path)
-        cout << v << " ";
-    cout << endl;
     return;
 }
 
@@ -390,6 +388,95 @@ void bfsInfo() {
     return;
 }
 
+// this is also a way to detect cycles in a directed graph
+bool dfsTopo(int node, vector<int> &state, vector<int> &topo, vector<vector<int>> &graph) {
+    state[node] = 1;
+
+    for (int v : graph[node]) {
+        if (state[v] == 1 || (!state[v] && !dfsTopo(v, state, topo, graph)))
+            return false; // we have a cycle
+    }
+
+    state[node] = 2;
+    topo.push_back(node);
+    return true;
+}
+
+void topoSort() {
+    // a topological sort is an ordering of the nodes of a directed graph such that if there is a
+    // path from node u to node v, then u appears before v in the ordering
+
+    // a topological sort of a directed graph exists iff the graph is acyclic
+    // dfs can be used to both check if a directed graph contains a cycle, and if it does not, to
+    // construct a topological sort
+
+    // the idea is to go through the nodes of the graph and always begin a dfs at the current node
+    // if it has not been processed yet
+    // during the searches, the nodes have three possible states ->
+    // 1. state 0 -> the node has not been processed
+    // 2. state 1 -> the node is under processing
+    // 3. state 2 -> the node has been processed
+
+    // initially, the state of each node is 0
+    // when a search reaches a node for the first time, it's state becomes 1
+    // finally, after all the edges from the node have been processed, it's state becomes 2
+
+    // if the graph contains a cycle, we will discover this during the search, because sooner or later
+    // we will arrive at a node whose state is 1. In this case, it is not possible to construct a topological
+    // sort
+
+    // if the graph does not contain a cycle, we can construct a topo sort by adding each node to a list
+    // when its state becomes 2
+    // finally, we reverse the list to get a topo sort for the graph
+
+    // a topo sort for a DAG is not unique; there can be several topo sorts for a graph
+
+    int n, m;
+    cin >> n >> n;
+
+    // 0-indexed nodes, directed graph
+    vector<vector<int>> graph(n);
+    vector<int> indegree(n, 0);
+    int u, v;
+    while (m--) {
+        cin >> u >> v;
+        graph[u].push_back(v);
+        indegree[v]++;
+    }
+
+    int src = 0; // arbitrary
+    vector<int> topo;
+    vector<int> state(n, 0);
+    if (!dfsTopo(src, state, topo, graph))
+        return; // graph has a cycle
+    reverse(topo.begin(), topo.end());
+
+    // Kahn's Algorithm
+    vector<int> kahnTopo;
+    queue<int> que;
+    for (int node = 0; node < n; node++)
+        if (!indegree[node]) {
+            que.push(node);
+        }
+
+    // we don't need to maintain a visited array since a node's indegree will become 0 exactly once
+    // and at the at time, the node will be pushed into the queue
+    while (!que.empty()) {
+        int x = que.front();
+        que.pop();
+
+        kahnTopo.push_back(x);
+        for (int v : graph[x]) {
+            if (!(--indegree[v])) // remove the edge x -> v
+                que.push(v);
+        }
+    }
+
+    if (kahnTopo.size() != n)
+        return; // the graph has a cycle; no topo sort exists
+    return;
+}
+
 int main() {
     // dfs is a simple way to visit all nodes that can be reached from a starting node, and bfs
     // visits the nodes in increasing order of their distance from the starting node
@@ -452,9 +539,6 @@ int main() {
     // in a similar way, we can find all the connected components of a graph by iterating through
     // the nodes and always starting a new dfs if the current node does not belong to any component yet
 
-    floydWarshall();
-    return 0;
-
     int n, m;
     cin >> n >> n;
 
@@ -516,4 +600,7 @@ int main() {
     3. Floyd-Warshall
 
     */
+
+    // directed graphs that do not contain a cycle are called DAGs
+    // we can always construct a topological sort for the graph and then apply dynamic programming
 }
