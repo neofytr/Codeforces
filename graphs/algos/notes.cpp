@@ -477,6 +477,149 @@ void topoSort() {
     return;
 }
 
+// assumes undirected graph with 0-indexed nodes
+class disjointSetUnion {
+    // a union-find structure can be used to process graph related problems only for undirected graphs
+    /*
+        A union-find structure maintains a collection of connected sets
+        The sets are disjoint, so no element belongs to more than one set
+        Two O(logn) time operations are supported -> the unite operation joins two sets, and the
+        find operation finds the representative of the set that contains a given element
+
+        In a union-find structure, one element in each set is the representative of the set, and
+        there is a path from any other element of the set to the representative
+
+        We can find the representative of any element by following the path that begins at the element.
+        Two elements belong to the same set exactly when their representatives are the same.
+
+        To join two sets, the representative of one set if connected to the representative of the other set
+        The efficiency of the union-find structure depends on how the sets are joined
+        It turns out that we can follow a simple strategy -> always connect the representative of the smaller set
+        to the representative of the larget set (or if the sets are equal, we make an arbitrary size)
+        Using this strategy, the length of any path from an element to it's representative will be atmost log(n), where n
+        is the number of nodes in the entire graph, so we can find the representative of any element efficiently
+        by following the corresponding path
+
+        This is easily provable
+        Suppose we want to join two sets A and B with size(A) >= size(B)
+        The size of the final set C will be size(C) = size(A) + size(B) >= 2 * size(B)
+        Also, since we connect the root of set B to root of set A, the longest path in set B, will increase
+        by atmost one
+        So, when we connect two sets, the size of the final set is atleast double of the smaller set and the
+        path length of the longest path increases by atmost 1
+
+        So, if in a graph, we have n nodes, which are all initially in their own sets, and we start connecting them,
+        It will take atmost log(n) union operations to connect them, and since longest path increases by atmost 1 in each
+        , finally, the longest path will be atmost of length log(n)
+    */
+
+    /*
+        The union-find structure can be conveniently implemented using arrays
+        In the following implementation, the array parent indicates for each element, the next element in the path,
+        or the element itself if it's a set representative(root)
+        The array size, for a root element r, represents the size of the component/set rooted at r through size[r]
+
+        Initially, each element belongs to a separate set
+        The function getRoot(x) returns the representative for an element x
+        The representative can be found by following the path that begins at x
+
+        The same function can check whether two elements belong to the same set by checking if the
+        two elements have the same root
+
+        The function join(x, y) joins the set containing element x and y if they are in different sets and
+        does nothing if they are not
+        The function first finds the representatives of the sets and then connects the smaller set to the larger set
+
+        The time complexity of the function getRoot is O(logn) assuming that the worst-case path length of any path is logn
+        In this case, the functions isConnected and join also work in O(logn) time
+        The function join makes sure that the length of each path is atmost log(n) by connecting the smaller set to the larget set
+
+        We can also do path compression in the getRoot function
+        This way, each element in the path will point directly to it's representative (root) after the operation
+        It can be shown that by using path compression, the union-find operations work in amortized O(alpha(n)) time,
+        where alpha(n) is the inverse Ackermann function which grows very slowly (its almost a constant)
+        However, path compression cannot be used in some applications (where the information about parents of a node in path
+        is important) of the union-find structure, such as in the dynamic-connectivity algorithm
+    */
+
+  private:
+    int numNodes;
+    int numComp;
+    vector<int> parent;
+    vector<int> size;
+
+    inline bool checkNode(int x) { return x < numNodes && x >= 0; }
+    inline bool checkNodes(int x, int y) { return checkNode(x) && checkNode(y); }
+    int getRoot(int x) {
+        int y = x;
+        while (x != parent[x])
+            x = parent[x];
+
+        // path compression
+        int temp;
+        while (y != parent[y]) {
+            temp = parent[y]; // store the parent of the current node
+            parent[y] = x;    // make the root node parent of the current node
+            y = temp;         // go to the stored parent node
+        }
+        return x;
+    }
+    inline int getSize(int x) { return size[getRoot(x)]; }
+
+  public:
+    disjointSetUnion(int numNodes) {
+        this->numNodes = numNodes;
+        parent.resize(numNodes);
+        size.resize(numNodes);
+        for (int node = 0; node < numNodes; node++) {
+            parent[node] = node;
+            size[node] = 1; // each node is in it's own connected component
+        }
+        numComp = numNodes;
+        return;
+    }
+
+    bool join(int x, int y) { // joins node x and y via an edge if they are not already joined
+        if (!checkNodes(x, y))
+            return false;
+
+        int rootX = getRoot(x);
+        int rootY = getRoot(y);
+
+        if (rootX == rootY) // already in the same component
+            return true;
+
+        // x and y are not in the same component
+        // they will be after these operations
+        // so decrease the component number by 1
+        numComp--;
+        int sizeX = getSize(x);
+        int sizeY = getSize(y);
+
+        if (sizeX > sizeY) {
+            swap(sizeX, sizeY);
+            swap(rootX, rootY);
+        }
+
+        // from here, sizeY >= sizeX always
+        // attach X root to Y root
+        parent[rootX] = rootY;
+        size[rootY] += sizeX;
+
+        return true;
+    }
+
+    int isConnected(int x, int y) {
+        if (!checkNodes(x, y))
+            return -1;
+
+        return getRoot(x) == getRoot(y);
+    }
+
+    int componentSize(int x) { return checkNode(x) ? getSize(x) : -1; }
+    int numComponents() { return numComp; }
+};
+
 int main() {
     // dfs is a simple way to visit all nodes that can be reached from a starting node, and bfs
     // visits the nodes in increasing order of their distance from the starting node
@@ -626,6 +769,27 @@ int main() {
     there is an edge s -> x, we can process the nodes in a topo sort ordering since when we reach
     some node x in the ordering, it's guaranteed that we've processed all nodes s such that s -> x
     by the definition of a topo sort ordering.
+
+    */
+
+    /*
+
+    Minimum Spanning Trees
+    All the following information is for undirected graphs
+
+    A spanning tree contains all nodes of a graph and some of it's edges so that there is a
+    path between any nodes nodes
+    Like trees in general, spanning trees are connected and acyclic
+    The weight of a spanning tree is the sum of its edge weights
+
+    A minimum spanning tree is a spanning tree whose weight is as small as possible
+    In a similar way, a maximum spanning tree is a spanning tree whose weight is as large as possible
+    Note that a graph may have several minimum and maximum spanning trees, so the trees are not unique
+    
+    It turns out that several greedy methods can be used to construct minimum/maximum spanning trees
+    We see Kruskal's algorithm that processes the edges of the graph ordered by their weight
+    We focus on finding the minimum spanning tree, but the same algorithm can also find the maximum spanning trees
+    by processing the edges in reverse order
 
     */
 }
