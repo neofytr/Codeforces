@@ -11,6 +11,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **closestRight** (easy) - solved
 - ✅ **getTogether** (medium) - solved
 - ✅ **cellularNetwork** (hard) - solved
+- ✅ **kthNumUnion** (medium) - solved
 - ✅ **cowStalls** (hard) - solved
 - ✅ **closestLeft** (easy) - solved
 - ✅ **countingHaybales** (easy) - solved
@@ -26,9 +27,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 14
-- Solved: 14
+- Total Problems: 15
+- Solved: 15
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-08 16:59:12*
+*Last updated on 2025-08-10 15:29:29*
