@@ -12,6 +12,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **factoryMachines** (easy) - solved
 - ✅ **getTogether** (medium) - solved
 - ✅ **cellularNetwork** (hard) - solved
+- ✅ **arrDiv** (hard) - solved
 - ✅ **kthNumUnion** (medium) - solved
 - ✅ **cowStalls** (hard) - solved
 - ✅ **closestLeft** (easy) - solved
@@ -29,9 +30,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 17
-- Solved: 17
+- Total Problems: 18
+- Solved: 18
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-10 19:32:41*
+*Last updated on 2025-08-10 19:43:20*
