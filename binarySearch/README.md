@@ -9,6 +9,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **ropes** (easy) - solved
 - ✅ **equation** (medium) - solved
 - ✅ **closestRight** (easy) - solved
+- ✅ **factoryMachines** (easy) - solved
 - ✅ **getTogether** (medium) - solved
 - ✅ **cellularNetwork** (hard) - solved
 - ✅ **kthNumUnion** (medium) - solved
@@ -28,9 +29,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 16
-- Solved: 16
+- Total Problems: 17
+- Solved: 17
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-10 15:52:36*
+*Last updated on 2025-08-10 19:32:41*
