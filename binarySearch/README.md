@@ -10,6 +10,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **equation** (medium) - solved
 - ✅ **closestRight** (easy) - solved
 - ✅ **factoryMachines** (easy) - solved
+- ✅ **tPrime** (medium) - solved
 - ✅ **getTogether** (medium) - solved
 - ✅ **cellularNetwork** (hard) - solved
 - ✅ **arrDiv** (hard) - solved
@@ -30,9 +31,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 18
-- Solved: 18
+- Total Problems: 19
+- Solved: 19
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-10 19:43:20*
+*Last updated on 2025-08-10 20:04:23*
