@@ -16,6 +16,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **tPrime** (medium) - solved
 - ✅ **getTogether** (medium) - solved
 - ✅ **cellularNetwork** (hard) - solved
+- ✅ **pairTopics** (medium) - solved
 - ✅ **arrDiv** (hard) - solved
 - ✅ **kthNumUnion** (medium) - solved
 - ✅ **cowStalls** (hard) - solved
@@ -36,9 +37,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 24
-- Solved: 24
+- Total Problems: 25
+- Solved: 25
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-11 17:50:43*
+*Last updated on 2025-08-11 18:13:39*
