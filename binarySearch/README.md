@@ -12,6 +12,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **worms** (easy) - solved
 - ✅ **factoryMachines** (easy) - solved
 - ✅ **books** (medium) - solved
+- ✅ **numPairs** (medium) - solved
 - ✅ **tPrime** (medium) - solved
 - ✅ **getTogether** (medium) - solved
 - ✅ **cellularNetwork** (hard) - solved
@@ -35,9 +36,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 23
-- Solved: 23
+- Total Problems: 24
+- Solved: 24
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-11 07:27:49*
+*Last updated on 2025-08-11 17:50:43*
