@@ -19,6 +19,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **closestLeft** (easy) - solved
 - ✅ **countingHaybales** (easy) - solved
 - ✅ **veryEasyTask** (easy) - solved
+- ✅ **vanya** (easy) - solved
 - ✅ **maxMedian** (hard) - solved
 - ✅ **fastSearch** (medium) - solved
 - ✅ **maxMinPath** (hard) - solved
@@ -31,9 +32,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 19
-- Solved: 19
+- Total Problems: 20
+- Solved: 20
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-10 20:04:23*
+*Last updated on 2025-08-11 06:44:01*
