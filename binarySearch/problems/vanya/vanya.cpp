@@ -48,16 +48,14 @@ int32_t main() {
     double left = 0;        // can't light the whole street with this
     double right = 2e9 + 1; // can light the whole street with this since the street length can be at most 1e9
 
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 100; i++) {
         double mid = left + (right - left) / 2.0;
-        if (mid == left || mid == right)
-            break;
         if (func(mid, l, arr))
             right = mid;
         else
             left = mid;
     }
 
-    cout << setprecision(10) << right << endl;
+    cout << setprecision(12) << right << endl;
     return 0;
 }
