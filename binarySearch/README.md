@@ -24,6 +24,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **countingHaybales** (easy) - solved
 - ✅ **ternaryString** (https://codeforces.com/problemset/problem/1354/B) - solved
 - ✅ **veryEasyTask** (easy) - solved
+- ✅ **mexCount** (hard) - solved
 - ✅ **vanya** (easy) - solved
 - ✅ **maxMedian** (hard) - solved
 - ✅ **fastSearch** (medium) - solved
@@ -37,9 +38,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 25
-- Solved: 25
+- Total Problems: 26
+- Solved: 26
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-11 18:13:39*
+*Last updated on 2025-08-11 22:38:04*
