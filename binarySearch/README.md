@@ -9,6 +9,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **ropes** (easy) - solved
 - ✅ **equation** (medium) - solved
 - ✅ **closestRight** (easy) - solved
+- ✅ **worms** (easy) - solved
 - ✅ **factoryMachines** (easy) - solved
 - ✅ **books** (medium) - solved
 - ✅ **tPrime** (medium) - solved
@@ -33,9 +34,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 21
-- Solved: 21
+- Total Problems: 22
+- Solved: 22
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-11 07:05:13*
+*Last updated on 2025-08-11 07:16:07*
