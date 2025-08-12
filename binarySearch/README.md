@@ -27,6 +27,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **veryEasyTask** (easy) - solved
 - ✅ **mexCount** (hard) - solved
 - ✅ **vanya** (easy) - solved
+- ✅ **coloringGame** (medium) - solved
 - ✅ **maxMedian** (hard) - solved
 - ✅ **fastSearch** (medium) - solved
 - ✅ **maxMinPath** (hard) - solved
@@ -39,9 +40,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 27
-- Solved: 27
+- Total Problems: 28
+- Solved: 28
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-12 19:50:01*
+*Last updated on 2025-08-12 20:23:47*
