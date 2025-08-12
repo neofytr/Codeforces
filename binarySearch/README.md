@@ -7,6 +7,7 @@ Collection of problems and solutions for binarySearch.
 - ✅ **stringGame** (medium) - solved
 - ✅ **splitArray** (medium) - solved
 - ✅ **ropes** (easy) - solved
+- ✅ **retaliation** (medium) - solved
 - ✅ **equation** (medium) - solved
 - ✅ **closestRight** (easy) - solved
 - ✅ **worms** (easy) - solved
@@ -38,9 +39,9 @@ Collection of problems and solutions for binarySearch.
 - Sorting
 
 ## Progress
-- Total Problems: 26
-- Solved: 26
+- Total Problems: 27
+- Solved: 27
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-11 22:38:04*
+*Last updated on 2025-08-12 19:50:01*
