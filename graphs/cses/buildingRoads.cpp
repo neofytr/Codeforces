@@ -75,7 +75,7 @@ int main() {
             req.push_back(i);
     }
 
-    for (int i = 0; i < req.size() - 1; i++) {
+    for (int i = 0; i < (int)req.size() - 1; i++) {
         cout << req[i] + 1 << " " << req[i + 1] + 1 << endl;
     }
     return EXIT_SUCCESS;
