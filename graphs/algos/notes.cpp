@@ -37,7 +37,7 @@ void bellmanFord() {
 
     // the algo consists of n - 1 rounds, and on each round the algorithm goes through all edges
     // of the graph and attempts to reduce the distances
-    // the algo constructs and array dist that will contain the distances from node x to all nodes
+    // the algo constructs an array dist that will contain the distances from node x to all nodes
 
     vector<int> parent(n);
     for (int node = 0; node < n; node++)
@@ -293,7 +293,7 @@ void dfsInfo() {
     cin >> start;
 
     // the function assumes that the graph is stored as an adjacency list
-    // and also maintains an array
+    // and also maintains a dist array
 
     vector<bool> vis(n, false);
 
@@ -840,7 +840,7 @@ int main() {
     // its easy to check if a graph is bipartite using traversal algorithms
     // the idea is to pick two colors X and Y, color the starting node X, all its neighbours Y,
     // and all their neighbours X, and so on
-    // if at some point of the search we notice that two adjacent nods have the same color, this means
+    // if at some point of the search we notice that two adjacent nodes have the same color, this means
     // that the graph is not bipartite
     // otherwise, the graph is bipartite and one coloring has been found
 
@@ -874,7 +874,7 @@ int main() {
     // 3. what is the minimum/maximum number of edges in a path
     // 4. which nodes appear in every possible paths
 
-    // node that many of the above problems are difficult to solve or not well-defined for general graphs
+    // note that many of the above problems are difficult to solve or not well-defined for general graphs
 
     // as an example, consider the problem of calculating the number of paths from node a to node b
     // let paths(x) denote the number of paths from node a to node x
@@ -896,10 +896,10 @@ int main() {
     /*
 
     Minimum Spanning Trees
-    All the following information is for undirected graphs
+    All the following information is for undirected connected graphs
 
     A spanning tree contains all nodes of a graph and some of it's edges so that there is a
-    path between any nodes nodes
+    path between any two nodes
     Like trees in general, spanning trees are connected and acyclic
     The weight of a spanning tree is the sum of its edge weights
 
