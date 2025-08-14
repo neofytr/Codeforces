@@ -69,7 +69,7 @@ int main() {
                                 cout << k << " ";
                             cout << endl;
                             return EXIT_SUCCESS;
-                        } else if (dist[v] == dist[x] + 1) {
+                        } else if (dist[v] == dist[x] + 1) { // while processing the next depth, all nodes may not be processed, so, the previously processed ones can have one more depth
                             int a = parent[v];
                             int b = x;
 
