@@ -6,6 +6,8 @@ using namespace std;
 #include <vector>
 using namespace std;
 
+#define int long long
+
 // assumes undirected graphs with 0-indexed nodes
 class disjointSetUnion {
   public:
@@ -91,7 +93,7 @@ class disjointSetUnion {
     int numComponents() { return numComp; }
 };
 
-int main() {
+int32_t main() {
     int n, m;
     cin >> n >> m;
 
