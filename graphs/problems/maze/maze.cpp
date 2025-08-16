@@ -44,19 +44,22 @@ int32_t main() {
     stack<pair<int, int>> st;
 
     st.push(src);
+    vis[src.first][src.second] = true;
+    cnt++;
+
     while (!st.empty() && cnt < toKeep) {
         auto [row, col] = st.top();
         st.pop();
 
-        vis[row][col] = true;
-        cnt++;
         for (int i = 0; i < 4; i++) {
             int nrow = row + dr[i];
             int ncol = col + dc[i];
-            if (ncol < m && nrow < n && nrow >= 0 && ncol >= 0 && graph[nrow][ncol] == '.') {
-                if (!vis[nrow][ncol]) {
-                    st.push({nrow, ncol});
-                }
+            if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && graph[nrow][ncol] == '.' && !vis[nrow][ncol]) {
+                vis[nrow][ncol] = true;
+                cnt++;
+                st.push({nrow, ncol});
+                if (cnt == toKeep)
+                    break;
             }
         }
     }
