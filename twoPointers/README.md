@@ -4,6 +4,7 @@
 Collection of problems and solutions for twoPointers.
 
 ## Problems Solved
+- ✅ **threeSum** (medium) - solved
 - ✅ **subarraySumsOne** (easy) - solved
 - ✅ **sumTwo** (easy) - solved
 
@@ -11,9 +12,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 2
-- Solved: 2
+- Total Problems: 3
+- Solved: 3
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-16 20:14:19*
+*Last updated on 2025-08-16 20:23:21*
