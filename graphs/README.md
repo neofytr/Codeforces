@@ -4,6 +4,7 @@
 Collection of problems and solutions for graphs.
 
 ## Problems Solved
+- ✅ **iceSkating** (medium) - solved
 - ✅ **shortestBinary** (medium) - solved
 - ✅ **bersu** (medium) - solved
 - ✅ **mostStones** (medium) - solved
@@ -34,9 +35,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 23
-- Solved: 23
+- Total Problems: 24
+- Solved: 24
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-16 12:32:37*
+*Last updated on 2025-08-16 22:11:04*
