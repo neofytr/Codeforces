@@ -4,15 +4,15 @@
 Collection of problems and solutions for twoPointers.
 
 ## Problems Solved
-<!-- This will be auto-updated -->
+- ✅ **sumTwo** (easy) - solved
 
 ## Key Techniques
-<!-- Common patterns and tricks for this topic -->
+- Sorting
 
 ## Progress
-- Total Problems: 0
-- Solved: 0
-- Success Rate: 0%
+- Total Problems: 1
+- Solved: 1
+- Success Rate: 100.0%
 
 ---
-*Auto-generated on 2025-08-16 12:34:25*
+*Last updated on 2025-08-16 20:10:06*
