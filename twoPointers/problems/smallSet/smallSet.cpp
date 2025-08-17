@@ -29,6 +29,12 @@ int32_t main() {
     int right = 0;
     while (left < n) {
         while (right < n && seg.size() + (!mp[arr[right]] ? 1 : 0) <= k) { // does adding the element at right ptr makes the num of unique elements reach the max allowed?
+            // if we just do seg.size() < k it will stop when it first reaches k unique elements
+            // not taking into account more elements ahead that are equal to previous ones
+            // this breaks our invariant
+
+            // seg.size() + (!mp[arr[right]] ? 1 : 0) <= k check if adding the next element will still retain
+            // atmost k unique elements or not
             int elt = arr[right];
             mp[elt]++;
             seg.insert(elt);
