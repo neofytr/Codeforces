@@ -13,9 +13,8 @@ int main() {
     for (int &val : B)
         cin >> val;
 
+    // A and B are sorted in non-decreasing order
     // we want to calculate for each element b[r], the number of elements a[k] such that a[k] < b[r]
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end());
 
     // method one
     int k = 0;
@@ -28,11 +27,10 @@ int main() {
     }
 
     for (int i = 0; i < m; i++)
-        cout << B[i] << " -> " << ans[i] << endl;
-
+        cout << ans[i] << " ";
     cout << endl;
 
-    // method two
+    /* // method two
     vector<int> ansTwo(m, 0);
     int i = 0, j = 0;
     while (i < n && j < m)
@@ -44,7 +42,7 @@ int main() {
     while (j < m)
         ansTwo[j++] = n;
     for (int i = 0; i < m; i++)
-        cout << B[i] << " -> " << ansTwo[i] << endl;
+        cout << B[i] << " -> " << ansTwo[i] << endl; */
 
     return EXIT_SUCCESS;
 }
