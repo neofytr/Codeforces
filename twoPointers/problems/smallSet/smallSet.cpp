@@ -28,6 +28,8 @@ int32_t main() {
     int left = 0;
     int right = 0;
     while (left < n) {
+        if (right < left)
+            right = left;
         while (right < n && seg.size() + (!mp[arr[right]] ? 1 : 0) <= k) { // does adding the element at right ptr makes the num of unique elements reach the max allowed?
             // if we just do seg.size() < k it will stop when it first reaches k unique elements
             // not taking into account more elements ahead that are equal to previous ones
