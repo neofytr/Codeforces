@@ -22,7 +22,7 @@ int32_t main() {
     for (int &val : arr)
         cin >> val;
 
-    // all array values are non-negative
+    // all array values are >= 1
     // a segment [l,r] where 0 <= l <= r < n is good iff its sum is atleast s
     // we are to find the shortest good segment
 
@@ -39,7 +39,7 @@ int32_t main() {
         while (right < n && sum < s)
             sum += arr[right++]; // if the current sum is less than s, add the current right ptr element
 
-        if (left <= right - 1) {
+        if (sum >= s) {
             // [left, right - 1] is a good segment
             minLen = min(minLen, right - left);
             sum -= arr[left];

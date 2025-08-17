@@ -1,54 +1,58 @@
 # bigSum
 
 ```markdown
-# Problem: Minimum Segment Sum (Big Sum)
+## Problem: Finding the Shortest Subarray with Sum at Least S
 
-This problem (available at [https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/B](https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/B)) asks to find the minimum length of a contiguous subsegment (subarray) of a given array such that the sum of elements in that subsegment is greater than or equal to a given target value 's'.  The elements in the input array are non-negative integers. If no such segment exists, the output should be -1.
+This program solves the problem of finding the shortest subarray (contiguous segment) within a given array of positive integers such that the sum of the elements in the subarray is at least a given target value `S`.
+
+**Problem URL:** [https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/B](https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/B)
+
+**Input:**
+
+*   `n`: The number of elements in the array.
+*   `s`: The target sum.
+*   `arr`: An array of `n` positive integers. It is guaranteed that each array element is greater or equal to 1.
+
+**Output:**
+
+*   The length of the shortest subarray whose sum is at least `S`. If no such subarray exists, output `-1`.
 
 ## Approach Explanation
 
-The solution uses a sliding window technique to efficiently find the shortest good segment. The algorithm maintains two pointers, `left` and `right`, representing the start and end of the current window.
+The program employs a **sliding window** technique to efficiently find the shortest subarray. The core idea is to maintain a window defined by two pointers, `left` and `right`, and iteratively adjust the window's size to find the smallest valid subarray.
 
-1. **Initialization:**
-   - `left` and `right` are initialized to 0.
-   - `sum` is initialized to 0 to store the sum of elements within the current window.
-   - `minLen` is initialized to `LLONG_MAX` to store the minimum length found so far.
+The algorithm works as follows:
 
-2. **Sliding Window:**
-   - The `while` loop iterates while the `left` pointer is within the bounds of the array (`left < n`).
-   - Before expanding the window, the check `if (right < left)` is crucial. If the right pointer somehow fell behind the left, it's reset, ensuring the window is valid.
-   - The inner `while` loop expands the window from the right until the `sum` of elements in the window is greater than or equal to `s` or the `right` pointer reaches the end of the array. `sum` is updated by adding the element at the `right` pointer, and `right` is incremented.
-   - Once a "good" segment (sum >= s) is found, or the window can no longer be expanded, the algorithm checks if the current segment `[left, right - 1]` is a valid segment.  The length `right - left` is then compared with the current `minLen`, and `minLen` is updated if the current segment is shorter.
-   - The algorithm then shrinks the window from the left by incrementing the `left` pointer and subtracting the element at the `left` position from the `sum`.
-
-3. **Result:**
-   - After the `while` loop finishes, if `minLen` is still `LLONG_MAX`, it means no good segment was found, and -1 is printed. Otherwise, `minLen` is printed as the length of the shortest good segment.
+1.  **Initialization:** Initialize `left` and `right` pointers to 0, `sum` to 0, and `minLen` to `LLONG_MAX`.  `minLen` will store the minimum length found so far.
+2.  **Sliding Window:** Iterate using the `left` pointer, moving it from 0 to `n-1`.
+    *   **Expand Window:** While the current window's sum (`sum`) is less than `S` and the `right` pointer is within the array bounds, expand the window by incrementing `right` and adding the corresponding element `arr[right]` to the `sum`.
+    *   **Check if Good Segment:** If the `sum` is now greater than or equal to `S`, the current window `[left, right - 1]` represents a valid subarray (a "good segment").  Update `minLen` with the minimum of the current `minLen` and the length of the current window (`right - left`).
+    *   **Shrink Window:**  After finding a valid segment starting at `left`, we shrink the window to find potentially smaller segments starting at the same `left`. Remove the element at the `left` from `sum` and increment the `left` pointer.
+3.  **Handle No Solution:** After the loop finishes, if `minLen` remains `LLONG_MAX`, it means no valid subarray was found. Output `-1`. Otherwise, output the value of `minLen`.
 
 ## Key Insights and Algorithmic Techniques Used
 
-*   **Sliding Window:** The core technique is the sliding window algorithm. It efficiently explores all possible contiguous subsegments by expanding and shrinking the window.
-*   **Two Pointers:** The `left` and `right` pointers define the sliding window.
-*   **Monotonicity:** The algorithm exploits the fact that all array elements are non-negative.  As `right` increases, the window sum generally increases (or remains the same). This property allows us to efficiently find a "good" segment without needing to recompute the sum from scratch for each possible segment. If the array could have negative values, we could not shrink the window by subtracting the element at the `left` pointer, so this would no longer be efficient.
-*   **Prefix Sum Optimization (Implicit):** While not explicitly creating a prefix sum array, the running `sum` variable effectively maintains the sum of the current window. This avoids recomputing the sum of the segment each time.
+*   **Sliding Window:** The sliding window technique is crucial for efficiently searching for subarrays that satisfy a certain condition. It avoids redundant calculations by reusing information from previously explored subarrays.
+*   **Two Pointers:** The use of `left` and `right` pointers to define the window boundaries is a common pattern in sliding window algorithms.
+*   **Prefix Sum (Implicit):** While not explicitly calculated, the `sum` variable effectively maintains a running sum of the elements within the current window, which is related to the idea of prefix sums.
 
 ## Time and Space Complexity Analysis
 
-*   **Time Complexity:** O(n). Both `left` and `right` pointers iterate through the array at most once.  Therefore, the overall time complexity is linear.
-*   **Space Complexity:** O(1).  The algorithm uses a fixed amount of extra space for variables like `left`, `right`, `sum`, and `minLen`, regardless of the input size.
+*   **Time Complexity:** O(n). Each element of the array is visited at most twice: once by the `right` pointer and once by the `left` pointer. The `while` loops inside the main loop do not increase the complexity beyond O(n) because `right` and `left` both move from 0 to n.
+*   **Space Complexity:** O(1). The algorithm uses a constant amount of extra space for variables like `left`, `right`, `sum`, and `minLen`.
 
 ## Important Code Patterns or Tricks Used
 
-*   **`ios_base::sync_with_stdio(false); cin.tie(NULL);`:** These lines are commonly used in competitive programming to speed up input/output operations by disabling synchronization between the C++ standard input/output streams and the C standard input/output streams. This is a standard performance optimization.
-*   **`#define int long long`:** This redefines the `int` data type as `long long` to prevent integer overflow, which is crucial when dealing with potentially large sums.
-*   **Initialization of `minLen`:** Initializing `minLen` to `LLONG_MAX` allows easy comparison and determination of whether a valid segment was found.
-*   **Handling Edge Cases (`right < left`)** Resets the `right` pointer if it falls behind the `left` pointer.
+*   **`ios_base::sync_with_stdio(false); cin.tie(NULL);`:** This optimization disables synchronization between the C++ standard input/output streams and the C standard input/output streams. It can significantly improve the performance of I/O-bound programs, especially in competitive programming environments.
+*   **`LLONG_MAX` Initialization:** Initializing `minLen` to the maximum possible value of a long long integer (`LLONG_MAX`) allows us to easily track the minimum length found so far.
+*   **Positive Integers**: The problem guarantees positive integers. This allows us to advance the right pointer even if the sum already exceeds the target value `S` because we know all numbers are at least 1, so by moving the left pointer, we are guaranteed to reduce the sum.
 
 ## Edge Cases Handled
 
-*   **No Good Segment:** If no segment with a sum greater than or equal to `s` exists, the algorithm correctly outputs -1. This is handled by checking if `minLen` remains `LLONG_MAX` after the loop.
-*   **Empty Array or Zero Length segments are not possible:** Since the left pointer always iterates, all segments are greater than length 0.
-*   **All non-negative elements:**  This is key to the sliding window technique's efficiency.
-
+*   **No Solution:** The program handles the case where no subarray satisfies the condition by checking if `minLen` remains `LLONG_MAX` after the loop and outputting `-1` accordingly.
+*   **Empty Input (n=0):**  The code implicitly handles the case where `n` is 0.  The outer `while` loop won't execute, and since `minLen` remains `LLONG_MAX`, the code correctly outputs `-1`.
+*   **S = 0:** The code will correctly compute the smallest substring length of 0 in this case.
+*   **S < 0:** The problem statement implies that `S` is non-negative. If `S` were negative, the entire array would be a solution, and the code would return `n`.
 ```
 
 ## Original Code
@@ -77,7 +81,7 @@ int32_t main() {
     for (int &val : arr)
         cin >> val;
 
-    // all array values are non-negative
+    // all array values are >= 1
     // a segment [l,r] where 0 <= l <= r < n is good iff its sum is atleast s
     // we are to find the shortest good segment
 
@@ -94,7 +98,7 @@ int32_t main() {
         while (right < n && sum < s)
             sum += arr[right++]; // if the current sum is less than s, add the current right ptr element
 
-        if (left <= right - 1) {
+        if (sum >= s) {
             // [left, right - 1] is a good segment
             minLen = min(minLen, right - left);
             sum -= arr[left];
@@ -111,4 +115,4 @@ int32_t main() {
 ```
 
 ---
-*Documentation generated on 2025-08-17 11:44:28*
+*Documentation generated on 2025-08-17 11:52:14*
