@@ -11,14 +11,15 @@ Collection of problems and solutions for twoPointers.
 - ✅ **numSmallSum** (medium) - solved
 - ✅ **sumTwo** (easy) - solved
 - ✅ **smallSum.cpp** (easy) - solved
+- ✅ **smallSet** (medium) - solved
 
 ## Key Techniques
 - Sorting
 
 ## Progress
-- Total Problems: 7
-- Solved: 7
+- Total Problems: 8
+- Solved: 8
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-17 12:19:25*
+*Last updated on 2025-08-17 12:33:50*
