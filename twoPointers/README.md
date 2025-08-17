@@ -5,6 +5,7 @@ Collection of problems and solutions for twoPointers.
 
 ## Problems Solved
 - ✅ **threeSum** (medium) - solved
+- ✅ **bigSum** (medium) - solved
 - ✅ **subarraySumsOne** (easy) - solved
 - ✅ **sumTwo** (easy) - solved
 - ✅ **smallSum.cpp** (easy) - solved
@@ -13,9 +14,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 4
-- Solved: 4
+- Total Problems: 5
+- Solved: 5
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-17 11:28:24*
+*Last updated on 2025-08-17 11:44:28*
