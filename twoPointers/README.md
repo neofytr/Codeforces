@@ -13,14 +13,17 @@ Collection of problems and solutions for twoPointers.
 - ✅ **smallSum.cpp** (easy) - solved
 - ✅ **smallSpread** (hard) - solved
 - ✅ **smallSet** (medium) - solved
+- ⏳ **loopedPlaylist** (medium) - unsolved
+- ✅ **totalLength** (medium) - solved
 
 ## Key Techniques
+- Dynamic Programming
 - Sorting
 
 ## Progress
-- Total Problems: 9
-- Solved: 9
-- Success Rate: 100.0%
+- Total Problems: 11
+- Solved: 10
+- Success Rate: 90.9%
 
 ---
-*Last updated on 2025-08-17 13:00:43*
+*Last updated on 2025-08-18 20:01:00*
