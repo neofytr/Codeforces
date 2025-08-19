@@ -604,6 +604,6 @@ add_executable(Codeforces
         twoPointers/problems/threeSum/threeSum.cpp
         twoPointers/problems/totalLength/totalLength.cpp
         template.cpp
-        cpp/Vector.cpp
-        cpp/testing.cpp
+        cpp/code/Vector.cpp
+        cpp/code/testing.cpp
 )
