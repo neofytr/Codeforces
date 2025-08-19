@@ -1,28 +1,29 @@
 #include <iostream>
 #include <variant>
+#include <vector>
 using namespace std;
 class Vector {
-public:
-  // constructors defined for various situations
-  Vector() {
-    elt = nullptr;
-    sz = 0;
-    return;
-  }
-  Vector(int s) {
-    elt = new double[s];
-    sz = s;
-    return;
-  } // constructor
-  double &operator[](int i) {
-    return elt[i];
-  } // defining what the operator [] means in context of Vectors
-    // we return a reference so that the caller can also edit the value
-  int size() { return sz; } // get the size of the vector
+  public:
+    // constructors defined for various situations
+    Vector() {
+        elt = nullptr;
+        sz = 0;
+        return;
+    }
+    Vector(int s) {
+        elt = new double[s];
+        sz = s;
+        return;
+    } // constructor
+    double &operator[](int i) {
+        return elt[i];
+    } // defining what the operator [] means in context of Vectors
+      // we return a reference so that the caller can also edit the value
+    int size() { return sz; } // get the size of the vector
 
-private:
-  double *elt; // pointer to the elements
-  int sz;      // the number of elements
+  private:
+    double *elt; // pointer to the elements
+    int sz;      // the number of elements
 };
 
 /*
@@ -92,30 +93,30 @@ operators for it ->
 
 enum class trafficLight : unsigned char { red, yellow, green };
 trafficLight &operator++(trafficLight &t) {
-  using enum trafficLight; // make the score trafficLight
-  switch (t) {
-  case green:
-    return t = red;
-  case yellow:
-    return t = green;
-  case red:
-    return t = yellow;
-  }
+    using enum trafficLight; // make the score trafficLight
+    switch (t) {
+    case green:
+        return t = red;
+    case yellow:
+        return t = green;
+    case red:
+        return t = yellow;
+    }
 }
 
 /* Using a tagged / discriminated union */
 
 union Value {
-  double f;
-  int i;
+    double f;
+    int i;
 };
 
 enum class Type : unsigned char { real, integer };
 
 struct Entry {
-  string name;
-  Type t; // specifies which type of value the union v is
-  Value v;
+    string name;
+    Type t; // specifies which type of value the union v is
+    Value v;
 };
 
 /* Using variant, a type-safe union */
@@ -125,28 +126,31 @@ struct Entry {
 /* you can safely get it -> get<int>(v) */
 
 struct EntryVariant {
-  string name;
-  variant<double, int> v;
+    string name;
+    variant<double, int> v;
 };
 
 void f(EntryVariant *ev) {
-  if (holds_alternative<int>(ev->v)) {
-    cout << get<int>(ev->v);
-  }
+    if (holds_alternative<int>(ev->v)) {
+        cout << get<int>(ev->v);
+    }
 }
 
 int main() {
-  int n;
-  cin >> n;
-  Vector vec(n);
-  for (int i = 0; i < vec.size(); i++) {
-    cin >> vec[i];
-  }
+    int n;
+    cin >> n;
+    Vector vec(n);
+    for (int i = 0; i < vec.size(); i++) {
+        cin >> vec[i];
+    }
 
-  double sum = 0;
-  for (int i = 0; i < vec.size(); i++) {
-    sum += vec[i];
-  }
-  cout << sum;
-  return EXIT_SUCCESS;
+    double sum = 0;
+    for (int i = 0; i < vec.size(); i++) {
+        sum += vec[i];
+    }
+
+    vector<int> arr(-1);
+    cout << arr[-1] << endl;
+    cout << sum;
+    return EXIT_SUCCESS;
 }

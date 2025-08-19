@@ -1,7 +1,8 @@
 BasedOnStyle: LLVM
 IndentWidth: 4
+ContinuationIndentWidth: 4
 UseTab: Never
 BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: Inline
 ColumnLimit: 400
-Standard: Cpp20
+Standard: c++20
