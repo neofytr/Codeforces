@@ -18,7 +18,7 @@ using namespace std;
  */
 double calc(Container &c) {
     double sum = 0;
-    for (int i = 0; i < c.size(); i++)
+    for (int i = 0; i < static_cast<int>(c.size()); i++)
         sum += c[i];
     return sum;
 }
