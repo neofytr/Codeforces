@@ -21,7 +21,7 @@ int32_t main() {
         cin >> val;
 
     // dist is sorted in increasing order
-    // we want to find out the number of pairs (i, j) such that i < j and dist[j] - dist[i] <= r
+    // we want to find out the number of pairs (i, j) such that i < j and dist[j] - dist[i] > r
     int count = 0;
     for (int i = 0; i < n; i++) {
         // we want to find j such that dist[j] > r + dist[i]

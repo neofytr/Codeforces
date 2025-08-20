@@ -4,7 +4,9 @@
 Collection of problems and solutions for twoPointers.
 
 ## Problems Solved
+- ✅ **knapsackSegment** (hard) - solved
 - ✅ **threeSum** (medium) - solved
+- ⏳ **stylishClothes** (hard) - unsolved
 - ✅ **bigSum** (medium) - solved
 - ✅ **subarraySumsOne** (easy) - solved
 - ✅ **cheCity** (hard) - solved
@@ -22,9 +24,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 12
-- Solved: 11
-- Success Rate: 91.7%
+- Total Problems: 14
+- Solved: 12
+- Success Rate: 85.7%
 
 ---
-*Last updated on 2025-08-20 21:34:28*
+*Last updated on 2025-08-20 22:15:19*

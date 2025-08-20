@@ -609,4 +609,6 @@ add_executable(Codeforces
         cpp/modules/Container.cpp
         cpp/modules/List.cpp
         twoPointers/problems/cheCity/cheCity.cpp
+        twoPointers/problems/stylishClothes/stylishClothes.cpp
+        twoPointers/problems/knapsackSegment/knapsackSegment.cpp
 )
