@@ -48,9 +48,10 @@ import <stdexcept>;
 
 export class Vector {
   public:
-    explicit Vector(size_t sz);
+    explicit Vector(size_t sz, double init = 0.0);
     double &operator[](size_t index) const;
     [[nodiscard]] size_t size() const;
+    ~Vector();
 
     static constexpr size_t maxVectorSize = 100000;
 
