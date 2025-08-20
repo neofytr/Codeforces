@@ -98,7 +98,6 @@ add_executable(Codeforces
         contests/DivTwo/1040/b.cpp
         contests/DivTwo/1040/c.cpp
         contests/DivTwo/1041/a.cpp
-        cpp/test.cpp
         env/lib/python3.12/site-packages/websockets/speedups.c
         env/lib64/python3.12/site-packages/websockets/speedups.c
         graphs/algos/allShortestPaths.cpp
@@ -604,6 +603,8 @@ add_executable(Codeforces
         twoPointers/problems/threeSum/threeSum.cpp
         twoPointers/problems/totalLength/totalLength.cpp
         template.cpp
-        cpp/code/Vector.cpp
+        cpp/code/Vector.ixx
         cpp/code/testing.cpp
+        cpp/code/Vector.cpp
+        cpp/code/Vector.cpp
 )
