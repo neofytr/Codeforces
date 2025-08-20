@@ -17,14 +17,22 @@ export class List final : public Container {
     double &operator[](size_t index) override;             // defined outside
     const double &operator[](size_t index) const override; // defined outside
 
+    void push(double d); // defined outside
+
     ~List() override;
     // This derived destructor will implicitly call the base class destructor at the end.
-    // So, the base class destructor needs to be defined to atleast something (default, for example)
+    // So, the base class destructor needs to be defined at least something (default, for example)
 
   private:
     Node *head;
     size_t sz{};
 };
+
+void List::push(const double d) {
+    const auto tmp = new Node(head->next, d);
+    head->next = tmp;
+    sz++;
+}
 
 inline List::List() {
     head = new Node(nullptr, -1); // dummy head node

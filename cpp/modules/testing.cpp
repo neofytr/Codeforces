@@ -30,8 +30,12 @@ int main(int argc, char **argv) {
     List lst;
     for (int i = 0; i < n; i++)
         cin >> vec[i];
-    for (int i = 0; i < n; i++)
-        cin >> lst[i];
+    double val;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> val;
+        lst.push(val);
+    }
 
     cout << calc(vec) << " " << calc(lst) << endl;
     return EXIT_SUCCESS;

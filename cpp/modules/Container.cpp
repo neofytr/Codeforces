@@ -32,3 +32,12 @@ export class Container {
     [[nodiscard]] virtual size_t size() const = 0;
     virtual ~Container() = default;
 };
+
+/*
+ * When you destroy an object of a derived type, the most derived destructor runs first.
+ * Then, the base class destructor is called automatically (this is why a definition of it is required).
+ * If there's a chain of inheritance, it continues up the hierarchy.
+ *
+ * Destructors are called in the reverse order of construction.
+ * Construction goes from base to derived, while destruction goes from derived to base.
+ */
