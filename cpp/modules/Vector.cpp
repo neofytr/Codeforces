@@ -16,7 +16,7 @@ const double &Vector::operator[](const size_t index) const {
     return elements[index];
 }
 
-inline double &Vector::operator[](const size_t index) override {
+inline double &Vector::operator[](const size_t index) {
     return elements[index];
 }
 

@@ -2,11 +2,17 @@ CC = g++
 CFLAGS = -Wall -std=c++20
 MFLAGS = -fmodules-ts
 
-main: Vector.o testing.o
-	$(CC) $(CFLAGS) testing.o Vector.o -o main
+main: Container.o List.o Vector.o testing.o
+	$(CC) $(CFLAGS) testing.o Container.o List.o Vector.o -o main
 
 testing.o: testing.cpp
 	$(CC) $(CFLAGS) $(MFLAGS) testing.cpp -c testing.o
+
+Container.o: Container.ixx
+	$(CC) $(CFLAGS) $(MFLAGS) -x c++ Container.ixx -c
+
+List.o: List.cpp
+	$(CC) $(CFLAGS) $(MFLAGS) -x c++ List.cpp -c
 
 Vector.o: Vector.ixx Vector.cpp
 	$(CC) $(CFLAGS) $(MFLAGS) -x c++ Vector.ixx -c -o .interfaceVec

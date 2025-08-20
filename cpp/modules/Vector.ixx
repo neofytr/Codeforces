@@ -72,16 +72,63 @@ export class Vector final : public Container {
   public:
     explicit Vector(size_t sz, double init = 0.0);
     Vector(const initializer_list<double> &);
-    double &operator[](size_t index) override;
-    const double &operator[](size_t index) const override; // for const access when container is used through a const reference
     void push_back(double d);
-    [[nodiscard]] size_t size() const override;
-    ~Vector() override;
+    ~Vector() override { delete[] elements; }
+
+    double &operator[](const size_t index) override { return elements[index]; }
+    const double &operator[](const size_t index) const override { return elements[index]; }
+    [[nodiscard]] size_t size() const override { return sz; }
 
     static constexpr size_t maxVectorSize = 100000;
 
   private:
-    double *elements;
-    size_t sz;
-    size_t underlyingSize;
+    double *elements = nullptr;
+    size_t sz = 0;
+    size_t underlyingSize = 0;
 };
+
+inline Vector::Vector(const size_t sz, const double init) {
+    if (sz >= Vector::maxVectorSize)
+        throw length_error("The given size exceeds the maximum vector size!");
+    elements = new double[sz];
+    for (size_t i = 0; i < sz; i++)
+        elements[i] = init;
+    this->sz = sz;
+    underlyingSize = sz;
+}
+
+inline Vector::Vector(const initializer_list<double> &lst) {
+    sz = lst.size();
+    elements = new double[sz];
+    underlyingSize = sz;
+
+    size_t index = 0;
+    for (double val : lst)
+        elements[index++] = val;
+}
+
+inline void Vector::push_back(double d) {
+    if (underlyingSize == sz) {
+        // reallocate
+        if (sz > Vector::maxVectorSize / 2)
+            throw length_error("Maximum size of vector exceeded!");
+        underlyingSize = sz << 2; // grow by factor of 4
+        auto *newElements = new double[underlyingSize];
+        for (size_t index = 0; index < sz; index++)
+            newElements[index] = elements[index];
+        delete[] elements;
+        elements = newElements;
+    }
+    elements[sz++] = d;
+}
+
+export inline bool operator==(Vector &vecOne, Vector &vecTwo) {
+    if (vecOne.size() != vecTwo.size())
+        return false;
+
+    for (size_t i = 0; i < vecOne.size(); i++)
+        if (vecOne[i] != vecTwo[i])
+            return false;
+
+    return true;
+}
