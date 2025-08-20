@@ -2,6 +2,7 @@ module;
 export module Vector;
 import <cstddef>;
 import <stdexcept>;
+import Container;
 using namespace std;
 
 /*
@@ -11,6 +12,7 @@ using namespace std;
  * module;
  * #include <cstring>       <- Global Module Fragment
  * #define HELLO (10)
+ * export module Vector
  * ----------------------
  *
  * #include <string>        <- Module preamble
@@ -47,14 +49,34 @@ using namespace std;
  * gain access to (and are not bothered by) that: import is not transitive
  */
 
-export class Vector {
+/*
+ * The abstract class Container only defines an interface and no implementation.
+ * For the Container abstract type to be useful, we have to implement a container that implements the functions required
+ * by its interface.
+ * The ": public" can be read as "is derived from" or "is subtype of".
+ * Class Vector is said to be derived from class Container, and class Container is said to be a base class of Vector.
+ * An alternative terminology calls Vector and Container subclass and superclass, respectively.
+ * The derived class is said to inherit members from its base class, so the use of base and derived classes is commonly
+ * referred to as Inheritence.
+ */
+
+// the members operator and size are said to override the corresponding members in the base class Container.
+// The use of override is optional, but being explicit allows the compiler to catch mistakes, such as misspellings of function names
+// or slight differences between the type of virtual function and its intended overrider.
+// The destructor overrides the base class destructor.
+
+// If we had a member in the class of some other class type, its destructor would be implicitly called by ~Vector().
+// The compiler will automatically insert destructor calls for all member objects after executing your destructor body.
+
+export class Vector final : public Container {
   public:
     explicit Vector(size_t sz, double init = 0.0);
-    Vector(const initializer_list<double>&);
-    double &operator[](size_t index) const;
+    Vector(const initializer_list<double> &);
+    double &operator[](size_t index) override;
+    const double &operator[](size_t index) const override; // for const access when container is used through a const reference
     void push_back(double d);
-    [[nodiscard]] size_t size() const;
-    ~Vector();
+    [[nodiscard]] size_t size() const override;
+    ~Vector() override;
 
     static constexpr size_t maxVectorSize = 100000;
 

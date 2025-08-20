@@ -608,4 +608,6 @@ add_executable(Codeforces
         cpp/modules/Vector.cpp
         cpp/modules/Vector.cpp
         cpp/modules/Complex.cpp
+        cpp/modules/Container.ixx
+        cpp/modules/List.cpp
 )

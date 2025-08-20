@@ -1,6 +1,5 @@
 module Vector;
 import <cstddef>;
-#include <stdint.h>
 using namespace std;
 
 inline Vector::Vector(const size_t sz, const double init) {
@@ -13,7 +12,11 @@ inline Vector::Vector(const size_t sz, const double init) {
     underlyingSize = sz;
 }
 
-inline double &Vector::operator[](const size_t index) const {
+const double &Vector::operator[](const size_t index) const {
+    return elements[index];
+}
+
+inline double &Vector::operator[](const size_t index) override {
     return elements[index];
 }
 
@@ -50,7 +53,7 @@ void Vector::push_back(const double d) {
     elements[sz++] = d;
 }
 
-inline bool operator==(const Vector &vecOne, const Vector &vecTwo) {
+inline bool operator==(Vector &vecOne, Vector &vecTwo) {
     if (vecOne.size() != vecTwo.size())
         return false;
 
