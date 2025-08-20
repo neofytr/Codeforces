@@ -608,4 +608,5 @@ add_executable(Codeforces
         cpp/modules/Complex.cpp
         cpp/modules/Container.cpp
         cpp/modules/List.cpp
+        twoPointers/problems/cheCity/cheCity.cpp
 )
