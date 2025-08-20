@@ -2,6 +2,7 @@ module;
 export module Vector;
 import <cstddef>;
 import <stdexcept>;
+using namespace std;
 
 /*
  * Module Structure
@@ -49,7 +50,9 @@ import <stdexcept>;
 export class Vector {
   public:
     explicit Vector(size_t sz, double init = 0.0);
+    Vector(const initializer_list<double>&);
     double &operator[](size_t index) const;
+    void push_back(double d);
     [[nodiscard]] size_t size() const;
     ~Vector();
 
@@ -57,5 +60,6 @@ export class Vector {
 
   private:
     double *elements;
-    size_t sz{};
+    size_t sz;
+    size_t underlyingSize;
 };
