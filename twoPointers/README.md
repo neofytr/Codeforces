@@ -10,6 +10,7 @@ Collection of problems and solutions for twoPointers.
 - ⏳ **stylishClothes** (hard) - unsolved
 - ✅ **rudeSubstring** (hard) - solved
 - ✅ **bigSum** (medium) - solved
+- ✅ **eatingCandies** (easy) - solved
 - ✅ **ABKnapsack** (hard) - solved
 - ✅ **subarraySumsOne** (easy) - solved
 - ✅ **cardSubstrings** (hard) - solved
@@ -29,9 +30,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 19
-- Solved: 16
-- Success Rate: 84.2%
+- Total Problems: 20
+- Solved: 17
+- Success Rate: 85.0%
 
 ---
-*Last updated on 2025-08-21 21:14:46*
+*Last updated on 2025-08-21 21:33:34*

@@ -623,4 +623,5 @@ add_executable(Codeforces
         contests/DivThree/1043/f.cpp
         twoPointers/problems/numPairs/numPairs.cpp
         twoPointers/problems/theyAreEverywhere/theyAreEverywhere.cpp
+        twoPointers/problems/eatingCandies/eatingCandies.cpp
 )
