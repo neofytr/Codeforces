@@ -7,6 +7,7 @@ Collection of problems and solutions for twoPointers.
 - ✅ **knapsackSegment** (hard) - solved
 - ✅ **threeSum** (medium) - solved
 - ⏳ **stylishClothes** (hard) - unsolved
+- ✅ **rudeSubstring** (hard) - solved
 - ✅ **bigSum** (medium) - solved
 - ✅ **subarraySumsOne** (easy) - solved
 - ✅ **cardSubstrings** (hard) - solved
@@ -25,9 +26,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 15
-- Solved: 13
-- Success Rate: 86.7%
+- Total Problems: 16
+- Solved: 14
+- Success Rate: 87.5%
 
 ---
-*Last updated on 2025-08-21 08:38:40*
+*Last updated on 2025-08-21 09:04:54*
