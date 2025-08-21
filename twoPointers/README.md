@@ -9,6 +9,7 @@ Collection of problems and solutions for twoPointers.
 - ⏳ **stylishClothes** (hard) - unsolved
 - ✅ **bigSum** (medium) - solved
 - ✅ **subarraySumsOne** (easy) - solved
+- ✅ **cardSubstrings** (hard) - solved
 - ✅ **cheCity** (hard) - solved
 - ✅ **numBigSum** (Unknown) - solved
 - ✅ **numSmallSum** (medium) - solved
@@ -24,9 +25,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 14
-- Solved: 12
-- Success Rate: 85.7%
+- Total Problems: 15
+- Solved: 13
+- Success Rate: 86.7%
 
 ---
-*Last updated on 2025-08-20 22:15:19*
+*Last updated on 2025-08-21 08:38:40*

@@ -611,4 +611,5 @@ add_executable(Codeforces
         twoPointers/problems/cheCity/cheCity.cpp
         twoPointers/problems/stylishClothes/stylishClothes.cpp
         twoPointers/problems/knapsackSegment/knapsackSegment.cpp
+        twoPointers/problems/cardSubstrings/cardSubstrings.cpp
 )
