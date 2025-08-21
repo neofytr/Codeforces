@@ -613,4 +613,12 @@ add_executable(Codeforces
         twoPointers/problems/knapsackSegment/knapsackSegment.cpp
         twoPointers/problems/cardSubstrings/cardSubstrings.cpp
         twoPointers/problems/rudeSubstring/rudeSubstring.cpp
+        twoPointers/problems/ABKnapsack/ABKnapsack.cpp
+        contests/DivThree/1043/a.cpp
+        contests/DivThree/1043/b.cpp
+        contests/DivThree/1043/c.cpp
+        contests/DivThree/1043/c2.cpp
+        contests/DivThree/1043/d.cpp
+        contests/DivThree/1043/e.cpp
+        contests/DivThree/1043/f.cpp
 )

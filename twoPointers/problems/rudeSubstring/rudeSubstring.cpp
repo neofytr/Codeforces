@@ -11,7 +11,7 @@ using namespace std;
 
 int32_t main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(nullptr);
 
     int n, c;
     cin >> n >> c;
