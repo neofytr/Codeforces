@@ -6,12 +6,14 @@ Collection of problems and solutions for twoPointers.
 ## Problems Solved
 - ✅ **knapsackSegment** (hard) - solved
 - ✅ **threeSum** (medium) - solved
+- ✅ **theyAreEverywhere** (hard) - solved
 - ⏳ **stylishClothes** (hard) - unsolved
 - ✅ **rudeSubstring** (hard) - solved
 - ✅ **bigSum** (medium) - solved
 - ✅ **ABKnapsack** (hard) - solved
 - ✅ **subarraySumsOne** (easy) - solved
 - ✅ **cardSubstrings** (hard) - solved
+- ⏳ **numPairs** (easy) - unsolved
 - ✅ **cheCity** (hard) - solved
 - ✅ **numBigSum** (Unknown) - solved
 - ✅ **numSmallSum** (medium) - solved
@@ -27,9 +29,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 17
-- Solved: 15
-- Success Rate: 88.2%
+- Total Problems: 19
+- Solved: 16
+- Success Rate: 84.2%
 
 ---
-*Last updated on 2025-08-21 20:41:55*
+*Last updated on 2025-08-21 21:14:46*

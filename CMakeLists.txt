@@ -621,4 +621,6 @@ add_executable(Codeforces
         contests/DivThree/1043/d.cpp
         contests/DivThree/1043/e.cpp
         contests/DivThree/1043/f.cpp
+        twoPointers/problems/numPairs/numPairs.cpp
+        twoPointers/problems/theyAreEverywhere/theyAreEverywhere.cpp
 )
