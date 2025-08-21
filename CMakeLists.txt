@@ -624,4 +624,5 @@ add_executable(Codeforces
         twoPointers/problems/numPairs/numPairs.cpp
         twoPointers/problems/theyAreEverywhere/theyAreEverywhere.cpp
         twoPointers/problems/eatingCandies/eatingCandies.cpp
+        twoPointers/problems/threeParts/threeParts.cpp
 )

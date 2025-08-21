@@ -23,6 +23,7 @@ Collection of problems and solutions for twoPointers.
 - ✅ **smallSpread** (hard) - solved
 - ✅ **smallSet** (medium) - solved
 - ⏳ **loopedPlaylist** (medium) - unsolved
+- ✅ **threeParts** (medium) - solved
 - ✅ **totalLength** (medium) - solved
 
 ## Key Techniques
@@ -30,9 +31,9 @@ Collection of problems and solutions for twoPointers.
 - Sorting
 
 ## Progress
-- Total Problems: 20
-- Solved: 17
-- Success Rate: 85.0%
+- Total Problems: 21
+- Solved: 18
+- Success Rate: 85.7%
 
 ---
-*Last updated on 2025-08-21 21:33:34*
+*Last updated on 2025-08-21 21:49:33*
