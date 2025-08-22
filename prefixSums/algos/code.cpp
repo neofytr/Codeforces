@@ -59,8 +59,8 @@ void twoDimPrefix() {
     // it can be easily proved that this loop traverses the matrix in the correct order
     // so that for each (row, col), the values on the RHS are already correctly computed when (row, col) comes on the LHS
     for (int row = 1; row <= n; row++)
-        for (int col = 1; col <= m; col++) // this following recurrence can easily be proven
-            prefix[row][col] = prefix[row][col - 1] + prefix[row - 1][col] - prefix[row - 1][col - 1] + arr[row - 1][col - 1];
+        for (int col = 1; col <= m; col++) // the following recurrence can easily be proven
+            prefix[row][col] = prefix[row - 1][col] + prefix[row][col - 1] - prefix[row - 1][col - 1] + arr[row - 1][col - 1];
 
     // array to prefix -> add 1 to coordinate (used when querying)
     // prefix to array -> subtract 1 from coordinate (used when building prefix array)
@@ -74,7 +74,6 @@ void twoDimPrefix() {
         // this recurrence can also be easily proven
         cout << prefix[r2 + 1][c2 + 1] - prefix[r1][c2 + 1] - prefix[r2 + 1][c1] + prefix[r1][c1] << endl;
     }
-    return;
 }
 
 int32_t main() {
