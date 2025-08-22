@@ -39,6 +39,8 @@ int32_t main() {
     freq[0] = 1;
     int count = 0;
     int sum = 0;
+    // for each index we count the number of subarrays (starting at zero) whose sum is target
+    // each such subarray forms s good segment with the current index
     for (int index = 0; index < n; index++) {
         // pref[a + 1] - x = pref[b]
         sum += arr[index]; // since we only need sums until the current iteration to do our job, no need to build the whole prefix array before
