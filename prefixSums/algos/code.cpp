@@ -3,6 +3,38 @@ using namespace std;
 
 #define int long long
 
+int32_t rangeUpdate() {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int &val : arr)
+        cin >> val;
+
+    vector<int> update(n + 1, 0);
+    int q;
+    cin >> q;
+    while (q--) {
+        // for each query (l, r, x)
+        // we need to increment all the elements in the array segment [l, r] by x
+        int l, r, x;
+        cin >> l >> r >> x; // l,r are 0-based indexes
+        update[l] += x;
+        update[r + 1] -= x;
+    }
+
+    // propagate all updates and finally update the real array
+    arr[0] += update[0];
+    for (int index = 1; index < n; index++) {
+        update[index] += update[index - 1];
+        arr[index] += update[index];
+    }
+
+    for (const int val : arr)
+        cout << val << " ";
+    cout << endl;
+    return 0;
+}
+
 int32_t main() {
     int n;
     cin >> n;
@@ -39,5 +71,16 @@ int32_t main() {
         cin >> l >> r; // 0-indexed
         cout << prefix[r + 1] - prefix[l] << endl;
     }
+
+    // we to use prefix sums?
+    // 1. range sum
+    // 2. xors, products (be careful with 0 in the array)
+    // 3. frequency count (compute frequency of each character in each prefix)
+    // 4. static update/queries (not a combination of both, which is called dynamic update/queries)
+
+    // 5. combine with binary search (if all elements of the array are >= 0, then, the prefix sum array is monotonically increasing; vice versa when all elements <= 0)
+    // 6. subtree/path sum in a tree
+    // 7. 2D prefix sums
+    // 8. Sum over Subsets (n-dimensional prefix sums)
     return EXIT_SUCCESS;
 }
