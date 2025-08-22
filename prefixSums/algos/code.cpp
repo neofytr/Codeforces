@@ -35,6 +35,48 @@ int32_t rangeUpdate() {
     return 0;
 }
 
+void twoDimPrefix() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<int>> arr(n, vector<int>(m));
+    for (int row = 0; row < n; row++) {
+        for (int col = 0; col < m; col++) {
+            cin >> arr[row][col];
+        }
+    }
+
+    // we want to answer queries like the following
+    // (r1, c1) , (r2, c2) where n > r2 >= r1 >= 0 && m > c2 >= c1 >= 0
+    // we have the give the sum of the elements in the subrectangle of the matrix arr bounded by the
+    // points (r1, c1) and (r2, c2)
+
+    vector<vector<int>> prefix(n + 1, vector<int>(m + 1, 0));
+    // for a, b >= 1, prefix[a][b] is the sum of the elements in the subrectangle of the matrix arr
+    // bounded by the points (0, 0) and (a - 1, b - 1)
+    // for !a || !b, prefix[a][b] = 0
+
+    // it can be easily proved that this loop traverses the matrix in the correct order
+    // so that for each (row, col), the values on the RHS are already correctly computed when (row, col) comes on the LHS
+    for (int row = 1; row <= n; row++)
+        for (int col = 1; col <= m; col++) // this following recurrence can easily be proven
+            prefix[row][col] = prefix[row][col - 1] + prefix[row - 1][col] - prefix[row - 1][col - 1] + arr[row - 1][col - 1];
+
+    // array to prefix -> add 1 to coordinate (used when querying)
+    // prefix to array -> subtract 1 from coordinate (used when building prefix array)
+    int q;
+    cin >> q;
+    while (q--) {
+        int r1, c1;
+        cin >> r1 >> c1;
+        int r2, c2;
+        cin >> r2 >> c2;
+        // this recurrence can also be easily proven
+        cout << prefix[r2 + 1][c2 + 1] - prefix[r1][c2 + 1] - prefix[r2 + 1][c1] + prefix[r1][c1] << endl;
+    }
+    return;
+}
+
 int32_t main() {
     int n;
     cin >> n;
