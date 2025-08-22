@@ -628,4 +628,5 @@ add_executable(Codeforces
         prefixSums/algos/code.cpp
         prefixSums/problems/staticRangeSum/staticRangeSum.cpp
         prefixSums/problems/rangeUpdate/rangeUpdate.cpp
+        prefixSums/problems/subarraySumsTwo/subarraySumsTwo.cpp
 )
