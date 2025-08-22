@@ -631,4 +631,5 @@ add_executable(Codeforces
         prefixSums/problems/subarraySumsTwo/subarraySumsTwo.cpp
         prefixSums/problems/subarrayDiv/subarrayDiv.cpp
         prefixSums/problems/goodSubarrays/goodSubarrays.cpp
+        prefixSums/problems/blackWhiteStripe/blackWhiteStripe.cpp
 )

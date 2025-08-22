@@ -4,6 +4,7 @@
 Collection of problems and solutions for prefixSums.
 
 ## Problems Solved
+- ✅ **blackWhiteStripe** (easy) - solved
 - ✅ **rangeUpdate** (medium) - solved
 - ✅ **goodSubarrays** (hard) - solved
 - ✅ **subarraySumsTwo** (medium) - solved
@@ -14,9 +15,9 @@ Collection of problems and solutions for prefixSums.
 - Techniques will be detected automatically
 
 ## Progress
-- Total Problems: 5
-- Solved: 5
+- Total Problems: 6
+- Solved: 6
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-22 17:56:10*
+*Last updated on 2025-08-22 18:14:51*
