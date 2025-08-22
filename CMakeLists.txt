@@ -632,4 +632,8 @@ add_executable(Codeforces
         prefixSums/problems/subarrayDiv/subarrayDiv.cpp
         prefixSums/problems/goodSubarrays/goodSubarrays.cpp
         prefixSums/problems/blackWhiteStripe/blackWhiteStripe.cpp
+        prefixSums/problems/vladSum/vladSum.cpp
+        prefixSums/problems/binaryDeque/binaryDeque.cpp
+        prefixSums/problems/leftRightHouses/leftRightHouses.cpp
+        prefixSums/problems/maxSubSum/maxSubSum.cpp
 )
