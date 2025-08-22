@@ -7,14 +7,15 @@ Collection of problems and solutions for prefixSums.
 - ✅ **rangeUpdate** (medium) - solved
 - ✅ **subarraySumsTwo** (medium) - solved
 - ✅ **staticRangeSum** (easy) - solved
+- ✅ **subarrayDiv** (hard) - solved
 
 ## Key Techniques
 - Techniques will be detected automatically
 
 ## Progress
-- Total Problems: 3
-- Solved: 3
+- Total Problems: 4
+- Solved: 4
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-22 14:09:50*
+*Last updated on 2025-08-22 14:18:35*
