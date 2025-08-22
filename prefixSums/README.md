@@ -5,6 +5,7 @@ Collection of problems and solutions for prefixSums.
 
 ## Problems Solved
 - ✅ **rangeUpdate** (medium) - solved
+- ✅ **goodSubarrays** (hard) - solved
 - ✅ **subarraySumsTwo** (medium) - solved
 - ✅ **staticRangeSum** (easy) - solved
 - ✅ **subarrayDiv** (hard) - solved
@@ -13,9 +14,9 @@ Collection of problems and solutions for prefixSums.
 - Techniques will be detected automatically
 
 ## Progress
-- Total Problems: 4
-- Solved: 4
+- Total Problems: 5
+- Solved: 5
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-22 14:18:35*
+*Last updated on 2025-08-22 17:56:10*

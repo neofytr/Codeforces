@@ -630,4 +630,5 @@ add_executable(Codeforces
         prefixSums/problems/rangeUpdate/rangeUpdate.cpp
         prefixSums/problems/subarraySumsTwo/subarraySumsTwo.cpp
         prefixSums/problems/subarrayDiv/subarrayDiv.cpp
+        prefixSums/problems/goodSubarrays/goodSubarrays.cpp
 )
