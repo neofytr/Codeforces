@@ -627,4 +627,5 @@ add_executable(Codeforces
         twoPointers/problems/threeParts/threeParts.cpp
         prefixSums/algos/code.cpp
         prefixSums/problems/staticRangeSum/staticRangeSum.cpp
+        prefixSums/problems/rangeUpdate/rangeUpdate.cpp
 )
