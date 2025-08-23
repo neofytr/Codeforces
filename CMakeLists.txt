@@ -636,4 +636,5 @@ add_executable(Codeforces
         prefixSums/problems/binaryDeque/binaryDeque.cpp
         prefixSums/problems/leftRightHouses/leftRightHouses.cpp
         prefixSums/problems/maxSubSum/maxSubSum.cpp
+        random/alternatingSubsequence.cpp
 )
