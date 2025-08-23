@@ -637,4 +637,5 @@ add_executable(Codeforces
         prefixSums/problems/leftRightHouses/leftRightHouses.cpp
         prefixSums/problems/maxSubSum/maxSubSum.cpp
         random/alternatingSubsequence.cpp
+        random/boatsCompetition.cpp
 )
