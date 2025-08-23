@@ -11,7 +11,7 @@ Collection of problems and solutions for prefixSums.
 - ✅ **goodSubarrays** (hard) - solved
 - ✅ **subarraySumsTwo** (medium) - solved
 - ⏳ **leftRightHouses** (hard) - unsolved
-- ⏳ **maxSubarraySum** (medium) - unsolved
+- ✅ **maxSubarraySum** (medium) - solved
 - ✅ **staticRangeSum** (easy) - solved
 - ⏳ **maxSubSum** (hard) - unsolved
 - ✅ **subarrayDiv** (hard) - solved
@@ -22,8 +22,8 @@ Collection of problems and solutions for prefixSums.
 
 ## Progress
 - Total Problems: 12
-- Solved: 7
-- Success Rate: 58.3%
+- Solved: 8
+- Success Rate: 66.7%
 
 ---
-*Last updated on 2025-08-23 09:02:02*
+*Last updated on 2025-08-23 09:02:25*
