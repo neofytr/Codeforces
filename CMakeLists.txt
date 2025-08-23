@@ -642,4 +642,5 @@ add_executable(Codeforces
         prefixSums/problems/forestQueries/forestQueries.cpp
         prefixSums/problems/nusret/nusret.cpp
         prefixSums/problems/karenCoffee/karenCoffee.cpp
+        random/kthBeautifulString.cpp
 )
