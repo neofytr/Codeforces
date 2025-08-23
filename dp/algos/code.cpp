@@ -128,7 +128,7 @@ void subseqThree() {
     dp[1][1] = arr[1];
     for (int r = 2; r < n; r++) {
         dp[r][0] = max(dp[r - 1][0], dp[r - 1][1]);
-        dp[r][1] = arr[r] + max(dp[r - 2][0], dp[r - 2][1]);
+        dp[r][1] = arr[r] + max(dp[r - 2][0], dp[r - 2][1]); // or arr[r] + dp[r - 1][0]
     }
     cout << max(dp[n - 1][0], dp[n - 1][1]) << endl;
 }
@@ -184,6 +184,20 @@ int32_t main() {
      * Transition -> Calculating the answer for a state (subproblem) by using the answers of
      * other smaller states (subproblems). This is represented as a relation between states.
      *
+     */
+
+    // a very important result to calculate time complexity in some cases ->
+    /*
+     *  n / 1 + n / 2 + n / 3 + n / 4 .... <= nlog(n)
+     */
+
+    /*
+     * Time Complexity ->
+     * Estimate -> Number of States * Transition time for each state
+     * Exact -> Total transition time for all states
+     *
+     * Space Complexity ->
+     * Number of states * space required for each state
      */
 
     subseqThree();
