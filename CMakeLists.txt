@@ -645,4 +645,5 @@ add_executable(Codeforces
         random/kthBeautifulString.cpp
         random/xxxxx.cpp
         random/xxxxx.cpp
+        random/zeroRemArray.cpp
 )
