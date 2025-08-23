@@ -648,4 +648,5 @@ add_executable(Codeforces
         random/zeroRemArray.cpp
         random/poisonedDagger.cpp
         random/rightLeftWrong.cpp
+        dp/algos/code.cpp
 )
