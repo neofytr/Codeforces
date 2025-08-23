@@ -646,4 +646,5 @@ add_executable(Codeforces
         random/xxxxx.cpp
         random/xxxxx.cpp
         random/zeroRemArray.cpp
+        random/poisonedDagger.cpp
 )
