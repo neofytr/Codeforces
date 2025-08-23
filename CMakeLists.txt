@@ -650,4 +650,5 @@ add_executable(Codeforces
         random/rightLeftWrong.cpp
         dp/algos/code.cpp
         dp/problems/diceCombinations/diceCombinations.cpp
+        dp/problems/minimizingCoins/minimizingCoins.cpp
 )
