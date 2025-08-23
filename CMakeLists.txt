@@ -649,4 +649,5 @@ add_executable(Codeforces
         random/poisonedDagger.cpp
         random/rightLeftWrong.cpp
         dp/algos/code.cpp
+        dp/problems/diceCombinations/diceCombinations.cpp
 )

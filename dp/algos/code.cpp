@@ -197,7 +197,7 @@ int32_t main() {
      * Exact -> Total transition time for all states
      *
      * Space Complexity ->
-     * Number of states * space required for each state
+     * Number of states * space required for each state (for an iterative solution)
      */
 
     subseqThree();
