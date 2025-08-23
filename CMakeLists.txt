@@ -639,4 +639,5 @@ add_executable(Codeforces
         random/alternatingSubsequence.cpp
         random/boatsCompetition.cpp
         prefixSums/problems/maxSubarraySum/maxSubarraySum.cpp
+        prefixSums/problems/forestQueries/forestQueries.cpp
 )

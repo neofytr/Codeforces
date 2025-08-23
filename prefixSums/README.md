@@ -5,19 +5,25 @@ Collection of problems and solutions for prefixSums.
 
 ## Problems Solved
 - ✅ **blackWhiteStripe** (easy) - solved
+- ⏳ **vladSum** (medium) - unsolved
+- ✅ **forestQueries** (medium) - solved
 - ✅ **rangeUpdate** (medium) - solved
 - ✅ **goodSubarrays** (hard) - solved
 - ✅ **subarraySumsTwo** (medium) - solved
+- ⏳ **leftRightHouses** (hard) - unsolved
+- ⏳ **maxSubarraySum** (medium) - unsolved
 - ✅ **staticRangeSum** (easy) - solved
+- ⏳ **maxSubSum** (hard) - unsolved
 - ✅ **subarrayDiv** (hard) - solved
+- ⏳ **binaryDeque** (medium) - unsolved
 
 ## Key Techniques
-- Techniques will be detected automatically
+- Dynamic Programming
 
 ## Progress
-- Total Problems: 6
-- Solved: 6
-- Success Rate: 100.0%
+- Total Problems: 12
+- Solved: 7
+- Success Rate: 58.3%
 
 ---
-*Last updated on 2025-08-22 18:14:51*
+*Last updated on 2025-08-23 09:02:02*
