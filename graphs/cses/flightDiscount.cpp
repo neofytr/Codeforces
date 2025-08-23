@@ -5,7 +5,7 @@
 using namespace std;
 
 #define int long long
-#define MAXN (int)(1e5 + 1)
+#define MAX_N (int)(1e5 + 1)
 #define NUMSTATES (2)
 
 int32_t main() {
@@ -13,7 +13,7 @@ int32_t main() {
     cin >> n >> m;
 
     int u, v, w;
-    vector<pair<int, int>> graph[MAXN];
+    vector<pair<int, int>> graph[MAX_N];
     while (m--) {
         cin >> u >> v >> w;
         graph[u].push_back({v, w});
@@ -21,7 +21,7 @@ int32_t main() {
 
     int src, dst;
     set<tuple<int, int, int>> heap; // (dist, node, used coupon along the way or not)
-    int dist[MAXN][NUMSTATES];      // dist[r][0] is the min distance to reach r from src not having used coupon along the way
+    int dist[MAX_N][NUMSTATES];      // dist[r][0] is the min distance to reach r from src not having used coupon along the way
                                     // dist[r][1] is the min distance to reach r from src having used the coupon somewhere along the way
 
     src = 1;
