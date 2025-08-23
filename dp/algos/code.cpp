@@ -93,7 +93,85 @@ void grid() {
     cout << dp[n - 1][m - 1] << endl;
 }
 
-void
+int solveSub(int x, vector<int> &arr, vector<int> &dp) {
+    int n = (int)arr.size();
+    if (x >= n)
+        return 0;
+
+    if (dp[x] != -1)
+        return dp[x];
+
+    // we can either pick this element, or we don't
+    return dp[x] = max(solveSub(x + 1, arr, dp), arr[x] + solveSub(x + 2, arr, dp));
+}
+
+void subseqThree() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+    for (int &val : arr)
+        cin >> val;
+
+    // we are to find a subsequence of arr such that no two elements in the subsequence
+    // are adjacent in the array and the sum of the elements in the subsequence is maximized
+
+    // dp[r][0] is the maximum subsequence sum for such a subsequence in the subarray [0, r]
+    // such that we don't pick the element r in the subsequence
+
+    // dp[r][1] is the maximum subsequence sum for a subsequence in the subarray [0, r] such that
+    // we pick the element r in the subsequence
+    vector<vector<int>> dp(n, vector<int>(2));
+    dp[0][0] = 0;
+    dp[0][1] = arr[0];
+    dp[1][0] = max(arr[0], 0LL);
+    dp[1][1] = arr[1];
+    for (int r = 2; r < n; r++) {
+        dp[r][0] = max(dp[r - 1][0], dp[r - 1][1]);
+        dp[r][1] = arr[r] + max(dp[r - 2][0], dp[r - 2][1]);
+    }
+    cout << max(dp[n - 1][0], dp[n - 1][1]) << endl;
+}
+
+void subseqTwo() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+    for (int &val : arr)
+        cin >> val;
+
+    // we are to find a subsequence of arr such that no two elements in the subsequence
+    // are adjacent in the array and the sum of the elements in the subsequence is maximized
+
+    // dp[r] is the maximum sum for such a subsequence in the subarray [0, r]
+    vector<int> dp(n, -1);
+
+    dp[0] = arr[0];
+    dp[1] = max(arr[0], arr[1]);
+    for (int r = 2; r < n; r++) {
+        // either we can pick the current element or we don't pick the current element
+        // in the maximum sum subsequence in the subarray [0, r - 1]
+        dp[r] = max(dp[r - 1], dp[r - 2] + arr[r]);
+    }
+    cout << dp[n - 1] << endl;
+}
+
+void subseq() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+    for (int &val : arr)
+        cin >> val;
+
+    // we are to find a subsequence of arr such that no two elements in the subsequence
+    // are adjacent in the array and the sum of the elements in the subsequence is maximized
+
+    // dp[r] is the maximum subsequence sum for such a subsequence in the array segment [r, n - 1]
+    vector<int> dp(n, -1);
+    cout << solveSub(0, arr, dp) << endl;
+}
 
 int32_t main() {
     /*
@@ -107,5 +185,7 @@ int32_t main() {
      * other smaller states (subproblems). This is represented as a relation between states.
      *
      */
+
+    subseqThree();
     return 0;
 }
