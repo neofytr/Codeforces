@@ -643,4 +643,6 @@ add_executable(Codeforces
         prefixSums/problems/nusret/nusret.cpp
         prefixSums/problems/karenCoffee/karenCoffee.cpp
         random/kthBeautifulString.cpp
+        random/xxxxx.cpp
+        random/xxxxx.cpp
 )
