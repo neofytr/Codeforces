@@ -640,4 +640,6 @@ add_executable(Codeforces
         random/boatsCompetition.cpp
         prefixSums/problems/maxSubarraySum/maxSubarraySum.cpp
         prefixSums/problems/forestQueries/forestQueries.cpp
+        prefixSums/problems/nusret/nusret.cpp
+        prefixSums/problems/karenCoffee/karenCoffee.cpp
 )
