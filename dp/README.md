@@ -4,15 +4,18 @@
 Collection of problems and solutions for dp.
 
 ## Problems Solved
-<!-- This will be auto-updated -->
+- ⏳ **minimizingCoins** (medium) - unsolved
+- ⏳ **diceCombinations** (easy) - unsolved
+- ⏳ **coinCombinationsOne** (medium) - unsolved
+- ✅ **removingDigits** (medium) - solved
 
 ## Key Techniques
-<!-- Common patterns and tricks for this topic -->
+- Dynamic Programming
 
 ## Progress
-- Total Problems: 0
-- Solved: 0
-- Success Rate: 0%
+- Total Problems: 4
+- Solved: 1
+- Success Rate: 25.0%
 
 ---
-*Auto-generated on 2025-08-23 15:23:54*
+*Last updated on 2025-08-24 12:55:52*

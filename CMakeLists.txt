@@ -652,4 +652,5 @@ add_executable(Codeforces
         dp/problems/diceCombinations/diceCombinations.cpp
         dp/problems/minimizingCoins/minimizingCoins.cpp
         dp/problems/coinCombinationsOne/coinCombinationsOne.cpp
+        dp/problems/removingDigits/removingDigits.cpp
 )
