@@ -200,6 +200,52 @@ int32_t main() {
      * Number of states * space required for each state (for an iterative solution)
      */
 
-    subseqThree();
+    /*
+     * Recursive v/s Iterative DP
+     *
+     * Recursive ->
+     * 1. Slower (runtime)
+     * 2. No need to care about the flow
+     * 3. Does not evaluate unnecessary states
+     * 4. Cannot apply many optimizations
+     *
+     * Iterative ->
+     * 1. Faster (runtime)
+     * 2. Important to calculate states in a way that current state can be derived from
+     * previously calculated states
+     * 3. All states are evaluated
+     * 4. Can apply optimizations
+     */
+
+    /*
+     * General Technique to solve any DP problem
+     * 1. State
+     * Clearly define the subproblem.
+     * Clearly understand when you are saying dp[i][j][k], what does it
+     * represent exactly
+     *
+     * 2.
+     * Transition
+     * Now we define a relation between states.
+     * Assume that states on the right side of the equation have been
+     * calculated.
+     * Don't worry about them.
+     *
+     * 3. Base Case
+     * For what states does your transition fail or goes into some absurd value?
+     * Call them the base cases and handle them separately beforehand.
+     *
+     * 4. Final subproblem
+     * What is the problem demanding you to find?
+     * The final subproblem depends on what the problem statement is and how are we defining the states.
+     */
+
+    /*
+     * Break the bigger problem into chunks of smaller subproblems that are easier to think about and solve. Call
+     * each of the subproblems a state and use some parameters to uniquely identify each state.
+     * Now, try to think of a relation that solves a subproblem in terms of smaller subproblems.
+     * Identify base cases and solve the final problem.
+     */
+
     return 0;
 }
