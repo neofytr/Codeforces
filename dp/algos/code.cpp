@@ -261,5 +261,15 @@ int32_t main() {
      * required to do when we are doing a DP solution.
      */
 
+    /*
+     * Space Optimization
+     * 1. What other state does our current state depend on?
+     * 2. Do we need answers to all subproblems at all times?
+     * 3. Well, let's store only relevant states then!
+     * 4. But wait, does this always work?
+     *    - what if the final subproblem requires all the states?
+     *    - what if we need to backtrack?
+     */
+
     return 0;
 }

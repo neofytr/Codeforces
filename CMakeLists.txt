@@ -654,4 +654,10 @@ add_executable(Codeforces
         dp/problems/coinCombinationsOne/coinCombinationsOne.cpp
         dp/problems/removingDigits/removingDigits.cpp
         dp/problems/gridPathsOne/gridPathsOne.cpp
+        contests/DivTwo/1042/a.cpp
+        contests/DivTwo/1042/b.cpp
+        contests/DivTwo/1042/c.cpp
+        contests/DivTwo/1042/d.cpp
+        contests/DivTwo/1042/test
+        contests/DivTwo/1042/e.cpp
 )
