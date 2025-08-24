@@ -7,15 +7,16 @@ Collection of problems and solutions for dp.
 - ⏳ **minimizingCoins** (medium) - unsolved
 - ⏳ **diceCombinations** (easy) - unsolved
 - ⏳ **coinCombinationsOne** (medium) - unsolved
+- ✅ **gridPathsOne** (medium) - solved
 - ✅ **removingDigits** (medium) - solved
 
 ## Key Techniques
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 4
-- Solved: 1
-- Success Rate: 25.0%
+- Total Problems: 5
+- Solved: 2
+- Success Rate: 40.0%
 
 ---
-*Last updated on 2025-08-24 12:55:52*
+*Last updated on 2025-08-24 13:29:45*
