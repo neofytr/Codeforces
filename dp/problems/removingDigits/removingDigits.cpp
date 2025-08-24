@@ -26,16 +26,16 @@ int32_t main() {
     for (int r = 1; r <= n; r++) {
         // how many unique digits does r have?
         dp[r] = LLONG_MAX;
-        unordered_set<int> un;
         int x = r;
+
+        // we shouldn't really consider the case d = 0 since it would
+        // create a cycle but here it doesn't matter as it would be taken care of by min(dp[r], dp[r]) = dp[r]
+        // we however handle it explicitly just for clarity
         while (x) {
-            un.insert(x % 10);
+            if (const int d = (x % 10); d && dp[r - d] != LLONG_MAX)
+                dp[r] = min(dp[r], dp[r - d] + 1);
             x /= 10;
         }
-
-        for (const int d : un)
-            if (dp[r - d] != LLONG_MAX)
-                dp[r] = min(dp[r], dp[r - d] + 1);
     }
 
     cout << dp[n] << endl;

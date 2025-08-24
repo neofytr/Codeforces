@@ -247,5 +247,13 @@ int32_t main() {
      * Identify base cases and solve the final problem.
      */
 
+    /*
+     * for r >= 1, if dp[r] is dependent upon states in the prefix [0, r-1] and we have dp[0] as a base case,
+     * run the iterative loop from 1 to n
+     *
+     * for r <= n - 1, if dp[r] is dependent upon states from suffix [r + 1, n] and we have
+     * dp[n] as the base case, run the iterative loop from n - 1 to 0
+     */
+
     return 0;
 }
