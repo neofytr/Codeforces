@@ -255,5 +255,11 @@ int32_t main() {
      * dp[n] as the base case, run the iterative loop from n - 1 to 0
      */
 
+    /*
+     * DP v/s Greedy
+     * We should always prove a greedy solution will work before going forward with it. This we won't be
+     * required to do when we are doing a DP solution.
+     */
+
     return 0;
 }
