@@ -271,5 +271,16 @@ int32_t main() {
      *    - what if we need to backtrack?
      */
 
+    /*
+     * On codeforces in C++, we can do an order of 10^8 operations in a second before we get a TLE, BUT
+     * , we cannot utilize memory on the order of 10^8 bytes
+     * The largest memory we can utilize is on the order of 10^7 bytes
+     *
+     * So, if we have O(nm) time complexity where nm <= 10^8, we cannot have O(nm) space complexity
+     *
+     * This is why we require space optimization in DP, and that is why iterative DP is the better option for
+     * harder problems
+     */
+
     return 0;
 }
