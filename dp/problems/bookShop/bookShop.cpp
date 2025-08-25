@@ -33,7 +33,6 @@ int32_t main() {
     // what is the maximum number of pages we can buy?
 
     // dp[r][k] is the maximum number of pages we can buy using the books [0, r] and atmost k money
-
     vector<int> prev(x + 1, 0);
     vector<int> curr(x + 1, 0);
 

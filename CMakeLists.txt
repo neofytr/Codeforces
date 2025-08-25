@@ -661,4 +661,5 @@ add_executable(Codeforces
         contests/DivTwo/1042/test
         contests/DivTwo/1042/e.cpp
         dp/problems/bookShop/bookShop.cpp
+        dp/problems/arrayDesc/arrayDesc.cpp
 )
