@@ -17,17 +17,23 @@ int32_t main() {
     int n;
     cin >> n;
 
-    // dp[r] is the number of ways to construct the sum r by throwing a dice one of more times
-    vector<int> dp(n + 1, 0);
-    dp[0] = 1;
-    dp[1] = 1;
-    dp[2] = 1 + 1;
-    dp[3] = 1 + 1 + 2;
-    dp[4] = 4 + 2 + 1 + 1;
-    dp[5] = dp[4] + dp[3] + dp[2] + dp[1] + 1;
-    for (int r = 6; r <= n; r++) {
-        dp[r] = (dp[r - 1] + dp[r - 2] + dp[r - 3] + dp[r - 4] + dp[r - 5] + dp[r - 6]) % MOD;
+    // dp[r] is the number of ways to construct the sum r by throwing a die one of more times
+    deque<int> dp;
+    // queue front -> {a, b, c, d, e, f} <- queue back
+    // this is a space optimized solution
+    dp.push_back(1); // dp[0]
+    dp.push_back(0); // dp[-1]
+    dp.push_back(0); // dp[-2]
+    dp.push_back(0); // dp[-3]
+    dp.push_back(0); // dp[-4]
+    dp.push_back(0); // dp[-5]
+    for (int r = 1; r <= n; r++) {
+        int dpr = 0;
+        for (const int e : dp) // iterates from front to back
+            dpr = (dpr + e) % MOD;
+        dp.push_front(dpr);
+        dp.pop_back();
     }
-    cout << dp[n] << endl;
+    cout << dp.front() << endl;
     return 0;
 }
