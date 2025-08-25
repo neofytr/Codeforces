@@ -7,7 +7,7 @@ Collection of problems and solutions for dp.
 - ✅ **minimizingCoins** (medium) - solved
 - ✅ **diceCombinations** (easy) - solved
 - ✅ **coinCombinationsOne** (medium) - solved
-- ⏳ **coinCombinationsTwo** (hard) - unsolved
+- ✅ **coinCombinationsTwo** (hard) - solved
 - ✅ **gridPathsOne** (medium) - solved
 - ✅ **bookShop** (medium) - solved
 - ✅ **removingDigits** (medium) - solved
@@ -17,8 +17,8 @@ Collection of problems and solutions for dp.
 
 ## Progress
 - Total Problems: 7
-- Solved: 6
-- Success Rate: 85.7%
+- Solved: 7
+- Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-25 19:32:37*
+*Last updated on 2025-08-25 20:28:31*
