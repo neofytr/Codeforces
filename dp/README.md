@@ -4,10 +4,9 @@
 Collection of problems and solutions for dp.
 
 ## Problems Solved
-- ⏳ **arrayDesc** (hard) - unsolved
 - ✅ **minimizingCoins** (medium) - solved
 - ✅ **diceCombinations** (easy) - solved
-- ⏳ **coinCombinationsOne** (medium) - unsolved
+- ✅ **coinCombinationsOne** (medium) - solved
 - ✅ **gridPathsOne** (medium) - solved
 - ⏳ **bookShop** (medium) - unsolved
 - ✅ **removingDigits** (medium) - solved
@@ -16,9 +15,9 @@ Collection of problems and solutions for dp.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 7
-- Solved: 4
-- Success Rate: 57.1%
+- Total Problems: 6
+- Solved: 5
+- Success Rate: 83.3%
 
 ---
-*Last updated on 2025-08-25 19:21:23*
+*Last updated on 2025-08-25 19:30:04*
