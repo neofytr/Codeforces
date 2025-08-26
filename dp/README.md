@@ -4,6 +4,7 @@
 Collection of problems and solutions for dp.
 
 ## Problems Solved
+- ✅ **flippingGame** (medium) - solved
 - ✅ **minimizingCoins** (medium) - solved
 - ✅ **diceCombinations** (easy) - solved
 - ✅ **coinCombinationsOne** (medium) - solved
@@ -20,9 +21,9 @@ Collection of problems and solutions for dp.
 - Sorting
 
 ## Progress
-- Total Problems: 10
-- Solved: 10
+- Total Problems: 11
+- Solved: 11
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-26 16:54:14*
+*Last updated on 2025-08-26 17:19:22*
