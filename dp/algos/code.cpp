@@ -282,5 +282,26 @@ int32_t main() {
      * harder problems
      */
 
+    /*
+     * State Optimization
+     * 1. Ask yourself do you need all the parameters in the dp state?
+     * 2. If you have dp[a][b][c] and you can find c = f(a, b), do you need to store c as a parameter
+     * or can you just compute it on spot?
+     * 3. If you can compute a parameter in dp state from other parameters, no need to store that parameter
+     * in the state
+     * 4. This reduces both time and space complexity
+     * 5. In general, if we have dp[a][b][c] and we have some relation between a, b and c, we should
+     * remove that parameter which has the highest upper bound.
+     * 6. Which parameter you should remove? the one with the highest upper bound
+     */
+
+    /*
+     * Transition Optimization
+     * 1. Observe the transition equation
+     * 2. Can you do some pre-computation to evaluate the equation faster?
+     * 3. Using clever observations
+     * 4. Using range query data structures
+     */
+
     return 0;
 }
