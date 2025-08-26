@@ -123,5 +123,34 @@ int32_t main() {
     // 6. subtree/path sum in a tree
     // 7. 2D prefix sums
     // 8. Sum over Subsets (n-dimensional prefix sums)
+
+    /*
+     * Suppose you want to find the max(pref[r + 1] - pref[l] for 0 <= l <= r < n)
+     * For this, do the following ->
+
+    int mini = pref[0];
+    int maxi = LLONG_MIN;
+    for (int r = 0; r < n; r++) {
+        maxi = max(maxi, pref[r + 1] - mini);
+        mini = min(mini, pref[r]);
+    }
+    */
+
+    /*
+     * Suppose you want to count the number of segments [l, r] where 0 <= l <= r < n such that
+     * prefix[r + 1] - prefix[l] == target for some target.
+     * For this, do the following ->
+     *
+     * int count = 0;
+     * unordered_map<int, int> mp;
+     *
+     * mp[prefix[0]]++;
+     * for (int r = 0; r < n; r++) {
+     *      int trg = prefix[r + 1] - target;
+     *      count += mp[trg];
+     *      mp[prefix[r + 1]]++;
+     * }
+     *
+     */
     return EXIT_SUCCESS;
 }
