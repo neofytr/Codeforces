@@ -26,26 +26,26 @@ int32_t main() {
     // each coin has a positive integer value
     // our task if to calculate the number of distinct ways we can produce a money sum x using the available coins
 
-    // dp[r][k] is the number of distinct ways we can produce a money sum r using the coins in the index range [0, k]
-    vector<vector<int>> dp(x + 1, vector<int>(n, 0));
+    // dp[k][r] is the number of distinct ways we can produce a money sum r using the coins in the index range [0, k]
+    vector<vector<int>> dp(n, vector<int>(x + 1, 0));
 
     // so, to construct the money sum r using coins [0, k]
     // we can either pick the coin k and construct the sum r - k (if r >= k) from the coins [0, k]
     // or we don't pick the coin and construct the sum from the coins [0, k - 1]
-    // dp[r][k] = dp[r - k][k] + dp[r][k - 1]
+    // dp[k][r] = dp[k][r - k] + dp[k - 1][r]
 
     // base cases ->
     // we need dp[0][...] and dp[...][0]
 
     for (int k = 0; k < n; k++)
-        dp[0][k] = 1; // there is exactly one way to make the sum 0
+        dp[k][0] = 1; // there is exactly one way to make the sum 0
     for (int r = 0; r <= x; r++)
-        dp[r][0] = (!(r % coins[0]) ? 1 : 0); // if we can make r using some number of coins[0], we put it to one
+        dp[0][r] = (!(r % coins[0]) ? 1 : 0); // if we can make r using some number of coins[0], we put it to one
 
     for (int r = 1; r <= x; r++)
         for (int k = 1; k < n; k++)
-            dp[r][k] = (r >= coins[k] ? dp[r - coins[k]][k] : 0) + dp[r][k - 1];
+            dp[k][r] = (r >= coins[k] ? dp[k][r - coins[k]] : 0) + dp[k - 1][r];
 
-    cout << dp[x][n - 1] << endl;
+    cout << dp[n - 1][x] << endl;
     return 0;
 }
