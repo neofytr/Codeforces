@@ -11,15 +11,17 @@ Collection of problems and solutions for dp.
 - ✅ **gridPathsOne** (medium) - solved
 - ✅ **bookShop** (medium) - solved
 - ✅ **removingDigits** (medium) - solved
+- ✅ **interestingDrink** (medium) - solved
 - ✅ **cutRibbon** (medium) - solved
 
 ## Key Techniques
 - Dynamic Programming
+- Sorting
 
 ## Progress
-- Total Problems: 8
-- Solved: 8
+- Total Problems: 9
+- Solved: 9
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-26 16:22:54*
+*Last updated on 2025-08-26 16:43:30*
