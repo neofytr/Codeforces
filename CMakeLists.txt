@@ -661,8 +661,10 @@ add_executable(Codeforces
         contests/DivTwo/1042/test
         contests/DivTwo/1042/e.cpp
         dp/problems/bookShop/bookShop.cpp
-        dp/problems/arrayDesc/arrayDesc.cpp
         dp/problems/coinCombinationsTwo/coinCombinationsTwo.cpp
         dp/problems/coinCombinationsTwo/coinCombinationsTwo.cpp
         dp/problems/coinCombinationsTwo/coinCombinationsTwo.cpp
+        contests/DivTwo/1043/a.cpp
+        contests/DivTwo/1043/c.cpp
+        contests/DivTwo/1043/b.cpp
 )
