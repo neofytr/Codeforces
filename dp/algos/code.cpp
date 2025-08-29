@@ -303,5 +303,26 @@ int32_t main() {
      * 4. Using range query data structures
      */
 
+    /*
+
+        Clever Transition Optimizations
+
+        1. Cumulative sums often turn into telescoping patterns
+        or can be rewritten using prefix sums to avoid repeated work.
+
+        dp[r] = dp[r - 1] + dp[r - 2] + ... + dp[0]
+        This transition can be optimized as ->
+        dp[r] = dp[r - 1] + dp[r - 1] = 2 * dp[r - 1]
+
+       2. Whenever a DP transition involves a "range minimum / maximum"
+       over consecutive indices, it can usually be accelerated with RMQ data
+       structures or sliding window tricks.
+
+        dp[r] = min(dp[r - 1], dp[r - 2], ...., dp[r - arr[r]])
+        This transition can be optimized using a range query data structure that can give
+        range minimum in log(n)
+
+     */
+
     return 0;
 }
