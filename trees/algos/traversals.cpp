@@ -77,20 +77,22 @@ int32_t main() {
     cout << endl;
 
     // BFS
-    int src = rt;
-    queue<int> que;
-
-    que.push(src);
+    queue<Node *> que;
+    if (root)
+        que.push(root);
     int level = 0;
     while (!que.empty()) {
         int size = (int)que.size();
         cout << "Level " << level << " -> ";
         while (size--) {
-            int x = que.front();
-            cout << x << " ";
+            const Node *node = que.front();
             que.pop();
-            for (int v : children[x])
-                que.push(v);
+
+            cout << node->data << " ";
+            if (node->left)
+                que.push(node->left);
+            if (node->right)
+                que.push(node->right);
         }
         cout << endl;
         level++;
