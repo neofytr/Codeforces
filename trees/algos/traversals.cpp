@@ -81,13 +81,19 @@ int32_t main() {
     queue<int> que;
 
     que.push(src);
+    int level = 0;
     while (!que.empty()) {
-        int x = que.front();
-        cout << x << " ";
-        que.pop();
-        for (int v : children[x])
-            que.push(v);
+        int size = (int)que.size();
+        cout << "Level " << level << " -> ";
+        while (size--) {
+            int x = que.front();
+            cout << x << " ";
+            que.pop();
+            for (int v : children[x])
+                que.push(v);
+        }
+        cout << endl;
+        level++;
     }
-    cout << endl;
     return EXIT_SUCCESS;
 }
