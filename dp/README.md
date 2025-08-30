@@ -8,6 +8,7 @@ Collection of problems and solutions for dp.
 - ✅ **minimizingCoins** (medium) - solved
 - ✅ **diceCombinations** (easy) - solved
 - ✅ **coinCombinationsOne** (medium) - solved
+- ✅ **threeActivities** (medium) - solved
 - ✅ **vacations** (hard) - solved
 - ✅ **coinCombinationsTwo** (hard) - solved
 - ⏳ **IHate** (hard) - unsolved
@@ -15,6 +16,7 @@ Collection of problems and solutions for dp.
 - ✅ **basketball** (hard) - solved
 - ✅ **bookShop** (medium) - solved
 - ✅ **removingDigits** (medium) - solved
+- ⏳ **evenOddGame** (medium) - unsolved
 - ⏳ **editDistance** (hard) - unsolved
 - ✅ **interestingDrink** (medium) - solved
 - ✅ **ilyaAndQueries** (medium) - solved
@@ -25,9 +27,9 @@ Collection of problems and solutions for dp.
 - Sorting
 
 ## Progress
-- Total Problems: 15
-- Solved: 13
-- Success Rate: 86.7%
+- Total Problems: 17
+- Solved: 14
+- Success Rate: 82.4%
 
 ---
-*Last updated on 2025-08-29 18:51:42*
+*Last updated on 2025-08-30 08:45:48*
