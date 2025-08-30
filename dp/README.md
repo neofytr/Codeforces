@@ -16,7 +16,7 @@ Collection of problems and solutions for dp.
 - ✅ **basketball** (hard) - solved
 - ✅ **bookShop** (medium) - solved
 - ✅ **removingDigits** (medium) - solved
-- ⏳ **evenOddGame** (medium) - unsolved
+- ✅ **evenOddGame** (medium) - solved
 - ⏳ **editDistance** (hard) - unsolved
 - ✅ **interestingDrink** (medium) - solved
 - ✅ **ilyaAndQueries** (medium) - solved
@@ -28,8 +28,8 @@ Collection of problems and solutions for dp.
 
 ## Progress
 - Total Problems: 17
-- Solved: 14
-- Success Rate: 82.4%
+- Solved: 15
+- Success Rate: 88.2%
 
 ---
-*Last updated on 2025-08-30 08:45:48*
+*Last updated on 2025-08-30 09:08:08*
