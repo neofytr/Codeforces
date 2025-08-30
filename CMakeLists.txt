@@ -671,4 +671,5 @@ add_executable(Codeforces
         random/justEatIt.cpp
         random/rumor.cpp
         random/sort.cpp
+        trees/algos/code.cpp
 )
