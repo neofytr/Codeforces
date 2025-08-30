@@ -668,4 +668,5 @@ add_executable(Codeforces
         contests/DivTwo/1043/c.cpp
         contests/DivTwo/1043/b.cpp
         random/doraAndSearch.cpp
+        random/justEatIt.cpp
 )
