@@ -76,5 +76,19 @@ int32_t main() {
     cout << endl;
     preorder(root);
     cout << endl;
+
+    // BFS
+    int src = rt;
+
+    queue<int> que;
+    que.push(src);
+    while (!que.empty()) {
+        int x = que.front();
+        que.pop();
+        cout << x << " ";
+        for (int v : children[x])
+            que.push(v);
+    }
+    cout << endl;
     return EXIT_SUCCESS;
 }
