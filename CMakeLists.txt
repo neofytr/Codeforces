@@ -670,4 +670,5 @@ add_executable(Codeforces
         random/doraAndSearch.cpp
         random/justEatIt.cpp
         random/rumor.cpp
+        random/sort.cpp
 )
