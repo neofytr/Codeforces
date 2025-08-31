@@ -6,14 +6,15 @@ Collection of problems and solutions for trees.
 ## Problems Solved
 - ✅ **yetAnother** (easy) - solved
 - ✅ **maxDepth** (easy) - solved
+- ✅ **strongVertices** (medium) - solved
 
 ## Key Techniques
-- Techniques will be detected automatically
+- Graph Algorithms
 
 ## Progress
-- Total Problems: 2
-- Solved: 2
+- Total Problems: 3
+- Solved: 3
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-31 15:13:02*
+*Last updated on 2025-08-31 15:30:22*
