@@ -673,4 +673,5 @@ add_executable(Codeforces
         random/sort.cpp
         trees/algos/traversals.cpp
         trees/algos/iterativeTraversals.cpp
+        trees/algos/iterTravRevise.cpp
 )
