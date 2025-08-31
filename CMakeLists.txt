@@ -674,4 +674,5 @@ add_executable(Codeforces
         trees/algos/traversals.cpp
         trees/algos/iterativeTraversals.cpp
         trees/algos/iterTravRevise.cpp
+        trees/algos/traverseInSingle.cpp
 )
