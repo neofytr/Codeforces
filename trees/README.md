@@ -4,15 +4,16 @@
 Collection of problems and solutions for trees.
 
 ## Problems Solved
-<!-- This will be auto-updated -->
+- ⏳ **yetAnother** (easy) - unsolved
+- ✅ **maxDepth** (easy) - solved
 
 ## Key Techniques
-<!-- Common patterns and tricks for this topic -->
+- Techniques will be detected automatically
 
 ## Progress
-- Total Problems: 0
-- Solved: 0
-- Success Rate: 0%
+- Total Problems: 2
+- Solved: 1
+- Success Rate: 50.0%
 
 ---
-*Auto-generated on 2025-08-30 17:19:44*
+*Last updated on 2025-08-31 15:03:26*
