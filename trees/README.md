@@ -4,7 +4,7 @@
 Collection of problems and solutions for trees.
 
 ## Problems Solved
-- ⏳ **yetAnother** (easy) - unsolved
+- ✅ **yetAnother** (easy) - solved
 - ✅ **maxDepth** (easy) - solved
 
 ## Key Techniques
@@ -12,8 +12,8 @@ Collection of problems and solutions for trees.
 
 ## Progress
 - Total Problems: 2
-- Solved: 1
-- Success Rate: 50.0%
+- Solved: 2
+- Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-31 15:03:26*
+*Last updated on 2025-08-31 15:13:02*
