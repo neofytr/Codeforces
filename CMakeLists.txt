@@ -671,9 +671,10 @@ add_executable(Codeforces
         random/justEatIt.cpp
         random/rumor.cpp
         random/sort.cpp
-        trees/algos/traversals.cpp
-        trees/algos/iterativeTraversals.cpp
-        trees/algos/iterTravRevise.cpp
-        trees/algos/traverseInSingle.cpp
-        trees/algos/traverseRevise.cpp
+        trees/algos/traversal/traversals.cpp
+        trees/algos/traversal/iterativeTraversals.cpp
+        trees/algos/traversal/iterTravRevise.cpp
+        trees/algos/traversal/traverseInSingle.cpp
+        trees/algos/traversal/traverseRevise.cpp
+        trees/algos/maxDepth.cpp
 )
