@@ -76,6 +76,8 @@ int32_t main() {
     // 1. pass through n
     // 2. doesn't pass through n and is in the right-subtree of n, in which case it's diameter(n->right); if there is no right-subtree, its 0
     // 3. doesn't pass through n and is in the left-subtree of n, in which case it's diameter(n->left); if there is no left-subtree, its 0
+    // 4. The case that it doesn't pass through n and is in both the left and right subtree isn't possible due to the structure of a tree (if there were a path from left to the
+    // right subtree except for the one passing through the node n, it would create a cycle, a contradiction)
     // The length of the longest path from one node to another in the subtree rooted at n that passes through n is
     // clearly height(n->left) + height(n->right); if either of the left or right subtree doesn't exist, height of that is 0 and is consistent with the definition
     // Hence, we have the relation

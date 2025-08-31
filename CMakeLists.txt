@@ -681,4 +681,5 @@ add_executable(Codeforces
         trees/algos/diameter.cpp
         trees/algos/maxPathSum.cpp
         trees/algos/treeDP.cpp
+        trees/algos/revision/one.cpp
 )
