@@ -34,7 +34,7 @@ int32_t main() {
         for (int r = 1; r <= n; r++)
             c[r] = a[r] - b[r];
 
-        // the largest element of c will have vertices to all of the other indexes, i.e, to all other
+        // the largest element of c will have vertices to all the other indexes, i.e, to all other
         // possible nodes
         // the next largest element won't be able to reach the largest element anyhow
         // since it would have edges to only smaller elements and any smaller elements will have edges to other smaller elements
