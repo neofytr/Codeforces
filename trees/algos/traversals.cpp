@@ -10,41 +10,21 @@ struct Node {
 
     explicit Node(const int data) {
         this->data = data;
-        left = nullptr;
-        right = nullptr;
+        left = right = nullptr;
     }
 };
 
-Node *buildTree(const int nd, const vector<vector<int>> &children) {
-    const auto node = new Node(nd);
-    if (children[nd].size() >= 1)
-        node->left = buildTree(children[nd][0], children);
-    if (children[nd].size() >= 2)
-        node->right = buildTree(children[nd][1], children);
-    return node;
+struct Node *buildTree(const int node, const vector<vector<int>> &children) {
+    const auto newNode = new Node(node); // the data of the new node is the node index itself
+    const vector<int> &child = children[node];
+    if (child.size() >= 1)
+        newNode->left = buildTree(child[0], children);
+    if (child.size() >= 2)
+        newNode->right = buildTree(child[1], children);
+    return newNode;
 }
 
-void inorder(const Node *node) {
-    if (!node)
-        return;
-    // left, root, right
-
-    inorder(node->left);
-    cout << node->data << " ";
-    inorder(node->right);
-}
-
-void preorder(const Node *node) {
-    if (!node)
-        return;
-
-    // root, left, right
-    cout << node->data << " ";
-    preorder(node->left);
-    preorder(node->right);
-}
-
-void postorder(const Node *node) {
+void postorder(const struct Node *node) {
     if (!node)
         return;
 
@@ -54,10 +34,29 @@ void postorder(const Node *node) {
     cout << node->data << " ";
 }
 
+void preorder(const struct Node *node) {
+    if (!node)
+        return;
+
+    // root, left, right
+    cout << node->data << " ";
+    preorder(node->left);
+    preorder(node->right);
+}
+
+void inorder(const struct Node *node) {
+    if (!node)
+        return;
+
+    // left, root, right
+    inorder(node->left);
+    cout << node->data << " ";
+    inorder(node->right);
+}
+
 int32_t main() {
     // 0-indexed nodes
     // guaranteed to be a binary tree
-
     int n, rt;
     cin >> n >> rt;
 
@@ -69,33 +68,27 @@ int32_t main() {
     }
 
     struct Node *root = buildTree(rt, children);
-    inorder(root);
-    cout << endl;
-    preorder(root);
-    cout << endl;
-    postorder(root);
-    cout << endl;
 
     // BFS
+    queue<struct Node *> que;
     vector<vector<int>> ans;
-    queue<struct Node *> q;
 
     if (root)
-        q.push(root);
-    while (!q.empty()) {
-        int size = (int)q.size();
-        vector<int> currLevel;
+        que.push(root);
+    while (!que.empty()) {
+        int size = (int)que.size();
+        vector<int> level;
         while (size--) {
-            struct Node *node = q.front();
-            q.pop();
+            struct Node *node = que.front();
+            que.pop();
 
-            currLevel.push_back(node->data);
+            level.push_back(node->data);
             if (node->left)
-                q.push(node->left);
+                que.push(node->left);
             if (node->right)
-                q.push(node->right);
+                que.push(node->right);
         }
-        ans.push_back(currLevel);
+        ans.push_back(level);
     }
     return EXIT_SUCCESS;
 }
