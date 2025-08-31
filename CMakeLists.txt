@@ -677,4 +677,5 @@ add_executable(Codeforces
         trees/algos/traversal/traverseInSingle.cpp
         trees/algos/traversal/traverseRevise.cpp
         trees/algos/maxDepth.cpp
+        trees/algos/balancedBT.cpp
 )
