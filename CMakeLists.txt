@@ -682,4 +682,6 @@ add_executable(Codeforces
         trees/algos/maxPathSum.cpp
         trees/algos/treeDP.cpp
         trees/algos/revision/one.cpp
+        trees/algos/colinGalen/queen.cpp
+        trees/algos/colinGalen/notes.cpp
 )
