@@ -686,4 +686,5 @@ add_executable(Codeforces
         trees/algos/colinGalen/notes.cpp
         trees/algos/revision/two.cpp
         trees/algos/colinGalen/journey.cpp
+        trees/algos/colinGalen/sumInTheTree.cpp
 )

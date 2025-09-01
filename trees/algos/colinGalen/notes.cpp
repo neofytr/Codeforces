@@ -52,4 +52,5 @@ int32_t main() {
     // Of course, if you need to reuse results later (e.g. rerooting DP),
     // then storing dp[u] in an array is useful. But for many subtree-based
     // problems, just returning the value from DFS works fine.
+    return EXIT_SUCCESS;
 }
