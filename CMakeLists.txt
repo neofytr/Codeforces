@@ -684,4 +684,5 @@ add_executable(Codeforces
         trees/algos/revision/one.cpp
         trees/algos/colinGalen/queen.cpp
         trees/algos/colinGalen/notes.cpp
+        trees/algos/revision/two.cpp
 )
