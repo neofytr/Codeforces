@@ -16,7 +16,7 @@ int32_t main() {
         if (pr == -1)
             root = r;
         else
-            tree[pr].push_back(r);
+            tree[pr].push_back(r); // store directed graph so that we don't have the parent in the adjacency list of a child
     }
 
     // We have to delete vertices from the tree one by one
@@ -44,30 +44,25 @@ int32_t main() {
     // Thus, the number of removable nodes is always a constant
     // So, we just print all the removable nodes in sorted order
 
-    set<int> removable;
-
-    const int src = root;
-    queue<int> que;
-    que.push(src);
-    while (!que.empty()) {
-        int node = que.front();
-        que.pop();
-
-        bool isRem = true;
-        for (int v : tree[node]) {
-            if (!respect[v])
-                isRem = false;
-            que.push(v);
+    vector<int> ans;
+    for (int node = 1; node <= n; node++) {
+        if (respect[node]) {
+            bool pos = true;
+            for (const int v : tree[node])
+                if (!respect[v]) {
+                    pos = false;
+                    break;
+                }
+            if (pos)
+                ans.push_back(node);
         }
-        if (isRem && respect[node] && node != root)
-            removable.insert(node);
     }
-    if (removable.empty()) {
-        cout << -1 << "\n";
-    } else {
-        for (const int v : removable)
+
+    if (ans.size() > 0)
+        for (const int v : ans)
             cout << v << " ";
-        cout << "\n";
-    }
+    else
+        cout << -1;
+    cout << endl;
     return EXIT_SUCCESS;
 }
