@@ -691,4 +691,6 @@ add_executable(Codeforces
         trees/algos/traversal/verticalOrder.cpp
         trees/algos/topView.cpp
         trees/algos/symmetric.cpp
+        trees/algos/paths.cpp
+        trees/algos/lca.cpp
 )
