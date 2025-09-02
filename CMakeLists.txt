@@ -689,4 +689,6 @@ add_executable(Codeforces
         trees/algos/colinGalen/sumInTheTree.cpp
         trees/algos/traversal/zigZag.cpp
         trees/algos/traversal/verticalOrder.cpp
+        trees/algos/topView.cpp
+        trees/algos/symmetric.cpp
 )
