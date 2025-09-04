@@ -16,24 +16,24 @@ int32_t main() {
     int n;
     cin >> n;
 
-    int chainLen = 1;
-    string last = "polycarp";
+    int longestChain = 0;
+    unordered_map<string, int> chain;
 
+    chain["polycarp"] = 1;
     while (n--) {
-        string name1, repost, name2;
-        cin >> name1 >> repost >> name2;
+        string name1, reposted, name2;
+        cin >> name1 >> reposted >> name2;
 
-        if (name2.size() != last.size())
-            continue;
+        string modifiedOne = name1;
+        for (int r = 0; r < modifiedOne.size(); r++)
+            modifiedOne[r] = tolower(modifiedOne[r]);
+        string modifiedTwo = name2;
+        for (int r = 0; r < modifiedTwo.size(); r++)
+            modifiedTwo[r] = tolower(modifiedTwo[r]);
 
-        int sz = name2.size();
-        bool isSame = true;
-        for (int r = 0; r < sz; r++)
-            if (tolower(name2[r]) != tolower(last[r]))
-                isSame = false;
-        if (isSame)
-            chainLen++, last = name1;
+        chain[modifiedOne] = chain[modifiedTwo] + 1;
+        longestChain = max(longestChain, chain[modifiedOne]);
     }
-    cout << chainLen << endl;
+    cout << longestChain << endl;
     return 0;
 }
