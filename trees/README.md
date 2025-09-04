@@ -4,6 +4,7 @@
 Collection of problems and solutions for trees.
 
 ## Problems Solved
+- ✅ **masha** (medium) - solved
 - ✅ **yetAnother** (easy) - solved
 - ✅ **whiteBlack** (medium) - solved
 - ✅ **reposts** (medium) - solved
@@ -18,9 +19,9 @@ Collection of problems and solutions for trees.
 - Graph Algorithms
 
 ## Progress
-- Total Problems: 8
-- Solved: 7
-- Success Rate: 87.5%
+- Total Problems: 9
+- Solved: 8
+- Success Rate: 88.9%
 
 ---
-*Last updated on 2025-09-04 14:47:55*
+*Last updated on 2025-09-04 16:05:01*
