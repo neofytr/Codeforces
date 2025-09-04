@@ -5,6 +5,7 @@ Collection of problems and solutions for trees.
 
 ## Problems Solved
 - ✅ **yetAnother** (easy) - solved
+- ✅ **whiteBlack** (medium) - solved
 - ✅ **maxDepth** (easy) - solved
 - ✅ **strongVertices** (medium) - solved
 - ✅ **appleTree** (medium) - solved
@@ -14,9 +15,9 @@ Collection of problems and solutions for trees.
 - Graph Algorithms
 
 ## Progress
-- Total Problems: 4
-- Solved: 4
+- Total Problems: 5
+- Solved: 5
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-09-02 19:02:37*
+*Last updated on 2025-09-04 09:09:03*
