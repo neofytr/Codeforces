@@ -9,15 +9,16 @@ Collection of problems and solutions for trees.
 - ✅ **maxDepth** (easy) - solved
 - ✅ **strongVertices** (medium) - solved
 - ✅ **appleTree** (medium) - solved
+- ✅ **christmasSpruce** (medium) - solved
 
 ## Key Techniques
 - Dynamic Programming
 - Graph Algorithms
 
 ## Progress
-- Total Problems: 5
-- Solved: 5
+- Total Problems: 6
+- Solved: 6
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-09-04 09:09:03*
+*Last updated on 2025-09-04 09:19:16*
