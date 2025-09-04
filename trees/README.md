@@ -6,9 +6,11 @@ Collection of problems and solutions for trees.
 ## Problems Solved
 - ✅ **yetAnother** (easy) - solved
 - ✅ **whiteBlack** (medium) - solved
+- ✅ **reposts** (medium) - solved
 - ✅ **maxDepth** (easy) - solved
 - ✅ **strongVertices** (medium) - solved
 - ✅ **appleTree** (medium) - solved
+- ⏳ **beginnersZelda** (hard) - unsolved
 - ✅ **christmasSpruce** (medium) - solved
 
 ## Key Techniques
@@ -16,9 +18,9 @@ Collection of problems and solutions for trees.
 - Graph Algorithms
 
 ## Progress
-- Total Problems: 6
-- Solved: 6
-- Success Rate: 100.0%
+- Total Problems: 8
+- Solved: 7
+- Success Rate: 87.5%
 
 ---
-*Last updated on 2025-09-04 09:19:16*
+*Last updated on 2025-09-04 09:34:23*
