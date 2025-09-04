@@ -11,6 +11,7 @@ Collection of problems and solutions for trees.
 - ✅ **whiteBlack** (medium) - solved
 - ⏳ **notAssigning** (hard) - unsolved
 - ✅ **reposts** (medium) - solved
+- ✅ **mocha** (hard) - solved
 - ✅ **maxDepth** (easy) - solved
 - ✅ **strongVertices** (medium) - solved
 - ✅ **appleTree** (medium) - solved
@@ -22,9 +23,9 @@ Collection of problems and solutions for trees.
 - Graph Algorithms
 
 ## Progress
-- Total Problems: 12
-- Solved: 10
-- Success Rate: 83.3%
+- Total Problems: 13
+- Solved: 11
+- Success Rate: 84.6%
 
 ---
-*Last updated on 2025-09-04 23:25:37*
+*Last updated on 2025-09-04 23:50:34*
