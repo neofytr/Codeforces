@@ -8,6 +8,7 @@ Collection of problems and solutions for trees.
 - ✅ **copil** (hard) - solved
 - ✅ **ehab** (hard) - solved
 - ✅ **yetAnother** (easy) - solved
+- ✅ **maximizeTheRoot** (hard) - solved
 - ✅ **whiteBlack** (medium) - solved
 - ⏳ **notAssigning** (hard) - unsolved
 - ✅ **reposts** (medium) - solved
@@ -23,9 +24,9 @@ Collection of problems and solutions for trees.
 - Graph Algorithms
 
 ## Progress
-- Total Problems: 13
-- Solved: 11
-- Success Rate: 84.6%
+- Total Problems: 14
+- Solved: 12
+- Success Rate: 85.7%
 
 ---
-*Last updated on 2025-09-04 23:50:34*
+*Last updated on 2025-09-05 11:34:12*
