@@ -693,4 +693,5 @@ add_executable(Codeforces
         trees/algos/symmetric.cpp
         trees/algos/paths.cpp
         trees/algos/lca.cpp
+        trees/algos/maxWidth.cpp
 )
