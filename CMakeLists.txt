@@ -701,4 +701,5 @@ add_executable(Codeforces
         random/dzy.cpp
         random/diffOnes.cpp
         random/polygon.cpp
+        diffArrays/algos/code.cpp
 )
