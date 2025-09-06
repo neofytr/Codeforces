@@ -699,4 +699,5 @@ add_executable(Codeforces
         random/twoSubstrings.cpp
         random/dreamoon.cpp
         random/dzy.cpp
+        random/diffOnes.cpp
 )
