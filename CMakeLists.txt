@@ -698,4 +698,5 @@ add_executable(Codeforces
         trees/algos/treeConstruction.cpp
         random/boredom.cpp
         random/twoSubstrings.cpp
+        random/dreamoon.cpp
 )
