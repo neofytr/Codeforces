@@ -700,4 +700,5 @@ add_executable(Codeforces
         random/dreamoon.cpp
         random/dzy.cpp
         random/diffOnes.cpp
+        random/polygon.cpp
 )
