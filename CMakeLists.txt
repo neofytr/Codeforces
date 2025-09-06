@@ -697,4 +697,5 @@ add_executable(Codeforces
         trees/algos/countNodes.cpp
         trees/algos/treeConstruction.cpp
         random/boredom.cpp
+        random/twoSubstrings.cpp
 )
