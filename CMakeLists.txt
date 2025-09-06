@@ -696,4 +696,5 @@ add_executable(Codeforces
         trees/algos/maxWidth.cpp
         trees/algos/countNodes.cpp
         trees/algos/treeConstruction.cpp
+        random/boredom.cpp
 )
