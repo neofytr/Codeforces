@@ -702,4 +702,9 @@ add_executable(Codeforces
         random/diffOnes.cpp
         random/polygon.cpp
         diffArrays/algos/code.cpp
+        contests/DivThree/1047/a.cpp
+        contests/DivThree/1047/b.cpp
+        contests/DivThree/1047/c.cpp
+        contests/DivThree/1047/d.cpp
+        contests/DivThree/1047/e.cpp
 )
