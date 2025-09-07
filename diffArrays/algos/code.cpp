@@ -9,20 +9,34 @@ void twoDimDiffArrays() {
 
     vector<vector<int>> arr(n, vector<int>(m));
     for (int row = 0; row < n; row++)
-        for (int col = 0; col < n; col++)
+        for (int col = 0; col < m; col++)
             cin >> arr[row][col];
 
     // we are given q queries of the form
     // (x1, y1), (x2, y2), x
     // where 0 <= x1 <= x2 < n and 0 <= y1 <= y2 < m
     // for each query, we increment all the elements of arr in the rectangle with diagonal endpoints (x1, y1) and (x2, y2)
-    vector<vector<int>> diff(n, vector<int>(m, 0));
+    vector<vector<int>> diff(n + 1, vector<int>(m + 1, 0));
     int q, x1, x2, y1, y2, x;
     cin >> q;
     while (q--) {
         cin >> x1 >> x2 >> y1 >> y2 >> x;
-
+        diff[y1][x1] += x;
+        diff[y2 + 1][x1] -= x;
+        diff[y1][x2 + 1] -= x;
+        diff[y2 + 1][x2 + 1] += x;
     }
+
+    // prefix[r][c] = sum of values in the diff array in the rectangle with diagonal endpoints (0, 0) to (c - 1, r - 1) for 1 <= r <= n and 1 <= c <= m
+    vector<vector<int>> prefix(n + 1, vector<int>(m + 1, 0));
+    for (int row = 1; row <= n; row++)
+        for (int col = 1; col <= m; col++)
+            prefix[row][col] = prefix[row - 1][col] + prefix[row][col - 1] - prefix[row - 1][col - 1] + diff[row - 1][col - 1];
+
+    // now, to update the array arr
+    for (int row = 0; row < n; row++)
+        for (int col = 0; col < m; col++)
+            arr[row][col] += prefix[row][col];
 }
 
 void twoDimPrefix() {

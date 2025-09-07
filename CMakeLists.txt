@@ -707,4 +707,5 @@ add_executable(Codeforces
         contests/DivThree/1047/c.cpp
         contests/DivThree/1047/d.cpp
         contests/DivThree/1047/e.cpp
+        contests/DivThree/1047/f.cpp
 )
