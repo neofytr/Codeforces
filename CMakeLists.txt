@@ -709,4 +709,7 @@ add_executable(Codeforces
         contests/DivThree/1047/e.cpp
         contests/DivThree/1047/f.cpp
         random/youngExplorers.cpp
+        slidingWindow/algos/code.cpp
+        slidingWindow/algos/medianFinder.cpp
+        slidingWindow/algos/slidingWindowMedian.cpp
 )
