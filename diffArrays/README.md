@@ -8,14 +8,15 @@ Collection of problems and solutions for diffArrays.
 - ✅ **gregArray** (hard) - solved
 - ✅ **approximating** (medium) - solved
 - ✅ **substringSwap** (easy) - solved
+- ✅ **littleGirl** (medium) - solved
 
 ## Key Techniques
-- Techniques will be detected automatically
+- Sorting
 
 ## Progress
-- Total Problems: 4
-- Solved: 3
-- Success Rate: 75.0%
+- Total Problems: 5
+- Solved: 4
+- Success Rate: 80.0%
 
 ---
-*Last updated on 2025-09-08 13:01:04*
+*Last updated on 2025-09-08 13:11:00*
