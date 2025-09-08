@@ -4,6 +4,7 @@
 Collection of problems and solutions for diffArrays.
 
 ## Problems Solved
+- ✅ **encryptingMessages** (hard) - solved
 - ⏳ **karenAndCoffee** (medium) - unsolved
 - ✅ **gregArray** (hard) - solved
 - ✅ **approximating** (medium) - solved
@@ -14,9 +15,9 @@ Collection of problems and solutions for diffArrays.
 - Sorting
 
 ## Progress
-- Total Problems: 5
-- Solved: 4
-- Success Rate: 80.0%
+- Total Problems: 6
+- Solved: 5
+- Success Rate: 83.3%
 
 ---
-*Last updated on 2025-09-08 13:11:00*
+*Last updated on 2025-09-08 13:40:05*
