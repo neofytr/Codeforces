@@ -712,4 +712,5 @@ add_executable(Codeforces
         slidingWindow/algos/code.cpp
         slidingWindow/algos/medianFinder.cpp
         slidingWindow/algos/slidingWindowMedian.cpp
+        slidingWindow/algos/slidingMinimum.cpp
 )
