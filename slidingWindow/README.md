@@ -10,14 +10,15 @@ Collection of problems and solutions for slidingWindow.
 - ✅ **hayBale** (medium) - solved
 - ⏳ **slidingWindowMinimum** (Unknown) - unsolved
 - ⏳ **maxSubarraySumTwo** (hard) - unsolved
+- ✅ **mexMin** (hard) - solved
 
 ## Key Techniques
 - Techniques will be detected automatically
 
 ## Progress
-- Total Problems: 6
-- Solved: 1
-- Success Rate: 16.7%
+- Total Problems: 7
+- Solved: 2
+- Success Rate: 28.6%
 
 ---
-*Last updated on 2025-09-09 17:23:41*
+*Last updated on 2025-09-09 19:44:28*
