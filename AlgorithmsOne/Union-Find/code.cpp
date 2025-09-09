@@ -95,7 +95,8 @@ class QuickFind : public UnionFind {
 // Quick-Union (lazy approach -> avoids doing work until we have to)
 // Data Structure
 // 1. Integer array id[] of size n
-// 2. Interpretation -> id[r] is the parent of r
+// 2. Each component is a tree rooted at some object (called the root of that tree/component)
+// 3. Interpretation -> id[r] is the parent of r in the tree of its component for non-root nodes and id[r] = r for root nodes of components
 // 3. Root of r is id[id[...id[r]...]] <- keep going until it doesn't change (the algorithm ensures no cycles)
 class QuickUnion : public UnionFind {
   private:
