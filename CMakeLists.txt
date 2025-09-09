@@ -716,4 +716,6 @@ add_executable(Codeforces
         contests/DivTwo/1049/a.cpp
         contests/DivTwo/1049/b.cpp
         contests/DivTwo/1049/c.cpp
+        contests/DivTwo/1049/d.cpp
+        AlgorithmsOne/Union-Find/code.cpp
 )
