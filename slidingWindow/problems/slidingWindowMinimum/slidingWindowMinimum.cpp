@@ -9,25 +9,46 @@ using namespace std;
 // Tags:
 // Strategy:
 
-struct MapHash {
-    std::size_t operator()(const std::map<int, int> &m) const {
-        std::size_t seed = 0;
-        std::hash<int> hasher;
-        for (const auto &[key, value] : m) {
-            // Combine the hash of key and value
-            std::size_t pair_hash = hasher(key);
-            pair_hash ^= hasher(value) + 0x9e3779b9 + (pair_hash << 6) + (pair_hash >> 2);
-            // Combine into overall hash
-            seed ^= pair_hash + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+struct Stack {
+    stack<pair<int, int>> st;
+    void push(const int x) {
+        if (st.empty())
+            st.push({x, x});
+        else {
+            auto [val, mini] = st.top();
+            mini = min(mini, x);
+            st.push({x, mini});
         }
-        return seed;
+    }
+    void pop() { st.pop(); }
+    bool empty() { return st.empty(); }
+    int top() const { return st.top().first; }
+    int getMin() const { return st.top().second; }
+};
+
+struct Queue {
+    Stack fnt, bck;
+    void balance() {
+        while (!bck.empty())
+            fnt.push(bck.top()), bck.pop();
+    }
+    void push(const int x) { bck.push(x); }
+    void pop() {
+        if (fnt.empty())
+            balance();
+        fnt.pop();
+    }
+    int getMin() {
+        assert(!fnt.empty() || !bck.empty()); // ensure the queue is not empty
+        if (fnt.empty())
+            return bck.getMin();
+        if (bck.empty())
+            return fnt.getMin();
+        return min(fnt.getMin(), bck.getMin());
     }
 };
 
 int32_t main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
     int n, k;
     cin >> n >> k;
 
@@ -37,27 +58,15 @@ int32_t main() {
     vector<int> arr(n);
     arr[0] = x;
 
-    // we are to calculate the minimum of each window of k elements, from left to right, and then take all their xors
-    map<int, int> freq; // stores counts
-    set<int> keys;      // stores current keys in sorted order
     int l = 0;
     int xr = 0;
-
+    Queue que;
     for (int r = 0; r < n; r++) {
         if (r > 0)
             arr[r] = (a * arr[r - 1] + b) % c;
-        freq[arr[r]]++;
-        keys.insert(arr[r]); // maintain the set of keys
-        if (r - l + 1 == k) {
-            xr ^= *keys.begin(); // smallest key in window
-            // remove the left element from the window
-            freq[arr[l]]--;
-            if (!freq[arr[l]]) {
-                keys.erase(arr[l]); // remove from set if count is zero
-                freq.erase(arr[l]);
-            }
-            l++;
-        }
+        que.push(arr[r]); // include into the window
+        if (r - l + 1 == k)
+            xr ^= que.getMin(), que.pop(), l++;
     }
     cout << xr << endl;
     return 0;
