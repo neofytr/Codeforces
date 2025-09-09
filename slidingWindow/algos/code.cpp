@@ -206,3 +206,8 @@ struct AugMinQueue {
 // - when not invertible, we need auxiliary data structures to recompute aggregates efficiently.
 // - two-stack queues help us simulate queue operations and maintain additional info in amortized constant time.
 // - storing aggregated info in stacks is a powerful pattern and can be used in many sliding window problems.
+
+int32_t main() {
+    // In general, it is not required for the subarray to have constant size as long as both the left and
+    // right endpoints of the subarray only move to the right
+}
