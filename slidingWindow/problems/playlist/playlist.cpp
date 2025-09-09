@@ -38,9 +38,10 @@ int32_t main() {
     // mp[k] is the last index of k in the array during the current iteration
     unordered_map<int, int, custom_hash> mp;
     int maxi = LLONG_MIN;
-    int l = 1; // the segment is [l, r]
+    int l = 1; // the segment is [l, r]; we maintain the invariant that this segment is the largest unique segment ending at r
     for (int r = 1; r <= n; r++) {
-        if (mp[arr[r]] >= l) // unique element
+        if (mp[arr[r]] >= l) // we add the element arr[r] into our segment; if there is an element like it
+                             // in the segment previously, the maximum length unique segment ending at r will be [mp[arr[r]] + 1, r]
             l = mp[arr[r]] + 1;
         maxi = max(maxi, r - l + 1);
         mp[arr[r]] = r;
