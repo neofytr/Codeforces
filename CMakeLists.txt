@@ -713,4 +713,7 @@ add_executable(Codeforces
         slidingWindow/algos/medianFinder.cpp
         slidingWindow/algos/slidingWindowMedian.cpp
         slidingWindow/algos/slidingMinimum.cpp
+        contests/DivTwo/1049/a.cpp
+        contests/DivTwo/1049/b.cpp
+        contests/DivTwo/1049/c.cpp
 )
