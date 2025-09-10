@@ -717,4 +717,5 @@ add_executable(Codeforces
         contests/DivTwo/1049/d.cpp
         AlgorithmsOne/Union-Find/code.cpp
         AlgorithmsOne/Union-Find/perlocation.cpp
+        AlgorithmsOne/AnalysisOfAlgorithms/code.cpp
 )
