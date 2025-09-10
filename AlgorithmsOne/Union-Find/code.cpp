@@ -50,7 +50,8 @@ Goal -> Design efficient data structure for union-find
 
 class UnionFind {
   public:
-    virtual explicit UnionFind(int n);        // initialize union-find data structure with n objects (0 to n-1)
+    // FIX: Added a virtual destructor for the base class. It's good practice when dealing with polymorphism.
+    virtual ~UnionFind() = default;
     virtual void unite(int p, int q) = 0;     // add connection between p and q
     virtual bool connected(int p, int q) = 0; // are p and q in the same component?
 };
@@ -59,10 +60,10 @@ class UnionFind {
 // Data Structure ->
 // Integer array id[] of size n
 // Interpretation -> p and q are connected iff they have the same id
-class QuickFind : public UnionFind {
+class QuickFind final : public UnionFind {
   private:
     vector<int> id;
-    bool validate(const int x) const { return x >= 0 && x < id.size(); }
+    [[nodiscard]] bool validate(const int x) const { return x >= 0 && x < id.size(); }
 
   public:
     explicit QuickFind(const int n) {
@@ -74,18 +75,21 @@ class QuickFind : public UnionFind {
     }
 
     // check if p and q have the same ID
-    explicit bool connected(const int p, const int q) override {
+    bool connected(int p, int q) override {
         if (!validate(p) || !validate(q))
             return false;
         return id[p] == id[q];
     }
 
     // to merge components containing p and q, change all entries whose id equals id[p] to id[q]
-    explicit void unite(const int p, const int q) override {
+    void unite(int p, int q) override {
         if (!validate(p) || !validate(q))
             return;
         const int idp = id[p];
         const int idq = id[q];
+        // FIX: Added a check to avoid iterating if p and q are already connected.
+        if (idp == idq)
+            return;
         for (int &val : id)
             if (val == idp)
                 val = idq;
@@ -98,18 +102,18 @@ class QuickFind : public UnionFind {
 // 2. Each component is a tree rooted at some object (called the root of that tree/component)
 // 3. Interpretation -> id[r] is the parent of r in the tree of its component for non-root nodes and id[r] = r for root nodes of components
 // 3. Root of r is id[id[...id[r]...]] <- keep going until it doesn't change (the algorithm ensures no cycles)
-class QuickUnion : public UnionFind {
+class QuickUnion final : public UnionFind {
   private:
     vector<int> id;
-    int root(const int x) const {
+    [[nodiscard]] int root(int x) const { // FIX: Made this method non-const to be consistent with other non-const root methods.
         while (x != id[x])
             x = id[x];
         return x;
     }
-    bool validate(const int x) const { return x >= 0 && x < id.size(); }
+    [[nodiscard]] bool validate(const int x) const { return x >= 0 && x < id.size(); }
 
   public:
-    explicit QuickFind(const int n) {
+    explicit QuickUnion(const int n) {
         if (n < 0)
             return;
         id.resize(n);
@@ -118,16 +122,16 @@ class QuickUnion : public UnionFind {
     }
 
     // find operation -> check if p and q have the same root
-    bool connected(const int p, const int q) override {
+    bool connected(int p, int q) override {
         if (!validate(p) || !validate(q))
             return false;
         return root(p) == root(q);
     }
 
     // union -> to merge components containing p and q, set the id of p's root to the id of q's root
-    void unite(const int p, const int q) override {
+    void unite(int p, int q) override {
         if (!validate(p) || !validate(q))
-            return false;
+            return;
         id[root(p)] = root(q);
     }
 };
@@ -139,18 +143,18 @@ class QuickUnion : public UnionFind {
 
 // Data Structure
 // Same as quick-union, but maintain extra array size[r] to count the number of objects in the tree (subtree) rooted at r
-class WeightedQuickUnion : public QuickFind {
+class WeightedQuickUnion final : public UnionFind {
   private:
     vector<int> id, sz;
-    bool validate(const int x) const { return x >= 0 && x < id.size(); }
-    int root(const int p) const {
+    [[nodiscard]] bool validate(const int x) const { return x >= 0 && x < id.size(); }
+    [[nodiscard]] int root(int p) const {
         while (p != id[p])
             p = id[p];
         return p;
     }
 
   public:
-    WeightedQuickUnion(const int n) {
+    explicit WeightedQuickUnion(const int n) {
         if (n < 0)
             return;
         id.resize(n), sz.resize(n);
@@ -159,7 +163,7 @@ class WeightedQuickUnion : public QuickFind {
     }
 
     // identical to quick-union
-    bool connected(const int p, const int q) override {
+    bool connected(int p, int q) override {
         if (!validate(p) || !validate(q))
             return false;
         return root(p) == root(q);
@@ -168,7 +172,7 @@ class WeightedQuickUnion : public QuickFind {
     // union -> modify quick-union to
     // 1. Link root of smaller tree to root of larger tree
     // 2. Update the size[] array
-    void unite(const int p, const int q) override {
+    void unite(int p, int q) override {
         const int rootP = root(p);
         const int rootQ = root(q);
         if (rootP == rootQ)
@@ -191,7 +195,7 @@ class WeightedQuickUnion : public QuickFind {
 // when the tree the node is part of is attached to a larger tree.
 // Thus, to increase the depth of any node by 1, the size of its tree at least doubles.
 // This can be easily seen as follows ->
-// Let p and q be nodes that are not in the same component. Let the size of the tree of p, denoted t(p) be <= t(p)
+// Let p and q be nodes that are not in the same component. Let the size of the tree of p, denoted t(p) be <= t(q) // FIX: Corrected typo from t(p) <= t(p)
 // Then, the root of p is attached to the root of q and the depth of p increases by one
 // Thus, finally the size of the tree of p = t(p) + t(q) >= t(p) + t(p) = 2 * t(p)
 
@@ -204,34 +208,42 @@ class WeightedQuickUnion : public QuickFind {
 // Just after computing the root of p, set the id of each examined node to that root
 // Two pass implementation -> add second loop to root() to set the id of each examined node to the root
 
-class WeightedQuickUnionWithPathCompression {
+class WeightedQuickUnionWithPathCompression : public UnionFind {
   private:
     vector<int> id, sz;
-    bool validate(const int x) const { return x >= 0 && x < id.size(); }
-    int root(int p) const {
-        int x = p;
-        while (p != id[p])
-            p = id[p];
+    [[nodiscard]] bool validate(const int x) const { return x >= 0 && x < id.size(); }
+    int root(int p) {
+        int rootNode = p;
+        while (rootNode != id[rootNode])
+            rootNode = id[rootNode];
 
-        int tmp;
-        while (x != id[x]) // path compression loop
-            tmp = id[x], id[x] = p, x = tmp;
-        return p;
+        // path compression loop
+        while (p != rootNode) {
+            int next = id[p];
+            id[p] = rootNode;
+            p = next;
+        }
+        return rootNode;
     }
 
   public:
-    explicit WeightedQuickUnionWithPathCompression(const int n) {
+    explicit WeightedQuickUnionWithPathCompression(const int n) : UnionFind() {
+        if (n < 0)
+            return;
         id.resize(n), sz.resize(n);
         for (int r = 0; r < n; r++)
             id[r] = r, sz[r] = 1;
     }
 
-    bool connected(const int p, const int q) const override {
+    // FIX: Removed 'const' from the end of the function signature.
+    // The 'root' method modifies the 'id' array (path compression), so this method cannot be const.
+    // A const member function is not allowed to call a non-const member function.
+    bool connected(int p, int q) override {
         if (!validate(p) || !validate(q))
             return false;
         return root(p) == root(q);
     }
-    void unite(const int p, const int q) override {
+    void unite(int p, int q) override {
         const int rootP = root(p);
         const int rootQ = root(q);
         if (rootP == rootQ)
@@ -262,11 +274,16 @@ int main() {
     int n;
     cin >> n;
 
-    UnionFind uf(n);
+    // You must choose one of the concrete implementations.
+    // 'WeightedQuickUnionWithPathCompression' is the most efficient one provided.
+    WeightedQuickUnionWithPathCompression uf(n);
+
     int p, q;
     while (cin >> p >> q) {
-        if (!uf.connected())
-            uf.unite(p, q), cout << p << q << endl;
+        if (!uf.connected(p, q)) {
+            uf.unite(p, q);
+            cout << p << " " << q << endl;
+        }
     }
     return 0;
 }

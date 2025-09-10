@@ -123,3 +123,5 @@ class Percolation {
 
     int getNumOpen() const { return numOpen; }
 };
+
+
