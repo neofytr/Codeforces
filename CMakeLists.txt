@@ -710,12 +710,11 @@ add_executable(Codeforces
         contests/DivThree/1047/f.cpp
         random/youngExplorers.cpp
         slidingWindow/algos/code.cpp
-        slidingWindow/algos/medianFinder.cpp
         slidingWindow/algos/slidingWindowMedian.cpp
-        slidingWindow/algos/slidingMinimum.cpp
         contests/DivTwo/1049/a.cpp
         contests/DivTwo/1049/b.cpp
         contests/DivTwo/1049/c.cpp
         contests/DivTwo/1049/d.cpp
         AlgorithmsOne/Union-Find/code.cpp
+        AlgorithmsOne/Union-Find/perlocation.cpp
 )
