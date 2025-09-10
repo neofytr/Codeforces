@@ -75,3 +75,53 @@
 // 3. Average Case -> Expected cost for random input
 // - Need a model for "random" input
 // - Provides a way to predict performance
+
+// Actual data might not match input model?
+// Need to understand input to effectively process it
+// Approach 1 -> design for the worst case
+// Approach 2 -> randomize, depend on probabilistic guarantee
+
+// Goals ->
+// 1. Establish "difficulty" of a problem
+// 2. Develop "optimal" algorithms
+
+// Approach ->
+// 1. Suppress details in analysis -> analyze "to within a constant factor"
+// 2. Eliminate variability in the input model by focusing on the worst case
+
+// Optimal Algorithm
+// 1. Performance guarantee (to within a constant factor) for any input
+// 2. No algorithm can provide a better performance guarantee
+
+// Big Theta -> provides asymptotic order of growth, used to classify algorithms
+// Big Oh -> used to develop upper bounds
+// Big Omega -> used to develop lower bounds
+
+// f(n) is theta(g(n)) iff ag(n) <= f(n) <= bg(n) for all n >= c
+// f(n) is O(g(n)) iff f(n) <= ag(n) for all n >= c
+// f(n) is omega(g(n)) iff ag(n) <= f(n) for all n >= c
+
+// f(n) is theta(g(n)) iff f(n) is O(g(n)) and f(n) is omega(g(n))
+
+// We always treat worst case inputs in all our running time analyses until explicitly specified
+// The running time of an algorithm is summation of cost * frequency of each operation and is usually
+// a function of the input size (say n)
+
+// Algorithm Design Approach
+// Start
+// 1. Develop an algorithm ->
+// Its running time (say g(n)) gives an upper bound for the running time of the optimal algorithm, i.e,
+// the running time of the optimal algorithm will be O(g(n))
+// 2. Prove a lower bound ->
+// Prove that any algorithm solving that problem has its running time at least some function f(n).
+// Thus, the running time of the optimal algorithm will be omega(f(n))
+
+// Is there a gap between the lower and the upper bound?
+// 1. Lower the upper bound (discover a new algorithm)
+// 2. Raise the lower bound (more difficult)
+
+// Caveats
+// 1. Overly pessimistic in considering only the worst case
+// 2. Need better than "to within a constant factor" to predict performance
+
+// We focus on approximate models in this course, i.e, we use the ~ notation
