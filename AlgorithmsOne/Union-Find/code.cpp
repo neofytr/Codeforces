@@ -132,6 +132,130 @@ class QuickUnion : public UnionFind {
     }
 };
 
+// Weighted Quick-Union
+// Modify quick-union to avoid tall trees
+// Keep track of the sizes of each tree (number of objects)
+// Balance by linking root of the smaller tree to root of the larger tree
+
+// Data Structure
+// Same as quick-union, but maintain extra array size[r] to count the number of objects in the tree (subtree) rooted at r
+class WeightedQuickUnion : public QuickFind {
+  private:
+    vector<int> id, sz;
+    bool validate(const int x) const { return x >= 0 && x < id.size(); }
+    int root(const int p) const {
+        while (p != id[p])
+            p = id[p];
+        return p;
+    }
+
+  public:
+    WeightedQuickUnion(const int n) {
+        if (n < 0)
+            return;
+        id.resize(n), sz.resize(n);
+        for (int r = 0; r < n; r++)
+            id[r] = r, sz[r] = 1;
+    }
+
+    // identical to quick-union
+    bool connected(const int p, const int q) override {
+        if (!validate(p) || !validate(q))
+            return false;
+        return root(p) == root(q);
+    }
+
+    // union -> modify quick-union to
+    // 1. Link root of smaller tree to root of larger tree
+    // 2. Update the size[] array
+    void unite(const int p, const int q) override {
+        const int rootP = root(p);
+        const int rootQ = root(q);
+        if (rootP == rootQ)
+            return;
+        if (sz[rootP] > sz[rootQ]) { // attach rootQ to rootP
+            id[rootQ] = rootP;
+            sz[rootP] += sz[rootQ];
+        } else { // attach rootP to rootQ
+            id[rootP] = rootQ;
+            sz[rootQ] += sz[rootP];
+        }
+    }
+};
+
+// Let n >= 1
+// Proposition: After any number of union operations in the WeightedQuickUnion Algorithm, the depth of any node x is at-most log2(n)
+// Proof ->
+// Initially, each node is in a tree of its own and thus, initially, each node has a depth = 0.
+// The depth of a node can increase only during a union operation, and can only increase by exactly one and that too only
+// when the tree the node is part of is attached to a larger tree.
+// Thus, to increase the depth of any node by 1, the size of its tree at least doubles.
+// This can be easily seen as follows ->
+// Let p and q be nodes that are not in the same component. Let the size of the tree of p, denoted t(p) be <= t(p)
+// Then, the root of p is attached to the root of q and the depth of p increases by one
+// Thus, finally the size of the tree of p = t(p) + t(q) >= t(p) + t(p) = 2 * t(p)
+
+// Hence, if a node has depth d, the size of its tree will be at least 2^d. However, since there are only n nodes,
+// it follows that ->
+// 2^d <= n or d <= log2(n)
+// We thus have the proposition.
+
+// Weighted Quick Union with Path compression
+// Just after computing the root of p, set the id of each examined node to that root
+// Two pass implementation -> add second loop to root() to set the id of each examined node to the root
+
+class WeightedQuickUnionWithPathCompression {
+  private:
+    vector<int> id, sz;
+    bool validate(const int x) const { return x >= 0 && x < id.size(); }
+    int root(int p) const {
+        int x = p;
+        while (p != id[p])
+            p = id[p];
+
+        int tmp;
+        while (x != id[x]) // path compression loop
+            tmp = id[x], id[x] = p, x = tmp;
+        return p;
+    }
+
+  public:
+    explicit WeightedQuickUnionWithPathCompression(const int n) {
+        id.resize(n), sz.resize(n);
+        for (int r = 0; r < n; r++)
+            id[r] = r, sz[r] = 1;
+    }
+
+    bool connected(const int p, const int q) const override {
+        if (!validate(p) || !validate(q))
+            return false;
+        return root(p) == root(q);
+    }
+    void unite(const int p, const int q) override {
+        const int rootP = root(p);
+        const int rootQ = root(q);
+        if (rootP == rootQ)
+            return;
+        if (sz[rootP] > sz[rootQ]) { // attach rootQ to rootP
+            id[rootQ] = rootP;
+            sz[rootP] += sz[rootQ];
+        } else { // attach rootP to rootQ
+            id[rootP] = rootQ;
+            sz[rootQ] += sz[rootP];
+        }
+    }
+};
+
+// Proposition: Starting from an empty data structure, any sequence of M union-find operations on N objects
+// makes <= c (N + M log*(N)) array accesses.
+// Analysis can be improved to N + M alpha(M, N)
+
+// Linear-time algorithm for M union-find operations on N objects?
+// We can prove that there is no such algorithm
+// 1. Cost within constant factor of reading in the data
+// 2. In theory, WQUPC is not quite linear
+// 3. In practice, WQUPC is linear
+
 int main() {
     // Dynamic Connectivity Client
 
