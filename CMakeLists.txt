@@ -721,5 +721,5 @@ add_executable(Codeforces
         slidingWindow/algos/minStackQueue.cpp
         AlgorithmsOne/StackAndQueues/code.cpp
         AlgorithmsOne/StackAndQueues/Stack.h
-        AlgorithmsOne/StackAndQueues/Queue.cpp
+        AlgorithmsOne/StackAndQueues/Queue.h
 )
