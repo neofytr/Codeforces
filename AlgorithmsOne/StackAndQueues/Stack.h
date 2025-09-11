@@ -12,7 +12,8 @@ template <typename T> class Stack {
     ;
 };
 
-template <typename T> class LinkedListStack : public Stack<T> {
+// Proposition -> Every operation takes constant time in the worst case
+template <typename T> class LinkedListStack final : public Stack<T> {
   private:
     struct Node {
         T data;
@@ -45,4 +46,31 @@ template <typename T> class LinkedListStack : public Stack<T> {
     }
     bool isEmpty() const override { return !sz; }
     int size() const override { return sz; }
+};
+
+// Array implementation of a stack
+template <typename T> class ArrayStack final : public Stack<T> {
+  private:
+    T *st;
+    int top, cap;
+
+  public:
+    explicit ArrayStack(const int capacity) {
+        st = new T[capacity];
+        top = 0, cap = capacity;
+    }
+    ~ArrayStack() override { delete st; }
+
+    int size() const override { return top; }
+    bool isEmpty() const override { return !top; }
+    void push(const T &data) override {
+        if (top >= cap)
+            throw runtime_error("invalid operation -> stack overflow");
+        st[top++] = data;
+    }
+    T pop() override {
+        if (isEmpty())
+            throw runtime_error("invalid operation -> cannot pop from an empty stack!");
+        return st[--top];
+    }
 };
