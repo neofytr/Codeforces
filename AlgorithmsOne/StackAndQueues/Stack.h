@@ -23,23 +23,20 @@ template <typename T> class LinkedListStack : public Stack<T> {
     int sz;
 
   public:
-    LinkedListStack() { sz = 0; }
+    LinkedListStack() {
+        sz = 0;
+        head = nullptr;
+    }
     ~LinkedListStack() override {
         while (!isEmpty())
             pop();
     }
     void push(T &data) override {
-        if (!sz) {
-            head = new Node(data);
-            head->next = nullptr;
-        } else {
-            Node *node = new Node(data);
-            node->next = head;
-            head = node;
-        }
+        Node *node = new Node(data);
+        node->next = head, head = node, sz++;
     }
     T pop() override {
-        if (!sz)
+        if (isEmpty())
             throw runtime_error("illegal operation -> popping from an empty stack!");
         const T data = head->data;
         const auto newHead = head->next;
@@ -47,4 +44,5 @@ template <typename T> class LinkedListStack : public Stack<T> {
         return data;
     }
     bool isEmpty() const override { return !sz; }
+    int size() const override { return sz; }
 };
