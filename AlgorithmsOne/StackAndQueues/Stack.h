@@ -12,6 +12,27 @@ template <typename T> class Stack {
     ;
 };
 
+template <typename T, typename Node> class Iterator {
+  private:
+    Node *curr;
+
+  public:
+    explicit Iterator(Node *node) { curr = node; }
+    // dereference operator
+    T &operator*() { return curr->data; }
+    // arrow operator
+    T *operator->() { return &(curr->data); }
+    // pre-increment operator
+    Iterator &operator++() {
+        curr = curr->next;
+        return *this;
+    }
+    // inequality comparison
+    bool operator!=(const Iterator &other) const { return curr != other.curr; }
+    // equality comparison
+    bool operator==(const Iterator &other) const { return curr == other.curr; }
+};
+
 // Proposition -> Every operation takes constant time in the worst case
 template <typename T> class LinkedListStack final : public Stack<T> {
   private:
@@ -46,6 +67,10 @@ template <typename T> class LinkedListStack final : public Stack<T> {
     }
     bool isEmpty() const override { return !sz; }
     int size() const override { return sz; }
+
+    using iterator = Iterator<T, Node>;
+    iterator begin() { return iterator(head); }
+    static iterator end() { return iterator(nullptr); }
 };
 
 // Array implementation of a stack
