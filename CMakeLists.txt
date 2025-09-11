@@ -719,4 +719,6 @@ add_executable(Codeforces
         AlgorithmsOne/Union-Find/perlocation.cpp
         AlgorithmsOne/AnalysisOfAlgorithms/code.cpp
         slidingWindow/algos/minStackQueue.cpp
+        AlgorithmsOne/StackAndQueues/code.cpp
+        AlgorithmsOne/StackAndQueues/Stack.h
 )
