@@ -722,4 +722,5 @@ add_executable(Codeforces
         AlgorithmsOne/StackAndQueues/code.cpp
         AlgorithmsOne/StackAndQueues/Stack.h
         AlgorithmsOne/StackAndQueues/Queue.h
+        random/friends.cpp
 )
