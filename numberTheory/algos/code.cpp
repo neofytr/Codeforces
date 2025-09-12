@@ -13,6 +13,42 @@ int gcd(const int a, const int b) {
     return gcd(b, a % b);
 }
 
+vector<int> smallestFactor(const int b) {
+    if (b <= 1)
+        return {};
+    // smallest[r] will store the smallest prime factor of r for r >= 2
+    vector<int> smallest(b + 1, -1);
+    for (int r = 2; r <= b; r++)
+        for (int j = r; j <= b; j += r)
+            if (smallest[j] == -1)
+                smallest[j] = r;
+    // Proposition -> At the end of execution, for all r in [2, b], smallest[r] is the smallest prime factor of r
+    // Proof -> We prove via induction on r
+
+    // Base Case (r = 2)
+    // The inner loop for r = 2 starts with j = 2 and sets smallest[2] = 2 because it is initially -1
+    // Thus, smallest[2] is correctly set to 2, which is the smallest prime factor of 2
+
+    // Inductive Step
+    // Assume the proposition holds for all 2 <= w < r
+    // We need to show that it holds for r
+
+    // Case 1: r is a prime number
+    // Since it has no smaller prime factor, smallest[r] is -1 at this stage
+    // When r = r in the outer loop, the inner loop starts at j = r and sets smallest[r] = r
+    // Therefore, smallest[r] is set to r, which is its smallest prime factor
+
+    // Case 2: r is composite
+    // Let p be the smallest prime factor of r
+    // Since p < r, in the iteration r = p, the inner loop for j = p, p*2, ..., would eventually reach j = r and set smallest[r] = p
+    // smallest[r] is set at the earliest possible time to the smallest prime factor p, because the outer loop starts from the smallest r upwards
+    // No later iteration will overwrite it because of the condition if (smallest[j] == -1)
+
+    // Therefore, by induction, smallest[r] correctly stores the smallest prime factor for all r in [2, b]
+
+    return smallest;
+}
+
 vector<int> div(const int b) {
     vector<int> ans;
     if (b <= 0)
