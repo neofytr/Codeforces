@@ -725,4 +725,5 @@ add_executable(Codeforces
         random/friends.cpp
         random/strange.cpp
         numberTheory/algos/code.cpp
+        random/test.cpp
 )

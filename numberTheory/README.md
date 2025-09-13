@@ -8,14 +8,15 @@ Collection of problems and solutions for numberTheory.
 - ✅ **countingDiv** (easy) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
+- ✅ **subsetMultiplication** (hard) - solved
 
 ## Key Techniques
 - Techniques will be detected automatically
 
 ## Progress
-- Total Problems: 4
-- Solved: 3
-- Success Rate: 75.0%
+- Total Problems: 5
+- Solved: 4
+- Success Rate: 80.0%
 
 ---
-*Last updated on 2025-09-13 12:44:24*
+*Last updated on 2025-09-13 15:31:51*
