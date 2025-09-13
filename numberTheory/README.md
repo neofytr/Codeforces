@@ -5,6 +5,7 @@ Collection of problems and solutions for numberTheory.
 
 ## Problems Solved
 - ✅ **rowGCD** (hard) - solved
+- ✅ **countingDiv** (easy) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
 
@@ -12,9 +13,9 @@ Collection of problems and solutions for numberTheory.
 - Techniques will be detected automatically
 
 ## Progress
-- Total Problems: 3
-- Solved: 2
-- Success Rate: 66.7%
+- Total Problems: 4
+- Solved: 3
+- Success Rate: 75.0%
 
 ---
-*Last updated on 2025-09-12 18:28:21*
+*Last updated on 2025-09-13 12:44:24*

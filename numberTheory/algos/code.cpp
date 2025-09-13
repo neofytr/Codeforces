@@ -49,6 +49,66 @@ vector<int> smallestFactor(const int b) {
     return smallest;
 }
 
+int countDiv(int n) {
+    if (n <= 1)
+        return -1;
+    int cnt = 1;
+    for (int r = 2; r * r <= n; r++) {
+        int sum = 1;
+        while (!(n % r))
+            sum++, n /= r;
+        cnt *= sum;
+    }
+    if (n > 1)
+        cnt *= 2;
+    return cnt;
+}
+
+// this returns all the prime factors of n with their multiplicity, maintained in sorted order
+// this runs in O(root(n)) time
+vector<int> factor(int n) {
+    vector<int> ret;
+    if (n <= 1)
+        return ret;
+    for (int r = 2; r * r <= n; r++)
+        while (!(n % r))
+            ret.push_back(r), n /= r;
+    if (n > 1)
+        ret.push_back(n);
+    return ret;
+}
+
+// f(x) = number of distinct prime factors of x for all x >= 2
+// then, f(x) is O(log(x))
+
+// suppose you want to find the prime factorization of numbers in the range [2, MAX] efficiently
+// first find the maximum prime factor of each [2, MAX] using the sieve, and then use it to calculate the
+// prime factorization of any x in the range [2, MAX] easily
+void factorTwo() {
+    int n;
+    cin >> n;
+
+    // it is guaranteed that all x are in the range [2, MAX] where MAX = 10^6
+    // maxPrime[r] is the maximum prime factor of r
+    vector<int> maxPrime(1000000 + 1, -1);
+    for (int r = 2; r <= 1000000; r++)
+        if (maxPrime[r] == -1) // r is a prime itself
+            for (int j = r; j <= 1000000; j += r)
+                maxPrime[j] = r;
+
+    int x;
+    while (n--) {
+        cin >> x;
+        // prime contains the prime factors of x with their multiplicity, in descending order
+        vector<int> prime;
+        while (x != 1) {
+            int p = maxPrime[x];
+            while (!(x % p))
+                prime.push_back(p), x /= p;
+        }
+    }
+}
+
 vector<int> div(const int b) {
     vector<int> ans;
     if (b <= 0)
