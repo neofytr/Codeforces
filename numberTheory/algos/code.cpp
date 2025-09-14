@@ -13,6 +13,15 @@ int gcd(const int a, const int b) {
     return gcd(b, a % b);
 }
 
+int pw(const int a, const int b, const int mod) { // calculates (a^b) % mod
+    if (!b)
+        return 1;
+    const int r = pw(a, b / 2, mod);
+    if (b & 1)
+        return (((r * r) % mod) * a) % mod;
+    return (r * r) % mod;
+}
+
 vector<int> smallestFactor(const int b) {
     if (b <= 1)
         return {};
