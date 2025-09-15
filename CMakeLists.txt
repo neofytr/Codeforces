@@ -726,4 +726,7 @@ add_executable(Codeforces
         random/strange.cpp
         numberTheory/algos/code.cpp
         random/test.cpp
+        contests/DivTwo/182/a.cpp
+        contests/DivTwo/182/b.cpp
+        contests/DivTwo/182/c.cpp
 )

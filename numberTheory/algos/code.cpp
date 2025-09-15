@@ -164,3 +164,18 @@ vector<int> primes(const int n) {
     // The induction step thus holds
     return ans;
 }
+
+int x, y;
+int extendedEuclid(const int a, const int b) {
+    if (!b) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+
+    const int g = extendedEuclid(b, a % b);
+    const int x1 = x;
+    const int y1 = y;
+    x = y1, y = x1 - (a / b) * y1;
+    return g;
+}
