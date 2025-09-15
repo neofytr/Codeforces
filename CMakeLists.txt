@@ -729,4 +729,5 @@ add_executable(Codeforces
         contests/DivTwo/182/a.cpp
         contests/DivTwo/182/b.cpp
         contests/DivTwo/182/c.cpp
+        contests/DivTwo/182/d.cpp
 )
