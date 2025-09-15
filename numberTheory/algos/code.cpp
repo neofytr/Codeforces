@@ -179,3 +179,10 @@ int extendedEuclid(const int a, const int b) {
     x = y1, y = x1 - (a / b) * y1;
     return g;
 }
+
+// a inverse exists iff gcd(a, m) = 1
+int getInv(const int a, const int m) {
+    if (extendedEuclid(a, m) != 1)
+        return -1;
+    return (x % m + m) % m;
+}
