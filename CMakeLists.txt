@@ -730,4 +730,6 @@ add_executable(Codeforces
         contests/DivTwo/182/b.cpp
         contests/DivTwo/182/c.cpp
         contests/DivTwo/182/d.cpp
+        numberTheory/algos/primalityTest.cpp
+        numberTheory/algos/sieve.cpp
 )
