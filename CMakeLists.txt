@@ -732,4 +732,5 @@ add_executable(Codeforces
         contests/DivTwo/182/d.cpp
         numberTheory/algos/primalityTest.cpp
         numberTheory/algos/sieve.cpp
+        numberTheory/algos/primeFactorization.cpp
 )

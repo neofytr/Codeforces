@@ -4,6 +4,7 @@ using namespace std;
 #define int long long
 
 // returns all the prime numbers in the range [1, n]
+// O(nlog(log(n)))
 vector<int> sieve(const int n) {
     vector<int> ans;
     if (n <= 1)
