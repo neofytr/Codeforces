@@ -1,52 +1,67 @@
 # microAndPrimePrime
 
 ```markdown
-# Documentation for Micro and Prime Prime Solution
+## Documentation: PrimePrime Numbers
 
-This document analyzes the provided C++ code, which solves the "Micro and Prime Prime" problem on HackerEarth ([https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/micro-and-prime-prime-1/](https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/micro-and-prime-prime-1/)).
+This document provides a comprehensive analysis of the provided C++ code, which solves the "microAndPrimePrime" problem from Hackerearth ( [https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/micro-and-prime-prime-1/](https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/micro-and-prime-prime-1/) ).
 
-## 1. Problem Description
+### 1. Problem Description
 
-The problem defines a "primePrime" number as follows: a number `r` (where `r >= 1`) is primePrime if the number of prime numbers in the range `[1, r]` is itself a prime number.  The task is to process `t` queries, where each query provides a range `[l, r]`, and for each query, the code must calculate the number of primePrime numbers within that range (inclusive).
+The problem asks us to determine, for a given range `[l, r]`, how many numbers `x` within that range are "primePrime". A number `x` is considered "primePrime" if the number of prime numbers less than or equal to `x` is itself a prime number.
 
-## 2. Approach Explanation
+More formally:
 
-The code employs a precomputation-based approach to efficiently answer the queries.  It breaks down into the following steps:
+*   Let `pi(x)` denote the number of prime numbers less than or equal to `x`.
+*   A number `x` is "primePrime" if `pi(x)` is a prime number.
 
-1.  **Sieve of Eratosthenes:** Generates a boolean array `prime` indicating whether each number up to `MAX` is prime.
-2.  **Prefix Sum of Primes:**  Computes a prefix sum array `prefix` where `prefix[r]` stores the number of primes in the range `[1, r]`.  This effectively tells us how many primes there are up to a given number.
-3.  **Identify PrimePrimes and Compute Prefix Sum:**  Determines which numbers are primePrime based on the `prime` and `prefix` arrays. If the number of primes up to `r` (i.e., `prefix[r]`) is itself a prime number, then `r` is a primePrime number.  It maintains a `pp` array which represents the prefix sum of primePrimes; i.e., `pp[r]` counts the number of primePrime numbers in the range `[1, r]`.
-4.  **Query Processing:**  For each query `[l, r]`, the number of primePrime numbers in the range is calculated as `pp[r] - pp[l - 1]`.  This uses the prefix sum to efficiently determine the count in the specified range.
+The task is to count the number of primePrime numbers within a given range `[l, r]`.
 
-## 3. Key Insights and Algorithmic Techniques Used
+### 2. Approach Explanation
 
-*   **Sieve of Eratosthenes:** A fundamental algorithm for finding all prime numbers up to a specified limit.  Its efficiency stems from marking multiples of primes as composite, avoiding redundant primality checks.
-*   **Prefix Sums:**  A powerful technique for efficiently calculating the sum of elements within a given range.  By precomputing prefix sums, range queries can be answered in O(1) time. This dramatically improves performance when there are multiple queries.
-*   **Precomputation:** The core idea is to perform computationally expensive calculations once and store the results, so that later queries can be answered quickly by simply looking up the precomputed values. This technique is essential when handling multiple queries with fixed constraints.
-*   **Space-Time Tradeoff:** This solution trades space for time. It uses significant memory to store the `prime`, `prefix`, and `pp` arrays, but significantly reduces the time required to answer each query.
+The code employs a precomputation-based approach to efficiently answer multiple range queries.  It precalculates the following:
 
-## 4. Time and Space Complexity Analysis
+1.  **Primes:** Using the Sieve of Eratosthenes, it identifies all prime numbers up to `MAX`.
+2.  **Prime Count Prefix Sum:**  It calculates a prefix sum array `prefix`, where `prefix[r]` stores the number of prime numbers in the range `[1, r]`.  This represents the value of `pi(r)`.
+3.  **PrimePrime Count Prefix Sum:** It calculates another prefix sum array `pp`, where `pp[r]` stores the number of "primePrime" numbers in the range `[1, r]`.  This is achieved by checking if `prefix[r]` is a prime number itself and, if so, incrementing the count.
+
+With these precomputed arrays, answering a query for the range `[l, r]` becomes a simple matter of calculating `pp[r] - pp[l - 1]`.  This gives the number of primePrime numbers within the specified range.
+
+### 3. Key Insights and Algorithmic Techniques Used
+
+*   **Sieve of Eratosthenes:**  This is the fundamental algorithm used to efficiently find all prime numbers up to a given limit.  Its time complexity is O(n log log n), where n is the limit.
+*   **Prefix Sums:**  Prefix sums are used to efficiently calculate the number of primes and primePrime numbers within a range. This technique allows range queries to be answered in O(1) time after the initial precomputation.
+*   **Precomputation:**  The problem involves multiple queries, making precomputation a very efficient strategy. By precalculating the necessary information, the time complexity of each query is drastically reduced.
+*   **Bitset for Prime Tracking:** `bitset<MAX + 1> prime` is used to efficiently store and query whether a number is prime.  Bitsets are memory-efficient when dealing with boolean values.
+
+### 4. Time and Space Complexity Analysis
 
 *   **Time Complexity:**
-    *   Sieve of Eratosthenes: O(N log log N), where N = `MAX`.
-    *   Prefix Sum Calculation: O(N).
-    *   Identifying PrimePrimes and Computing Prefix Sum: O(N).
-    *   Query Processing: O(T), where T is the number of test cases. Each query takes O(1) time.
-    *   Overall: O(N log log N + T), dominated by the Sieve of Eratosthenes and the number of test cases.  Since N is a fixed constant, the code usually performs very well within the allowed time limit.
-*   **Space Complexity:** O(N), due to the `prime`, `prefix`, and `pp` arrays, each of size `MAX + 1`.
+    *   Sieve of Eratosthenes: O(MAX log log MAX)
+    *   Prime Count Prefix Sum: O(MAX)
+    *   PrimePrime Count Prefix Sum: O(MAX)
+    *   Query (per range [l, r]): O(1)
+    *   Overall: O(MAX log log MAX) + O(t) , where `t` is the number of test cases.  The precomputation dominates.
 
-## 5. Important Code Patterns or Tricks Used
+*   **Space Complexity:**
+    *   `prefix`: O(MAX)
+    *   `pp`: O(MAX)
+    *   `prime`: O(MAX)  (more precisely, MAX bits)
+    *   Overall: O(MAX)
 
-*   **`#define int long long`:**  This is a common trick in competitive programming to avoid integer overflow issues.  By redefining `int` as `long long`, the code can handle larger numbers without needing to explicitly declare every variable as `long long`.
-*   **`ios_base::sync_with_stdio(false); cin.tie(NULL);`:**  These lines optimize input/output operations in C++. They disable synchronization between the C and C++ standard input/output streams, and untie `cin` from `cout`, which can significantly improve the execution speed of the program, especially when dealing with large inputs.
-*   **Boolean Array for Primality:** Using a boolean array (`prime`) is an efficient way to represent whether a number is prime or not.  It allows for O(1) lookup to determine the primality of a number.
+### 5. Important Code Patterns or Tricks Used
 
-## 6. Any Edge Cases Handled
+*   **`ios_base::sync_with_stdio(false); cin.tie(NULL);`:** This is a common optimization technique in C++ competitive programming to disable synchronization between C and C++ streams, improving input/output performance.
+*   **`#define int long long`:**  This redefines the `int` type to `long long` to avoid potential integer overflow issues, especially when dealing with larger numbers.
+*   **`bitset` for Boolean Array:** The code effectively utilizes `std::bitset` to store boolean values (prime or not prime) in a memory-efficient manner. This is crucial when dealing with a large range of numbers.
+*   **Prefix Sum Calculation:** The way `prefix` and `pp` arrays are generated leverages prefix sum technique to calculate count of primes and primePrime numbers respectively within any given range efficiently.
 
-*   **Base Cases for Sieve:** The code correctly handles the base cases for the Sieve of Eratosthenes by explicitly setting `prime[0]` and `prime[1]` to `false`, as 0 and 1 are not considered prime.
-*   **Range Handling:** The code handles the query range `[l, r]` correctly by calculating `pp[r] - pp[l - 1]`. The `pp[l-1]` ensures that the count excludes elements *before* `l`.
-*   **Zero Indexing Adjustment**: The code is using index `r` to represent numbers in range `[1,r]`. This avoids using complex adjustments.
+### 6. Any Edge Cases Handled
 
+*   **Base Cases in Sieve:** The code correctly handles the base cases in the Sieve of Eratosthenes by setting `prime[0]` and `prime[1]` to `false`.
+*   **Handling `l - 1` in Query:** When calculating `pp[r] - pp[l - 1]`, the code correctly handles the case where `l` is 1. `pp[0]` is initialized to 0, so `pp[1] - pp[0]` is equivalent to the number of primePrimes in the range [1,1].
+*   **Integer Overflow:** The use of `long long` data type mitigates the risk of integer overflow, which can occur when dealing with large numbers, especially in the prefix sum calculations.  It's implicitly handling cases where the number of primes within a range could become large.
+
+```
 
 ## Original Code
 ```cpp
@@ -62,6 +77,11 @@ using namespace std;
 // Strategy:
 
 #define MAX (1000000)
+// prefix[r] is the number of prime numbers in the range [1, r]
+array<int, MAX + 1> prefix{};
+// pp[r] is the number of primePrime numbers in the range [1, r]
+array<int, MAX + 1> pp{};
+bitset<MAX + 1> prime;
 
 int32_t main() {
     ios_base::sync_with_stdio(false);
@@ -69,24 +89,21 @@ int32_t main() {
 
     int t;
     cin >> t;
-
     // a number r >= 1 is primePrime if the number of prime numbers in the range [1, r] is a prime
-    vector<int> prime(MAX + 1, true);
+    prime.set();
     prime[0] = prime[1] = false;
     for (int r = 2; r * r <= MAX; r++)
         if (prime[r])
             for (int j = r * r; j <= MAX; j += r)
                 prime[j] = false;
 
-    // prefix[r] is the number of prime numbers in the range [1, r]
-    vector<int> prefix(MAX + 1, 0);
+    prefix[0] = prefix[1] = 0;
     for (int r = 2; r <= MAX; r++)
-        prefix[r] = prefix[r - 1] + (prime[r] ? 1 : 0);
+        prefix[r] = prefix[r - 1] + prime[r];
 
-    // pp[r] is the number of primePrime numbers in the range [1, r]
-    vector<int> pp(MAX + 1, 0);
+    pp[0] = pp[1] = 0;
     for (int r = 2; r <= MAX; r++)
-        pp[r] = pp[r - 1] + (prime[prefix[r]] ? 1 : 0);
+        pp[r] = pp[r - 1] + prime[prefix[r]];
     while (t--) {
         int l, r;
         cin >> l >> r;
@@ -97,4 +114,4 @@ int32_t main() {
 ```
 
 ---
-*Documentation generated on 2025-09-16 22:16:23*
+*Documentation generated on 2025-09-16 22:26:44*
