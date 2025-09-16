@@ -10,12 +10,14 @@ vector<int> sieve(const int n) {
         return ans;
 
     vector<int> vis(n + 1, false);
-    for (int r = 2; r <= n; r++)
-        if (!vis[r]) {
-            ans.push_back(r);
+    for (int r = 2; r * r <= n; r++) // since marking only occurs for r * r <= n, we run the loop for this range only
+        if (!vis[r])
             for (int j = r * r; j <= n; j += r) // we can just start from r * r because any x < r * r will have
                                                 // a prime factor t that is < r, and thus would've been marked in the iteration r = t
                 vis[j] = true;
-        }
+
+    for (int r = 2; r <= n; r++)
+        if (!vis[r])
+            ans.push_back(r);
     return ans;
 }
