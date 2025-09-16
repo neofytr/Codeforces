@@ -8,18 +8,19 @@ Collection of problems and solutions for numberTheory.
 - ✅ **rowGCD** (hard) - solved
 - ✅ **primeNumber** (hard) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
+- ✅ **microAndPrimePrime** (medium) - solved
 - ✅ **countingDiv** (easy) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
 - ✅ **subsetMultiplication** (hard) - solved
 
 ## Key Techniques
-- Techniques will be detected automatically
+- Dynamic Programming
 
 ## Progress
-- Total Problems: 8
-- Solved: 7
-- Success Rate: 87.5%
+- Total Problems: 9
+- Solved: 8
+- Success Rate: 88.9%
 
 ---
-*Last updated on 2025-09-16 09:49:01*
+*Last updated on 2025-09-16 22:16:23*

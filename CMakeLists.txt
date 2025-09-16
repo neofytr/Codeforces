@@ -733,4 +733,5 @@ add_executable(Codeforces
         numberTheory/algos/primalityTest.cpp
         numberTheory/algos/sieve.cpp
         numberTheory/algos/primeFactorization.cpp
+        numberTheory/algos/binaryExponentiaion.cpp
 )

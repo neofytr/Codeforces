@@ -3,6 +3,8 @@ using namespace std;
 
 #define int long long
 
+// returns the prime factorization of a number
+// O(root(n))
 vector<int> primeFactorization(int n) {
     vector<int> factors;
     if (n <= 1)
