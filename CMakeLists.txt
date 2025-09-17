@@ -736,4 +736,8 @@ add_executable(Codeforces
         numberTheory/algos/binaryExponentiaion.cpp
         numberTheory/algos/matrixExponentiation.cpp
         numberTheory/algos/recurrence.cpp
+        numberTheory/algos/euclid.cpp
+        contests/DivTwo/1051/a.cpp
+        contests/DivTwo/1051/b.cpp
+        contests/DivTwo/1051/c.cpp
 )
