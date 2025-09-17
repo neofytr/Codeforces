@@ -734,4 +734,5 @@ add_executable(Codeforces
         numberTheory/algos/sieve.cpp
         numberTheory/algos/primeFactorization.cpp
         numberTheory/algos/binaryExponentiaion.cpp
+        numberTheory/algos/matrixExponentiation.cpp
 )
