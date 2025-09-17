@@ -10,6 +10,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
 - ✅ **microAndPrimePrime** (medium) - solved
 - ✅ **countingDiv** (easy) - solved
+- ✅ **mpow** (medium) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
 - ✅ **subsetMultiplication** (hard) - solved
@@ -18,9 +19,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 9
-- Solved: 8
-- Success Rate: 88.9%
+- Total Problems: 10
+- Solved: 9
+- Success Rate: 90.0%
 
 ---
-*Last updated on 2025-09-16 22:26:44*
+*Last updated on 2025-09-17 12:04:03*
