@@ -7,6 +7,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **primeArray** (easy) - solved
 - ✅ **rowGCD** (hard) - solved
 - ✅ **primeNumber** (hard) - solved
+- ✅ **fib** (medium) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
 - ✅ **microAndPrimePrime** (medium) - solved
 - ✅ **countingDiv** (easy) - solved
@@ -19,9 +20,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 10
-- Solved: 9
-- Success Rate: 90.0%
+- Total Problems: 11
+- Solved: 10
+- Success Rate: 90.9%
 
 ---
-*Last updated on 2025-09-17 12:04:03*
+*Last updated on 2025-09-17 13:21:03*

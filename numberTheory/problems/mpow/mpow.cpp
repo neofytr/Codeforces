@@ -59,6 +59,7 @@ int32_t main() {
         Mat mat(m, vector<int>(m));
         REP(row, m) REP(col, m) cin >> mat[row][col];
 
+        // this exponentiation is done in O(m^3 * log(n)) time
         const Mat res = exp(move(mat), n);
         REP(row, m) {
             REP(col, m) cout << res[row][col] << " ";
