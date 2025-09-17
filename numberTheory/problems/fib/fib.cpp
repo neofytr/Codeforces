@@ -12,12 +12,16 @@ using namespace std;
 // Tags:
 // Strategy:
 
+// multiplication of m1 and m2
+// its assumed that these matrices are multiplicable
 MAT mul(const MAT &m1, const MAT &m2) {
-    const int sz = m1.size();
-    MAT res(sz, vector<int>(sz));
-    REP(row, sz) REP(col, sz) {
+    const int mxRow = m1.size();
+    const int mxCol = m2[0].size();
+    const int k = m2.size();
+    MAT res(mxRow, vector<int>(mxCol));
+    REP(row, mxRow) REP(col, mxCol) {
         int elt = 0;
-        REP(itr, sz) elt = (elt + ((m1[row][itr] % MOD) * (m2[itr][col] % MOD)) % MOD) % MOD;
+        REP(itr, k) elt = (elt + ((m1[row][itr] % MOD) * (m2[itr][col] % MOD)) % MOD) % MOD;
         res[row][col] = elt;
     }
     return res;
@@ -62,8 +66,9 @@ int32_t main() {
         }
 
         const MAT T = {{0, 1}, {1, 1}};
+        const MAT r1 = {{a, b}};
         const MAT res = exp(T, n - 1);
-        cout << (((a % MOD) * res[1][0]) % MOD + ((b % MOD) * res[1][1]) % MOD) % MOD << endl;
+        return mul(r1, res)[0][1];
     }
 
     return 0;
