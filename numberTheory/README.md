@@ -18,16 +18,18 @@ Collection of problems and solutions for numberTheory.
 - ✅ **simple** (easy) - solved
 - ✅ **mpow** (medium) - solved
 - ⏳ **arpa** (easy) - unsolved
+- ✅ **badUgly** (easy) - solved
 - ✅ **tprimes** (medium) - solved
+- ⏳ **pleasantPairs** (medium) - unsolved
 - ✅ **subsetMultiplication** (hard) - solved
 
 ## Key Techniques
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 16
-- Solved: 13
-- Success Rate: 81.2%
+- Total Problems: 18
+- Solved: 14
+- Success Rate: 77.8%
 
 ---
-*Last updated on 2025-09-18 20:08:23*
+*Last updated on 2025-09-18 20:51:50*
