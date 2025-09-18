@@ -6,10 +6,10 @@ void solve() {
     cin >> numProducts >> numVouchers;
 
     vector<long long> prices(numProducts);
-    long long totalCost = 0;
+    long long tc = 0;
     for (int i = 0; i < numProducts; ++i) {
         cin >> prices[i];
-        totalCost += prices[i];
+        tc += prices[i];
     }
 
     vector<int> vouchers(numVouchers);
@@ -21,30 +21,30 @@ void solve() {
     sort(vouchers.begin(), vouchers.end());
 
     long long discount = 0;
-    int productIndex = 0;
+    int pi = 0;
 
     for (int i = 0; i < numVouchers; ++i) {
-        int groupSize = vouchers[i];
-        if (productIndex + groupSize > numProducts)
+        int size = vouchers[i];
+        if (pi + size > numProducts)
             break;
-        if (groupSize == 1) {
-            discount += prices[productIndex];
+        if (size == 1) {
+            discount += prices[pi];
         } else {
-            discount += prices[productIndex + groupSize - 1];
+            discount += prices[pi + size - 1];
         }
-        productIndex += groupSize;
+        pi += size;
     }
 
-    cout << totalCost - discount << '\n';
+    cout << tc - discount << '\n';
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int testCases;
-    cin >> testCases;
-    while (testCases--) {
+    int t;
+    cin >> t;
+    while (t--) {
         solve();
     }
 
