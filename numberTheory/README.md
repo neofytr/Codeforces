@@ -7,7 +7,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **primeArray** (easy) - solved
 - ⏳ **GCDQ** (medium) - unsolved
 - ✅ **rowGCD** (hard) - solved
-- ⏳ **stringLCM** (medium) - unsolved
+- ✅ **stringLCM** (medium) - solved
 - ✅ **primeNumber** (hard) - solved
 - ✅ **fib** (medium) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
@@ -26,8 +26,8 @@ Collection of problems and solutions for numberTheory.
 
 ## Progress
 - Total Problems: 16
-- Solved: 12
-- Success Rate: 75.0%
+- Solved: 13
+- Success Rate: 81.2%
 
 ---
-*Last updated on 2025-09-18 20:07:03*
+*Last updated on 2025-09-18 20:08:23*

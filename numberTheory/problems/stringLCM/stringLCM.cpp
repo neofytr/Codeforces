@@ -21,43 +21,15 @@ int32_t main() {
         string s, t;
         cin >> s >> t;
 
-        const char ch = s[0];
-        bool ssame = true, tsame = true;
-        for (char c : s)
-            if (ch != c)
-                ssame = false;
+        int len = lcm((int)s.size(), (int)t.size());
 
-        if (ssame) {
-            for (char c : t)
-                if (ch != c)
-                    tsame = false;
+        string S = repeat(s, len / s.size());
+        string T = repeat(t, len / t.size());
 
-            if (tsame) {
-                cout << repeat(string(1, ch), lcm(s.size(), t.size())) << "\n";
-                continue;
-            } else {
-                cout << -1 << "\n";
-                continue;
-            }
-        }
-
-        if (t.size() % s.size() == 0) {
-            string n = repeat(s, t.size() / s.size());
-            if (n == t) {
-                cout << t << "\n";
-            } else {
-                cout << -1 << "\n";
-            }
-        } else if (s.size() % t.size() == 0) {
-            string n = repeat(t, s.size() / t.size());
-            if (n == s)
-                cout << s << "\n";
-            else
-                cout << -1 << "\n";
-        } else {
+        if (S == T)
+            cout << S << "\n";
+        else
             cout << -1 << "\n";
-        }
     }
-
     return 0;
 }
