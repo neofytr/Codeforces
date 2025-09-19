@@ -10,24 +10,31 @@ using namespace std;
 // Tags:
 // Strategy:
 
-int solve(const int n, const int k) {
+int solve(int n, int k) {
     vector<vector<int>> dp(k + 1, vector<int>(n + 1, 0));
 
     for (int s = 1; s <= n; s++)
-        dp[1][s] = 1;
+        dp[1][s] = 1; // base case
 
-    for (int r = 2; r <= k; r++)
-        for (int s = 1; s <= n; s++)
-            for (int j = 1; j * j <= s; j++)
-                if (!(s % j)) {
-                    dp[r][s] = (dp[r][s] + dp[r - 1][j]) % MOD;
-                    if (j != s / j)
-                        dp[r][s] = (dp[r][s] + dp[r - 1][s / j]) % MOD;
-                }
+    for (int r = 1; r < k; r++) {
+        for (int s = 1; s <= n; s++) {
+            int val = dp[r][s];
+            if (!val)
+                continue;
+            for (int m = s; m <= n; m += s) {
+                dp[r + 1][m] += val;
+                if (dp[r + 1][m] >= MOD)
+                    dp[r + 1][m] -= MOD;
+            }
+        }
+    }
 
     int ans = 0;
-    for (int s = 1; s <= n; s++)
-        ans = (ans + dp[k][s]) % MOD;
+    for (int s = 1; s <= n; s++) {
+        ans += dp[k][s];
+        if (ans >= MOD)
+            ans -= MOD;
+    }
     return ans;
 }
 
