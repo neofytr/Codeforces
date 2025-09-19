@@ -5,6 +5,7 @@ Collection of problems and solutions for numberTheory.
 
 ## Problems Solved
 - ✅ **primeArray** (easy) - solved
+- ✅ **divisiblePairs** (medium) - solved
 - ⏳ **GCDQ** (medium) - unsolved
 - ✅ **rowGCD** (hard) - solved
 - ✅ **stringLCM** (medium) - solved
@@ -33,9 +34,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 24
-- Solved: 18
-- Success Rate: 75.0%
+- Total Problems: 25
+- Solved: 19
+- Success Rate: 76.0%
 
 ---
-*Last updated on 2025-09-19 17:55:10*
+*Last updated on 2025-09-19 19:04:10*
