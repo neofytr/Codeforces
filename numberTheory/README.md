@@ -8,17 +8,20 @@ Collection of problems and solutions for numberTheory.
 - ⏳ **GCDQ** (medium) - unsolved
 - ✅ **rowGCD** (hard) - solved
 - ✅ **stringLCM** (medium) - solved
+- ⏳ **product** (medium) - unsolved
 - ✅ **primeNumber** (hard) - solved
 - ✅ **fib** (medium) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
 - ✅ **numDiv** (medium) - solved
 - ✅ **microAndPrimePrime** (medium) - solved
+- ✅ **shovels** (https://codeforces.com/problemset/problem/1360/D) - solved
 - ⏳ **modularGCD** (hard) - unsolved
 - ✅ **countingDiv** (easy) - solved
 - ✅ **simple** (easy) - solved
 - ✅ **mpow** (medium) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ✅ **badUgly** (easy) - solved
+- ⏳ **twoDiv** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
 - ⏳ **pleasantPairs** (medium) - unsolved
 - ✅ **subsetMultiplication** (hard) - solved
@@ -27,9 +30,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 18
-- Solved: 14
-- Success Rate: 77.8%
+- Total Problems: 21
+- Solved: 15
+- Success Rate: 71.4%
 
 ---
-*Last updated on 2025-09-18 20:51:50*
+*Last updated on 2025-09-19 15:00:38*
