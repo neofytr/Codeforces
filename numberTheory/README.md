@@ -9,6 +9,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **rowGCD** (hard) - solved
 - ✅ **stringLCM** (medium) - solved
 - ⏳ **product** (medium) - unsolved
+- ✅ **omkar** (medium) - solved
 - ✅ **primeNumber** (hard) - solved
 - ✅ **fib** (medium) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
@@ -30,9 +31,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 21
-- Solved: 15
-- Success Rate: 71.4%
+- Total Problems: 22
+- Solved: 16
+- Success Rate: 72.7%
 
 ---
-*Last updated on 2025-09-19 15:00:38*
+*Last updated on 2025-09-19 15:21:51*
