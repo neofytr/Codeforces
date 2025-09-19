@@ -20,6 +20,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **countingDiv** (easy) - solved
 - ✅ **simple** (easy) - solved
 - ✅ **mpow** (medium) - solved
+- ✅ **orac** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ✅ **badUgly** (easy) - solved
 - ⏳ **twoDiv** (easy) - unsolved
@@ -31,9 +32,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 22
-- Solved: 16
-- Success Rate: 72.7%
+- Total Problems: 23
+- Solved: 17
+- Success Rate: 73.9%
 
 ---
-*Last updated on 2025-09-19 15:21:51*
+*Last updated on 2025-09-19 17:32:51*
