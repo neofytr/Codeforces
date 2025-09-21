@@ -8,6 +8,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **divisiblePairs** (medium) - solved
 - ⏳ **GCDQ** (medium) - unsolved
 - ✅ **rowGCD** (hard) - solved
+- ✅ **restoration** (medium) - solved
 - ✅ **stringLCM** (medium) - solved
 - ⏳ **product** (medium) - unsolved
 - ✅ **omkar** (medium) - solved
@@ -36,9 +37,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 27
-- Solved: 21
-- Success Rate: 77.8%
+- Total Problems: 28
+- Solved: 22
+- Success Rate: 78.6%
 
 ---
-*Last updated on 2025-09-21 09:32:26*
+*Last updated on 2025-09-21 10:11:25*
