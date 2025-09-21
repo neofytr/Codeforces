@@ -21,6 +21,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **countingDiv** (easy) - solved
 - ✅ **simple** (easy) - solved
 - ✅ **mpow** (medium) - solved
+- ✅ **makeMod** (medium) - solved
 - ✅ **cat** (medium) - solved
 - ✅ **orac** (hard) - solved
 - ✅ **acm** (hard) - solved
@@ -35,9 +36,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 26
-- Solved: 20
-- Success Rate: 76.9%
+- Total Problems: 27
+- Solved: 21
+- Success Rate: 77.8%
 
 ---
-*Last updated on 2025-09-19 22:03:40*
+*Last updated on 2025-09-21 09:32:26*
