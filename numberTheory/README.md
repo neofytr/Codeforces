@@ -20,6 +20,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **microAndPrimePrime** (medium) - solved
 - ✅ **shovels** (https://codeforces.com/problemset/problem/1360/D) - solved
 - ⏳ **modularGCD** (hard) - unsolved
+- ✅ **divideAndEqualize** (medium) - solved
 - ✅ **countingDiv** (easy) - solved
 - ✅ **simple** (easy) - solved
 - ✅ **mpow** (medium) - solved
@@ -38,9 +39,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 29
-- Solved: 23
-- Success Rate: 79.3%
+- Total Problems: 30
+- Solved: 24
+- Success Rate: 80.0%
 
 ---
-*Last updated on 2025-09-21 10:26:44*
+*Last updated on 2025-09-21 11:53:17*
