@@ -17,6 +17,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **fib** (medium) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
 - ✅ **numDiv** (medium) - solved
+- ✅ **children** (medium) - solved
 - ✅ **microAndPrimePrime** (medium) - solved
 - ✅ **shovels** (https://codeforces.com/problemset/problem/1360/D) - solved
 - ⏳ **modularGCD** (hard) - unsolved
@@ -39,9 +40,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 30
-- Solved: 24
-- Success Rate: 80.0%
+- Total Problems: 31
+- Solved: 25
+- Success Rate: 80.6%
 
 ---
-*Last updated on 2025-09-21 11:53:17*
+*Last updated on 2025-09-22 12:02:37*
