@@ -14,9 +14,11 @@ Collection of problems and solutions for numberTheory.
 - ⏳ **product** (medium) - unsolved
 - ✅ **omkar** (medium) - solved
 - ✅ **primeNumber** (hard) - solved
+- ✅ **lcmHCF** (easy) - solved
 - ✅ **fib** (medium) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
 - ✅ **numDiv** (medium) - solved
+- ⏳ **prodThreeNum** (medium) - unsolved
 - ✅ **children** (medium) - solved
 - ✅ **countingDivisors** (medium) - solved
 - ✅ **microAndPrimePrime** (medium) - solved
@@ -42,9 +44,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 33
-- Solved: 26
-- Success Rate: 78.8%
+- Total Problems: 35
+- Solved: 27
+- Success Rate: 77.1%
 
 ---
-*Last updated on 2025-09-29 16:41:49*
+*Last updated on 2025-09-29 22:37:25*
