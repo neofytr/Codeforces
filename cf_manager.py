@@ -18,7 +18,7 @@ class CFManager:
     def load_config(self):
         """Load configuration or create default"""
         default_config = {
-            'editor_command': 'code',  # VS Code command
+            'editor_command': 'subl',  # VS Code command
             'cpp_template': '''#include <bits/stdc++.h>
 using namespace std;
 
@@ -321,7 +321,7 @@ Examples:
         self.open_problem(problem_name)
 
     def open_problem(self, problem_name):
-        """Open problem files in VS Code
+        # Open problem files in VS Code
         problem_dir = self.problems_dir / problem_name
         
         if not problem_dir.exists():
@@ -329,14 +329,12 @@ Examples:
             return
         
         cpp_file = problem_dir / f"{problem_name}.cpp"
-        md_file = problem_dir / f"{problem_name}.md"
         
-        # Open both files
         try:
-            subprocess.run([self.config['editor_command'], str(cpp_file), str(md_file)])
-            print(f"🚀 Opened {problem_name} in VS Code")
+            subprocess.run([self.config['editor_command'], str(cpp_file)])
+            print(f"🚀 Opened {problem_name} in sublime")
         except Exception as e:
-            print(f"❌ Failed to open VS Code: {e}")"""
+            print(f"❌ Failed to open sublime: {e}")
 
     def mark_done(self, problem_name):
         problem_dir = self.problems_dir / problem_name

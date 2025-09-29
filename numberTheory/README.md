@@ -18,6 +18,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
 - ✅ **numDiv** (medium) - solved
 - ✅ **children** (medium) - solved
+- ✅ **countingDivisors** (medium) - solved
 - ✅ **microAndPrimePrime** (medium) - solved
 - ✅ **shovels** (https://codeforces.com/problemset/problem/1360/D) - solved
 - ⏳ **modularGCD** (hard) - unsolved
@@ -30,6 +31,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **orac** (hard) - solved
 - ✅ **acm** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
+- ⏳ **turtleTenacity** (medium) - unsolved
 - ✅ **badUgly** (easy) - solved
 - ⏳ **twoDiv** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
@@ -40,9 +42,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 31
-- Solved: 25
-- Success Rate: 80.6%
+- Total Problems: 33
+- Solved: 26
+- Success Rate: 78.8%
 
 ---
-*Last updated on 2025-09-22 14:20:49*
+*Last updated on 2025-09-29 16:41:49*
