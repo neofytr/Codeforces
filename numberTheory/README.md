@@ -6,6 +6,7 @@ Collection of problems and solutions for numberTheory.
 ## Problems Solved
 - ✅ **sherlock** (medium) - solved
 - ✅ **primeArray** (easy) - solved
+- ✅ **bestie** (medium) - solved
 - ✅ **divisiblePairs** (medium) - solved
 - ⏳ **GCDQ** (medium) - unsolved
 - ✅ **rowGCD** (hard) - solved
@@ -46,9 +47,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 37
-- Solved: 29
-- Success Rate: 78.4%
+- Total Problems: 38
+- Solved: 30
+- Success Rate: 78.9%
 
 ---
-*Last updated on 2025-09-30 10:44:23*
+*Last updated on 2025-09-30 11:45:50*
