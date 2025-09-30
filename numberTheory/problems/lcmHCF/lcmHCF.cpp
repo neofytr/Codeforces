@@ -11,7 +11,7 @@ using namespace std;
 
 int hcf(int a, int b) {
     if (!b) return a;
-    return gcd(b, a % b);
+    return hcf(b, a % b);
 }
 
 int lcm(int a, int b) {
@@ -23,6 +23,7 @@ int32_t main() {
     cin.tie(NULL);
     
     int t;
+    cin >> t;
     while(t--) {
         int a, b;
         cin >> a >> b;

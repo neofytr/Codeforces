@@ -31,6 +31,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **makeMod** (medium) - solved
 - ✅ **cat** (medium) - solved
 - ✅ **orac** (hard) - solved
+- ✅ **commonDivisors** (easy) - solved
 - ✅ **acm** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ⏳ **turtleTenacity** (medium) - unsolved
@@ -44,9 +45,9 @@ Collection of problems and solutions for numberTheory.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 35
-- Solved: 27
-- Success Rate: 77.1%
+- Total Problems: 36
+- Solved: 28
+- Success Rate: 77.8%
 
 ---
-*Last updated on 2025-09-29 22:37:25*
+*Last updated on 2025-09-30 10:19:22*
