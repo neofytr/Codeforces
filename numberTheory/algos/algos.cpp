@@ -48,6 +48,31 @@ void primeFactorizationTwo(int max_x, int q) {
 	}
 }
 
+// Number of factors of x in O(log(x)) with O(max_xlog(max_x)) precomputation
+void numFactors(int max_x, int q) {
+	// dp[r] is the smallest (prime) factor of r for r >= 2
+	vector<int> dp(max_x + 1, -1);
+	for (int r = 2; r <= max_x; r++)
+		for (int j = r; j <= max_x; j += r)
+			if (dp[j] == -1)
+				dp[j] = r;
+
+	while(q--) {
+		int x;
+		cin >> x;
+
+		int p, cnt;
+		int res = 1;
+		while(x != 1) {
+			cnt = 0, p = dp[x]; 
+			while(!(x % p))
+				cnt++, x /= p;
+			res *= (cnt + 1);
+		}
+		cout << res << endl;;
+	}
+}
+
 vector<bool> sieve(const int n) {
 	// prime[r] is true if r is a prime and false otherwise; for 2 <= r <= n
 	vector<bool> prime(n + 1, true);
