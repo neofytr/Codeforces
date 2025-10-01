@@ -9,6 +9,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **bestie** (medium) - solved
 - ✅ **divisiblePairs** (medium) - solved
 - ⏳ **GCDQ** (medium) - unsolved
+- ✅ **exponentiation** (easy) - solved
 - ✅ **excitingBets** (medium) - solved
 - ✅ **rowGCD** (hard) - solved
 - ✅ **restoration** (medium) - solved
@@ -58,9 +59,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 47
-- Solved: 34
-- Success Rate: 72.3%
+- Total Problems: 48
+- Solved: 35
+- Success Rate: 72.9%
 
 ---
-*Last updated on 2025-10-01 19:12:21*
+*Last updated on 2025-10-01 23:13:50*
