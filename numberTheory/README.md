@@ -12,6 +12,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **excitingBets** (medium) - solved
 - ✅ **rowGCD** (hard) - solved
 - ✅ **restoration** (medium) - solved
+- ⏳ **factovisors** (hard) - unsolved
 - ✅ **stringLCM** (medium) - solved
 - ⏳ **product** (medium) - unsolved
 - ✅ **omkar** (medium) - solved
@@ -35,6 +36,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **cat** (medium) - solved
 - ✅ **orac** (hard) - solved
 - ⏳ **dilucKaeya** (hard) - unsolved
+- ✅ **divisors** (hard) - solved
 - ✅ **commonDivisors** (easy) - solved
 - ✅ **lcmProb** (medium) - solved
 - ✅ **primePath** (hard) - solved
@@ -47,6 +49,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **tprimes** (medium) - solved
 - ⏳ **pleasantPairs** (medium) - unsolved
 - ⏳ **primeSieve** (hard) - unsolved
+- ⏳ **perfectPthPowers** (hard) - unsolved
 - ✅ **subsetMultiplication** (hard) - solved
 
 ## Key Techniques
@@ -55,9 +58,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 44
-- Solved: 33
-- Success Rate: 75.0%
+- Total Problems: 47
+- Solved: 34
+- Success Rate: 72.3%
 
 ---
-*Last updated on 2025-10-01 18:39:21*
+*Last updated on 2025-10-01 19:12:21*
