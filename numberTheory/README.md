@@ -17,6 +17,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **omkar** (medium) - solved
 - ✅ **primeNumber** (hard) - solved
 - ✅ **lcmHCF** (easy) - solved
+- ⏳ **doraC++** (hard) - unsolved
 - ✅ **fib** (medium) - solved
 - ✅ **confusedMonk** (https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/the-confused-monk/) - solved
 - ✅ **numDiv** (medium) - solved
@@ -33,11 +34,13 @@ Collection of problems and solutions for numberTheory.
 - ✅ **makeMod** (medium) - solved
 - ✅ **cat** (medium) - solved
 - ✅ **orac** (hard) - solved
+- ⏳ **dilucKaeya** (hard) - unsolved
 - ✅ **commonDivisors** (easy) - solved
 - ✅ **lcmProb** (medium) - solved
 - ✅ **acm** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ⏳ **turtleTenacity** (medium) - unsolved
+- ✅ **dividingSeq** (medium) - solved
 - ✅ **badUgly** (easy) - solved
 - ⏳ **twoDiv** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
@@ -46,11 +49,12 @@ Collection of problems and solutions for numberTheory.
 
 ## Key Techniques
 - Dynamic Programming
+- Sorting
 
 ## Progress
-- Total Problems: 39
-- Solved: 31
-- Success Rate: 79.5%
+- Total Problems: 42
+- Solved: 32
+- Success Rate: 76.2%
 
 ---
-*Last updated on 2025-09-30 12:08:53*
+*Last updated on 2025-10-01 16:51:07*
