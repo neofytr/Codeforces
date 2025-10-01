@@ -37,6 +37,7 @@ Collection of problems and solutions for numberTheory.
 - ⏳ **dilucKaeya** (hard) - unsolved
 - ✅ **commonDivisors** (easy) - solved
 - ✅ **lcmProb** (medium) - solved
+- ✅ **primePath** (hard) - solved
 - ✅ **acm** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ⏳ **turtleTenacity** (medium) - unsolved
@@ -45,16 +46,18 @@ Collection of problems and solutions for numberTheory.
 - ⏳ **twoDiv** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
 - ⏳ **pleasantPairs** (medium) - unsolved
+- ⏳ **primeSieve** (hard) - unsolved
 - ✅ **subsetMultiplication** (hard) - solved
 
 ## Key Techniques
 - Dynamic Programming
+- Graph Algorithms
 - Sorting
 
 ## Progress
-- Total Problems: 42
-- Solved: 32
-- Success Rate: 76.2%
+- Total Problems: 44
+- Solved: 33
+- Success Rate: 75.0%
 
 ---
-*Last updated on 2025-10-01 16:51:07*
+*Last updated on 2025-10-01 18:39:21*
