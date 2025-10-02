@@ -27,6 +27,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **children** (medium) - solved
 - ✅ **countingDivisors** (medium) - solved
 - ✅ **microAndPrimePrime** (medium) - solved
+- ✅ **etf** (easy) - solved
 - ✅ **shovels** (https://codeforces.com/problemset/problem/1360/D) - solved
 - ⏳ **modularGCD** (hard) - unsolved
 - ✅ **divideAndEqualize** (medium) - solved
@@ -59,9 +60,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 48
-- Solved: 35
-- Success Rate: 72.9%
+- Total Problems: 49
+- Solved: 36
+- Success Rate: 73.5%
 
 ---
-*Last updated on 2025-10-01 23:13:50*
+*Last updated on 2025-10-02 18:42:32*
