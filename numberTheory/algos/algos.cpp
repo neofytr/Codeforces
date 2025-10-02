@@ -147,5 +147,5 @@ int gcd(const int a, const int b) {
 }
 
 int lcm(const int a, const int b) {
-	return (a * b) / gcd(a, b);
+	return (a / gcd(a, b)) * b; // this may prevent some overflows
 }
