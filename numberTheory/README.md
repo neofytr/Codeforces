@@ -35,6 +35,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **divideAndEqualize** (medium) - solved
 - ✅ **countingDiv** (easy) - solved
 - ✅ **simple** (easy) - solved
+- ✅ **prodOneModN** (medium) - solved
 - ✅ **mpow** (medium) - solved
 - ✅ **makeMod** (medium) - solved
 - ✅ **cat** (medium) - solved
@@ -47,6 +48,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **acm** (hard) - solved
 - ✅ **GCDEX** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
+- ⏳ **divGame** (easy) - unsolved
 - ⏳ **turtleTenacity** (medium) - unsolved
 - ✅ **dividingSeq** (medium) - solved
 - ✅ **badUgly** (easy) - solved
@@ -63,9 +65,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 52
-- Solved: 37
-- Success Rate: 71.2%
+- Total Problems: 54
+- Solved: 38
+- Success Rate: 70.4%
 
 ---
-*Last updated on 2025-10-03 12:18:55*
+*Last updated on 2025-10-03 13:07:22*
