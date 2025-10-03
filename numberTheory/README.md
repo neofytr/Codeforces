@@ -7,6 +7,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **sherlock** (medium) - solved
 - ✅ **primeArray** (easy) - solved
 - ✅ **bestie** (medium) - solved
+- ✅ **powerProducts** (hard) - solved
 - ⏳ **enumeratingRationalNumbers** (medium) - unsolved
 - ⏳ **irreducibleBasicFractions** (easy) - unsolved
 - ✅ **divisiblePairs** (medium) - solved
@@ -65,9 +66,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 54
-- Solved: 38
-- Success Rate: 70.4%
+- Total Problems: 55
+- Solved: 39
+- Success Rate: 70.9%
 
 ---
-*Last updated on 2025-10-03 13:07:22*
+*Last updated on 2025-10-03 14:23:05*
