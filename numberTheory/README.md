@@ -50,7 +50,9 @@ Collection of problems and solutions for numberTheory.
 - ✅ **acm** (hard) - solved
 - ✅ **GCDEX** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
+- ⏳ **nastia** (medium) - unsolved
 - ⏳ **divGame** (easy) - unsolved
+- ✅ **balanced** (medium) - solved
 - ⏳ **turtleTenacity** (medium) - unsolved
 - ✅ **dividingSeq** (medium) - solved
 - ✅ **badUgly** (easy) - solved
@@ -69,9 +71,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 58
-- Solved: 41
-- Success Rate: 70.7%
+- Total Problems: 60
+- Solved: 42
+- Success Rate: 70.0%
 
 ---
-*Last updated on 2025-10-03 17:04:47*
+*Last updated on 2025-10-03 20:57:31*
