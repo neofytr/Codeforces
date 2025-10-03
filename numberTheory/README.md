@@ -7,6 +7,8 @@ Collection of problems and solutions for numberTheory.
 - ✅ **sherlock** (medium) - solved
 - ✅ **primeArray** (easy) - solved
 - ✅ **bestie** (medium) - solved
+- ⏳ **enumeratingRationalNumbers** (medium) - unsolved
+- ⏳ **irreducibleBasicFractions** (easy) - unsolved
 - ✅ **divisiblePairs** (medium) - solved
 - ⏳ **GCDQ** (medium) - unsolved
 - ✅ **exponentiation** (easy) - solved
@@ -43,6 +45,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **lcmProb** (medium) - solved
 - ✅ **primePath** (hard) - solved
 - ✅ **acm** (hard) - solved
+- ✅ **GCDEX** (hard) - solved
 - ⏳ **arpa** (easy) - unsolved
 - ⏳ **turtleTenacity** (medium) - unsolved
 - ✅ **dividingSeq** (medium) - solved
@@ -60,9 +63,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 49
-- Solved: 36
-- Success Rate: 73.5%
+- Total Problems: 52
+- Solved: 37
+- Success Rate: 71.2%
 
 ---
-*Last updated on 2025-10-02 18:42:32*
+*Last updated on 2025-10-03 12:18:55*
