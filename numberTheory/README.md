@@ -12,6 +12,7 @@ Collection of problems and solutions for numberTheory.
 - ⏳ **irreducibleBasicFractions** (easy) - unsolved
 - ✅ **divisiblePairs** (medium) - solved
 - ⏳ **GCDQ** (medium) - unsolved
+- ✅ **oracLCM** (hard) - solved
 - ✅ **exponentiation** (easy) - solved
 - ✅ **excitingBets** (medium) - solved
 - ✅ **rowGCD** (hard) - solved
@@ -68,9 +69,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 57
-- Solved: 40
-- Success Rate: 70.2%
+- Total Problems: 58
+- Solved: 41
+- Success Rate: 70.7%
 
 ---
-*Last updated on 2025-10-03 15:53:02*
+*Last updated on 2025-10-03 17:04:47*
