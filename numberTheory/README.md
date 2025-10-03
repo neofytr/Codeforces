@@ -55,6 +55,8 @@ Collection of problems and solutions for numberTheory.
 - ✅ **badUgly** (easy) - solved
 - ⏳ **twoDiv** (easy) - unsolved
 - ✅ **tprimes** (medium) - solved
+- ⏳ **permutationRounds** (hard) - unsolved
+- ✅ **commonDiv** (hard) - solved
 - ⏳ **pleasantPairs** (medium) - unsolved
 - ⏳ **primeSieve** (hard) - unsolved
 - ⏳ **perfectPthPowers** (hard) - unsolved
@@ -66,9 +68,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 55
-- Solved: 39
-- Success Rate: 70.9%
+- Total Problems: 57
+- Solved: 40
+- Success Rate: 70.2%
 
 ---
-*Last updated on 2025-10-03 14:23:05*
+*Last updated on 2025-10-03 15:53:02*

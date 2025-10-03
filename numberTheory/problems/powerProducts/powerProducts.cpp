@@ -18,6 +18,7 @@ int32_t main() {
     int n, k;
     cin >> n >> k;
 
+    // smallest prime factor sieve
     vector<int> spf(MAX + 1, -1);
     for (int i = 2; i <= MAX; i++) {
         if (spf[i] == -1) {
@@ -30,37 +31,38 @@ int32_t main() {
     vector<int> arr(n);
     for (int &val : arr) cin >> val;
 
-    map<vector<pair<int,int>>, int> freq;
-    long long ans = 0;
+    map<vector<pair<int, int>>, int> freq;
+    long long res = 0;
 
     for (int val : arr) {
+        map<int, int> mp;
         int x = val;
-        map<int,int> exp;
-        while (x > 1) {
+        while (x != 1) {
             int p = spf[x];
             int cnt = 0;
             while (x % p == 0) {
-                x /= p;
                 cnt++;
+                x /= p;
             }
-            cnt %= k;
-            if (cnt != 0) exp[p] += cnt;
+            mp[p] = cnt % k;
         }
 
-        vector<pair<int,int>> sig;
-        for (auto &e : exp) sig.push_back(e);
-
-        vector<pair<int,int>> comp;
-        for (auto &e : exp) {
-            int p = e.first, r = e.second;
-            comp.push_back({p, (k - r) % k});
+        vector<pair<int, int>> sig;
+        for (auto &s : mp) {
+            if (s.second) sig.push_back(s);
         }
 
-        if (freq.count(comp)) ans += freq[comp];
+        vector<pair<int, int>> req;
+        for (auto &s : sig) {
+            int p = s.first;
+            int r = (k - s.second) % k;
+            if (r) req.push_back({p, r});
+        }
 
+        if (freq.count(req)) res += freq[req];
         freq[sig]++;
     }
 
-    cout << ans << "\n";
+    cout << res << "\n";
     return 0;
 }
