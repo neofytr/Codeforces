@@ -133,3 +133,7 @@ void binaryBFS() {
 // array containing shortest distances obtained from the second BFS (from b)
 // Now for each vertex v it is easy to check whether it lies on any shortest path between a and b:
 // The criterion is the condition da[v] + db[v] = da[b]
+
+// If we are to find the shortest path from all nodes of a graph to a specific node v, we can
+// reverse the edges of the graph and just find the shortest distance to all nodes of the new graph
+// from node v

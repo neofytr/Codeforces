@@ -15,7 +15,9 @@ Collection of problems and solutions for graphs.
 - ✅ **shortestPathInDAG** (easy) - solved
 - ✅ **districtConnections** (medium) - solved
 - ✅ **spanningTree** (medium) - solved
+- ⏳ **WATER** (medium) - unsolved
 - ✅ **networkConnected** (medium) - solved
+- ✅ **miceMaze** (hard) - solved
 - ✅ **wordLadder** (hard) - solved
 - ✅ **maze** (medium) - solved
 - ✅ **accountsMerge** (medium) - solved
@@ -40,9 +42,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 29
-- Solved: 27
-- Success Rate: 93.1%
+- Total Problems: 31
+- Solved: 28
+- Success Rate: 90.3%
 
 ---
-*Last updated on 2025-10-04 14:15:49*
+*Last updated on 2025-10-04 20:09:12*
