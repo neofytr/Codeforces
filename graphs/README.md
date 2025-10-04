@@ -8,6 +8,7 @@ Collection of problems and solutions for graphs.
 - ⏳ **buildingTeams** (easy) - unsolved
 - ✅ **shortestBinary** (medium) - solved
 - ✅ **bersu** (medium) - solved
+- ✅ **nakanj** (medium) - solved
 - ✅ **mostStones** (medium) - solved
 - ✅ **shortestPathWeightedUndirectedGraph** (medium) - solved
 - ✅ **minEffort** (medium) - solved
@@ -39,9 +40,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 28
-- Solved: 26
-- Success Rate: 92.9%
+- Total Problems: 29
+- Solved: 27
+- Success Rate: 93.1%
 
 ---
-*Last updated on 2025-10-04 13:43:23*
+*Last updated on 2025-10-04 14:15:49*
