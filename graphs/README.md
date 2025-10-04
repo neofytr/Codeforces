@@ -21,6 +21,7 @@ Collection of problems and solutions for graphs.
 - ✅ **mortalKombat** (hard) - solved
 - ✅ **largeIsland** (hard) - solved
 - ✅ **longJumps** (easy) - solved
+- ✅ **buildingRoads** (medium) - solved
 - ✅ **sakurako** (medium) - solved
 - ✅ **mocha** (easy) - solved
 - ✅ **ballInBerland** (medium) - solved
@@ -35,9 +36,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 24
-- Solved: 24
+- Total Problems: 25
+- Solved: 25
 - Success Rate: 100.0%
 
 ---
-*Last updated on 2025-08-16 22:11:04*
+*Last updated on 2025-10-04 10:26:25*
