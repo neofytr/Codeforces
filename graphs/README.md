@@ -19,6 +19,7 @@ Collection of problems and solutions for graphs.
 - ✅ **networkConnected** (medium) - solved
 - ✅ **miceMaze** (hard) - solved
 - ✅ **wordLadder** (hard) - solved
+- ⏳ **caravans** (hard) - unsolved
 - ✅ **maze** (medium) - solved
 - ✅ **accountsMerge** (medium) - solved
 - ✅ **shortestPathInUndirectedGraph** (easy) - solved
@@ -29,6 +30,7 @@ Collection of problems and solutions for graphs.
 - ✅ **buildingRoads** (medium) - solved
 - ✅ **sakurako** (medium) - solved
 - ✅ **mocha** (easy) - solved
+- ✅ **halloweenParty** (hard) - solved
 - ✅ **ballInBerland** (medium) - solved
 - ✅ **wordLadderTwo** (hard) - solved
 - ✅ **numDest** (hard) - solved
@@ -42,9 +44,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 31
-- Solved: 28
-- Success Rate: 90.3%
+- Total Problems: 33
+- Solved: 29
+- Success Rate: 87.9%
 
 ---
-*Last updated on 2025-10-04 20:09:12*
+*Last updated on 2025-10-05 10:07:58*

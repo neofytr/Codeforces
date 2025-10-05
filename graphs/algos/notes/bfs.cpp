@@ -98,11 +98,11 @@ void binaryBFS() {
 	vector<int> dist(n, LLONG_MAX);
 	dequeue<int> que;
 
-	que.push(src);
+	que.push_front(src);
 	dist[src] = 0;
 	while(!que.empty()) {
 		int x = que.front();
-		que.pop();
+		que.pop_front();
 
 		for (auto &[v, w] : graph[x]) 
 			if (dist[v] > dist[x] + w) {
@@ -137,3 +137,39 @@ void binaryBFS() {
 // If we are to find the shortest path from all nodes of a graph to a specific node v, we can
 // reverse the edges of the graph and just find the shortest distance to all nodes of the new graph
 // from node v
+
+// Maximizing/Minimizing some property on all the shortest paths from some src to dst in an unweighted graph
+int prop() {
+	int n, m;
+	cin >> n >> m;
+
+	int u, v;
+	vector<vector<int>> graph(n);
+	while (m--) 
+		cin >> u >> v, graph[u].push_back(v), graph[v].push_back(u);
+
+	vector<int> happy(n);
+	for (int &r : happy)
+		cin >> r;
+
+	int src, dst;
+	cin >> src >> dst;
+	vector<int> dist(n, LLONG_MAX);
+	vector<int> dp(n, -1); // dp[r] is the largest value of happiness of a node on any shortest path from src to r
+	queue<int> que;
+
+	que.push(src);
+	dist[src] = 0;
+	dp[src] = happy[src];
+	while(!que.empty()) {
+		int x = que.front();
+		que.pop();
+
+		for (int v : graph[x])
+			if (dist[v] > dist[x] + 1)
+				dist[v] = dist[x] + 1, dp[v] = max(happy[v], dp[x]), que.push(v);
+			else if (dist[v] == dist[x] + 1)
+				dp[v] = max(dp[x], dp[v]);
+	}
+	cout << dp[dst] << endl;
+}
