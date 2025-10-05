@@ -12,6 +12,7 @@ Collection of problems and solutions for graphs.
 - ✅ **mostStones** (medium) - solved
 - ✅ **shortestPathWeightedUndirectedGraph** (medium) - solved
 - ✅ **minEffort** (medium) - solved
+- ✅ **inversionSort** (hard) - solved
 - ✅ **shortestPathInDAG** (easy) - solved
 - ✅ **districtConnections** (medium) - solved
 - ✅ **spanningTree** (medium) - solved
@@ -44,9 +45,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 33
-- Solved: 29
-- Success Rate: 87.9%
+- Total Problems: 34
+- Solved: 30
+- Success Rate: 88.2%
 
 ---
-*Last updated on 2025-10-05 10:07:58*
+*Last updated on 2025-10-05 11:01:00*
