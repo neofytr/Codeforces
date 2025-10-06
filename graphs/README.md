@@ -28,6 +28,7 @@ Collection of problems and solutions for graphs.
 - ✅ **largeIsland** (hard) - solved
 - ✅ **longJumps** (easy) - solved
 - ✅ **AKBAR** (medium) - solved
+- ✅ **closingTheFarm** (medium) - solved
 - ✅ **buildingRoads** (medium) - solved
 - ✅ **sakurako** (medium) - solved
 - ✅ **mocha** (easy) - solved
@@ -45,9 +46,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 34
-- Solved: 30
-- Success Rate: 88.2%
+- Total Problems: 35
+- Solved: 31
+- Success Rate: 88.6%
 
 ---
-*Last updated on 2025-10-05 11:01:00*
+*Last updated on 2025-10-06 23:38:44*
