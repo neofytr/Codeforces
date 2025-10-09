@@ -28,6 +28,7 @@ Collection of problems and solutions for graphs.
 - ✅ **mortalKombat** (hard) - solved
 - ✅ **largeIsland** (hard) - solved
 - ✅ **longJumps** (easy) - solved
+- ⏳ **rank** (hard) - unsolved
 - ✅ **AKBAR** (medium) - solved
 - ✅ **closingTheFarm** (medium) - solved
 - ✅ **buildingRoads** (medium) - solved
@@ -40,6 +41,7 @@ Collection of problems and solutions for graphs.
 - ✅ **numDest** (hard) - solved
 - ⏳ **buttonBashing** (medium) - unsolved
 - ✅ **findTheCity** (medium) - solved
+- ✅ **flightRoutesCheck** (medium) - solved
 - ✅ **cheapestFlights** (hard) - solved
 
 ## Key Techniques
@@ -48,9 +50,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 37
-- Solved: 32
-- Success Rate: 86.5%
+- Total Problems: 39
+- Solved: 33
+- Success Rate: 84.6%
 
 ---
-*Last updated on 2025-10-08 19:19:07*
+*Last updated on 2025-10-09 13:09:31*
