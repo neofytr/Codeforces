@@ -10,6 +10,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **powerProducts** (hard) - solved
 - ⏳ **enumeratingRationalNumbers** (medium) - unsolved
 - ⏳ **irreducibleBasicFractions** (easy) - unsolved
+- ✅ **sphereTransmission** (medium) - solved
 - ✅ **divisiblePairs** (medium) - solved
 - ⏳ **GCDQ** (medium) - unsolved
 - ✅ **oracLCM** (hard) - solved
@@ -35,6 +36,7 @@ Collection of problems and solutions for numberTheory.
 - ✅ **shovels** (https://codeforces.com/problemset/problem/1360/D) - solved
 - ⏳ **modularGCD** (hard) - unsolved
 - ✅ **divideAndEqualize** (medium) - solved
+- ⏳ **maximumGCD** (easy) - unsolved
 - ✅ **countingDiv** (easy) - solved
 - ✅ **simple** (easy) - solved
 - ✅ **prodOneModN** (medium) - solved
@@ -52,6 +54,7 @@ Collection of problems and solutions for numberTheory.
 - ⏳ **arpa** (easy) - unsolved
 - ⏳ **nastia** (medium) - unsolved
 - ⏳ **divGame** (easy) - unsolved
+- ⏳ **ehabGCD** (medium) - unsolved
 - ✅ **balanced** (medium) - solved
 - ⏳ **turtleTenacity** (medium) - unsolved
 - ✅ **dividingSeq** (medium) - solved
@@ -71,9 +74,9 @@ Collection of problems and solutions for numberTheory.
 - Sorting
 
 ## Progress
-- Total Problems: 60
-- Solved: 42
-- Success Rate: 70.0%
+- Total Problems: 63
+- Solved: 43
+- Success Rate: 68.3%
 
 ---
-*Last updated on 2025-10-03 20:57:31*
+*Last updated on 2025-10-13 22:31:59*
