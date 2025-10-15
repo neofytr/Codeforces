@@ -5,6 +5,7 @@ Collection of problems and solutions for graphs.
 
 ## Problems Solved
 - ✅ **roundDance** (hard) - solved
+- ⏳ **moocast** (hard) - unsolved
 - ✅ **iceSkating** (medium) - solved
 - ⏳ **buildingTeams** (easy) - unsolved
 - ✅ **shortestBinary** (medium) - solved
@@ -31,6 +32,7 @@ Collection of problems and solutions for graphs.
 - ✅ **longJumps** (easy) - solved
 - ⏳ **rank** (hard) - unsolved
 - ✅ **AKBAR** (medium) - solved
+- ✅ **wormholeSort** (hard) - solved
 - ✅ **closingTheFarm** (medium) - solved
 - ✅ **buildingRoads** (medium) - solved
 - ✅ **sakurako** (medium) - solved
@@ -51,9 +53,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 40
-- Solved: 34
-- Success Rate: 85.0%
+- Total Problems: 42
+- Solved: 35
+- Success Rate: 83.3%
 
 ---
-*Last updated on 2025-10-09 20:03:12*
+*Last updated on 2025-10-15 12:16:50*
