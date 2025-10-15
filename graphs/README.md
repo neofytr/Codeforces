@@ -6,6 +6,7 @@ Collection of problems and solutions for graphs.
 ## Problems Solved
 - ✅ **roundDance** (hard) - solved
 - ⏳ **moocast** (hard) - unsolved
+- ⏳ **mooRouteTwo** (hard) - unsolved
 - ✅ **iceSkating** (medium) - solved
 - ⏳ **buildingTeams** (easy) - unsolved
 - ✅ **shortestBinary** (medium) - solved
@@ -33,7 +34,9 @@ Collection of problems and solutions for graphs.
 - ⏳ **rank** (hard) - unsolved
 - ✅ **AKBAR** (medium) - solved
 - ✅ **wormholeSort** (hard) - solved
+- ✅ **mooTube** (hard) - solved
 - ✅ **closingTheFarm** (medium) - solved
+- ⏳ **connectingTwoBarns** (hard) - unsolved
 - ✅ **buildingRoads** (medium) - solved
 - ✅ **sakurako** (medium) - solved
 - ✅ **mocha** (easy) - solved
@@ -48,14 +51,15 @@ Collection of problems and solutions for graphs.
 - ✅ **cheapestFlights** (hard) - solved
 
 ## Key Techniques
+- Binary Search
 - Dynamic Programming
 - Graph Algorithms
 - Sorting
 
 ## Progress
-- Total Problems: 42
-- Solved: 35
-- Success Rate: 83.3%
+- Total Problems: 45
+- Solved: 36
+- Success Rate: 80.0%
 
 ---
-*Last updated on 2025-10-15 12:16:50*
+*Last updated on 2025-10-15 19:37:22*
