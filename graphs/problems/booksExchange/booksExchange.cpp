@@ -100,14 +100,14 @@ int32_t main() {
         int n;
         cin >> n;
 
-        disjointSetUnion dsu(n);
+        disjointSetUnion dsu(n + 1);
 
         vector<int> arr(n + 1);
         for (int r = 1; r <= n; r++)
-            cin >> arr[r], dsu.unite(r, arr[r]);
+            cin >> arr[r], dsu.join(r, arr[r]);
 
         for (int r = 1; r <= n; r++)
-            cout << dsu.componentSize[r] << " ";
+            cout << dsu.componentSize(r) << " ";
         cout << endl; 
     }    
     return 0;

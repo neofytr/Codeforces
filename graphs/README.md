@@ -5,6 +5,7 @@ Collection of problems and solutions for graphs.
 
 ## Problems Solved
 - ✅ **roundDance** (hard) - solved
+- ✅ **longDirectedPaths** (hard) - solved
 - ✅ **booksExchange** (hard) - solved
 - ⏳ **moocast** (hard) - unsolved
 - ⏳ **mooRouteTwo** (hard) - unsolved
@@ -34,6 +35,7 @@ Collection of problems and solutions for graphs.
 - ✅ **largeIsland** (hard) - solved
 - ✅ **longJumps** (easy) - solved
 - ⏳ **rank** (hard) - unsolved
+- ⏳ **buglife** (medium) - unsolved
 - ✅ **AKBAR** (medium) - solved
 - ✅ **wormholeSort** (hard) - solved
 - ✅ **mooTube** (hard) - solved
@@ -60,9 +62,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 48
-- Solved: 38
-- Success Rate: 79.2%
+- Total Problems: 50
+- Solved: 39
+- Success Rate: 78.0%
 
 ---
-*Last updated on 2025-10-16 08:19:38*
+*Last updated on 2025-10-16 08:53:43*
