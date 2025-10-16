@@ -16,6 +16,7 @@ Collection of problems and solutions for graphs.
 - ✅ **shortestPathWeightedUndirectedGraph** (medium) - solved
 - ✅ **minEffort** (medium) - solved
 - ✅ **inversionSort** (hard) - solved
+- ✅ **revegetation** (hard) - solved
 - ✅ **shortestPathInDAG** (easy) - solved
 - ✅ **districtConnections** (medium) - solved
 - ✅ **spanningTree** (medium) - solved
@@ -41,6 +42,7 @@ Collection of problems and solutions for graphs.
 - ✅ **sakurako** (medium) - solved
 - ✅ **mocha** (easy) - solved
 - ✅ **halloweenParty** (hard) - solved
+- ⏳ **mooParticle** (hard) - unsolved
 - ⏳ **fencePlanning** (medium) - unsolved
 - ✅ **ballInBerland** (medium) - solved
 - ✅ **wordLadderTwo** (hard) - solved
@@ -57,9 +59,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 45
-- Solved: 36
-- Success Rate: 80.0%
+- Total Problems: 47
+- Solved: 37
+- Success Rate: 78.7%
 
 ---
-*Last updated on 2025-10-15 19:37:22*
+*Last updated on 2025-10-16 07:53:33*
