@@ -157,3 +157,10 @@ int gcd(int a, int b) {
 	if (!b) return a;
 	return gcd(b, a % b);
 }
+
+// returns ceil(v / x)
+int ceil(int v, int x) {
+	return (v + x - 1) / x;
+}
+
+// floor(v / x) is simply v / x
