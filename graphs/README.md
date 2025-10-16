@@ -5,6 +5,7 @@ Collection of problems and solutions for graphs.
 
 ## Problems Solved
 - ✅ **roundDance** (hard) - solved
+- ✅ **booksExchange** (hard) - solved
 - ⏳ **moocast** (hard) - unsolved
 - ⏳ **mooRouteTwo** (hard) - unsolved
 - ✅ **iceSkating** (medium) - solved
@@ -59,9 +60,9 @@ Collection of problems and solutions for graphs.
 - Sorting
 
 ## Progress
-- Total Problems: 47
-- Solved: 37
-- Success Rate: 78.7%
+- Total Problems: 48
+- Solved: 38
+- Success Rate: 79.2%
 
 ---
-*Last updated on 2025-10-16 07:53:33*
+*Last updated on 2025-10-16 08:19:38*
