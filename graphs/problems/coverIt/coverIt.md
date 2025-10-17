@@ -1,6 +1,6 @@
-# ehabBipartiteness
+# coverIt
 
-🔗 **Problem Link:** [Codeforces Problem](https://codeforces.com/contest/862/problem/B)
+🔗 **Problem Link:** [Codeforces Problem](https://codeforces.com/problemset/problem/1176/E)
 
 ## Problem Statement
 <!-- Describe the problem here -->
