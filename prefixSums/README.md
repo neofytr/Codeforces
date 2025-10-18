@@ -14,6 +14,7 @@ Collection of problems and solutions for prefixSums.
 - ✅ **leftRightHouses** (hard) - solved
 - ✅ **maxSubarraySum** (medium) - solved
 - ✅ **staticRangeSum** (easy) - solved
+- ✅ **breedCounting** (hard) - solved
 - ⏳ **maxSubSum** (hard) - unsolved
 - ⏳ **nusret** (hard) - unsolved
 - ✅ **subarrayDiv** (hard) - solved
@@ -23,9 +24,9 @@ Collection of problems and solutions for prefixSums.
 - Dynamic Programming
 
 ## Progress
-- Total Problems: 14
-- Solved: 10
-- Success Rate: 71.4%
+- Total Problems: 15
+- Solved: 11
+- Success Rate: 73.3%
 
 ---
-*Last updated on 2025-08-23 10:26:24*
+*Last updated on 2025-10-18 07:45:40*
