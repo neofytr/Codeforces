@@ -746,4 +746,6 @@ add_executable(Codeforces
         random/playingCasino.cpp
         random/matryoshkas.cpp
         random/scuza.cpp
+        random/smallestMultiples.cpp
+        random/virus.cpp
 )
