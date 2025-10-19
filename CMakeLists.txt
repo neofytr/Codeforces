@@ -743,4 +743,5 @@ add_executable(Codeforces
         contests/DivTwo/1051/d.cpp
         numberTheory/algos/modInv.cpp
         numberTheory/algos/binomial.cpp
+        random/playingCasino.cpp
 )
