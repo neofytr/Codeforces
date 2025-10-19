@@ -748,4 +748,5 @@ add_executable(Codeforces
         random/scuza.cpp
         random/smallestMultiples.cpp
         random/virus.cpp
+        random/stoneAge.cpp
 )
