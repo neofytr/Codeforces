@@ -744,4 +744,6 @@ add_executable(Codeforces
         numberTheory/algos/modInv.cpp
         numberTheory/algos/binomial.cpp
         random/playingCasino.cpp
+        random/matryoshkas.cpp
+        random/scuza.cpp
 )
