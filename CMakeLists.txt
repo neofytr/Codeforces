@@ -749,4 +749,5 @@ add_executable(Codeforces
         random/smallestMultiples.cpp
         random/virus.cpp
         random/stoneAge.cpp
+        random/dolceVita.cpp
 )
