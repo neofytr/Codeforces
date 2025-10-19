@@ -751,4 +751,6 @@ add_executable(Codeforces
         random/stoneAge.cpp
         random/dolceVita.cpp
         random/differentialSorting.cpp
+        random/makeThemEqual.cpp
+        random/grandmaCapa.cpp
 )
