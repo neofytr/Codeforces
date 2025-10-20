@@ -759,4 +759,6 @@ add_executable(Codeforces
         random/sameDiff.cpp
         random/and0SumBig.cpp
         random/flipTheBits.cpp
+        random/m-arrays.cpp
+        random/rockLever.cpp
 )
