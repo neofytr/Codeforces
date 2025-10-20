@@ -754,4 +754,6 @@ add_executable(Codeforces
         random/makeThemEqual.cpp
         random/grandmaCapa.cpp
         random/stableGroups.cpp
+        random/prinzessin.cpp
+        random/palindromeGame.cpp
 )
