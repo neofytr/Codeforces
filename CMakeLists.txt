@@ -758,4 +758,5 @@ add_executable(Codeforces
         random/palindromeGame.cpp
         random/sameDiff.cpp
         random/and0SumBig.cpp
+        random/flipTheBits.cpp
 )
