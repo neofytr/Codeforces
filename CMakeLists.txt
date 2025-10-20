@@ -753,4 +753,5 @@ add_executable(Codeforces
         random/differentialSorting.cpp
         random/makeThemEqual.cpp
         random/grandmaCapa.cpp
+        random/stableGroups.cpp
 )
