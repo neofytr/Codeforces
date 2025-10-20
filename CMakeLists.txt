@@ -756,4 +756,6 @@ add_executable(Codeforces
         random/stableGroups.cpp
         random/prinzessin.cpp
         random/palindromeGame.cpp
+        random/sameDiff.cpp
+        random/and0SumBig.cpp
 )
