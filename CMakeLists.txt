@@ -767,4 +767,6 @@ add_executable(Codeforces
         random/anton.cpp
         random/max.cpp
         random/intersection.cpp
+        random/cardConstructions.cpp
+        random/saveKonoha.cpp
 )
