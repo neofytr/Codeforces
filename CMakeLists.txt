@@ -769,4 +769,5 @@ add_executable(Codeforces
         random/intersection.cpp
         random/cardConstructions.cpp
         random/saveKonoha.cpp
+        random/GCDQueries.cpp
 )
