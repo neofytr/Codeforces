@@ -761,4 +761,7 @@ add_executable(Codeforces
         random/flipTheBits.cpp
         random/m-arrays.cpp
         random/rockLever.cpp
+        random/threeNumbers.cpp
+        random/divisors.cpp
+        random/stupidMachine.cpp
 )
