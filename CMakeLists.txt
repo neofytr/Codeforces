@@ -764,4 +764,7 @@ add_executable(Codeforces
         random/threeNumbers.cpp
         random/divisors.cpp
         random/stupidMachine.cpp
+        random/anton.cpp
+        random/max.cpp
+        random/intersection.cpp
 )
