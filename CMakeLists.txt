@@ -770,4 +770,7 @@ add_executable(Codeforces
         random/cardConstructions.cpp
         random/saveKonoha.cpp
         random/GCDQueries.cpp
+        random/generateParenthesis.cpp
+        random/romanticPairs.cpp
+        random/alternating.cpp
 )
