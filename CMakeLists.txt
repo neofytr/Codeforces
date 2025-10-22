@@ -773,4 +773,5 @@ add_executable(Codeforces
         random/generateParenthesis.cpp
         random/romanticPairs.cpp
         random/alternating.cpp
+        random/scoringSubsequences.cpp
 )
