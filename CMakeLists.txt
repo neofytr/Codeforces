@@ -774,4 +774,6 @@ add_executable(Codeforces
         random/romanticPairs.cpp
         random/alternating.cpp
         random/scoringSubsequences.cpp
+        random/gardener.cpp
+        random/yetAnother.cpp
 )

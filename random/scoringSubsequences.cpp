@@ -3,6 +3,31 @@ using namespace std;
 
 #define int long long
 
+void solve2() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n + 1, 0);
+    for (int r = 1; r <= n; r++)
+        cin >> arr[r];
+
+    for (int k = 1; k <= n; k++) {
+        // f(x) = arr[x] >= k - x + 1
+        int left = 0; // f(left) = F
+        int right = k; // f(right) = T
+        while (right != left + 1) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] >= k - mid + 1)
+                right = mid;
+            else
+                left = mid;
+        }
+
+        cout << k - left << " ";
+    }
+    cout << endl;
+}
+
 void solve() {
     int n;
     cin >> n;
@@ -35,7 +60,7 @@ int32_t main() {
     int t;
     cin >> t;
     while (t--) {
-        solve();
+        solve2();
     }
     return 0;
 }
