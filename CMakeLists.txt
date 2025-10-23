@@ -776,4 +776,6 @@ add_executable(Codeforces
         random/scoringSubsequences.cpp
         random/gardener.cpp
         random/yetAnother.cpp
+        TLE/segmentTrees.cpp
+        random/maximalAND.cpp
 )
