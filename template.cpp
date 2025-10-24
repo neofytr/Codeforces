@@ -24,8 +24,7 @@ int countOnes(long long num) {
         if (!num)
             return count;
     }
-
-    return 0;
+    return count;
 }
 
 int countTrailingZeroes(long long num) {

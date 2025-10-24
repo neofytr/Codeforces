@@ -778,4 +778,6 @@ add_executable(Codeforces
         random/yetAnother.cpp
         TLE/segmentTrees.cpp
         random/maximalAND.cpp
+        random/chatBan.cpp
+        random/arrayElimination.cpp
 )
