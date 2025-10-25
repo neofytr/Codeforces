@@ -781,4 +781,9 @@ add_executable(Codeforces
         random/chatBan.cpp
         random/arrayElimination.cpp
         random/deepDownBelow.cpp
+        random/strangeBirthdayParty.cpp
+        random/moveAndTurn.cpp
+        random/shuffle.cpp
+        random/sociallyDistant.cpp
+        random/calculateCombinations.cpp
 )
