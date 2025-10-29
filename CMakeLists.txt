@@ -786,4 +786,14 @@ add_executable(Codeforces
         random/shuffle.cpp
         random/sociallyDistant.cpp
         random/calculateCombinations.cpp
+        random/balancedTunnel.cpp
+        random/wowFactor.cpp
+        random/makeItDivBy25.cpp
+        random/goodArray.cpp
+        random/avgSleepTime.cpp
+        random/simpleStrings.cpp
+        random/wordBreakTwo.cpp
+        random/karenCoffee.cpp
+        random/cardTrick.cpp
+        random/blockSum.cpp
 )
