@@ -796,4 +796,8 @@ add_executable(Codeforces
         random/karenCoffee.cpp
         random/cardTrick.cpp
         random/blockSum.cpp
+        random/littleGirlMaxSum.cpp
+        random/gregAndArray.cpp
+        random/leapingTak.cpp
+        random/encryptingMessages.cpp
 )
