@@ -5,7 +5,7 @@ using namespace std;
 #define X 0
 #define Y (int)(1e9)
 
-// Binary Search M1
+// Binary Search Methods
 
 // x and y are integers such y >= x
 // The search space is [x, y]
@@ -108,3 +108,33 @@ else // all the elements of the search space are T
 // and we never check the last element right = left (right is never checked due to (1) being true in the last iteration)
 // Similarly, when right = left + 1 and we move the right pointer backward, we get right = left and we
 // exit and we never check the last element right = left (left is never checked due to (1) being true in the last iteration)
+
+// Best Binary Search Implementation
+
+// We define f(x - 1) = T and f(y + 1) = F (this maintains the monotonicity of f)
+// We ensure right > left + 1 initially, and the iteration stops as soon as right = left + 1
+// We ensure that f(left) = T and f(right) = F at the beginning of each iteration (invariant)
+
+left = X - 1; // initialize left with one less than the minimum value in the search space
+right = Y + 1; // initialize right with one more than the maximum value in the search space
+
+while (right > left + 1) {
+	int mid = left + (right - left) / 2; // this is simply floor((left + right) / 2)
+
+	// Since right > left + 1, we have
+	// left < mid < right
+	// So, in both of the following cases, we reduce the search space by atleast one (so the algorithm terminates after a finite number of iterations)
+	// The search terminates as soon as right = left + 1
+	if (f(mid))
+		left = mid;
+	else
+		right = mid;
+	// The above assignments ensure that our invariant holds
+}
+
+// loop exits when right = left + 1
+// Let m = left
+
+// f(m) = T and f(m + 1) = F
+// Thus, by the monotonicity of f, f(r) = T for all x <= r <= m and f(r) = F for all y >= r >= m + 1
+// Thus, left is the last true and right is the first false
