@@ -138,3 +138,8 @@ while (right > left + 1) {
 // f(m) = T and f(m + 1) = F
 // Thus, by the monotonicity of f, f(r) = T for all x <= r <= m and f(r) = F for all y >= r >= m + 1
 // Thus, left is the last true and right is the first false
+
+// For binary search on real numbers, the number of iterations k is given by
+// k = log2((max - min) / e) + 1
+// where max is the maximum value taken by right pointer, min is the minimum value taken by left pointer
+// and e is the required precision
