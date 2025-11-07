@@ -143,3 +143,6 @@ while (right > left + 1) {
 // k = log2((max - min) / e) + 1
 // where max is the maximum value taken by right pointer, min is the minimum value taken by left pointer
 // and e is the required precision
+
+// Also, do setprecision(24) before couting the answer
+// Also, use #define double long double
