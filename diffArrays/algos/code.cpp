@@ -127,3 +127,35 @@ void differenceArray() {
     for (int r = 1; r <= n; r++)
         prefix[r] += prefix[r - 1], arr[r] += prefix[r];
 }
+
+// Range updates while traversing the array
+void traverse() {
+    int n, rge, x, target;
+    cin >> n >> rge >> x >> target;
+
+    vector<int> arr(n + 1);
+    for (int r = 1; r <= n; r++) cin >> arr[r];
+
+    // We can choose an index 1 <= r <= n and some 
+    // integer y and then add y to each element
+    // in the range [max(1, r - rge), min(n, r + rge)]
+
+    // The sum of all such y's should be <= x
+    // Doing any number of these operations, is it possible
+    // to make each element >= target?
+
+    int req = 0;
+    vector<int> add(n + 2, 0);
+    for (int i = 1; i <= n; i++) {
+        add[i] += add[i - 1];
+        int curr = arr[i] + add[i];
+        if (curr < target) {
+            int y = target - curr;
+            req += y;
+            add[i] += y;
+            add[min(n, i + 2 * rge) + 1] -= y;
+        }
+    }
+
+    cout << (req <= x ? "YES" : "NO") << "\n";
+}
