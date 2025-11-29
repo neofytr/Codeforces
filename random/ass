@@ -1,0 +1,17 @@
+The automotive industry is currently navigating a critical paradigm shift, moving from internal combustion engine (ICE) propulsion to electrified powertrains to meet stringent global decarbonization targets. Central to this transition is the optimization of the Energy Storage System (ESS), which dictates the vehicle's range, safety, and economic viability. This report presents a detailed technical analysis of a commercially available electric vehicle, focusing on its cell chemistry, thermal characteristics, and thermal management strategies. Additionally, the report evaluates the engineering implications of future technologies, specifically the potential of Sodium-ion batteries and the immediate adaptation required for E20 fuel blends in the Indian automotive context.
+
+1.1 Vehicle Selection
+For the purpose of this analysis, the Tesla Model 3 Rear-Wheel Drive (RWD), specifically the variant equipped with the Lithium Iron Phosphate (LFP) battery pack, has been selected.
+
+1.2 Justification for Selection
+The choice of the Tesla Model 3 RWD (LFP) is driven by its status as a benchmark for modern mass-market electrification. Unlike early performance EVs that relied heavily on Nickel-Cobalt-Aluminum (NCA) or Nickel-Manganese-Cobalt (NMC) chemistries for maximum energy density, this vehicle represents a strategic industry pivot toward LFP chemistry.   
+
+This selection allows for a critical analysis of the following engineering trade-offs:
+
+Safety vs. Energy Density: LFP chemistry offers superior thermal stability and safety compared to nickel-based chemistries, albeit with lower gravimetric energy density (~125 Wh/kg at the pack level).   
+
+Cost and Resource Independence: The LFP cathode eliminates the need for Cobalt and Nickel, addressing critical supply chain vulnerabilities and reducing costs, which is essential for high-volume adoption.   
+
+Cycle Life: The chemistry supports a significantly higher cycle life (2,000–4,000+ cycles), allowing for a unique use case where the vehicle can be charged to 100% State of Charge (SoC) regularly without significant degradation.   
+
+This vehicle provides an ideal case study for designing thermal management systems that must handle the specific thermal signature of LFP cells, particularly their sensitivity to low temperatures and their heat generation profile during fast charging.

@@ -1,0 +1,52 @@
+1. In questions that have the count of somethings changing when an operation is done and the total number of somethings remain constant, check how the parity of the count of things changes after an operation
+
+2. In questions in which we can perform any operation from a group of operations, one after other, there is usually an optimal order for the
+application of these operations (i.e., something like all operation 1s must occur before any operation 2s and so on) (see random/gettingZero)
+
+3. For any x > 1, __builtin_ctzll(x) is the power of 2 in the prime factorization of x
+
+4. If n is odd and >= 3, then
+n, n - 1 and n - 2 have no prime
+factors in common and
+LCM(n, n - 1, n - 2) = n * (n - 1) * (n - 2)
+
+5. For n >= 2, gcd(n, n - 1) = 1
+
+6. Let x >= 1
+Then, there can be atmost 1 number in the sequence
+
+x, x + 1, x + 2, ..., x + (r - 1)
+
+for some r >= 1 that is divisible by a number >= r
+
+7. Count/Find triplets 1 <= i < j < k <= n that satisfy some conditions in O(n^2)
+
+for (int k = 2; k <= n - 1; k++) {
+	// iterate through [1, k - 1] to choose a suitable i
+
+	// iterate through [k + 1, n] to choose a suitable j
+
+	// check if (i, j, k) is a suitable pair
+}
+
+Thus, if we have to find a triplet, fix the middle one and solve two independent problems (if possible)
+
+8. Let n >= 2
+Let a1, a2, ..., an is a sequence of integers
+
+If a1 <= an, then there are
+two consecutive elements x, y
+of the sequence such that x <= y
+
+9. Let p(x1, y1) and q(x2, y2) be two points on a line y = mx + c.
+
+Then, distance(p, q) = |x2 - x1| * root(1 + m * m)
+
+For any integral m != 0, distance(p, q) is always irrational
+
+10. For two distinct points P and Q in a plane to not have integral distance between them, it's necessary for them to be have different rows or different columns
+
+11. For constructive questions, say we have to construct the maximal set satisfying some conditions, we can adopt the following approach:
+
+i. Get an upper bound on the size of the set
+ii. Do something to construct a set of that size
