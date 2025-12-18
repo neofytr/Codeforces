@@ -50,3 +50,37 @@ For any integral m != 0, distance(p, q) is always irrational
 
 i. Get an upper bound on the size of the set
 ii. Do something to construct a set of that size
+
+12. For x >= 0
+
+i. floor(x / 2) = x >> 1
+ii. ceil(x / 2) = (x >> 1) + (x & 1)
+
+13. 
+
+Consider a sorted array v[1, n]
+
+Let f(r) = |r - v[1]| + |r + 1 - v[2]| + ... |r + n - 1 - v[n]|
+
+         = |v[1] - (r + 0)| + ... + |v[n] - (r + (n - 1))|
+
+We can calculate this in O(log(n)) with O(n) precomputation as follows:
+
+1. Construct an array s[1, n] such that
+
+s[i] = v[i] - (i - 1) for 1 <= i <= n
+
+3. Construct the prefix array of s, say p[0, n]
+
+p[0] = 0 and p[r] = p[r - 1] + s[r] for 1 <= r <= n
+
+2. Find the first index k in the array v[1, n] such that v[k] >= r
+
+If such a k does not exist, then
+f(r) = r * n - p[n]
+
+If k == 1, then f(r) = p[n] - r * n
+
+Otherwise,
+
+f(r) = (p[n] - p[k - 1]) - r * (n - k + 1) + r * (k - 1) - (p[k - 1])

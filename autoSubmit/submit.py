@@ -7,6 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 import json
+from pathlib import Path
+from google import genai
+import base64
 
 class CodeforcesSubmitter:
     def __init__(self, config_file='cf_config.json'):
@@ -17,13 +20,15 @@ class CodeforcesSubmitter:
         if not os.path.exists(config_file):
             template = {
                 "code_folder": "/path/to/your/code/folder",
+                "random_folder": "~/Desktop/Codeforces/random",
                 "debug_port": 9222
             }
             with open(config_file, 'w') as f:
                 json.dump(template, f, indent=4)
             print(f"Edit {config_file} with:")
             print("1. code_folder: where your .cpp files are")
-            print("2. debug_port: usually 9222 (default is fine)")
+            print("2. random_folder: folder with random solutions")
+            print("3. debug_port: usually 9222 (default is fine)")
             sys.exit(1)
         
         with open(config_file, 'r') as f:
@@ -96,6 +101,53 @@ class CodeforcesSubmitter:
         
         print(f"✗ File {problem_code}.cpp not found in {folder}")
         return None
+    
+    def identify_problem_with_gemini(self, file_path, filename):
+        """Use Gemini with search to identify the problem code from filename"""
+        api_key = os.getenv('GEMINI_API_KEY')
+        if not api_key:
+            print("  ⚠ GEMINI_API_KEY not set, skipping AI identification")
+            return None
+        
+        try:
+            client = genai.Client(api_key=api_key)
+            
+            prompt = f"""Search for "{filename} codeforces" and find the Codeforces problem code.
+
+The problem code format is: CONTESTNUMBER + LETTER (e.g., 1234A, 567B, 2167C)
+
+Search the web and find which Codeforces problem this filename refers to.
+Respond with ONLY the problem code in format like "1234A". Nothing else, no explanation."""
+
+            response = client.models.generate_content(
+                model="gemini-2.0-flash-exp",
+                contents=prompt,
+                config={
+                    'tools': [{'google_search': {}}]
+                }
+            )
+            
+            problem_code = response.text.strip()
+            
+            # Clean up response - remove any extra text
+            # Look for pattern like 1234A
+            import re
+            match = re.search(r'\b(\d{3,4}[A-Z])\b', problem_code)
+            if match:
+                return match.group(1)
+            
+            # Validate format: digits + letter
+            if problem_code and len(problem_code) >= 2:
+                has_digits = any(c.isdigit() for c in problem_code)
+                has_letter = any(c.isalpha() for c in problem_code)
+                if has_digits and has_letter:
+                    return problem_code
+            
+            return None
+            
+        except Exception as e:
+            print(f"  ⚠ Gemini error: {e}")
+            return None
     
     def submit_code(self, problem_code, file_path):
         """Submit the code to Codeforces"""
@@ -218,10 +270,7 @@ class CodeforcesSubmitter:
         for f in cpp_files:
             print(f"  - {f}")
         
-        print("\nStarting submissions...")
-        input("Press Enter to continue or Ctrl+C to cancel...")
-        
-        # Initialize driver once
+        print("\nStarting submissions...")        
         self.init_driver()
         
         if not self.check_login():
@@ -257,19 +306,100 @@ class CodeforcesSubmitter:
         print('='*50)
         print("\nPress Enter to close the script...")
         input()
+    
+    def submit_random(self):
+        """Submit all files from random folder, using Gemini to identify problems"""
+        random_folder = Path(self.config.get('random_folder', '~/Desktop/Codeforces/random')).expanduser()
+        
+        if not random_folder.exists():
+            print(f"✗ Random folder not found: {random_folder}")
+            return
+        
+        cpp_files = list(random_folder.glob('*.cpp'))
+        
+        if not cpp_files:
+            print(f"No .cpp files found in {random_folder}")
+            return
+        
+        print(f"Found {len(cpp_files)} files in random folder")
+        print("Using Gemini to identify problems...\n")
+        
+        self.init_driver()
+        
+        if not self.check_login():
+            return
+        
+        success = 0
+        failed = 0
+        skipped = 0
+        
+        for i, cpp_file in enumerate(cpp_files, 1):
+            print(f"\n{'='*50}")
+            print(f"[{i}/{len(cpp_files)}] Processing: {cpp_file.name}")
+            print('='*50)
+            
+            # Try to identify problem code
+            print("Identifying problem code with Gemini...")
+            problem_code = self.identify_problem_with_gemini(cpp_file, cpp_file.stem)
+            
+            if not problem_code:
+                print(f"✗ Could not identify problem code")
+                failed += 1
+                continue
+            
+            print(f"✓ Identified as: {problem_code}")
+            
+            # Confirm with user
+            print(f"Submit {cpp_file.name} as {problem_code}? (y/n/s=skip): ", end='', flush=True)
+            response = input().strip().lower()
+            
+            if response == 's':
+                print("⊘ Skipped")
+                skipped += 1
+                continue
+            elif response != 'y':
+                print("✗ Cancelled")
+                failed += 1
+                continue
+            
+            # Submit
+            if self.submit_code(problem_code, str(cpp_file)):
+                success += 1
+                print(f"✓ Success ({success}/{len(cpp_files)})")
+            else:
+                failed += 1
+                print(f"✗ Failed ({failed}/{len(cpp_files)})")
+            
+            # Wait between submissions
+            if i < len(cpp_files):
+                print("Waiting 5 seconds before next submission...")
+                time.sleep(5)
+        
+        print(f"\n{'='*50}")
+        print(f"Random folder submission complete!")
+        print(f"✓ Success: {success}")
+        print(f"⊘ Skipped: {skipped}")
+        print(f"✗ Failed: {failed}")
+        print('='*50)
+        print("\nPress Enter to close the script...")
+        input()
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python submit.py <problem_code>")
         print("       python submit.py --all")
+        print("       python submit.py --random")
         print("\nExamples:")
         print("  python submit.py 2167B")
-        print("  python submit.py --all")
+        print("  python submit.py --all          # Submit all from code_folder")
+        print("  python submit.py --random       # Submit all from random_folder with AI identification")
         sys.exit(1)
     
     submitter = CodeforcesSubmitter()
     
     if sys.argv[1] == "--all":
         submitter.submit_all()
+    elif sys.argv[1] == "--random":
+        submitter.submit_random()
     else:
         submitter.run(sys.argv[1])

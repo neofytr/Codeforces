@@ -1,4 +1,6 @@
 {
     "code_folder": "/home/raj/Desktop/Codeforces/autoSubmit/solutions",
-    "chrome_profile_path": "/home/raj/.config/google-chrome"
+    "chrome_profile_path": "/home/raj/.config/google-chrome",
+      "random_folder": "~/Desktop/Codeforces/random",
+      "debug_port": "9222"
 }

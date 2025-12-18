@@ -67,6 +67,9 @@ using namespace std;
 // the lowest set bit in x
 // 13. For a signed integer x, x & (-x) is the lowest (rightmost) bit set to 1 in x
 // 14. For positive integer x, __builtin_ctzll(x) is the power of 2 in the prime-factorization of x
+// 15. For x >= 0
+// i. floor(x / 2) = x >> 1
+// ii. ceil(x / 2) = (x >> 1) + (x & 1)
 
 // AND: Commutative, Associative, Identity(0xFF), Annihilator(0x00), Idempotent
 // OR: Commutative, Associative, Identity(0x00), Annihilator(0xFF), Idempotent
