@@ -84,3 +84,13 @@ If k == 1, then f(r) = p[n] - r * n
 Otherwise,
 
 f(r) = (p[n] - p[k - 1]) - r * (n - k + 1) + r * (k - 1) - (p[k - 1])
+
+14. 
+
+Let n >= 1
+Let S = {1, 2, ..., n}
+Let A = {r is a natural number such that 1 <= r <= n * (n + 1) / 2}
+
+Then, for any a in A, there is a subset s of S such that sum(s) = a
+Also, there is no subset s of S such that
+sum(s) > n * (n + 1) / 2
