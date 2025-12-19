@@ -9,3 +9,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    36e186d5..7aa70258  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1fb0fae2] Solved a CF problem
+ 5 files changed, 24 insertions(+), 15 deletions(-)
+ create mode 100644 random/1200/boneca.cpp
+To https://github.com/neofytr/Codeforces.git
+   7aa70258..1fb0fae2  main -> main
+branch 'main' set up to track 'origin/main'.
