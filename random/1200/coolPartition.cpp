@@ -7,20 +7,24 @@ void solve() {
 	int n;
 	cin >> n;
 
-	vector<int> arr(n + 1);
-	unordered_map<int, vector<int>> f;
-	for (int r = 1; r <= n; r++) cin >> arr[r], f[arr[r]].push_back(r);
+	set<int> tot;
+	vector<int> arr(n + 1), f(n + 1);
+	for (int r = 1; r <= n; r++)
+		cin >> arr[r], f[arr[r]]++, tot.insert(arr[r]);
 
-	int cnt = 0, last = n;
-	while (last >= 1) {
-		int mini = LLONG_MAX;
-		for (auto &[e, v] : f)
-			if (!v.empty()) {
-				auto itr = upper_bound(v.begin(), v.end(), last);
-				if (itr != v.begin()) 
-					--itr, mini = min(mini, *itr);
-			}
-		last = mini - 1;
+	int r = n;
+	int cnt = 0;
+	while (r >= 1) {
+		set<int> s;
+		vector<int> v;
+		while (r >= 1 && s.size() < tot.size()) {
+			if (!(--f[arr[r]]))
+				v.push_back(r);
+			s.insert(arr[r]), r--;
+		}
+
+		for (int e : v)
+			tot.erase(arr[e]);
 		cnt++;
 	}
 
