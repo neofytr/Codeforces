@@ -94,3 +94,15 @@ Let A = {r is a natural number such that 1 <= r <= n * (n + 1) / 2}
 Then, for any a in A, there is a subset s of S such that sum(s) = a
 Also, there is no subset s of S such that
 sum(s) > n * (n + 1) / 2
+
+15.
+
+Let n >= 3
+Let l1, l2, ... , ln be positive integers
+
+A polygon with n sides can be formed with
+these integers as its side lengths iff
+
+2 * max(l1, l2, ..., ln) <= l1 + l2 + ... + ln
+
+, i.e, no side-length is greater than all the other side-lengths combined
