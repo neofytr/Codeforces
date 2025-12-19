@@ -3,35 +3,28 @@ using namespace std;
 
 #define int long long 
 
-int segments(int l, int r, vector<int> &arr) {
-	if (l == r)
-		return 1;
-
-
-}
-
 void solve() {
 	int n;
 	cin >> n;
 
 	vector<int> arr(n + 1);
-	vector<vector<int>> f(n + 1, vector<int>(n + 1));
+	unordered_map<int, vector<int>> f;
 	for (int r = 1; r <= n; r++) cin >> arr[r], f[arr[r]].push_back(r);
 
-	int cnt = 0, currend = LLONG_MAX;
-	for (int r = 1; r <= n; r++) {
-		vector<int> &v = f[arr[r]];
-		int sz = v.size();
-
-		if (sz == 1) {
-			cout << cnt << endl;
-			return;
-		}
-
-		currend = min(currend, v[sz - 1] - 1);
-		if (currend <= r)
-			currend = LLONG_MAX, cnt++;
+	int cnt = 0, last = n;
+	while (last >= 1) {
+		int mini = LLONG_MAX;
+		for (auto &[e, v] : f)
+			if (!v.empty()) {
+				auto itr = upper_bound(v.begin(), v.end(), last);
+				if (itr != v.begin()) 
+					--itr, mini = min(mini, *itr);
+			}
+		last = mini - 1;
+		cnt++;
 	}
+
+	cout << cnt << endl;
 }
 
 int32_t main() {
