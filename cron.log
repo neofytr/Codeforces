@@ -20,3 +20,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1fb0fae2..b2f32e8d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7077afba] Solved a few problems
+ 5 files changed, 28 insertions(+), 16 deletions(-)
+ create mode 100644 random/1200/asuna.cpp
+To https://github.com/neofytr/Codeforces.git
+   b2f32e8d..7077afba  main -> main
+branch 'main' set up to track 'origin/main'.
