@@ -3,35 +3,40 @@ using namespace std;
 
 #define int long long 
 
+string getnum(int x) {
+	ostringstream oss;
+	oss << x << " " << x << " " << x + 1 << " " << x + 2 << " " << x << " " << x + 1 << " " << x + 1 << " ";
+	return oss.str();
+}
+
 void solve() {
 	int n;
 	cin >> n;
 
-	if (n == 9 || n == 10 || n == 11) {
-		cout << "7 3 3 7 5 3 7 7 3" << endl;
-		return;
-	}
-
+	int k = n / 7;
 	int i = 1;
-	int k = n / 6;
-	for (int r = 1; r <= k; r++) {
-		for (int j = 1; j <= 3; j++)
-			cout << i << " " << i + 1 << " ";
-		i += 2;
-	}
+	for (int r = 1; r <= k; r++)
+		cout << getnum(i) << " ", i += 3;
 
-	if (8 * k > n) {
-		for (int r = 1; r <= n % 6; r++)
+	switch(n % 7) {
+	case 0:
+	case 1:
+	case 2:
+		for (int r = 1; r <= n % 7; r++)
 			cout << i++ << " ";
-	} else {
-		int rem = n % 6;
-		int pairs = rem / 2;
-		int left = rem & 1;
-
-		for (int r = 1; r <= pairs; r++)
-			cout << i << " " << i + 1 << " ";
-		if (left)
-			cout << i << " ";
+		break;
+	case 3:
+		cout << i << " " << i << " " << i;
+		break;
+	case 4:
+		cout << i << " " << i + 1 << " " << i << " " << i + 1;
+		break;
+	case 5:
+		cout << i << " " << i + 1 << " " << i << " " << i + 1 << " " << i + 1;
+		break;
+	case 6:
+		cout << i << " " << i << " " << i + 1 << " " << i + 2 << " " << i << " " << i + 1;
+		break;
 	}
 	cout << endl;
 }
