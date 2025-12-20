@@ -68,3 +68,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    5af946e3..e8e46cfd  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4561af62] More problems solved
+ 5 files changed, 62 insertions(+), 8 deletions(-)
+ create mode 100644 random/1200/palindromicSubsequences.cpp
+To https://github.com/neofytr/Codeforces.git
+   e8e46cfd..4561af62  main -> main
+branch 'main' set up to track 'origin/main'.
