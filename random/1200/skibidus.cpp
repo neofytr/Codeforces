@@ -12,23 +12,34 @@ void solve() {
 		for (int col = 1; col <= m; col++)
 			cin >> mat[row][col];
 
-	vector<pair<int, int>> v;
+	int s1 = 0;
+	for (int row = 1; row <= n; row++)
+		for (int col = 1; col <= m; col++)
+			s1 += mat[row][col];
+	s1 *= (m * (n + 1) + 1);
+
+	int s2 = 0;
+	for (int col = 1; col <= m; col++) {
+		int sum = 0;
+		for (int row = 1; row <= n; row++)
+			sum += mat[row][col];
+		s2 += sum * col;
+	}
+	
+	vector<int> sums (n + 1);
 	for (int row = 1; row <= n; row++) {
-		int s = 0;
+		int sum = 0;
 		for (int col = 1; col <= m; col++)
-			s += (n * m - col + 1) * mat[row][col];
-		v.push_back({s, row});
+			sum += mat[row][col];
+		sums[row] = sum;
 	}
 
-	sort(v.rbegin(), v.rend());
-	int coeff = n * m;
-	int res = 0;
-	for (auto &[s, row] : v) {
-		for (int col = 1; col <= m; col++)
-			res += mat[row][col] * (coeff--);
-	}
+	sort(sums.rbegin(), sums.rend() - 1);
+	int s3 = 0;
+	for (int r = 1; r <= n; r++)
+		s3 += sums[r] * r;
 
-	cout << res << endl;
+	cout << s1 - s2 - s3 * m << endl;
 }
 
 int32_t main() {
