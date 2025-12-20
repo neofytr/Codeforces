@@ -50,3 +50,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ffdcca96..f8355798  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3a6b4385] Practiced CF problems
+ 5 files changed, 60 insertions(+), 3 deletions(-)
+ create mode 100644 random/1200/twoLargeBags.cpp
+To https://github.com/neofytr/Codeforces.git
+   f8355798..3a6b4385  main -> main
+branch 'main' set up to track 'origin/main'.
