@@ -11,9 +11,8 @@ void solve() {
 	for (int row = 1; row <= n; row++)
 		for (int col = 1; col <= m; col++)
 			cin >> mat[row][col];
-
-	vector<int> colors(n * m + 1);
-	vector<vector<bool>> vis(n + 1, vector<bool>(m + 1, false));
+	
+	vector<int> colors(n * m + 1);	
 }
 
 int32_t main() {
