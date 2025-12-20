@@ -8,17 +8,26 @@ void solve() {
 	cin >> n;
 
 	int maxi = LLONG_MIN;
-	vector<int> arr(n + 1);
-	for (int r = 1; r <= n; r++) {
+	vector<int> arr(n + 1), bit(30);
+	for (int r = 1; r <= n; r++)
 		cin >> arr[r];
-		maxi = max(maxi, arr[r]);
+
+	for (int r = 1; r <= n; r++)
+		for (int b = 0; b <= 29; b++)
+			if (arr[r] & (1ll << b))
+				bit[b]++;
+
+	for (int r = 1; r <= n; r++) {
+		int res = 0;
+		for (int b = 0; b <= 29; b++)
+			if (arr[r] & (1ll << b))
+				res += (n - bit[b]) * (1ll << b);
+			else
+				res += bit[b] * (1ll << b);
+		maxi = max(res, maxi);
 	}
 
-	int res = 0;
-	for (int r = 1; r <= n; r++)
-		res += (maxi ^ arr[r]);
-
-	cout << res << endl;
+	cout << maxi << endl;
 }
 
 int32_t main() {
