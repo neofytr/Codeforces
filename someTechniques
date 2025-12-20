@@ -106,3 +106,17 @@ these integers as its side lengths iff
 2 * max(l1, l2, ..., ln) <= l1 + l2 + ... + ln
 
 , i.e, no side-length is greater than all the other side-lengths combined
+
+16. In a problem where we are to count
+the number of pairs of indexes (i, j) where 1 <= i < j <= n in an array arr[1, n] satisfying some condition, we can permute (usually, the permutation of the array used is the sorted one) the array beforehand and solve the problem if
+
+i. Condition depends on values, not positions
+ii. The number of pairs is invariant under the permutation
+iii. Counting pairs/combinations/subsets
+iv. Answer is unchanged by reordering (permutation invariant)
+
+We cannot permute the array if
+
+i. Problem involves subarrays/prefixes/suffixes
+ii. Ordering of the elements matters
+iii. Distance/position constraints are essential

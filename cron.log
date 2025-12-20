@@ -84,3 +84,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1419b8df..716968c2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1906b7c5] Problem solving session
+ 4 files changed, 67 insertions(+), 23 deletions(-)
+ create mode 100644 random/1200/countingPairs.cpp
+To https://github.com/neofytr/Codeforces.git
+   716968c2..1906b7c5  main -> main
+branch 'main' set up to track 'origin/main'.
