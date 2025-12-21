@@ -120,3 +120,32 @@ We cannot permute the array if
 i. Problem involves subarrays/prefixes/suffixes
 ii. Ordering of the elements matters
 iii. Distance/position constraints are essential
+
+16. 
+
+Let k >= 0
+
+Let A[1, n] and B[1, m] be two integer arrays such that
+
+0 <= A[r] < 2^k for 1 <= r <= n
+
+Let f[s] = Summation from r = 1 to n of (A[r] ^ B[s]) for 1 <= s <= m
+
+Suppose we want to find max(f[s] for 1 <= s <= m) in O(n + m)
+
+We can do this as follows:
+
+vector<int> bit(k);
+for (int r = 1; r <= n; r++)
+	for (int b = 0; b <= k - 1; b++)
+		if (A[r] & (1 << b)) bit[b]++;
+
+// We can now calculate each f[s] for 1 <= s <= m in O(1) now after this precomputation that is done in O(n)
+
+int maxi = LLONG_MIN;
+for (int r = 1; r <= m; r++) {
+	int sum = 0;
+	for (int b = 0; b <= k - 1; b++)
+		if (B[r] & (1 << b)) sum += bit[b] * (1 << b);
+		else sum += (n - bit[b]) * (1 << b)
+}
