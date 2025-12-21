@@ -155,4 +155,4 @@ for (int r = 1; r <= m; r++) {
 Let x >= 1
 Let z is the smallest power of two >= x
 
-Then x ^ y, for y >= 1 and y != x divides y implies that y <= z - 1
+Then x ^ y, for y >= 1 and y != x, divides y implies that y <= z - 1
