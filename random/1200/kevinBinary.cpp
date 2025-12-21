@@ -4,18 +4,21 @@ using namespace std;
 #define int long long 
 
 bool cmp(
-	const pair<vector<int>, pair<int,int>> &a,
-	const pair<vector<int>, pair<int,int>> &b
+    const pair<vector<int>, pair<int,int>> &a,
+    const pair<vector<int>, pair<int,int>> &b
 ) {
-	const vector<int> &va = a.first;
-	const vector<int> &vb = b.first;
+    const vector<int> &va = a.first;
+    const vector<int> &vb = b.first;
 
-	for (size_t i = 0; i < va.size(); ++i) {
-		if (va[i] != vb[i])
-			return va[i] > vb[i];  // 0 < 1
-	}
-	return false;
+    size_t n = min(va.size(), vb.size());
+    for (size_t i = 0; i < n; ++i) {
+        if (va[i] != vb[i]) {
+            return va[i] > vb[i];
+        }
+    }
+    return va.size() < vb.size();
 }
+
 
 void solve() {
 	string str;
@@ -37,10 +40,11 @@ void solve() {
 	// [cnt + 1, n]
 	int len = n - cnt;
 	vector<pair<vector<int>, pair<int, int>>> vec;
-	for (int r = 1; r <= n - len; r++) {
-		vector<int> tmp(len + 1, 0);
+	for (int r = 1; r <= n - len + 1; r++) {
+		vector<int> tmp;
 		for (int i = 1; i <= len; i++) 
-			tmp[i] = v[cnt + i] ^ v[r + i];
+			if (v[cnt + i] ^ v[r + i - 1])
+				tmp.push_back(i);
 		vec.push_back({tmp, {r, r + len - 1}});
 	}
 		
