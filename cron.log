@@ -128,3 +128,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    45ce69ba..fdfc7e3b  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9244dacd] Problem solving session
+ 6 files changed, 109 insertions(+), 5 deletions(-)
+ create mode 100644 random/1200/beautifulArray.cpp
+ create mode 100644 random/1200/bowlingFrame.cpp
+ create mode 100644 random/1200/shohagLovesXorEasy.cpp
+To https://github.com/neofytr/Codeforces.git
+   97c7f8e9..9244dacd  main -> main
+branch 'main' set up to track 'origin/main'.
