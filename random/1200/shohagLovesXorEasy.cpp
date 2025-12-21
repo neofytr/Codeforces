@@ -21,7 +21,13 @@ void solve() {
 			}
 		}
 
+	int front = 64 - __builtin_clzll(x);
 
+	for (int y = 1; y <= min((1ll << front) - 1, m); y++) 
+		if (x != y && !(y % (x ^ y)))
+			res.insert(y);
+	
+	cout << res.size() << endl;
 }
 
 int32_t main() {
