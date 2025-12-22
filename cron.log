@@ -221,3 +221,8 @@ On branch main
 Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
+[main 0eff2262] Solved some problems
+ 1 file changed, 4 insertions(+)
+To https://github.com/neofytr/Codeforces.git
+   f10ff58b..0eff2262  main -> main
+branch 'main' set up to track 'origin/main'.
