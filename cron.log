@@ -165,3 +165,10 @@ On branch main
 Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
+[main 892eb64f] Problem solving session
+ 5 files changed, 85 insertions(+), 2 deletions(-)
+ create mode 100644 random/1200/allPairs.cpp
+ create mode 100644 random/1200/theStrictTeacherHard.cpp
+To https://github.com/neofytr/Codeforces.git
+   bae652c9..892eb64f  main -> main
+branch 'main' set up to track 'origin/main'.

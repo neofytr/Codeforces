@@ -20,6 +20,24 @@ void solve() {
 		if (rightitr != teachers.begin() + 1 && rightitr != teachers.end()) {
 			auto leftitr = rightitr - 1;
 			int right = *rightitr, left = *leftitr;
+
+			int one = a - left, two = right - a;
+			int delta = min(one, two), omega = max(one, two);
+			int r = (omega - delta) / 2;
+
+			cout << delta + r << endl;
+		}
+
+		if (rightitr == teachers.end()) {
+			int left = *(--rightitr);
+			cout << (n - left) << endl;
+			continue;
+		}
+
+		if (rightitr == teachers.begin() + 1) {
+			int right = *rightitr;
+			cout << right - 1 << endl;
+			continue;
 		}
 	}
 }
