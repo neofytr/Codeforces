@@ -172,3 +172,10 @@ nothing to commit, working tree clean
 To https://github.com/neofytr/Codeforces.git
    bae652c9..892eb64f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9caad1e3] Solved a CF problem
+ 6 files changed, 69 insertions(+), 9 deletions(-)
+ create mode 100644 random/1200/blackCircles.cpp
+ create mode 100644 random/1200/turtleGoodPairs.cpp
+To https://github.com/neofytr/Codeforces.git
+   892eb64f..9caad1e3  main -> main
+branch 'main' set up to track 'origin/main'.
