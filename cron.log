@@ -211,3 +211,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    15617bd4..cfabdfe4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f1c950f3] Practiced CF problems
+ 2 files changed, 42 insertions(+)
+ create mode 100644 random/1300/maxDistToPort.cpp
+To https://github.com/neofytr/Codeforces.git
+   cfabdfe4..f1c950f3  main -> main
+branch 'main' set up to track 'origin/main'.
