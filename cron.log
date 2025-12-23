@@ -276,3 +276,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e4c18f41..60b2465a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6db02196] Solved some problems
+ 5 files changed, 73 insertions(+), 101 deletions(-)
+ create mode 100644 random/1300/monocarpString.cpp
+To https://github.com/neofytr/Codeforces.git
+   60b2465a..6db02196  main -> main
+branch 'main' set up to track 'origin/main'.
