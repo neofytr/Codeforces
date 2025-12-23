@@ -18,7 +18,7 @@ int prev(int r, set<int> &notdone) {
 int next(int r, set<int> &notdone) {
 	auto itr = notdone.upper_bound(r);
 	if (itr == notdone.end())
-		return *itr.begin();
+		return *notdone.begin();
 	return *(itr);
 }
 
@@ -38,10 +38,27 @@ void solve() {
 	int cost = 0;
 	while (notdone.size() > 1) {
 		auto [x, r] = *m.begin();
+		m.erase(m.begin());
 
-		while (arr[next(r, notdone)] <= x)
-			notdone.erase({arr[next(r, notdone)], next(r, notdone)}), r++;
+		int nxt = next(r, notdone);
+		while (arr[nxt] <= x) {
+			cost += x, notdone.erase(nxt), m.erase({arr[nxt], nxt}), nxt = next(r, notdone);
+			if (nxt == r)
+				break;
+		}
+
+		if (notdone.size() > 1) {
+			int prv = prev(r, notdone);
+			while (arr[prv] <= x) {
+				cost += x, notdone.erase(prv), m.erase({arr[prv], prv}), prv = prev(r, notdone);
+				if (prv == r)
+					break;
+			}
+		} else 
+			break;
 	}
+
+	cout << cost << endl;
 }
 
 int32_t main() {

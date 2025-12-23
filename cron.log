@@ -237,3 +237,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ee578447..b267fd18  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9b5862b0] More problems solved
+ 5 files changed, 71 insertions(+), 13 deletions(-)
+ create mode 100644 random/1300/cycleMerging.cpp
+To https://github.com/neofytr/Codeforces.git
+   b267fd18..9b5862b0  main -> main
+branch 'main' set up to track 'origin/main'.
