@@ -255,3 +255,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    398df398..dbdba75d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main c430c109] Solved problem
+ 5 files changed, 134 insertions(+), 28 deletions(-)
+ create mode 100644 random/1300/wrongBinarySearch.cpp
+To https://github.com/neofytr/Codeforces.git
+   dbdba75d..c430c109  main -> main
+branch 'main' set up to track 'origin/main'.
