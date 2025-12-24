@@ -1,52 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long 
+#define int long long
 
 void solve() {
 	int n, x;
 	cin >> n >> x;
+	string s;
+	cin >> s;
 
-	string str;
-	cin >> str;
+	bool wallLeft = false, wallRight = false;
+	for (int i = 0; i < x - 1; i++)
+		if (s[i] == '#') wallLeft = true;
+	for (int i = x; i < n; i++)
+		if (s[i] == '#') wallRight = true;
 
-	vector<int> grid(n + 1);
-	for (int r = 1; r <= n; r++)
-		if (str[r - 1] == '.') grid[r] = 0;
-		else grid[r] = 1;
-
-	// all walls to the left?
-	bool allLeft = true;
-	for (int r = 1; r <= x - 1; r++)
-		if (!g[r]) {
-			allLeft = false;
-			break;
-		} 
-
-	// all walls to the right?
-	bool allRight = true;
-	for (int r = x + 1; r <= n; r++)
-		if (!g[r]) {
-			allRight = false;
-			break;
-		}
-
-	if (allLeft || allRight) {
-		cout << min(x, n - x + 1) << endl;
+	if (!wallLeft || !wallRight) {
+		cout << 1 << "\n";
 		return;
 	}
 
-	set<int> walls;
-	for (int r = 1; r <= n; r++)
-		if (g[r]) walls.insert(r);
+	int leftEmpty = 0;
+	for (int i = x - 2; i >= 0 && s[i] == '.'; i--)
+		leftEmpty++;
+
+	int rightEmpty = 0;
+	for (int i = x; i < n && s[i] == '.'; i++)
+		rightEmpty++;
+
+	cout << max(leftEmpty, rightEmpty) + 1 << "\n";
 }
 
 int32_t main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
 	int t;
 	cin >> t;
-
-	while (t--) {
-		solve();
-	}
+	while (t--) solve();
 	return 0;
 }
