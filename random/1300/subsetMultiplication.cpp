@@ -10,15 +10,19 @@ void solve() {
 	vector<int> b(n + 1);
 	for (int r = 1; r <= n; r++) cin >> b[r];
 	
-	set<int> div;
+	vector<int> div;
 	for (int r = 1; r * r <= b[n]; r++)
-		if (!(b[n] % r))
-			div.insert(r), div.insert(b[n] / r);
+		if (!(b[n] % r)) {
+			int one = r, two = b[n] / r;
+			div.push_back(one);
+			if (one != two) div.push_back(two);
+		}
+	sort(div.begin(), div.end());
 
-	set<pair<int, int>> res;
-	for (int r : div)
-		if (!(b[n - 1] % r))
-			res.insert({r, b[n - 1] / r});
+	for (int d : div) {
+		if (d > b[1]) break;
+		if (b[1] % d) continue;
+	}
 }
 
 int32_t main() {
