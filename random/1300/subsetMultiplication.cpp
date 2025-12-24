@@ -9,42 +9,42 @@ void solve() {
 
 	vector<int> b(n + 1);
 	for (int r = 1; r <= n; r++) cin >> b[r];
-
 	unordered_map<int, int> f;
-	int cnt = 0;
+
 	for (int r = 1; r <= n - 1; r++) {
 		if (b[r + 1] % b[r]) {
-			cnt++;
-			for (int i = 1; i * i <= b[r + 1]; i++)
-				if (!(b[r + 1] % i)) {
-					int one = i;
-					int two = b[r + 1] / i;
-
-					if (!(b[r] % one) && (r == 1 || (r >= 2 && !(one % b[r - 1]))))
-						f[b[r] / one]++;
-					if (one != two && !(b[r] % two) && (r == 1 || (r >= 2 && !(two % b[r - 1]))))
-						f[b[r] / two]++;
+			vector<int> x;
+			for (int i  = 1; i * i <= b[r + 1]; i++)
+				if (!(b[r + 1] % i) && !(b[r] % i)) {
+					x.push_back(i);
+					int k = b[r + 1] / i;
+					if (i != k && !(b[r] % k)) x.push_back(k);
 				}
+
+			for (int e : x)
+				f[e]++;
+		} else {
+			int d = b[r + 1] / b[r];
 		}
-	}
+		
 
-	int x;
-	if (!cnt) {
-		x = 1;
-	}
-
-	for (auto &[e, c] : f) {
-		if (c == cnt) {
-			x = e;
-			break;
-		}
-	}
-
-	for (int r = 1; r <= n - 1; r++)
 		if (b[r + 1] % b[r])
-			cout << b[r] / x << " ";
-		else cout << b[r] << " ";
-	cout << b[n] << endl;
+			for (int e : x)
+				f[b[r] / e]++;
+		else
+			for (int e : x)
+				f[e]++;
+	}	
+
+	vector<int> res;
+	for (auto &[val, cnt] : f) 
+		if (cnt == n - 1) 
+			res.push_back(val);
+	
+	int maxi = LLONG_MIN;
+	for (int e : res)
+		maxi = max(maxi, e);
+	cout << maxi << endl;
 }
 
 int32_t main() {
