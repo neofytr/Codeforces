@@ -20,9 +20,9 @@ void solve() {
 					int one = i;
 					int two = b[r + 1] / i;
 
-					if (!(b[r] % one))
+					if (!(b[r] % one) && (r == 1 || (r >= 2 && !(one % b[r - 1]))))
 						f[b[r] / one]++;
-					if (one != two && !(b[r] % two))
+					if (one != two && !(b[r] % two) && (r == 1 || (r >= 2 && !(two % b[r - 1]))))
 						f[b[r] / two]++;
 				}
 		}
@@ -40,7 +40,11 @@ void solve() {
 		}
 	}
 
-	cout << x << endl;
+	for (int r = 1; r <= n - 1; r++)
+		if (b[r + 1] % b[r])
+			cout << b[r] / x << " ";
+		else cout << b[r] << " ";
+	cout << b[n] << endl;
 }
 
 int32_t main() {

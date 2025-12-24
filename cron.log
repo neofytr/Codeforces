@@ -326,3 +326,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    442bb7ef..f7def714  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 36a256cd] Solved some problems
+ 5 files changed, 91 insertions(+), 41 deletions(-)
+ create mode 100644 random/1300/subsetMultiplication.cpp
+To https://github.com/neofytr/Codeforces.git
+   f7def714..36a256cd  main -> main
+branch 'main' set up to track 'origin/main'.
