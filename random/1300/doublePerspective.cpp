@@ -7,51 +7,44 @@ void solve() {
 	int n;
 	cin >> n;
 
-	vector<pair<int, int>> p(n + 1);
-	for (int r = 1; r <= n; r++) cin >> p[r].first >> p[r].second;
+	vector<pair<int, pair<int, int>>> p(n + 1);
+	for (int i = 1; i <= n; i++) 
+		cin >> p[i].first >> p[i].second.first, p[i].second.second = i;
+	
+	sort(p.begin() + 1, p.end());
+	int left = LLONG_MAX, right = LLONG_MIN;
+	vector<int> res;
+	for (int r = 1; r <= n; r++) {
+		auto [lft, v] = p[r];
+		int rght = v.first, idx = v.second;
+		if (lft == left && right == rght)
+			continue;
 
-	vector<pair<int, int>> first, second;
-	for (int r = 1; r <= n; r++) first.push_back({p[r].first, r}), second.push_back({p[r].second, r});
+		if (rght <= right)
+			continue;
 
-	sort(first.begin(), first.end());
-	vector<pair<int, vector<int>>> res;
-	int left = -1, right = -1;
-	for (int f = 0; f < n; r++) {
-		int idx = first[f].second;
-		left = first[f].first;
-		right = p[idx].second;
-
-		int len = 0;
-		vector<int> indices;
-		while (true) {
-			len += (right - left + 1), indices.push_back(idx);
-			auto itr = lower_bound(first.begin(), first.end(), make_pair(right, 0));
-			if (itr == first.end())
-				break;
-			int t = LLONG_MIN;
-			for (auto it = itr; it != first.end(); ++it) {
-				int tmp = it->second;
-				int l = p[tmp].first, r = p[tmp].second;
-				if (r - l + 1 > t)
-					idx = tmp, left = l, right = r;
-			}
-
+		res.push_back(idx);
+		if (lft < right || lft > right) {
+			left = lft, right = rght;
+			continue;
 		}
 
-		res.push_back({len, indices});
+		if (lft == right)
+			right = rght;
 	}
 
-	sort(res.rbegin(), res.rend());
-	cout << (res.begin())->first;
-	for (int r : (res.begin())->second)
-		cout << r << " ";
+	cout << res.size() << endl;
+	for (int r : res)
+		cout << r << " " ;
 	cout << endl;
 }
 
 int32_t main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
 	int t;
 	cin >> t;
-
 	while (t--) {
 		solve();
 	}
