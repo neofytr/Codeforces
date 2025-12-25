@@ -397,3 +397,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    58c46fa1..71622009  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 03c2ad6c] More problems solved
+ 5 files changed, 53 insertions(+), 11 deletions(-)
+ create mode 100644 random/1300/gellyfish.cpp
+To https://github.com/neofytr/Codeforces.git
+   71622009..03c2ad6c  main -> main
+branch 'main' set up to track 'origin/main'.
