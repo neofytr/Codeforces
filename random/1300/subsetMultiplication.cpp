@@ -1,44 +1,41 @@
-#include <iostream>
-#include <vector>
-#include <numeric>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-long long gcd(long long a, long long b) {
-    return std::gcd(a, b);
-}
-
-long long lcm(long long a, long long b) {
-    if (a == 0 || b == 0) return 0;
-    return (a / gcd(a, b)) * b;
-}
+#define int long long
 
 void solve() {
     int n;
     cin >> n;
-    
-    vector<long long> b(n);
-    for(int i = 0; i < n; i++) {
-        cin >> b[i];
-    }
-    
-    long long ans = 1;
-    
-    for(int i = 0; i < n - 1; i++) {
-        long long necessary_factor = b[i] / gcd(b[i], b[i+1]);
-        ans = lcm(ans, necessary_factor);
-    }
-    
-    cout << ans << endl;
+
+    vector<int> b(n + 1);
+    for (int r = 1; r <= n; r++) cin >> b[r];
+
+    int cnt = 0;
+    unordered_map<int, int> f;
+    for (int r = 1; r <= n - 1; r++)
+        if (b[r + 1] % b[r]) {
+            cnt++;
+            for (int i = 1; i * i <= b[r]; i++) {
+                int one = i, two = b[r] / i;
+                if (!(b[r + 1] % (b[r] / one)))
+                    f[one]++;
+                if (one != two && !(b[r + 1] % (b[r] / two)))
+                    f[two]++;
+            }
+        }
+
+    for (auto &[val, c] : f)
+        if (c == cnt) {
+            cout << val << endl;
+            return;
+        }
 }
 
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    
+int32_t main() {
     int t;
     cin >> t;
-    while(t--) {
+
+    while (t--) {
         solve();
     }
     return 0;
