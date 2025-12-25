@@ -367,3 +367,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    4658eee4..4488baa4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 96e97601] Solved problem
+ 5 files changed, 69 insertions(+), 38 deletions(-)
+ create mode 100644 random/1300/1709.cpp
+To https://github.com/neofytr/Codeforces.git
+   4488baa4..96e97601  main -> main
+branch 'main' set up to track 'origin/main'.
