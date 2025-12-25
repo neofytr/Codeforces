@@ -413,3 +413,13 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0f3efb1a..3d05754f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 77840888] Solved problem
+ 6 files changed, 92 insertions(+)
+ create mode 100644 topicStreamsColinGalen/DP/brokenKeyboard.cpp
+ create mode 100644 topicStreamsColinGalen/DP/fillingShapes.cpp
+ create mode 100755 topicStreamsColinGalen/DP/main
+ create mode 100644 topicStreamsColinGalen/DP/test
+ create mode 100644 topicStreamsColinGalen/DP/vitamins.cpp
+To https://github.com/neofytr/Codeforces.git
+   3d05754f..77840888  main -> main
+branch 'main' set up to track 'origin/main'.

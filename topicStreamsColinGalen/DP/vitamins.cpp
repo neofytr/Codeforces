@@ -2,23 +2,13 @@
 using namespace std;
 
 #define int long long 
-#define A 0
-#define B 1
-#define C 2 
-#define AB 3  
-#define BC 4
-#define CA 5
-#define ABC 6  
 
-
-bool contains_all(const string& s) {
-    return true;
-}
-
-template <typename First, typename... Rest>
-bool contains_all(const string& s, const First& first, const Rest&... rest) {
-    return s.find(first) != npos &&
-           contains_all(s, rest...);
+int getMask(string &f) {
+	int m = 0;
+	if (f.find("A") != f.npos()) m |= 1;
+	if (f.find("B") != f.npos()) m |= 2;
+	if (f.find("C") != f.npos()) m |= 4;
+	return m;
 }
 
 int32_t main() {
@@ -29,8 +19,33 @@ int32_t main() {
 	for (int r = 1; r <= n; r++)
 		cin >> v.first >> v.second;
 
-	vector<int> dp(n + 1, vector<int>(7, -1));
+	// Let 0 <= r < 7
+	// Bit 0 of r represents if A is present or not
+	// Bit 1 of r represents if B is present or not
+	// Bit 2 of r represents if C is present or not
+	// dp[k][r] is the minimum cost of having r in [1, k]
+	vector<int> dp(n + 1, vector<int>(8, LLONG_MAX));
 
-	
-	for (int r = 2; r <= n; r++)
+	int m = getMask(v[1].second);
+	for (int submask = m; submask = (submask - 1) & m;) {
+		if (!submask) {
+			dp[1][submask] = 0;
+			break;		
+		} 
+		dp[submask] = v[1].first;
+	}
+		
+
+	for (int r = 1; r <= n; r++) {
+		int cost = v[r].first;
+		string &f = v[r].second;
+
+		int mask = getMask(f);
+		for (int submask = m; submask = (submask - 1) & m;) {
+			if (!submask) {
+				dp[r][submask] = dp[r - 1][submask];
+				break;
+			}
+		}
+	}
 }
