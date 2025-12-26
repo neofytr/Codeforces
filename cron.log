@@ -466,3 +466,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    361edbfb..4a4cbecc  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 16b2f40c] Solved problem
+ 6 files changed, 52 insertions(+), 5 deletions(-)
+ create mode 100644 topicStreamsColinGalen/DP/threeDisplays.cpp
+To https://github.com/neofytr/Codeforces.git
+   4a4cbecc..16b2f40c  main -> main
+branch 'main' set up to track 'origin/main'.
