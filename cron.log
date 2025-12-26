@@ -455,3 +455,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a75b1fc7..6b1b84a4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 361edbfb] Solved some problems
+ 4 files changed, 35 insertions(+), 3 deletions(-)
+ create mode 100644 topicStreamsColinGalen/DP/almostIdentity.cpp
+To https://github.com/neofytr/Codeforces.git
+   6b1b84a4..361edbfb  main -> main
+branch 'main' set up to track 'origin/main'.

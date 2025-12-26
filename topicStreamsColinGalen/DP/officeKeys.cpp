@@ -1,74 +1,28 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cmath>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-// Function to calculate distance: |person - key| + |key - office|
-long long get_dist(long long person_loc, long long key_loc, long long office_loc) {
-    return abs(person_loc - key_loc) + abs(key_loc - office_loc);
-}
+#define int long long 
+#define dist(a, k) (abs(arr[a] - keys[k]) + abs(keys[k] - p))
 
-// Check if it's possible to match all people within 'time_limit'
-bool can_match(long long time_limit, int n, int k, long long p, 
-               const vector<long long>& a, const vector<long long>& b) {
-    int key_idx = 0;
-    int people_matched = 0;
+int32_t main() {
+	int n, k, p;
+	cin >> n >> k >> p;
 
-    // Iterate through each person
-    for (int i = 0; i < n; i++) {
-        // Find the first key that allows this person to reach office in time
-        while (key_idx < k) {
-            if (get_dist(a[i], b[key_idx], p) <= time_limit) {
-                // Found a valid key for this person
-                people_matched++;
-                key_idx++; // This key is now used
-                break; 
-            }
-            // This key is either too far or invalid for the current person constraints,
-            // move to next key. 
-            // NOTE: Since we sort, we greedily look for the *first* valid key.
-            key_idx++;
-        }
-    }
-    
-    // Success if we matched everyone
-    return people_matched == n;
-}
+	vector<int> arr(n + 1);
+	for (int r = 1; r <= n; r++) cin >> arr[r];
 
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+	vector<int> keys(k + 1);
+	for (int r = 1; r <= k; r++) cin >> keys[r];
 
-    int n, k;
-    long long p;
-    if (!(cin >> n >> k >> p)) return 0;
+	sort(arr.begin() + 1, arr.end());
+	sort(keys.begin() + 1, keys.end());
 
-    vector<long long> a(n);
-    for (int i = 0; i < n; i++) cin >> a[i];
+	// If we place a person arr[r] at some keys[s], then it is 
+	// not optimal for person arr[r + 1] to be placed at keys[j] for j < s
 
-    vector<long long> b(k);
-    for (int i = 0; i < k; i++) cin >> b[i];
+	// dp[s][r] is the minimum time taken by people arr[1, r] to reach 
+	// the office when key[s] has been assigned to arr[r]
+	vector<vector<int>> dp(k + 1, vector<int>(n + 1, LLONG_MAX));
 
-    sort(a.begin(), a.end());
-    sort(b.begin(), b.end());
-
-    // Binary search for the minimum time
-    long long low = 0, high = 2e9 + 7; // Sufficiently large range
-    long long ans = high;
-
-    while (low <= high) {
-        long long mid = low + (high - low) / 2;
-        if (can_match(mid, n, k, p, a, b)) {
-            ans = mid;
-            high = mid - 1; // Try smaller time
-        } else {
-            low = mid + 1; // Need more time
-        }
-    }
-
-    cout << ans << endl;
-
-    return 0;
+	cout << dp[n][k] << endl;
 }
