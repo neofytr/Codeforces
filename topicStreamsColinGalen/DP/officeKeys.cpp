@@ -20,9 +20,17 @@ int32_t main() {
 	// If we place a person arr[r] at some keys[s], then it is 
 	// not optimal for person arr[r + 1] to be placed at keys[j] for j < s
 
-	// dp[s][r] is the minimum time taken by people arr[1, r] to reach 
-	// the office when key[s] has been assigned to arr[r]
-	vector<vector<int>> dp(k + 1, vector<int>(n + 1, LLONG_MAX));
+	// dp[r][s] is the minimum time taken by people arr[1, r] to reach 
+	// the office using keys[1, s]
+	vector<vector<int>> dp(n + 1, vector<int>(k + 1, LLONG_MAX));
+
+	for (int s = 1; s <= k; s++)
+		dp[1][s] = min(dp[1][s - 1], dist(1, s));
+	for (int r = 2; r <= n; r++)
+		for (int s = 1; s <= k; s++)
+			if (s >= r)
+				dp[r][s] = min(max(dist(r, s), dp[r - 1][s - 1]), dp[r][s - 1]);
+	
 
 	cout << dp[n][k] << endl;
 }
