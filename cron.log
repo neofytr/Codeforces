@@ -428,3 +428,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    77840888..5cfd111a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main de91f7f5] Solved some problems
+ 5 files changed, 46 insertions(+), 37 deletions(-)
+ create mode 100644 topicStreamsColinGalen/DP/lectureSleep.cpp
+To https://github.com/neofytr/Codeforces.git
+   5cfd111a..de91f7f5  main -> main
+branch 'main' set up to track 'origin/main'.
