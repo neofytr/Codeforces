@@ -434,3 +434,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    5cfd111a..de91f7f5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 768e085b] Solved a few problems
+ 5 files changed, 33 insertions(+), 7 deletions(-)
+ create mode 100644 topicStreamsColinGalen/DP/officeKeys.cpp
+To https://github.com/neofytr/Codeforces.git
+   de91f7f5..768e085b  main -> main
+branch 'main' set up to track 'origin/main'.
