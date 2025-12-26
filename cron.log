@@ -477,3 +477,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    16b2f40c..576b15d6  main -> main
 branch 'main' set up to track 'origin/main'.
+[main baddc054] More problems solved
+ 3 files changed, 71 insertions(+), 3 deletions(-)
+ create mode 100644 topicStreamsColinGalen/DP/mikeAndFun.cpp
+To https://github.com/neofytr/Codeforces.git
+   576b15d6..baddc054  main -> main
+branch 'main' set up to track 'origin/main'.

@@ -13,28 +13,25 @@ int32_t main() {
 		for (int c = 1; c <= m; c++)
 			cin >> mat[r][c];
 
-	vector<vector<bool>> hasStart(n + 1, vector<bool>(m + 1, false));
-	vector<vector<int>> lenStart(n + 1, vector<int>(m + 1, 0));
-	vector<vector<bool>> hasEnd(n + 1, vector<bool>(m + 1, false));
-	vector<vector<int>> lenEnd(n + 1, vector<int>(m + 1, 0));
-	vector<set<pair<int, int>>> starting(n + 1);
-	vector<set<pair<int, int>>> ending(n + 1);
+	set<pair<int, pair<int, int>>> s;
+	vector<vector<pair<int, int>>> where(n + 1, vector<pair<int, int>>(m + 1, {-1, -1}));
 	for (int r = 1; r <= n; r++) {
 		vector<int> &v = mat[r];
-		int i = 1, j = 1;
 
-		while (i <= m) {
+		int i = 1, j = 1;
+		while (i <= j) {
 			if (!v[i]) {
 				i++;
 				continue;
 			}
 
-			j = i;
 			while (j <= m && v[j])
 				j++;
 
-			hasStart[r][i] = true, starting[r].insert({j - i, i}), lenStart[r][i] = j - i;
-			hasEnd[r][j - 1] = true, ending[r].insert({j - i, j - 1}), lenEnd[r][j - 1] = j - i;
+			int len = j - i, start = i;
+			for (int k = i; k < j; k++)
+				where[r][k] = {start, len};
+			s.insert({len, {r, i}});
 			j = i;
 		}
 	}
@@ -42,14 +39,5 @@ int32_t main() {
 	int i, j;
 	while (q--) {
 		cin >> i >> j;
-
-		if (!mat[i][j]) {
-			if (j >= 2 && hasEnd[i][j - 1]) {
-				int lenend = lenEnd[i][j - 1];
-
-			}
-		}
-			
-		
 	}
 }
