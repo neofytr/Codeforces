@@ -14,31 +14,17 @@ int32_t main() {
 	vector<int> keys(k + 1);
 	for (int r = 1; r <= k; r++) cin >> keys[r];
 
-	// dp[r][s] is the minimum time needed for all of the people
-	// in arr[1, r] to reach the office using the keys in keys[1, s]
-	// with the last person using the key s
+	sort(arr.begin() + 1, arr.end());
+	sort(keys.begin() + 1, keys.end())
 	vector<vector<int>> dp(n + 1, vector<int>(k + 1, LLONG_MAX));
-
-	// hp[r][s] is the minimum time needed for all of the people in
-	// arr[1, r] to reach the office using the keys in keys[1, s]
-	vector<vector<int>> hp(n + 1, vector<int>(k + 1, LLONG_MAX));
 	for (int s = 1; s <= k; s++)
-		dp[1][s] = dist(1, s);
+		dp[1][s] = min(dp[1][s - 1], dist(1, s));
 
-	hp[1][1] = dp[1][1];
-	for (int s = 2; s <= k; s++)
-		hp[1][s] = min(hp[1][s - 1], dp[1][s]);
-
-	for (int r = 2; r <= n; r++) 
-		for (int s = 1; s <= k; s++) 
-			if (s >= r) {
-				dp[r][s] = dist(r, s) + hp[r - 1][s - 1];
-				hp[r][s] = min(hp[r][s - 1], dp[r][s]);
-			}
-
-	for (int r = 1; r <= n; r++)
+	for (int r = 2; r <= n; r++)
 		for (int s = 1; s <= k; s++)
-			cout << "dp[" << r << "][" << s << "] = " << dp[r][s] << endl;
-	
-	cout << hp[n][k] << endl;
+			if (s >= r)
+				for (int m = r - 1; m <= s - 1; m++)
+					dp[r][s] = min(dp[r][s], dp[r - 1][m] + dist(r, m + 1));
+
+	cout << dp[n][k] << endl;
 }
