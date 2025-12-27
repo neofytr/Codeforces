@@ -804,4 +804,6 @@ add_executable(Codeforces
         topicStreamsColinGalen/DP/makmosh.cpp
         random/1300/coloringGame.cpp
         random/1300/sumdamental.cpp
+        random/1300/mexGrid.cpp
+        random/1300/interestingRatio.cpp
 )
