@@ -800,4 +800,7 @@ add_executable(Codeforces
         random/leapingTak.cpp
         random/encryptingMessages.cpp
         random/1300/helga.cpp
+        random/1300/threeDisplays.cpp
+        random/1300/mashmokh.cpp
+        random/1300/mashmokh.h
 )
