@@ -525,3 +525,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    8d2bc10b..0d961ac7  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 18869b2e] Solved a CF problem
+ 7 files changed, 57 insertions(+), 53 deletions(-)
+ create mode 100644 random/1300/mashmokh.cpp
+ create mode 100644 random/1300/threeDisplays.cpp
+To https://github.com/neofytr/Codeforces.git
+   0d961ac7..18869b2e  main -> main
+branch 'main' set up to track 'origin/main'.
