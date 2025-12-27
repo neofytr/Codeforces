@@ -513,3 +513,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    98c3ea35..f19fdfda  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8d2bc10b] Practiced CF problems
+ 4 files changed, 57 insertions(+), 2 deletions(-)
+ create mode 100644 random/1300/helga.cpp
+ create mode 100644 topicStreamsColinGalen/DP/helga.cpp
+To https://github.com/neofytr/Codeforces.git
+   f19fdfda..8d2bc10b  main -> main
+branch 'main' set up to track 'origin/main'.
