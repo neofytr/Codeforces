@@ -555,3 +555,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    fc1a853b..28cf8306  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e0bc6b4a] Solved problem
+ 6 files changed, 94 insertions(+), 13 deletions(-)
+ create mode 100644 random/1300/interestingRatio.cpp
+ create mode 100644 random/1300/mexGrid.cpp
+To https://github.com/neofytr/Codeforces.git
+   28cf8306..e0bc6b4a  main -> main
+branch 'main' set up to track 'origin/main'.
