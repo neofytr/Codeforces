@@ -801,6 +801,7 @@ add_executable(Codeforces
         random/encryptingMessages.cpp
         random/1300/helga.cpp
         random/1300/threeDisplays.cpp
-        random/1300/mashmokh.cpp
-        random/1300/mashmokh.h
+        topicStreamsColinGalen/DP/makmosh.cpp
+        random/1300/coloringGame.cpp
+        random/1300/sumdamental.cpp
 )
