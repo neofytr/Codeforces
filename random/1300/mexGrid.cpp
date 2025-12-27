@@ -53,6 +53,7 @@ void solve() {
             cout << mat[r][c] << " ";
         cout << endl;
     }
+    cout << endl;
 }
 
 int32_t main() {
