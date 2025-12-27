@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.31.6)
 project(Codeforces)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -725,7 +725,6 @@ add_executable(Codeforces
         random/friends.cpp
         random/strange.cpp
         numberTheory/algos/code.cpp
-        random/test.cpp
         contests/DivTwo/182/a.cpp
         contests/DivTwo/182/b.cpp
         contests/DivTwo/182/c.cpp
@@ -800,4 +799,5 @@ add_executable(Codeforces
         random/gregAndArray.cpp
         random/leapingTak.cpp
         random/encryptingMessages.cpp
+        random/1300/helga.cpp
 )
