@@ -537,3 +537,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    18869b2e..7b3f598e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main add10fdd] Solved a CF problem
+ 9 files changed, 109 insertions(+), 5 deletions(-)
+ create mode 100644 random/1300/coloringGame.cpp
+ create mode 100644 random/1300/sumdamental.cpp
+ create mode 100644 topicStreamsColinGalen/DP/makmosh.cpp
+To https://github.com/neofytr/Codeforces.git
+   7b3f598e..add10fdd  main -> main
+branch 'main' set up to track 'origin/main'.
