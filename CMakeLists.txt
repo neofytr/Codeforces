@@ -808,4 +808,5 @@ add_executable(Codeforces
         random/1300/interestingRatio.cpp
         random/1300/disappearingPerm.cpp
         random/1300/arrayRecoloring.cpp
+        random/1300/boardingQueue.cpp
 )
