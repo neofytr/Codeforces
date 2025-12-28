@@ -30,16 +30,20 @@ int32_t main() {
         for (int i = 0; i < 4; i++) {
             int nrow = x + dr[i], ncol = y + dc[i];
             if (nrow >= 1 && nrow <= r && ncol >= 1 && ncol <= c) {
+                if (!mat[nrow][ncol])
+                    continue;
                 int elt = mat[nrow][ncol] + d;
-                if (elt <= n)
+                if (elt <= n) {
                     cnt[elt] = true;
+                }
             }
         }
 
         for (int i = 0; i < 4; i++) {
             int nrow = x + dr[i], ncol = y + dc[i];
             if (nrow >= 1 && nrow <= r && ncol >= 1 && ncol <= c && mat[nrow][ncol] == mat[x][y] - 1) {
-                que.push({nrow, ncol});
+                if (mat[nrow][ncol])
+                    que.push({nrow, ncol});
             }
         }
         d++;
@@ -47,7 +51,8 @@ int32_t main() {
 
     int num = 0;
     for (int r = 1; r <= n; r++)
-        if (cnt[r]) num++;
+        if (cnt[r])
+            num++;
 
     cout << num << "/" << n - 1 << endl;
     return 0;
