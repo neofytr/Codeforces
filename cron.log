@@ -616,3 +616,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a963bf7b..6ee95c46  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b9453c56] Solved some problems
+ 6 files changed, 86 insertions(+), 4 deletions(-)
+ create mode 100644 random/1300/skibidusFanumTax2.cpp
+To https://github.com/neofytr/Codeforces.git
+   6ee95c46..b9453c56  main -> main
+branch 'main' set up to track 'origin/main'.

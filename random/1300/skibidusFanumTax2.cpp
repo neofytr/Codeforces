@@ -3,49 +3,35 @@ using namespace std;
 
 #define int long long
 
-void solve() {
+void solve(int t) {
     int n, m;
     cin >> n >> m;
 
-    vector<int> a(n + 1), b(m + 1);
+    vector<int> a(n + 1);
     for (int r = 1; r <= n; r++)
         cin >> a[r];
-    for (int r = 1; r <= m; r++)
-        cin >> b[r];
 
     set<int> s;
-    vector<vector<int>> dp(n + 1, vector<int>(2, -1));
-    dp[1][0] = a[1], dp[1][1] = b[1] - a[1];
-    s.insert(b[1]);
+    int val;
+    for (int r = 1; r <= m; r++)
+        cin >> val, s.insert(val);
+
+    // dp[r] is the minimum value possible on the rth place
+    // it is always optimal to set an element to its minimum possible value that will make the
+    // array non-decreasing
+    vector<int> dp(n + 1, LLONG_MAX);
+    dp[1] = min(a[1], *s.begin() - a[1]);
     for (int r = 2; r <= n; r++) {
-        if (dp[r - 1][0] != -1 && a[r] >= a[r - 1])
-            dp[r][0] = a[r];
+        const int prev = dp[r - 1];
+        if (a[r] >= prev)
+            dp[r] = a[r];
+        if (auto itr = s.lower_bound(prev + a[r]); itr != s.end() && *itr - a[r] >= prev)
+            dp[r] = min(dp[r], *itr - a[r]);
 
-        if (dp[r - 1][0] != -1 && a[r] < a[r - 1]) {
-            auto itr = s.lower_bound(a[r - 1] + a[r]);
-            if (itr != s.end()) {
-                dp[r][1] = *itr - a[r];
-            }
-        }
-
-        if (dp[r - 1][1] != -1 && a[r] >= dp[r - 1][1])
-            dp[r][0] = a[r];
-        if (dp[r - 1][1] != -1 && a[r] < dp[r - 1][1]) {
-            auto itr = s.lower_bound(dp[r - 1][1] + a[r]);
-            if (itr != s.end()) {
-                if (dp[r][1] == -1)
-                    dp[r][1] = *itr - dp[r - 1][1];
-                else
-                    dp[r][1] = min(dp[r][1], *itr - dp[r - 1][1]);
-            }
-        }
-
-        if (dp[r][0] == -1 && dp[r][1] == -1) {
+        if (dp[r] == LLONG_MAX) {
             cout << "NO\n";
             return;
         }
-
-        s.insert(b[r]);
     }
 
     cout << "YES\n";
@@ -55,8 +41,8 @@ int32_t main() {
     int t;
     cin >> t;
 
-    while (t--) {
-        solve();
+    for (int r = 1; r <= t; r++) {
+        solve(r);
     }
     return 0;
 }
