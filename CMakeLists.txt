@@ -811,4 +811,5 @@ add_executable(Codeforces
         random/1300/boardingQueue.cpp
         random/1300/wizards.cpp
         random/1300/skibidusFanumTax2.cpp
+        random/dp/raeTaylorHard.cpp
 )
