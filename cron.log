@@ -578,3 +578,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1615544b..01e85457  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b203d0e2] Solved some problems
+ 5 files changed, 51 insertions(+), 5 deletions(-)
+ create mode 100644 random/1300/arrayRecoloring.cpp
+To https://github.com/neofytr/Codeforces.git
+   01e85457..b203d0e2  main -> main
+branch 'main' set up to track 'origin/main'.
