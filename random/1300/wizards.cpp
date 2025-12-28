@@ -14,7 +14,7 @@ void solve() {
     vector<vector<int>> inv(n + 1, vector<int>(n + 1, 0));
     for (int l = 1; l <= n; l++)
         for (int r = l + 1; r <= n; r++)
-            inv[l][r] += inv[l][r - 1] + (arr[l] > arr[r] ? 1 : 0);
+            inv[l][r] += inv[l][r - 1] + (arr[l] > arr[r] ? 1 : 0) + (arr[r] > arr[l] ? -1 : 0);
 
     int lmax = -1, rmax = -1;
     int maxi = 0;

@@ -610,3 +610,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    db13a9ca..a963bf7b  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6ee95c46] Worked on Codeforces problems
+ 6 files changed, 60 insertions(+), 7 deletions(-)
+ create mode 100644 random/1300/wizards.cpp
+To https://github.com/neofytr/Codeforces.git
+   a963bf7b..6ee95c46  main -> main
+branch 'main' set up to track 'origin/main'.
