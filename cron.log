@@ -627,3 +627,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b9453c56..ab7d09a6  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 2016cd14] Solved problem
+ 5 files changed, 61 insertions(+)
+ create mode 100755 random/dp/main
+ create mode 100644 random/dp/raeTaylorHard.cpp
+ create mode 100644 random/dp/test
+To https://github.com/neofytr/Codeforces.git
+   ab7d09a6..2016cd14  main -> main
+branch 'main' set up to track 'origin/main'.
