@@ -5,38 +5,60 @@ using namespace std;
 #define MAX 5000
 
 int arr[MAX + 1];
+int dp[MAX + 1][MAX + 1];
 
 void solve() {
     int n, k;
     cin >> n >> k;
 
-    vector<int> arr(n + 1, 0);
-    vector<pair<int, int>> s;
-    for (int r = 1; r <= n; r++)
-        cin >> arr[r], s.push_back({arr[r], r});
+    for (int r = 1; r <= n; r++) cin >> arr[r];
 
-    int sum = 0;
-    sort(s.rbegin(), s.rend());
-    vector<int> idx;
-    for (int r = 0; r < k; r++)
-        idx.push_back(s[r].second), sum += s[r].first;
-
-    int j = 0, maxi = LLONG_MIN;
-    sort(idx.begin(), idx.end());
-
-    int start = 1;
-    if (idx[0] == 1) start = 2 , j = 1;
-    while (start <= n) {
-        int end = start;
-        while (end <= n && end < idx[j]) end++;
-        if (start != idx[j]) maxi = max(maxi, arr[start]);
-        if (end != start) maxi = max(maxi, arr[end]);
-
-        start = idx[j] + 1;
-        j++;
+    vector<vector<int>> left(n + 1), right(n + 1);
+    for (int l = 2; l <= n; l++) {
+        left[l] = left[l - 1];
+        left[l].push_back(arr[l - 1]);
+        sort(left[l].begin(), left[l].end());
     }
 
-    cout << maxi + sum << endl;
+    for (int r = n - 1; r >= 1; r--) {
+        right[r] = right[r + 1];
+        right[r].push_back(arr[r + 1]);
+        sort(right[r].begin(), right[r].end());
+    }
+
+    vector<vector<int>> leftm(n + 1);
+    for (int l = 2; l <= n; l++) {
+        vector<int> &v = left[l];
+        vector<int> &p = leftm[l];
+        const int sz = (int)v.size();
+
+        p.resize(sz + 1, 0);
+        for (int i = 1; i <= sz; i++)
+            p[i] += p[i - 1] + v[i - 1];
+    }
+
+    vector<vector<int>> rightm(n + 1);
+    for (int r = n - 1; r >= 1; r--) {
+        vector<int> &v = right[r];
+        vector<int> &p = rightm[r];
+        const int sz = (int)v.size();
+
+        p.resize(sz + 1, 0);
+        for (int i = 1; i <= sz; i++)
+            p[i] += p[i - 1] + v[i - 1];
+    }
+
+    int maxi = LLONG_MIN;
+    for (int i = 2; i <= n - 1; i++) {
+        // We select i as the last element
+        for (int l = 1; l <= k - 1; l++) {
+            const int r = k - l;
+            maxi = max(leftm[i][l] + rightm[i][r] + arr[i], maxi);
+        }
+    }
+
+    maxi = max(leftm[1][k] + arr[1], arr[n] + rightm[n][k]);
+    cout << maxi << endl;
 }
 
 int32_t main() {
