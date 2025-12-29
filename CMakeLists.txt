@@ -822,4 +822,6 @@ add_executable(Codeforces
         random/dp/mukhammadaliSmooth.cpp
         random/dp/twoSubstrings.cpp
         random/dp/vacations.cpp
+        random/dp/dreamoonWifi.cpp
+        random/dp/iHate1111.cpp
 )
