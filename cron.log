@@ -715,3 +715,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0a27afda..f8c04ea8  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 394d0739] Practiced CF problems
+ 7 files changed, 115 insertions(+), 4 deletions(-)
+ create mode 100644 random/dp/dreamoonWifi.cpp
+ create mode 100644 random/dp/iHate1111.cpp
+To https://github.com/neofytr/Codeforces.git
+   f8c04ea8..394d0739  main -> main
+branch 'main' set up to track 'origin/main'.
