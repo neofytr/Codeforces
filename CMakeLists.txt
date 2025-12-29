@@ -819,4 +819,5 @@ add_executable(Codeforces
         random/dp/givenLengthSumDigits.cpp
         random/dp/kuriyamaMirai.cpp
         random/dp/flippingGame.cpp
+        random/dp/mukhammadaliSmooth.cpp
 )

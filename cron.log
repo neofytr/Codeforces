@@ -660,3 +660,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    71f93d0d..613ae527  main -> main
 branch 'main' set up to track 'origin/main'.
+[main bf627859] Practiced CF problems
+ 8 files changed, 149 insertions(+), 13 deletions(-)
+ create mode 100644 random/dp/flippingGame.cpp
+ create mode 100644 random/dp/kuriyamaMirai.cpp
+To https://github.com/neofytr/Codeforces.git
+   613ae527..bf627859  main -> main
+branch 'main' set up to track 'origin/main'.

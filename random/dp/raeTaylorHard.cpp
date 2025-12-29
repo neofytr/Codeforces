@@ -29,8 +29,8 @@ void solve() {
                     tmp.push_back(*it), done.insert(p[*it]);
 
             for (int e : tmp) {
-                if (idx[e] != idx[r])
-                    edges.push_back({idx[r], idx[e]});
+                if (p[e] != r)
+                    edges.push_back({r, p[e]});
                 leftidx.erase(e);
             }
             continue;
@@ -42,14 +42,16 @@ void solve() {
             return;
         }
 
+        edges.push_back({r, *it});
+
         for (it = itr; it != leftidx.end(); ++it) {
             if (p[*it] >= r)
                 done.insert(p[*it]), tmp.push_back(*it);
         }
 
         for (int e : tmp) {
-            if (idx[e] != idx[r])
-                edges.push_back({idx[r], idx[e]});
+            if (p[e] != r)
+                edges.push_back({r, p[e]});
             leftidx.erase(e);
         }
     }
