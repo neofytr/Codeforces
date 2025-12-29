@@ -821,4 +821,5 @@ add_executable(Codeforces
         random/dp/flippingGame.cpp
         random/dp/mukhammadaliSmooth.cpp
         random/dp/twoSubstrings.cpp
+        random/dp/vacations.cpp
 )
