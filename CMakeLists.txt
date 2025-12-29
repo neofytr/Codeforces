@@ -813,4 +813,6 @@ add_executable(Codeforces
         random/1300/skibidusFanumTax2.cpp
         random/dp/raeTaylorHard.cpp
         random/dp/monopati.cpp
+        random/dp/cutRibbon.cpp
+        random/dp/boredom.cpp
 )
