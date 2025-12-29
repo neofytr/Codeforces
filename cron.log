@@ -683,3 +683,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6bac76fb..48388de4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 2628c840] Worked on Codeforces problems
+ 6 files changed, 69 insertions(+), 31 deletions(-)
+ create mode 100644 random/dp/twoSubstrings.cpp
+To https://github.com/neofytr/Codeforces.git
+   48388de4..2628c840  main -> main
+branch 'main' set up to track 'origin/main'.
