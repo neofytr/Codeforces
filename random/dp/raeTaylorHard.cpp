@@ -15,6 +15,8 @@ void solve() {
     for (int r = 1; r <= n; r++)
         leftidx.insert(r);
 
+    vector<pair<int, int>> edges;
+
     for (int r = 1; r <= n; r++) {
         vector<int> tmp;
         auto itr = leftidx.find(idx[r]);
@@ -26,8 +28,11 @@ void solve() {
                 if (p[*it] >= r)
                     tmp.push_back(*it), done.insert(p[*it]);
 
-            for (int e : tmp)
+            for (int e : tmp) {
+                if (idx[e] != idx[r])
+                    edges.push_back({idx[r], idx[e]});
                 leftidx.erase(e);
+            }
             continue;
         }
 
@@ -42,11 +47,16 @@ void solve() {
                 done.insert(p[*it]), tmp.push_back(*it);
         }
 
-        for (int e : tmp)
+        for (int e : tmp) {
+            if (idx[e] != idx[r])
+                edges.push_back({idx[r], idx[e]});
             leftidx.erase(e);
+        }
     }
 
     cout << "YES\n";
+    for (auto &[u, v] : edges)
+        cout << u << " " << v << endl;
 }
 
 int32_t main() {

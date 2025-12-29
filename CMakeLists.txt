@@ -817,4 +817,6 @@ add_executable(Codeforces
         random/dp/boredom.cpp
         random/dp/bersuBall.cpp
         random/dp/givenLengthSumDigits.cpp
+        random/dp/kuriyamaMirai.cpp
+        random/dp/flippingGame.cpp
 )
