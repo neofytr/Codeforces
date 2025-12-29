@@ -667,3 +667,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    613ae527..bf627859  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3a090b2e] CF grind
+ 5 files changed, 42 insertions(+), 4 deletions(-)
+ create mode 100644 random/dp/mukhammadaliSmooth.cpp
+To https://github.com/neofytr/Codeforces.git
+   bf627859..3a090b2e  main -> main
+branch 'main' set up to track 'origin/main'.
