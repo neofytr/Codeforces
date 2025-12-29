@@ -648,3 +648,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b46a582b..e568653c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 71f93d0d] Practiced CF problems
+ 6 files changed, 51 insertions(+), 11 deletions(-)
+ create mode 100644 random/dp/bersuBall.cpp
+To https://github.com/neofytr/Codeforces.git
+   e568653c..71f93d0d  main -> main
+branch 'main' set up to track 'origin/main'.
