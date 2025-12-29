@@ -815,4 +815,5 @@ add_executable(Codeforces
         random/dp/monopati.cpp
         random/dp/cutRibbon.cpp
         random/dp/boredom.cpp
+        random/dp/bersuBall.cpp
 )

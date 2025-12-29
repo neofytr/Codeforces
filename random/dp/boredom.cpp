@@ -2,23 +2,24 @@
 using namespace std;
 
 #define int long long
+#define MAX (int)(1e5)
+
+int dp[MAX + 1];
+int cnt[MAX + 1];
 
 int32_t main() {
     int n;
     cin >> n;
 
-    vector<int> arr(n + 1);
+    int v, maxi = LLONG_MIN;
     for (int r = 1; r <= n; r++)
-        cin >> arr[r];
-
-    map<int, int> f;
-    for (int r = 1; r <= n; r++)
-        f[arr[r]]++;
-
-    int sz = (int)f.size();
-    vector<int> dp(sz + 1, 0);
+        cin >> v, cnt[v]++, maxi = max(maxi, v);
 
     dp[0] = 0;
-    dp[1] = (f.begin())->first * (f.begin())->second;
+    dp[1] = 1 * cnt[1];
+    for (int r = 2; r <= MAX; r++)
+        dp[r] = max(r * cnt[r] + dp[r - 2], dp[r - 1]);
+
+    cout << dp[maxi] << endl;
     return 0;
 }
