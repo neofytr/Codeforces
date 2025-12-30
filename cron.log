@@ -741,3 +741,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    96cbd587..9fbc0435  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b3e286f5] Solved problem
+ 6 files changed, 57 insertions(+), 40 deletions(-)
+ create mode 100644 random/dp/justEatIt.cpp
+ create mode 100644 random/dp/kTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   9fbc0435..b3e286f5  main -> main
+branch 'main' set up to track 'origin/main'.
