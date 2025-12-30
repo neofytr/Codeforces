@@ -828,4 +828,6 @@ add_executable(Codeforces
         random/dp/basketballExercise.cpp
         random/dp/woodcutters.cpp
         random/dp/findDifferent.cpp
+        random/dp/kTree.cpp
+        random/dp/justEatIt.cpp
 )

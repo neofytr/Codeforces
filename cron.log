@@ -734,3 +734,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    5e165e1d..96cbd587  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9fbc0435] Worked on Codeforces problems
+ 7 files changed, 142 insertions(+), 8 deletions(-)
+ create mode 100644 random/dp/findDifferent.cpp
+ create mode 100644 random/dp/woodcutters.cpp
+To https://github.com/neofytr/Codeforces.git
+   96cbd587..9fbc0435  main -> main
+branch 'main' set up to track 'origin/main'.
