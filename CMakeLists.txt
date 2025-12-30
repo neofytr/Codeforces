@@ -830,4 +830,5 @@ add_executable(Codeforces
         random/dp/findDifferent.cpp
         random/dp/kTree.cpp
         random/dp/justEatIt.cpp
+        random/dp/oracAndModels.cpp
 )
