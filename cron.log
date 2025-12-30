@@ -763,3 +763,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    37c3580d..219db7fa  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b819ea9c] Practiced CF problems
+ 3 files changed, 40 insertions(+)
+ create mode 100644 random/dp/oracAndModels.cpp
+To https://github.com/neofytr/Codeforces.git
+   219db7fa..b819ea9c  main -> main
+branch 'main' set up to track 'origin/main'.

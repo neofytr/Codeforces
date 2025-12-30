@@ -831,4 +831,7 @@ add_executable(Codeforces
         random/dp/kTree.cpp
         random/dp/justEatIt.cpp
         random/dp/oracAndModels.cpp
+        random/dp/strangeBirthdayParty.cpp
+        random/dp/yetAnother.cpp
+        random/dp/potions.cpp
 )
