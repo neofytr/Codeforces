@@ -5,6 +5,7 @@ using namespace std;
 #define MAX (int)(2 * 1e5)
 
 int arr[MAX + 1];
+int dp[MAX + 1][2];
 
 void solve() {
     int n;
@@ -12,6 +13,10 @@ void solve() {
 
     for (int r = 1; r <= n; r++)
         cin >> arr[r];
+
+    for (int r = 2; r <= n; r++) {
+        
+    }
 }
 
 int32_t main() {
