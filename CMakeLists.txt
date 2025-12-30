@@ -826,4 +826,6 @@ add_executable(Codeforces
         random/dp/iHate1111.cpp
         random/dp/goodSubarrays.cpp
         random/dp/basketballExercise.cpp
+        random/dp/woodcutters.cpp
+        random/dp/findDifferent.cpp
 )

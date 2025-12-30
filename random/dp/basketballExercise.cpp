@@ -6,8 +6,7 @@ using namespace std;
 
 int H1[N + 1];
 int H2[N + 1];
-int dp[N + 1][2];
-int mp[N + 1];
+int dp[N + 1][3];
 
 int32_t main() {
     int n;
@@ -18,12 +17,13 @@ int32_t main() {
     for (int r = 1; r <= n; r++)
         cin >> H2[r];
 
-    dp[1][0] = H1[1], dp[1][1] = H2[1];
+    dp[1][0] = H1[1], dp[1][1] = H2[1], dp[1][2] = 0;
     for (int r = 2; r <= n; r++) {
-        dp[r][0] = H1[r] + dp[r - 1][1];
-        dp[r][1] = H2[r] + dp[r - 1][0];
+        dp[r][0] = H1[r] + max(dp[r - 1][1], dp[r - 1][2]);
+        dp[r][1] = H2[r] + max(dp[r - 1][0], dp[r - 1][2]);
+        dp[r][2] = max(dp[r - 1][0], max(dp[r - 1][1], dp[r - 1][2]));
     }
 
-    cout << max(dp[n][0], dp[n][1]) << endl;
+    cout << max(dp[n][0], max(dp[n][1], dp[n][2])) << endl;
     return 0;
 }
