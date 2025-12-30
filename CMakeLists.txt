@@ -834,4 +834,5 @@ add_executable(Codeforces
         random/dp/strangeBirthdayParty.cpp
         random/dp/yetAnother.cpp
         random/dp/potions.cpp
+        random/dp/groupingIncreases.cpp
 )

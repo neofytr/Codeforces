@@ -769,3 +769,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    219db7fa..b819ea9c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0fbac190] Solved problem
+ 8 files changed, 117 insertions(+), 8 deletions(-)
+ create mode 100644 random/dp/potions.cpp
+ create mode 100644 random/dp/strangeBirthdayParty.cpp
+ create mode 100644 random/dp/yetAnother.cpp
+To https://github.com/neofytr/Codeforces.git
+   b819ea9c..0fbac190  main -> main
+branch 'main' set up to track 'origin/main'.
