@@ -835,4 +835,6 @@ add_executable(Codeforces
         random/dp/yetAnother.cpp
         random/dp/potions.cpp
         random/dp/groupingIncreases.cpp
+        random/dp/mortalKombatTower.cpp
+        random/dp/tetrahedron.cpp
 )

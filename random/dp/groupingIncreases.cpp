@@ -21,14 +21,33 @@ void solve() {
     cin >> n;
 
     for (int r = 1; r <= n; r++)
+        arr[r] = p[r] = dp[r] = 0;
+
+    for (int r = 1; r <= n; r++)
         cin >> arr[r];
 
     p[0] = p[1] = 0;
     for (int r = 2; r <= n; r++)
-        p[r] += p[r - 1] + (arr[r] > arr[r - 1] ? 1 : 0);
+        p[r] = p[r - 1] + (arr[r] > arr[r - 1] ? 1 : 0);
 
-    for (int r = 1; r <= n; r++)
-        cout << p[r] << endl;
+    // (dp[k] + p[r - 1] - p[k]) for 0 <= k <= r - 1
+    // dp[r] is the minimum possible total score for the array [1, r]
+    set<pair<int, int>, cmp> s;
+    dp[0] = dp[1] = 0;
+    s.insert({dp[0] - p[0], LLONG_MAX});
+    s.insert({dp[1] - p[1], arr[1]});
+    for (int r = 2; r <= n; r++) {
+        cout << r << endl;
+        for (auto &[e, m] : s)
+            cout << e << " " << m << endl;
+        cout << endl;
+        auto [v, elt] = *s.begin();
+        dp[r] = p[r - 1] + v + (arr[r] > elt ? 1 : 0);
+        s.erase({v, elt});
+        s.insert({dp[r] - p[r], arr[r]});
+    }
+
+    cout << dp[n] << endl;
 }
 
 int32_t main() {
