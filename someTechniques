@@ -175,3 +175,27 @@ or
 Then, it is not optimal to assign in a crossed manner, i.e, 
 
 If we assign B[j] to some A[r], then, it is not optimal to assign A[r + 1] to any B[s] for s < j
+
+19. Chicken McNugget Theorem
+
+If you have two positive integers a and b that are coprime (that is, gcd(a, b) = 1), then, the largest
+integer that cannot be written in the form ax + by, where x and y are non-negative integers, is ab - a - b
+After this number, every larger number is representable
+
+20.
+
+Let f(x) = 11...1 (total of x ones)
+Then, for any x >= 2, f(x) = 11 * a + 111 * b for some non-negative integers a and b
+
+Rough Proof:
+
+There are three possible cases for x:
+
+1. x = 3 * r for some r >= 1
+Then f(x) = 111 * pw(10, x - 3) + 111 * pw(10, x - 6) ... + 111 * pw(10, 0) = 111 * y for some y >= 0
+
+2. x = 3 * r + 1 = 3 * (r - 1) + 4 for r >= 2
+Then f(x) = 111 * pw(10, x - 3) + .. + 111 * pw(10, 4) + 11 * 100 + 11 = 111 * a + 11 * b for some a, b >= 0
+
+3. x = 3 * r + 2
+Then f(x) = 111 * pw(10, x - 3) + ... + 111 * pw(10, 2) + 11 * 100 = 111 * a + 11 * b for some a, b >= 0
