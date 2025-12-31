@@ -822,3 +822,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    435b9fde..3d957ba5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 51fadc10] Problem solving session
+ 4 files changed, 76 insertions(+)
+ create mode 100644 random/dp/linovaKingdom.cpp
+To https://github.com/neofytr/Codeforces.git
+   3d957ba5..51fadc10  main -> main
+branch 'main' set up to track 'origin/main'.
