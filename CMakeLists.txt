@@ -841,4 +841,6 @@ add_executable(Codeforces
         random/dp/2sort.cpp
         random/dp/agagaXOR.cpp
         random/dp/linovaKingdom.cpp
+        random/dp/coinRows.cpp
+        random/dp/tripleOperation.cpp
 )

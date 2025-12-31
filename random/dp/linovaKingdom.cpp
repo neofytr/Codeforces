@@ -3,69 +3,50 @@ using namespace std;
 
 #define int long long
 
+vector<vector<int>> adj;
+vector<int> depth;
+vector<int> sz;
+
+void dfs(int u, int p, int d) {
+    depth[u] = d;
+    sz[u] = 1;
+    for (int v : adj[u]) {
+        if (v != p) {
+            dfs(v, u, d + 1);
+            sz[u] += sz[v];
+        }
+    }
+}
+
 int32_t main() {
     int n, k;
     cin >> n >> k;
 
-    int u, v;
-    vector<vector<int>> graph(n + 1);
-    for (int r = 1; r <= n; r++)
-        cin >> u >> v, graph[u].push_back(v), graph[v].push_back(u);
+    adj.resize(n + 1);
+    depth.resize(n + 1);
+    sz.resize(n + 1);
 
-    vector<int> dp(n + 1, 0);
-    vector<int> type(n + 1, 0);
-    vector<set<int>> depth(n + 1);
-
-    int d = 1;
-    queue<pair<int, int>> que;
-    que.push({1, -1});
-    while (!que.empty()) {
-        int sz = (int)que.size();
-        while (sz--) {
-            auto [x, p] = que.front();
-            que.pop();
-            depth[d].insert(x);
-
-            for (int node : graph[x])
-                if (node != p)
-                    que.push({node, x});
-        }
-        d++;
+    for (int i = 0; i < n - 1; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
 
-    set<pair<int, int>> pq1, pq2;
+    dfs(1, 0, 0);
 
-    for (int e : depth[d - 1])
-        if (k)
-            pq1.insert({0, e});
-    d--;
-
-    while (true) {
-        int sz = pq1.size();
-        while (sz--) {
-            auto [m, node] = *pq1.begin();
-            if (k)
-                dp[node] += 1, m++, k--, type[node] = 1;
-            pq1.erase(pq1.begin());
-
-            for (int x : graph[node]) {
-                if (depth[d - 1].contains(x)) {
-                    pq2.erase({dp[x], x});
-                    pq2.insert({dp[x] += dp[node], x});
-                }
-            }
-        }
-        if (pq2.empty())
-            break;
-        swap(pq1, pq2);
-        d--;
+    vector<int> values;
+    for (int i = 1; i <= n; i++) {
+        values.push_back(depth[i] - (sz[i] - 1));
     }
 
-    int res = 0;
-    for (int r = 1; r <= n; r++)
-        if (type[r])
-            cout << r << " " << dp[r] << endl;
+    sort(values.rbegin(), values.rend());
 
-    cout << res << endl;
+    int ans = 0;
+    for (int i = 0; i < k; i++) {
+        ans += values[i];
+    }
+
+    cout << ans << endl;
     return 0;
 }
