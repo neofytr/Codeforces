@@ -805,3 +805,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6a9a0119..78f2790e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 21c7d592] Solved some problems
+ 6 files changed, 81 insertions(+), 2 deletions(-)
+ create mode 100644 random/dp/2sort.cpp
+ create mode 100644 random/dp/agagaXOR.cpp
+To https://github.com/neofytr/Codeforces.git
+   78f2790e..21c7d592  main -> main
+branch 'main' set up to track 'origin/main'.
