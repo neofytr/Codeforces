@@ -1,31 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long 
+
+// this is a wrong solution fix it lmao it isnt that hard a question
+#define int long long
 
 int32_t main() {
-	int n, k;
-	cin >> n >> k;
+    int n, k;
+    cin >> n >> k;
 
-	string s; cin >> s;
-	vector<char> str(n + 1);
-	for (int r = 1; r <= n; r++) str[r] = s[r - 1];
+    string s;
+    cin >> s;
 
-	char c;
-	unordered_map<char, bool> f;
-	for (int r = 1; r <= k; r++) cin >> c, f[c] = true;
+    vector<bool> allowed(26, false);
+    for (int i = 0; i < k; i++) {
+        char c;
+        cin >> c;
+        allowed[c - 'a'] = true;
+    }
 
-	// dp[r] is the number of substrings ending at r that can be
-	// typed for 1 <= r <= n
-	vector<int> dp(n + 1, 0);
+    vector<int> dp(n, 0);
 
-	dp[1] = f[str[1]];
-	for (int r = 2; r <= n; r++)
-		if (f[str[r]]) 
-			dp[r] += (dp[r - 1] + 1);
-		
+    if (allowed[s[0] - 'a'])
+        dp[0] = 1;
 
-	int cnt = 0;
-	for (int r = 1; r <= n; r++) cnt += dp[r];
-	cout << cnt << endl;
+    for (int i = 1; i < n; i++) {
+        if (allowed[s[i] - 'a'])
+            dp[i] = dp[i - 1] + 1;
+        else
+            dp[i] = 0;
+    }
+
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
+        cnt += dp[i];
+
+    cout << cnt << endl;
 }

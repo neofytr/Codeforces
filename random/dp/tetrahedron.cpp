@@ -12,6 +12,11 @@ int32_t main() {
     cin >> n;
 
     // dp[r] is the number of paths of length r from vertex e, where e is in {A, B, C}, to D
+    dp[1] = 1;
+    dp[0] = 0;
+    for (int r = 2; r <= n; r++)
+        dp[r] = (2 * dp[r - 1] + 3 * dp[r - 2]) % MOD;
 
+    cout << (3 * dp[n - 1]) % MOD << endl;
     return 0;
 }
