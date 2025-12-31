@@ -27,7 +27,24 @@ void solve() {
     cin >> l >> r;
 
     int res = min(cnt[l] + cnt[l + 1] + cnt[l], cnt[l + 1] + cnt[l] + cnt[l + 1]);
-    
+    if (r <= l + 1) {
+        cout << res << endl;
+        return;
+    }
+
+    int i = l + 2;
+    int p = (cnt[l + 2] - 1) + 1;
+    while (true) {
+        if (pw[p] > r) {
+            res += (r - i + 1) * cnt[i];
+            break;
+        }
+
+        res += (pw[p] - i) * cnt[i];
+        i = pw[p++];
+    }
+
+    cout << res << endl;
 }
 
 int32_t main() {

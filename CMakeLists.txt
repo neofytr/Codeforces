@@ -843,4 +843,5 @@ add_executable(Codeforces
         random/dp/linovaKingdom.cpp
         random/dp/coinRows.cpp
         random/dp/tripleOperation.cpp
+        random/dp/createTheTeams.cpp
 )
