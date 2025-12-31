@@ -840,4 +840,5 @@ add_executable(Codeforces
         random/dp/makeItAlternating.cpp
         random/dp/2sort.cpp
         random/dp/agagaXOR.cpp
+        random/dp/linovaKingdom.cpp
 )

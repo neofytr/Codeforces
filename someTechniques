@@ -199,3 +199,37 @@ Then f(x) = 111 * pw(10, x - 3) + .. + 111 * pw(10, 4) + 11 * 100 + 11 = 111 * a
 
 3. x = 3 * r + 2
 Then f(x) = 111 * pw(10, x - 3) + ... + 111 * pw(10, 2) + 11 * 100 = 111 * a + 11 * b for some a, b >= 0
+
+21.
+
+Let n >= 2
+Let arr[1, n] be an array of non-negative integers
+
+Suppose we have to partition arr into consecutive subarrays such that the XOR of all the subarrays are equal.
+A partition with 1 subarray is always possible (the trivial partition {{1, 2, ..., n}})
+
+Suppose we need to have the number of partitions >= 2
+Let p[0] = 0 and p[r] = p[r - 1] ^ arr[r] for 1 <= r <= n
+
+If p[n] = 0, then we can always partition arr[1, n] into two subarrays with equal XORs ->
+{{1, ..., r}, {r + 1, ..., n}} where the XORs of both the subarrays are equal
+Such two subarrays always exist since if the XOR of some numbers is 0, then its possible iff the numbers are equal
+And since p[n] = arr[1] ^ ... ^ arr[n] = 0, then we will always have p[n] = x ^ x where the first x is the xor of some prefix, and the
+second x is xor of the rest of the array
+
+If p[n] > 0, then, no even length partition exists since XOR of an equal number of even things is zero
+So if the array can be partitioned, it will have an odd length partition
+Now, since the XORs of the partitioned subarrays are equal and the partitioned subarrays are odd in number,
+the XORs of these partitioned subarrays = p[n]
+So, we can check if such a partition exists by the following code:
+
+int cnt = 0, l = 1, r = 1;
+while (l <= r) {
+    l = r;
+    while (r <= n && (p[r] ^ p[l - 1] != p[n]) r++;
+    if (r <= n && p[r] ^ p[l - 1] == p[n]) cnt++;
+    l = r + 1;
+}
+
+if (cnt >= 1) return true;
+else return false;
