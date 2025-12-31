@@ -799,3 +799,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    32642f53..6a9a0119  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 78f2790e] Solved a few problems
+ 7 files changed, 97 insertions(+), 38 deletions(-)
+ create mode 100644 random/dp/makeItAlternating.cpp
+To https://github.com/neofytr/Codeforces.git
+   6a9a0119..78f2790e  main -> main
+branch 'main' set up to track 'origin/main'.

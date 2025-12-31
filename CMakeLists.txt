@@ -838,4 +838,6 @@ add_executable(Codeforces
         random/dp/mortalKombatTower.cpp
         random/dp/tetrahedron.cpp
         random/dp/makeItAlternating.cpp
+        random/dp/2sort.cpp
+        random/dp/agagaXOR.cpp
 )
