@@ -833,3 +833,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    51fadc10..2dc25c02  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 089a5489] More problems solved
+ 7 files changed, 118 insertions(+), 59 deletions(-)
+ create mode 100644 random/dp/coinRows.cpp
+ create mode 100644 random/dp/tripleOperation.cpp
+To https://github.com/neofytr/Codeforces.git
+   2dc25c02..089a5489  main -> main
+branch 'main' set up to track 'origin/main'.
