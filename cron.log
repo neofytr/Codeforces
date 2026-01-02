@@ -881,3 +881,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e3fcad45..f0eee79e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6efa00e1] Solved a CF problem
+ 7 files changed, 110 insertions(+), 19 deletions(-)
+ create mode 100644 random/dp/aGood.cpp
+ create mode 100644 random/dp/arrayOps.cpp
+To https://github.com/neofytr/Codeforces.git
+   f0eee79e..6efa00e1  main -> main
+branch 'main' set up to track 'origin/main'.
