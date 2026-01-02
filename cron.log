@@ -863,3 +863,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f281c412..ffa52b86  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b4e812a0] Solved a CF problem
+ 6 files changed, 80 insertions(+), 21 deletions(-)
+ create mode 100644 random/dp/getEvenString.cpp
+To https://github.com/neofytr/Codeforces.git
+   ffa52b86..b4e812a0  main -> main
+branch 'main' set up to track 'origin/main'.
