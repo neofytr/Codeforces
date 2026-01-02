@@ -874,3 +874,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b4e812a0..e3fcad45  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f0eee79e] Solved some problems
+ 7 files changed, 111 insertions(+), 34 deletions(-)
+ create mode 100644 random/dp/blockSequence.cpp
+ create mode 100644 random/dp/interestingFunction.cpp
+To https://github.com/neofytr/Codeforces.git
+   e3fcad45..f0eee79e  main -> main
+branch 'main' set up to track 'origin/main'.
