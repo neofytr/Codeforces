@@ -844,4 +844,5 @@ add_executable(Codeforces
         random/dp/coinRows.cpp
         random/dp/tripleOperation.cpp
         random/dp/createTheTeams.cpp
+        random/dp/getEvenString.cpp
 )

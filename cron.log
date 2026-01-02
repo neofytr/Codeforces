@@ -857,3 +857,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9488a518..f281c412  main -> main
 branch 'main' set up to track 'origin/main'.
+[main ffa52b86] Solved problem
+ 5 files changed, 58 insertions(+), 12 deletions(-)
+ create mode 100644 random/dp/vasya.cpp
+To https://github.com/neofytr/Codeforces.git
+   f281c412..ffa52b86  main -> main
+branch 'main' set up to track 'origin/main'.
