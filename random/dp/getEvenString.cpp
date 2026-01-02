@@ -5,7 +5,8 @@ using namespace std;
 #define MAX (int)(2 * 1e5)
 
 int str[MAX + 1];
-int nxt[MAX + 1][26];
+int prv[MAX + 1][26];
+int dp[MAX + 1];
 
 void solve() {
     string s;
@@ -15,37 +16,27 @@ void solve() {
     for (int r = 1; r <= n; r++)
         str[r] = s[r - 1] - 'a';
     for (int c = 0; c < 26; c++)
-        nxt[n][c] = LLONG_MAX;
+        prv[1][c] = -1;
 
-    for (int r = n - 1; r >= 1; r--)
+    for (int r = 2; r <= n; r++)
         for (int c = 0; c < 26; c++)
-            if (str[r + 1] == c)
-                nxt[r][c] = r + 1;
+            if (str[r - 1] == c)
+                prv[r][c] = r - 1;
             else
-                nxt[r][c] = nxt[r + 1][c];
+                prv[r][c] = prv[r - 1][c];
 
-    priority_queue<pair<int, pair<int, int>>> pq;
-    pq.push({0, {1, 2}});
-
-    while (!pq.empty()) {
-        auto [c, p] = pq.top();
-        pq.pop();
-
-        int i = p.first, j = p.second;
-        cout << c << " " << i << " " << j << endl;
-        if (i >= n) {
-            cout << c << endl;
-            return;
+    // dp[r] is the maximum number of characters we can preserve in str[1, r]
+    dp[1] = 0;
+    dp[0] = 0;
+    for (int r = 2; r <= n; r++)
+        if (prv[r][str[r]] == -1)
+            dp[r] = dp[r - 1];
+        else {
+            const int p = prv[r][str[r]];
+            dp[r] = max(dp[r - 1], dp[p - 1] + r - p + 1 - (r - 1 - (p + 1) + 1));
         }
 
-        int nxti = nxt[i][str[i]], nxtj = nxt[j][str[j]];
-        if (nxti != LLONG_MAX) {
-            pq.push({c + (nxti - 1) - (i + 1) + 1, {nxti + 1, nxti + 2}});
-        }
-        if (nxtj != LLONG_MAX) {
-            pq.push({c + (nxtj - 1) - (j + 1) + 2, {nxtj + 1, nxtj + 2}});
-        }
-    }
+    cout << n - dp[n] << endl;
 }
 
 int32_t main() {
