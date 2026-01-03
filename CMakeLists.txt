@@ -849,4 +849,5 @@ add_executable(Codeforces
         random/dp/blockSequence.cpp
         random/dp/aGood.cpp
         random/dp/arrayOps.cpp
+        random/dp/goodString.cpp
 )

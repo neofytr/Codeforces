@@ -891,3 +891,8 @@ branch 'main' set up to track 'origin/main'.
 [main aff109c1] Solved a few problems
  4 files changed, 29 insertions(+), 15 deletions(-)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main 4400d1e2] CF grind
+ 3 files changed, 14 insertions(+), 15 deletions(-)
+To https://github.com/neofytr/Codeforces.git
+   6efa00e1..4400d1e2  main -> main
+branch 'main' set up to track 'origin/main'.
