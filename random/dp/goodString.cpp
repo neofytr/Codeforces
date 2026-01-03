@@ -13,7 +13,7 @@ int even[MAX + 1][MAXNUM][MAXNUM];
 // a2 a3 a4 a5 a1
 // a5 a1 a2 a3 a4
 
-void solve() {
+void solve(int t) {
     string s;
     cin >> s;
 
@@ -35,31 +35,40 @@ void solve() {
             for (int c2 = 0; c2 <= 9; c2++)
                 even[r][c1][c2] = 0;
 
-    even[2][str[1]][str[2]] = 2;
     for (int c = 0; c <= 9; c++)
         even[1][c][str[1]] = 1;
-    for (int c = 0; c <= 9; c++)
-        if (c != str[1])
-            even[2][c][str[2]] = 1;
-    for (int r = 3; r <= n; r++)
+    for (int r = 2; r <= n; r++)
         for (int c1 = 0; c1 <= 9; c1++)
             for (int c2 = 0; c2 <= 9; c2++)
                 if (c2 == str[r])
                     even[r][c1][c2] += even[r - 1][c2][c1] + 1;
-                else
+                else {
                     even[r][c1][c2] += even[r - 1][c1][c2];
+                }
 
+    int maxieven = LLONG_MIN, maxiodd = LLONG_MIN;
     for (int c1 = 0; c1 <= 9; c1++)
         for (int c2 = 0; c2 <= 9; c2++)
-            cout << c1 << " " << c2 << " " << even[n][c1][c2] << endl;
+            if (!(even[n][c1][c2] & 1))
+                maxieven = max(maxieven, even[n][c1][c2]);
+
+    for (int c = 0; c <= 9; c++)
+        maxiodd = max(maxiodd, odd[n][c]);
+
+    // cout << even[1][7][0] << endl;
+    // cout << even[3][7][0] << endl;
+    // cout << even[2][0][7] << endl;
+    // cout << even[1][0][7] << endl;
+    // cout << even[2][0][7] << endl;
+    cout << n - max(maxiodd, maxieven) << endl;
 }
 
 int32_t main() {
     int t;
     cin >> t;
 
-    while (t--) {
-        solve();
+    for (int r = 1; r <= t; r++) {
+        solve(r);
     }
     return 0;
 }

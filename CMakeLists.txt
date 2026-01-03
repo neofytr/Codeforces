@@ -850,4 +850,7 @@ add_executable(Codeforces
         random/dp/aGood.cpp
         random/dp/arrayOps.cpp
         random/dp/goodString.cpp
+        random/dp/arrowPath.cpp
+        random/dp/journeyPlanning.cpp
+        random/dp/gettingZero.cpp
 )

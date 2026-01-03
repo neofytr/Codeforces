@@ -896,3 +896,9 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 To https://github.com/neofytr/Codeforces.git
    6efa00e1..4400d1e2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 68998c29] Problem solving session
+ 5 files changed, 75 insertions(+), 11 deletions(-)
+ create mode 100644 random/dp/goodString.cpp
+To https://github.com/neofytr/Codeforces.git
+   4400d1e2..68998c29  main -> main
+branch 'main' set up to track 'origin/main'.
