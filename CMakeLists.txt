@@ -854,4 +854,5 @@ add_executable(Codeforces
         random/dp/journeyPlanning.cpp
         random/dp/gettingZero.cpp
         random/dp/wowFactor.cpp
+        random/dp/equalize.cpp
 )

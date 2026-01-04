@@ -26,8 +26,6 @@ int32_t main() {
     for (int r = n - 1; r >= 1; r--)
         back[r] += back[r + 1] + ((str[r] == V && str[r + 1] == V) ? 1 : 0);
 
-    for (int r = 1; r <= n; r++)
-        cout << r << " " << front[r] << endl;
     int res = 0;
     for (int r = 1; r <= n; r++)
         if (str[r] == O)
