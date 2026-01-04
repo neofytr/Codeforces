@@ -914,3 +914,9 @@ branch 'main' set up to track 'origin/main'.
  6 files changed, 84 insertions(+), 3 deletions(-)
  create mode 100644 random/dp/wowFactor.cpp
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Failure when receiving data from the peer
+[main c85ecb96] Solved problem
+ 6 files changed, 73 insertions(+), 3 deletions(-)
+ create mode 100644 random/dp/equalize.cpp
+To https://github.com/neofytr/Codeforces.git
+   bd32c345..c85ecb96  main -> main
+branch 'main' set up to track 'origin/main'.
