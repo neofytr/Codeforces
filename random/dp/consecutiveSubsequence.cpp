@@ -20,19 +20,15 @@ int32_t main() {
     prv[1] = -1;
     for (int r = 2; r <= n; r++) {
         auto itr = f.lower_bound({arr[r] - 1, {0, 0}});
-        if (itr == f.end() || itr->first != arr[r] - 1) {
+        if (itr == f.end() || itr->first != arr[r] - 1)
             dp[r] = 1, prv[r] = -1;
-            continue;
-        }
+        else
+            dp[r] = itr->second.first + 1, prv[r] = itr->second.second;
 
-        dp[r] = itr->second.first + 1, prv[r] = itr->second.second;
-        itr = f.lower_bound({arr[r], {LLONG_MAX, LLONG_MAX}});
-        if (itr == f.end() || itr->first != arr[r]) {
+        itr = f.lower_bound({arr[r], {0, 0}});
+        if (itr == f.end() || itr->first != arr[r])
             f.insert({arr[r], {dp[r], r}});
-            continue;
-        }
-
-        if (dp[r] > itr->second.first)
+        else if (dp[r] > itr->second.first)
             f.erase(itr), f.insert({arr[r], {dp[r], r}});
     }
 

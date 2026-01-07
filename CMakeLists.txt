@@ -856,4 +856,6 @@ add_executable(Codeforces
         random/dp/wowFactor.cpp
         random/dp/equalize.cpp
         random/dp/consecutiveSubsequence.cpp
+        random/dp/sendingSequenceNetwork.cpp
+        random/dp/frog2.cpp
 )

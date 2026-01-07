@@ -233,3 +233,8 @@ while (l <= r) {
 
 if (cnt >= 1) return true;
 else return false;
+
+22.
+
+When during thinking of a transition for dp[r], you find that the transition involves dependency
+on values of some dp[r + l] where l > 0, then, think of push-dp or recursion to solve the problem.
