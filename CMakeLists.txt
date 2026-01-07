@@ -855,4 +855,5 @@ add_executable(Codeforces
         random/dp/gettingZero.cpp
         random/dp/wowFactor.cpp
         random/dp/equalize.cpp
+        random/dp/consecutiveSubsequence.cpp
 )
