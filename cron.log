@@ -1058,3 +1058,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    24258b19..95d02130  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 603a27e4] Worked on Codeforces problems
+ 8 files changed, 102 insertions(+), 11 deletions(-)
+ create mode 100644 random/dp/frog2.cpp
+ create mode 100644 random/dp/sendingSequenceNetwork.cpp
+To https://github.com/neofytr/Codeforces.git
+   95d02130..603a27e4  main -> main
+branch 'main' set up to track 'origin/main'.

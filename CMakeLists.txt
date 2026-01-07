@@ -858,4 +858,5 @@ add_executable(Codeforces
         random/dp/consecutiveSubsequence.cpp
         random/dp/sendingSequenceNetwork.cpp
         random/dp/frog2.cpp
+        random/dp/colorStripe.cpp
 )
