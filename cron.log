@@ -1071,3 +1071,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    603a27e4..ab038dbb  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9722e06e] Practiced CF problems
+ 6 files changed, 59 insertions(+), 14 deletions(-)
+ create mode 100644 random/dp/red-greenTowers.cpp
+To https://github.com/neofytr/Codeforces.git
+   ab038dbb..9722e06e  main -> main
+branch 'main' set up to track 'origin/main'.
