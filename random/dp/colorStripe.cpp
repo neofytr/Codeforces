@@ -8,7 +8,7 @@ using namespace std;
 
 int dp[MAX + 1][MAXC + 1];
 int v[MAX + 1];
-int prv[MAX + 1];
+int prv[MAX + 1][MAXC + 1];
 
 int32_t main() {
     int n, k;
@@ -29,30 +29,28 @@ int32_t main() {
     for (int c = 1; c <= k; c++)
         dp[1][c] = (v[1] == c ? 0 : 1), prv[1][c] = -1;
 
-    for (int r = 2; r <= n; r++)
+    for (int r = 2; r <= n; r++) {
         for (int c = 1; c <= k; c++) {
-            int m = LLONG_MAX, l = -1;
+            int m = LLONG_MAX;
             for (int p = 1; p <= k; p++)
                 if (p != c)
                     if (dp[r - 1][p] < m)
-                        m = dp[r - 1][p], l = p;
-            dp[r][c] = min(m + (v[r] == c ? 0 : 1), dp[r][c]);
+                        m = dp[r - 1][p], prv[r][c] = p;
+            dp[r][c] = m + (v[r] == c ? 0 : 1);
         }
+    }
 
     int mini = LLONG_MAX, minic = -1;
     for (int c = 1; c <= k; c++)
         if (dp[n][c] < mini)
             mini = dp[n][c], minic = c;
 
-    cout << (char)(minic + 'A') << endl;
     string s;
-    cout << mini << endl;
-    s.push_back(minic + 'A');
-    for (int r = n; r >= 2; r--) {
-        minic = prv[r][minic];
-        s.push_back(minic + 'A');
-    }
+    s.push_back(minic + 'A' - 1);
+    for (int r = n; r >= 2; r--)
+        minic = prv[r][minic], s.push_back(minic + 'A' - 1);
     reverse(s.begin(), s.end());
+    cout << mini << endl;
     cout << s << endl;
     return 0;
 }

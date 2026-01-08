@@ -1065,3 +1065,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    95d02130..603a27e4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main ab038dbb] Practiced CF problems
+ 6 files changed, 80 insertions(+), 31 deletions(-)
+ create mode 100644 random/dp/colorStripe.cpp
+To https://github.com/neofytr/Codeforces.git
+   603a27e4..ab038dbb  main -> main
+branch 'main' set up to track 'origin/main'.
