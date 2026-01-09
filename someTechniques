@@ -56,7 +56,7 @@ ii. Do something to construct a set of that size
 i. floor(x / 2) = x >> 1
 ii. ceil(x / 2) = (x >> 1) + (x & 1)
 
-13. 
+13.
 
 Consider a sorted array v[1, n]
 
@@ -85,7 +85,7 @@ Otherwise,
 
 f(r) = (p[n] - p[k - 1]) - r * (n - k + 1) + r * (k - 1) - (p[k - 1])
 
-14. 
+14.
 
 Let n >= 1
 Let S = {1, 2, ..., n}
@@ -121,7 +121,7 @@ i. Problem involves subarrays/prefixes/suffixes
 ii. Ordering of the elements matters
 iii. Distance/position constraints are essential
 
-16. 
+16.
 
 Let k >= 0
 
@@ -150,19 +150,19 @@ for (int r = 1; r <= m; r++) {
 		else sum += (n - bit[b]) * (1 << b)
 }
 
-17. 
+17.
 
 Let x >= 1
 Let z is the smallest power of two >= x
 
 Then x ^ y, for y >= 1 and y != x, divides y implies that y <= z - 1
 
-18. 
+18.
 
 Let A[1, n] and B[1, k] are sorted
 array of integers
 
-Let f: A -> B 
+Let f: A -> B
 
 Suppose we are to find an assignment f such that
 
@@ -172,7 +172,7 @@ or
 
 2. max(|A[r] - B[f[r]]| for 1 <= r <= n) is minimized
 
-Then, it is not optimal to assign in a crossed manner, i.e, 
+Then, it is not optimal to assign in a crossed manner, i.e,
 
 If we assign B[j] to some A[r], then, it is not optimal to assign A[r + 1] to any B[s] for s < j
 
@@ -273,3 +273,48 @@ dp[i][j] is the answer for cell at row i, column j
 
 26. String DP
 dp[i][j] is the answer comparing first i characters of one string to first j of another
+
+27. Ordered Inclusion-Exclusion using DP (First-violation DP pattern)
+
+This technique applies to problems of the following type:
+1. We want to count objects (paths, sequences, walks, strings, processes, etc.)
+2. Objects are built step by step (or move monotonically)
+3. There are forbidden states / events
+4. The total state space is too large for naive DP
+5. Direct inclusion-exclusion over forbidden sets is exponential and impossible
+
+The technique relies on one crucial property: Every invalid object has a unique earliest violation
+This is the entire foundation. It matters because if each bad object can be charged to exactly one first
+bad event, then we can subtract bad objects once and only once. This avoid exponential inclusion-exclusion.
+
+Let:
+Object = things we want to count
+States = ordered checkpoints / events / positions
+State order = 0 < 1 < 2 < ... < K
+
+For this technique to work, the following property must be satisfied: If state j > i, then we cannot encounter state j and then state i afterwards
+
+We define dp[r] = number of objects that reach state i without violating any forbidden state < i for 1 <= i <= K
+For each state i, we can compute total(i) = number of ways to reach state i ignoring all constraints
+
+Take any invalid object that reaches state i. Because of monotonicity/ordering, it must violate constraints
+for the first time at some state j < i. This j is unique, well-defined and the earliest violation.
+
+This allows a partition of invalid objects: Invalid objects reaching i = union of objects whose first violation is at j, for all j < i
+This partition is disjoint.
+
+An object whose first violation is at j has two parts:
+1. A valid object from start to j
+2. An unconstrained continuation from j to i
+
+Why the first part is valid: because j is the first violation
+Therefore, the number of such objects is dp[j] * ways(j -> i)
+
+This is the key multiplicative structure.
+
+Putting everything together:
+
+dp[i] = total(i)
+for all j < i: dp[i] -= dp[j] * ways(j -> i)
+
+This is the final transition.
