@@ -320,7 +320,7 @@ for all j < i: dp[i] -= dp[j] * ways(j -> i)
 This is the final transition.
 
 28. Ordered IE DP
-Suppose we have some states a, s1, s2, ..., sk, b that are distinct
+Suppose we have some states a, s1, s2, ..., sk < b that are distinct
 Suppose we are to find the number of paths from state a to state b such that we don't pass through any of
 the states s1, ..., sk.
 
@@ -330,3 +330,26 @@ This technique works if there is an ordering among the states a < s1 < ... < sk 
 first and then visit some state i < j
 
 Let 1 <= r <= k
+Let dp[r] = number of paths from state a to state sr that do not pass through any state si where i < r
+Now dp[r] = total_paths(a, sr) - (paths from state a to state sr that pass through some state si where i < r)
+
+Let a path from state a to state sr be called invalid if it passes through some state si where i < r
+Thus, dp[r] = total_paths(a, sr) - (number of invalid paths from state a to state sr)
+
+Let p is an invalid path from state a to state sr. Due to the above property, the path p has a unique
+transition state st for 1 <= t <= r - 1 such that p does not pass through any state sk where k < t and p
+passes through state st.
+
+Let Ak = set of all paths that have their transition state st = k
+Now |Ak| = dp[k] * total_paths(st, sr)
+
+Now, any invalid path from state a to state sr has a transition state st for 1 <= t <= r - 1. Thus
+the set of all such invalid paths = Union of Ak for 1 <= k <= r - 1
+
+Also, any Ai and Aj for i < j are disjoint since for any path p1 in Ai and p2 in Aj, p1 and p2 are different
+since p1 passes through si and p2 cannot pass through si since j > i.
+
+Thus, the number of such invalid paths = summation of |Ak| for 1 <= k <= r - 1
+
+Thus, dp[r] = total_ways(a, sr) - summation of (dp[k] * total_ways(sk, sr)) for 1 <= k <= r - 1, for 1 <= r <= k
+For dp[b], just replace sr in the above formula by b
