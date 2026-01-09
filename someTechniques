@@ -318,3 +318,15 @@ dp[i] = total(i)
 for all j < i: dp[i] -= dp[j] * ways(j -> i)
 
 This is the final transition.
+
+28. Ordered IE DP
+Suppose we have some states a, s1, s2, ..., sk, b that are distinct
+Suppose we are to find the number of paths from state a to state b such that we don't pass through any of
+the states s1, ..., sk.
+
+This can be done using IE but that is exponential in k. This can be reduced to O(k^2) using the following technique.
+
+This technique works if there is an ordering among the states a < s1 < ... < sk < b such that we cannot visit a state j
+first and then visit some state i < j
+
+Let 1 <= r <= k
