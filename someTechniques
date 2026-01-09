@@ -238,3 +238,29 @@ else return false;
 
 When during thinking of a transition for dp[r], you find that the transition involves dependency
 on values of some dp[r + l] where l > 0, then, think of push-dp or recursion to solve the problem.
+
+23. String DP Patterns
+
+Four things to remember:
+
+The "prefix to prefix" pattern (comparing beginnings of both strings) is the foundation of all string DP.
+
+1. String DP compares prefixes. dp[i][j] relates prefix of string A to prefix of string B
+2. Match v/s operate. When characters match, you get a free transition.
+3. Three choices become one min. Replace, delete, insert map to three neighbors.
+4. Base cases are edge strings. Empty-to-something costs the length.
+
+For example consider the problem Edit Distance.
+Let A[1, n] and B[1, m] be the two strings
+
+We define dp[i][j] is the minimum number of operations required to convert A[1, i] into B[1, j]
+Here are the transitions
+
+dp[0][0] = 0
+dp[0][j] = j for all 1 <= j <= m
+dp[i][0] = i for all 1 <= i <= n
+
+dp[i][j] = dp[i - 1][j - 1] if A[i] = B[j]
+         = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1) otherwise
+
+The final answer is dp[n][m]

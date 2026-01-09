@@ -861,4 +861,5 @@ add_executable(Codeforces
         random/dp/colorStripe.cpp
         random/dp/red-greenTowers.cpp
         random/dp/gridOne.cpp
+        random/dp/editDistance.cpp
 )

@@ -1087,3 +1087,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6f902dbf..6eb63d40  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1249c9af] More problems solved
+ 6 files changed, 97 insertions(+), 18 deletions(-)
+ create mode 100644 random/dp/gridOne.cpp
+To https://github.com/neofytr/Codeforces.git
+   6eb63d40..1249c9af  main -> main
+branch 'main' set up to track 'origin/main'.
