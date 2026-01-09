@@ -866,4 +866,6 @@ add_executable(Codeforces
         random/dp/caesarsLegions.cpp
         random/dp/interleavingString.cpp
         random/dp/gridTwo.cpp
+        random/dp/workingOut.cpp
+        random/1300/removeTheEnds.cpp
 )
