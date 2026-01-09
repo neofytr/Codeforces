@@ -264,3 +264,12 @@ dp[i][j] = dp[i - 1][j - 1] if A[i] = B[j]
          = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1) otherwise
 
 The final answer is dp[n][m]
+
+24. Resource Tracking DP
+dp[i][j] is the answer after i steps using j of some resource
+
+25. Grid DP
+dp[i][j] is the answer for cell at row i, column j
+
+26. String DP
+dp[i][j] is the answer comparing first i characters of one string to first j of another
