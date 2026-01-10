@@ -1134,3 +1134,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1cb3acd3..4d761a2b  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7107b97a] Worked on Codeforces problems
+ 6 files changed, 85 insertions(+), 19 deletions(-)
+ create mode 100644 random/1300/costOfTheArray.cpp
+ create mode 100644 random/1300/findThePermutation.cpp
+To https://github.com/neofytr/Codeforces.git
+   4d761a2b..7107b97a  main -> main
+branch 'main' set up to track 'origin/main'.
