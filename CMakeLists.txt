@@ -870,4 +870,5 @@ add_executable(Codeforces
         random/1300/removeTheEnds.cpp
         random/1300/costOfTheArray.cpp
         random/1300/findThePermutation.cpp
+        random/dp/maximalSquare.cpp
 )

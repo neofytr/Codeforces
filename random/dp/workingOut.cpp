@@ -55,13 +55,13 @@ int32_t main() {
         }
 
     int maxi = LLONG_MIN;
-    for (int r = 2; r <= n - 1; r++)
-        for (int c = 1; c <= m; c++) {
-            // (r, c) is the meeting point
-            int lahub = topLeft[r][c] + bottomRight[r][c] - 2 * grid[r][c];
-            int lahubina = bottomLeft[r][c] + topRight[r][c] - 2 * grid[r][c];
-            maxi = max(maxi, lahub + lahubina);
+    for (int r = 2; r <= n - 1; r++) {
+        for (int c = 2; c <= m - 1; c++) {
+            int v1 = topLeft[r][c - 1] + bottomRight[r][c + 1] + bottomLeft[r + 1][c] + topRight[r - 1][c];
+            int v2 = topLeft[r - 1][c] + bottomRight[r + 1][c] + bottomLeft[r][c - 1] + topRight[r][c + 1];
+            maxi = max({maxi, v1, v2});
         }
+    }
 
     cout << maxi << endl;
     return 0;
