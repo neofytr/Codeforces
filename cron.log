@@ -1156,3 +1156,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9b5075f8..69be7784  main -> main
 branch 'main' set up to track 'origin/main'.
+[main fe514099] Solved problem
+ 6 files changed, 81 insertions(+), 10 deletions(-)
+ create mode 100644 random/dp/maximalSquare.cpp
+To https://github.com/neofytr/Codeforces.git
+   69be7784..fe514099  main -> main
+branch 'main' set up to track 'origin/main'.
