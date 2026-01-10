@@ -1127,3 +1127,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1a347e70..1cb3acd3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4d761a2b] Worked on Codeforces problems
+ 5 files changed, 94 insertions(+), 16 deletions(-)
+ create mode 100644 random/1300/removeTheEnds.cpp
+ create mode 100644 random/dp/workingOut.cpp
+To https://github.com/neofytr/Codeforces.git
+   1cb3acd3..4d761a2b  main -> main
+branch 'main' set up to track 'origin/main'.
