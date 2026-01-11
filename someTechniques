@@ -486,5 +486,7 @@ for (int r = 1; r <= n; r++)
 Since v[r] >= 1 and we iterate forwards, dp[v] would contain dp[r - 1][v] before the updating, and,
 dp[v - v[r]] would be dp[r - 1][v - v[r]] since we would've already updated it (since we are iterating forward).
 
+33.
+
 
 
