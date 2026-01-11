@@ -15,7 +15,7 @@ int32_t main() {
     for (int r = 1; r <= n; r++)
         cin >> wt[r] >> val[r];
 
-    // dp[r][w] is the maximum possible value that can be taken with a selection whose total weight is w, and the
+    // dp[r][w] is the maximum possible value that can be taken with a selection whose total weight is at-most w, and the
     // selection being taken from [1, r]
     for (int r = 1; r <= n; r++)
         for (int w = 1; w <= W; w++) {
@@ -24,9 +24,15 @@ int32_t main() {
                 dp[r][w] = max(dp[r][w], val[r] + dp[r - 1][w - wt[r]]);
         }
 
-    int maxi = LLONG_MIN;
-    for (int w = 0; w <= W; w++)
-        maxi = max(maxi, dp[n][w]);
-    cout << maxi << endl;
+    // the answer is dp[n][W]
+    // suppose, we also wanted to reconstruct the selection
+    vector<int> e;
+    for (int r = n; r >= 1; r--)
+        if (dp[r][W] != dp[r - 1][W])
+            e.push_back(r), W -= wt[r];
+
+    for (const int idx : e)
+        cout << idx << " ";
+    cout << endl;
     return 0;
 }

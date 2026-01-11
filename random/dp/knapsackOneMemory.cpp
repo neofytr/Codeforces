@@ -5,7 +5,7 @@ using namespace std;
 #define WMAX (int)(1e5)
 #define NMAX (int)(1e2)
 
-int front[WMAX + 1], back[WMAX + 1];
+int dp[WMAX + 1];
 int wt[NMAX + 1], val[NMAX + 1];
 
 int32_t main() {
@@ -15,18 +15,16 @@ int32_t main() {
     for (int r = 1; r <= n; r++)
         cin >> wt[r] >> val[r];
 
-    for (int r = 1; r <= n; r++) {
-        for (int w = 0; w <= W; w++) {
-            back[w] = front[w];
-            if (w >= wt[r])
-                back[w] = max(back[w], front[w - wt[r]] + val[r]);
-        }
-        swap(front, back);
-    }
-
-    int maxi = LLONG_MIN;
     for (int w = 0; w <= W; w++)
-        maxi = max(maxi, front[w]);
-    cout << maxi << endl;
+        dp[w] = 0;
+
+    for (int r = 1; r <= n; r++)
+        for (int w = W; w >= wt[r]; w--)
+            // either take dp[r - 1][w] (represented by dp[w]), or dp[r - 1][w - wt[r] + val[r] (represented by dp[w - wt[r]])
+            dp[w] = max(dp[w - wt[r]] + val[r], dp[w]);
+    // since we are iterating backwards, dp[w - wt[r]] still contains dp[r - 1][w - wt[r]] and dp[w] still contains dp[r - 1][w]
+    // and after the updating, dp[w] (or dp[r][w] after updating) won't be used for updating any lower dps
+
+    cout << dp[W] << endl;
     return 0;
 }

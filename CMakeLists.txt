@@ -873,4 +873,5 @@ add_executable(Codeforces
         random/dp/maximalSquare.cpp
         random/dp/knapsackOne.cpp
         random/dp/knapsackOneMemory.cpp
+        random/dp/knapsackTwo.cpp
 )

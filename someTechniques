@@ -429,3 +429,4 @@ for a = A down to wa:
         dp[a][b] = ...
 
 If you compress a DP dimension and each choice is allowed only once, iterate resource dimensions backwards.
+In 1D optimization, we iterate capacity in reverse to ensure each item is used at most once. Forward iteration would allow the same item to be picked multiple times in a single row.
