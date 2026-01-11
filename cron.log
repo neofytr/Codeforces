@@ -1201,3 +1201,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    cae67ffc..196e5b0e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b4b12cd3] Worked on Codeforces problems
+ 6 files changed, 104 insertions(+), 6 deletions(-)
+ create mode 100644 random/dp/alyonaSpreadsheet.cpp
+ create mode 100644 random/dp/fence.cpp
+ create mode 100644 random/dp/kefaDishes.cpp
+To https://github.com/neofytr/Codeforces.git
+   196e5b0e..b4b12cd3  main -> main
+branch 'main' set up to track 'origin/main'.
