@@ -1184,3 +1184,9 @@ On branch main
 Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
+[main d41c5052] Worked on Codeforces problems
+ 2 files changed, 11 insertions(+)
+ create mode 100644 random/dp/bookShop.cpp
+To https://github.com/neofytr/Codeforces.git
+   643f3b1b..d41c5052  main -> main
+branch 'main' set up to track 'origin/main'.
