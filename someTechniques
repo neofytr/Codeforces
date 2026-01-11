@@ -486,7 +486,16 @@ for (int r = 1; r <= n; r++)
 Since v[r] >= 1 and we iterate forwards, dp[v] would contain dp[r - 1][v] before the updating, and,
 dp[v - v[r]] would be dp[r - 1][v - v[r]] since we would've already updated it (since we are iterating forward).
 
-33.
+33. Some DP Lessons:
+
+1. If a problem says "subset of a subset" or "choice inside a choice", both choices must be modeled together in a single DP state.
+2. If inner decisions depend on outer decisions, add dimensions.
+3. Each item may have multiple logical roles:
+i. unused
+ii. used in the outer subset
+iii. used in both outer and inner subset
+4. If dp[r] depends only on dp[r - 1], remove r (state compression)
+5. When choices are nested and constrained, model them together, define DP precisely, respect bounds strictly, and compress whenever history is irrelevant.
 
 
 
