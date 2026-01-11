@@ -2,11 +2,11 @@
 using namespace std;
 
 #define int long long
-#define NMAX (int)(2 * 1e5)
+#define N_MAX (int)(2 * 1e5)
 #define ELTMAX (int)(1e6)
 
-int arr[NMAX + 1];
-int dp[NMAX + 1];
+int arr[N_MAX + 1];
+int dp[N_MAX + 1];
 
 void solve() {
     int n;

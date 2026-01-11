@@ -2,15 +2,15 @@
 using namespace std;
 
 #define int long long
-#define NMAX (int)(3 * 1e3)
+#define N_MAX (int)(3 * 1e3)
 #define FMAX (int)(2 * 1e5)
 #define MOD (int)(1e9 + 7)
 #define C(n, r) ((r < 0 || r > n) ? 0 : (fact[(n)] * invFact[(r)] % MOD * invFact[(n) - (r)] % MOD))
 
 int fact[FMAX + 1];
 int invFact[FMAX + 1];
-int dp[NMAX + 1];
-pair<int, int> vec[NMAX + 2];
+int dp[N_MAX + 1];
+pair<int, int> vec[N_MAX + 2];
 
 int pw(int base, int exp) {
     int res = 1;

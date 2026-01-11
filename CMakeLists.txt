@@ -874,4 +874,6 @@ add_executable(Codeforces
         random/dp/knapsackOne.cpp
         random/dp/knapsackOneMemory.cpp
         random/dp/knapsackTwo.cpp
+        random/dp/knapsackTwoMemory.cpp
+        random/dp/coinCombinationsTwo.cpp
 )

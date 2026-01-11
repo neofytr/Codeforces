@@ -430,3 +430,61 @@ for a = A down to wa:
 
 If you compress a DP dimension and each choice is allowed only once, iterate resource dimensions backwards.
 In 1D optimization, we iterate capacity in reverse to ensure each item is used at most once. Forward iteration would allow the same item to be picked multiple times in a single row.
+
+30. Value-Based Knapsack
+
+When one dimension of DP is too large, check if you can swap it with the answer.
+Standard Knapsack: capacity as index, value as answer
+Value-based Knapsack: value as index, weight as answer (then filer by capacity)
+
+This swap works when the "large" dimension is what you'd normally index by, and the "small" dimension
+(total value) can become the new index. Look at the constraints carefully; they often hint at which formulation
+to use
+
+31. If the dp transition looks something like:
+
+initialize dp[0][0]
+initialize dp[0][1...W]
+initialize dp[1...n][0]
+for (int r = 1; r <= n; r++)
+    for (int v = 1; v <= W; v++) {
+        dp[r][v] = dp[r - 1][v];
+        if (v >= v[r]) dp[r][v] = combine(dp[r - 1][v], dp[r - 1][v - v[r]]);
+    }
+
+where v[r] >= 1 for 1 <= r <= n, then, it can be space-optimized to a 1D DP as:
+
+initialize dp[0] (corresponds to previous dp[0][0])
+initialize dp[1...W] (corresponds to previous dp[0][1..W])
+for (int r = 1; r <= n; r++)
+    for (int v = W; v >= v[r]; v--)
+        dp[v] = combine(dp[v], dp[v - v[r]])
+
+Since v[r] >= 1 and we are iterating backwards, dp[v] would contain dp[r - 1][v] before the updating and dp[v - v[r]]
+would contain dp[r - 1][v - v[r]] since we are iterating backwards and wouldn't have updated dp[v - v[r] yet.
+
+32. If the DP transition looks something like:
+
+initialize dp[0][0]
+initialize dp[0][1...W]
+initialize dp[1...n][0]
+for (int r = 1; r <= n; r++)
+    for (int v = 1; v <= W; v++) {
+        dp[r][v] = dp[r][v];
+        if (v >= v[r])
+            dp[r][v] = combine(dp[r][v], dp[r][v - v[r]]);
+    }
+
+where v[r] >= 1 for 1 <= r <= n, then, it can be space-optimized to a 1D DP as:
+
+initialize dp[0]        (corresponds to dp[0][0])
+initialize dp[1...W]    (corresponds to dp[0][1...W])
+for (int r = 1; r <= n; r++)
+    for (int v = v[r]; v <= W; v++)
+        dp[v] = combine(dp[v], dp[v - v[r]])
+
+Since v[r] >= 1 and we iterate forwards, dp[v] would contain dp[r - 1][v] before the updating, and,
+dp[v - v[r]] would be dp[r - 1][v - v[r]] since we would've already updated it (since we are iterating forward).
+
+
+

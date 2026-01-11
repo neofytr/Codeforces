@@ -2,11 +2,11 @@
 using namespace std;
 
 #define int long long
-#define NMAX (int)(1e5)
-#define VMAX (int)(1e4)
+#define N_MAX (int)(1e5)
+#define V_MAX (int)(1e4)
 
-int h[NMAX + 1];
-int dp[NMAX + 1];
+int h[N_MAX + 1];
+int dp[N_MAX + 1];
 
 int32_t main() {
     int n, k;
