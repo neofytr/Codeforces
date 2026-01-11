@@ -10,7 +10,6 @@ using namespace std;
 int dp[(1ll << MAX)][MAX];
 int arr[MAX];
 
-
 map<pair<int, int>, int> f;
 int32_t main() {
 	int n, m, k;
@@ -19,18 +18,20 @@ int32_t main() {
 	for (int r = 0; r < n; r++) cin >> arr[r];
 
 	int x, y, c;
-	for (int r = 1; r <= n; r++)
+	for (int r = 1; r <= k; r++)
 		cin >> x >> y >> c, f[{x - 1, y - 1}] = c;
 	
 	for (int mask = 0; mask < (1ll << n); mask++) {
 		if (__builtin_popcountll(mask) > m) continue; // not a valid state since we have
 		// to eat exactly m dishes
 
-		for (int last = 0; last < n; last++) 
-			if (mask & (1ll << last))  // this can be the last dish
-            	for (int next = 0; next < n; next++)
-            		if (!(mask & (1ll << next))) // this can be the next dish
-            			dp[mask | (1ll << next)][next] = max(dp[mask | 1ll << next][next], f[{last, next}]);
+        for (int last = 0; last < n; last++)
+          if (mask & (1ll << last)) // this can be the last dish
+            for (int next = 0; next < n; next++)
+              if (!(mask & (1ll << next))) // this can be the next dish
+                dp[mask | (1ll << next)][next] =
+                    max(dp[mask | (1ll << next)][next],
+                        f[{last, next}] + dp[mask][last]);
     }
 
     int maxi = LLONG_MIN;
