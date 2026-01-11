@@ -1214,3 +1214,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b4b12cd3..58d7f3f4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9b5ab999] Practiced CF problems
+ 4 files changed, 29 insertions(+), 7 deletions(-)
+ create mode 100644 random/dp/theValuesYouCanMake.cpp
+To https://github.com/neofytr/Codeforces.git
+   58d7f3f4..9b5ab999  main -> main
+branch 'main' set up to track 'origin/main'.
