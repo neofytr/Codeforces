@@ -1230,3 +1230,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ca5381f3..c6748c9e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 32434f1d] Problem solving session
+ 6 files changed, 96 insertions(+), 18 deletions(-)
+ create mode 100644 random/dp/bottles.cpp
+To https://github.com/neofytr/Codeforces.git
+   c6748c9e..32434f1d  main -> main
+branch 'main' set up to track 'origin/main'.
