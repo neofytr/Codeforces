@@ -1162,3 +1162,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    69be7784..fe514099  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3b6d3908] Practiced CF problems
+ 7 files changed, 84 insertions(+), 32 deletions(-)
+ create mode 100644 random/dp/knapsackOne.cpp
+ create mode 100644 random/dp/knapsackOneMemory.cpp
+To https://github.com/neofytr/Codeforces.git
+   fe514099..3b6d3908  main -> main
+branch 'main' set up to track 'origin/main'.

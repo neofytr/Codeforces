@@ -353,3 +353,79 @@ Thus, the number of such invalid paths = summation of |Ak| for 1 <= k <= r - 1
 
 Thus, dp[r] = total_ways(a, sr) - summation of (dp[k] * total_ways(sk, sr)) for 1 <= k <= r - 1, for 1 <= r <= k
 For dp[b], just replace sr in the above formula by b
+
+29. Reverse Inner Loop for DP Space Optimization
+
+This technique applies to DP problems with the following structure:
+You process items one by one, and for each item you update DP states that represent a resource limit, i.e, 0/1 knapsack-style DP
+
+Canonical 2D DP formulation
+Let:
+i = number of items considered
+s = resource used
+
+Define dp[i][s] = best/possible using first i items with resource s
+Transition: dp[i][s] = either dp[i - 1][s] or dp[i - 1][s - wi] + vi (choose max/OR/min depending on the problem)
+
+Here, dp[i][*] depends only on dp[i - 1][*]
+
+Why space optimization is possible?
+Since row i depends only on row i-1, storing the entire table is wasteful
+
+Space reduction options:
+1. Use two arrays (prev, curr)
+2. Use one array and overwrite carefully
+
+This technique focuses on the second option
+
+If you write dp[s] = max(dp[s], dp[s - w) you are:
+1. reading from dp
+2. writing to dp
+
+So you must guarantee that dp[s - w] still represents the previous item, not the current one
+If this is violated -> same item reused many times
+
+Why forward iteration fails?
+Forward Loop (WRONG for 0/1 problems)
+
+for (int s = w; s <= S; s++)
+    dp[s] = max(dp[s], dp[s - w])
+
+What happens?
+1. dp[s - w] may have already been updated using the current item
+2. This allows multiple uses of the same item
+
+Result: You accidentally implement unbounded knapsack
+
+The reverse loop solution (key idea)
+for (int s = S; s >= w; s--)
+    dp[s] = max(dp[s], dp[s - w])
+
+Since w >= 1, s - w <= s and thus uses results from the last item stored in [1, s - 1], which aren't
+altered when we calculate dp[s] when iterating backwards. This is why the reverse loop works and is correct.
+
+Why this works:
+When iterating backwards:
+1. s - w < s
+2. Since we are going from high -> low, dp[s - w] is untouched in this iteration
+3. So it still equals dp[i - 1][s - w]
+
+General Structure
+
+0/1 Knapsack DP template (1D)
+
+initialize dp[0, S]
+for each item (wt w, value v):
+    for s = S down to w:
+        dp[s] = combine(dp[s], dp[s - w], v)
+
+Where combine = max, min, or, +, etc
+
+Multidimensional Generalization:
+
+If DP is: dp[i][a][b], you may compress the dimension i, but all resource dimensions must be iterated backwards
+for a = A down to wa:
+    for b = B down to wb:
+        dp[a][b] = ...
+
+If you compress a DP dimension and each choice is allowed only once, iterate resource dimensions backwards.
