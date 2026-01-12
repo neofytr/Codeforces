@@ -3,7 +3,6 @@ using namespace std;
 
 #define int long long 
 #define LOG2(x) (63 - __builtin_clzll(x)) // x should be of 64 bits
-#define endl "\n"
 
 // An operation x is associative iff
 // (a x b) x c = a x (b x c)
