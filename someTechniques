@@ -544,4 +544,6 @@ The updation at each step works in amortized O(1), and the querying at each step
 35. If we have some jobs j[1, n], and they have
 some corresponding deadlines d[1, n], then, any optimal order of completing them will be increasing order of their deadlines.
 
+36. Whenever a problem says “at most X”, model the DP as “exactly X” and sum at the end.
+
 

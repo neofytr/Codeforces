@@ -1284,3 +1284,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    8b78d1a6..f7a8bf41  main -> main
 branch 'main' set up to track 'origin/main'.
+[main ad55578d] Solved a CF problem
+ 5 files changed, 69 insertions(+), 13 deletions(-)
+ create mode 100644 random/dp/writingCode.cpp
+To https://github.com/neofytr/Codeforces.git
+   f7a8bf41..ad55578d  main -> main
+branch 'main' set up to track 'origin/main'.
