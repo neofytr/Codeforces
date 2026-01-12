@@ -29,5 +29,38 @@ int32_t main() {
 	// dp[i][j] is the maximum value we can get out of the saved items in vec[1, i]
 	// with total time spent = j
 
+	for (int i = 1; i <= sz; i++) {
+		int idx = vec[i].second;
+
+		dp[i][0] = 0;
+		for (int j = t[idx]; j <= b[idx]; j++) {
+			dp[i][j] = max(dp[i][j], dp[i - 1][j - t[idx]] + v[idx]);
+		}
+		for (int j = 1; j <= 2000; j++)
+			dp[i][j] = max(dp[i][j], dp[i - 1][j]);
+	}
+
+	
+	int maxi = LLONG_MIN, time = -1;
+	for (int j = 0; j <= 2000; j++) {
+		if (dp[sz][j] > maxi) time = j, maxi = dp[sz][j];
+	}
+	cout << maxi << endl;
+
+	vector<int> s;
+
+	int r = sz;
+	while (r >= 1) {
+		int idx = vec[r].second;
+		if (time >= t[idx] && dp[r][time] == dp[r - 1][time - t[idx]] + v[idx])
+			s.push_back(idx), r--, time -= t[idx];
+		else r--;
+	}
+
+	cout << s.size() << endl;
+	reverse(s.begin(), s.end());
+	for (int e : s)
+		cout << e << " ";
+	cout << endl;
 	return 0;
 }
