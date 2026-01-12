@@ -546,4 +546,6 @@ some corresponding deadlines d[1, n], then, any optimal order of completing them
 
 36. Whenever a problem says “at most X”, model the DP as “exactly X” and sum at the end.
 
+27. If a DP loops over how many times something is used, split into 0 and ≥ 1 and reuse the DP.
+
 
