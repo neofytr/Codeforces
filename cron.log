@@ -1273,3 +1273,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9c2d65bc..eb5e0bb9  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8b78d1a6] CF grind
+ 6 files changed, 32 insertions(+), 20 deletions(-)
+ create mode 100644 random/dp/porcelain.cpp
+To https://github.com/neofytr/Codeforces.git
+   eb5e0bb9..8b78d1a6  main -> main
+branch 'main' set up to track 'origin/main'.
