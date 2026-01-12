@@ -2,59 +2,48 @@
 using namespace std;
 
 #define int long long 
-#define MAX (int)(1e2)
 #define INF (int)(1e8)
+#define MAX (int)(1e2)
 
-int A[MAX + 1], B[MAX + 1], t[MAX + 1];
-int cpy[MAX + 1];
+int A[MAX + 1], B[MAX + 1];
+int C[MAX + 1];
 int dp[MAX + 1][MAX + 1][MAX * MAX + 1];
 
 int32_t main() {
 	int n;
 	cin >> n;
 
-	for (int r = 1; r <= n; r++) cin >> A[r];
-	for (int r = 1; r <= n; r++) cin >> B[r], cpy[r] = B[r];
-	for (int r = 1; r <= n; r++) t[r] = B[r] - A[r];
-
 	int sum = 0;
-	for (int r = 1; r <= n; r++) sum += A[r];
-	sort(cpy + 1, cpy + n + 1);
+	for (int r = 1; r <= n; r++) cin >> A[r], sum += A[r];
+	for (int r = 1; r <= n; r++) cin >> B[r], C[r] = B[r];
 
-	int x = 0, s = 0;
+	int k = 0, s = 0;
+	sort(C + 1, C + n + 1); 
 	for (int r = n; r >= 1; r--)
-		if (s + cpy[r] >= sum) {
-			x++;
-			break;
-		} else s += cpy[r], x++;
-		
-	// dp[r][s][t] is the minimum time to pour t units of soda into s bottles 
-	// in the range [1, r]
+		if (s < sum) s += C[r], k++;
+		else break;
 
-	for (int r = 0; r <= MAX; r++)
-		for (int s = 0; s <= MAX; s++)
-			for (int t = 0; t <= MAX * MAX; t++)
-				dp[r][s][t] = INF;
+	// dp[r][c][m] is the minimum time required to pour m units of soda
+	// into c bottles out of the first r bottles
+
+	for (int r = 0; r <= n; r++)
+		for (int c = 0; c <= n; c++)
+			for (int m = 0; m <= MAX * MAX; m++)
+				dp[r][c][m] = INF;
 
 	dp[0][0][0] = 0;
 	for (int r = 1; r <= n; r++) {
 		dp[r][0][0] = 0;
-		for (int s = 1; s <= min(x, r); s++) {
-			dp[r][s][0] = 0;
-			for (int t = 1; t <= MAX * MAX; t++) {
-				dp[r][s][t] = dp[r - 1][s][t];
-				for (int last = 1; last <= min(t, B[r]); last++)
-					if (last <= A[r])
-						dp[r][s][t] = min(dp[r][s][t], dp[r - 1][s - 1][t - last]);
-					else dp[r][s][t] = min(dp[r][s][t], dp[r - 1][s - 1][t - last] + last - A[r]);
+		for (int c = 1; c <= min(r, k); c++) {
+			dp[r][c][0] = 0;
+			for (int m = 1; m <= MAX * MAX; m++) {
+				// either i can use the rth bottle, or not use
+				dp[r][c][m] = dp[r - 1][c][m]; // not use the rth bottle
+				for (int last = 1; last <= min(m, B[r]); last++) // how much is poured into the last bottle?
+					if (last <= A[r]) dp[r][c][m] = min(dp[r][c][m], dp[r - 1][c - 1][m - last]);
+					else dp[r][c][m] = min(dp[r][c][m], dp[r - 1][c - 1][m - last] + (A[r] - last));
 			}
 		}
 	}
-
-	cout << x << " ";
-	int mini = LLONG_MAX;
-	for (int s = sum; s <= MAX * MAX; s++)
-		mini = min(mini, dp[n][x][s]);
-	cout << mini << endl;
 	return 0;
 }
