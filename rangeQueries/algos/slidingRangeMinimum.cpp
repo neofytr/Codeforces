@@ -27,13 +27,17 @@ for (int i = 1; i <= k; i++) {
 	int right = R(i);
 	int left = L(i);
 
+	// insert first
 	while (!dq.empty() && (v[dq.back()] + f(dq.back())) >= v[right] + f(right))
 		dq.pop_back();
 	dq.push_back(right);
 
+	// delete expired elements later
 	while (!dq.empty() && dq.front() < left)
 		dq.pop_front();
 
-	int mIdx = dq.front();
-	int mVal = v[mIdx] + f(mIdx); // minimum of the window at step i 
+	if (!dq.empty()) {
+		int mIdx = dq.front();
+		int mVal = v[mIdx] + f(mIdx); // minimum of the window at step i 
+	}
 }

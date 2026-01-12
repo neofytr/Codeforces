@@ -1251,3 +1251,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    84f961ae..53f2a01a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 065cd7b4] CF grind
+ 5 files changed, 50 insertions(+), 50 deletions(-)
+ create mode 100644 rangeQueries/algos/slidingRangeMinimum.cpp
+To https://github.com/neofytr/Codeforces.git
+   53f2a01a..065cd7b4  main -> main
+branch 'main' set up to track 'origin/main'.
