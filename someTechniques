@@ -541,5 +541,7 @@ for (int i = 1; i <= k; i++) {
 
 The updation at each step works in amortized O(1), and the querying at each step works in O(1)
 
+35. If we have some jobs j[1, n], and they have
+some corresponding deadlines d[1, n], then, any optimal order of completing them will be increasing order of their deadlines.
 
 
