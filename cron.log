@@ -1313,3 +1313,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    00884c4e..552da04b  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 5f13ea38] Problem solving session
+ 4 files changed, 38 insertions(+), 5 deletions(-)
+ create mode 100755 random/1400/main
+To https://github.com/neofytr/Codeforces.git
+   552da04b..5f13ea38  main -> main
+branch 'main' set up to track 'origin/main'.
