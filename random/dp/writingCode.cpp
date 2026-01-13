@@ -28,20 +28,12 @@ int32_t main() {
         // clear current layer
         for (int j = 0; j <= m; j++)
             for (int k = 0; k <= b; k++)
-                dp[cur][j][k] = 0;
+                dp[cur][j][k] = dp[pre][j][k];
 
-        for (int k = 0; k <= b; k++) {
-            for (int j = 0; j <= m; j++) {
-                dp[cur][j][k] = (dp[cur][j][k] + dp[pre][j][k]) % mod; // vi = 0
-
-                // If vi >= 1, then any sequence,
-                // (v1, ..., vi) such that v1 + ... + vi = j and v1 * a1 + ... + vi * ai = k
-                // comes from 
-                // (v1, ..., vi') such that v1 + ... + vi' = j - 1 and v1 * a1 ... + vi' * ai = k - ai,
-                // where vi' = vi - 1
-                // Thus,
-                if (j >= 1 && k >= arr[i])
-                    dp[cur][j][k] = (dp[cur][j][k] + dp[cur][j - 1][k - arr[i]]) % mod;
+        // prefix-sum transition (vi >= 1)
+        for (int j = 1; j <= m; j++) {
+            for (int k = arr[i]; k <= b; k++) {
+                dp[cur][j][k] = (dp[cur][j][k] + dp[cur][j - 1][k - arr[i]]) % mod;
             }
         }
     }
