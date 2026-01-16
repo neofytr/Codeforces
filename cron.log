@@ -1330,3 +1330,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    7b6393f9..f3a96e02  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0d190f39] Solved a few problems
+ 5 files changed, 110 insertions(+), 29 deletions(-)
+ create mode 100644 random/1400/arrayGame.cpp
+To https://github.com/neofytr/Codeforces.git
+   f3a96e02..0d190f39  main -> main
+branch 'main' set up to track 'origin/main'.
