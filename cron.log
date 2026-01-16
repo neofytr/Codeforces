@@ -1324,3 +1324,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    5f13ea38..7b6393f9  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f3a96e02] Solved a CF problem
+ 4 files changed, 21 insertions(+), 19 deletions(-)
+ create mode 100644 random/1400/jumpingThroughSegments.cpp
+To https://github.com/neofytr/Codeforces.git
+   7b6393f9..f3a96e02  main -> main
+branch 'main' set up to track 'origin/main'.
