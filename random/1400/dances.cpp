@@ -13,13 +13,19 @@ void solve() {
 	for (int i = 2; i <= n; i++) cin >> a[i];
 	for (int i = 1; i <= n; i++) cin >> b[i];
 
-	int i = 1, j = 1;
-	int cnt = 0;
-	while (i <= n) {
-		int k = j;
+	int i = 1, l1 = n;
+	int j = 1, l2 = n;
 
-		while (k <= n && a[k] >= b[j]) cnt++, k++, n--;
+	sort(a.begin() + 1, a.end());
+	sort(b.begin() + 1, b.end());
+
+	int cnt = 0;
+	while (i <= l1 && j <= l2) {
+		while (i <= l1 && j <= l2 && a[i] >= b[j]) j++, l1--, cnt++;
+		if (i <= l1 && j <= l2 && a[i] < b[j]) i++, j++;
 	}
+
+	cout << cnt << endl;
 }
 
 int32_t main() {
