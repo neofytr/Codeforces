@@ -1342,3 +1342,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0d190f39..6a124087  main -> main
 branch 'main' set up to track 'origin/main'.
+[main dcf03a82] Worked on Codeforces problems
+ 5 files changed, 42 insertions(+), 12 deletions(-)
+ create mode 100644 random/1400/ivaPav.cpp
+To https://github.com/neofytr/Codeforces.git
+   6a124087..dcf03a82  main -> main
+branch 'main' set up to track 'origin/main'.
