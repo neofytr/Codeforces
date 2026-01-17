@@ -1387,3 +1387,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b19c2bf7..b18e4296  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 2f1a29b1] Solved problem
+ 4 files changed, 89 insertions(+), 21 deletions(-)
+ create mode 100644 random/dp/onesAndZeroes.cpp
+To https://github.com/neofytr/Codeforces.git
+   b18e4296..2f1a29b1  main -> main
+branch 'main' set up to track 'origin/main'.
