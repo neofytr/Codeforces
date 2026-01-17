@@ -637,3 +637,85 @@ To justify restricting the DP to a specific order, it suffices to show that for 
 By repeatedly applying such swaps, any optimal solution can be transformed into one respecting the order, hence the restriction is without loss of generality.
 
 In order-sensitive DP, prove a greedy order is WLOG via an exchange argument: show that any inversion can be swapped without harming feasibility or value; then DP over that order is valid.
+
+41. Linear/Near-Linear Counting of Prefix Comparisons with Bounded Transitions
+
+We are given a sequence (string/array) and asked to count substrings (or index pairs) satisfying a condition that can be rewritten as:
+
+p[j] > p[i] for 0 <= i < j <= N
+
+where p[k] is a prefix derived quantity.
+
+General Solution: Fenwick Trees/Merge Sort which is O(NlogN)
+
+This technique reduces the time complexity to O(N * K), where K is a small constant, if the prefix transitions are bounded.
+
+Critical Assumption (When This Works)
+
+Assume that the prefix function satisfies p[k] - p[k - 1] belongs to [a, b] where
+
+1. a and b are constants
+2. b - a = K is small and independent of n
+
+Under this assumption:
+1. Prefix values are bounded by O(N)
+2. Between consecutive positions, p only moves a small distance on the number line
+
+Maintained State (Invariants)
+We process indices in increasing order j = 1 -> N
+
+Variables:
+1. d = p[j] -> current prefix value
+2. cnt[x] -> number of indices i < j with p[i] = x
+3. sum = number of indices i < j such that p[i] < d
+4. ans = total number of valid pairs counted so far
+
+Core Invariant
+At the start of iteration j:
+
+sum = # {i < j : p[i] < p[j - 1]}
+This invariant is the foundation of the algorithm
+
+Updating the Invariant
+
+Let:
+1. old = p[j - 1]
+2. new = p[j]
+3. delta = new - old, where a <= delta <= b
+
+We must update sum so that it becomes
+
+sum = # {i < j : p[i] < new}
+
+1. Case 1: Prefix Increases (delta > 0)
+
+New prefix values that become strictly smaller than new: old, old + 1, ..., new - 1
+
+Update:
+for x = old to new - 1:
+    sum += cnt[x]
+
+2. Case 2: Prefix Decreases (delta < 0)
+Prefix values that are no longer strictly smaller: new, new + 1, ..., old - 1
+
+Update:
+for x = new to old - 1
+    sum -= cnt[x]
+
+3. Case 3: Prefix Unchanged (delta = 0)
+Nothing changes: sum unchanged
+
+Counting Valid pairs
+After updating sum:
+
+# {i < j : p[i] < p[j]} = sum
+
+So we do: ans += sum
+Then register the current prefix for future steps: cnt[p[j]]++
+
+Correctness Argument
+1. Each valid pair (i, j) is counted exactly once, at iteration j.
+2. The invariant guarantees that sum is always correct.
+3. Only prefix values that cross the comparison boundary are adjusted.
+
+If prefix values change only by a small bounded amount each step, the count of smaller previous prefixes can be maintained incrementally in O(1) or O(K) time per step, yielding an O(N) or O(N·K) solution.
