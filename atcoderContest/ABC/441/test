@@ -1,19 +1,10 @@
-13 11
-defghiqsvwxyz
-acejmoqrtwx
-15
-qhsqzhd
-jcareec
-wwqxqew
-wxqxwex
-jxxrtwa
-trtqjxe
-sqyggse
-xxqwxew
-xewwxxw
-wwqxwex
-xqqxqwq
-qxxexxe
-teqeroc
-eeeqqee
-vxdevyy
+2 5 3 1 100
+1 1 1
+2 2 100
+1 2 1
+1 2 1
+1 2 100
+
+A[r] - A[l - 1] > B[r] - B[l - 1]
+A[r] - B[r] > A[l - 1] - B[l - 1]
+p[r] > p[l - 1]

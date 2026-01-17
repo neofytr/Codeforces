@@ -4,19 +4,36 @@ using namespace std;
 #define int long long
 
 int32_t main() {
-	int n, k, x;
-	cin >> n >> k >> x;
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
 
-	vector<int> arr(n + 1);
-	for (int r = 1; r <= n; r++) cin >> arr[r];
-	sort(arr.begin() + 1, arr.end());
+	int N, K;
+	long long X;
+	cin >> N >> K >> X;
 
-	int sum = 0;
-	for (int r = 1; r <= k; r++) sum += arr[r];
+	vector<long long> A(N);
+	for (int i = 0; i < N; i++) cin >> A[i];
 
-	if (sum > x) {
-		cout << -1 << endl;
-		return 0;
+	sort(A.begin(), A.end(), greater<long long>());
+
+	vector<long long> pref(N + 1, 0);
+	for (int i = 0; i < N; i++) {
+		pref[i + 1] = pref[i] + A[i];
 	}
+
+	for (int m = 1; m <= N; m++) {
+		int t = max(0LL, m - (N - K));  
+		if (t == 0) continue;
+
+		long long worst =
+			pref[m] - pref[m - t];
+
+		if (worst >= X) {
+			cout << m << "\n";
+			return 0;
+		}
+	}
+
+	cout << -1 << "\n";
 	return 0;
 }
