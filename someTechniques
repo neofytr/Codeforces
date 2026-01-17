@@ -607,3 +607,25 @@ Pattern Recognition:
 1. If problem says "at most k times", we have bounded knapsack
 2. If k is large, think of binary splitting.
 3. If k is small and many items, think of monotonic queue DP
+
+40. Greedy before DP
+
+If a DP involves choosing items where feasibility of choosing item r depends on previous chosen items, and there is no fixed natural order (like time, index, or position), then the order itself is part of the problem.
+
+In such cases, first look for a greedy ordering that preserves feasibility (usually proven via an exchange argument), and only then apply DP in that order.
+
+The greedy step does not choose items; it only fixes an order so that local DP transitions remain globally valid.
+
+Typical signals include: constraints like "item r can only be chosen if previous total <= limit(r)", objects that add cost but have capacity, or rules where choosing later items can invalidate earlier ones.
+
+Common orderings minimize future harm (e.g., sort by cost + capacity, deadlines, or slack). After this ordering, DP becomes straightforward and safe.
+
+If DP validity depends on history/future, ask: "Is the order wrong?" -> Fix order greedily, then DP.
+
+To recognize this pattern:
+1. DP state depends of previous/future aggregates (weight, time, load, sum)
+2. Items are symmetric initially (no given order)
+3. Picking an item early can break feasibility later
+4. Greedy alone fails, DP alone fails -> Greedy order + DP works
+
+ORDER FIXES FEASIBILITY while DP OPTIMIZES VALUE

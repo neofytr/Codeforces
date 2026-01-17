@@ -1393,3 +1393,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b18e4296..2f1a29b1  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 998bcbd0] Solved a CF problem
+ 5 files changed, 76 insertions(+), 2 deletions(-)
+ create mode 100644 random/dp/lastStoneWeight.cpp
+ create mode 100644 random/dp/tower.cpp
+To https://github.com/neofytr/Codeforces.git
+   2f1a29b1..998bcbd0  main -> main
+branch 'main' set up to track 'origin/main'.
