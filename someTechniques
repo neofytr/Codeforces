@@ -563,6 +563,10 @@ If a DP loops over how many times something is used, split into 0 and ≥ 1 and 
 
 Never loop over “how many times” in counting DP—split into 0 and ≥1 and reuse the DP.
 
+38. Counting Knapsack
 
+1. Combinations v/s Permutations is controlled by loop order. If the coins are the outer loop, then we are counting combinations; if the amount is the outer loop, then we are counting permutations.
+
+2. Forward v/s backward inner loop depends on bounded v/s unbounded. Bounded (use each item once) needs backward. Unbounded (unlimited use) can go forward.
 
 

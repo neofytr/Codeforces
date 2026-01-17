@@ -1374,3 +1374,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0bedc755..4b862e6f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b19c2bf7] Solved a few problems
+ 8 files changed, 76 insertions(+), 30 deletions(-)
+ create mode 100644 random/dp/coinChange2.cpp
+ create mode 100644 random/dp/targetSum.cpp
+To https://github.com/neofytr/Codeforces.git
+   4b862e6f..b19c2bf7  main -> main
+branch 'main' set up to track 'origin/main'.
