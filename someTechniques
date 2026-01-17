@@ -629,3 +629,11 @@ To recognize this pattern:
 4. Greedy alone fails, DP alone fails -> Greedy order + DP works
 
 ORDER FIXES FEASIBILITY while DP OPTIMIZES VALUE
+
+When DP feasibility depends on history and items are unordered, first prove a greedy order is WLOG using an exchange argument on two items; then DP over than order.
+
+To justify restricting the DP to a specific order, it suffices to show that for any two items i and j (i > j) that appear consecutively in a feasible solution but violate the desired order (K(i) > K(j)), swapping them preserves feasibility and does not decrease the objective value.
+
+By repeatedly applying such swaps, any optimal solution can be transformed into one respecting the order, hence the restriction is without loss of generality.
+
+In order-sensitive DP, prove a greedy order is WLOG via an exchange argument: show that any inversion can be swapped without harming feasibility or value; then DP over that order is valid.
