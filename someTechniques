@@ -569,4 +569,41 @@ Never loop over “how many times” in counting DP—split into 0 and ≥1 and 
 
 2. Forward v/s backward inner loop depends on bounded v/s unbounded. Bounded (use each item once) needs backward. Unbounded (unlimited use) can go forward.
 
+39. Bounded Knapsack
 
+Problem: Given items (wi, vi, ki) and capacity W, maximize total value
+with at most ki copies of each item.
+
+Core Idea: Bounded knapsack is reduced to 0/1 knapsack using binary decomposition of counts.
+
+Binary Decomposition Trick:
+
+Any count k can be written as a sum of powers of two (i.e., its binary representation).
+
+So, replace item (w, v, k) with multiple items:
+
+(w * (1 << b), v * (1 << b))
+
+for each set bit 0 <= b < 64 in k.
+
+This converts bounded knapsack to 0/1 knapsack with O(sum(log(kr); 1 <= r <= n)) items.
+
+Why it works?
+
+Binary decomposition ensures:
+1. Every number 0, ..., k is representable.
+2. Each decomposed item is used at most once.
+3. Total choice remains exact.
+
+The binary decomposition is the key. Instead of k copies of each item, you create O(logk) bundles. Any count from 1 to k can be formed by combining these bundles. This makes nded knapsack nearly as fast as 0/1.
+
+Complexity:
+
+1. Time: O(W * sum(log(kr); 1 <= r <= n))
+2. Space: O(W)
+
+Pattern Recognition:
+
+1. If problem says "at most k times", we have bounded knapsack
+2. If k is large, think of binary splitting.
+3. If k is small and many items, think of monotonic queue DP

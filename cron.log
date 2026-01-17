@@ -1381,3 +1381,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    4b862e6f..b19c2bf7  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b18e4296] Practiced CF problems
+ 3 files changed, 51 insertions(+)
+ create mode 100644 random/dp/boundedKnapsack.cpp
+To https://github.com/neofytr/Codeforces.git
+   b19c2bf7..b18e4296  main -> main
+branch 'main' set up to track 'origin/main'.
