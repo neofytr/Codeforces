@@ -1427,3 +1427,6 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    3c003698..a627af70  main -> main
 branch 'main' set up to track 'origin/main'.
+[main d9444ecc] More problems solved
+ 3 files changed, 20 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
