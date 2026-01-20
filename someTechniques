@@ -815,3 +815,13 @@ for (int i = 1; i <= n; i++)
             if (!d.empty()) dp[i][r + j * wi] = dp[i - 1][r + d.front() * wi] - d.front() * vi + j * vi;
         }
     }
+
+43. In some dynamic programming problems, although the total number of elements or transitions is very large, the number of distinct element types is small enough to satisfy the constraints; in such cases, the DP can be significantly simplified by grouping identical elements and reformulating the transition as a bounded (0 / k) knapsack. 
+
+The key observation is that if multiple elements contribute identically to the DP state—having the same weight, cost, or effect—then only their count matters, not their individual identities or order. 
+
+By counting the frequency of each distinct type and treating each type as a single item with weight w, value v, and multiplicity k, the original DP over many items reduces to transitions of the form dp[x] = (dp[x − t * w]+t * v). 
+
+This compression reduces the effective problem size from the total number of elements to the number of unique types and enables the use of standard bounded-knapsack optimizations such as binary decomposition, monotonic queue optimization, or modulo + sliding-window DP. 
+
+Conceptually, this technique exploits the fact that a large input with a small “alphabet” can be processed by frequency aggregation, turning an otherwise infeasible DP into a tractable one.
