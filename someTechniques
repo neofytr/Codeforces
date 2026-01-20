@@ -719,3 +719,99 @@ Correctness Argument
 3. Only prefix values that cross the comparison boundary are adjusted.
 
 If prefix values change only by a small bounded amount each step, the count of smaller previous prefixes can be maintained incrementally in O(1) or O(K) time per step, yielding an O(N) or O(N·K) solution.
+
+42. DP Optimization via Modulo Decomposition + Sliding Window
+
+We consider DP transitions of the form
+
+dp[i][x] = OP (0 <= t <= ki) (dp[i - 1][x - t * wi] + f(i, t)) for 1 <= i <= n, 0 <= x <= S
+
+where:
+
+1. i -> stage/item index
+2. x -> DP state (weight, sum, position)
+3. wi -> fixed step size
+4. ki -> upper bound on steps
+5. f(i, t) -> additive cost depending only on t
+6. OP is {sum, max, or min}
+
+Naive Complexity
+
+For each (i, x) we try all t: O(N * S * K)
+This is infeasible when k is large
+
+Structural Observation (The Core Invariant)
+
+All predecessor states used to compute dp[i][x] are dp[i - 1][x], dp[i - 1][x - wi], dp[i - 1][x - 2 * wi], ...
+
+These indicies:
+1. form an AP
+2. share the same remainder modulo wi
+
+This enables the entire optimization.
+
+Modulo Decomposition
+
+Fix an item i
+For each remainder i in {0, 1, ..., wi - 1} consider only the states:
+
+x = r + t * wi for (S - r) / wi >= t >= 0
+
+Define a reduced sequence:
+
+A[r][t] = dp[i - 1][r + t * wi]
+
+Substituting this into the original transition, we get:
+
+dp[i][r + t * wi] = OP (t - ki <= j <= t) (A[r][j] + f(i, t - j)) for 1 <= i <= n, for 0 <= r < wi, for 0 <= t <= (S - r) / wi
+
+For a fixed i and r, the DP is now 1D over t
+As t increases by 1, the valid range of j shifts from [t - ki, t] to [t + 1 - ki, t + 1], i.e, a sliding window of fixed width
+
+Hence, the reduced DP is a sliding window aggregate over a linear sequence.
+
+We show an example:
+
+Let the transition be:
+dp[i][x] = max(dp[i - 1][x - t * wi] + t * vi, for 0 <= t <= ki) for 1 <= i <= n, 0 <= x <= S
+
+For some 1 <= i <= n, let x = r + j * wi for some 0 <= r < wi and 0 <= j <= (S - r) / wi
+Then, 
+
+dp[i][r + j * wi] = max(dp[i - 1][r + (j - t) * wi] - (j - t) * vi + j * vi, for 0 <= t <= ki) for 1 <= i <= n, 0 <= r < wi, and 0 <= j <= (S - r) / wi
+
+i.e,
+
+dp[i][r + j * wi] = max(dp[i - 1][r + t * wi] - t * wi + j * vi, for max(0, j - ki) <= t <= j)) for 1 <= i <= n, 0 <= r < wi, and 0 <= j <= (S - r) / wi
+
+for (int i = 1; i <= n; i++)
+    for (int r = 0; r < wi; r++)
+        for (int j = 0; j <= (S - r) / wi; j++) {
+            int left = max(0, j - ki);
+            int right = j;
+
+            dp[i][r + j * wi] = LLONG_MIN;
+            for (int t = left; t <= right; t++)
+                dp[i][r + j * wi] = max(dp[i][r + j * wi], dp[i - 1][r + t * wi] - t * wi) + j * vi;
+        }
+
+The innermost transition is now a sliding window maximum and thus can be optimized using a deque
+
+for (int i = 1; i <= n; i++)
+    for (int r = 0; r < wi; r++) {
+        deque<int> d;
+        for (int j = 0; j <= (S - r) / wi; j++) {
+            int left = max(0, j - ki);
+            int right = j;
+
+            while (!d.empty() && dp[i - 1][r + d.back() * wi] - d.back() * vi > dp[i - 1][r + right * wi] - right * vi)
+                d.pop_back();
+            d.push_back(right);
+
+            while (!d.empty() && d.front() < left)
+                d.pop_front();
+
+            dp[i][r + j * wi] = LLONG_MIN;
+            if (!d.empty()) dp[i][r + j * wi] = dp[i - 1][r + d.front() * wi] - d.front() * vi + j * vi;
+        }
+    }
