@@ -1628,3 +1628,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    d3b8ad79..34c6c2c3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1c2daa48] Solved a few problems
+ 2 files changed, 18 insertions(+)
+ create mode 100644 random/dp/farmcraft.cpp
+To https://github.com/neofytr/Codeforces.git
+   34c6c2c3..1c2daa48  main -> main
+branch 'main' set up to track 'origin/main'.
