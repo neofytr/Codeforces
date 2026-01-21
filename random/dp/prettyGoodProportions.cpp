@@ -15,7 +15,7 @@ auto cmp = [](const pair<double, int> &a, const pair<double, int> &b) -> bool {
 	return false;
 };
 
-void solve() {
+void solve(int t) {
 	int n;
 	double f;
 	cin >> n >> f;
@@ -37,32 +37,28 @@ void solve() {
 
 		double x = p[r] - r * f;
 		auto itr = s.lower_bound({x, INF});
-
 		if (itr != s.end()) {
 			auto [v, idx] = *itr;
-			res.insert({
-				abs((double)(p[r] - p[idx - 1]) / (r - idx + 1) - f),
-				idx
-			});
+			double g = (double)(p[r] - p[idx - 1]) / (r - idx + 1) - f;
+			res.insert({abs(g), idx});
+		}
 
-			if (itr != s.begin()) {
-				auto [v1, idx1] = *(--itr);
-				res.insert({
-					abs((double)(p[r] - p[idx1 - 1]) / (r - idx1 + 1) - f),
-					idx1
-				});
-			}
+		if (itr != s.begin()) {
+			auto [v1, idx1] = *(--itr);
+			double g = (double)(p[r] - p[idx1 - 1]) / (r - idx1 + 1) - f;
+			res.insert({abs(g), idx1});
 		}
 	}
 
-	cout << res.begin()->second << '\n';
+	cout << "Case #" << t << ": ";
+	cout << res.begin()->second - 1 << endl;
 }
 
 int32_t main() {
 	int t;
 	cin >> t;
-	while (t--) {
-		solve();
+	for (int r = 1; r <= t; r++) {
+		solve(r);
 	}
 	return 0;
 }

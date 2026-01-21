@@ -1644,3 +1644,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    5a1ec7d4..f0065d11  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3acc1f99] Problem solving session
+ 5 files changed, 95 insertions(+), 23 deletions(-)
+ create mode 100644 random/dp/prettyGoodProportions.cpp
+To https://github.com/neofytr/Codeforces.git
+   f0065d11..3acc1f99  main -> main
+branch 'main' set up to track 'origin/main'.
