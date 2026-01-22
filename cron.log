@@ -1676,3 +1676,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    957a79db..2175705b  main -> main
 branch 'main' set up to track 'origin/main'.
+[main cbd0863f] Solved a CF problem
+ 4 files changed, 58 insertions(+), 11 deletions(-)
+ create mode 100644 random/dp/noTime.cpp
+To https://github.com/neofytr/Codeforces.git
+   2175705b..cbd0863f  main -> main
+branch 'main' set up to track 'origin/main'.

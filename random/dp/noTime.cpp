@@ -8,10 +8,11 @@ typedef struct {
 	int a, b;
 } Dragon;
 
+// the comparator should maintain struct weak ordering
 auto cmp = [](Dragon &one, Dragon &two) -> bool {
 	int m1 = max(one.a, two.a + one.b);
 	int m2 = max(two.a, one.a + two.b);
-	if (m1 <= m2) return true;
+	if (m1 < m2) return true;
 	return false;
 };
 
