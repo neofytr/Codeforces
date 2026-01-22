@@ -825,3 +825,73 @@ By counting the frequency of each distinct type and treating each type as a sing
 This compression reduces the effective problem size from the total number of elements to the number of unique types and enables the use of standard bounded-knapsack optimizations such as binary decomposition, monotonic queue optimization, or modulo + sliding-window DP. 
 
 Conceptually, this technique exploits the fact that a large input with a small “alphabet” can be processed by frequency aggregation, turning an otherwise infeasible DP into a tractable one.
+
+44. DP via Exchange Argument
+
+i. Problem Pattern
+This technique applies when:
+1. The items are initially unordered
+2. The DP is order-sensitive (state depends on processed prefix)
+3. Feasibility or value depends on history, not just set membership
+4. Goal is to optimize or test feasibility over all permutations
+
+ii. Core Principle
+If an optimal solution can always be transformed into one that follows a specific order, then DP may be restricted to that order without loss of generality (WLOG).
+
+The order is justified using a pairwise exchange argument.
+
+iii. Step 1: Deriving the Order (Greedy Justification)
+Define a pairwise preference rule between two items i, j
+Consider two consecutive items in a feasible/optimal solution:
+
+... -> i -> j -> ...
+Suppose the desired order requires j before i
+
+To justify this, prove:
+Swapping i and j preserves feasibility and does not decrease objective value.
+
+Formally:
+If K(i) > K(j), then value(j -> i) >= value (i -> j) and feasibility is unchanged.
+
+This establishes that j before i is safe.
+
+iv. Step 2: Exchange Argument
+1. Any solution violating the order has at least one adjacent inversion
+2. Each inversion can be swapped safely
+3. Repeating swaps eliminates all inversions
+4. Hence, an optimal solution exists that respects the order
+
+Therefore, restricting the DP to this order is WLOG.
+
+v. Step 3: DP on the fixed order
+Once sorted:
+1. Process items sequentially
+2. DP state depends only on prefix
+3. No need to consider other permutations
+
+vi. Comparator Construction Rule
+
+The comparator encodes the pairwise exchange argument in executable form. A comparator must answer: "If I must process exactly two items back-to-back, which order is worse?"
+
+Given two items i and j, define
+1. C(i -> j): cost/feasibility effect of processing i then j
+2. C(j -> i): cost/feasibility effect of processing j then i
+
+Then, the comparator must conclude that i < j iff C(i -> j) < C(j -> i). If the cost values are equal, the order doesn't matter.
+
+Why Two-Item Analysis is Sufficient?
+Exchange arguments rely on locality:
+1. Any permutation can be converted into another by adjacent swaps
+2. If every local inversion is safe to swap, then global optimality follows
+3. Therefore, comparing only two consecutive items is enough
+
+This is why the comparator must be derived from a pairwise isolated scenario.
+
+The comparator must be strict:
+
+i < j iff C(i -> j) < C(j -> i)
+
+Never use <=
+Equal values mean order doesn't matter
+
+The comparator must induce a strict weak ordering on the set of items. This means that the comparator defines weak order (i < j) and is transitive.
