@@ -6,48 +6,84 @@ using namespace std;
 #define MAX_K (int)(1e2)
 #define MAX_T (int) (MAX_N * MAX_K)
 
-int p[MAX_T + 1];
-int w[MAX_T + 1];
-int l[MAX_T + 1];
+int k[MAX_N + 1];
+int p[MAX_N + 1][MAX_K + 1];
+int w[MAX_N + 1][MAX_K + 1];
+int s[MAX_N + 1][MAX_K + 1];
+int ord[MAX_N + 1][MAX_K + 1];
+int ordsum[MAX_N + 1];
+int cls[MAX_N + 1];
+int wsum[MAX_N + 1];
+int psum[MAX_N + 1];
 
-auto cmp = [](int a, int b) {
-    return p[a] * w[b] < p[b] * w[a];
+int curr = -1;
+auto cmpwithin = [](int one, int two) -> bool {
+	int t1 = w[curr][one] * p[curr][one] + w[curr][two] * (p[curr][one] + p[curr][two]);
+	int t2 = w[curr][two] * p[curr][two] + w[curr][one] * (p[curr][one] + p[curr][two]);
+	if (t1 < t2) return true;
+	return false;
 };
 
+auto cmp = [](int one, int two) -> bool {
+	int t1 = ordsum[one] + psum[one] * wsum[two] + ordsum[two];
+	int t2 = ordsum[two] + psum[two] * wsum[one] + ordsum[one];
+	if (t1 < t2) return true;
+	return false;
+};
 
 int32_t main() {
-	freopen("student.in", "r", stdin);
-	freopen("student.out", "w", stdout);
+	// freopen("student.in", "r", stdin);
+	// freopen("student.out", "w", stdout);
 
 	int n;
 	cin >> n;
 
-	int t = 0;
-	int k;
-	for (int r = 1; r <= n; r++) {
-		cin >> k;
-		t += k;
+	for (int c = 1; c <= n; c++)
+		cin >> k[c];
+
+	for (int c = 1; c <= n; c++)
+		for (int l = 1; l <= k[c]; l++)
+			cin >> p[c][l];
+
+	for (int c = 1; c <= n; c++)
+		for (int l = 1; l <= k[c]; l++)
+			cin >> w[c][l];
+
+	for (int c = 1; c <= n; c++) {
+		wsum[c] = 0;
+		for (int l = 1; l <= k[c]; l++)
+			wsum[c] += w[c][l];
 	}
 
-	for (int r = 1; r <= t; r++)
-		cin >> p[r];
-	for (int r = 1; r <= t; r++)
-		cin >> w[r];
-	for (int r = 1; r <= t; r++)
-		l[r] = r;
-
-	sort(l + 1, l + t + 1, cmp);
-
-	int c = 0;
-	int e = 0;
-	for (int r = 1; r <= t; r++) {
-		int elt = l[r];
-		e += p[elt];
-		c += e * w[elt];
+	for (int c = 1; c <= n; c++) {
+		psum[c] = 0;
+		for (int l = 1; l <= k[c]; l++)
+			psum[c] += p[c][l];
 	}
 
-	cout << c << endl;
-	for (int r = 1; r <= t; r++)
-		cout << l[r] << " ";
+	for (int c = 1; c <= n; c++) 
+		for (int l = 1; l <= k[c]; l++)
+			ord[c][l] = l;
+
+	for (int c = 1; c <= n; c++) {
+		curr = c;
+		sort(ord[c] + 1, ord[c] + k[c] + 1, cmp);
+
+		int t = 0;
+		ordsum[c] = 0;
+		for (int l = 1; l <= k[c]; l++) {
+			int elt = ord[c][l];
+			t += p[c][elt];
+			ordsum[c] += t * w[c][elt];
+		}
+	}
+
+	for (int c = 1; c <= n; c++)
+		cls[c] = c;
+
+	sort(cls + 1, cls + n + 1, cmp);
+	for (int c = 1; c <= n; c++)
+		cout << cls[c] << " ";
 	cout << endl;
+	return 0;
 }
