@@ -33,8 +33,8 @@ auto cmpclass = [](int a, int b) {
 };
 
 int32_t main() {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	freopen("student.in", "r", stdin);
+	freopen("student.out", "w", stdout);
 
 	int n;
 	cin >> n;
@@ -90,12 +90,12 @@ int32_t main() {
 		int c = cls[i];
 		for (int j = 1; j <= k[c]; j++) {
 			int lab = ord[c][j];
-			cout << lab_id[c][lab] << " ";
 			cur_time += p[c][lab];
 			total_cost += cur_time * w[c][lab];
 		}
 	}
 
+	cout << total_cost << "\n";
 	for (int i = 1; i <= n; i++) {
 		int c = cls[i];
 		for (int j = 1; j <= k[c]; j++) {
@@ -106,7 +106,6 @@ int32_t main() {
 		}
 	}
 	cout << "\n";
-	cout << total_cost << "\n";
 
 	return 0;
 }
