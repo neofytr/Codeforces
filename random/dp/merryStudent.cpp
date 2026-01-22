@@ -24,8 +24,10 @@ int32_t main() {
 
 	int t = 0;
 	int k;
-	for (int r = 1; r <= n; r++)
-		cin >> k, t += k;
+	for (int r = 1; r <= n; r++) {
+		cin >> k;
+		t += k;
+	}
 
 	for (int r = 1; r <= t; r++)
 		cin >> p[r];

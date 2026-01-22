@@ -1687,3 +1687,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    cbd0863f..73924caa  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 18d208ef] Solved a few problems
+ 6 files changed, 131 insertions(+), 5 deletions(-)
+ create mode 100644 random/dp/merryStudent.cpp
+ create mode 100644 random/dp/student.out
+To https://github.com/neofytr/Codeforces.git
+   73924caa..18d208ef  main -> main
+branch 'main' set up to track 'origin/main'.
