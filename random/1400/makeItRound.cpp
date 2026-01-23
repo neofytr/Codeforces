@@ -2,80 +2,37 @@
 using namespace std;
 
 #define int long long 
+#define MAX (int)(1e3)
 
-int calc(vector<int> &digs) {
-	int pw = 1, res = 0;
-	for (int r = 1; r <= 18; r++) {
-		if (digs[r] == -1)
-			break;
-		res += digs[r] * pw;
-		pw *= 10;
+int pw(int base, int exp) {
+	int res = 1;
+	while (exp) {
+		if (exp & 1) 
+			res = res * base;
+		base = base * base;
+		exp >>= 1;
 	}
-
 	return res;
 }
 
 void solve() {
 	int n, m;
 	cin >> n >> m;
+	
+	int nc = n;
+	vector<int> fact(100, 0);
+	for (int r = 2; r * r <= nc; r++) 
+		while (!(nc % r))
+			nc /= r, fact[r]++;
+	if (nc > 1) fact[nc]++;
 
-	vector<int> M(19, -1);
-	vector<int> N(19, -1);
-
-	int n1 = n, m1 = m;
-
-	int nsz = 0, msz = 0;
-	while (n1) {
-		N[++nsz] = n1 % 10;
-		n1 /= 10; 
-	}
-	while (m1) {
-		M[++msz] = m1 % 10;
-		m1 /= 10;
-	}
-
-	int d1, maxfinalm = M[msz];
-	for (int r = 1; r <= 18; r++)
-		if (N[r]) {
-			d1 = N[r];
-			break;
-		}
-
-	if (d1 == 2) {
-		if (maxfinalm >= 5) {
-			M[msz] = 5;
-			for (int r = msz - 1; r >= 1; r--)
-				M[r] = 0;
-
-			cout << n * calc(M) << endl;
+	int x = fact[2], y = fact[5];
+	if (x < y) {
+		if (pw(2, y - x) >= m) {
+			cout << n * m << endl;
 			return;
 		}
-
-		M[msz - 1] = 5;
-		for (int r = msz - 2; r >= 1; r--)
-			M[r] = 0;
-		cout << n * calc(M) << endl;
 	}
-
-	if (d1 == 5) {
-		if (maxfinalm >= 2) {
-			M[msz] = 2;
-			for (int r = msz - 1; r >= 1; r--)
-				M[r] = 0;
-
-			cout << n * calc(M) << endl;
-			return;
-		}
-
-		M[msz - 1] = 5;
-		for (int r = msz - 2; r >= 1; r--)
-			M[r] = 0;
-		cout << n * calc(M) << endl;
-	}
-
-	for (int r = msz - 1; r >= 1; r--)
-		M[r] = 0;
-	cout << n * calc(M) << endl;
 }
 
 int32_t main() {

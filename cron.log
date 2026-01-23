@@ -1763,3 +1763,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c5419914..7ece3534  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e4cdff01] Solved a CF problem
+ 7 files changed, 167 insertions(+), 5 deletions(-)
+ create mode 100644 random/1400/hossamFriends.cpp
+ create mode 100644 random/1400/makeItRound.cpp
+To https://github.com/neofytr/Codeforces.git
+   7ece3534..e4cdff01  main -> main
+branch 'main' set up to track 'origin/main'.
