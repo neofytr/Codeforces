@@ -29,6 +29,7 @@ void solve(int t) {
 	cin >> n;
 
 	if (n == 1) {
+		cin >> n;
 		cout << "YES" << endl;
 		return;
 	}
@@ -39,16 +40,39 @@ void solve(int t) {
 		cin >> v, s.insert(v);
 
 	bool found = false;
-	for (int e : s)
-		if (!found && !(e % 10)) found = true;
+	int alpha = -1;
+	for (int e : s) {
+		if (!found && !(e % 10)) found = true, alpha = e;
 		else if (found && !(e % 10)) {
 			cout << "NO" << endl;
 			return;
 		}
+	}
 
 	if (found) {
+		// we have exactly one remainder 0
+		// find if we have any remainder 5
+
+		for (int e : s)
+			if (e % 10 == 5) 
+				if (e + 5 != alpha) {
+					cout << "NO\n";
+					return;
+				}
 		
+		// we have remainder 0, some remainder 5 (which can be conv to the remainder 0 one)
+		// if we have some other remainder, we are doomed
+
+		for (int e : s)
+			if ((e % 10) != 5 && (e % 10) != 0) {
+				cout << "NO" << endl;
+				return;
+			}
+
+		cout << "YES" << endl;
+		return;
 	}
+
 
 	// no remainder 0 from here
 	for (int e : s)
@@ -65,7 +89,13 @@ void solve(int t) {
 
 	// no remainder 0 and 5 from here
 	int a1 = *s.begin();
-	
+	for (int e : s)
+		if (calc(e) != calc(a1)) {
+			cout << "NO" << endl;
+			return;
+		}
+
+	cout << "YES" << endl;
 }
 
 int32_t main() {
