@@ -895,3 +895,17 @@ Never use <=
 Equal values mean order doesn't matter
 
 The comparator must induce a strict weak ordering on the set of items. This means that the comparator defines weak order (i < j) and is transitive.
+
+45. Bracket Sequence 
+
+Let s is a string consisting of only the characters '(' and ')' of length n.
+
+1. s is a correct bracket sequence iff all the '(' characters in the string can be paired with a ')' character in the string occuring after it.
+
+2. Let f(x) = +1 if s[x] = '(' 
+            = -1 otherwise
+
+Then, s is a correct bracket sequence iff
+
+1. summation (f(x); 1 <= x <= n) = 0
+2. summation (f(x); 1 <= x <= r) >= 0 for all 1 <= r <= n
