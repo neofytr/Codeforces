@@ -1775,3 +1775,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e4cdff01..79b415e4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 80e80cf9] Solved a CF problem
+ 5 files changed, 186 insertions(+), 40 deletions(-)
+ create mode 100644 random/1400/addModulo10.cpp
+To https://github.com/neofytr/Codeforces.git
+   79b415e4..80e80cf9  main -> main
+branch 'main' set up to track 'origin/main'.
