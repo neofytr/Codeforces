@@ -80,8 +80,53 @@ int compute_hash(const string &s) {
 // Multiplying by p^i gives:
 
 // hash(s[i, j]) * p^i = summation(s[k] * p^k for i <= k <= j) mod m
-// 					   = (hash[0, j] - hash[0, i - 1] + m) mod m
+// 					   = (hash(s[0, j]) - hash(s[0, i - 1]) + m) mod m
+// hash(s[i, j]) = ((hash(s[0, j]) - hash(s[0, i - 1]) + m) % m * inv(p^i, m)) % m
+
+// Define 
+// h[0] = 0
+// h[i] = hash of the first i characters of s = hash[0, i - 1] for 1 <= i <= n
+// The array h can be computed as
+
+int h[n + 1];
+string s(n);
+
+h[0] = 0;
+int pp = 1;
+int p = 31;
+for (int r = 1; r <= n; r++)
+	h[r] = (h[r - 1] + (s[r - 1] - 'a' + 1) * pp % m) % m, pp = pp * p % m;
+
+// Then,
+// hash(s[i, j]) = ((h[j + 1] - h[i] + m) % m * inv(p^i, m)) % m
+// 
 
 // So, by knowing the hash value of each prefix of string s, we can compute the hash of any substring
 // directly using this formula. The only problem that we face in calculating it is that we must be able
-// to divide (hash(s[1, j]) - hash(s[1, i - 1]))
+// to divide (hash(s[0, j]) - hash(s[0, i - 1])) mod m by p^i. Therefore, we need to find the modular
+// multiplicative inverse of p^i (under modulo m) and then perform multiplication with this inverse. We
+// can precompute the inverse of every p^i, which allows computing the hash of any substring of s in O(1) time.
+
+// However, there does exist an easier way. In most cases, rather than calculating the hashes of 
+// substring exactly, it is enough to compute the hash multiplied by some power of p. Suppose we have 
+// two hashes of two substrings, one multiplied by p^i and other multiplied by p^j. If i < j, then we multiply
+// the first hash by p^(j - i), otherwise, we multiply the second hash by p^(i - j). By doing this, we 
+// get both the hashes multiplied by the same power of p (which is the maximum of i and j) and now these
+// hashes can be compared easily with no need for any division.
+
+// Improve no-collision probability
+
+// Quite often the above mentioned polynomial hash is good enough, and no collisions will
+// happen during tests. Remember, the probability that collision happends is only 1 / m. For m = 1e9 + 9,
+// the probability is about 1e(-9) which is quite low. But notice, that we only did one comparison.
+
+// What if we compared a string s with 10^6 different strings? The probability of at least one collsion
+// is now about 1e(-3). And if we want to compare 10^6 different strings with each other (e.g., by counting
+// how many unique strings exists), then the probability of at least one collision happening is already about 1.
+// It is pretty much guaranteed that this task will end with a collision and return the wrong result.
+
+// There is a really easy trick to get better probabilities. We can just compute two different hashes
+// for each string (by using two different p, and/or different m), and compare these pairs instead. 
+// If m is about 10^9 for each of the two hash functions, than this is more or less equivalent as having
+// one hash function with m about 1e18. When comparing strings 1e6 strings with each other, the probability
+// that at least one collision happens is now reduced to 1e(-6).

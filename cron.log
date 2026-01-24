@@ -1870,3 +1870,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a09b1e16..87df196b  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 5fa3c98a] Solved a few problems
+ 4 files changed, 122 insertions(+), 3 deletions(-)
+ create mode 100644 strings/algos/hashing.cpp
+ delete mode 100644 strings/algos/string.cpp
+To https://github.com/neofytr/Codeforces.git
+   87df196b..5fa3c98a  main -> main
+branch 'main' set up to track 'origin/main'.
