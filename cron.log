@@ -1851,3 +1851,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ded939be..d0fd62d3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 543c84ef] Problem solving session
+ 5 files changed, 62 insertions(+), 13 deletions(-)
+ create mode 100644 random/1400/ballInBerland.cpp
+To https://github.com/neofytr/Codeforces.git
+   d0fd62d3..543c84ef  main -> main
+branch 'main' set up to track 'origin/main'.

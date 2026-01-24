@@ -9,7 +9,23 @@ void solve() {
 	int a, b, k;
 	cin >> a >> b >> k;
 
-	
+	int v;
+	vector<pair<int, int>> p(k + 1);
+	for (int r = 1; r <= max(a, b); r++)
+		A[r] = B[r] = 0;
+
+	for (int r = 1; r <= k; r++)
+		cin >> v, A[v]++, p[r].first = v;
+	for (int r = 1; r <= k; r++)
+		cin >> v, B[v]++, p[r].second = v;
+
+	int res = 0;
+	for (int r = 1; r <= k; r++) {
+		int b = p[r].first, g = p[r].second;
+		res += (k - (A[b] - 1) - (B[g] - 1) - 1);
+	}
+
+	cout << res / 2 << endl;
 }
 
 int32_t main() {
