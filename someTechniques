@@ -920,3 +920,42 @@ Then, the optimal number of characters to be removed from s to make it a correct
 Out of these, we remove |g| number of ')' characters from s (the place of removal doesn't matter, so, possibly we remove the first |g| ')' characters), and then, remove r(n) + |g| number of '(' characters from the end of the string s.
 
 46. Even in greedy problems where all items must be taken but the order matters, we can apply an idea similar to the “DP with sorting” technique. By comparing two items at a time—asking which order of taking them leads to a better result, just like in a DP transition—we can derive a pairwise comparator. Sorting all items using this comparator then gives an order that is globally optimal, allowing us to solve the problem greedily after this comparison-based reasoning.
+
+46. Distance Minimizing Toolkit (1D)
+
+1. Sum of Absolute Distances -> Median
+
+Let n >= 1
+Let a[1..n] be an array of integers
+
+Define f(x) as:
+f(x) = summation of |a[r] - x| for all r from 1 to n, where x is an integer
+
+Let y be the median of the array a[1..n].
+
+Then:
+f(y) <= f(x) for any integer x.
+
+If n is even, y may be chosen as any value between the two middle elements
+(in particular, either of the two medians).
+
+2. Sum of Weighted Absolute Distances -> Weighted Median
+
+Let n >= 1
+Let a[1..n] be an array of integers
+Let w[1..n] be an array of positive weights
+
+Define f(x) as:
+f(x) = summation of w[r] * |a[r] - x| for all r from 1 to n, where x is an integer
+
+Let W be the summation of all weights w[1..n].
+
+Let y be a weighted median of a[1..n], defined as a value y such that:
+    the summation of w[r] for all r with a[r] < y is at most W / 2, and
+    the summation of w[r] for all r with a[r] > y is at most W / 2.
+
+Then:
+f(y) <= f(x) for any integer x.
+
+If multiple such y exist, any of them minimizes f(x).
+

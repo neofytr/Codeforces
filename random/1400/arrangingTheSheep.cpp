@@ -10,6 +10,39 @@ void solve() {
 	string str;
 	cin >> str;
 
+	vector<int> s;
+	for (int i = 0; i < n; i++)
+		if (str[i] == '*')
+			s.push_back(i + 1);
+
+	int cnt = s.size();
+	if (!cnt) {
+		cout << 0 << endl;
+		return;
+	}
+
+	vector<int> g(cnt);
+	for (int i = 0; i < cnt; i++)
+		g[i] = s[i] - (i + 1);   
+
+	sort(g.begin(), g.end());
+
+	int x = g[cnt / 2];        
+
+	long long cost = 0;
+	for (int i = 0; i < cnt; i++)
+		cost += llabs(g[i] - x);
+
+	cout << cost << '\n';
+}
+
+void solve2() {
+	int n;
+	cin >> n;
+
+	string str;
+	cin >> str;
+
 	int cnt = 0;
 	vector<int> vec(n + 1);
 	for (int r = 1; r <= n; r++)
