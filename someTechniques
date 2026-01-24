@@ -961,8 +961,34 @@ If multiple such y exist, any of them minimizes f(x).
 
 47. 
 
-Let f(x) = number of consecutive ones in the binary representation of x, starting from the LSB
+Let f(x) = number of consecutive ones in the binary representation of x, starting from the LSB for x >= 0
 
-i. The number of bits that differ in n and n + 1 (when padded to the same length) = number of consecutive ones in the binary representation of n, starting from the LSB + 1 for n >= 0
+i. The number of bits that differ in n and n + 1 (when padded to the same length) = f(n) + 1 for n >= 0
 
-ii. 
+ii. f(x) = largest value of a >= 0 such that (x % 2^a = 2^a - 1)
+
+iii. To count the number of integers x in the range [0, n] (for n >= 0) such that f(x) = a, for some a >= 0, we do the following:
+
+Let this count be y.
+Now, y = number of integers x in the range [0, n] such that (y % 2^a = 2^a - 1 && y % 2^(a + 1) != 2^(a + 1) - 1)
+
+The integers x in the range [0, n] such that x % b = b - 1 form the following AP:
+
+b - 1, 2 * b - 1, ....,
+
+where b = 2^a and this AP has g1 = (n - b) / b + 1 elements
+
+The integers x in the range [0, n] such that x % d = d - 1 form the following AP:
+
+d - 1, 2 * d - 1, ...,
+
+where d = 2^(a + 1) and this AP has g2 = (n - d) / d + 1
+
+Some rth term of the first AP and qth term of the second AP are equal iff r = 2 * q
+
+Let g = (n - b) / b + 1
+Then, it follows that the number of terms common in both the APs is exactly floor(g1 / 2). 
+
+Thus y = g1 - floor(g1 / 2)  
+
+
