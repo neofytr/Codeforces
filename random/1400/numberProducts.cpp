@@ -26,6 +26,6 @@ int32_t main() {
 		else ncnt++;
 	}
 
-	cout << cnt << endl;
+	cout << (n * (n + 1)) / 2 - cnt << " " << cnt << endl;
 	return 0;
 }
