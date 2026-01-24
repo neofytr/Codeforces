@@ -1857,3 +1857,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    d0fd62d3..543c84ef  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a09b1e16] More problems solved
+ 6 files changed, 103 insertions(+), 3 deletions(-)
+ create mode 100644 random/1400/anotherRatingDrop.cpp
+ create mode 100644 random/1400/zeroRemainderArray.cpp
+To https://github.com/neofytr/Codeforces.git
+   543c84ef..a09b1e16  main -> main
+branch 'main' set up to track 'origin/main'.

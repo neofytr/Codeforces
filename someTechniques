@@ -959,3 +959,10 @@ f(y) <= f(x) for any integer x.
 
 If multiple such y exist, any of them minimizes f(x).
 
+47. 
+
+Let f(x) = number of consecutive ones in the binary representation of x, starting from the LSB
+
+i. The number of bits that differ in n and n + 1 (when padded to the same length) = number of consecutive ones in the binary representation of n, starting from the LSB + 1 for n >= 0
+
+ii. 
