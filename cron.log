@@ -1999,3 +1999,13 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certi
 [main 447184bb] Solved a CF problem
  1 file changed, 3 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main 6506a299] Solved problem
+ 6 files changed, 112 insertions(+)
+ create mode 100644 contests/DivThree/1076/a.cpp
+ create mode 100644 contests/DivThree/1076/b.cpp
+ create mode 100644 contests/DivThree/1076/c.cpp
+ create mode 100755 contests/DivThree/1076/main
+ create mode 100644 contests/DivThree/1076/test
+To https://github.com/neofytr/Codeforces.git
+   453f9814..6506a299  main -> main
+branch 'main' set up to track 'origin/main'.
