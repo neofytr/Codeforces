@@ -20,14 +20,14 @@ void solve() {
 	for (int r = 1; r <= n; r++) {
 		sum += b[r]; // sum is the total number of sword strikes
 		// required to clear the first r levels
-		if (sum <= n) {
+		if (sum <= n) 
 			maxpsbl[r] = a[n - sum + 1];
-		}
 	}
 
 	int maxi = -INF;
 	for (int r = 1; r <= n; r++)
-		maxi = max(maxi, r * maxpsbl[r]);
+		if (maxpsbl[r] != -INF)
+			maxi = max(maxi, r * maxpsbl[r]);
 
 	cout << max(0ll, maxi) << endl;
 }
