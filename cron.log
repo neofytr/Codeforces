@@ -2015,3 +2015,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6506a299..96863292  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e75efd5d] CF grind
+ 6 files changed, 99 insertions(+), 16 deletions(-)
+ create mode 100644 contests/DivThree/1076/e.cpp
+ create mode 100644 contests/DivThree/1076/f.cpp
+To https://github.com/neofytr/Codeforces.git
+   96863292..e75efd5d  main -> main
+branch 'main' set up to track 'origin/main'.
