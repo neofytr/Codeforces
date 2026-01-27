@@ -2040,3 +2040,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    387faf8d..1d71a5aa  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 38243b81] Solved a few problems
+ 7 files changed, 97 insertions(+), 15 deletions(-)
+ create mode 100644 random/1400/queens.cpp
+ create mode 100644 random/1400/tape.cpp
+ create mode 100644 random/oddProcess.cpp
+To https://github.com/neofytr/Codeforces.git
+   1d71a5aa..38243b81  main -> main
+branch 'main' set up to track 'origin/main'.
