@@ -2065,3 +2065,13 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    dd5b4013..1878174d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 85d5dc99] Problem solving session
+ 10 files changed, 195 insertions(+), 14 deletions(-)
+ create mode 100644 random/1400/kanade.cpp
+ create mode 100644 random/additionSegment.cpp
+ create mode 100644 random/dp/candies.cpp
+ create mode 100644 random/dp/specialElements.cpp
+ create mode 100644 random/quotientAndRemainder.cpp
+To https://github.com/neofytr/Codeforces.git
+   1878174d..85d5dc99  main -> main
+branch 'main' set up to track 'origin/main'.

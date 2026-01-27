@@ -22,29 +22,25 @@ int32_t main() {
 
 	dp[0][0] = 1;
 	p[0] = 1;
-	for (int i = 1; i <= k; i++)
-		p[i] = (p[i - 1] + dp[0][i]) % MOD;
-
+	for (int j = 1; j <= k; j++)
+		p[j] = (p[j - 1] + dp[0][j]) % MOD;
 	for (int i = 1; i <= n; i++) {
 		dp[i][0] = 1;
 		for (int j = 1; j <= k; j++) {
-			dp[i][j] = dp[i - 1][j];
-
+			int s = 0;
 			int left = j - min(arr[i], j);
-			int right = j - 1;
-			
-			if (!left) dp[i][j] = (dp[i][j] + p[right]) % MOD;
-			else dp[i][j] = (dp[i][j] + p[right] - p[left - 1] + MOD) % MOD;
+			int right = j;
+
+			if (!left) s = (s + p[right]) % MOD;
+			else s = (s + (p[right] - p[left - 1]) % MOD + MOD) % MOD;
+
+			dp[i][j] = s;
 		}
 
 		p[0] = 1;
 		for (int j = 1; j <= k; j++)
-			p[j] = (p[i - 1] + dp[i][j]) % MOD;
+			p[j] = (p[j - 1] + dp[i][j]) % MOD;;
 	}
-
-	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= k; j++)
-			cout << i << " " << j << " " << dp[i][j] << endl;
 
 	cout << dp[n][k] << endl;
 	return 0;
