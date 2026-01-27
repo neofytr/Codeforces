@@ -2086,3 +2086,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    d2ddd3cc..7dce5bc2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1cde9da1] Problem solving session
+ 6 files changed, 98 insertions(+), 6 deletions(-)
+ create mode 100644 random/dp/leastPrefixSum.cpp
+ create mode 100644 random/dp/prefixSumAddicts.cpp
+To https://github.com/neofytr/Codeforces.git
+   7dce5bc2..1cde9da1  main -> main
+branch 'main' set up to track 'origin/main'.
