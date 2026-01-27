@@ -991,4 +991,14 @@ Then, it follows that the number of terms common in both the APs is exactly floo
 
 Thus y = g1 - floor(g1 / 2)  
 
+48. n ^ (n + 1) ^ (n + 2) = n + 3 for any positive integer n
 
+49. 
+
+Let a[1, n] be an array of non-negative integers and let p[1, n] be its prefix XOR array.
+
+Then,
+
+1. XOR of subsegment a[l, r] = p[r] ^ p[l - 1] for any 1 <= l <= r <= n
+
+2. a[r] = p[r] ^ p[r - 1] for any 1 <= r <= n

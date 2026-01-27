@@ -3,39 +3,21 @@ using namespace std;
 
 #define int long long
 
-int calc(int l, int r, vector<int> &a) {
-	int res = 0;
-	for (int i = l; i <= r; i++)
-		res ^= a[i];
-	return res;
-}
-
 void solve() {
 	int n, l, r;
 	cin >> n >> l >> r;
 
 	vector<int> a(n + 1);
+	vector<int> p(n + 1);
 
-	int x = 0, c = 3, cons = 0;
-	int res = 0;
+	p[0] = 0;
 	for (int i = 1; i <= n; i++) {
-		if (i == r) {
-		 	a[i] = res, c = res + 1, cons = 1;
-		 	continue;
-		}
-
-		if (cons == 3) a[i] = c + 1, c += 2, cons = 1;
-		else a[i] = c++, cons++;
-		
-		if (i >= l && i < r) res ^= a[i];
+		p[i] = i;
+		if (i == r) p[i] = p[l - 1];
 	}
 
 	for (int i = 1; i <= n; i++)
-		cout << a[i] << " ";
-
-	for (int i = 1; i <= n; i++)
-		for (int j = i + 1; j <= n; j++)
-			cout << i << " " << j << " " << calc(i, j, a) << endl; 
+		a[i] = p[i] ^ p[i - 1], cout << a[i] << " ";
 	cout << endl;
 }
 

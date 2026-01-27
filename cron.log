@@ -2053,3 +2053,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    38243b81..044c5742  main -> main
 branch 'main' set up to track 'origin/main'.
+[main dd5b4013] Solved a CF problem
+ 6 files changed, 101 insertions(+), 26 deletions(-)
+ create mode 100644 random/xorArray.cpp
+To https://github.com/neofytr/Codeforces.git
+   044c5742..dd5b4013  main -> main
+branch 'main' set up to track 'origin/main'.
