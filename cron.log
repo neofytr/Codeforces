@@ -2027,3 +2027,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e75efd5d..9eff3c39  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 387faf8d] Solved some problems
+ 8 files changed, 68 insertions(+), 17 deletions(-)
+ create mode 100644 random/1400/candyBox.cpp
+ create mode 100644 random/1400/newsDistribution.cpp
+To https://github.com/neofytr/Codeforces.git
+   9eff3c39..387faf8d  main -> main
+branch 'main' set up to track 'origin/main'.
