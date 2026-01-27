@@ -2080,3 +2080,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    85d5dc99..d2ddd3cc  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7dce5bc2] Practiced CF problems
+ 4 files changed, 66 insertions(+), 2 deletions(-)
+ create mode 100644 random/dp/prefixSumPrimes.cpp
+To https://github.com/neofytr/Codeforces.git
+   d2ddd3cc..7dce5bc2  main -> main
+branch 'main' set up to track 'origin/main'.

@@ -5,10 +5,10 @@ using namespace std;
 #define MAX (int)(2 * 1e5)
 
 int arr[MAX + 1];
-bitset<2 * MAX + 1> notPrime(false);
+bitset<3 * MAX + 1> notPrime(false);
 vector<int> primes;
 
-int32_t main() {
+int solve() {
 	int n;
 	cin >> n;
 
@@ -21,12 +21,12 @@ int32_t main() {
 	}
 
 	notPrime[0] = notPrime[1] = true;
-	for (int r = 2; r <= 2 * n; r++)
+	for (int r = 2; r <= 3 * n; r++)
 		if (!notPrime[r])
 			for (int j = r * r; j <= 2 * n; j += r)
 				notPrime[j] = true;
 
-	for (int r = 2; r <= 2 * n; r++)
+	for (int r = 2; r <= 3 * n; r++)
 		if (!notPrime[r]) primes.push_back(r);
 
 	if (!cntOne) {
@@ -55,5 +55,11 @@ int32_t main() {
 	for (int r = 1; r <= n; r++)
 		cout << arr[r] << " ";
 	cout << endl;
+	return 0;
+}
+
+int32_t main() {
+	int t = 1;
+	while (t--) solve();
 	return 0;
 }
