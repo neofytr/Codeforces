@@ -2034,3 +2034,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9eff3c39..387faf8d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1d71a5aa] More problems solved
+ 5 files changed, 120 insertions(+), 8 deletions(-)
+ create mode 100644 random/1400/lostNumbers.cpp
+To https://github.com/neofytr/Codeforces.git
+   387faf8d..1d71a5aa  main -> main
+branch 'main' set up to track 'origin/main'.

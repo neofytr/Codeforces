@@ -18,28 +18,31 @@ int32_t main() {
 	int p[7];
 
 	int a, b;
-	cout << ? << " " << 1 << " " << 2 << endl;
+	cout << "?" << " " << 1 << " " << 2 << endl;
 	cin >> a;
-	cout << ? << " " << 2 << " " << 3 << endl;
+	cout << "?" << " " << 2 << " " << 3 << endl;
 	cin >> b;
 
 	auto [c, d] = f[a];
 	if (g[c].find(b) != g[c].end()) 
-		f[1] = d, f[2] = c, f[3] = b / f[2];
+		p[1] = d, p[2] = c, p[3] = b / p[2];
 	else 
-		f[1] = c, f[2] = d, f[3] = b / f[2];
+		p[1] = c, p[2] = d, p[3] = b / p[2];
 	
-	cout << ? << " " << 4 << " " << 5 << endl;
+	cout << "?" << " " << 4 << " " << 5 << endl;
 	cin >> a;
-	cout << ? << " " << 5 << " " << 6 << endl;
+	cout << "?" << " " << 5 << " " << 6 << endl;
 	cin >> b;
 
 	c = f[a].first, d = f[a].second;
 	if (g[c].find(b) != g[c].end()) 
-		f[4] = d, f[5] = c, f[6] = b / f[2];
+		p[4] = d, p[5] = c, p[6] = b / p[5];
 	else 
-		f[4] = c, f[5] = d, f[6] = b / f[2];
+		p[4] = c, p[5] = d, p[6] = b / p[5];
 
-	cout << "! "
+	cout << "! ";
+	for (int r = 1; r <= 6; r++)
+		cout << p[r] << " ";
+	cout << endl;
 	return 0;
 }
