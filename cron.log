@@ -2059,3 +2059,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    044c5742..dd5b4013  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1878174d] Practiced CF problems
+ 7 files changed, 96 insertions(+), 25 deletions(-)
+ create mode 100644 random/needleInAHaystack.cpp
+To https://github.com/neofytr/Codeforces.git
+   dd5b4013..1878174d  main -> main
+branch 'main' set up to track 'origin/main'.
