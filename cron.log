@@ -2104,3 +2104,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    14dbb44b..eca62b07  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8f4f50b3] Worked on Codeforces problems
+ 5 files changed, 19 insertions(+), 23 deletions(-)
+ create mode 100644 random/dp/countTriangles.cpp
+ delete mode 100644 random/dp/natashaSasha.cpp
+To https://github.com/neofytr/Codeforces.git
+   eca62b07..8f4f50b3  main -> main
+branch 'main' set up to track 'origin/main'.
