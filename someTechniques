@@ -1072,8 +1072,113 @@ Dominance Rule:
 
 Same length k -> smaller ending value dominates larger ending value
 
-Hence, only one state per length is needed
+Hence, only one state per length is needed.
 
+iii. The General Pattern
+
+Greedy Dominance works when all the following holds:
+
+1. States are comparable
+There exists a total or partial order on states.
+
+2. Future transitions depend on few parameters
+The future only depends on current state parameters and not the entire history.
+
+3. Monotonicity of transitions
+If state A is better than state B now, then A remains better after any future step.
+
+4. Exchange Argument Exists
+You can prove: Any optimal solution using B can be transformed into one using A without reducing optimality.
+
+iv. How to use this technique
+
+1. Write the DP
+
+dp[i][j] = best result after i steps with parameter j
+
+2. Identify the "progress dimension"
+Find what defines the stage:
+i. length
+ii. time
+iii. number of items used
+iv. number of operations
+
+In LIS, it's length.
+
+3. Find dominance within the same stage
+
+Ask: Among all states within the same stage, which ones are always better.
+
+4. Keep only minimal/maximal representative
+
+Replace a set of states by a single best state per stage.
+
+4. Maintain order and search
+
+If the best states are ordered:
+1. Use binary search
+2. Use two pointers
+3. Use monotonic queue/convex hull
+
+General Template:
+
+1. Define DP states.
+2. Identify equivalent stages.
+3. Define dominance relation.
+4. Prove dominance via exchange argument.
+5. Discard dominated states greedily.
+6. Optimize transitions with data structure.
+
+Greedy dominance works when you can totally order states so that “better now” implies “better forever”.
+
+52. LIS
+
+Longest Strictly Increasing Subsequence
+
+int32_t main() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n + 1), last(n + 2);
+    for (int r = 1; r <= n; r++) cin >> arr[r];
+
+    last[0] = LLONG_MIN;
+    for (int r = 1; r <= n + 1; r++)
+        last[r] = LLONG_MAX;
+
+    // last[r] = smallest element that ends a strictly increasing
+    // subsequence of length r for >= 1
+
+    // Claim: last is always sorted in strictly increasing order
+    // Proof: Suppose last[i] >= last[i + 1]
+    // This means that there is a strictly increasing subsequence of length i + 1
+    // that ends at last[i + 1]. The ith element of this subsequence (say x)
+    // will be < last[i + 1]. Thus, there is a strictly increasing subsequence
+    // of length i that ends at x < last[i], which is a contradiction.
+
+    for (int r = 1; r <= n; r++) {
+        int left = 0;
+        int right = n + 1;
+
+        // find the largest i such that last[i] < arr[r] for 0 <= i <= n
+        while (right != left + 1) {
+            int mid = left + (right - left) / 2;
+            if (last[mid] < arr[r])
+                left = mid;
+            else 
+                right = mid;
+        }
+
+        last[left + 1] = arr[r];
+    }
+
+    for (int r = n; r >= 1; r--)
+        if (last[r] != LLONG_MAX) {
+            cout << r << " ";
+            break;
+        }
+    return 0;
+}   
 
 
 
