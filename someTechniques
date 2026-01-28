@@ -1002,3 +1002,38 @@ Then,
 1. XOR of subsegment a[l, r] = p[r] ^ p[l - 1] for any 1 <= l <= r <= n
 
 2. a[r] = p[r] ^ p[r - 1] for any 1 <= r <= n
+
+50. Consider the following loop
+
+int cnt = 0;
+for (int r = 1; r <= n; r++)
+    for (int i = 1; i < r; i++)
+        if (arr[i] >= arr[r])
+            cnt++;
+        
+This is equivalent to counting the number of inversions (i < j and arr[i] >= arr[j]) in the array and can be done easily using the merge sort algorithm in O(nlog(n)) time.
+
+int cnt = 0;
+void merge(int l, int r, vector<int> &arr) {
+    if (l == r) return;
+
+    int sz = r - l + 1;
+    merge(l, l + sz / 2 - 1, arr);
+    merge(l + sz / 2, r, arr);
+
+    vector<int> tmp(sz + 1);
+    int i = l, j = l + sz / 2, k = 1;
+    while (i <= l + sz / 2 - 1 && j <= r)
+        if (arr[i] < arr[j]) tmp[k++] = arr[i++];
+        else cnt += ((l + sz / 2) - i), tmp[k++] = arr[j++];
+
+    while (i <= l + sz / 2 - 1)
+        tmp[k++] = arr[i++];
+    while (j <= r)
+        tmp[k++] = arr[j++];
+
+    for (int q = l; q <= r; q++)
+        arr[q] = tmp[q - l + 1];
+}
+
+

@@ -15,7 +15,7 @@ void merge(int l, int r, vector<int> &arr) {
 	int i = l, j = l + sz / 2, k = 1;
 	while (i <= l + sz / 2 - 1 && j <= r)
 		if (arr[i] < arr[j]) tmp[k++] = arr[i++];
-		else cnt += (i - l + 1), tmp[k++] = arr[j++];
+		else cnt += ((l + sz / 2) - i), tmp[k++] = arr[j++];
 
 	while (i <= l + sz / 2 - 1)
 		tmp[k++] = arr[i++];

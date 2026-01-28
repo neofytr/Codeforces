@@ -2138,3 +2138,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    18100676..4d6a9220  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8e28adb2] Solved problem
+ 4 files changed, 54 insertions(+), 4 deletions(-)
+ create mode 100644 random/dp/maximumCrossings.cpp
+To https://github.com/neofytr/Codeforces.git
+   4d6a9220..8e28adb2  main -> main
+branch 'main' set up to track 'origin/main'.
