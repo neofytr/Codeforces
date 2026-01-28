@@ -1010,7 +1010,7 @@ for (int r = 1; r <= n; r++)
     for (int i = 1; i < r; i++)
         if (arr[i] >= arr[r])
             cnt++;
-        
+
 This is equivalent to counting the number of inversions (i < j and arr[i] >= arr[j]) in the array and can be done easily using the merge sort algorithm in O(nlog(n)) time.
 
 int cnt = 0;
@@ -1035,5 +1035,45 @@ void merge(int l, int r, vector<int> &arr) {
     for (int q = l; q <= r; q++)
         arr[q] = tmp[q - l + 1];
 }
+
+51. Greedy Dominance Principle
+
+Greedy dominance is a principle where among multiple states representing the same "progress", some states are never better than others for any future transition.
+
+Such states are called dominated and can be discarded safely.
+
+Suppose a DP has states of the form dp[state]
+
+A state A dominates state B if:
+1. A and B represent the same stage (same length, same step)
+2. For every possible future transition, A performs at least as well as B
+
+Then, state B can be deleted without affecting the optimal answer.
+
+i. Why dominance enables Greedy Algorithms
+
+DP usually fails because there are too many states. Greedy dominance allows you to:
+
+1. Keep only non-dominated states
+2. Permanently discard inferior states
+3. Reduce state count from quadratic/exponential to linear/logarithmic
+
+This is how DP turns into Greedy + Binary Search
+
+ii. LIS as an example:
+
+Original DP:
+dp[i] = LIS ending at i
+
+Compressed State:
+last[k] = smallest ending value of any LIS of length k
+
+Dominance Rule:
+
+Same length k -> smaller ending value dominates larger ending value
+
+Hence, only one state per length is needed
+
+
 
 
