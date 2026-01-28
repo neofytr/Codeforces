@@ -2117,3 +2117,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    8f4f50b3..f8d706d2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1e850553] Solved a CF problem
+ 4 files changed, 11 insertions(+), 10 deletions(-)
+ create mode 100644 random/dp/mochaDiana.cpp
+To https://github.com/neofytr/Codeforces.git
+   f8d706d2..1e850553  main -> main
+branch 'main' set up to track 'origin/main'.
