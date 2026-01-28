@@ -18,22 +18,17 @@ void solve() {
 	if (v[1] == 0) dp[1][0] = 1;
 	if (v[1] == 2) dp[1][0] = dp[1][1] = 1;
 
-	for (int r = 2; r <= n; r++) {
-		if (v[r] == 0) {
-			dp[r][0] = dp[r - 1][1] + 1;
-		}
-		else if (v[r] == 1) {
-			dp[r][1] = dp[r - 1][0] + 1;
-		}
+	for (int r = 2; r <= n; r++)
+		if (!v[r]) dp[r][0] = dp[r - 1][1] + 1;
+		else if (v[r] == 1) dp[r][1] = dp[r - 1][0] + 1;
 		else {
 			dp[r][0] = dp[r - 1][1] + 1;
 			dp[r][1] = dp[r - 1][0] + 1;
 		}
-	}
-
+		
 	int res = 0;
 	for (int r = 1; r <= n; r++)
-		res += (dp[r][0] + dp[r][1]);
+		res += max(dp[r][0], dp[r][1]);
 	cout << res << endl;
 }
 
