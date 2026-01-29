@@ -1222,3 +1222,105 @@ int32_t main() {
 }
 
 You track both the length and count of LIS ending at each position. When you find a longer subsequence, reset the count. When you find an equal-length one, add to the count.
+
+54. 2D Longest Increasing Subsequence
+
+1. Problem Statement
+
+Given envelopes E = {(wr, hr)},
+
+envelope i fits into envelope j iff wi < wj and hi < hj
+
+Goal: find the maximum length envelope chain a1, a2, ... such that
+
+a1 fits into a2, a2 fits into a3, ..., and so on
+
+2. Naive DP
+
+Define: dp[i] = max chain ending at envelope i
+
+Transition
+dp[i] = 1
+for (int r = 1; r < i; r++)
+    if (w[r] < w[i] && h[r] < h[i])
+        dp[i] = max(dp[i], dp[r] + 1);
+
+Time O(n^2)
+Correct but slow.
+
+3. Goal of Optimization
+
+Reduce 2D partial order to a 1D LIS problem, which can be solved in O(n * log(n))
+
+To do this, we must:
+
+i. eliminate one dimension via sorting
+ii. ensure the remaining dimension fully encodes validity
+
+5. Sorting strategy
+
+We sort envelopes by:
+i. width increasing
+ii. height decreasing if widhts are equal
+
+6. Why sorting is required?
+
+After sorting by width:
+
+i < j -> wi <= wj
+
+Thus,
+
+i. width constraint is implicitly handled
+ii. LIS only needs to check heights
+
+But, this introduces a danger when wi = wj
+
+7. Invariant required for LIS correctness
+
+When we run LIS on heights, we assume:
+
+if i < j and hi < hj, then envelope i can nest into j
+This assumption is false when wi = wj
+
+Thus, sorting must prevent height-increasing pairs with equal width.
+
+8. What breaks if height is NOT sorted descending
+
+Counterexample:
+
+(5,4), (5,7)
+
+widths equal → nesting impossible
+but heights increase → LIS counts both
+
+Result: invalid chain
+
+9. Why height descending fixes it
+For equal widths, sorting height descending gives:
+
+(5, 7), (5, 4)
+
+Heights are decreasing, so:
+i. LIS can pick at most one
+ii. Equal width envelopes never form a chain
+
+10. Key invariant after sorting
+
+After sorting by (width increasing, height decreasing):
+
+If i < j and hi < hj, then necessarily wi < wj
+This guarantees that every increasing height subsequence corresponds to a valid nesting chain.
+
+11. Reduction to LIS
+
+After sorting, define sequence:
+
+H = {h1, h2..., hn}
+
+Now solve: LIS of H
+This gives the maximum nesting depth.
+
+In general, when we want to reduce the dimensions of a LIS to a single dimensional LIS on some dimension x, we need to ensure the following invariant:
+
+that every increasing x subsequence corresponds to a valid chain
