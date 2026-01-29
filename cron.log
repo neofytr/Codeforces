@@ -2213,3 +2213,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    dfb758ad..9d42b0de  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b5ddcbab] Problem solving session
+ 3 files changed, 151 insertions(+), 1 deletion(-)
+ create mode 100644 random/dp/2DLIS.cpp
+To https://github.com/neofytr/Codeforces.git
+   9d42b0de..b5ddcbab  main -> main
+branch 'main' set up to track 'origin/main'.
