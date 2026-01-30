@@ -1138,6 +1138,7 @@ We can use the binary search LIS method iff:
 For increasing subsequences of the same length, the one with the smallest ending value dominates all others.
 
 Formally, if two subsequences have equal length k and end at x <= y, then the one ending at x is always at least as extendable as the one ending at y. If this dominance holds, we can use the nlogn LIS. Otherwise, we need to resort to dp + segment/fenwick trees.
+
 52. LIS
 
 Longest Strictly Increasing Subsequence
