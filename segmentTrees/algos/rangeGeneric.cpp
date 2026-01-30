@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Segment Trees can be used to speed up range-queries and point updates, in which the
-// operation used is associative (a op (b op c)) = ((a op b) op c (i.e., you can group operations together)) and 
-// has an identity under the operation (i.e, there is an element x such that
-// a op x = a).
+#define int long long
+
+// In the following Segment Tree, we support the following two operations on an array A[1, n]:
+// 1. update(l, r, v): Perform A[r] = A[r] op v for all 1 <= r <= n
 
 // 1-indexed Generic Segment Tree
 template<typename T>
@@ -80,4 +80,3 @@ public:
 
 
 };
-
