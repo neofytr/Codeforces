@@ -1,3 +1,12 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Segment Trees can be used to speed up range-queries, in which the
+// operation used is associative (a op (b op c)) = ((a op b) op c, i.e, the order in
+// which we perform the operation on the elements is irrelevant) and 
+// has an identity under the operation (i.e, there is an element x such that
+// a op x = a).
+
 // 1-indexed Generic Segment Tree
 template<typename T>
 class SegmentTree {
