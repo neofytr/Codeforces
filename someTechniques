@@ -1131,6 +1131,13 @@ General Template:
 
 Greedy dominance works when you can totally order states so that “better now” implies “better forever”.
 
+Binary Search LIS works exactly when DP states of equal length have a total dominance order by ending values.
+
+We can use the binary search LIS method iff:
+
+For increasing subsequences of the same length, the one with the smallest ending value dominates all others.
+
+Formally, if two subsequences have equal length k and end at x <= y, then the one ending at x is always at least as extendable as the one ending at y. If this dominance holds, we can use the nlogn LIS. Otherwise, we need to resort to dp + segment/fenwick trees.
 52. LIS
 
 Longest Strictly Increasing Subsequence
@@ -1324,3 +1331,9 @@ This gives the maximum nesting depth.
 In general, when we want to reduce the dimensions of a LIS to a single dimensional LIS on some dimension x, we need to ensure the following invariant:
 
 that every increasing x subsequence corresponds to a valid chain
+
+55. Suppose we have an array a[1, n] for some n >= 1 and we want to find the minimum number of deletions required to sort the array in strictly increasing order.
+
+To do this, find the length longest strictly increasing subsequence, say its x.
+
+Then, the answer is n - x.
