@@ -2302,3 +2302,14 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 To https://github.com/neofytr/Codeforces.git
    95cffd1b..21eacd78  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 235578af] Worked on Codeforces problems
+ 8 files changed, 185 insertions(+)
+ create mode 100644 segmentTrees/algos/generic.cpp
+ create mode 100755 segmentTrees/algos/main
+ create mode 100644 segmentTrees/algos/sum.cpp
+ create mode 100644 segmentTrees/algos/test
+ create mode 100644 segmentTrees/problems/sum.cpp
+ create mode 100644 segmentTrees/problems/test
+To https://github.com/neofytr/Codeforces.git
+   21eacd78..235578af  main -> main
+branch 'main' set up to track 'origin/main'.
