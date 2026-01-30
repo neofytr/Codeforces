@@ -1,10 +1,110 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Segment Trees can be used to speed up range-queries and point updates, in which the
-// operation used is associative (a op (b op c)) = ((a op b) op c (i.e., you can group operations together)) and 
-// has an identity under the operation (i.e, there is an element x such that
-// a op x = a).
+/*
+    Generic Segment Tree (Range Query + Point Update)
+    -------------------------------------------------
+
+    This implementation maintains a 1-indexed segment tree over an
+    array A[1..n]. It supports efficient range queries and point
+    updates using a user-defined operation.
+
+    ------------------------------------------------------------
+    Supported Operations
+    ------------------------------------------------------------
+
+    1) query(l, r):
+       Computes and returns:
+           A[l] op A[l+1] op ... op A[r]
+
+    2) set(idx, val):
+       Updates the array by performing:
+           A[idx] = val
+
+    ------------------------------------------------------------
+    Algebraic Requirements on the Operation
+    ------------------------------------------------------------
+
+    The binary operation `combine` must satisfy:
+
+    1) ASSOCIATIVITY:
+           (a op b) op c = a op (b op c)
+
+       This property allows the segment tree to merge results from
+       subsegments without ambiguity.
+
+    2) IDENTITY ELEMENT:
+       There must exist an element `identity` such that:
+           a op identity = identity op a = a
+
+       The identity element is required to:
+       - Represent empty or non-overlapping query ranges
+       - Initialize unused nodes safely
+       - Avoid special-case handling during queries
+
+    NOTE:
+    - Commutativity is NOT required.
+    - The order of combination is fixed by the tree structure.
+
+    ------------------------------------------------------------
+    Tree Structure and Indexing
+    ------------------------------------------------------------
+
+    - The segment tree is built over indices [1, n].
+    - Each node represents a contiguous subarray [L, R].
+    - Leaf nodes correspond to single elements of the array.
+    - Internal nodes store the result of combining their children.
+
+    The tree is stored in an array `tree` where:
+        node i has children at 2*i and 2*i + 1.
+
+    ------------------------------------------------------------
+    Build Phase
+    ------------------------------------------------------------
+
+    - The build process constructs the tree in O(n) time.
+    - Leaves are initialized from the input array.
+    - Internal nodes are computed bottom-up using `combine`.
+
+    ------------------------------------------------------------
+    Query Behavior
+    ------------------------------------------------------------
+
+    - A query recursively traverses the tree.
+    - If a node's range lies completely outside [l, r], the identity
+      element is returned.
+    - If a node's range lies completely inside [l, r], its stored
+      value is returned.
+    - Partial overlaps combine results from both children.
+
+    This guarantees correctness due to associativity.
+
+    ------------------------------------------------------------
+    Update Behavior
+    ------------------------------------------------------------
+
+    - A point update modifies a single leaf.
+    - The change is propagated upward, recomputing affected nodes.
+    - Each update takes O(log n) time.
+
+    ------------------------------------------------------------
+    Time and Space Complexity
+    ------------------------------------------------------------
+
+    - Build time:      O(n)
+    - Query time:      O(log n)
+    - Update time:     O(log n)
+    - Space usage:     O(n)
+
+    ------------------------------------------------------------
+    Summary
+    ------------------------------------------------------------
+
+    - Generic segment tree supporting range queries and point updates
+    - Requires an associative operation with an identity element
+    - Does not rely on commutativity
+    - Clean, reusable template-based design
+*/
 
 // 1-indexed Generic Segment Tree
 template<typename T>

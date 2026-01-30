@@ -2331,3 +2331,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    86e00f5c..0d602007  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 2aae4690] Solved problem
+ 3 files changed, 96 insertions(+), 5 deletions(-)
+ create mode 100644 segmentTrees/algos/rangeGeneric.cpp
+To https://github.com/neofytr/Codeforces.git
+   0d602007..2aae4690  main -> main
+branch 'main' set up to track 'origin/main'.
