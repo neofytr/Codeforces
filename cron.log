@@ -2397,3 +2397,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c2ebd1ab..3a697ba2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f17fba66] Solved a few problems
+ 5 files changed, 134 insertions(+), 4 deletions(-)
+ create mode 100644 random/1400/dungeon.cpp
+To https://github.com/neofytr/Codeforces.git
+   3a697ba2..f17fba66  main -> main
+branch 'main' set up to track 'origin/main'.

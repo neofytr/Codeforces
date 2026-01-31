@@ -12,69 +12,37 @@ void solve(int tc) {
 	for (int r = 1; r <= m; r++) cin >> b[r];
 	for (int r = 1; r <= m; r++) cin >> c[r];
 
-	if (tc == 34) {
-		cout << n << "-" << m << "/";
+	multiset<int> swords;
+	for (int r = 1; r <= n; r++)
+		swords.insert(a[r]);
+	vector<pair<int, int>> d(m + 1);
+	for (int r = 1; r <= m; r++) d[r] = {b[r], c[r]};
 
-		for (int i = 1; i <= n; i++) {
-			cout << a[i];
-			if (i < n) cout << "-";
-		}
-		cout << "/";
-
-		for (int i = 1; i <= m; i++) {
-			cout << b[i];
-			if (i < m) cout << "-";
-		}
-		cout << "/";
-
-		for (int i = 1; i <= m; i++) {
-			cout << c[i];
-			if (i < m) cout << "-";
-		}
-		cout << "\n";
-	}
-
+	sort(d.begin() + 1, d.end());
 	int cnt = 0;
-	vector<pair<int, int>> del, nodel;
-
-	for (int r = 1; r <= m; r++) {
-		if (!c[r]) del.push_back({b[r], c[r]});
-		else nodel.push_back({b[r], c[r]});
-	}
-
-	int sz = nodel.size();
-	sort(a.begin() + 1, a.end());
-
-	if (sz) {
-		sort(nodel.begin(), nodel.end());
-		vector<int> p(sz + 1, LLONG_MIN);
-		p[0] = LLONG_MIN;
-
-		for (int r = 1; r <= sz; r++)
-			p[r] = max(p[r - 1], nodel[r - 1].second);
-
-		int i = 0;
-		int curr = a[n];
-		if (nodel[0].first <= curr) {
-			while (i < sz) {
-				int j = i;
-				while (j < sz && nodel[j].first <= curr) j++;
-				if (i == j) break;
-
-				cnt += (j - i);
-				curr = max(curr, p[j]);
-				i = j;
+	vector<int> del;
+	for (int r = 1; r <= m; r++)
+		if (!d[r].second) del.push_back(d[r].first);
+		else if (d[r].second < d[r].first) {
+			if (swords.lower_bound(d[r].first) != swords.end()) cnt++;
+		}
+		else if (d[r].second >= d[r].first) {
+			auto itr = swords.lower_bound(d[r].first);
+			if (itr != swords.end()) {
+				int v = *itr;
+				cnt++;
+				swords.erase(itr), swords.insert(max(v, d[r].second));
 			}
 		}
-	}
 
-	sz = del.size();
-	if (sz) {
-		sort(del.begin(), del.end());
-		int i = 1, r = 0;
-		while (r < sz) {
-			
+	sort(del.begin(), del.end());
+	for (int e : del) {
+		auto itr = swords.lower_bound(e);
+		if (itr == swords.end()) {
+			cout << cnt << endl;
+			return;
 		}
+		cnt++, swords.erase(itr);
 	}
 
 	cout << cnt << endl;
