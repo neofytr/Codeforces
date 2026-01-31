@@ -36,12 +36,12 @@ void update(int idx, int l, int r, int i, int v) {
 int query(int idx, int l, int r, int x) {
 	if (tree[idx] < x) return LLONG_MAX;
 	if (l == r) {
-		return (tree[idx] == x ? l : LLONG_MAX);
+		return ((tree[idx] >= x) ? l : LLONG_MAX);
 	}
 	int m = (l + r) >> 1;
-
-	int k = min(query(2 * idx, l, m, x), query(2 * idx + 1, m + 1, r, x));
-	return k;
+	if (tree[2 * idx] >= x)
+		return query(2 * idx, l, m, x);
+	return query(2 * idx + 1, m + 1, r, x);
 }
 
 int32_t main() {
