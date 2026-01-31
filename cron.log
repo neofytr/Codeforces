@@ -2353,3 +2353,13 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    85a5bc3f..33ae54c3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main dbca33e7] CF grind
+ 6 files changed, 126 insertions(+), 234 deletions(-)
+ create mode 100644 segmentTrees/algos/algo.cpp
+ rename segmentTrees/algos/{generic.cpp => pointUpdateRangeQuery.cpp} (80%)
+ delete mode 100644 segmentTrees/algos/practice.cpp
+ rename segmentTrees/algos/{rangeGeneric.cpp => rangeUpdatePointQuery.cpp} (80%)
+ delete mode 100644 segmentTrees/algos/sum.cpp
+To https://github.com/neofytr/Codeforces.git
+   33ae54c3..dbca33e7  main -> main
+branch 'main' set up to track 'origin/main'.
