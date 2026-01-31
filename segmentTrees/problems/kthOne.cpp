@@ -23,9 +23,9 @@ int query(int idx, int l, int r, int k) {
 		return l;
 
 	int m = (l + r) >> 1;
-	if (tree[2 * idx] < k)
-		return query(2 * idx + 1, m + 1, r, k);
-	return query(2 * idx, l, m, k);
+	if (tree[2 * idx] >= k)
+		return query(2 * idx, l, m, k);
+	return query(2 * idx + 1, m + 1, r, k - tree[2 * idx]);
 }
 
 void update(int idx, int l, int r, int i) {

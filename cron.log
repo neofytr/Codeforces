@@ -2369,3 +2369,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    dbca33e7..fcd77d9f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 45164447] Solved a few problems
+ 6 files changed, 233 insertions(+), 44 deletions(-)
+ create mode 100644 segmentTrees/problems/kthOne.cpp
+To https://github.com/neofytr/Codeforces.git
+   fcd77d9f..45164447  main -> main
+branch 'main' set up to track 'origin/main'.
