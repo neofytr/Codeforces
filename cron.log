@@ -2375,3 +2375,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    fcd77d9f..45164447  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f42ffa1e] Problem solving session
+ 5 files changed, 84 insertions(+), 10 deletions(-)
+ create mode 100644 segmentTrees/problems/firstElementAtleastX.cpp
+To https://github.com/neofytr/Codeforces.git
+   45164447..f42ffa1e  main -> main
+branch 'main' set up to track 'origin/main'.
