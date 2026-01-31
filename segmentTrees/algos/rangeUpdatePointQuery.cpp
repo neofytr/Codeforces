@@ -102,6 +102,9 @@ using namespace std;
 */
 
 
+// We maintain the invariant that operations up the tree are to 
+// be applied later
+
 // 1-indexed generic segment tree
 template <typename T>
 class SegmentTree {
@@ -204,4 +207,66 @@ public:
         // base value combined with all pending operations
         return combine(arr[i], query(1, 1, n, i));
     }
+};
+
+// range update point query 
+// maintains the order of operations using lazy propagation
+// eliminates the need for the operation to be commutative
+// just requires the operation to be associative and have an identity element
+template <typename T>
+class RUPQ {
+private:
+	vector<T> tree, A;
+	T identity;
+	function<T(T, T)> op;
+	int n;
+
+	void build(int idx, int l, int r) {
+		tree[idx] = identity;
+		if (l == r) return;
+		int m = (l + r) / 2;
+		build(2*idx, l, m);
+		build(2*idx+1, m+1, r);
+	}
+
+	void set(int idx, int l, int r, int ql, int qr, T v) {
+		if (r < ql || l > qr) return;
+
+		if (ql <= l && r <= qr) {
+			tree[idx] = op(tree[idx], v);
+			return;
+		}
+
+		// push lazy value
+		tree[2*idx] = op(tree[2*idx], tree[idx]);
+		tree[2*idx+1] = op(tree[2*idx+1], tree[idx]);
+		tree[idx] = identity;
+
+		int m = (l + r) / 2;
+		set(2*idx, l, m, ql, qr, v);
+		set(2*idx+1, m+1, r, ql, qr, v);
+	}
+
+	T get(int idx, int l, int r, int i) {
+		if (l == r) return tree[idx];
+		int m = (l + r) / 2;
+		if (i <= m) return op(tree[idx], get(2*idx, l, m, i));
+		return op(tree[idx], get(2*idx+1, m+1, r, i));
+	}
+
+public:
+	RUPQ(int n, vector<T> &arr, T identity, function<T(T, T)> op)
+		: n(n), identity(identity), op(op) {
+		tree.resize(4*n + 1, identity);
+		A = arr;
+		build(1, 1, n);
+	}
+
+	T query(int i) {
+		return op(A[i], get(1, 1, n, i));
+	}
+
+	void update(int l, int r, T val) {
+		set(1, 1, n, l, r, val);
+	}
 };

@@ -177,7 +177,62 @@ public:
     void set(int idx, T val) {
         update(1, 1, n, idx, val);
     }
-
-
 };
 
+// point update range query
+// the operation is assumed to be applied from left to right in the array
+template <typename T>
+class PURQ {
+private:
+    vector<T> tree;
+    T identity;
+    function<T(T, T)> op;
+    int n;
+
+    void build(int idx, int l, int r, vector<T> &arr) {
+        if (l == r) {
+            tree[idx] = arr[l];
+            return;
+        }
+        int m = l + (r - l) / 2;
+        build(2*idx, l, m, arr);
+        build(2*idx+1, m+1, r, arr);
+        tree[idx] = op(tree[2*idx], tree[2*idx+1]);
+    }
+
+    T get(int idx, int l, int r, int ql, int qr) {
+        if (r < ql || l > qr) return identity;
+        if (ql <= l && r <= qr) return tree[idx];
+        int m = l + (r - l) / 2;
+        return op(
+            get(2*idx, l, m, ql, qr),
+            get(2*idx+1, m+1, r, ql, qr)
+        );
+    }
+
+    void set(int idx, int l, int r, int i, T val) {
+        if (l == r) {
+            tree[idx] = val;
+            return;
+        }
+        int m = l + (r - l) / 2;
+        if (i <= m) set(2*idx, l, m, i, val);
+        else set(2*idx+1, m+1, r, i, val);
+        tree[idx] = op(tree[2*idx], tree[2*idx+1]);
+    }
+
+public:
+    PURQ(int n, vector<T> &arr, T identity, function<T(T,T)> op)
+        : n(n), identity(identity), op(op) {
+        tree.resize(4*n + 1, identity);
+        build(1, 1, n, arr);
+    }
+
+    T query(int l, int r) {
+        return get(1, 1, n, l, r);
+    }
+
+    void update(int i, T val) {
+        set(1, 1, n, i, val);
+    }
+};
