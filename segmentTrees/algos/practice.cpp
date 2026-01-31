@@ -63,8 +63,9 @@ public:
 
 // range update point query 
 // maintains the order of operations using lazy propagation
+// eliminates the need for the operation to be commutative
+// just requires the operation to be associative and have an identity element
 template <typename T>
-
 class RUPQ {
 private:
 	vector<T> tree, A;
@@ -73,49 +74,76 @@ private:
 	int n;
 
 	void build(int idx, int l, int r) {
-		if (l == r) {
-			tree[idx] = identity;
-			return;
-		}
-
-		int m = l + (r - l) / 2;
-		build(2 * idx, l, m);
-		build(2 * idx + 1, m + 1, r);
-
-		tree[idx] = op(tree[2 * idx], tree[2 * idx + 1]);
+		tree[idx] = identity;
+		if (l == r) return;
+		int m = (l + r) / 2;
+		build(2*idx, l, m);
+		build(2*idx+1, m+1, r);
 	}
 
-	void set(int idx, int l, int r, int ql, int qr, int v) {
+	void set(int idx, int l, int r, int ql, int qr, T v) {
 		if (r < ql || l > qr) return;
-		if (l >= ql && r <= qr) {
-			tree[idx] = op(tree[idx], v); // apply the operation
+
+		if (ql <= l && r <= qr) {
+			tree[idx] = op(tree[idx], v);
 			return;
 		}
 
-		// push the unapplied operation lazily downwards
-		tree[2 * idx] = op(tree[2 * idx], tree[idx]);
-		tree[2 * idx + 1] = op(tree[2 * idx + 1], tree[idx]);
+		// push lazy value
+		tree[2*idx] = op(tree[2*idx], tree[idx]);
+		tree[2*idx+1] = op(tree[2*idx+1], tree[idx]);
 		tree[idx] = identity;
 
-		int m = l + (r - l) / 2;
+		int m = (l + r) / 2;
+		set(2*idx, l, m, ql, qr, v);
+		set(2*idx+1, m+1, r, ql, qr, v);
+	}
+
+	T get(int idx, int l, int r, int i) {
+		if (l == r) return tree[idx];
+		int m = (l + r) / 2;
+		if (i <= m) return op(tree[idx], get(2*idx, l, m, i));
+		return op(tree[idx], get(2*idx+1, m+1, r, i));
 	}
 
 public:
-
 	RUPQ(int n, vector<T> &arr, T identity, function<T(T, T)> op)
 		: n(n), identity(identity), op(op) {
-			tree.resize(4 * n + 1, identity);
-			A.resize(n + 1);
-
-			for (int r = 1; r <= n; r++) A[r] = arr[r];
-			build(1, 1, n);
-		}
+		tree.resize(4*n + 1, identity);
+		A = arr;
+		build(1, 1, n);
+	}
 
 	T query(int i) {
-		return get(1, 1, n, i);
+		return op(A[i], get(1, 1, n, i));
 	}
 
-	void update(int l, int r, int val) {
+	void update(int l, int r, T val) {
 		set(1, 1, n, l, r, val);
 	}
+};
+
+template<typename T>
+class RURQ {
+private:
+	vector<T> qtree, utree; // query tree, update tree
+	function<T(T, T)> qop, uop; // query operation, update operation
+	T qiden, uiden; // query identity value, update identity value
+	int n;
+
+	void build(int idx, int l, int r, vector<int> &arr) {
+		if (l == r) {
+			qtree[idx] = arr[l];
+			utree[idx] = uiden;
+		}
+	}
+
+public:
+	RURQ(int n, vector<T> &arr, T qiden, T uiden, function<T(T, T)> qop, function<T, T> uop)
+		: n(n), qiden(qiden), uiden(uiden), qop(qop), uop(uop) {
+			qtree.resize(4 * n + 1, qiden);
+			utree.resize(4 * n + 1, uiden);
+
+			build(1, 1, n, arr);
+		}
 }
