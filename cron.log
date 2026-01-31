@@ -2386,3 +2386,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f42ffa1e..8c635c90  main -> main
 branch 'main' set up to track 'origin/main'.
+[main c2ebd1ab] Practiced CF problems
+ 5 files changed, 81 insertions(+), 10 deletions(-)
+ create mode 100644 segmentTrees/problems/firstElementAtleastX2.cpp
+To https://github.com/neofytr/Codeforces.git
+   8c635c90..c2ebd1ab  main -> main
+branch 'main' set up to track 'origin/main'.
