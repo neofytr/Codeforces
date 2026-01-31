@@ -2363,3 +2363,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    33ae54c3..dbca33e7  main -> main
 branch 'main' set up to track 'origin/main'.
+[main fcd77d9f] More problems solved
+ 3 files changed, 105 insertions(+)
+ create mode 100644 segmentTrees/problems/segmentWithMaxSum.cpp
+To https://github.com/neofytr/Codeforces.git
+   dbca33e7..fcd77d9f  main -> main
+branch 'main' set up to track 'origin/main'.

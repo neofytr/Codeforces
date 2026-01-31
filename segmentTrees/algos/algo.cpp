@@ -6,67 +6,77 @@ using namespace std;
 // Point Update Range Query
 // update(i, v) : set arr[i] to v
 // query(l, r): get the value of arr[l] op arr[l + 1] ... op arr[r]
-
 // The operation op should be associative and should have an identity element.
 // op(p, q) = p op q and not the other way round
-template<typename T>
+template<typename T, typename Op>
 class PURQ {
 private:
 	vector<T> tree;
-	function<T(T, T)> op;
+	const T iden;
+	Op op;
 	int n;
-	T iden;
 
-	void build(int idx, int l, int r, vector<T> &arr) {
+	inline void build(int idx, int l, int r, const vector<T>& arr) {
 		if (l == r) {
 			tree[idx] = arr[l];
 			return;
 		}
 
-		int m = (l + r) / 2;
-		build(2 * idx, l, m, arr);
-		build(2 * idx + 1, m + 1, r, arr);
+		int lc = idx << 1;
+		int rc = lc | 1;
+		int m = (l + r) >> 1;
 
-		tree[idx] = op(tree[2 * idx], tree[2 * idx + 1]);
+		build(lc, l, m, arr);
+		build(rc, m + 1, r, arr);
+
+		tree[idx] = op(tree[lc], tree[rc]);
 	}
 
-	T get(int idx, int l, int r, int ql, int qr) {
-		if (r < ql || l > qr) return iden;
-		if (l >= ql && r <= qr) return tree[idx];
+	inline T queryImpl(int idx, int l, int r, int ql, int qr) const {
+		if (r < ql || l > qr)
+			return iden;
 
-		int m = (l + r) / 2;
-		T left = get(2 * idx, l, m, ql, qr);
-		T right = get(2 * idx + 1, m + 1, r, ql, qr);
+		if (ql <= l && r <= qr)
+			return tree[idx];
 
-		return op(left, right);
+		int lc = idx << 1;
+		int rc = lc | 1;
+		int m = (l + r) >> 1;
+
+		return op(
+			queryImpl(lc, l, m, ql, qr),
+			queryImpl(rc, m + 1, r, ql, qr)
+		);
 	}
 
-	void set(int idx, int l, int r, int i, T v) {
-		if (i < l || i > r) return;
+	inline void updateImpl(int idx, int l, int r, int pos, const T& val) {
 		if (l == r) {
-			tree[idx] = v;
+			tree[idx] = val;
 			return;
 		}
 
-		int m = (l + r) / 2;
-		if (i <= m) set(2 * idx, l, m, i, v);
-		else set(2 * idx + 1, m + 1, r, i, v);
+		int lc = idx << 1;
+		int rc = lc | 1;
+		int m = (l + r) >> 1;
 
-		tree[idx] = op(tree[2 * idx], tree[2 * idx + 1]);
+		if (pos <= m) updateImpl(lc, l, m, pos, val);
+		else updateImpl(rc, m + 1, r, pos, val);
+
+		tree[idx] = op(tree[lc], tree[rc]);
 	}
 
 public:
-	PURQ(int n, vector<T> &arr, function<T(T, T)> op, T iden)
-		: n(n), op(op), iden(iden) {
-			tree.resize(4 * n + 1);
-			build(1, 1, n, arr);
-		} 
-
-	T query(int l, int r) {
-		return get(1, 1, n, l, r);
+	PURQ(int n, const vector<T>& arr, Op op, T iden)
+		: n(n), iden(iden), op(op) {
+		tree.resize(4 * n + 5);
+		build(1, 1, n, arr);
 	}
 
-	T update(int i, T v) {
-		return set(1, 1, n, i, v);
+	inline T query(int l, int r) const {
+		return queryImpl(1, 1, n, l, r);
 	}
-}
+
+	inline void update(int pos, const T& val) {
+		updateImpl(1, 1, n, pos, val);
+	}
+};
