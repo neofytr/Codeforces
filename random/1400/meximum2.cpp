@@ -27,24 +27,11 @@ void solve(int tc) {
 		set<int> s;
 		for (int i = 0; i <= k - 1; i++)
 			s.insert(i);
-		for (int i = 1; i <= (r + l - 1) - k; i++)
-			s.insert(k + i);
-
-		int j = 1;
 		for (int i = l; i <= r; i++)
-			if (arr[i] == k)
-				arr[i] = k + j++;
-		for (int i = l; i <= r; i++) {
-			auto itr = s.find(arr[i]);
-			if (itr != s.end()) s.erase(itr);
-		}		
+			if (arr[i] == k) arr[i]++;
 
 		for (int i = l; i <= r; i++)
-			if (arr[i] == -1) 
-				arr[i] = *s.begin(), s.erase(s.begin());
-
-		for (int i = l; i <= r; i++)
-			if (!s.empty() && arr[i] > k && *s.begin() < k)
+			if (arr[i] == -1 && !s.empty())
 				arr[i] = *s.begin(), s.erase(s.begin());
 	}
 
