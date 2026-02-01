@@ -106,6 +106,42 @@ using namespace std;
     - Clean, reusable template-based design
 */
 
+// Time complexity analysis of range query
+// ---------------------------------------
+//
+// Consider a segment tree built over an array of size n.
+// The height of the tree is h = ⌈log2 n⌉.
+//
+// During a range query on [ql, qr], a node with segment [l, r]
+// falls into exactly one of the following cases:
+//
+// 1) No overlap:     [l, r] ∩ [ql, qr] = ∅
+//    The recursion stops immediately at this node.
+//
+// 2) Total overlap:  [l, r] ⊆ [ql, qr]
+//    The node contributes its stored value and recursion stops.
+//
+// 3) Partial overlap: [l, r] ∩ [ql, qr] ≠ ∅ but [l, r] ⊄ [ql, qr]
+//    We recurse into both children.
+//
+// Observation:
+// At any fixed depth of the tree, the segments of all nodes
+// form a partition of the array and are pairwise disjoint.
+// Therefore, at that depth, there are at most two nodes whose
+// segments partially overlap with the query interval [ql, qr]:
+// one containing ql and one containing qr (they may coincide).
+//
+// Hence, at each depth, the recursion continues from at most
+// two nodes. Since the height of the tree is h = O(log n),
+// the total number of nodes where recursion branches is O(log n).
+//
+// Each such node can contribute at most a constant number of
+// additional visited nodes (its children).
+//
+// Therefore, the total number of nodes visited by the query
+// operation is O(log n), and the query runs in O(log n) time.
+
+
 // 1-indexed Generic Segment Tree
 template<typename T>
 class SegmentTree {
@@ -127,14 +163,23 @@ private:
         tree[node] = combine(tree[2 * node], tree[2 * node + 1]);
     }
     
+    // The time complexity of the query operation will be proportional
+    // to the number of nodes that we visit during the call chain.
+
+    // We only recurse into the subtrees of a node if the segment of the node
+    // partially overlaps with [ql, qr]. Otherwise, we simply return from the node.
+    // Partial overlap means that the node's segment either contains ql or qr (but not both).
+    // Since on each layer, all the segments of the nodes are disjoint, there are at most two segments
+    // on each layer that contain ql and qr, and since there are only log(n) layers, we have at most
+    // 2 * log(n) such nodes where we recurse into the subtrees.
+    // The tree formed by such a call chain would have at most 2 * log(n) internal nodes and thus
+    // at most 2*log(n) + 1 leaf nodes.
+    // Thus, the total number of nodes visited by the query function is at most 4 * log(n) + 1
     T query(int node, int left, int right, int queryLeft, int queryRight) {
         if (queryRight < left || right < queryLeft) 
             return identity;
-        
-        
         if (queryLeft <= left && right <= queryRight) 
             return tree[node];
-        
         
         int mid = left + (right - left) / 2;
         T leftResult = query(2 * node, left, mid, queryLeft, queryRight);
