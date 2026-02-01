@@ -2449,3 +2449,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    03ab3271..7ab0fa39  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 266ac08d] Solved a CF problem
+ 4 files changed, 75 insertions(+), 15 deletions(-)
+ create mode 100644 random/1400/maximumGCDonWhiteboard.cpp
+To https://github.com/neofytr/Codeforces.git
+   7ab0fa39..266ac08d  main -> main
+branch 'main' set up to track 'origin/main'.
