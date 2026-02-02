@@ -2522,3 +2522,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    bd7037c2..e7b26c51  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e1a174d9] Problem solving session
+ 5 files changed, 59 insertions(+), 9 deletions(-)
+ create mode 100644 random/1400/theCunningSeller.cpp
+To https://github.com/neofytr/Codeforces.git
+   e7b26c51..e1a174d9  main -> main
+branch 'main' set up to track 'origin/main'.
