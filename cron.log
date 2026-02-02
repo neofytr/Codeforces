@@ -2500,3 +2500,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    53873ecf..bf99a5e2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 5575dfdb] More problems solved
+ 5 files changed, 86 insertions(+), 19 deletions(-)
+ create mode 100755 random/1400/a.out
+To https://github.com/neofytr/Codeforces.git
+   bf99a5e2..5575dfdb  main -> main
+branch 'main' set up to track 'origin/main'.

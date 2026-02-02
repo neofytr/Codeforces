@@ -1338,3 +1338,4 @@ that every increasing x subsequence corresponds to a valid chain
 To do this, find the length longest strictly increasing subsequence, say its x.
 
 Then, the answer is n - x.
+ 

@@ -1,94 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long
+const int MAX = 250010;
+
+int A[MAX];
+
+int diff[MAX];
+int diffsum[MAX];
+
+int sum[2][MAX];
 
 void solve() {
-	int n, q;
-	cin >> n >> q;
+	int N, Q;
+	cin >> N >> Q;
+	int i;
+	for (i = 1; i <= N; i++) cin >> A[i];
+	for (i = 1; i <= N; i++) {
+		sum[0][i] = sum[0][i - 1];
+		sum[1][i] = sum[1][i - 1];
+		sum[A[i]][i]++;
 
-	if (n == 1) {
-		int l, r;
-		while (q--) {
-			cin >> l >> r;
-			cout << -1 << endl;
-		}
-		return;
+		diff[i] = A[i] != A[i - 1];
+		diffsum[i] = diffsum[i - 1] + diff[i];
 	}
-
-	vector<int> arr(n + 1, LLONG_MIN);
-	for (int r = 1; r <= n; r++) cin >> arr[r];
-
-	vector<int> pairszero(n + 1, 0), pairsone(n + 1, 0);
-	vector<int> pzero(n + 1, 0), pone(n + 1, 0);
-	for (int r = 1; r <= n; r++) {
-		pzero[r] += pzero[r - 1] + !arr[r];
-		pone[r] += pone[r - 1] + arr[r];
-	}
-
-	for (int r = 2; r <= n; r++) {
-		if (!arr[r] && !arr[r - 1] && !arr[r - 2]) {
-			pairszero[r] = pairszero[r - 1];
-			pairsone[r] = pairsone[r - 1];
-			continue;
-		}
-
-		if (!arr[r] && !arr[r - 1]) {
-			pairszero[r] = pairszero[r - 1] + 1;
-			pairsone[r] = pairsone[r - 1];
-			continue;
-		}
-
-		if (arr[r] == 1 && arr[r - 1] == 1 && arr[r - 2] == 1) {
-			pairszero[r] = pairszero[r - 1];
-			pairsone[r] = pairsone[r - 1];
-			continue;
-		}
-
-		if (arr[r] == 1 && arr[r - 1] == 1) {
-			pairszero[r] = pairszero[r - 1];
-			pairsone[r] = pairsone[r - 1] + 1;
-			continue;
-		}
-
-		pairsone[r] = pairsone[r - 1];
-		pairszero[r] = pairszero[r - 1];
-	}
-
 	int l, r;
-	while(q--) {
+	for (i = 1; i <= Q; i++) {
 		cin >> l >> r;
-		int ones = pone[r] - pone[l - 1];
-		int zeroes = pzero[r] - pzero[l - 1];
 
-		if ((ones % 3) || (zeroes % 3)) {
-			cout << -1 << endl;
+		int z, o;
+		z = sum[0][r] - sum[0][l - 1];
+		o = sum[1][r] - sum[1][l - 1];
+		if (z % 3) {
+			cout << -1 << '\n';
+			continue;
+		}
+		if (o % 3) {
+			cout << -1 << '\n';
 			continue;
 		}
 
-		int cost = 0;
-		int pones = pairsone[r] - pairsone[l - 1];
-		int pzeros = pairszero[r] - pairszero[l - 1];
-		if (pzeros > pones) {
-			int leftzero = zeroes - 3 * pzeros;
-			cost += pzeros;
-			cost += leftzero / 3;
-			cost += ones / 3;
-		} else {
-			int leftone = ones - 3 * pones;
-			cost += pones;
-			cost += leftone / 3;
-			cost += zeroes / 3;
-		}
-
-		cout << cost << endl;
+		int sum = z / 3 + o / 3;
+		if (diffsum[r] - diffsum[l] == (r - l)) sum++;
+		cout << sum << '\n';
 	}
 }
 
-int32_t main() {
-	int t;
-	cin >> t;
-
-	while(t--) solve();
-	return 0;
+signed main() {
+	ios::sync_with_stdio(false), cin.tie(0);
+	int t, T;
+	cin >> T;
+	for (t = 1; t <= T; t++) solve();
 }
