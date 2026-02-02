@@ -2,7 +2,7 @@
 using namespace std;
 
 #define int long long
-#define MAX (int)(2 * 1e5)
+#define MAX (int)(2 * 1e5 + 10)
 
 int a[MAX + 1], b[MAX + 1];
 int spf[MAX + 1];
