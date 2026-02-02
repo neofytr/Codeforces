@@ -2506,3 +2506,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    bf99a5e2..5575dfdb  main -> main
 branch 'main' set up to track 'origin/main'.
+[main dbd3227b] Solved a few problems
+ 6 files changed, 65 insertions(+), 86 deletions(-)
+ create mode 100644 random/1400/incrementalStay.cpp
+To https://github.com/neofytr/Codeforces.git
+   5575dfdb..dbd3227b  main -> main
+branch 'main' set up to track 'origin/main'.
