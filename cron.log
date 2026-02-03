@@ -2553,3 +2553,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    81ee0476..923f9700  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 108de5da] Worked on Codeforces problems
+ 4 files changed, 40 insertions(+), 9 deletions(-)
+ create mode 100644 random/1400/bloomberg.cpp
+To https://github.com/neofytr/Codeforces.git
+   923f9700..108de5da  main -> main
+branch 'main' set up to track 'origin/main'.
