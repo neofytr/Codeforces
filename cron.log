@@ -2599,3 +2599,9 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certi
 To https://github.com/neofytr/Codeforces.git
    a2c6d166..3f7a5d71  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b878a84d] Solved a few problems
+ 5 files changed, 72 insertions(+), 13 deletions(-)
+ create mode 100644 random/1400/MEXCount.cpp
+To https://github.com/neofytr/Codeforces.git
+   3f7a5d71..b878a84d  main -> main
+branch 'main' set up to track 'origin/main'.
