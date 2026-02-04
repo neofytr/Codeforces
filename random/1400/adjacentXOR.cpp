@@ -9,15 +9,47 @@ void solve() {
 	for (int r = 1; r <= n; r++) cin >> a[r];
 	for (int r = 1; r <= n; r++) cin >> b[r];
 
-	for (int r = 1; r <= n - 1; r++)
-		if (a[r] != b[r])
-			a[r + 1] = b[r] ^ a[r], a[r] = b[r];
-
+	vector<int> p(n + 1, 0);
 	for (int r = 1; r <= n; r++)
-		if (a[r] != b[r]) {
-			cout << "NO" << endl;
+		p[r] = p[r - 1] ^ a[r];
+
+	vector<int> next(n + 1, -1);
+
+	int i = 1, j = 1;
+	while (i <= n) {
+		j = i;
+		if (a[i] == b[i]) {
+			i++;
+			continue;
+		}
+
+		int g = 0;
+		while (j <= n && ((g ^ a[j]) != b[i]))
+			g ^= a[j],  j++;
+
+		if (j <= n)
+			g ^= a[j], next[i] = j;
+		else if (j > n) {
+			cout << "NO\n";
 			return;
 		}
+
+		i = j;
+	}
+
+	i = 1;
+	while (i <= n) {
+		if (next[i] == -1) {
+			i++;
+			continue;
+		}
+		for (int j = i; j < next[i]; j++)
+			if ((p[next[i]] ^ p[j - 1]) != b[j]) {
+				cout << "NO\n";
+				return;
+			}
+		i = next[i];
+	}
 
 	cout << "YES" << endl;
 }

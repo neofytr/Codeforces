@@ -1338,4 +1338,16 @@ that every increasing x subsequence corresponds to a valid chain
 To do this, find the length longest strictly increasing subsequence, say its x.
 
 Then, the answer is n - x.
+
+56. If you store a tree in an adjacency list format and do a DFS on it using the following signature
+
+int dfs(int node, int parent, vector<vector<int>> &tree);
+
+and the dfs is called from some root x as:
+
+dfs(x, -1, tree)
+
+then, the correct way to check whether the current node is a leaf node is:
+
+(tree[node].size() == 1 && parent != -1)
  

@@ -2569,3 +2569,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    55a3e744..cbc3cd1f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 076b0060] Solved some problems
+ 4 files changed, 56 insertions(+), 1 deletion(-)
+ create mode 100644 random/1400/adjacentXOR.cpp
+To https://github.com/neofytr/Codeforces.git
+   cbc3cd1f..076b0060  main -> main
+branch 'main' set up to track 'origin/main'.
