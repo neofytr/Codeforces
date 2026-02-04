@@ -17,6 +17,18 @@ void solve() {
 	}
 
 	int g = p[n];
+	for (int r = 1; r <= n - 1; r++)
+		if (p[r] % p[r + 1]) {
+			cout << "NO" << endl;
+			return;
+		}
+
+	for (int r = 1; r <= n - 1; r++)
+		if (s[r + 1] % s[r]) {
+			cout << "NO" << endl;
+			return;
+		}
+	
 	for (int r = 0; r <= n; r++)
 		if (gcd(p[r], s[r + 1]) != g) {
 			cout << "NO" << endl;
