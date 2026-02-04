@@ -1350,4 +1350,6 @@ dfs(x, -1, tree)
 then, the correct way to check whether the current node is a leaf node is:
 
 (tree[node].size() == 1 && parent != -1)
+
+A node is a leaf node iff the size of its adjacency list is 1 AND it's NOT the root node.
  

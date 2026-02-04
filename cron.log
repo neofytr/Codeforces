@@ -2575,3 +2575,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    cbc3cd1f..076b0060  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a2c6d166] Solved problem
+ 6 files changed, 124 insertions(+), 26 deletions(-)
+ create mode 100644 random/1400/arborisContractio.cpp
+To https://github.com/neofytr/Codeforces.git
+   076b0060..a2c6d166  main -> main
+branch 'main' set up to track 'origin/main'.
