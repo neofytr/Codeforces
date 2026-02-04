@@ -1353,3 +1353,32 @@ then, the correct way to check whether the current node is a leaf node is:
 
 A node is a leaf node iff the size of its adjacency list is 1 AND it's NOT the root node.
  
+57. 
+Let n >= 1
+Let S = {1, 2, ..., n}
+
+1. For any 1 <= r <= (n * (n + 1)) / 2, there exists a subset s of S such that sum(s) = r.
+
+2. Let 1 <= k <= n
+Let s1 = k(k + 1) / 2 (sum of the smallest k integers in S).
+Let s2 = k * (2n - k + 1) / 2 (sum of the largest k integers in S)
+
+Then, for any s1 <= r <= s2, there is a subset s of S of size k such that sum(s) = r.
+
+To find this set s for sum r, we use the following greedy construction:
+
+1. Start from the minimum set
+
+A = {1, 2, ..., k}
+d = r - (k * (k + 1)) / 2
+
+2. Greedy right-to-left shifting
+
+Write A = {a1 < a2 < ... < ak}, a[i] = i for 1 <= i <= k
+
+For i = k, k-1, ... ,1:
+    di = min(d, n - k + i - a[i])
+    set ai = a[i] + di, d = d - di
+    stop when d = 0
+
+3. We will finally have a subset s of S of size k that sums to r.
