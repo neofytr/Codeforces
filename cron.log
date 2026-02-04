@@ -2630,3 +2630,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    8ce8689a..90d99216  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8a84c862] Problem solving session
+ 3 files changed, 34 insertions(+)
+ create mode 100644 random/1400/divineTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   90d99216..8a84c862  main -> main
+branch 'main' set up to track 'origin/main'.

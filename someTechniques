@@ -1359,6 +1359,14 @@ Let S = {1, 2, ..., n}
 
 1. For any 1 <= r <= (n * (n + 1)) / 2, there exists a subset s of S such that sum(s) = r.
 
+To find this set s for the sum r, we do the following greedy construction:
+
+vector<int> s;
+int sum = r;
+
+for (int i = n; i >= 1; i--)
+    if (sum >= i) sum -= i, s.push_back(i);
+
 2. Let 1 <= k <= n
 Let s1 = k(k + 1) / 2 (sum of the smallest k integers in S).
 Let s2 = k * (2n - k + 1) / 2 (sum of the largest k integers in S)
@@ -1367,12 +1375,12 @@ Then, for any s1 <= r <= s2, there is a subset s of S of size k such that sum(s)
 
 To find this set s for sum r, we use the following greedy construction:
 
-1. Start from the minimum set
+i. Start from the minimum set
 
 A = {1, 2, ..., k}
 d = r - (k * (k + 1)) / 2
 
-2. Greedy right-to-left shifting
+ii. Greedy right-to-left shifting
 
 Write A = {a1 < a2 < ... < ak}, a[i] = i for 1 <= i <= k
 
@@ -1381,4 +1389,14 @@ For i = k, k-1, ... ,1:
     set ai = a[i] + di, d = d - di
     stop when d = 0
 
-3. We will finally have a subset s of S of size k that sums to r.
+iii. We will finally have a subset s of S of size k that sums to r.
+
+3. Suppose you want to find a subset s of S of size k such that summation(e; e belongs to s) - k = j, i.e,
+
+summation(e - 1; e belongs to s) = j
+
+Thus, the problem becomes the following:
+
+Find a subset s' of S' = {0, 1, ..., n - 1} such that sum(s) = j
+
+The final subset is the following s = {e + 1 | e belongs to s'}
