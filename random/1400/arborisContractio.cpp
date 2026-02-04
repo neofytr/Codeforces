@@ -4,45 +4,56 @@ using namespace std;
 #define int long long
 #define MAX (int)(2 * 1e5)
 
-int dp[MAX + 1];
-int p[MAX + 1];
 int dfs(int node, int parent, vector<vector<int>> &tree) {
-	p[node] = parent;
-	if (tree[node].size() == 1 && parent != -1) 
-		return dp[node] = 1;
-	
+	if (tree[node].size() == 1 && parent != -1)
+		return 1;
+
+	int cnt = 0;
 	for (int v : tree[node])
 		if (v != parent)
-			dp[node] += dfs(v, node, tree);
-	return dp[node];
+			cnt += dfs(v, node, tree);
+	return cnt;
 }
 
-int32_t main() {
-	int t;
-	cin >> t;
-
-	while (t--) {
-	int n;
-	cin >> n;
-
-	for (int r = 1; r <= n; r++) dp[r] = p[r] = 0;
+void solve() {
+	int n; cin >> n;
 
 	int u, v;
 	vector<vector<int>> tree(n + 1);
 	for (int r = 1; r <= n - 1; r++)
 		cin >> u >> v, tree[u].push_back(v), tree[v].push_back(u);
 
-	dfs(1, -1, tree);
-	int cnt = dp[1], mini = LLONG_MAX;
-
-	for (int r = 1; r <= n; r++) {
-		int c = 0;
-		for (int v : tree[r])
-			if (tree[v].size() == 1 && v != p[r]) c++;
-		mini = min(mini, cnt - c);
+	if (n == 2) {
+		cout << 0 << endl;
+		return;
 	}
+
+	int leaves;
+	for (int r = 1; r <= n; r++)
+		if (tree[r].size() > 1) {
+			leaves = dfs(r, -1, tree);
+			break;
+		}
+
+	int mini = LLONG_MAX;
+	for (int r = 1; r <= n; r++)
+		if (tree[r].size() == 1)
+			mini = min(mini, leaves - 1);
+		else {
+			int cnt = 0;
+			for (int v : tree[r])
+				if (tree[v].size() == 1) cnt++;
+			mini = min(mini, leaves - cnt);
+		} 
 
 	cout << mini << endl;
 }
+
+
+int32_t main() {
+	int t;
+	cin >> t;
+
+	while (t--) solve();
 	return 0;
 }
