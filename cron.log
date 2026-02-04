@@ -2584,3 +2584,6 @@ branch 'main' set up to track 'origin/main'.
 [main 6bebbf90] Solved problem
  2 files changed, 8 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main c140e49e] CF grind
+ 1 file changed, 3 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
