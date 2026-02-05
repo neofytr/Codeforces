@@ -2653,3 +2653,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    876697e9..be8650a3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 82318acf] Solved some problems
+ 4 files changed, 50 insertions(+), 31 deletions(-)
+ create mode 100644 random/1400/creatingASchedule.cpp
+To https://github.com/neofytr/Codeforces.git
+   be8650a3..82318acf  main -> main
+branch 'main' set up to track 'origin/main'.
