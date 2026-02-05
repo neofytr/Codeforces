@@ -2665,3 +2665,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    82318acf..2036052c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 2fc48465] Solved a few problems
+ 5 files changed, 37 insertions(+), 24 deletions(-)
+ create mode 100644 random/1400/arrayGCD.cpp
+To https://github.com/neofytr/Codeforces.git
+   2036052c..2fc48465  main -> main
+branch 'main' set up to track 'origin/main'.
