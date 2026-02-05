@@ -9,6 +9,11 @@ void solve() {
 	for (int r = 1; r <= n; r++)
 		cin >> v[r].first >> v[r].second;
 
+	if (n == 1) {
+		cout << 1 << endl;
+		return;
+	}
+
 	multiset<int> x, y;
 	for (int r = 1; r <= n; r++)
 		x.insert(v[r].first), y.insert(v[r].second);
@@ -21,11 +26,19 @@ void solve() {
 		int minx = *x.begin(), maxx = *x.rbegin();
 		int miny = *y.begin(), maxy = *y.rbegin();
 		int area = (maxx - minx + 1) * (maxy - miny + 1);
-		if (area >= n) {
+		if (area >= n) 
 			mini = min(mini, area);
-			continue;
+		else {
+			if (minx > 1 || maxx < (int)(1e9))
+				mini = min(mini, area + (maxy - miny + 1));
+			if (miny > 1 || maxy < (int)(1e9))
+				mini = min(mini, area + (maxx - minx + 1));
 		}
+
+		x.insert(ex), y.insert(ey);
 	}
+
+	cout << mini << endl;
 }
 
 int32_t main() {
