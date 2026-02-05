@@ -13,6 +13,7 @@ void solve() {
 		cin >> p[i].first >> p[i].second;
 
 	int maxones = 0, minones = 0;
+	vector<int> mini(n + 1), maxi(n + 1);
 	for (int i = 1; i <= n; i++) {
 		auto [l, r] = p[i];
 		if (!d[i]) {
@@ -27,7 +28,6 @@ void solve() {
 
 			maxones = min(r, maxones);
 			minones = max(l, minones);
-			continue;
 		}
 
 		if (d[i] == 1) {
@@ -43,7 +43,6 @@ void solve() {
 
 			maxones = min(r, maxones);
 			minones = max(l, minones);
-			continue;
 		}
 
 		if (d[i] == -1) {
@@ -56,17 +55,24 @@ void solve() {
 				cout << -1 << endl;
 				return;
 			}
-
-			if (minones < l)
-				d[i] = 1;
-			else 
-				d[i] = 0;
 			maxones = min(r, maxones);
 			minones = max(l, minones);
 		}
+
+		mini[i] = minones, maxi[i] = maxones;
 	}
+
+	int cnt = 0;
+	vector<int> idx;
+	for (int r = 1; r <= n; r++) {
+		if (d[r] == -1) idx.push_back(r);
+		if (d[r] == 1) cnt++;
+		while (cnt < mini[r])
+			d[*idx.rbegin()] = 1, cnt++, idx.pop_back();
+	}
+
 	for (int r = 1; r <= n; r++)
-		cout << d[r] << " ";
+		cout << (d[r] == -1 ? 0 : d[r]) << " ";
 	cout << endl;
 }
 
