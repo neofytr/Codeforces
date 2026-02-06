@@ -20,8 +20,6 @@ void solve() {
             return;
         }
     }
-
- 
     
     vector<pair<int, int>> counts;
     if (n > 0) {
