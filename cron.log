@@ -2697,3 +2697,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    df607a31..845987ec  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8436b9c2] Solved a few problems
+ 3 files changed, 29 insertions(+), 1 deletion(-)
+ create mode 100644 random/1400/sportsBetting.cpp
+To https://github.com/neofytr/Codeforces.git
+   845987ec..8436b9c2  main -> main
+branch 'main' set up to track 'origin/main'.
