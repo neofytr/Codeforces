@@ -1400,3 +1400,26 @@ Thus, the problem becomes the following:
 Find a subset s' of S' = {0, 1, ..., n - 1} such that sum(s) = j
 
 The final subset is the following s = {e + 1 | e belongs to s'}
+
+58. Let a <= b 
+Let f(x) = |x - a| + |x - b| for all x
+
+Then, 
+
+1. If x < a, f(x) = a + b - 2 * x
+2. If a <= x <= b, f(x) = b - a
+3. If (x > b), f(x) = 2 * x - a - b
+
+Thus, the minimum value of f occurs in the entire range [a, b].
+
+59. 
+
+Let n >= 1
+Let A[1, n] be a non-decreasing array of integers.
+
+Let f(x) = summation(|x - a[r]| for 1 <= r <= n) for all integers x.
+
+1. If n is even, the median interval of A is [A[n / 2], A[n / 2 + 1]].
+2. If n is odd, the median interval of A is [A[n / 2 + 1], A[n / 2 + 1]]. (the interval contains a single value)
+3. The minimum value of f is achieved in the
+median interval of A.
