@@ -7,6 +7,13 @@ struct Point {
 	int x, y;
 };
 
+Point coord(int start, int l, Point curr) {
+	if (!l) return curr;
+
+	int side = (1ll << (l - 1));
+
+}
+
 int get(int start, int l, Point curr, Point topleft) {
 	if (!l)
 		return start;
