@@ -2760,3 +2760,9 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certi
 To https://github.com/neofytr/Codeforces.git
    1bd1a1c1..7fbfc9ad  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 254fd0a4] Solved a CF problem
+ 4 files changed, 84 insertions(+), 15 deletions(-)
+ create mode 100644 random/1400/soaredAfar.cpp
+To https://github.com/neofytr/Codeforces.git
+   7fbfc9ad..254fd0a4  main -> main
+branch 'main' set up to track 'origin/main'.
