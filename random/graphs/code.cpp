@@ -23,5 +23,11 @@ using namespace std;
 // The number of edges of G (i.e., |E|) is equal to the sum of outdegrees (or indegrees) of all nodes
 // of G.
 
-// DFS/BFS visits every vertex once and scans every edge once (twice in undirected graphs), so the total time complexity is O(V + E)
+// DFS visits each node exactly once. Thus, the DFS function is called exactly |V| times (once for each node).
+// In a DFS call for node v, some O(1) operations are done along with a loop that iterates deg(v) (or outdegree(v), for
+// directed graphs) times, doing O(1)
+// operations per iteration.
+// Thus, the total running time of DFS is
+// Summation(O(1) + O(deg(v)); for all v in V)) = O(|V| + |E|)
+// since summation((out)deg(v); for all v in V) = 2 * |E| (or |E| for the directed case)
 
