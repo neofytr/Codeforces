@@ -2816,3 +2816,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    2b6c6a43..0b8bca93  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3e39f239] Practiced CF problems
+ 2 files changed, 21 insertions(+)
+ create mode 100644 random/1400/countingPoints.cpp
+To https://github.com/neofytr/Codeforces.git
+   0b8bca93..3e39f239  main -> main
+branch 'main' set up to track 'origin/main'.
