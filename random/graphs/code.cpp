@@ -23,8 +23,5 @@ using namespace std;
 // The number of edges of G (i.e., |E|) is equal to the sum of outdegrees (or indegrees) of all nodes
 // of G.
 
-// The consequence of this is that the following loop
-for (int r = 1; r <= n; r++)
-	for (int v : graph[r])
-		// do something
+// DFS/BFS visits every vertex once and scans every edge once (twice in undirected graphs), so the total time complexity is O(V + E)
 
