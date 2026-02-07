@@ -2827,3 +2827,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    3e39f239..5c64cad8  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 34432f33] More problems solved
+ 2 files changed, 35 insertions(+)
+ create mode 100644 random/1400/theTrail.cpp
+To https://github.com/neofytr/Codeforces.git
+   5c64cad8..34432f33  main -> main
+branch 'main' set up to track 'origin/main'.
