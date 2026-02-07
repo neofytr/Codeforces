@@ -2833,3 +2833,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    5c64cad8..34432f33  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 73b6f90f] Solved a few problems
+ 5 files changed, 108 insertions(+), 16 deletions(-)
+ create mode 100644 random/1400/saraga.cpp
+To https://github.com/neofytr/Codeforces.git
+   34432f33..73b6f90f  main -> main
+branch 'main' set up to track 'origin/main'.
