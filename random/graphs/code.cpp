@@ -23,3 +23,8 @@ using namespace std;
 // The number of edges of G (i.e., |E|) is equal to the sum of outdegrees (or indegrees) of all nodes
 // of G.
 
+// The consequence of this is that the following loop
+for (int r = 1; r <= n; r++)
+	for (int v : graph[r])
+		// do something
+
