@@ -2929,3 +2929,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9e0c89e5..c400ed25  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b96a00c7] More problems solved
+ 2 files changed, 30 insertions(+)
+ create mode 100644 random/graphs/duffInTheArmy.cpp
+To https://github.com/neofytr/Codeforces.git
+   c400ed25..b96a00c7  main -> main
+branch 'main' set up to track 'origin/main'.
