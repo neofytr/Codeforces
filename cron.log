@@ -2893,3 +2893,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    56e5533a..d9d3cb6d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main d39353ae] Solved a CF problem
+ 5 files changed, 115 insertions(+), 8 deletions(-)
+ create mode 100644 random/graphs/kefaAndPark.cpp
+To https://github.com/neofytr/Codeforces.git
+   d9d3cb6d..d39353ae  main -> main
+branch 'main' set up to track 'origin/main'.
