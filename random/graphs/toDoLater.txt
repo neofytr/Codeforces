@@ -1,1 +1,2 @@
 1. https://codeforces.com/problemset/problem/587/C (LCA + merging)
+2. https://codeforces.com/problemset/problem/383/C (Euler Tour + Segment Trees)

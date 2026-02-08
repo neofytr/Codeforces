@@ -2935,3 +2935,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c400ed25..b96a00c7  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a2bdb063] Problem solving session
+ 3 files changed, 16 insertions(+)
+ create mode 100644 random/graphs/propagatingTree.cpp
+ create mode 100644 random/graphs/toDoLater.txt
+To https://github.com/neofytr/Codeforces.git
+   b96a00c7..a2bdb063  main -> main
+branch 'main' set up to track 'origin/main'.
