@@ -2907,3 +2907,10 @@ branch 'main' set up to track 'origin/main'.
 [main 4ee2b201] Worked on Codeforces problems
  1 file changed, 5 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main a5ac5fc7] Solved a few problems
+ 5 files changed, 104 insertions(+), 6 deletions(-)
+ create mode 100644 random/graphs/countingRooms.cpp
+ create mode 100644 random/graphs/roundTrip.cpp
+To https://github.com/neofytr/Codeforces.git
+   c23621c9..a5ac5fc7  main -> main
+branch 'main' set up to track 'origin/main'.
