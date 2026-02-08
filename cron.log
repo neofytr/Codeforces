@@ -2951,3 +2951,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a2bdb063..72498f8d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9f3f7815] CF grind
+ 5 files changed, 80 insertions(+), 16 deletions(-)
+ create mode 100644 random/graphs/messageRoutes.cpp
+ create mode 100644 random/graphs/saraga.cpp
+To https://github.com/neofytr/Codeforces.git
+   72498f8d..9f3f7815  main -> main
+branch 'main' set up to track 'origin/main'.
