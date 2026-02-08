@@ -23,11 +23,73 @@ using namespace std;
 // The number of edges of G (i.e., |E|) is equal to the sum of outdegrees (or indegrees) of all nodes
 // of G.
 
-// DFS visits each node exactly once. Thus, the DFS function is called exactly |V| times (once for each node).
-// In a DFS call for node v, some O(1) operations are done along with a loop that iterates deg(v) (or outdegree(v), for
-// directed graphs) times, doing O(1)
-// operations per iteration.
-// Thus, the total running time of DFS is
-// Summation(O(1) + O(deg(v)); for all v in V)) = O(|V| + |E|)
-// since summation((out)deg(v); for all v in V) = 2 * |E| (or |E| for the directed case)
+// Let G = (V, E) is an undirected graph
+// Let u, v be some vertices of G
+// 1. A simple path is said to exist between nodes u and v if for some 1 <= k <= |E|, there exist k edges
+// {ar, br} (1 <= r <= k) of G such that a1 = u, bk = v and br = a(r + 1) for all 1 <= r <= k - 1. The sequence
+// of edges {a1, b1},..., {ak, bk} is then said to be a simple path between u and v (of length k). If u = v, then
+// {v, v} is defined as the simple path between v and u.
+// 2. u and v are connected if a simple path exists between them.
+// 3. u is reachable from v if there exists a simple path between u and v.
+// 4. A connected component of G is a maximal set of vertices of G such that for any vertex v 
+// in the set, there is a between u and v for any vertex u in the set.
+// 5. The set of connected components of G is a partition of V.
+// 6. A cycle is said to exist in G if for some vertex v of G, there exist a simple path of length >= 2
+// between v and v. The graph G is then said to be cyclic.
 
+// Let G = (V, E) is an directed graph
+// Let u, v be some vertices of G
+// 1. A simple path is said to exist between nodes u and v if for some 1 <= k <= |E|, there exist k edges
+// (ar, br) (1 <= r <= k) of G such that a1 = u, bk = v and br = a(r + 1) for all 1 <= r <= k - 1. The sequence
+// of edges (a1, b1),..., (ak, bk) is then said to be a simple path between u and v (of length k). If u = v, then
+// (v, v) is defined as the simple path between v and u.
+// 2. u and v are connected if a simple path exists between them.
+// 3. u is reachable from v if there exists a simple path between u and v.
+// 4. A connected component of G is a maximal set of vertices of G such that for any vertex v 
+// in the set, there is a between u and v for any vertex u in the set.
+// 5. The set of connected components of G is a partition of V.
+// 6. A cycle is said to exist in G if for some vertex v of G, there exist a simple path of length >= 2
+// between v and v. The graph G is then said to be cyclic.
+
+// Assume the graph G = (V, E) is stored using an adjacency list.
+// Adjacency list representation of G has memory complexity O(|V| + |E|).
+// DFS marks each vertex as visited the first time it is encountered.
+// Hence, the DFS procedure is invoked at most once per vertex.
+// Therefore, the total number of DFS calls is |V|.
+//
+// In the DFS call for a vertex v:
+//   - O(1) work is done (marking visited, function overhead, etc.).
+//   - The adjacency list of v is scanned once, which has size deg(v)
+//     (or outdegree(v) in the directed case).
+// Thus, the total running time is:
+//
+//   Σ ( O(1) + O(deg(v)) )  for all v ∈ V
+// = O(|V|) + O( Σ deg(v) )
+//
+// For an undirected graph:
+//   Σ deg(v) = 2|E|
+//
+// For a directed graph:
+//   Σ outdegree(v) = |E|
+//
+// Hence, in both cases, the total time complexity of DFS is:
+//   O(|V| + |E|)
+// This bound is tight, since DFS must examine every vertex and every edge
+// in the worst case.
+
+// The space used by DFS consists of:
+// 1. Adjacency list representation:
+//    - O(|V| + |E|)
+// 2. Visited array (or equivalent):
+//    - O(|V|)
+// 3. Recursion stack (or explicit stack for iterative DFS):
+//    - In the worst case (e.g., a path graph), the recursion depth can be |V|
+//    - Hence, O(|V|) auxiliary space
+// Therefore, the total space complexity of DFS is:
+//   O(|V| + |E|)
+
+// The mapping pattern appears in many graph problems where we need to convert or copy
+// structure while preserving relationships.
+// The critical technique: add nodes to your map before processing their connections. This
+// handles cycles gracefully, i.e, before recursing into an unmarked node, first mark it and
+// then recurse into it to avoid cycles.
