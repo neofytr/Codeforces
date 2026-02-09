@@ -93,3 +93,15 @@ using namespace std;
 // The critical technique: add nodes to your map before processing their connections. This
 // handles cycles gracefully, i.e, before recursing into an unmarked node, first mark it and
 // then recurse into it to avoid cycles.
+
+// Multi-source BFS is the same as single-source BFS, except you
+// initialize the queue with multiple starting nodes. The rest is identical.
+// Anytime you have multiple simultaneous starting points, think multi-source BFS.
+// The core trick is pushing all sources into the queue before BFS loop starts. After that,
+// this runs normally.
+// We should think by reversing our perspective too. Instead of running BFS from each target cell to
+// find the nearest source, run BFS once from all sources to find all targets.
+// Multi-source BFS computes the distance from every cell to the nearest source in a single pass. This
+// is faster than running single-source BFS multiple times.
+// Anytime you need distance to the nearest element from a set, push all elements into the
+// queue first, then run BFS once. The first visit to each cell gives you the answer.
