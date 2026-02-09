@@ -3052,3 +3052,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    42fb8b25..3f0cbc51  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3a48fd38] Solved some problems
+ 4 files changed, 99 insertions(+), 3 deletions(-)
+ create mode 100644 random/graphs/labyrinth.cpp
+To https://github.com/neofytr/Codeforces.git
+   3f0cbc51..3a48fd38  main -> main
+branch 'main' set up to track 'origin/main'.
