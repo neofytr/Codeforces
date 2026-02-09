@@ -2,23 +2,39 @@
 using namespace std;
 
 #define int long long
-typedef pair<pair<int, int>, pair<int, int>> pp;
 
 int32_t main() {
 	int n, m; cin >> n >> m;
+	int r, c; cin >> r >> c;
 	int x, y; cin >> x >> y;
-	int maxl, maxr; cin >> maxl >> maxr;
 
 	vector<vector<int>> grid(n + 1, vector<int>(m + 1));
-	for (int r = 1; r <= n; r++) {
-		string col; cin >> col;
-		for (int c = 1; c <= m; c++)
-			grid[r][c] = (col[c - 1] == '*' ? 1 : 0);
+	for (int row = 1; row <= n; row++) {
+		string s; cin >> s;
+		for (int col = 1; col <= m; col++)
+			if (s[col - 1] == '.') grid[row][col] = 0;
+			else grid[row][col] = 1; 
 	}
+
+	vector<vector<int>> dist(n + 1, vector<int>(m + 1, LLONG_MAX));
+	deque<pair<int, int>> dq;
 
 	int dr[] = {-1, 0, 1, 0};
 	int dc[] = {0, -1, 0, 1};
-
-	
-	return 0;
+	dq.push_back({r, c});
+	dist[r][c] = 0;
+	while (!dq.empty()) {
+		auto [i, j] = dq.front();
+		dq.pop_front();
+		int d = dist[r][c];
+		for (int k = 0; k < 4; k++) {
+			int nr = i + dr[k], nc = j + dc[k];
+			if (nr <= n && nr >= 1 && nc <= m && nc >= 1) 
+				if (i == 1 && dist[nr][nc] > d + 1) {
+					dist[nr][nc] = d + 1;
+					dq.push_back({nr, nc});
+				}
+			
+		}
+	}
 }
