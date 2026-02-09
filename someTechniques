@@ -1508,3 +1508,16 @@ This guarantees correctness like Dijkstra, but faster.
 Time and Space Complexity:
 - Time: O(V + E)
 - Space: O(V + E)
+
+62. Let G be a connected graph having n vertices, where n >= 1.
+
+Let x be the number of nodes at an even distance from node 1. Let y be the number of nodes at an odd distance from node 1.
+
+Then, x <= floor(n / 2) or y <= floor(n / 2).
+
+63. Preorder v/s Postorder DFS
+
+// Preorder -> add first and then visit neighbours
+// Postorder -> add only when all the neighbors are added
+vector<int> pre, post
+void dfs
