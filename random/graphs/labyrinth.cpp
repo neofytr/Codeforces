@@ -26,15 +26,30 @@ int32_t main() {
 	while (!dq.empty()) {
 		auto [i, j] = dq.front();
 		dq.pop_front();
-		int d = dist[r][c];
+		int d = dist[i][j];
 		for (int k = 0; k < 4; k++) {
 			int nr = i + dr[k], nc = j + dc[k];
-			if (nr <= n && nr >= 1 && nc <= m && nc >= 1) 
-				if (i == 1 && dist[nr][nc] > d + 1) {
+			if (nr <= n && nr >= 1 && nc <= m && nc >= 1 && !grid[nr][nc]) {
+				if (k == 1 && dist[nr][nc] > d + 1) {
 					dist[nr][nc] = d + 1;
 					dq.push_back({nr, nc});
 				}
-			
+				if (k != 1 && dist[nr][nc] > d) {
+					dist[nr][nc] = d;
+					dq.push_front({nr, nc});
+				}
+			}
 		}
 	}
+
+	int cnt = 0;
+	for (int row = 1; row <= n; row++) 
+		for (int col = 1; col <= m; col++) {
+			int d = dist[row][col];
+			if (d <= x && (col - c) + d <= y)
+				cnt++;
+		}
+	
+	cout << cnt << endl;
+	return 0;
 }

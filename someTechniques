@@ -1423,3 +1423,88 @@ Let f(x) = summation(|x - a[r]| for 1 <= r <= n) for all integers x.
 2. If n is odd, the median interval of A is [A[n / 2 + 1], A[n / 2 + 1]]. (the interval contains a single value)
 3. The minimum value of f is achieved in the
 median interval of A.
+
+60. Let n, m >= 1.
+Consider a grid having n rows and m columns, where some cells may be blocked.
+Consider some point (y, x) on the grid where 1 <= y <= n, 1 <= x <= m that is not blocked. Consider a walk on this grid from this point with each step being one of up, down, left or right.
+
+1. If we use R right and L left steps to reach some non-blocked reachable cell (r, c) using some path, then, R - L = c - x.
+2. If we use U up and D down steps to reach some non-blocked reachable cell (r, c) using some path, then, U - D = y - r.
+
+61. 0–1 BFS
+
+Problem setting:
+We are given a graph where each edge weight is either 0 or 1.
+We want to find the minimum cost (shortest path) from a source node to all other nodes.
+
+Using Dijkstra works, but it is slower than necessary.
+0–1 BFS is an optimized shortest-path algorithm for this exact situation.
+
+
+When to use 0–1 BFS:
+- Edge weights are only 0 or 1
+- We need shortest paths / minimum cost
+- We want O(V + E) time instead of O(E log V)
+
+
+Core idea:
+0–1 BFS is a special case of Dijkstra that replaces the priority queue
+with a deque.
+
+Observation:
+- Weight 0 edge → distance does not increase
+- Weight 1 edge → distance increases by exactly 1
+
+Therefore:
+- Nodes reached via weight 0 edges should be processed immediately
+- Nodes reached via weight 1 edges should be processed later
+
+We achieve this by:
+- push_front() for weight 0 edges
+- push_back() for weight 1 edges
+
+Algorithm:
+1. Initialize all distances to infinity
+2. Set distance of source = 0
+3. Push source into deque
+4. While deque is not empty:
+   - Take node from the front
+   - Relax all outgoing edges
+   - Push neighbors based on edge weight
+
+Pseudocode:
+
+int src = 1;
+deque<int> dq;
+vector<long long> dist(n + 1, INF);
+
+dist[src] = 0;
+dq.push_back(src);
+
+while (!dq.empty()) {
+    int u = dq.front();
+    dq.pop_front();
+
+    for (auto [v, w] : graph[u]) {
+        // w is either 0 or 1
+        if (dist[v] > dist[u] + w) {
+            dist[v] = dist[u] + w;
+
+            if (w == 0)
+                dq.push_front(v);
+            else
+                dq.push_back(v);
+        }
+    }
+}
+
+Why this works:
+The deque always keeps nodes in non-decreasing order of distance.
+- Weight 0 edges keep the same distance → front
+- Weight 1 edges increase distance → back
+
+This guarantees correctness like Dijkstra, but faster.
+
+Time and Space Complexity:
+- Time: O(V + E)
+- Space: O(V + E)
