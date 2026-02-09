@@ -3039,3 +3039,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    4e6f40ba..a7e2fa5d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 42fb8b25] Worked on Codeforces problems
+ 2 files changed, 40 insertions(+)
+ create mode 100644 random/graphs/monsters.cpp
+To https://github.com/neofytr/Codeforces.git
+   a7e2fa5d..42fb8b25  main -> main
+branch 'main' set up to track 'origin/main'.
