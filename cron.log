@@ -3079,3 +3079,8 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f6103f1d..4b81f7e1  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b980e2e5] Solved a CF problem
+ 4 files changed, 46 insertions(+), 8 deletions(-)
+To https://github.com/neofytr/Codeforces.git
+   4b81f7e1..b980e2e5  main -> main
+branch 'main' set up to track 'origin/main'.
