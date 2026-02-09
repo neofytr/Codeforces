@@ -3023,3 +3023,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e38ce340..c7a67d36  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6b1b84e8] More problems solved
+ 4 files changed, 38 insertions(+), 6 deletions(-)
+ create mode 100644 random/graphs/laby.cpp
+To https://github.com/neofytr/Codeforces.git
+   c7a67d36..6b1b84e8  main -> main
+branch 'main' set up to track 'origin/main'.
