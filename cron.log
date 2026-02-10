@@ -3110,3 +3110,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    d8eaabeb..bb3f42e3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main c3c78e0f] Solved a few problems
+ 5 files changed, 153 insertions(+), 8 deletions(-)
+ create mode 100644 random/graphs/solveTheMaze.cpp
+To https://github.com/neofytr/Codeforces.git
+   bb3f42e3..c3c78e0f  main -> main
+branch 'main' set up to track 'origin/main'.

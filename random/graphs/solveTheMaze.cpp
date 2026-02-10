@@ -61,7 +61,7 @@ void solve() {
 		for (int c = 1; c <= m; c++)
 			vis[r][c] = false;
 
-	if (grid[n][m] != EMPTY)
+	if (grid[n][m] == EMPTY)
 		vis[n][m] = true, que.push({n, m});
 	while (!que.empty()) {
 		auto [r, c] = que.front(); que.pop();
@@ -78,7 +78,7 @@ void solve() {
 			if (grid[r][c] == GOOD && !vis[r][c]) {
 				cout << "NO" << endl;
 				return;
-			} else if (grid[r][c] == BAD && vis[r][c]) {
+			} else if ((grid[r][c] == BAD) && vis[r][c]) {
 				cout << "NO" << endl;
 				return;
 			}
