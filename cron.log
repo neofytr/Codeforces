@@ -3099,3 +3099,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    31f9463d..ab54794c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main d8eaabeb] Solved a CF problem
+ 2 files changed, 5 insertions(+)
+ create mode 100644 random/graphs/maze.cpp
+To https://github.com/neofytr/Codeforces.git
+   ab54794c..d8eaabeb  main -> main
+branch 'main' set up to track 'origin/main'.
