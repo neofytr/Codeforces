@@ -3127,3 +3127,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    458d96d5..6035f97e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 48ca20f2] Problem solving session
+ 6 files changed, 66 insertions(+), 54 deletions(-)
+ create mode 100644 random/graphs/fair.cpp
+ delete mode 100644 random/graphs/iceCave.cpp
+ create mode 100644 random/graphs/policeStations.cpp
+To https://github.com/neofytr/Codeforces.git
+   6035f97e..48ca20f2  main -> main
+branch 'main' set up to track 'origin/main'.
