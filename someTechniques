@@ -1519,5 +1519,126 @@ Then, x <= floor(n / 2) or y <= floor(n / 2).
 
 // Preorder -> add first and then visit neighbours
 // Postorder -> add only when all the neighbors are added
+
 vector<int> pre, post
-void dfs
+void dfs(int node) {
+    pre.push_back(node);
+    for (int v : graph[node])
+        if (!vis[v])
+            vis[v] = true, dfs(v);
+    post.push_back(v);
+}
+
+64. Let n, m >= 1.
+
+Say we traverse a 4-connected grid (Up, Down, Left, Right). Each cell is a vertex and each shared boundary is an edge.
+
+Each internal cell has 4 neighbours, but each edge is shared between 2 cells. 
+
+Horizontal edges: each row has m - 1 of them across n rows, giving n * (m - 1). 
+
+Vertical Edges: each column has n - 1 across m columns, giving m * (n - 1).
+
+Thus, the total number of edges in this implicit graph is 2 * n * m - n - m, i.e, O(n * m).
+
+65. Cycle Detection in Directed Graphs (DFS with 3 States)
+
+In a directed graph, a cycle exists if during DFS we encounter a back edge.
+A back edge is an edge that points to a node already present in the current
+DFS recursion path.
+
+A simple visited[] boolean array is NOT sufficient because it does not tell
+whether a node is currently in the recursion stack or already fully processed.
+Hence, we use three states.
+
+--------------------------------------------------
+i. Node States
+--------------------------------------------------
+For every node u, maintain state[u]:
+
+State 0 (Unvisited):
+- The node has not been visited yet.
+
+State 1 (Visiting):
+- The node is currently being processed.
+- It is present in the current DFS recursion stack.
+
+State 2 (Visited):
+- The node and all its descendants are completely processed.
+- It is NOT in the recursion stack.
+
+--------------------------------------------------
+ii. Key Observation
+--------------------------------------------------
+If during DFS from node u, we encounter an edge u -> v such that:
+    state[v] == 1
+then v is already in the current DFS path.
+This edge is a back edge, which implies a cycle exists.
+
+--------------------------------------------------
+iii. DFS Algorithm
+--------------------------------------------------
+1. Mark the current node as Visiting (state = 1).
+2. For every outgoing edge to a neighbor:
+   - If the neighbor is Unvisited, recursively DFS on it.
+   - If the neighbor is Visiting, a cycle is detected.
+3. After all neighbors are processed, mark the node as Visited (state = 2).
+
+--------------------------------------------------
+iv. Code
+--------------------------------------------------
+
+int state[N]; // 0 = unvisited, 1 = visiting, 2 = visited
+
+// returns true if a cycle is found in the graph reachable from node u
+bool dfs(int u) {
+    state[u] = 1; // mark as visiting
+
+    for (int v : graph[u]) {
+        if (state[v] == 0) {
+            if (dfs(v))
+                return true;
+        }
+        else if (state[v] == 1) {
+            return true; // back edge found -> cycle
+        }
+    }
+
+    state[u] = 2; // mark as fully visited
+    return false;
+}
+
+--------------------------------------------------
+v. Handling Disconnected Graphs
+--------------------------------------------------
+Since the graph may be disconnected, DFS must be started from every unvisited
+node.
+
+bool hasCycle(int n) {
+    for (int i = 1; i <= n; i++) {
+        if (state[i] == 0) {
+            if (dfs(i))
+                return true;
+        }
+    }
+    return false;
+}
+
+--------------------------------------------------
+vi. Why This Works
+--------------------------------------------------
+- Nodes with state == 1 represent the current DFS path.
+- Reaching such a node again means we looped back before finishing it.
+- This loop corresponds to a cycle in a directed graph.
+
+--------------------------------------------------
+vii. Complexity
+--------------------------------------------------
+Time Complexity:  O(V + E)
+Space Complexity: O(V)  (recursion stack + state array)
+
+--------------------------------------------------
+viii. One-Line Summary
+--------------------------------------------------
+A directed graph contains a cycle if DFS encounters a node that is already in
+the Visiting (1) state.
