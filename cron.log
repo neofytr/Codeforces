@@ -3121,3 +3121,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c3c78e0f..458d96d5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6035f97e] Solved problem
+ 4 files changed, 58 insertions(+), 17 deletions(-)
+ create mode 100644 random/graphs/iceCave.cpp
+To https://github.com/neofytr/Codeforces.git
+   458d96d5..6035f97e  main -> main
+branch 'main' set up to track 'origin/main'.
