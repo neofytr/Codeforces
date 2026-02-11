@@ -1857,4 +1857,172 @@ Tree DP is bottom-up: you solve for leaves first, then combine results as you re
 
 ii. The diameter of a tree is the length of the longest simple path between any two nodes of the tree.
 
-iii. Every simple path in a tree is either contained completely in a single subtree or there is a turning node in the path where the path goes from one subtree of the node to the other.
+68. Lowest Common Ancestor (LCA):
+For two vertices u, v ∈ V, their Lowest Common Ancestor,
+denoted LCA(u, v), is the unique vertex w such that:
+
+1) w is an ancestor of both u and v, and
+2) depth(w) is maximal among all common ancestors of u and v.
+
+Equivalently:
+w is the common ancestor of u and v that is farthest from the root.
+
+Uniqueness:
+The LCA exists and is unique because:
+• The set of ancestors of any vertex is exactly the vertices
+  on the unique path from the root to that vertex.
+• The intersection of the ancestor sets of u and v
+  is a non-empty finite chain (it contains at least r).
+• In this chain, there is a unique deepest element.
+
+69. Path structure between two nodes in a Tree
+
+
+Let u, v ∈ V be distinct vertices.
+Let w = LCA(u, v).
+Let p be the unique simple path between u and v.
+
+Claim 1: w lies on p.
+
+Proof:
+There is a unique simple path from u to w (call it p1),
+since the tree has a unique path between any two vertices.
+
+There is also a unique simple path from w to v (call it p2).
+
+Concatenating these gives a path:
+
+    p1 + p2
+
+which is a path from u to v.
+
+Since G is a tree, there exists exactly one simple path
+between u and v. Therefore:
+
+    p = p1 + p2.
+
+Hence w lies on p.
+
+---------------------------------------
+
+Claim 2: The path p does not pass through the parent of w.
+
+Proof:
+Assume for contradiction that p passes through parent(w).
+
+Then parent(w) would lie on the path from u to v.
+Hence parent(w) would be an ancestor of both u and v.
+
+But parent(w) has strictly smaller depth than w.
+This contradicts the definition of w as the
+lowest (deepest) common ancestor.
+
+Therefore, p cannot go above w.
+Hence w is the highest (closest to root) vertex on p.
+
+-------------------------------------
+
+For any two vertices u and v in a rooted tree:
+
+The unique simple path between (say p) them consists of:
+
+    (path from u to LCA(u, v))
+    +
+    (path from LCA(u, v) to v)
+
+The vertex LCA(u, v) is the unique “turning point” of the path, the only vertex where the direction changes from moving upward toward the root to moving downward away from the root.
+
+70. Decomposition of the Unique Simple Path in a Rooted Tree
+
+Let G = (V, E) be a tree rooted at r.
+Let u, v ∈ V be distinct vertices.
+Without loss of generality, assume depth(v) ≤ depth(u).
+
+Let p be the unique simple path between u and v.
+Let w = LCA(u, v).
+
+We distinguish two cases.
+
+------------------------------------------------------------
+Case 1: LCA(u, v) = v
+------------------------------------------------------------
+
+In this case, v is an ancestor of u.
+
+Therefore, the unique path from u to v is exactly the
+unique path from u upward to v.
+
+Hence:
+
+    p = (unique path from u to v).
+
+Equivalently, p lies entirely inside the subtree rooted at v.
+
+More precisely:
+Let c be the child of v that lies on the path from v to u.
+Then the path p can be written as:
+
+    p = v + (path entirely contained in the subtree rooted at c).
+
+Thus, when one vertex is an ancestor of the other,
+the entire path is contained in a single subtree.
+
+------------------------------------------------------------
+Case 2: LCA(u, v) = w and w ≠ v
+------------------------------------------------------------
+
+In this case, neither u nor v is an ancestor of the other.
+
+Let cu be the child of w that lies on the path from w to u.
+Let cv be the child of w that lies on the path from w to v.
+
+Since w is the lowest common ancestor,
+cu ≠ cv.
+
+Then the unique path p between u and v can be decomposed as:
+
+    p = (path from u up to w)
+        +
+        (path from w down to v).
+
+Equivalently:
+
+    p = p1 + w + p2
+
+where:
+• p1 is a path contained entirely in the subtree rooted at cu,
+• p2 is a path contained entirely in the subtree rooted at cv.
+
+Thus, the path moves upward from u to w,
+and then downward from w to v,
+switching subtrees at w.
+
+------------------------------------------------------------
+Structural Summary
+------------------------------------------------------------
+
+For any two vertices u and v in a rooted tree:
+
+• If one is an ancestor of the other,
+  the unique path lies entirely inside one subtree.
+
+• Otherwise,
+  the path ascends from u to their LCA,
+  then descends into a different child subtree of the LCA.
+
+In particular:
+
+Every simple path in a rooted tree
+is either contained in a single subtree,
+or has a unique turning point at LCA(u, v),
+where it moves from one child subtree of that node
+to another.
+
+71. Tree Diameter
+
+To find the diameter of any general tree, we use Double BFS:
+
+1. Start from any node and find the furthest node from it.
+2. From that node, find the furthest node again.
+
+The distance in step 2 is the diameter. This works because the furtest node from any starting point in a tree is always one endpoint of the diameter.
