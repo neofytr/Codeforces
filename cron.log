@@ -3157,3 +3157,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    53b56939..e89b0417  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4f7f53c9] Solved problem
+ 4 files changed, 75 insertions(+)
+ create mode 100644 random/graphs/buildingTeams.cpp
+ create mode 100644 random/graphs/dzy.cpp
+To https://github.com/neofytr/Codeforces.git
+   e89b0417..4f7f53c9  main -> main
+branch 'main' set up to track 'origin/main'.
