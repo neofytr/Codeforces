@@ -1654,6 +1654,8 @@ If G is bipartite, this 2-partition A, B is not necessarily unique. However, if 
 
 A graph is bipartite iff it has no cycles of odd-length.
 
+A disconnected graph is bipartite iff its every connected component is bipartite.
+
 Thus, a bipartite graph is one where you can split all nodes into two groups such that every edge connects a node fromn one group to a node in the other. No edge connects two nodes within the same group.
 
 A graph is 2-colorable if we can color all the nodes of the graph in one of two colors (say A and B) such that no edge connects two nodes of the same color.
@@ -1662,6 +1664,7 @@ A graph is bipartite iff its 2-colorable. Similar to the case of bipartiteness, 
 
 Bipartite graphs model two-sided relationships.
 
+// Returns true if the component that node x belongs to is bipartite; false otherwise
 bool isBipartite(int x) {
     queue<int> que;
     vector<int> color(n + 1, -1);
@@ -1676,4 +1679,5 @@ bool isBipartite(int x) {
             else if (color[v] == color[node])
                 return false;
     }
+    return true;
 }
