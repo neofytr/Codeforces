@@ -2018,19 +2018,296 @@ or has a unique turning point at LCA(u, v),
 where it moves from one child subtree of that node
 to another.
 
-71. Tree Diameter
+71. Triangle Inequality
 
-i. The diameter of a tree is the longest simple path between any two vertices.
+Let T is a tree and let x, y, z be three vertices in T. Then,
 
-If that longest path is between nodes a and b, then, (a, b) is a diameter pair, and, a and b are diameter end-points.
+dist(x, z) <= dist(x, y) + dist(y, x)
 
-ii. Let (a, b) is a diameter pair of a tree.
+This is the Tree Triangle Inequality.
 
-Then, a and b are leaves of the
+72. Tree Diameter
 
-To find the diameter of any general tree, we use Double BFS:
+1) Definition
 
-1. Start from any node and find the furthest node from it.
-2. From that node, find the furthest node again.
+Let T = (V, E) be a tree.
 
-The distance in step 2 is the diameter. This works because the furtest node from any starting point in a tree is always one endpoint of the diameter.
+• The diameter of a tree is the length (number of edges) of the
+  longest simple path between any two vertices.
+
+• If the longest path is between nodes a and b:
+    - (a, b) is called a diameter pair
+    - a and b are called diameter endpoints
+
+
+----------------------------------------
+2) Diameter Endpoints are Leaves
+----------------------------------------
+
+Claim:
+If (a, b) is a diameter pair, then both a and b are leaves.
+
+Reason:
+If a were not a leaf, it would have a neighbor outside the
+diameter path. Extending the path through that neighbor would
+produce a longer path — contradicting maximality.
+
+Therefore, diameter endpoints must be leaves.
+
+
+----------------------------------------
+3) Key Fact (Used in Double BFS)
+----------------------------------------
+
+Let u be any node in the tree.
+Let s be a node farthest from u.
+
+Then:
+    s is a diameter endpoint.
+
+(Intuition: from any starting point in a tree, the farthest
+vertex must lie at one extreme of the tree.)
+
+This property is unique to trees. In general graphs with cycles, the farthest node from a random start is not guaranteed to be a diameter endpoint. Trees have exactly one path between any pair of nodes, whihc makes this argument work.
+
+
+----------------------------------------
+4) Double BFS Algorithm
+----------------------------------------
+
+Goal: Find the diameter of a tree.
+
+Step 1:
+    Pick any node u.
+    Run BFS (or DFS) from u.
+    Let s = farthest node from u.
+
+    (By the key fact, s is a diameter endpoint.)
+
+Step 2:
+    Run BFS from s.
+    Let t = farthest node from s.
+
+Then:
+    distance(s, t) = diameter of the tree.
+
+
+----------------------------------------
+5) Why It Works (Intuition)
+----------------------------------------
+
+• First BFS moves to one extreme of the tree.
+• Second BFS stretches from that extreme to the opposite extreme.
+• That second distance is the longest possible path.
+
+
+----------------------------------------
+6) Complexity
+----------------------------------------
+
+Each BFS runs in O(n).
+
+Total time complexity:
+    O(n)
+
+Space complexity:
+    O(n)
+
+
+----------------------------------------
+Final Summary
+----------------------------------------
+
+• Diameter = longest simple path in a tree.
+• Diameter endpoints are leaves.
+• Farthest node from any node is a diameter endpoint.
+• Double BFS finds the diameter in linear time.
+
+72. Tree Centre
+
+Let T be a tree.
+
+--------------------------------------------------------
+i. Distance
+--------------------------------------------------------
+
+Let u, v be vertices of T.
+
+dist(u, v) = number of edges on the shortest path
+           = number of edges on the unique path
+             between u and v (since T is a tree).
+
+
+--------------------------------------------------------
+ii. Eccentricity
+--------------------------------------------------------
+
+Let u be a vertex of T.
+
+e(u) = max(dist(u, v)) over all vertices v in T.
+
+That is, the eccentricity of u is the maximum distance
+from u to any vertex in the tree.
+
+
+--------------------------------------------------------
+iii. Diameter
+--------------------------------------------------------
+
+The diameter of T is
+
+D = max(dist(u, v)) over all vertices u, v in T.
+
+Any pair (u, v) such that dist(u, v) = D
+are called diameter end-points.
+
+
+--------------------------------------------------------
+iv. Centre
+--------------------------------------------------------
+
+A vertex c is called a centre of T iff
+
+    e(c) <= e(x) for every vertex x in T.
+
+In other words, a centre is a vertex with minimum
+eccentricity.
+
+A tree has either:
+    • one centre, or
+    • two adjacent centres.
+
+--------------------------------------------------------
+v. Key Structural Fact
+--------------------------------------------------------
+
+Let A, B be diameter end-points of T.
+
+Claim:
+For any vertex x in T,
+
+    e(x) = max(dist(x, A), dist(x, B)).
+
+Proof:
+
+Let x be any vertex of T.
+
+The farthest vertex from x must be one of A or B.
+
+Hence,
+
+    e(x) = max(dist(x, A), dist(x, B)).
+
+
+--------------------------------------------------------
+vi. The Centre Lies on the Diameter
+--------------------------------------------------------
+
+Let A, B be diameter end-points.
+
+Claim 1:
+The centre of T lies on the path A–B.
+
+Proof:
+
+Assume x is a centre that does NOT lie on the path A–B.
+
+Let p be the unique vertex on A–B where the branch
+containing x attaches.
+
+This vertex p exists and is unique:
+• If there were two such attachment points,
+  we would create a cycle.
+• Since T is connected, such a p must exist.
+
+Because paths are unique in a tree:
+
+    dist(x, A) = dist(x, p) + dist(p, A)
+    dist(x, B) = dist(x, p) + dist(p, B)
+
+Using the structural fact:
+
+    e(x) = max(dist(x, A), dist(x, B))
+         = dist(x, p) + max(dist(p, A), dist(p, B))
+         = dist(x, p) + e(p)
+
+Since x is not on A–B,
+
+    dist(x, p) > 0
+
+Thus,
+
+    e(x) > e(p)
+
+This contradicts the assumption that x is a centre
+(minimum eccentricity).
+
+Therefore, every centre lies on the diameter path A–B.
+
+
+--------------------------------------------------------
+vii. The Centre is the Middle of the Diameter
+--------------------------------------------------------
+
+Since the centre lies on A–B, restrict attention
+to vertices along this path.
+
+Let the diameter length be:
+
+    D = dist(A, B)
+
+Parameterize the path:
+
+Let a vertex x lie on A–B at distance t from A.
+
+Then:
+
+    dist(x, A) = t
+    dist(x, B) = D - t
+
+Using the structural fact:
+
+    e(x) = max(t, D - t)
+
+We now minimize:
+
+    f(t) = max(t, D - t)
+
+Observation:
+
+• If t < D/2, then D - t is larger.
+• If t > D/2, then t is larger.
+• The maximum is minimized exactly when
+
+        t = D - t
+        t = D/2
+
+Thus:
+
+The minimum eccentricity occurs at the midpoint(s)
+of the diameter.
+
+Therefore:
+
+• If D is even:
+      There is one centre (the exact middle vertex).
+
+• If D is odd:
+      There are two adjacent centres
+      (the two middle vertices).
+
+
+--------------------------------------------------------
+FINAL CONCLUSION
+--------------------------------------------------------
+
+The centre of a tree is exactly:
+
+    The middle vertex (or two middle vertices)
+    of any diameter path.
+
+The tree centre is obtained by balancing the distance
+to the two most distant vertices in the tree.
+
+Standing in the middle minimizes the worst-case distance.
+========================================================
