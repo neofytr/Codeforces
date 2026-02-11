@@ -1681,3 +1681,180 @@ bool isBipartite(int x) {
     }
     return true;
 }
+
+66. Trees
+
+Let G = (V, E) be a finite undirected graph with |V| = n vertices and |E| = m edges.
+
+The following statements are then equivalent
+
+1. G is a tree.
+2. G is connected and acyclic.
+3. G is acyclic and m = n - 1.
+4. G is connected and m = n - 1.
+5. For any u, v in V such that u != v, there is a unique simple path between u and v in G.
+6. G is connected and removal of any edge disconnects G.
+7. G is acyclic and adding a new edge between any two distinct vertices in G creates exactly one cycle in G.
+
+Let G = (V, E) be a tree.
+
+Fix an arbitrary vertex r ∈ V.
+We now define the rooted tree structure with root r.
+
+------------------------------------------------------------
+
+i. Root
+
+Definition:
+The chosen vertex r ∈ V is called the root of G.
+
+Justification:
+Since G is connected, for every vertex v ∈ V,
+there exists a path from r to v.
+Hence rooting at r is always valid.
+
+------------------------------------------------------------
+
+ii. Parent
+
+Let v ∈ V such that v ≠ r.
+
+Definition:
+The parent of v, denoted parent(v), is the unique vertex
+immediately preceding v on the unique simple path from r to v.
+
+Justification (Well-definedness):
+• In a tree, between r and v there exists exactly one simple path.
+• On that path, v has exactly one predecessor.
+• Hence parent(v) exists and is unique.
+
+Conclusion:
+Every non-root vertex has exactly one parent.
+The root r has no parent.
+
+------------------------------------------------------------
+
+iii. Child
+
+Let u, v ∈ V with u ≠ v.
+
+Definition:
+v is a child of u if parent(v) = u.
+
+Observation:
+Each vertex may have zero or more children.
+Edges can now be viewed as directed from parent → child,
+though the underlying graph remains undirected.
+
+------------------------------------------------------------
+
+iv. Depth
+
+Let v ∈ V.
+
+Definition:
+depth(v) = length (number of edges) of the unique simple path from r to v.
+
+Justification:
+Since the path from r to v is unique, its length is uniquely determined.
+Hence depth is well-defined.
+
+Special case:
+depth(r) = 0.
+
+------------------------------------------------------------
+
+v. Ancestor
+
+Let u, v ∈ V with u ≠ v.
+
+Definition:
+u is an ancestor of v if u lies on the unique simple path from r to v.
+
+Equivalently:
+u is an ancestor of v if repeated application of parent(·)
+starting from v eventually reaches u.
+
+Properties:
+• The root is an ancestor of every vertex.
+• Every vertex is its own ancestor if reflexive definition is allowed
+  (optional convention — state clearly in notes).
+
+------------------------------------------------------------
+
+vi. Descendant
+
+Let u, v ∈ V with u ≠ v.
+
+Definition:
+v is a descendant of u if u lies on the unique simple path from r to v.
+
+Equivalently:
+v is in the subtree rooted at u.
+
+This is simply the reverse relation of ancestry.
+
+------------------------------------------------------------
+
+vii. Subtree
+
+Let v ∈ V.
+
+Definition:
+Let
+
+A = { u ∈ V | v lies on the unique simple path from r to u }.
+
+That is, A consists of v and all its descendants.
+
+Let
+
+B = { {e, f} ∈ E | e ∈ A and f ∈ A }.
+
+Define G' = (A, B).
+
+Claim:
+G' is a tree.
+
+Justification:
+1) Connected:
+   For any two vertices in A, the unique path between them in G
+   lies entirely inside A (because descendants share ancestry under v).
+
+2) Acyclic:
+   G has no cycles.
+   Any subgraph of an acyclic graph is also acyclic.
+
+Hence G' is connected and acyclic,
+so G' is a tree.
+
+------------------------------------------------------------
+
+Key Structural Consequences
+
+1) Every non-root vertex has exactly one parent.
+2) Total number of parent-child edges = |V| − 1.
+3) The hierarchy (parent/child structure) arises purely from:
+      Tree
+      ⇒ Unique simple paths
+      ⇒ Unique predecessor toward root
+      ⇒ Well-defined parent
+      ⇒ Hierarchical structure.
+
+Important Insight:
+Hierarchy is NOT part of the definition of a tree.
+It is a consequence of the unique path property.
+
+67. 
+
+i. Tree DP
+
+1. Define what you want to compute for each node.
+2. Express it in terms of the answers for the children.
+3. Write a recursive function that combines child results.
+
+Tree DP is bottom-up: you solve for leaves first, then combine results as you return up the tree. 
+
+ii. The diameter of a tree is the length of the longest simple path between any two nodes of the tree.
+
+iii. Every simple path in a tree is either contained completely in a single subtree or there is a turning node in the path where the path goes from one subtree of the node to the other.

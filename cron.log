@@ -3169,3 +3169,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    4f7f53c9..5604f750  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 95d5d0e3] Practiced CF problems
+ 5 files changed, 93 insertions(+), 4 deletions(-)
+ create mode 100644 random/graphs/beautifulGraph.cpp
+ create mode 100644 random/graphs/graphWithout.cpp
+To https://github.com/neofytr/Codeforces.git
+   5604f750..95d5d0e3  main -> main
+branch 'main' set up to track 'origin/main'.
