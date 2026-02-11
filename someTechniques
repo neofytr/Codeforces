@@ -1642,3 +1642,38 @@ viii. One-Line Summary
 --------------------------------------------------
 A directed graph contains a cycle if DFS encounters a node that is already in
 the Visiting (1) state.
+
+65. Bipartite Graphs
+
+An undirected graph G = (V, E) is bipartite if there is a 2-partition A, B of the set V such that
+
+1. A and B are non-empty.
+2. For any {u, v} belonging to E, either (u is in A and v is in B) or (u is in B and v is in A).
+
+If G is bipartite, this 2-partition A, B is not necessarily unique. However, if G is bipartite and G is connected and you fix the partition to which some specific node belongs to, then the partition which all other nodes belong to also becomes fixed. The structure forces every other node into a specific side.
+
+A graph is bipartite iff it has no cycles of odd-length.
+
+Thus, a bipartite graph is one where you can split all nodes into two groups such that every edge connects a node fromn one group to a node in the other. No edge connects two nodes within the same group.
+
+A graph is 2-colorable if we can color all the nodes of the graph in one of two colors (say A and B) such that no edge connects two nodes of the same color.
+
+A graph is bipartite iff its 2-colorable. Similar to the case of bipartiteness, if a graph is 2-colorable, its coloring is not unique. However, if we fix the color of some specific node, the color of the rest of nodes also become fixed. The structure forces every other node into a specific color.
+
+Bipartite graphs model two-sided relationships.
+
+bool isBipartite(int x) {
+    queue<int> que;
+    vector<int> color(n + 1, -1);
+
+    color[x] = 0, que.push(x);
+    while (!que.empty()) {
+        int node = que.front(); que.pop();
+
+        for (int v : graph[node])
+            if (color[v] == -1)
+                color[v] = !color[node], que.push(v);
+            else if (color[v] == color[node])
+                return false;
+    }
+}
