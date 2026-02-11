@@ -2020,6 +2020,14 @@ to another.
 
 71. Tree Diameter
 
+i. The diameter of a tree is the longest simple path between any two vertices.
+
+If that longest path is between nodes a and b, then, (a, b) is a diameter pair, and, a and b are diameter end-points.
+
+ii. Let (a, b) is a diameter pair of a tree.
+
+Then, a and b are leaves of the
+
 To find the diameter of any general tree, we use Double BFS:
 
 1. Start from any node and find the furthest node from it.
