@@ -3250,3 +3250,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    60d2e957..7b2433b5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3fecadfc] More problems solved
+ 2 files changed, 15 insertions(+)
+ create mode 100644 random/1400/coinsAndQueries.cpp
+To https://github.com/neofytr/Codeforces.git
+   7b2433b5..3fecadfc  main -> main
+branch 'main' set up to track 'origin/main'.
