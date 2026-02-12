@@ -3256,3 +3256,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    7b2433b5..3fecadfc  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9cf96bd7] Practiced CF problems
+ 7 files changed, 119 insertions(+), 22 deletions(-)
+ create mode 100644 random/graphs/movingToTheCapital.cpp
+To https://github.com/neofytr/Codeforces.git
+   3fecadfc..9cf96bd7  main -> main
+branch 'main' set up to track 'origin/main'.

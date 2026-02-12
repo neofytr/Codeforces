@@ -29,10 +29,9 @@ void solve() {
 			else
 				inv[v].push_back(node);
 
-	for (auto [d, v] : s)
-		dist[v] = d;
 	while (!s.empty()) {
 		auto [d, node] = *s.begin();
+		if (dist[node] > d) dist[node] = d;
 		s.erase(s.begin());
 		for (int v : inv[node])
 			if (dist[v] > d)

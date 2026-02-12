@@ -2059,17 +2059,88 @@ Therefore, diameter endpoints must be leaves.
 3) Key Fact (Used in Double BFS)
 ----------------------------------------
 
-Let u be any node in the tree.
-Let s be a node farthest from u.
+Theorem:
+In any tree T, if 's' is an arbitrary node and 'u' is a node farthest from 's', then 'u' is an endpoint of a diameter of T.
 
-Then:
-    s is a diameter endpoint.
+Definitions and Setup:
+1. Let the path P between nodes x and y be a true diameter of the tree.
+   - The length d(x, y) is maximal. No path in the tree is strictly longer than this.
+2. Let 's' be an arbitrary starting node.
+3. Let 'u' be a node farthest from 's'.
+   - This means d(s, u) >= d(s, v) for all nodes v in the tree.
+4. Let 't' be the Junction Node.
+   - Because a tree contains no cycles, there is exactly one unique path from 's' to any node on the diameter path x-y.
+   - Let 't' be the specific node where the path from 's' intersects the diameter path x-y.
+   - Note: If 's' is already on the diameter, then s = t and d(s, t) = 0.
 
-(Intuition: from any starting point in a tree, the farthest
-vertex must lie at one extreme of the tree.)
+Proof:
+We analyze the location of 'u' relative to the junction 't'. There are two possible geometric cases for the path from 't' to 'u'.
 
-This property is unique to trees. In general graphs with cycles, the farthest node from a random start is not guaranteed to be a diameter endpoint. Trees have exactly one path between any pair of nodes, whihc makes this argument work.
+Case 1: The path from 't' to 'u' passes through 's'.
+(This implies 'u' is "behind" 's' relative to the diameter).
+   
+   1. The path structure is t -> ... -> s -> ... -> u.
+      Therefore, d(t, u) = d(t, s) + d(s, u).
 
+   2. By our definition of 'u' being farthest from 's', we know:
+      d(s, u) >= d(s, y)
+
+   3. Expand d(s, y). To get from 's' to 'y', the path must go through 't':
+      d(s, y) = d(s, t) + d(t, y)
+
+   4. Substitute (3) into (2):
+      d(s, u) >= d(s, t) + d(t, y)
+
+   5. Now, substitute (4) back into our path equation from (1):
+      d(t, u) = d(t, s) + [d(s, u)]
+      d(t, u) >= d(t, s) + [d(s, t) + d(t, y)]
+      d(t, u) >= 2 * d(s, t) + d(t, y)
+
+   6. Consider the path from x to u. It goes x -> t -> u.
+      d(x, u) = d(x, t) + d(t, u)
+      d(x, u) >= d(x, t) + 2 * d(s, t) + d(t, y)
+      
+   7. Group the diameter terms (x->t and t->y):
+      d(x, u) >= [d(x, t) + d(t, y)] + 2 * d(s, t)
+      d(x, u) >= d(x, y) + 2 * d(s, t)
+
+   8. Contradiction:
+      Since d(x, y) is the diameter (maximal path), d(x, u) cannot be strictly longer.
+      The only way for this inequality to hold is if 2 * d(s, t) = 0, which means s = t.
+      If s = t, this case collapses into Case 2. If s != t, this case is geometrically impossible.
+
+Case 2: The path from 's' to 'u' passes through 't'.
+(This is the standard case where 'u' is on a branch extending from the junction).
+
+   1. The path structure is s -> ... -> t -> ... -> u.
+      Therefore, d(s, u) = d(s, t) + d(t, u).
+
+   2. By our definition of 'u' being farthest from 's', we know:
+      d(s, u) >= d(s, y)
+
+   3. Expand d(s, y). To get from 's' to 'y', the path goes through 't':
+      d(s, y) = d(s, t) + d(t, y)
+
+   4. Substitute (1) and (3) into the inequality (2):
+      d(s, t) + d(t, u) >= d(s, t) + d(t, y)
+
+   5. Subtract d(s, t) from both sides:
+      d(t, u) >= d(t, y)
+      (This proves the branch to 'u' is at least as long as the branch to the diameter end 'y').
+
+   6. Construct the path from x to u (via t):
+      d(x, u) = d(x, t) + d(t, u)
+
+   7. Substitute the inequality from (5):
+      d(x, u) >= d(x, t) + d(t, y)
+      d(x, u) >= d(x, y)
+
+Conclusion:
+We have shown that d(x, u) >= d(x, y).
+Since d(x, y) is defined as the maximum possible path length (diameter), it is impossible for d(x, u) to be strictly greater.
+Therefore, d(x, u) must be equal to d(x, y).
+
+This implies that the path from x to u is also a diameter, making 'u' a valid endpoint of a diameter.
 
 ----------------------------------------
 4) Double BFS Algorithm
@@ -2448,3 +2519,19 @@ Each edge and vertex is processed once.
 To modify a tree in place, you do not need to create a new tree. You need to identify the local change (swap, delete, rotate) and trust recursion to apply it everywhere.
 
 Always return the root after modification. Even if you change the tree in place, returning the root makes the function composable and easier to test.
+
+76. Tree Diameter and Centres
+
+The diameter of a tree is the length of the longest path between any two nodes of the tree. Not the longest path from the root (that is height of the tree), but the longest path anywhere in the tree.
+
+This measurement tells us how "spread out" a tree is. A long skinny tree has high diameter. A bushy tree might have lower diameter despite having more nodes.
+
+Diameter also helps us to find the centre of the tree, which is the node that minimizes maximum distance to all other nodes (i.e, if the tree is rooted at its centre, its height is minimized).
+
+i. The Two-BFS Trick to find Tree Diameter
+
+Start BFS from any random node. Find the farthest node from it. Call that node u. Now run BFS from u and find the farthest node from u. Call that v. The distance from u to v is the diameter.
+
+This runs in O(n) time and O(n) memory.
+
+This works the farthest node from any starting node will always be a diameter end point.
