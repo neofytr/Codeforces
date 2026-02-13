@@ -3287,3 +3287,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    04ffed07..770dbadf  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 02c2b65f] Solved a CF problem
+ 5 files changed, 56 insertions(+), 47 deletions(-)
+ create mode 100644 random/graphs/treeDiameter.cpp
+To https://github.com/neofytr/Codeforces.git
+   770dbadf..02c2b65f  main -> main
+branch 'main' set up to track 'origin/main'.

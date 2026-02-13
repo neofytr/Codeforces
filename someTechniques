@@ -2538,4 +2538,116 @@ This works the farthest node from any starting node will always be a diameter en
 
 Two BFS is fast and simple. Run BFS twice and return the distance. The first BFS can start from any node. It guarantees finding a diameter endpoint. The second BFS from that endpoint finds the other end and computes the diameter.
 
-This pattern appears in many tree problems. When you need extremal paths in trees, consider whether two traversals from endpoints can solve it.
+This pattern appears in many tree problems. When you need extremal paths in trees, consider whether two traversals from endpoints can solve it. The technique generalizes beyond diameter to finding tree centres and computing all-pairs farthest distance.
+
+ii. When you see a tree problem asking for a global property, consider whether post-order DFS with a global variable works.
+
+iii. The center of a tree is the node (or nodes) that minimizes the maximum distance to all other nodes. In other words, the node that is as close as possible to everything.
+
+Every tree has either one centre or two centres. If diameter is even, there is one centre (the middle node on a diameter path). If diameter is odd, there are two centres (the nodes on the middle edge of a diameter path).
+
+Finding the center helps you choose the best root for a rooted tree, or the best location for a server.
+
+Start with all leaves (nodes with degree 1). Remove them. The remaining form a smaller tree. Repeat: find the new leaves, remove them. Keep going until 1 or 2 nodes remaing. Those are the centers.
+
+This is like peeling an onion. The centre is what is left at the core.
+
+Implementation: use BFS-like layer removal, tracking degrees. When a node's degree drops to 1, add it to the next removal layer.
+
+If you already know a pair of diameter endpoints, the centre is the middle node(s) of that path. Run BFS from one endpoint, track parent pointers, and reconstruct the path to the other endpoint.
+
+Walk halfway along the path to find the center. If the diameter has odd length, there are two centers (the middle edge's endpoints.) If even length, there is one center node.
+
+The center minimizes the maximum distance to any other node. This property is useful in facility location problems and network design. 
+
+iv. The eccentricity of a node is the maximum distance from that node to any other node. The radius of a tree is the minimum eccentricity across all nodes.
+
+The center of a tree has eccentricity equal to the radius. The diameter equals twice the radius (if diameter is even), or twice the radius + 1 (if odd).
+
+77. The Diameter Dominance Theorem
+
+Let T is a tree.
+Let u, v be the endpoints of a diameter in T.
+Then, for any node s in T, the farthest node from s is either u or v.
+
+Mathematically max_dist(s) = max(d(s, u), d(s, v)) for all nodes s in T.
+
+Setup and Definitions:
+
+i. Let d(x, y) denote the distance between nodes x and y in T.
+ii. Let the path u-v be a Diamter of T. By definition, d(u, v) is maximal. No simple path in T is strictly longer than d(u, v).
+iii. Let s be an arbitrary node in T.
+iv. Let t be a junction node. This is the unique node on the diameter path u-v that is closest to s. (Note: If s is on the diameter, then s = t).
+
+Because T is a tree, the path from s to any node on the diameter u-v must pass through t. Therefore
+
+d(s, u) = d(s, t) + d(t, u)
+d(s, v) = d(s, t) + d(t, v)
+
+PROOF(By Contradiction):
+
+Assume there exists a node w such that w is strictly farther from s than both u and v, i.e,
+
+A. d(s, w) > d(s, u) , and
+B. d(s, w) > d(s, v)
+
+We analyze the position of w relative to the junction t. The path from s to w must either go through t, or branch off before t.
+
+Case 1: The path from s to w passes through t.
+
+s -> t -> w
+
+In this case, d(s, w) = d(s, t) + d(t, w).
+Using assumption A:
+
+d(s, t) + d(t, w) > d(s, u)
+d(s, t) + d(t, w) > d(s, t) + d(t, u)
+d(t, w) > d(t, u) --- (I)
+
+Using assumption B:
+d(s, t) + d(t, w) > d(s, v)
+d(s, t) + d(t, w) > d(s, t) + d(t, v)
+d(t, w) > d(t, v) --- (II)
+
+Now consider the path u-w. Since w connects via t, the path is u -> t -> w. Thus, 
+
+d(u, w) = d(u, t) + d(t, w)
+From (II), we then get
+
+d(u, w) > d(u, t) + d(t, v)
+Since t is on diameter u-v, d(u, t) + d(t, v) = d(u, v).
+Thus, 
+
+d(u, w) > d(u, v), a contradiction since d(u, w) cannot be strictly longer than the diameter d(u, v).
+
+Case 2: The path from s to w does NOT pass through t.
+
+The branch to w splits off s, or is "behind" s.
+In this case, the path from diameter to w must go through s.
+
+Therefore, the path from u to w is u -> t -> s -> w.
+
+d(u, w) = d(u, t) + d(t, s) + d(s, w) --- (III)
+
+From assumtion A, we know d(s, w) > d(s, u)
+Substitute d(s, u) with d(s, t) + d(t, u):
+
+d(s, w) > d(s, t) + d(t, u)
+
+Then, from (III), we get
+
+d(u, w) > d(u, t) + d(t, s) + d(s, t) + d(t, u)
+d(u, w) > 2 * d(s, t) + d(u, t) + d(t, u)
+d(u, w) > 2 * d(s, t) + 2 * d(u, t)
+
+Thus, d(u, w) > 2 * d(u, t) --- (IV)
+
+Now since d(u, v) = d(u, t) + d(t, v), if d(u, t) >= d(t, v), from (IV), we then have
+
+d(u, w) > 2 * d(u, t) >= d(u, t) + d(t, v) = d(u, v), a contradiction since u, v is a diameter.
+
+If d(u, t) < d(t, v), then, we can similarly analyze the path v -> t -> s -> w and get the inequality
+
+d(v, w) > 2 * d(v, t), from which we conclude that
+
+d(v, w) > 2 * d(v, t) > d(v, t) + d(t, u) = d(u, v), again a contradiction since u, v is a diameter. 
