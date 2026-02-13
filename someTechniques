@@ -2535,3 +2535,7 @@ Start BFS from any random node. Find the farthest node from it. Call that node u
 This runs in O(n) time and O(n) memory.
 
 This works the farthest node from any starting node will always be a diameter end point.
+
+Two BFS is fast and simple. Run BFS twice and return the distance. The first BFS can start from any node. It guarantees finding a diameter endpoint. The second BFS from that endpoint finds the other end and computes the diameter.
+
+This pattern appears in many tree problems. When you need extremal paths in trees, consider whether two traversals from endpoints can solve it.
