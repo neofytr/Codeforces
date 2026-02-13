@@ -2650,4 +2650,12 @@ If d(u, t) < d(t, v), then, we can similarly analyze the path v -> t -> s -> w a
 
 d(v, w) > 2 * d(v, t), from which we conclude that
 
-d(v, w) > 2 * d(v, t) > d(v, t) + d(t, u) = d(u, v), again a contradiction since u, v is a diameter. 
+d(v, w) > 2 * d(v, t) > d(v, t) + d(t, u) = d(u, v), again a contradiction since u, v is a diameter.
+
+Conclusion:
+
+Both geometric cases lead to a contradiction where a path strictly longer than the diameter d(u, v) is created. Therefore, the assumption must be false.
+
+It is impossible for any node w to be strictly farther from s than both u and v. 
+
+Q.E.D 

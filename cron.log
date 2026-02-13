@@ -3293,3 +3293,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    770dbadf..02c2b65f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a43f5a4c] Solved some problems
+ 3 files changed, 135 insertions(+), 1 deletion(-)
+ create mode 100644 random/graphs/treeDistances1.cpp
+To https://github.com/neofytr/Codeforces.git
+   02c2b65f..a43f5a4c  main -> main
+branch 'main' set up to track 'origin/main'.
