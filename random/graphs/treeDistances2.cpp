@@ -3,18 +3,15 @@ using namespace std;
 
 #define int long long
 
-void dfs(int node, int parent, int c, vector<int> &dp, vector<int> &sz, vector<vector<int>> &tree) {
+void dfs(int node, int parent, vector<int> &dp, vector<int> &sz, vector<vector<int>> &tree) {
 	if (tree[node].size() == 1 && parent != -1) return;
 
-	int cnt = 0;
+	int n = dp.size() - 1;
 	for (int v : tree[node])
-		if (v != parent) cnt += sz[v];
-
+		if (v != parent) dp[v] = dp[node] + n - 2 * sz[v];
+		
 	for (int v : tree[node])
-		if (v != parent) dp[v] = dp[node] + (cnt - 2 * sz[v]) + c;
-
-	for (int v : tree[node])
-		if (v != parent) dfs(v, node, c + cnt, dp, sz, tree);
+		if (v != parent) dfs(v, node, dp, sz, tree);
 }
 
 int szdfs(int node, int parent, vector<int> &sz, vector<vector<int>> &tree) {
@@ -45,16 +42,16 @@ int32_t main() {
 	que.push(1), dist[1] = 0;
 	while (!que.empty()) {
 		int x = que.front(); que.pop();
-		int d = dist[x] + 1;
+		int d = dist[x];
 		for (int v : tree[x])
 			if (dist[v] > d + 1) dist[v] = d + 1, que.push(v);
 	}
 
 	vector<int> dp(n + 1, 0);
-	for (int r = 1; r <= n; r++)
+	for (int r = 1; r <= n; r++) 
 		dp[1] += dist[r];
-
-	dfs(1, -1, 1, dp, sz, tree);
+	
+	dfs(1, -1, dp, sz, tree);
 	for (int r = 1; r <= n; r++)
 		cout << dp[r] << " ";
 	cout << endl;

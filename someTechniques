@@ -2664,10 +2664,24 @@ Q.E.D
 
 Let T is a tree. Let x, y be nodes of T such that x <-> y is a diameter. Then, for any node v of T, if u is the node farthest from v in T, then, 
 
-dist(v, u) = max(dist(u, x), dist(u, y)).
+i. dist(v, u) = max(dist(u, x), dist(u, y)).
 
-Also, the node farthest from any node v of T is always a diameter endpoint of T.
+ii. Also, the node farthest from any node v of T is always a diameter endpoint of T.
 
 These are effective observations that turn an O(n^2) problems into O(n). The pattern: find extremal points first, then use them to answer queries. 
 
 Diameter endpoints act like "anchors" that bound all other distances. When you see "for each node, find X" in a tree problem, ask whether extremal nodes or rerooting can avoid the O(n^2) blowup.
+
+iii. Rerooting DP: compute the answer for root, then update incrementally when you move the root to each child.
+
+Rerooting DP is an effective technique for tree problems where you need to answer queries for every node as root. 
+
+You compute the answer for one root, then efficiently update as you change roots. The insight is finding the update formula: what changes when you move the root from parent to child?
+
+iv.
+
+Diameter is the longest path between any two nodes in a tree. You can find it with two-BFS or DP.
+
+The center of a tree minimizes maximum distance to all other nodes. It is the middle of the diameter path. Radius is the half of diameter (rounded up).
+
+For distance queries, you try to use diameter endpoints and rerooting DP. Both techniques turn O(n^2) problems into O(n).
