@@ -3340,3 +3340,6 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certi
 [main 80e4c0c6] Solved some problems
  1 file changed, 3 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main 942401e9] CF grind
+ 1 file changed, 3 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
