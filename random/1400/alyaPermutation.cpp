@@ -1,84 +1,68 @@
-#include <iostream>
-#include <vector>
-#include <numeric>
-#include <cmath>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
-    int n;
-    cin >> n;
-
-    if (n % 2 != 0) {
-        cout << n << endl;
-        vector<int> p;
-        for (int i = 1; i <= n; ++i) {
-            if (i != 1 && i != 3 && i != n - 1 && i != n) {
-                p.push_back(i);
-            }
-        }
-        p.push_back(1);
-        p.push_back(3);
-        p.push_back(n - 1);
-        p.push_back(n);
-
-        for (int i = 0; i < n; ++i) cout << p[i] << (i == n - 1 ? "" : " ");
-        cout << endl;
-
-    } else {
-        bool powerOfTwo = (n & (n - 1)) == 0;
-        
-        int msb = 0;
-        while ((1 << (msb + 1)) <= n) {
-            msb++;
-        }
-        int M = (1 << (msb + 1)) - 1;
-
-        if (powerOfTwo) {
-            cout << M - 1 << endl;
-            vector<int> p;
-            for (int i = 1; i <= n; ++i) {
-                if (i != n - 2 && i != n - 1 && i != n) {
-                    p.push_back(i);
-                }
-            }
-            p.push_back(n - 2);
-            p.push_back(n - 1);
-            p.push_back(n);
-            
-            for (int i = 0; i < n; ++i) cout << p[i] << (i == n - 1 ? "" : " ");
-            cout << endl;
-        } else {
-            cout << M << endl;
-            
-            int X = M ^ n; 
-            int LB = n & -n; 
-            int Y = X | LB;
-            
-            vector<int> p;
-            for (int i = 1; i <= n; ++i) {
-                if (i != X && i != Y && i != n) {
-                    p.push_back(i);
-                }
-            }
-            p.push_back(X);
-            p.push_back(Y);
-            p.push_back(n);
-
-            for (int i = 0; i < n; ++i) cout << p[i] << (i == n - 1 ? "" : " ");
-            cout << endl;
-        }
-    }
+bool isPowerOfTwo(int n) {
+    return (n & (n - 1)) == 0;
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
+	int t; cin >> t;
+	while (t--) {
+
+    int n;
+    cin >> n;
+
+    vector<int> perm;
+    vector<bool> used(n + 1, false);
+
+    if (n % 2 == 1) {
+        int l = n & -n;
+
+        int a = l;
+        int b = l + (l == 1 ? 2 : 1);
+        int c = n - l;
+        int d = n;
+
+        vector<int> tail = {a, b, c, d};
+        for (int x : tail) used[x] = true;
+
+        for (int i = 1; i <= n; i++)
+            if (!used[i]) perm.push_back(i);
+
+        for (int x : tail) perm.push_back(x);
     }
+    else {
+        if (!isPowerOfTwo(n)) {
+            int h = 1 << (31 - __builtin_clz(n));
+
+            vector<int> tail = {n, n - 1, h - 1};
+            for (int x : tail) used[x] = true;
+
+            for (int i = 1; i <= n; i++)
+                if (!used[i]) perm.push_back(i);
+
+            for (int x : tail) perm.push_back(x);
+        }
+        else {
+            vector<int> tail = {1, 3, n - 2, n - 1, n};
+            for (int x : tail) used[x] = true;
+
+            for (int i = 1; i <= n; i++)
+                if (!used[i]) perm.push_back(i);
+
+            for (int x : tail) perm.push_back(x);
+        }
+    }
+
+    int res = 0;
+    for (int r = 0; r < n; r++)
+    	if ((r + 1) & 1) res &= perm[r];
+    	else res |= perm[r];
+    cout << res << endl;
+    for (int x : perm)
+        cout << x << " ";
+    cout << "\n";
+}
+
     return 0;
 }
