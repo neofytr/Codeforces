@@ -3382,3 +3382,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ebb307ec..034c1fbe  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b2f58771] Solved a CF problem
+ 4 files changed, 54 insertions(+), 3 deletions(-)
+ create mode 100644 random/graphs/minimumMaximumDist.cpp
+To https://github.com/neofytr/Codeforces.git
+   034c1fbe..b2f58771  main -> main
+branch 'main' set up to track 'origin/main'.
