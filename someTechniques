@@ -2685,3 +2685,27 @@ Diameter is the longest path between any two nodes in a tree. You can find it wi
 The center of a tree minimizes maximum distance to all other nodes. It is the middle of the diameter path. Radius is the half of diameter (rounded up).
 
 For distance queries, you try to use diameter endpoints and rerooting DP. Both techniques turn O(n^2) problems into O(n).
+
+79. Some observations on Trees.
+
+i. Let T is a tree with n >= 3 vertices.
+
+Suppose we have to choose 3 distinct vertices x, y and z such that the number of unique edges on the simple paths between x and y, y and z, and, z and x is the maximum.
+
+Then, it is optimal to do the following:
+
+Select two diameter nodes of the tree x, y.
+Then, from all the nodes on the diameter path x-y, run a multi-source BFS and update and dist array accordingly. The third vertex z should be such that z != x, y and dist[z] >= dist[v] for all nodes v in T.
+
+ii. Let T is a tree with n vertices.
+Let some vertices of the tree be marked.
+
+Let f(v) = maximum distance from node v to any of the marked nodes.
+
+Suppose we have to find the minimum value of f(v) for all vertices v of T.
+
+Let one of the marked nodes be the root of T.
+
+To do this, create a modified tree such that the only difference between this new tree and T is that only the nodes and edges on the path from root to the marked nodes are included in the tree.
+
+The answer then is the radius of this new tree.
