@@ -3398,3 +3398,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e9ea816b..742feba4  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 65023afa] Problem solving session
+ 6 files changed, 171 insertions(+), 60 deletions(-)
+ create mode 100644 random/graphs/threePathsTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   742feba4..65023afa  main -> main
+branch 'main' set up to track 'origin/main'.
