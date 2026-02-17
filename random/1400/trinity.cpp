@@ -9,7 +9,15 @@ void solve(int t) {
 	for (int r = 1; r <= n; r++)
 		cin >> arr[r];
 
+	int mini = LLONG_MAX;
 	sort(arr.begin() + 1, arr.end());
+	for (int r = 1; r <= n - 1; r++) {
+		auto itr = lower_bound(arr.begin() + 1, arr.end(), arr[r] + arr[r + 1]);
+		auto i = itr - arr.begin();
+		mini = min(mini, n + r - i);
+	}
+
+	cout << mini << endl;
 }
 
 int32_t main() {
