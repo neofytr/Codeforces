@@ -2726,6 +2726,16 @@ Use DFS with post-order processing. Visit children before processing the current
 
 The recursion naturally handles the tree structure. Post-order means you work from leaves up to the root. This bottom-up flow is the essence of subtree DP.
 
+Use subtree DP when:
+
+1. The input is a tree (acyclic, connected graph).
+
+2. The problem asks for something aggregated (count, max, sum) over nodes or subtrees.
+
+3. The answer for a node depends only on its descendants, not ancestors.
+
+If you see these patterns, the approach is: define state on nodes, write recurrence combining children, implement DFS with post-order traversal. This structure solves most tree DP problems.
+
 i. Define clearly what dp[node] represents. It should be something like "... for the subtree rooted at node". This value should be returned by dfs(node).
 
 ii. An unrooted tree has no designated root. To use subtree DP, pick any node as root (often node 1). Once rooted, edges have direction (parent to child). Subtrees are well-defined. 
@@ -2737,3 +2747,16 @@ iii. Core pattern: define state, write the recurrence, handle the base case of t
 iv. Some problems need two DP values per node: one if you include the node in the solution, one if you exclude it.
 
 Transitions depend on whether you include or exclude each node. The constraint (eg, cannot pick adjacent nodes) determines how you combine child values.
+
+When its needed to calculate multiple values per node, return a tuple of all those values from the DFS. This eliminates the need for a DP table.
+
+v. Some problems ask for the best path in a tree. A path is a sequence of nodes connected by edges.
+
+Core Idea: Every path has a highest node (turning point) (the path closest to the root that is on the path). All the other nodes on the path are in the subtree of this turning point. The turning point v of a path breaks it into two parts: the path goes up to v from one of the childsubtrees of v and may continue into some other child subtree of v.
+
+Consider each node as a potential highest node and base your DP on this, i.e, dp[node] = "... for paths having node as their turning point." Such paths lie entirely in the subtree rooted at node.
+
+For node v, the best path having v as its turning point combines the best paths going down into its different child subtrees. You pick the two best downwards paths and connect them through v, forming a path that has a turning point at v.
+
+Many tree path problems need two values: one for the global answer (path through node), one for recursion (path extending from node). The returned value is what the parent uses to extend its own path. The global variable tracks the overall best path found.
+
