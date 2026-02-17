@@ -10,11 +10,12 @@ void solve() {
 
 	int cnt = 0;
 	for (int r = 1; r <= n; r++) {
-		int a = p[r];
-		if (p[a] == r) continue;
-		// p[a] = r
+		int alpha = p[r];
+		if (p[alpha] == r) continue;
 		int i = f[r];
-		swap(p[a], p[i]), cnt++;
+		f[p[alpha]] = i;
+		f[p[i]] = alpha;
+		swap(p[alpha], p[i]), cnt++;
 	}
 	cout << cnt << endl;
 }
