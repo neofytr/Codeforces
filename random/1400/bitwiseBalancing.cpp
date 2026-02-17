@@ -20,6 +20,15 @@ void solve() {
 				cout << -1 << endl;
 				return;
 			}
+		} else {
+			if (!dbit) 
+				a &= ~(1ll << bit);
+			else if (!cbit)
+				a |= (1ll << bit);
+			else {
+				cout << -1 << endl;
+				return;
+			}
 		}
 	}
 	cout << a << endl;

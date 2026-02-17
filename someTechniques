@@ -2709,3 +2709,31 @@ Let one of the marked nodes be the root of T.
 To do this, create a modified tree such that the only difference between this new tree and T is that only the nodes and edges on the path from root to the marked nodes are included in the tree.
 
 The answer then is the radius of this new tree.
+
+80. Subtree DP
+
+Subtree DP processes trees from leaves to root. You compute values for leaf nodes first, then use those to compute values for their parents, and so on up to the root.
+
+The pattern:
+
+dp[node] = f(dp[child_1], dp[child_2], ...)
+
+You combine child answers to get the parent answers.
+
+This works because trees have no cycles, each node depends only on descendants.
+
+Use DFS with post-order processing. Visit children before processing the current node. This ensures you have all child results before computing the parent's result.
+
+The recursion naturally handles the tree structure. Post-order means you work from leaves up to the root. This bottom-up flow is the essence of subtree DP.
+
+i. Define clearly what dp[node] represents. It should be something like "... for the subtree rooted at node". This value should be returned by dfs(node).
+
+ii. An unrooted tree has no designated root. To use subtree DP, pick any node as root (often node 1). Once rooted, edges have direction (parent to child). Subtrees are well-defined. 
+
+Some problems care about the root choice (path queries). Others do not (subtree sizes). The choice of root changes which nodes are ancestors v/s descendants, but not the tree structure itself.
+
+iii. Core pattern: define state, write the recurrence, handle the base case of the leaf nodes, implement DFS.
+
+iv. Some problems need two DP values per node: one if you include the node in the solution, one if you exclude it.
+
+Transitions depend on whether you include or exclude each node. The constraint (eg, cannot pick adjacent nodes) determines how you combine child values.

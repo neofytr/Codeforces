@@ -3455,3 +3455,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    75da9069..febbf5e1  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 625e1a6b] More problems solved
+ 5 files changed, 62 insertions(+), 9 deletions(-)
+ create mode 100644 random/1400/bitwiseBalancing.cpp
+To https://github.com/neofytr/Codeforces.git
+   febbf5e1..625e1a6b  main -> main
+branch 'main' set up to track 'origin/main'.
