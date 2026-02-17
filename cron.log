@@ -3410,3 +3410,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    65023afa..2348408e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main af249643] Solved a CF problem
+ 5 files changed, 148 insertions(+), 74 deletions(-)
+ create mode 100644 random/1400/trapped.cpp
+To https://github.com/neofytr/Codeforces.git
+   2348408e..af249643  main -> main
+branch 'main' set up to track 'origin/main'.

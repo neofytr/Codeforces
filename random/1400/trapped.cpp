@@ -56,8 +56,8 @@ void solve() {
 					if (nr <= n && nr >= 1 && nc <= m && nc >= 1) 
 						if (ex[nr][nc]) {
 							if (!i) ucnt--;
-							if (i == 1) dcnt--;
-							if (i == 2) lcnt--;
+							if (i == 1) lcnt--;
+							if (i == 2) dcnt--;
 							if (i == 3) rcnt--;
 						} 
 				}
@@ -70,7 +70,7 @@ void solve() {
 	int cnt = 0;
 	for (int r = 1; r <= n; r++)
 		for (int c = 1; c <= m; c++)
-			if (!ex[r][c]) cout << r << " " << c << endl, cnt++;
+			if (!ex[r][c]) cnt++;
 	cout << cnt << endl;
 }
 
