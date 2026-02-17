@@ -3449,3 +3449,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f04762de..75da9069  main -> main
 branch 'main' set up to track 'origin/main'.
+[main febbf5e1] Solved a CF problem
+ 2 files changed, 19 insertions(+)
+ create mode 100644 random/1400/alicePermuting.cpp
+To https://github.com/neofytr/Codeforces.git
+   75da9069..febbf5e1  main -> main
+branch 'main' set up to track 'origin/main'.
