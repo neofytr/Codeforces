@@ -2760,3 +2760,92 @@ For node v, the best path having v as its turning point combines the best paths 
 
 Many tree path problems need two values: one for the global answer (path through node), one for recursion (path extending from node). The returned value is what the parent uses to extend its own path. The global variable tracks the overall best path found.
 
+81. Counting Intersecting Segments with a Sliding Window in O(1) per shift
+
+Problem setup:
+- You are given multiple segments [l, r].
+- You slide a fixed-length window [x, x + d − 1] across a line.
+- For each window position, you want to count how many segments intersect it.
+
+Key observation:
+A segment [l, r] intersects the window [x, x + d − 1] iff:
+    l ≤ x + d − 1  AND  r ≥ x
+
+Instead of checking this condition for every segment at every window position
+(which would be O(n·k)), we convert the problem into incremental updates.
+
+------------------------------------------------------------
+CORE IDEA: EVENT-BASED COUNTING WITH PREFIX EVENTS
+------------------------------------------------------------
+
+We track how the intersection count changes when the window shifts by 1.
+
+Define two arrays:
+- left[i]  = number of segments that start at position i
+- right[i] = number of segments that end at position i
+
+Initial window:
+- Window = [1, d]
+- Count all segments with l ≤ d
+  (these are exactly the segments that intersect the initial window)
+
+Sliding the window:
+- Suppose the current window is [x, x + d − 1]
+- Next window is [x + 1, x + d]
+
+What changes?
+
+1. Segments that START at (x + d)
+   - These now intersect the window
+   - Contribution: +left[x + d]
+
+2. Segments that END at x
+   - These no longer intersect the window
+   - Contribution: −right[x]
+
+So the update rule is:
+    cnt += left[x + d]
+    cnt -= right[x]
+
+This update is O(1).
+
+------------------------------------------------------------
+WHY THIS WORKS
+------------------------------------------------------------
+
+Each segment contributes:
+- +1 exactly when its left endpoint enters the window
+- −1 exactly when its right endpoint leaves the window
+
+Thus, every segment is processed only twice overall:
+- Once when it becomes active
+- Once when it becomes inactive
+
+------------------------------------------------------------
+TIME & SPACE COMPLEXITY
+------------------------------------------------------------
+
+Preprocessing left[] and right[]:  O(k)
+Initial count:                     O(k)
+Sliding window updates:            O(n)
+Total time:                        O(n + k)
+Extra space:                       O(n)
+
+------------------------------------------------------------
+GENERAL APPLICATIONS
+------------------------------------------------------------
+
+This technique applies whenever:
+- You slide a fixed-size window over an index line
+- You need to count how many intervals / events / ranges intersect the window
+
+Common use cases:
+- Interval overlap queries
+- Scheduling problems
+- Maximum or minimum overlap in fixed-length ranges
+- Sweep-line problems reduced to 1D sliding windows
+
+Key pattern to remember:
+"Convert interval intersection checks into +1 / −1 events at boundaries,
+then maintain a running count with O(1) updates."
+

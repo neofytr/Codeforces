@@ -3499,3 +3499,9 @@ branch 'main' set up to track 'origin/main'.
 [main f1d37956] Solved a few problems
  1 file changed, 5 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main 1187817f] Solved some problems
+ 4 files changed, 46 insertions(+), 4 deletions(-)
+ create mode 100644 random/1400/robertHood.cpp
+To https://github.com/neofytr/Codeforces.git
+   8f8a39c9..1187817f  main -> main
+branch 'main' set up to track 'origin/main'.

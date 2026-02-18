@@ -17,17 +17,18 @@ void solve() {
 	for (auto &[l, r] : jobs)
 		if (l <= d) cnt++;	
 
-	int m = cnt, idx = 1;
-	cout << d << " " << cnt << endl;
+	int maxi = cnt, idxmaxi = 1;
+	int mini = cnt, idxmini = 1;
 	for (int r = d + 1; r <= n; r++) {
 		cnt += left[r];
 		cnt -= right[r - d];
-		cout << r << " " << cnt << endl;
-		if (cnt > m)
-			m = cnt, idx = r;
+		if (cnt > maxi)
+			maxi = cnt, idxmaxi = r - d + 1;
+		if (cnt < mini)
+			mini = cnt, idxmini = r - d + 1;
 	}
 	
-	cout << idx << endl;
+	cout << idxmaxi << " " << idxmini << endl;
 }
 
 int32_t main() {
