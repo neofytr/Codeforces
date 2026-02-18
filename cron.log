@@ -3511,3 +3511,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1187817f..26d5e5f6  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6d89ba4a] Worked on Codeforces problems
+ 7 files changed, 104 insertions(+), 66 deletions(-)
+ create mode 100644 random/1400/klee.cpp
+ create mode 100644 random/1400/messageTransmissionError.cpp
+ create mode 100644 random/1400/satyamCounting.cpp
+To https://github.com/neofytr/Codeforces.git
+   26d5e5f6..6d89ba4a  main -> main
+branch 'main' set up to track 'origin/main'.
