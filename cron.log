@@ -3536,3 +3536,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9713b451..838f3bb7  main -> main
 branch 'main' set up to track 'origin/main'.
+[main aff17091] Solved some problems
+ 5 files changed, 60 insertions(+), 16 deletions(-)
+ create mode 100644 random/1400/lightSwitches.cpp
+To https://github.com/neofytr/Codeforces.git
+   838f3bb7..aff17091  main -> main
+branch 'main' set up to track 'origin/main'.
