@@ -2849,3 +2849,40 @@ Key pattern to remember:
 "Convert interval intersection checks into +1 / −1 events at boundaries,
 then maintain a running count with O(1) updates."
 
+82.
+
+Problem:
+Given an array A of length n (n ≥ 2), compute
+
+    S = ∑ A[i] · A[j]   for all 1 ≤ i < j ≤ n
+    (sum of products of all unordered pairs)
+
+Naive approach:
+- Two nested loops
+- Time complexity: O(n²)
+
+Optimized O(n) approach:
+
+Let
+    total = ∑ A[k]   for k = 1 to n
+
+Then
+    S = (1/2) · ∑ A[i] · (total − A[i])   for i = 1 to n
+
+Why this works:
+- For a fixed index i, the value A[i] is multiplied with every other element:
+      A[i]·A[1], A[i]·A[2], …, A[i]·A[n] (except A[i]·A[i])
+- The sum of those other elements is (total − A[i])
+- So contribution of index i is:
+      A[i] · (total − A[i])
+
+- Summing this over all i counts every unordered pair (i, j) twice:
+      once as A[i]·A[j] and once as A[j]·A[i]
+
+- Dividing by 2 removes this double counting
+
+Final formula:
+    S = (∑ A[i] · (total − A[i])) / 2
+
+Time complexity: O(n)
+Space complexity: O(1)

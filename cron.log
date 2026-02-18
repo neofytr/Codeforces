@@ -3519,3 +3519,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    26d5e5f6..6d89ba4a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4f143c79] Solved some problems
+ 5 files changed, 86 insertions(+), 5 deletions(-)
+ create mode 100644 random/1400/sakurakoBox.cpp
+To https://github.com/neofytr/Codeforces.git
+   6d89ba4a..4f143c79  main -> main
+branch 'main' set up to track 'origin/main'.
