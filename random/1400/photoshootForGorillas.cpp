@@ -10,7 +10,7 @@ void solve() {
 	vector<int> arr(w);
 	for (int r = 0; r < w; r++) cin >> arr[r];
 
-	vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+	vector<vector<int>> dp(n + 2, vector<int>(m + 2, 0));
 	for (int r = 1; r <= n - k + 1; r++)
 		for (int c = 1; c <= m - k + 1; c++) {
 			dp[r][c] += 1;
