@@ -20,7 +20,11 @@ void solve() {
 				return;
 			} else if (v[r] == 1) continue;
 			else sum += v[r];
-		mini = min(mini, res);
+
+		if (!sum) sum = res;
+		else if (res == 1) sum *= res;
+		else sum += res;
+		mini = min(mini, sum);
 	}
 	cout << mini << endl;
 }
