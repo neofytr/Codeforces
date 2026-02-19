@@ -17,10 +17,16 @@ void solve() {
 		for (int r = 1; r <= n; r++)
 			if (A[r] == 1 && B[r] != 1) a += 1;
 			else if (B[r] == 1 && A[r] != 1) b += 1;
-			else if (A[r] == 1 && B[r] == 1) {
+
+		for (int r = 1; r <= n; r++)
+			if (A[r] == 1 && B[r] == 1) 
 				if (a >= b) b += 1;
 				else a += 1;
-			}
+		for (int r = 1; r <= n; r++)
+			if (A[r] == -1 && B[r] == -1)
+				if (a >= b) a -= 1;
+				else b -= 1;
+
 		return a >= x && b >= x;
 	};
 
