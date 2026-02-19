@@ -3580,3 +3580,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    74a2350e..e75399cc  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 15693665] Solved a few problems
+ 2 files changed, 27 insertions(+)
+ create mode 100644 random/1400/gcdSequence.cpp
+To https://github.com/neofytr/Codeforces.git
+   e75399cc..15693665  main -> main
+branch 'main' set up to track 'origin/main'.
