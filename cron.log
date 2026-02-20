@@ -3683,3 +3683,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    86ee9baa..c31249b7  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b23e6c51] CF grind
+ 5 files changed, 71 insertions(+), 5 deletions(-)
+ create mode 100644 random/1400/inaccurateSubsequence.cpp
+ create mode 100644 random/1400/ticketHoarding.cpp
+To https://github.com/neofytr/Codeforces.git
+   c31249b7..b23e6c51  main -> main
+branch 'main' set up to track 'origin/main'.
