@@ -3626,3 +3626,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    10e07828..151ec096  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a57bb3a9] Solved a few problems
+ 2 files changed, 20 insertions(+)
+ create mode 100644 random/genericCowProtests.cpp
+To https://github.com/neofytr/Codeforces.git
+   151ec096..a57bb3a9  main -> main
+branch 'main' set up to track 'origin/main'.
