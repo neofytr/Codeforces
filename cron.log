@@ -3597,3 +3597,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    4f0aa7c0..c61f953b  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8ecadacc] Problem solving session
+ 4 files changed, 79 insertions(+), 2 deletions(-)
+ create mode 100644 random/1400/beautifulTriplePairs.cpp
+To https://github.com/neofytr/Codeforces.git
+   c61f953b..8ecadacc  main -> main
+branch 'main' set up to track 'origin/main'.

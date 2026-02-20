@@ -45,19 +45,19 @@ void solve(int t) {
 		int a = arr[j], b = arr[j + 1], c = arr[j + 2];
 		if (!leftDone[{b, c}]) {
 			leftDone[{b, c}] = true;
-			int sum = leftsum[{b, c}], r = left[{b, c}], sq = leftsumsq[{b, c}];
+			int sum = leftsum[{b, c}], sq = leftsumsq[{b, c}];
 			res += ((sum * sum - sq) / 2);
 		}	
 
 		if (!midDone[{a, c}]) {
 			midDone[{a, c}] = true;
-			int sum = midsum[{a, c}], r = mid[{a, c}], sq = midsumsq[{a, c}];
+			int sum = midsum[{a, c}], sq = midsumsq[{a, c}];
 			res += ((sum * sum - sq) / 2);
 		}
 
 		if (!rightDone[{a, b}]) {
 			rightDone[{a, b}] = true;
-			int sum = rightsum[{a, b}], r = right[{a, b}], sq = rightsumsq[{a, b}];
+			int sum = rightsum[{a, b}], sq = rightsumsq[{a, b}];
 			res += ((sum * sum - sq) / 2);
 		}
 	}
