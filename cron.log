@@ -3603,3 +3603,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c61f953b..8ecadacc  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7d832aa7] Worked on Codeforces problems
+ 7 files changed, 67 insertions(+), 6 deletions(-)
+ create mode 100644 random/1400/permutationCounting.cpp
+ create mode 100644 random/1400/reverseCard.cpp
+ create mode 100644 random/dp/introSegment.cpp
+To https://github.com/neofytr/Codeforces.git
+   8ecadacc..7d832aa7  main -> main
+branch 'main' set up to track 'origin/main'.
