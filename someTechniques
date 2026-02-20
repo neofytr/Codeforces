@@ -2886,3 +2886,195 @@ Final formula:
 
 Time complexity: O(n)
 Space complexity: O(1)
+
+82. COORDINATE COMPRESSION
+
+What coordinate compression does
+--------------------------------
+Maps large / negative / sparse values to small contiguous indices
+while preserving relative order.
+
+If x < y originally,
+then compressed(x) < compressed(y).
+
+Only ordering is preserved, not distances.
+
+
+When coordinate compression is applicable
+------------------------------------------
+- Values are large (up to 1e18)
+- Values are negative
+- Values are sparse
+- You only need ordering, not actual values
+- Total number of DISTINCT values is manageable
+
+
+Step 1: Collect all values in a set
+-----------------------------------
+Insert EVERY value that will ever be:
+- accessed
+- updated
+- compared
+- used as a boundary
+
+Using a set guarantees:
+- uniqueness
+- sorted order
+
+Example:
+set<long long> st;
+
+st.insert(x);
+
+
+Step 2: Convert set → vector
+----------------------------
+Create a vector from the set to enable indexing.
+
+vector<long long> coords;
+for (auto x : st)
+    coords.push_back(x);
+
+Now:
+- coords is sorted
+- coords contains unique values
+- coords[i] is the (i+1)-th smallest value
+
+
+Step 3: Define 1-based indexing
+-------------------------------
+Mapping rule:
+
+compressed(x) =
+    lower_bound(coords.begin(), coords.end(), x)
+    - coords.begin()
+    + 1
+
+So:
+coords[0] → index 1
+coords[1] → index 2
+...
+coords[k-1] → index k
+
+Important Rules 
+--------------------------------
+- You MUST collect values BEFORE compression
+- You MUST compress ALL values that will appear
+- Do NOT compress values that appear only at runtime unless known beforehand
+- Use lower_bound, not upper_bound
+- Be consistent with 1-based indexing
+
+
+Memory Constraint 
+-----------------------------
+Coordinate compression is feasible ONLY if:
+
+number of UNIQUE values << available memory
+
+Typical limits:
+- ~1e6 unique values → always safe
+- ~5e6 unique values → usually safe
+- ~1e7 unique values → borderline
+- >1e7 unique values → often NOT safe
+
+Reason:
+- Segment tree requires ~4 × N nodes
+- Each node stores at least one 64-bit value
+- Memory explodes quickly
+
+Coordinate compression DOES NOT magically reduce memory usage.
+It only makes indexing possible.
+
+If the number of DISTINCT values is too large,
+compression is useless and will TLE / MLE.
+
+In such cases, use:
+- Treap
+- Ordered map
+- Policy-based data structure
+- Hashing (if ordering not needed)
+
+83. Delting
+
+What is Delting?
+----------------
+Delting is a technique used to avoid repeatedly updating all elements
+of a data structure when a query adds the same value to every element.
+
+Instead of modifying each element, we maintain a global offset.
+
+
+When to Use Delting
+-------------------
+Use delting when:
+- A query adds a value to ALL elements in a DS
+- Other queries read or update individual elements
+- Relative differences between elements matter more than absolute values
+
+
+Core Idea
+---------
+Maintain an auxiliary variable:
+
+aux = 0  (initially)
+
+Invariant:
+real_value = stored_value + aux
+
+We NEVER store real values directly.
+
+
+Operations
+----------
+
+1) Add x to all elements
+-----------------------
+Instead of updating all elements:
+
+aux += x
+
+Time: O(1)
+
+
+2) Insert a value v
+------------------
+We store the adjusted value:
+
+stored_value = v - aux
+
+Insert stored_value into the DS.
+
+
+3) Get / Query a value
+----------------------
+When a value is retrieved:
+
+real_value = stored_value + aux
+
+
+4) Update an existing element
+-----------------------------
+To add x to a specific element:
+
+stored_value += x
+
+(aux is NOT changed)
+
+
+Why This Works
+--------------
+All elements share the same global offset.
+Adding x to every element is equivalent to shifting the offset.
+
+By storing values relative to aux:
+- Global updates become O(1)
+- Local updates remain correct
+- Order comparisons are preserved
+
+
+Important Properties
+--------------------
+- Comparisons between elements are preserved
+- Differences between elements are unchanged
+- Works with negative values
+- Avoids O(n) mass updates

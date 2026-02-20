@@ -15,7 +15,7 @@ using namespace std;
 // We solve this using a monotonic deque that maintains the following invariants
 // during each step:
 
-// 1. The deque stores all the indices which are inside the current window
+// 1. The deque's front doesn't have any expired indices (i.e., indices not in the current window)
 // 2. The deque is sorted (in non-decreasing order) from front to the back according
 //	  to the value of (v + f) at the index in the deque
 
