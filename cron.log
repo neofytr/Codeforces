@@ -3712,3 +3712,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a4fe6eb5..6009619d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0893d7c5] Problem solving session
+ 4 files changed, 57 insertions(+), 13 deletions(-)
+ create mode 100644 random/1400/sashaCasino.cpp
+To https://github.com/neofytr/Codeforces.git
+   6009619d..0893d7c5  main -> main
+branch 'main' set up to track 'origin/main'.
