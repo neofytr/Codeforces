@@ -3701,3 +3701,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    554e7bc7..967816b6  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a4fe6eb5] Solved a few problems
+ 5 files changed, 63 insertions(+), 9 deletions(-)
+ create mode 100644 random/1400/LRremainders.cpp
+To https://github.com/neofytr/Codeforces.git
+   967816b6..a4fe6eb5  main -> main
+branch 'main' set up to track 'origin/main'.
