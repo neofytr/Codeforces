@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int unsigned long long
+#define int long long
 
 void solve() {
 	int n, m, k; cin >> n >> m >> k;
