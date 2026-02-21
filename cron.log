@@ -3725,3 +3725,15 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0893d7c5..b4df7d58  main -> main
 branch 'main' set up to track 'origin/main'.
+[main fe56679c] Practiced CF problems
+ 11 files changed, 75 insertions(+), 8 deletions(-)
+ create mode 100644 contests/DivTwo/1081/a.cpp
+ create mode 100644 contests/DivTwo/1081/b.cpp
+ create mode 100644 contests/DivTwo/1081/c.cpp
+ create mode 100644 contests/DivTwo/1081/d.cpp
+ create mode 100644 contests/DivTwo/1081/e.cpp
+ create mode 100644 random/1400/XORdistance.cpp
+ create mode 100644 random/estimation.cpp
+To https://github.com/neofytr/Codeforces.git
+   b4df7d58..fe56679c  main -> main
+branch 'main' set up to track 'origin/main'.
