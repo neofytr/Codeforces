@@ -3718,3 +3718,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6009619d..0893d7c5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b4df7d58] Worked on Codeforces problems
+ 5 files changed, 60 insertions(+), 10 deletions(-)
+ create mode 100644 random/1400/findB.cpp
+ create mode 100644 random/1400/kleverPermutation.cpp
+To https://github.com/neofytr/Codeforces.git
+   0893d7c5..b4df7d58  main -> main
+branch 'main' set up to track 'origin/main'.
