@@ -3078,3 +3078,313 @@ Important Properties
 - Differences between elements are unchanged
 - Works with negative values
 - Avoids O(n) mass updates
+
+84. ========================================================
+2D → 1D REDUCTION + TWO POINTERS (MONOTONIC RECTANGLES)
+========================================================
+
+CORE IDEA
+---------
+Any sub-rectangle is defined by:
+    (left, right, top, bottom)
+
+If we fix (left, right),
+the problem reduces to choosing (top, bottom),
+which is a 1D subarray problem on rows.
+
+This allows us to replace a 2D search
+with many 1D optimizations.
+
+
+STEP 1: FIX ONE DIMENSION
+------------------------
+Choose one dimension to fix (usually columns).
+
+For every column pair [L, R]:
+    For each row i:
+        row_cost[i] = contribution of row i in columns [L, R]
+
+This "compresses" the rectangle into a 1D array.
+
+
+STEP 2: DEFINE THE 1D PROPERTY
+-----------------------------
+Now we solve a problem on row_cost[]:
+
+Examples:
+- Find longest subarray with sum ≤ S
+- Find max-length subarray satisfying a constraint
+- Maximize (length × width)
+
+The width is fixed (R - L + 1).
+Only the height varies.
+
+
+WHY THIS REDUCTION WORKS
+-----------------------
+Because the property of a rectangle over rows
+can be expressed as a function over row_cost[].
+
+Mathematically:
+    rectangle_property(L, R, top, bottom)
+        = f(row_cost[top..bottom])
+
+This is the key condition for applying 2D → 1D.
+
+
+========================================================
+MONOTONICITY AND TWO POINTERS
+========================================================
+
+DEFINITION
+----------
+A property P over subarrays is:
+
+- Subsegment monotonic if:
+    If P holds for [l, r],
+    then it holds for any [l', r'] ⊆ [l, r].
+
+- Supersegment monotonic if:
+    If P holds for [l, r],
+    then it holds for any [l', r'] ⊇ [l, r].
+
+
+WHY MONOTONICITY MATTERS
+-----------------------
+Monotonicity allows a sliding window:
+- Expanding the window changes feasibility in ONE direction
+- Shrinking reverses it
+
+This guarantees:
+- Two pointers move forward only
+- Total operations are linear
+
+
+COMMON CASE (MOST IMPORTANT)
+----------------------------
+Constraint of the form:
+    cost ≤ limit
+
+Where:
+- cost increases when adding rows
+- cost decreases when removing rows
+
+This is SUBSEGMENT MONOTONIC.
+
+
+========================================================
+TWO POINTERS AFTER 2D → 1D
+========================================================
+
+Given fixed [L, R]:
+
+Initialize:
+    up = 1
+    current_cost = 0
+
+For down = 1 .. rows:
+    add row_cost[down] to current_cost
+
+    while current_cost > limit:
+        remove row_cost[up] from current_cost
+        up++
+
+    // now [up, down] is the largest valid window ending at down
+    update answer using (down - up + 1)
+
+
+WHY THIS IS CORRECT
+------------------
+- Extending down increases cost → may violate constraint
+- Moving up decreases cost → restores feasibility
+- Once up moves forward, it never needs to move back
+
+This relies entirely on monotonicity.
+
+
+========================================================
+HOW THIS APPLIES TO RECTANGLES
+========================================================
+
+Rectangle feasibility:
+- Adding a row → adds cost
+- Removing a row → removes cost
+
+Thus:
+- Feasibility is monotonic w.r.t vertical expansion
+- Two pointers are valid
+
+
+Final rectangle area:
+    area = height × fixed_width
+
+
+========================================================
+WHEN THIS PATTERN APPLIES
+========================================================
+
+Use 2D → 1D + two pointers when:
+- You need a sub-rectangle
+- Constraint is additive over rows or columns
+- Adding rows/columns worsens feasibility monotonically
+
+Typical constraints:
+- Sum ≤ K
+- Count of bad cells ≤ K
+- Cost ≤ budget
+- At most K violations
+
+
+========================================================
+WHEN IT DOES NOT APPLY
+========================================================
+
+Two pointers FAIL if:
+- Property is non-monotonic
+- Feasibility can break and reappear by expanding
+- Constraint depends on exact positions non-additively
+
+Example:
+- XOR constraints
+- Exact equality requirements
+- Non-contiguous interactions
+
+
+========================================================
+MENTAL CHECKLIST
+========================================================
+
+1) Can I fix two sides of the rectangle?
+2) Can I compress the rest into 1D?
+3) Does feasibility change monotonically when extending?
+4) If yes → two pointers
+
+If all answers are YES,
+this pattern is almost certainly intended.
+
+========================================================
+
+84. ========================================================
+TOP-K ONLINE MAINTENANCE (TWO-SET TECHNIQUE)
+========================================================
+
+WHAT IT IS
+----------
+A technique to dynamically maintain the K best elements
+(largest or smallest) from a changing set of elements,
+supporting online insertions and deletions.
+
+At every moment, the chosen K elements must be optimal.
+
+
+WHEN IT IS USED
+---------------
+- You are allowed to select at most K elements
+- Selection gives special benefit (free, discounted, upgraded)
+- New elements arrive, old ones leave
+- The optimal K must be maintained continuously
+
+
+CORE IDEA
+---------
+Partition elements into two disjoint sets:
+
+    S_best  → the current K best elements
+    S_rest  → all remaining elements
+
+Invariant:
+- |S_best| ≤ K
+- Every element in S_best is better than every element in S_rest
+
+
+WHAT “BETTER” MEANS
+-------------------
+Depends on the problem:
+- Larger value
+- Smaller value
+- Higher benefit
+- Lower cost
+
+Top-K = selecting elements with best priority.
+
+
+INSERT OPERATION
+----------------
+When inserting element x:
+
+1) If |S_best| < K:
+       insert x into S_best
+2) Else:
+       let y = worst element in S_best
+       if x is better than y:
+           remove y from S_best
+           insert y into S_rest
+           insert x into S_best
+       else:
+           insert x into S_rest
+
+This preserves the invariant.
+
+
+DELETE OPERATION
+----------------
+When deleting element x:
+
+1) If x ∈ S_best:
+       remove x
+       promote the best element from S_rest into S_best
+2) Else:
+       remove x from S_rest
+
+Again, the invariant is restored.
+
+
+WHY THIS IS CORRECT
+-------------------
+Greedy rule:
+- The optimal solution always consists of the K best elements.
+
+Exchange argument:
+- If an element in S_rest is better than one in S_best,
+  swapping them strictly improves the solution.
+
+Therefore, maintaining this partition maintains optimality.
+
+
+DATA STRUCTURE REQUIREMENTS
+---------------------------
+We must support:
+- Insert
+- Delete
+- Find worst in S_best
+- Find best in S_rest
+
+Typical choices:
+- Two multisets
+- Two heaps with lazy deletion
+- Balanced BSTs
+
+
+TIME COMPLEXITY
+---------------
+Each operation:
+    O(log N)
+
+This is fast enough for online use.
+
+
+COMMON APPLICATIONS
+-------------------
+- Selecting K largest / smallest values
+- K coupons / free repairs
+- K rows fully repaired
+- K elements to ignore
+- Maintaining K best candidates
+
+
+MENTAL MODEL
+------------
+"There are K privileged slots.
+They must always be occupied by the best possible elements."
+
+========================================================
