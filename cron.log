@@ -3690,3 +3690,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c31249b7..b23e6c51  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 554e7bc7] CF grind
+ 6 files changed, 81 insertions(+), 35 deletions(-)
+ create mode 100644 random/dp/miceAndHoles.cpp
+To https://github.com/neofytr/Codeforces.git
+   b23e6c51..554e7bc7  main -> main
+branch 'main' set up to track 'origin/main'.
