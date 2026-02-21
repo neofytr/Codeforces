@@ -10,6 +10,58 @@ int dp[MAX + 1][MAX_K + 1];
 int arr[MAX + 1];
 int cost[MAX + 1][MAX + 1];
 
+struct slidingMedian {
+	multiset<int> lower, upper;
+	void rebalance() {
+		if (lower.size() - upper.size() == 2) {
+			int x = *lower.rbegin();
+			lower.erase(--lower.end());
+			upper.insert(x);
+			return;
+		}
+
+		if (lower.size() - upper.size() == 1 && !upper.empty())
+			if (*lower.rbegin() > *upper.begin()) {
+				int x = *lower.rbegin(), y = *upper.begin();
+				lower.erase(--lower.end()), upper.erase(upper.begin());
+				upper.insert(x), lower.insert(y);
+				return;
+			}
+
+		if (upper.size() - lower.size() == 1) {
+			int x = *upper.begin();
+			upper.erase(upper.begin());
+			lower.insert(x);
+		}
+	}
+
+	void insert(int x) {
+		lower.insert(x);
+		rebalance();
+	}
+
+	void remove(int x) {
+		if (lower.empty() && upper.empty()) return;
+
+		if (!lower.empty() && lower.find(x) != lower.end()) {
+			lower.erase(lower.find(x));
+			rebalance();
+			return;
+		}
+
+		if (!upper.empty() && upper.find(x) != upper.end()) {
+			upper.erase(upper.find(x));
+			rebalance();
+			return;
+		}
+	}
+
+	int median() {
+		if (lower.empty()) return -1;
+		return *lower.rbegin();
+	}
+};
+
 struct doubleHeap {
 	multiset<int> lower, upper;
 	int lowersum = 0, uppersum = 0;
@@ -58,6 +110,22 @@ int32_t main() {
 	for (int i = 0; i <= n; i++)
 		for (int j = 0; j <= k; j++)
 			dp[i][j] = INF;
+
+	for (int r = 1; r <= n; r++)
+		cout << arr[r] << " ";
+	cout << endl;
+
+	slidingMedian med;
+	for (int r = 1; r <= n; r++) {
+		med.insert(arr[r]);
+		cout << med.median() << " ";
+	}
+	cout << endl;
+	for (int r = 1; r <= n; r++) {
+		med.remove(arr[r]);
+		cout << med.median() << " ";
+	}
+	cout << endl;
 
 	for (int i = 1; i <= n; i++) {
 		doubleHeap dh;
