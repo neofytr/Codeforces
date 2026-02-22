@@ -9,14 +9,14 @@ int32_t main() {
 	vector<int> arr(n + 1);
 	for (int r = 1; r <= n; r++) cin >> arr[r];
 
-	vector<int> dp(n + 1);
-	dp[0] = 0;
-	for (int i = 1; i <= n; i++) dp[i] = INF;
-	for (int i = 1; i <= n; i++) 
-		for (int j = i; j >= 1; j--)
-			dp[i] = min(dp[i], dp[j - 1] + (arr[j] - arr[i]) * (arr[j] - arr[i]) + c);
-	
-
-	cout << dp[n] << endl;
+	vector<pair<int, int>> dq; dq.push_back({0, arr[1]});
+	for (int r = 2; r <= n; r++) {
+		int mini = INF;
+		for (auto [cost, start] : dq) 
+			mini = min(mini, cost + (arr[r - 1]  - start) * (arr[r - 1] - start) + c);
+		dq.push_back({mini, arr[r]});
+		cout << mini << endl;
+	}
+			
 	return 0;
 }
