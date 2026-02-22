@@ -15,18 +15,26 @@ void solve() {
 		return;
 	}
 
-	if (a > b) {
-		int x = 0;
-		int h = -1;
-		for (int bit = 63; bit >= 0; bit--)
-			if (r & (1ll << bit)) {
-				h = bit;
-				break;
-			}
+	if (a < b) swap(a, b);
+	
+	int x = 0;
+	int h = -1;
+	for (int bit = 63; bit >= 0; bit--)
+		if ((a & (1ll << bit)) && !(b & (1ll << bit))) {
+			h = bit;
+			break;
+		}
 
-		for (int bit = h; bit >= 0; bit--)
-			if (!(a & (1ll << bit)) && (b & (1ll << bit)))
+	if (!h) {
+		cout << 1 << endl;
+		return;
 	}
+
+	for (int bit = h - 1; bit >= 0; bit--)
+		if ((a & (1ll << bit)) && !(b & (1ll << bit))) 
+			if ((x | (1ll << bit)) <= r) x |= (1ll << bit);
+
+	cout << (a ^ x) - (b ^ x) << endl;
 }
 
 int32_t main() {

@@ -3766,3 +3766,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    64d7b643..954e8290  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a054ed9c] Solved a few problems
+ 5 files changed, 510 insertions(+), 1 deletion(-)
+ create mode 100644 DataStructures/heap.cpp
+ create mode 100644 DataStructures/test
+To https://github.com/neofytr/Codeforces.git
+   954e8290..a054ed9c  main -> main
+branch 'main' set up to track 'origin/main'.
