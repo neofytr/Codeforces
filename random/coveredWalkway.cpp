@@ -5,37 +5,54 @@ using namespace std;
 #define INF (int)(1e16)
 
 struct Line {
-	double m, c;
+	int m, c;
 };
 
 struct CHT {
-	vector<pair<Line, double>> v;
+	vector<Line> hull;
 
-	void insert(double m, double c) {
-		double xint = -INF;
-		while (!v.empty()) {
-			auto &[L, x] = v.back();
-			xint = (L.c - c) / (m - L.m);
-			if (xint > x) break;
-			v.pop_back(); // the last line becomes obsolete
-		}
-		v.push_back({{m, c}, xint});
+	// slope of l < slope of l1 < slope of l2
+	// returns true if int(l, l1) > int(l1, l2)
+	bool check(Line &l, Line &l1, Line &l2) {
+		return (l1.m - l.m) * (l1.c - l2.c) <= (l.c - l1.c) * (l2.m - l1.m);
 	}
 
-	int query(double x) {
-		if (!v.size()) return -1;
-		int left = 0;
-		int right = v.size();
-		while (right != left + 1) {
-			int mid = left + (right - left) / 2;
-			if (v[mid].second <= x) left = mid;
-			else right = mid;
+	int val(Line &l, int x) {
+		return l.m * x + l.c;
+	}
+
+	void insert(int m, int c) {
+		if (hull.empty() || hull.size() == 1) {
+			hull.push_back({m, c});
+			return;
 		}
-		
-		Line L = v[left].first;
-		return L.m * x + L.c;
+
+		Line l = {m, c};
+		while (hull.size() >= 2) {
+			Line l1 = *hull.rbegin(), l2 = *(++hull.rbegin());
+			if (check(l, l1, l2)) break;
+			hull.pop_back();
+		}	
+
+		hull.push_back(l);
+	}
+
+	int query(int x) {
+		int n = hull.size();
+		int left = 0;
+		int right = n - 1;
+		while (left < right) {
+			int mid = left + (right - left) / 2;
+			if (mid == n - 1)
+				return val(hull[mid], x);
+
+			if (val(hull[mid], x) < val(hull[mid + 1], x)) right = mid;
+			else left = mid + 1;
+		}
+		return val(hull[left], x);
 	}
 };
+
 
 int32_t main() {
 	int n, c; cin >> n >> c;
