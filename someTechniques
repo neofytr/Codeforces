@@ -3388,3 +3388,218 @@ MENTAL MODEL
 They must always be occupied by the best possible elements."
 
 ========================================================
+
+85. ===============================
+PITCHER POURING TECHNIQUE
+===============================
+
+1) WHAT THE TECHNIQUE IS (ABSTRACT VIEW)
+---------------------------------------
+
+Pitcher pouring is a STATE-MAINTENANCE technique.
+
+You maintain a dynamically changing multiset while continuously preserving
+some "balanced" invariant around a pivot or optimal value.
+
+Instead of recomputing the answer from scratch after every update, you:
+- Keep the data split into a SMALL NUMBER of containers ("pitchers")
+- Move elements between them incrementally ("pouring")
+- Ensure the invariant is restored after each local change
+
+Key idea:
+    The optimal solution moves slowly.
+    So you can fix it with local repairs.
+
+This is NOT a specific data structure.
+It is a way of ORGANIZING updates.
+
+
+2) CORE STRUCTURE
+----------------
+
+You maintain 2 (sometimes more) containers:
+
+    LEFT  PITCHER  = elements contributing on one side of the optimum
+    RIGHT PITCHER  = elements contributing on the other side
+
+These containers can be:
+- heaps
+- multisets
+- balanced BSTs
+- indexed sets
+- any structure that supports:
+      insert
+      delete
+      extract boundary element
+
+The containers are NOT symmetric:
+Each one has a ROLE with respect to the invariant.
+
+
+3) THE INVARIANT (MOST IMPORTANT PART)
+-------------------------------------
+
+You explicitly maintain a small set of rules that define correctness.
+
+Typical invariants look like:
+- All elements in LEFT <= all elements in RIGHT
+- Size difference is bounded
+- Cost contributions are separated cleanly
+- One pitcher defines the "current optimal value"
+
+The algorithm is nothing more than:
+    After every update → restore invariants.
+
+If you cannot clearly state the invariant,
+you cannot use this technique.
+
+
+4) POURING (REBALANCING)
+-----------------------
+
+"Pouring" means:
+    Move boundary elements between pitchers
+    until the invariant holds again.
+
+Properties:
+- Pouring is LOCAL
+- Usually only O(1) elements move per update
+- Pouring is deterministic once the invariant is defined
+
+Important:
+    Pouring does NOT depend on problem size.
+    It depends on how much the optimum shifts.
+
+
+5) WHY IT WORKS
+---------------
+
+Pitcher pouring relies on this property:
+
+    Between consecutive states,
+    the optimal solution changes slightly.
+
+This is common when:
+- You slide a window
+- You move a pointer
+- You add/remove one element at a time
+- You expand/contract a range
+
+Because the change is small,
+the fix is also small.
+
+
+6) WHEN TO USE IT
+----------------
+
+You should think of pitcher pouring when ALL of these hold:
+
+1) You have a dynamic set (insert/delete over time)
+2) You need to maintain an OPTIMAL value, not just existence
+3) The optimal value depends on ORDER or PARTITIONING
+4) Updates are incremental (1 element at a time)
+5) Recomputing from scratch is too slow
+
+Classic signals:
+- Sliding window
+- Two pointers
+- Expanding rectangles / intervals
+- Online queries where range endpoints move gradually
+
+
+7) HOW TO IDENTIFY IT IN PROBLEMS
+--------------------------------
+
+Strong hints in problem statements:
+
+- "Maintain the minimum cost as the window moves"
+- "After each addition/removal, update the answer"
+- "The optimal choice is the median / pivot / balance point"
+- "Elements move in and out one by one"
+- "The answer does not change drastically between steps"
+
+If you can say:
+    "If I knew the answer for the previous state,
+     I could fix it quickly for the next state"
+
+→ pitcher pouring applies.
+
+
+8) RELATION TO SOLUTION BAGS
+---------------------------
+
+Solution bags:
+- Partition solutions into a few buckets
+- Maintain aggregate information per bucket
+
+Pitcher pouring:
+- A dynamic, ordered version of solution bags
+- Buckets are ordered by contribution
+- Elements can move between buckets
+
+You can think of it as:
+    Ordered solution bags + rebalancing
+
+
+9) WHAT DATA STRUCTURES WORK
+----------------------------
+
+ANY structure that supports:
+- insert
+- delete (possibly arbitrary)
+- extract min/max/boundary
+
+Common choices:
+- multiset / TreeSet
+- heap + lazy deletion
+- ordered statistic tree
+- custom balanced structure
+
+The technique is independent of the structure.
+Choose based on removal requirements.
+
+
+10) LIMITATIONS / WHEN IT FAILS
+-------------------------------
+
+Pitcher pouring does NOT work when:
+
+- Optimal solution jumps wildly between updates
+- Many elements need to move per update
+- Invariant is global, not local
+- Updates are batch-style, not incremental
+- You cannot cleanly partition contributions
+
+If pouring cost becomes O(n) per step,
+the technique collapses.
+
+
+11) MENTAL MODEL
+----------------
+
+Think of two physical pitchers of water.
+
+Each update:
+- You add/remove a small amount of water
+- The water level tilts slightly
+- You pour a little between pitchers
+- Balance is restored
+
+You NEVER empty and refill the pitchers.
+
+
+12) SUMMARY
+-----------
+
+Pitcher pouring is:
+- An invariant-driven technique
+- For maintaining optimal values dynamically
+- Using small local fixes instead of recomputation
+
+Mastering it is about:
+- Identifying slow-moving optima
+- Designing the right invariant
+- Choosing containers that make pouring cheap
+
+If you understand the invariant,
+the rest is mechanical.
