@@ -3845,3 +3845,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    2b5f5446..72550628  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0e82405f] Solved problem
+ 3 files changed, 41 insertions(+), 2 deletions(-)
+ create mode 100644 DataStructures/LiChao.cpp
+To https://github.com/neofytr/Codeforces.git
+   72550628..0e82405f  main -> main
+branch 'main' set up to track 'origin/main'.
