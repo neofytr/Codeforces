@@ -3876,3 +3876,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    67c1a172..6eb00db8  main -> main
 branch 'main' set up to track 'origin/main'.
+[main cbb77eb4] Solved a few problems
+ 3 files changed, 65 insertions(+), 1 deletion(-)
+ create mode 100644 random/convexHullOptimization.cpp
+To https://github.com/neofytr/Codeforces.git
+   6eb00db8..cbb77eb4  main -> main
+branch 'main' set up to track 'origin/main'.
