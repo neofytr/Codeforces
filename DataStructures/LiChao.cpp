@@ -219,3 +219,46 @@ int query(int x, int l = LEFT, int r = RIGHT, int idx = 1) {
 	else
 		return min(res, query(x, m + 1, r, (idx << 1) | 1));
 }
+
+struct MaxLiChao {
+	vector<Line> tree;
+	int val(const Line &l, int x) {
+		return l.first * x + l.second;
+	}
+
+	void init(int l = LEFT, int r = RIGHT, int idx = 1) {
+		tree[idx] = {-INF, -INF};
+		if (l == r) return;
+		int m = (l + r) >> 1;
+		init(l, m, idx << 1), init(m + 1, r, (idx << 1) | 1);
+	}
+
+	MaxLiChao() {
+		tree.resize(4 * RIGHT + 1);
+		init();
+	}
+
+	void insert(Line L, int l = LEFT, int r = RIGHT, int idx = 1) {
+		if (tree[idx].first == -INF) {
+			tree[idx] = L;
+			return;
+		}
+
+		int m = (l + r) >> 1;
+		bool mid = (val(L, m) > val(tree[idx], m));
+		if (mid) swap(tree[idx], L);
+		if (l == r) return;
+
+		if (val(tree[idx], l) < val(L, l)) insert(L, l, m, (idx << 1));
+		else if (val(tree[idx], r) < val(L, r)) insert(L, m + 1, r, (idx << 1) | 1);
+	}
+
+	int query(int x, int l = LEFT, int r = RIGHT, int idx = 1) {
+		if (tree[idx].first == -INF) return -INF;
+		if (l == r) return val(tree[idx], x);
+
+		int m = (l + r) >> 1;
+		if (x <= m) return max(val(tree[idx], x), query(x, l, m, idx << 1));
+		return max(val(tree[idx], x), query(x, m + 1, r, (idx << 1) | 1));
+	}
+};
