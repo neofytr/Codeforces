@@ -52,3 +52,5 @@ struct CHT {
 		return val(hull[left], x);
 	}
 }
+
+// Li Chao Tree
