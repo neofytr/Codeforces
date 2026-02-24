@@ -3979,3 +3979,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    12578ddf..97eb04fd  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f7dd8ef6] More problems solved
+ 4 files changed, 60 insertions(+), 2 deletions(-)
+ create mode 100644 random/trainsStatistics.cpp
+To https://github.com/neofytr/Codeforces.git
+   97eb04fd..f7dd8ef6  main -> main
+branch 'main' set up to track 'origin/main'.
