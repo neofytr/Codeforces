@@ -3935,3 +3935,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    465b4750..15812a49  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e60f77e8] Problem solving session
+ 4 files changed, 63 insertions(+), 3 deletions(-)
+ create mode 100644 random/pencilsBoxes.cpp
+To https://github.com/neofytr/Codeforces.git
+   15812a49..e60f77e8  main -> main
+branch 'main' set up to track 'origin/main'.
