@@ -3894,3 +3894,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    969a7de1..cc4ab65f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1a66aa0c] Solved a few problems
+ 4 files changed, 90 insertions(+), 2 deletions(-)
+ create mode 100644 random/hanoiFactory.cpp
+To https://github.com/neofytr/Codeforces.git
+   cc4ab65f..1a66aa0c  main -> main
+branch 'main' set up to track 'origin/main'.

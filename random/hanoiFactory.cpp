@@ -46,7 +46,9 @@ int32_t main() {
 	sort(v.begin() + 1, v.end(), [](const tuple<int, int, int> &t1, const tuple<int, int, int> &t2) {
 		auto [a, x, b] = t1;
 		auto [c, y, d] = t2;
-		return x < y;
+		if (x < y) return true;
+		if (x == y && a < c) return true;
+		return false;
 	});
 
 	int i = 1;
@@ -65,10 +67,9 @@ int32_t main() {
 	int maxi = dp[1];
 	for (int r = 2; r <= n; r++) {
 		auto [a, b, h] = v[r];
-		int i = upper_bound(vec.begin(), vec.end(), a) - vec.begin();
+		int k = upper_bound(vec.begin(), vec.end(), a) - vec.begin();
 		dp[r] = h;
-		if (i < vec.size()) j = max(j, query(f[vec[i]]));
-		dp[r] += j;
+		if (k < vec.size()) dp[r] = max(dp[r], h + query(f[vec[k]]));
 		update(f[b], dp[r]);
 		maxi = max(maxi, dp[r]);
 	}
