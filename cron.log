@@ -3958,3 +3958,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f8dbd5fe..a57f2db2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4e2f2ac5] Solved a CF problem
+ 5 files changed, 47 insertions(+), 7 deletions(-)
+ create mode 100644 random/1500/dataStructuresFan.cpp
+To https://github.com/neofytr/Codeforces.git
+   a57f2db2..4e2f2ac5  main -> main
+branch 'main' set up to track 'origin/main'.
