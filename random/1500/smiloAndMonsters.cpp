@@ -12,15 +12,34 @@ void solve() {
 	int l = 1, r = n;
 
 	int cnt = 0;
-	while (l <= r) {
-		if (l == r) {
-			cnt += (arr[l] + 1) / 2;
+	while (l < r) {
+		int sum = 0;
+		while (l < r && sum + arr[l] <= arr[r])
+			sum += arr[l++];
+		l--;
+		if (l == r - 1) {
+			arr[r] -= sum;
+			cnt += (sum + 1);
+			cnt += (arr[r] + 1) / 2;
 			break;
 		}
 
-		int sum = 0;
-		while (l <= r && sum < arr[r]) sum += arr[l++];
+		if (sum == arr[r]) {
+			cnt += (sum + 1);
+			l++, r--;
+			continue;
+		}
+
+		int e = arr[r] - sum;
+		arr[l + 1] -= e;
+		cnt += (arr[r] + 1);
+		l++, r--;
 	}
+
+	if (l == r) 
+		if (!(arr[l] & 1)) cnt += ((arr[l] / 2) + 1);
+		else if (arr[l] < 5) cnt += (arr[l]);
+		else cnt += ((arr[l] / 2) + 2);
 
 	cout << cnt << endl;
 }
