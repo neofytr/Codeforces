@@ -3888,3 +3888,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    cbb77eb4..969a7de1  main -> main
 branch 'main' set up to track 'origin/main'.
+[main cc4ab65f] Worked on Codeforces problems
+ 5 files changed, 77 insertions(+), 5 deletions(-)
+ create mode 100644 random/LIS.cpp
+To https://github.com/neofytr/Codeforces.git
+   969a7de1..cc4ab65f  main -> main
+branch 'main' set up to track 'origin/main'.
