@@ -10,20 +10,7 @@ void solve() {
 	vector<int> x(n + 1);
 	for (int r = 1; r <= n; r++) cin >> x[r];
 
-	int cost = 0;
-	if (a >= b) {
-		for (int r = 1; r <= n; r++)
-			cost += b * x[r];
-
-		cout << cost << endl;
-		return;
-	}
-
-	int c = 0;
-	for (int r = 1; r <= n; r++)
-		cost += a * (x[r] - c), cost += b * (x[r] - c), c = x[r];
-
-	cout << cost << endl;
+	
 }
 
 int32_t main() {
