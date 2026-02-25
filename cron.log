@@ -4001,3 +4001,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    96458818..c11a03b5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main d876745d] Solved problem
+ 6 files changed, 96 insertions(+), 12 deletions(-)
+ create mode 100644 random/1500/controllers.cpp
+ create mode 100644 random/1500/palindromicBasis.cpp
+To https://github.com/neofytr/Codeforces.git
+   c11a03b5..d876745d  main -> main
+branch 'main' set up to track 'origin/main'.
