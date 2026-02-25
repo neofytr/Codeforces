@@ -2,24 +2,15 @@
 using namespace std;
 
 #define int long long
-
-int dp[1000][1000];
-
 void solve() {
 	int n, a, b; cin >> n >> a >> b;
-	vector<int> x(n + 1);
-	for (int r = 1; r <= n; r++) cin >> x[r];
+	vector<int> x(n + 1, 0), p(n + 1, 0);
+	for (int r = 1; r <= n; r++) cin >> x[r], p[r] += p[r - 1] + x[r];
 
-	int c = 0;
-	int cost = b * x[1];
-	for (int r = 2; r <= n; r++) {
-		int shift = a * (x[r - 1] - x[c]) + b * (x[r] - x[r - 1]);
-		int dont = b * (x[r] - x[c]);
-		if (shift <= dont) c = r - 1;
-		cost += min(shift, dont);
-	}
-
-	cout << cost << endl;
+	int mini = LLONG_MAX;
+	for (int r = 1; r <= n; r++)
+		mini = min(mini, a * x[n - 1] - b * (p[n - 1] - p[r - 1]));
+	cout << mini + b * p[n] << endl;
 }
 
 int32_t main() {
