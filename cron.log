@@ -3995,3 +3995,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    befe0c73..96458818  main -> main
 branch 'main' set up to track 'origin/main'.
+[main c11a03b5] Solved a few problems
+ 2 files changed, 27 insertions(+)
+ create mode 100644 random/1500/teaTasting.cpp
+To https://github.com/neofytr/Codeforces.git
+   96458818..c11a03b5  main -> main
+branch 'main' set up to track 'origin/main'.
