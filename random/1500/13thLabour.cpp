@@ -1,49 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+#define int long long
 
-	int t;
-	cin >> t;
-	while (t--) {
-		int n;
-		cin >> n;
+void solve() {
+	int n; cin >> n;
+	vector<int> w(n + 1), gains;
+	vector<vector<int>> tree(n + 1);
 
-		vector<long long> w(n + 1);
-		for (int i = 1; i <= n; i++) cin >> w[i];
+	int g = 0;
+	for (int r = 1; r <= n; r++) cin >> w[r], g += w[r];
 
-		vector<int> deg(n + 1, 0);
-		for (int i = 0; i < n - 1; i++) {
-			int u, v;
-			cin >> u >> v;
-			deg[u]++;
-			deg[v]++;
-		}
+	int u, v;
+	for (int r = 1; r <= n - 1; r++)
+		cin >> u >> v, tree[u].push_back(v), tree[v].push_back(u);
 
-		long long base = 0;
-		for (int i = 1; i <= n; i++) base += w[i];
-
-		vector<long long> extras;
-		for (int i = 1; i <= n; i++) {
-			for (int j = 0; j < deg[i] - 1; j++) {
-				extras.push_back(w[i]);
-			}
-		}
-
-		sort(extras.begin(), extras.end(), greater<long long>());
-
-		long long cur = base;
-		int ptr = 0;
-
-		for (int k = 1; k <= n - 1; k++) {
-			if (ptr < (int)extras.size()) {
-				cur += extras[ptr++];
-			}
-			cout << cur << (k == n - 1 ? '\n' : ' ');
-		}
+	for (int r = 1; r <= n; r++) {
+		int sz = tree[r].size() - 1;
+		while (sz--) gains.push_back(w[r]);
 	}
 
+	sort(gains.rbegin(), gains.rend());
+
+	cout << g << " ";
+	for (int i = 2; i <= n - 1; i++) {
+		g += gains[i - 2];
+		cout << g << " ";
+	}
+	cout << endl;
+}
+
+int32_t main() {
+	int t; cin >> t;
+	while (t--) solve();
 	return 0;
 }
