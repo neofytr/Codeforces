@@ -4120,3 +4120,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    4646487d..e42b57a7  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6816d8d9] CF grind
+ 5 files changed, 47 insertions(+), 19 deletions(-)
+ create mode 100644 random/1500/balancedBitstring.cpp
+To https://github.com/neofytr/Codeforces.git
+   e42b57a7..6816d8d9  main -> main
+branch 'main' set up to track 'origin/main'.
