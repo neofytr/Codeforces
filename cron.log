@@ -4082,3 +4082,9 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 To https://github.com/neofytr/Codeforces.git
    b62d3065..5dac4684  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 963ffe19] Solved problem
+ 4 files changed, 63 insertions(+), 42 deletions(-)
+ create mode 100644 random/1500/mortalKombat.cpp
+To https://github.com/neofytr/Codeforces.git
+   5dac4684..963ffe19  main -> main
+branch 'main' set up to track 'origin/main'.
