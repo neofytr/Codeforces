@@ -4088,3 +4088,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    5dac4684..963ffe19  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 196c336b] Problem solving session
+ 6 files changed, 81 insertions(+), 28 deletions(-)
+ create mode 100644 random/1500/kAmazing.cpp
+ create mode 100755 random/1500/maoin
+To https://github.com/neofytr/Codeforces.git
+   963ffe19..196c336b  main -> main
+branch 'main' set up to track 'origin/main'.

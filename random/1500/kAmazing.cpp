@@ -31,14 +31,19 @@ void solve() {
 	int n; cin >> n;
 	for (int r = 1; r <= n; r++) cin >> a[r];
 
-	build(1, n, 1);
+	vector<int> f(n + 1, 0);
+	set<pair<int, int>> s;
 	for (int k = 1; k <= n; k++) {
-		if (k < (n + 2) / 2) {
-			cout << -1 << " ";
-			continue;
+		bool found = false; int mini = LLONG_MAX;
+		for (int j = k; j <= n; j += k) {
+			f[a[j]]++;
+			if (f[a[j]] >= n - k + 1) {
+				found = true;
+				mini = min(mini, a[j]);
+			}
 		}
 
-		cout << query(n - k + 1, k, 1, n, 1) << " ";
+		cout << (found ? mini : - 1) << " ";
 	}
 	cout << endl;
 }
