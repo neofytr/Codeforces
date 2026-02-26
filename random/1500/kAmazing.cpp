@@ -6,29 +6,34 @@ using namespace std;
 
 int a[MAX + 1];
 
-struct cmp {
-	bool operator()(const pair<int,int>& a, const pair<int,int>& b) const {
-		if (a.first < b.first) return true;
-		if (a.first == b.first && a.second < b.second) return true;
-		return false;
-	}
-};
-
 void solve() {
 	int n; cin >> n;
-	for (int r = 1; r <= n; r++) cin >> a[r];
+	for (int r = 1; r <= n; r++) cin >> a[r];	
 
-	vector<int> f(n + 1, 0);
-	set<pair<int, int>, cmp> s;
+	vector<int> f(n + 1, -1);
+	vector<vector<int>> b(n + 1);
+	for (int r = 1; r <= n; r++)
+		b[a[r]].push_back(r);
 
-	for (int k = 1; k <= n; k++) {
-		for (int j = k; j <= n; j += k) {
-			f[a[j]]++;
-			s.insert({f[a[j]], a[j]});
-		}
+	for (int r = 1; r <= n; r++) {
+		int s = 1;
+		int m = -1;
+		for (int idx : b[r])
+			m = max(idx - s + 1, m), s = idx + 1;
+		if (!b[r].empty())
+			m = max(n - b[r].back() + 1, m);
+		f[r] = m;
+	}
 
-		auto itr = s.lower_bound({n - k + 1, 0});
-		cout << itr->second << " ";
+	vector<int> k(n + 1, LLONG_MAX);
+	for (int r = 1; r <= n; r++)
+		if (f[r] != -1) k[f[r]] = min(k[f[r]], r);
+
+
+	int mini = LLONG_MAX;
+	for (int r = 1; r <= n; r++) {
+		mini = min(mini, k[r]);
+		cout << (mini == LLONG_MAX ? -1 : mini) << " ";
 	}
 	cout << endl;
 }
