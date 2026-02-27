@@ -22,6 +22,8 @@ void solve() {
 
 		int d = elt - mini;
 		last = idx;
+
+		if (!d) continue;
 		maxi = max(maxi, 64ll - __builtin_clzll(d));
 	}
 
