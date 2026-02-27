@@ -4174,3 +4174,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b7defeb2..53e8d4b1  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e357c11b] Solved problem
+ 5 files changed, 94 insertions(+), 9 deletions(-)
+ create mode 100644 random/1500/countSubrectangles.cpp
+ create mode 100644 random/1500/zeroArray.cpp
+To https://github.com/neofytr/Codeforces.git
+   53e8d4b1..e357c11b  main -> main
+branch 'main' set up to track 'origin/main'.
