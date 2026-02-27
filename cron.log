@@ -4152,3 +4152,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    346bc4b1..fa835d2d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main d96b1fea] Worked on Codeforces problems
+ 6 files changed, 80 insertions(+), 6 deletions(-)
+ create mode 100644 random/1500/ehabPatheticMex.cpp
+ create mode 100644 random/1500/kCompleteWord.cpp
+To https://github.com/neofytr/Codeforces.git
+   fa835d2d..d96b1fea  main -> main
+branch 'main' set up to track 'origin/main'.
