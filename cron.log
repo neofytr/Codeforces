@@ -4186,3 +4186,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e357c11b..72914c1c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 26f89479] Solved a CF problem
+ 5 files changed, 167 insertions(+), 2 deletions(-)
+ create mode 100644 random/1500/edgyTrees.cpp
+To https://github.com/neofytr/Codeforces.git
+   72914c1c..26f89479  main -> main
+branch 'main' set up to track 'origin/main'.
