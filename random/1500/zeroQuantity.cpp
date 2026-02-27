@@ -9,17 +9,36 @@ int32_t main() {
 	for (int r = 1; r <= n; r++) cin >> a[r];
 	for (int r = 1; r <= n; r++) cin >> b[r];
 
-	unordered_map<pair<int, int>, int> f;
+	map<pair<int,int>, int> f;
 	int c = 0;
-	for (int r = 1; r <= n; r++)
-		if (!a[r] && !b[r]) c++;
-		else if (a[r]) {
-			int g = gcd(b[r], a[r]);
-			f[{-1 * (b[r] / g), a[r] / g}]++;
-		}
-
-	int maxi = LLONG_MIN;
-	for (auto &[_, cnt] : f) maxi = max(maxi, cnt);
 	
+	for (int r = 1; r <= n; r++) {
+	    if (!a[r] && !b[r]) {
+	        c++;
+	    }
+	    else if (!a[r]) {
+	        continue;
+	    }
+	    else {
+	        int A = a[r], B = b[r];
+	        int g = gcd(abs(A), abs(B));
+	        A /= g;
+	        B /= g;
+	
+	        if (A < 0) {
+	            A = -A;
+	            B = -B;
+	        }
+	
+	        f[{-B, A}]++;
+	    }
+	}
+	
+	int maxi = 0;
+	for (auto &[_, cnt] : f)
+	    maxi = max(maxi, cnt);
+	
+	int ans = maxi + c;
+	cout << ans << endl;
 	return 0;
 }
