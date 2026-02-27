@@ -3603,3 +3603,150 @@ Mastering it is about:
 
 If you understand the invariant,
 the rest is mechanical.
+
+85. A Greedy Proof Technique
+
+For feasibility problems with repeated operations, first reinterpret each operation in terms of resources or units rather than raw numbers, and identify invariants such as parity, total sum, or monotonic measures. 
+
+Use these invariants and extreme cases (like the largest element versus the rest) to derive necessary conditions for success, and also identify obvious dead-end states. 
+
+Then assume these conditions hold and prove they are sufficient by defining a greedy move that is always legal under the conditions and reduces the problem. 
+
+Show that the necessary conditions are preserved after each move and that any dead-end would contradict them, implying the process can never get stuck. Since progress is guaranteed and the process terminates, the target state must be reachable whenever the necessary conditions hold.
+
+This technique is used for YES/NO problems where a process applies repeated operations and asks whether a target state is reachable.
+
+i. When should you think of this technique?
+
+Use this method if the problem has:
+
+- Repeated operations on numbers/objects
+- Each operation consumes or redistributes resources and affects multiple elements at once
+- The order of operations does not matter
+- The question is feasibility, not construction
+
+ii. Step 1 -> Reinterpret the Question
+
+Never reason directly on raw numbers.
+Translate the operation into:
+- units
+- tokens
+- resources
+- supply v/s demand
+
+Ask:
+- what does on operation actually do?
+- what is removed, transferred, or paired?
+
+
+Example pattern:
+    "Decrease two different elements by 1"
+    → "Remove two units from different piles"
+
+This abstraction reveals the structure of the problem.
+
+iii. Step 2 -> Identify Invariants
+
+An invariant is a quantity that:
+- never changes, or
+- changes in strictly fixed way per operation
+
+Typical invariants:
+- parity of sum (even / odd)
+- sum modulo k
+- monotonic measures (always decreases)
+
+Invariants give NON-NEGOTIABLE constraints.
+
+Example:
+    Each operation removes exactly 2 units
+    → sum parity is invariant
+
+iv. Step 3 -> Derive Necessary Conditions
+
+Ask: "In which situations is the goal clearly impossible?"
+
+Techniques:
+
+(A) Parity / modular constraints
+    If each operation changes sum by k,
+    final sum must be divisible by k.
+
+(B) Extreme element analysis
+    Compare the largest element to the rest.
+    If one element demands more than all others can supply,
+    the process must fail.
+
+(C) Dead-end states
+    Identify states where:
+        - no operation is possible
+        - goal is not yet achieved
+    If such a state is reachable → impossible.
+
+If ANY necessary condition fails → answer is NO.
+
+v. Step 4 -> Hypothesize Sufficiency
+
+Assume all necessary conditions hold.
+
+Now the goal is to prove:
+    "The process can always continue until completion."
+
+Do NOT attempt full construction.
+You only need to prove existence of valid moves.
+
+vi. Step 5 -> Define a greedy move
+
+Choose a move that:
+- is legal whenever conditions hold
+- simplifies the state
+
+Common greedy choices:
+- pick two largest non-zero elements
+- pair a demand with any available supply
+- reduce the most constrained elements first
+
+The exact choice matters less than proving it always exists.
+
+vii. Step 6 -> Prove Invariant Preservation
+
+This is the core of sufficiency.
+
+You must show:
+    Necessary Conditions hold before the move
+    ⇒
+    Necessary Conditions hold after the move
+
+Usually done by:
+- bounding the maximum element
+- comparing sum before / after
+- showing inequalities are preserved
+
+This prevents future failure.
+
+viii. Step 7 -> Eliminate Dead-End States
+
+Identify what a dead-end looks like.
+
+Then prove:
+    dead-end ⇒ violates a necessary condition
+
+Therefore:
+- dead-ends are unreachable
+- the greedy process cannot get stuck
+
+This replaces explicit simulation.
+
+ix. Step 8 -> Conclude Sufficiency
+
+Since:
+- a valid move always exists
+- necessary conditions are preserved
+- the process strictly progresses
+
+⇒ the target state must be reachable.
+
+x. Final Decision
+
+If any necessary condition fails → NO
+Otherwise → YES
