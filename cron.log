@@ -4209,3 +4209,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    2cc83ad9..fc91a898  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7b2462a2] Practiced CF problems
+ 2 files changed, 21 insertions(+)
+ create mode 100644 random/divisionUnion.cpp
+To https://github.com/neofytr/Codeforces.git
+   fc91a898..7b2462a2  main -> main
+branch 'main' set up to track 'origin/main'.
