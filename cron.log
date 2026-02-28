@@ -4198,3 +4198,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    26f89479..9a1aab27  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 2cc83ad9] Solved a few problems
+ 5 files changed, 84 insertions(+), 13 deletions(-)
+ create mode 100644 random/1500/lunarNewYear.cpp
+To https://github.com/neofytr/Codeforces.git
+   9a1aab27..2cc83ad9  main -> main
+branch 'main' set up to track 'origin/main'.
