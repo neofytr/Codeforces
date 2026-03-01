@@ -4284,3 +4284,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    99504569..8e076220  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0b4b2f7d] Solved problem
+ 6 files changed, 90 insertions(+), 5 deletions(-)
+ create mode 100644 random/1500/kefaCompany.cpp
+ create mode 100644 random/1500/plusMultiply.cpp
+ create mode 100644 random/1500/winner.cpp
+To https://github.com/neofytr/Codeforces.git
+   8e076220..0b4b2f7d  main -> main
+branch 'main' set up to track 'origin/main'.
