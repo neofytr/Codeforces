@@ -15,9 +15,10 @@ int dfs(int node, int parent) {
 	int res = 1;
 	for (int x : tree[node])
 		if (x != parent) {
-			int v = dfs(v, node);
-			if (!(v % 2) && (!(n - v) % 2)) cnt++;
-			res += v;
+			int k = dfs(x, node);
+			if (!(k % 2) && !((n - k) % 2)) 
+				cnt++;
+			res += k;
 		}
 
 	return res;
@@ -29,6 +30,10 @@ int32_t main() {
 		cin >> u >> v, tree[u].push_back(v), tree[v].push_back(u);
 
 	dfs(1, -1);
+	if (!cnt && (n & 1)) {
+		cout << -1 << endl;
+		return 0;
+	}
 	cout << cnt << endl;
 	return 0;
 }
