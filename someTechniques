@@ -3750,3 +3750,78 @@ x. Final Decision
 
 If any necessary condition fails → NO
 Otherwise → YES
+
+86. MAXIMUM MARGINAL GAIN (DISCRETE)
+
+Problem Type
+-------------
+We are minimizing a sum of independent convex terms:
+    S = Σ f_i(x_i)
+subject to a fixed number of unit operations (±1) on variables.
+
+Each operation locally changes exactly one term f_i.
+
+Key Insight
+------------
+At any step, the best operation is the one that gives the
+maximum immediate decrease in the total objective.
+
+For a single variable x:
+    Δ = f(x ± 1) − f(x)
+Choose the move with the most negative Δ (largest drop).
+
+Interpretation:
+This is a discrete version of “follow the largest derivative”.
+
+Application to (A[i] − B[i])²
+------------------------------
+Let d_i = A[i] − B[i].
+
+Error contribution:
+    f_i = d_i²
+
+Effect of changing A[i] or B[i] by ±1:
+    d_i → d_i ± 1
+
+Change in error:
+    (d_i ± 1)² − d_i² = ±2d_i + 1
+
+Magnitude of improvement depends on |d_i|.
+Hence:
+    The larger |d_i| is, the more beneficial it is to reduce it.
+
+Greedy Rule
+------------
+Repeatedly:
+1. Pick index i with maximum |d_i|
+2. Apply one operation to reduce |d_i| by 1
+3. Update d_i and repeat until operations are exhausted
+
+Implementation Pattern
+----------------------
+- Use a max-heap keyed by |d_i|
+- Each operation:
+    pop max
+    update d_i toward zero
+    push updated value back
+
+Why Greedy Is Correct
+---------------------
+1. Each term is independent and convex
+2. Marginal gain strictly decreases as |d_i| decreases
+3. No operation affects any other term
+4. Exchange argument:
+   Any optimal solution can be rearranged to apply reductions
+   to larger |d_i| first without increasing total cost
+
+When to Use This Strategy
+------------------------
+- Objective is a sum of convex per-element costs
+- Operations are discrete and local (±1)
+- Fixed number of operations
+- Want to minimize total cost
+
+Mental Model
+------------
+"Always spend your limited operations where they buy you the
+largest immediate reduction in error."
