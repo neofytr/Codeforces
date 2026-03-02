@@ -4297,3 +4297,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0b4b2f7d..be11f21c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a07b8392] CF grind
+ 7 files changed, 124 insertions(+), 7 deletions(-)
+ create mode 100644 random/1500/burningMidnightOil.cpp
+ create mode 100644 random/1500/cellularNetwork.cpp
+ create mode 100644 random/1500/codeforcesSubsequences.cpp
+To https://github.com/neofytr/Codeforces.git
+   be11f21c..a07b8392  main -> main
+branch 'main' set up to track 'origin/main'.
