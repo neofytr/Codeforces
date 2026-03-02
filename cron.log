@@ -4305,3 +4305,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    be11f21c..a07b8392  main -> main
 branch 'main' set up to track 'origin/main'.
+[main b7015514] Solved a few problems
+ 6 files changed, 123 insertions(+), 4 deletions(-)
+ create mode 100644 random/1500/decreaseSumDigs.cpp
+ create mode 100644 random/1500/pythTrip.cpp
+To https://github.com/neofytr/Codeforces.git
+   a07b8392..b7015514  main -> main
+branch 'main' set up to track 'origin/main'.

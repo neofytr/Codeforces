@@ -7,23 +7,16 @@ void solve() {
 	int n; cin >> n;
 	int cnt = 0;
 
-	for (int c = 1; c <= n; c++) {
-		int x = c * c - c;
-		int sq = sqrt(1 + 4 * x);
-		if (sq * sq != 1 + 4 * x)
-			continue;
-
-		if ((sq - 1) & 1) continue;
-
-		int b = (sq - 1) >> 1;
-		sq = sqrt(b + c);
-		if (sq * sq != b + c) continue;
-
-		int a = sq;
-
-		if (a >= 1 && b >= a && c >= b) cnt++;
+	if (n <= 3) {
+		cout << 0 << endl;
+		return;
 	}
 
+	int i = 3;
+	while (i * i <= 2 * n - 1) {
+		if (!((i * i + 1) & 1)) cnt++;
+		i++;
+	}
 	cout << cnt << endl;
 }
 
