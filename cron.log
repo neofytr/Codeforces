@@ -4358,3 +4358,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a5809f04..b1028bbd  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 66f84c55] Problem solving session
+ 7 files changed, 100 insertions(+), 2 deletions(-)
+ create mode 100644 random/1500/equalizeTheArray.cpp
+ create mode 100644 random/1500/magicPowder.cpp
+ create mode 100644 random/1500/removeOneElement.cpp
+To https://github.com/neofytr/Codeforces.git
+   b1028bbd..66f84c55  main -> main
+branch 'main' set up to track 'origin/main'.
