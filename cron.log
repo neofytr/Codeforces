@@ -4371,3 +4371,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    66f84c55..9f902559  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4fd95ea3] Solved some problems
+ 5 files changed, 78 insertions(+), 3 deletions(-)
+ create mode 100644 random/1500/findTheCar.cpp
+To https://github.com/neofytr/Codeforces.git
+   9f902559..4fd95ea3  main -> main
+branch 'main' set up to track 'origin/main'.
