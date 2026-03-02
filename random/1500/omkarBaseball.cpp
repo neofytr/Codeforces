@@ -34,6 +34,19 @@ void solve() {
 	}
 
 	int c = 0;
+	if (v[1] != 1) c++;
+
+	int last = v[1];
+	for (int r = 2; r <= sz; r++)
+		if (v[r] > last + 1) c++, last = v[r];
+
+	if (v.back() != n) c++;
+	if (c >= 2) {
+		cout << 2 << endl;
+		return;
+	}
+
+	cout << 1 << endl;
 }
 
 int32_t main() {
