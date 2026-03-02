@@ -4341,3 +4341,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    72eaef14..a4c60666  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6c254f28] Solved a CF problem
+ 4 files changed, 42 insertions(+), 5 deletions(-)
+ create mode 100644 random/1500/theyAreEverywhere.cpp
+To https://github.com/neofytr/Codeforces.git
+   a4c60666..6c254f28  main -> main
+branch 'main' set up to track 'origin/main'.
