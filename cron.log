@@ -4322,3 +4322,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0e3d4518..42430242  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 045a7223] More problems solved
+ 6 files changed, 130 insertions(+), 4 deletions(-)
+ create mode 100644 random/1500/binaryStringToSub.cpp
+ create mode 100644 random/1500/finalBoss.cpp
+ create mode 100644 random/1500/journey.cpp
+To https://github.com/neofytr/Codeforces.git
+   42430242..045a7223  main -> main
+branch 'main' set up to track 'origin/main'.
