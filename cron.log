@@ -4394,3 +4394,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    131f5f14..15d9b221  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a56245eb] CF grind
+ 2 files changed, 441 insertions(+)
+ create mode 100644 DataStructures/binaryLifting.cpp
+To https://github.com/neofytr/Codeforces.git
+   15d9b221..a56245eb  main -> main
+branch 'main' set up to track 'origin/main'.

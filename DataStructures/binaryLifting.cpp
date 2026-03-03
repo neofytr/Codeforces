@@ -8,11 +8,6 @@ using namespace std;
 // so storing ancestors up to level 18 is sufficient
 // because maximum depth in worst case (chain tree) is n-1 <= 2e5
 
-
-// ------------------------------------------------------------
-// global structures
-// ------------------------------------------------------------
-
 vector<int> tree[MAX + 1];
 // adjacency list representation of the tree
 
@@ -36,10 +31,8 @@ int tab[LOG + 1][MAX + 1];
 // or -1 if no such ancestor exists
 
 
-// ------------------------------------------------------------
 // walk(u, k)
 // move node u upward by exactly k edges
-// ------------------------------------------------------------
 int walk(int u, int k) {
 
 	// invariant:
@@ -209,7 +202,7 @@ int lca(int u, int v) {
 	the true lowest common ancestor.
 
 	------------------------------------------------------------
-	conclusion:
+	Conclusion:
 	------------------------------------------------------------
 
 	by induction on loop iterations,
@@ -315,122 +308,3 @@ int32_t main() {
 
 	return 0;
 }
-
-
-/*
-============================================================
-formal correctness proof of lca algorithm
-============================================================
-
-definition:
-lca(u, v) = deepest node that is ancestor of both u and v.
-
-------------------------------------------------------------
-proof structure
-------------------------------------------------------------
-
-1) correctness of equalizing depths
-
-after:
-    u = walk(u, depth[u] - depth[v])
-
-we guarantee:
-    depth[u] == depth[v]
-
-if u == v:
-    then one was ancestor of other,
-    so returning u is correct.
-
-
-2) key invariant in second phase
-
-let L = true lca(u_original, v_original)
-
-before second loop:
-    depth[u] == depth[v]
-    u != v
-    both nodes are at same depth
-    both are descendants of L
-
-
-3) why greedy largest jump works
-
-we iterate i from LOG down to 0.
-
-consider any level i:
-
-case A:
-    tab[i][u] == tab[i][v]
-
-this means their 2^i ancestors coincide.
-so L is at or below that ancestor.
-jumping would overshoot L.
-so we do NOT jump.
-
-case B:
-    tab[i][u] != tab[i][v]
-
-this means their 2^i ancestors differ.
-so L must be strictly above that level.
-jumping keeps both below L.
-so jump is safe.
-
-thus we always jump the largest safe distance.
-
-
-4) why we cannot skip L
-
-suppose we skipped over L.
-
-that would mean:
-    we jumped from below L
-    to above L
-
-but jump only happens when
-    tab[i][u] != tab[i][v]
-
-if jump crosses L,
-then their 2^i ancestors would have been equal
-(because above L paths merge),
-contradiction.
-
-thus we never cross L.
-
-
-5) final state after loop
-
-after loop:
-    for all i,
-    tab[i][u] == tab[i][v]
-
-this means:
-    u and v are distinct
-    but their parents are equal
-
-so:
-    tab[0][u] == tab[0][v] == L
-
-therefore returning parent gives correct lca.
-
-
-------------------------------------------------------------
-time complexity
-------------------------------------------------------------
-
-preprocessing:
-    bfs: O(n)
-    table build: O(n log n)
-
-query:
-    walk: O(log n)
-    lca: O(log n)
-
-total per query: O(log n)
-
-------------------------------------------------------------
-binary lifting is correct because:
-    ancestor relation is transitive
-    binary decomposition covers all jump sizes
-    greedy largest safe jump never crosses lca
-============================================================
-*/
