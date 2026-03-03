@@ -4406,3 +4406,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a56245eb..1dd368a2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e7d1ea39] Worked on Codeforces problems
+ 4 files changed, 49 insertions(+), 9 deletions(-)
+ create mode 100644 random/1500/priceMaximization.cpp
+To https://github.com/neofytr/Codeforces.git
+   1dd368a2..e7d1ea39  main -> main
+branch 'main' set up to track 'origin/main'.
