@@ -1624,3 +1624,168 @@ Implementation pattern:
 Constraints
 
     value must be > 0  (log undefined for 0)
+
+89. Techniques for counting the number of occurrences of x in a subarray
+
+i. Problem 1
+
+Given an array A[1, n], answer queries:
+
+    count how many times value x appears in subarray [l, r]
+
+where x can be different for each query.
+
+Solution:
+
+1. Create a hash map f such that f[x] stores all the indices of occurences of x in A[1, n].
+
+unordered_map<int, vector<int>> f;
+for (int i = 1; i <= n; i++) f[A[i]].push_back(i);
+
+2. To count the occurrences of x in [l, r]:
+
+- Look at the vector f[x]
+- Find first position >= l
+- Find first position > r
+- Their difference is the answer
+
+Thus, answer = upper_bound(f[x].begin(), f[x].end(), r) - lower_bound(f[x].begin(), f[x].end(), l);
+
+Complexity:
+
+1. Preprocessing: O(n)
+2. Query O(log(n)) (worst case)
+
+ii. Problem 2
+
+Maintain an array A[1, n] supporting:
+
+    - Update: change A[i] to a new value
+    - Query: count occurrences of x in subarray A[l, r]
+
+where value x may change per query.
+
+Solution:
+
+1. Instead of storing positions in vectors, store them in ordered sets so that insertions and deletions can be handled efficiently.
+
+Create a hash map f such that f[x] is a set that stores all indices where value x occurs.
+
+unordered_map<int, set<int>> f;
+
+for (int i = 1; i <= n; i++)
+    f[A[i]].insert(i);
+
+
+2. To count the occurrences of x in [l, r]:
+
+- Look at the set f[x]
+- Find the first element >= l
+- Find the first element > r
+- The number of elements between them is the answer
+
+Thus,
+
+auto L = f[x].lower_bound(l);
+auto R = f[x].upper_bound(r);
+
+answer = distance(L, R);
+
+
+3. To perform an update A[i] → new_value:
+
+Let old_value = A[i]
+
+Step 1: Remove index i from the set of the old value
+
+    f[old_value].erase(i);
+
+Step 2: Insert index i into the set of the new value
+
+    f[new_value].insert(i);
+
+Step 3: Update the array
+
+    A[i] = new_value;
+
+
+Complexity:
+
+1. Preprocessing: O(n log n)
+2. Update: O(log n)
+3. Query: O(log n + k)
+
+where k is the number of occurrences returned.
+Worst case query complexity is O(n), but in practice it is typically small.
+
+iii. Problem 3
+
+Maintain an array A[1, n] supporting:
+
+    - Update: change A[i] to a new value
+    - Query: count occurrences of x in subarray A[l, r]
+
+where value x may change per query.
+
+Solution (Segment Tree / Merge Sort Tree):
+
+1. Build a segment tree where each node stores a sorted list of the values present in its segment.
+
+Thus each node maintains:
+    tree[node] = sorted list of A[l..r]
+
+Build rule:
+
+- If node represents a single element:
+    tree[node] = { A[i] }
+
+- Otherwise merge the sorted vectors of its children:
+    tree[node] = merge(tree[left_child], tree[right_child])
+
+
+2. To count occurrences of x in [l, r]:
+
+Traverse the segment tree nodes that cover the query range.
+
+For each visited node:
+
+- Its vector contains all values in that segment.
+- Count occurrences of x using binary search.
+
+Thus,
+
+    count =
+        upper_bound(tree[node].begin(), tree[node].end(), x)
+      - lower_bound(tree[node].begin(), tree[node].end(), x)
+
+Sum the results over all visited nodes.
+
+
+3. To perform an update A[i] → new_value:
+
+Update the leaf corresponding to position i.
+
+Then while moving up the tree:
+
+- Remove the old value from the node's vector
+- Insert the new value while keeping the vector sorted
+
+
+Complexity:
+
+1. Preprocessing:  O(n log n)
+2. Query:          O(log² n)
+
+        (log n nodes × log n binary search)
+
+3. Update:         O(log² n)
+4. Memory: O(n log n)
+
+
+Key Idea:
+
+Store sorted values in each segment tree node so that frequency queries
+inside any segment can be answered using binary search.
+
+This method generalizes well to many problems where we need to query
+value-based properties inside a range.

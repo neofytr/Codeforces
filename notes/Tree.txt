@@ -1488,28 +1488,183 @@ By building a Sparse Table over the depth array:
 
 This successfully reduces LCA queries to a standard Range Minimum Query (RMQ).
 
----------------------------------------------------------------------
-
-vi. Summary of Euler Tour Variants
-
-1. Entry Time Only (Size N array)
-    Purpose: Subtree queries and Subtree updates.
-    Key property: subtree(v) -> contiguous segment in DFS order.
-    Common tools: Segment Tree / Fenwick Tree.
-
-2. Entry + Exit Times (Size 2N array)
-    Purpose: Path sum queries, Point updates on paths, Ancestor checks.
-    Key property: Nodes not on the path appear twice and cancel out (+val, -val).
-    Common tools: Fenwick Tree (BIT), Prefix Sums.
-
-3. Full Euler Tour (Size 2N-1 array)
-    Purpose: Fast O(1) LCA queries.
-    Key idea: LCA becomes RMQ over the depth array.
-    Common tools: Sparse Table.
-
----------------------------------------------------------------------
-
 Key Insight
 
 The main power of the Euler Tour is that it converts non-linear hierarchical tree structures into linear 1D arrays. 
 By strategically defining WHEN we write to the array (Entry, Exit, or Every Visit) and WHAT we write (Values, Cancelled Values, or Depths), difficult tree routing problems are reduced to standard array range queries.
+
+90. TECHNIQUE: SUPER-ROOT / SUPER-NODE (FOREST → SINGLE TREE)
+
+Problem
+Many tree algorithms assume the structure is a single rooted tree.  
+However, input may actually be a forest (multiple roots / multiple disconnected trees).
+
+Examples:
+- Multiple nodes have parent = 0
+- Multiple independent hierarchies
+- Forest structure instead of a single tree
+
+Many algorithms require:
+    - one root
+    - one DFS order
+    - one depth array
+    - one LCA structure
+
+Solution: Introduce a SUPER NODE.
+
+
+------------------------------------------------------------
+
+Construction
+
+Add a new artificial node S (usually node 0).
+
+Connect S → every root of the forest.
+
+Example:
+
+Original forest
+
+    r1        r2        r3
+   / \       /  \        |
+  a   b     c    d       e
+
+
+After adding super-node
+
+              S
+           /  |  \
+         r1   r2  r3
+        / \   / \   |
+       a   b c   d  e
+
+
+Now the structure is a single tree rooted at S.
+
+
+------------------------------------------------------------
+
+Properties
+
+1. Every original node remains reachable.
+2. All trees become subtrees of S.
+3. Depth relationships inside each original tree remain unchanged.
+4. Algorithms expecting a single root now work normally.
+5. Queries across different trees naturally fail (LCA becomes S).
+
+
+------------------------------------------------------------
+
+Implementation
+
+Step 1 — collect roots
+
+    if parent[i] == 0
+        roots.push_back(i)
+
+Step 2 — connect super-node
+
+    for r in roots
+        tree[S].push_back(r)
+
+Step 3 — run algorithms from S
+
+    dfs(S)
+    bfs(S)
+    build_lca(S)
+
+
+------------------------------------------------------------
+
+Depth Handling
+
+Often we set
+
+    depth[S] = -1
+
+so that
+
+    depth[root] = 0
+
+This keeps original depths unchanged.
+
+
+------------------------------------------------------------
+
+When This Technique Is Used
+
+1. LCA on forests
+   Binary lifting usually assumes one root.
+
+2. Euler tour / subtree queries
+   DFS order requires visiting all nodes from one start.
+
+3. Segment tree / Fenwick on subtree ranges
+   Subtree ranges require a single DFS traversal.
+
+4. Tree DP on forests
+   DP transitions can run once from the super-root.
+
+5. Problems with multiple roots
+   Example: multiple employees with no manager.
+
+6. Virtual tree construction
+   Often assumes one root.
+
+7. Dynamic tree problems
+   Helps unify components.
+
+8. Offline queries on forest structures
+
+
+------------------------------------------------------------
+
+Complexity Impact
+
+Adding a super-node:
+
+    nodes:  n → n + 1
+    edges:  + number_of_roots
+
+Time complexity remains unchanged.
+
+
+------------------------------------------------------------
+
+Important Observations
+
+1. The super-node is artificial and should usually not appear in answers.
+
+2. Queries crossing different original trees behave correctly:
+       LCA becomes the super-node.
+
+3. Subtree queries on a root still work because each root's subtree
+   remains contiguous in DFS order.
+
+
+------------------------------------------------------------
+
+Example Use Case
+
+Problem:
+"Given a forest, answer queries:
+    number of nodes at depth d in subtree of v"
+
+Solution:
+1. Add super-root
+2. Run DFS to compute
+       start[v], finish[v], depth[v]
+3. Maintain lists of nodes by depth
+4. Binary search within subtree range
+
+
+------------------------------------------------------------
+
+Summary
+
+Super-root technique:
+
+    Forest → Add artificial root → Single tree
+
+This allows any tree algorithm (DFS order, LCA, subtree queries,
+binary lifting, DP) to work on forests without modifying the core logic.

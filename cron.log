@@ -4540,3 +4540,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1740b117..765adf02  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 230395b9] CF grind
+ 2 files changed, 51 insertions(+)
+ create mode 100644 random/bloodCousins.cpp
+To https://github.com/neofytr/Codeforces.git
+   765adf02..230395b9  main -> main
+branch 'main' set up to track 'origin/main'.
