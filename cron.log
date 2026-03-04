@@ -4492,3 +4492,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1155af48..cb061b22  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 13aac48e] Solved a few problems
+ 5 files changed, 265 insertions(+), 9 deletions(-)
+ rename DataStructures/{EulerTour.cpp => EulerTour/one.cpp} (100%)
+ create mode 100644 DataStructures/EulerTour/two.cpp
+To https://github.com/neofytr/Codeforces.git
+   cb061b22..13aac48e  main -> main
+branch 'main' set up to track 'origin/main'.

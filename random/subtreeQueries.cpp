@@ -5,10 +5,10 @@ using namespace std;
 #define MAX (int)(2 * 1e5)
 
 vector<int> graph[MAX + 1];
-int tree[8 * MAX + 8];
+int tree[4 * MAX + 1];
 int val[MAX + 1];
 
-int lin[2 * MAX + 1];
+int lin[MAX + 1];
 int post[MAX + 1];
 int pre[MAX + 1];
 int t = 0;
@@ -65,15 +65,15 @@ int32_t main() {
 		cin >> u >> v, graph[u].push_back(v), graph[v].push_back(u);
 
 	dfs(1, -1);
-	build(1, 2 * n, 1);
+	build(1, n, 1);
 	while (q--) {
 		int t; cin >> t;
 		if (t == 1) {
 			int s, x; cin >> s >> x;
-			update(pre[s], x, 1, 2 * n, 1);
+			update(pre[s], x, 1, n, 1);
 		} else {
 			int s; cin >> s;
-			cout << query(pre[s], post[s], 1, 2 * n, 1) << endl;
+			cout << query(pre[s], post[s], 1, n, 1) << endl;
 		}
 	}
 	return 0;
