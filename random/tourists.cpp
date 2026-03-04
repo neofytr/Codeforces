@@ -6,7 +6,7 @@ using namespace std;
 #define LOG (18)
 
 int n;
-int tab[LOG][MAX + 1];
+int tab[LOG + 1][MAX + 1];
 int depth[MAX + 1];
 vector<int> tree[MAX + 1];
 
@@ -26,6 +26,14 @@ int lca(int u, int v) {
 	u = walk(u, depth[u] - depth[v]);
 
 	if (u == v) return v;
+	for (int i = LOG; i >= 0; i--)
+		if (tab[i][u] != tab[i][v])
+			u = tab[i][u], v = tab[i][v];
+	return tab[0][u];
+}
+
+int dist(int u, int v) {
+	return depth[u] + depth[v] - 2 * depth[lca(u, v)];
 }
 
 int32_t main() {
@@ -50,8 +58,9 @@ int32_t main() {
 		int d = depth[x];
 
 		for (int v : tree[x])
-			if (depth[v] == -1)
+			if (depth[v] == -1) 
 				depth[v] = d + 1, tab[0][v] = x, q.push(v); 
+			
 	}
 
 	for (int i = 1; i <= LOG; i++)
@@ -60,5 +69,11 @@ int32_t main() {
 			else tab[i][j] = tab[i - 1][tab[i - 1][j]];
 		}
 
+	int res = 0;
+	for (int v = 1; v <= n; v++)
+		for (int x = 2 * v; x <= n; x += v) 
+			res += dist(v, x) + 1;
+		
+	cout << res << endl;
 	return 0;
 }

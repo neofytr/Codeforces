@@ -4422,3 +4422,66 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    657e6769..55deb607  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1155af48] Solved problem
+ 59 files changed, 317 insertions(+)
+ create mode 100644 random/strivers-a2z-sheet-learn-dsa-a-to-z
+ create mode 100644 random/takeuforward.org/SecondaryLogoWO.png
+ create mode 100644 random/takeuforward.org/_next/static/chunks/110dc57e-3709a8d72d4901d1.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/13170-784eca6f0877a13c.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/14836-e32c6c83a1f16eaf.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/17970-abf8fef259054631.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/20806-0d3fb5a929c9a253.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/31420-f570dfc3c8ff807b.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/41399-5336702342d3397b.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/42242-52c7e07790a22285.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/43063-a71873e9bb83b53b.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/47307-5e86db8a10bcdfcd.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/48064-7089f0e68ec7ad65.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/48734-303381ecb69a6735.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/51541-4e503f6a0581d158.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/59018-37ef89b0b3086b1d.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/59235-811d2f9b7255ebb4.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/62772-cf4ef68484acc9d4.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/68481-598059c655ee4b31.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/69043-1e43b892c05d81f3.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/73122-32af6c93b49df8f4.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/75959-70805869a1acef30.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/76159-cc1edb7abe8720f2.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/82595-7dfb00332e835a00.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/82795-9c8dc78d91a75d8f.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/83755-ddca897ebac7546a.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/86570-6cce096a6d391392.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/87132-7d5a434c49c0d339.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/92718-1248a2c81ad0a900.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/app/(tuf)/dsa/strivers-a2z-sheet-learn-dsa-a-to-z/page-62b089bae2cfa7b2.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/app/error-338148bc2676fd2e.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/app/global-error-afbec4c28915a683.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/app/layout-b02780335cf06d91.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/app/loading-0af08892cb9bae65.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/app/not-found-448e68ba1b9d22df.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/main-app-f6203b4a3ac9a8e0.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/polyfills-42372ed130431b0a.js
+ create mode 100644 random/takeuforward.org/_next/static/chunks/webpack-e7246045e1f3ee6e.js
+ create mode 100644 random/takeuforward.org/_next/static/css/7f8cb3787b67f853.css
+ create mode 100644 random/takeuforward.org/_next/static/css/a88a1a04faa4a131.css
+ create mode 100644 random/takeuforward.org/_next/static/media/01c851130b81e027-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/07f0d0991c204e49-s.p.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/19d4c7d3ac217664-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/20ea8c59830c6877-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/226c28b3cdbac862-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/23f83596e15cde83-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/82f4f1cc7c956bae-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/88bf4b3847941340-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/892b469d4e403134-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/96768aa85868c24d-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/99bdd7d9251d3e2b-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/b036901809a398af-s.p.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/ddb3191311bbadd9-s.woff2
+ create mode 100644 random/takeuforward.org/_next/static/media/e633912c3a84ee22-s.woff2
+ create mode 100644 random/takeuforward.org/dsa/strivers-a2z-sheet-learn-dsa-a-to-z.html
+ create mode 100644 random/takeuforward.org/favicon.ico
+ create mode 100644 random/takeuforward.org/images/auth/get-started-bg.png
+ create mode 100644 random/tourists.cpp
+To https://github.com/neofytr/Codeforces.git
+   55deb607..1155af48  main -> main
+branch 'main' set up to track 'origin/main'.
