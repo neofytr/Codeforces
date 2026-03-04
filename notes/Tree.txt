@@ -1,0 +1,1515 @@
+56. If you store a tree in an adjacency list format and do a DFS on it using the following signature
+
+int dfs(int node, int parent, vector<vector<int>> &tree);
+
+and the dfs is called from some root x as:
+
+dfs(x, -1, tree)
+
+then, the correct way to check whether the current node is a leaf node is:
+
+(tree[node].size() == 1 && parent != -1)
+
+A node is a leaf node iff the size of its adjacency list is 1 AND it's NOT the root node.
+ 
+60. Let n, m >= 1.
+Consider a grid having n rows and m columns, where some cells may be blocked.
+Consider some point (y, x) on the grid where 1 <= y <= n, 1 <= x <= m that is not blocked. Consider a walk on this grid from this point with each step being one of up, down, left or right.
+
+1. If we use R right and L left steps to reach some non-blocked reachable cell (r, c) using some path, then, R - L = c - x.
+2. If we use U up and D down steps to reach some non-blocked reachable cell (r, c) using some path, then, U - D = y - r.
+
+61. 0–1 BFS
+
+Problem setting:
+We are given a graph where each edge weight is either 0 or 1.
+We want to find the minimum cost (shortest path) from a source node to all other nodes.
+
+Using Dijkstra works, but it is slower than necessary.
+0–1 BFS is an optimized shortest-path algorithm for this exact situation.
+
+
+When to use 0–1 BFS:
+- Edge weights are only 0 or 1
+- We need shortest paths / minimum cost
+- We want O(V + E) time instead of O(E log V)
+
+
+Core idea:
+0–1 BFS is a special case of Dijkstra that replaces the priority queue
+with a deque.
+
+Observation:
+- Weight 0 edge → distance does not increase
+- Weight 1 edge → distance increases by exactly 1
+
+Therefore:
+- Nodes reached via weight 0 edges should be processed immediately
+- Nodes reached via weight 1 edges should be processed later
+
+We achieve this by:
+- push_front() for weight 0 edges
+- push_back() for weight 1 edges
+
+Algorithm:
+1. Initialize all distances to infinity
+2. Set distance of source = 0
+3. Push source into deque
+4. While deque is not empty:
+   - Take node from the front
+   - Relax all outgoing edges
+   - Push neighbors based on edge weight
+
+Pseudocode:
+
+int src = 1;
+deque<int> dq;
+vector<long long> dist(n + 1, INF);
+
+dist[src] = 0;
+dq.push_back(src);
+
+while (!dq.empty()) {
+    int u = dq.front();
+    dq.pop_front();
+
+    for (auto [v, w] : graph[u]) {
+        // w is either 0 or 1
+        if (dist[v] > dist[u] + w) {
+            dist[v] = dist[u] + w;
+
+            if (w == 0)
+                dq.push_front(v);
+            else
+                dq.push_back(v);
+        }
+    }
+}
+
+Why this works:
+The deque always keeps nodes in non-decreasing order of distance.
+- Weight 0 edges keep the same distance → front
+- Weight 1 edges increase distance → back
+
+This guarantees correctness like Dijkstra, but faster.
+
+Time and Space Complexity:
+- Time: O(V + E)
+- Space: O(V + E)
+
+62. Let G be a connected graph having n vertices, where n >= 1.
+
+Let x be the number of nodes at an even distance from node 1. Let y be the number of nodes at an odd distance from node 1.
+
+Then, x <= floor(n / 2) or y <= floor(n / 2).
+
+63. Preorder v/s Postorder DFS
+
+// Preorder -> add first and then visit neighbours
+// Postorder -> add only when all the neighbors are added
+
+vector<int> pre, post
+void dfs(int node) {
+    pre.push_back(node);
+    for (int v : graph[node])
+        if (!vis[v])
+            vis[v] = true, dfs(v);
+    post.push_back(v);
+}
+
+64. Let n, m >= 1.
+
+Say we traverse a 4-connected grid (Up, Down, Left, Right). Each cell is a vertex and each shared boundary is an edge.
+
+Each internal cell has 4 neighbours, but each edge is shared between 2 cells. 
+
+Horizontal edges: each row has m - 1 of them across n rows, giving n * (m - 1). 
+
+Vertical Edges: each column has n - 1 across m columns, giving m * (n - 1).
+
+Thus, the total number of edges in this implicit graph is 2 * n * m - n - m, i.e, O(n * m).
+
+65. Cycle Detection in Directed Graphs (DFS with 3 States)
+
+In a directed graph, a cycle exists if during DFS we encounter a back edge.
+A back edge is an edge that points to a node already present in the current
+DFS recursion path.
+
+A simple visited[] boolean array is NOT sufficient because it does not tell
+whether a node is currently in the recursion stack or already fully processed.
+Hence, we use three states.
+
+--------------------------------------------------
+i. Node States
+--------------------------------------------------
+For every node u, maintain state[u]:
+
+State 0 (Unvisited):
+- The node has not been visited yet.
+
+State 1 (Visiting):
+- The node is currently being processed.
+- It is present in the current DFS recursion stack.
+
+State 2 (Visited):
+- The node and all its descendants are completely processed.
+- It is NOT in the recursion stack.
+
+--------------------------------------------------
+ii. Key Observation
+--------------------------------------------------
+If during DFS from node u, we encounter an edge u -> v such that:
+    state[v] == 1
+then v is already in the current DFS path.
+This edge is a back edge, which implies a cycle exists.
+
+--------------------------------------------------
+iii. DFS Algorithm
+--------------------------------------------------
+1. Mark the current node as Visiting (state = 1).
+2. For every outgoing edge to a neighbor:
+   - If the neighbor is Unvisited, recursively DFS on it.
+   - If the neighbor is Visiting, a cycle is detected.
+3. After all neighbors are processed, mark the node as Visited (state = 2).
+
+--------------------------------------------------
+iv. Code
+--------------------------------------------------
+
+int state[N]; // 0 = unvisited, 1 = visiting, 2 = visited
+
+// returns true if a cycle is found in the graph reachable from node u
+bool dfs(int u) {
+    state[u] = 1; // mark as visiting
+
+    for (int v : graph[u]) {
+        if (state[v] == 0) {
+            if (dfs(v))
+                return true;
+        }
+        else if (state[v] == 1) {
+            return true; // back edge found -> cycle
+        }
+    }
+
+    state[u] = 2; // mark as fully visited
+    return false;
+}
+
+--------------------------------------------------
+v. Handling Disconnected Graphs
+--------------------------------------------------
+Since the graph may be disconnected, DFS must be started from every unvisited
+node.
+
+bool hasCycle(int n) {
+    for (int i = 1; i <= n; i++) {
+        if (state[i] == 0) {
+            if (dfs(i))
+                return true;
+        }
+    }
+    return false;
+}
+
+--------------------------------------------------
+vi. Why This Works
+--------------------------------------------------
+- Nodes with state == 1 represent the current DFS path.
+- Reaching such a node again means we looped back before finishing it.
+- This loop corresponds to a cycle in a directed graph.
+
+--------------------------------------------------
+vii. Complexity
+--------------------------------------------------
+Time Complexity:  O(V + E)
+Space Complexity: O(V)  (recursion stack + state array)
+
+--------------------------------------------------
+viii. One-Line Summary
+--------------------------------------------------
+A directed graph contains a cycle if DFS encounters a node that is already in
+the Visiting (1) state.
+
+65. Bipartite Graphs
+
+An undirected graph G = (V, E) is bipartite if there is a 2-partition A, B of the set V such that
+
+1. A and B are non-empty.
+2. For any {u, v} belonging to E, either (u is in A and v is in B) or (u is in B and v is in A).
+
+If G is bipartite, this 2-partition A, B is not necessarily unique. However, if G is bipartite and G is connected and you fix the partition to which some specific node belongs to, then the partition which all other nodes belong to also becomes fixed. The structure forces every other node into a specific side.
+
+A graph is bipartite iff it has no cycles of odd-length.
+
+A disconnected graph is bipartite iff its every connected component is bipartite.
+
+Thus, a bipartite graph is one where you can split all nodes into two groups such that every edge connects a node fromn one group to a node in the other. No edge connects two nodes within the same group.
+
+A graph is 2-colorable if we can color all the nodes of the graph in one of two colors (say A and B) such that no edge connects two nodes of the same color.
+
+A graph is bipartite iff its 2-colorable. Similar to the case of bipartiteness, if a graph is 2-colorable, its coloring is not unique. However, if we fix the color of some specific node, the color of the rest of nodes also become fixed. The structure forces every other node into a specific color.
+
+Bipartite graphs model two-sided relationships.
+
+// Returns true if the component that node x belongs to is bipartite; false otherwise
+bool isBipartite(int x) {
+    queue<int> que;
+    vector<int> color(n + 1, -1);
+
+    color[x] = 0, que.push(x);
+    while (!que.empty()) {
+        int node = que.front(); que.pop();
+
+        for (int v : graph[node])
+            if (color[v] == -1)
+                color[v] = !color[node], que.push(v);
+            else if (color[v] == color[node])
+                return false;
+    }
+    return true;
+}
+
+66. Trees
+
+Let G = (V, E) be a finite undirected graph with |V| = n vertices and |E| = m edges.
+
+The following statements are then equivalent
+
+1. G is a tree.
+2. G is connected and acyclic.
+3. G is acyclic and m = n - 1.
+4. G is connected and m = n - 1.
+5. For any u, v in V such that u != v, there is a unique simple path between u and v in G.
+6. G is connected and removal of any edge disconnects G.
+7. G is acyclic and adding a new edge between any two distinct vertices in G creates exactly one cycle in G.
+
+Let G = (V, E) be a tree.
+
+Fix an arbitrary vertex r ∈ V.
+We now define the rooted tree structure with root r.
+
+------------------------------------------------------------
+
+i. Root
+
+Definition:
+The chosen vertex r ∈ V is called the root of G.
+
+Justification:
+Since G is connected, for every vertex v ∈ V,
+there exists a path from r to v.
+Hence rooting at r is always valid.
+
+------------------------------------------------------------
+
+ii. Parent
+
+Let v ∈ V such that v ≠ r.
+
+Definition:
+The parent of v, denoted parent(v), is the unique vertex
+immediately preceding v on the unique simple path from r to v.
+
+Justification (Well-definedness):
+• In a tree, between r and v there exists exactly one simple path.
+• On that path, v has exactly one predecessor.
+• Hence parent(v) exists and is unique.
+
+Conclusion:
+Every non-root vertex has exactly one parent.
+The root r has no parent.
+
+------------------------------------------------------------
+
+iii. Child
+
+Let u, v ∈ V with u ≠ v.
+
+Definition:
+v is a child of u if parent(v) = u.
+
+Observation:
+Each vertex may have zero or more children.
+Edges can now be viewed as directed from parent → child,
+though the underlying graph remains undirected.
+
+------------------------------------------------------------
+
+iv. Depth
+
+Let v ∈ V.
+
+Definition:
+depth(v) = length (number of edges) of the unique simple path from r to v.
+
+Justification:
+Since the path from r to v is unique, its length is uniquely determined.
+Hence depth is well-defined.
+
+Special case:
+depth(r) = 0.
+
+------------------------------------------------------------
+
+v. Ancestor
+
+Let u, v ∈ V with u ≠ v.
+
+Definition:
+u is an ancestor of v if u lies on the unique simple path from r to v.
+
+Equivalently:
+u is an ancestor of v if repeated application of parent(·)
+starting from v eventually reaches u.
+
+Properties:
+• The root is an ancestor of every vertex.
+• Every vertex is its own ancestor if reflexive definition is allowed
+  (optional convention — state clearly in notes).
+
+------------------------------------------------------------
+
+vi. Descendant
+
+Let u, v ∈ V with u ≠ v.
+
+Definition:
+v is a descendant of u if u lies on the unique simple path from r to v.
+
+Equivalently:
+v is in the subtree rooted at u.
+
+This is simply the reverse relation of ancestry.
+
+------------------------------------------------------------
+
+vii. Subtree
+
+Let v ∈ V.
+
+Definition:
+Let
+
+A = { u ∈ V | v lies on the unique simple path from r to u }.
+
+That is, A consists of v and all its descendants.
+
+Let
+
+B = { {e, f} ∈ E | e ∈ A and f ∈ A }.
+
+Define G' = (A, B).
+
+Claim:
+G' is a tree.
+
+Justification:
+1) Connected:
+   For any two vertices in A, the unique path between them in G
+   lies entirely inside A (because descendants share ancestry under v).
+
+2) Acyclic:
+   G has no cycles.
+   Any subgraph of an acyclic graph is also acyclic.
+
+Hence G' is connected and acyclic,
+so G' is a tree.
+
+------------------------------------------------------------
+
+Key Structural Consequences
+
+1) Every non-root vertex has exactly one parent.
+2) Total number of parent-child edges = |V| − 1.
+3) The hierarchy (parent/child structure) arises purely from:
+      Tree
+      ⇒ Unique simple paths
+      ⇒ Unique predecessor toward root
+      ⇒ Well-defined parent
+      ⇒ Hierarchical structure.
+
+Important Insight:
+Hierarchy is NOT part of the definition of a tree.
+It is a consequence of the unique path property.
+
+67. 
+
+i. Tree DP
+
+1. Define what you want to compute for each node.
+2. Express it in terms of the answers for the children.
+3. Write a recursive function that combines child results.
+
+Tree DP is bottom-up: you solve for leaves first, then combine results as you return up the tree. 
+
+ii. The diameter of a tree is the length of the longest simple path between any two nodes of the tree.
+
+68. Lowest Common Ancestor (LCA):
+For two vertices u, v ∈ V, their Lowest Common Ancestor,
+denoted LCA(u, v), is the unique vertex w such that:
+
+1) w is an ancestor of both u and v, and
+2) depth(w) is maximal among all common ancestors of u and v.
+
+Equivalently:
+w is the common ancestor of u and v that is farthest from the root.
+
+Uniqueness:
+The LCA exists and is unique because:
+• The set of ancestors of any vertex is exactly the vertices
+  on the unique path from the root to that vertex.
+• The intersection of the ancestor sets of u and v
+  is a non-empty finite chain (it contains at least r).
+• In this chain, there is a unique deepest element.
+
+69. Path structure between two nodes in a Tree
+
+
+Let u, v ∈ V be distinct vertices.
+Let w = LCA(u, v).
+Let p be the unique simple path between u and v.
+
+Claim 1: w lies on p.
+
+Proof:
+There is a unique simple path from u to w (call it p1),
+since the tree has a unique path between any two vertices.
+
+There is also a unique simple path from w to v (call it p2).
+
+Concatenating these gives a path:
+
+    p1 + p2
+
+which is a path from u to v.
+
+Since G is a tree, there exists exactly one simple path
+between u and v. Therefore:
+
+    p = p1 + p2.
+
+Hence w lies on p.
+
+---------------------------------------
+
+Claim 2: The path p does not pass through the parent of w.
+
+Proof:
+Assume for contradiction that p passes through parent(w).
+
+Then parent(w) would lie on the path from u to v.
+Hence parent(w) would be an ancestor of both u and v.
+
+But parent(w) has strictly smaller depth than w.
+This contradicts the definition of w as the
+lowest (deepest) common ancestor.
+
+Therefore, p cannot go above w.
+Hence w is the highest (closest to root) vertex on p.
+
+-------------------------------------
+
+For any two vertices u and v in a rooted tree:
+
+The unique simple path between (say p) them consists of:
+
+    (path from u to LCA(u, v))
+    +
+    (path from LCA(u, v) to v)
+
+The vertex LCA(u, v) is the unique “turning point” of the path, the only vertex where the direction changes from moving upward toward the root to moving downward away from the root.
+
+70. Decomposition of the Unique Simple Path in a Rooted Tree
+
+Let G = (V, E) be a tree rooted at r.
+Let u, v ∈ V be distinct vertices.
+Without loss of generality, assume depth(v) ≤ depth(u).
+
+Let p be the unique simple path between u and v.
+Let w = LCA(u, v).
+
+We distinguish two cases.
+
+------------------------------------------------------------
+Case 1: LCA(u, v) = v
+------------------------------------------------------------
+
+In this case, v is an ancestor of u.
+
+Therefore, the unique path from u to v is exactly the
+unique path from u upward to v.
+
+Hence:
+
+    p = (unique path from u to v).
+
+Equivalently, p lies entirely inside the subtree rooted at v.
+
+More precisely:
+Let c be the child of v that lies on the path from v to u.
+Then the path p can be written as:
+
+    p = v + (path entirely contained in the subtree rooted at c).
+
+Thus, when one vertex is an ancestor of the other,
+the entire path is contained in a single subtree.
+
+------------------------------------------------------------
+Case 2: LCA(u, v) = w and w ≠ v
+------------------------------------------------------------
+
+In this case, neither u nor v is an ancestor of the other.
+
+Let cu be the child of w that lies on the path from w to u.
+Let cv be the child of w that lies on the path from w to v.
+
+Since w is the lowest common ancestor,
+cu ≠ cv.
+
+Then the unique path p between u and v can be decomposed as:
+
+    p = (path from u up to w)
+        +
+        (path from w down to v).
+
+Equivalently:
+
+    p = p1 + w + p2
+
+where:
+• p1 is a path contained entirely in the subtree rooted at cu,
+• p2 is a path contained entirely in the subtree rooted at cv.
+
+Thus, the path moves upward from u to w,
+and then downward from w to v,
+switching subtrees at w.
+
+------------------------------------------------------------
+Structural Summary
+------------------------------------------------------------
+
+For any two vertices u and v in a rooted tree:
+
+• If one is an ancestor of the other,
+  the unique path lies entirely inside one subtree.
+
+• Otherwise,
+  the path ascends from u to their LCA,
+  then descends into a different child subtree of the LCA.
+
+In particular:
+
+Every simple path in a rooted tree
+is either contained in a single subtree,
+or has a unique turning point at LCA(u, v),
+where it moves from one child subtree of that node
+to another.
+
+71. Triangle Inequality
+
+Let T is a tree and let x, y, z be three vertices in T. Then,
+
+dist(x, z) <= dist(x, y) + dist(y, x)
+
+This is the Tree Triangle Inequality.
+
+72. Tree Diameter
+
+1) Definition
+
+Let T = (V, E) be a tree.
+
+• The diameter of a tree is the length (number of edges) of the
+  longest simple path between any two vertices.
+
+• If the longest path is between nodes a and b:
+    - (a, b) is called a diameter pair
+    - a and b are called diameter endpoints
+
+
+----------------------------------------
+2) Diameter Endpoints are Leaves
+----------------------------------------
+
+Claim:
+If (a, b) is a diameter pair, then both a and b are leaves.
+
+Reason:
+If a were not a leaf, it would have a neighbor outside the
+diameter path. Extending the path through that neighbor would
+produce a longer path — contradicting maximality.
+
+Therefore, diameter endpoints must be leaves.
+
+
+----------------------------------------
+3) Key Fact (Used in Double BFS)
+----------------------------------------
+
+Theorem:
+In any tree T, if 's' is an arbitrary node and 'u' is a node farthest from 's', then 'u' is an endpoint of a diameter of T.
+
+Definitions and Setup:
+1. Let the path P between nodes x and y be a true diameter of the tree.
+   - The length d(x, y) is maximal. No path in the tree is strictly longer than this.
+2. Let 's' be an arbitrary starting node.
+3. Let 'u' be a node farthest from 's'.
+   - This means d(s, u) >= d(s, v) for all nodes v in the tree.
+4. Let 't' be the Junction Node.
+   - Because a tree contains no cycles, there is exactly one unique path from 's' to any node on the diameter path x-y.
+   - Let 't' be the specific node where the path from 's' intersects the diameter path x-y.
+   - Note: If 's' is already on the diameter, then s = t and d(s, t) = 0.
+
+Proof:
+We analyze the location of 'u' relative to the junction 't'. There are two possible geometric cases for the path from 't' to 'u'.
+
+Case 1: The path from 't' to 'u' passes through 's'.
+(This implies 'u' is "behind" 's' relative to the diameter).
+   
+   1. The path structure is t -> ... -> s -> ... -> u.
+      Therefore, d(t, u) = d(t, s) + d(s, u).
+
+   2. By our definition of 'u' being farthest from 's', we know:
+      d(s, u) >= d(s, y)
+
+   3. Expand d(s, y). To get from 's' to 'y', the path must go through 't':
+      d(s, y) = d(s, t) + d(t, y)
+
+   4. Substitute (3) into (2):
+      d(s, u) >= d(s, t) + d(t, y)
+
+   5. Now, substitute (4) back into our path equation from (1):
+      d(t, u) = d(t, s) + [d(s, u)]
+      d(t, u) >= d(t, s) + [d(s, t) + d(t, y)]
+      d(t, u) >= 2 * d(s, t) + d(t, y)
+
+   6. Consider the path from x to u. It goes x -> t -> u.
+      d(x, u) = d(x, t) + d(t, u)
+      d(x, u) >= d(x, t) + 2 * d(s, t) + d(t, y)
+      
+   7. Group the diameter terms (x->t and t->y):
+      d(x, u) >= [d(x, t) + d(t, y)] + 2 * d(s, t)
+      d(x, u) >= d(x, y) + 2 * d(s, t)
+
+   8. Contradiction:
+      Since d(x, y) is the diameter (maximal path), d(x, u) cannot be strictly longer.
+      The only way for this inequality to hold is if 2 * d(s, t) = 0, which means s = t.
+      If s = t, this case collapses into Case 2. If s != t, this case is geometrically impossible.
+
+Case 2: The path from 's' to 'u' passes through 't'.
+(This is the standard case where 'u' is on a branch extending from the junction).
+
+   1. The path structure is s -> ... -> t -> ... -> u.
+      Therefore, d(s, u) = d(s, t) + d(t, u).
+
+   2. By our definition of 'u' being farthest from 's', we know:
+      d(s, u) >= d(s, y)
+
+   3. Expand d(s, y). To get from 's' to 'y', the path goes through 't':
+      d(s, y) = d(s, t) + d(t, y)
+
+   4. Substitute (1) and (3) into the inequality (2):
+      d(s, t) + d(t, u) >= d(s, t) + d(t, y)
+
+   5. Subtract d(s, t) from both sides:
+      d(t, u) >= d(t, y)
+      (This proves the branch to 'u' is at least as long as the branch to the diameter end 'y').
+
+   6. Construct the path from x to u (via t):
+      d(x, u) = d(x, t) + d(t, u)
+
+   7. Substitute the inequality from (5):
+      d(x, u) >= d(x, t) + d(t, y)
+      d(x, u) >= d(x, y)
+
+Conclusion:
+We have shown that d(x, u) >= d(x, y).
+Since d(x, y) is defined as the maximum possible path length (diameter), it is impossible for d(x, u) to be strictly greater.
+Therefore, d(x, u) must be equal to d(x, y).
+
+This implies that the path from x to u is also a diameter, making 'u' a valid endpoint of a diameter.
+
+----------------------------------------
+4) Double BFS Algorithm
+----------------------------------------
+
+Goal: Find the diameter of a tree.
+
+Step 1:
+    Pick any node u.
+    Run BFS (or DFS) from u.
+    Let s = farthest node from u.
+
+    (By the key fact, s is a diameter endpoint.)
+
+Step 2:
+    Run BFS from s.
+    Let t = farthest node from s.
+
+Then:
+    distance(s, t) = diameter of the tree.
+
+
+----------------------------------------
+5) Why It Works (Intuition)
+----------------------------------------
+
+• First BFS moves to one extreme of the tree.
+• Second BFS stretches from that extreme to the opposite extreme.
+• That second distance is the longest possible path.
+
+
+----------------------------------------
+6) Complexity
+----------------------------------------
+
+Each BFS runs in O(n).
+
+Total time complexity:
+    O(n)
+
+Space complexity:
+    O(n)
+
+
+----------------------------------------
+Final Summary
+----------------------------------------
+
+• Diameter = longest simple path in a tree.
+• Diameter endpoints are leaves.
+• Farthest node from any node is a diameter endpoint.
+• Double BFS finds the diameter in linear time.
+
+============================================================
+TREE CENTRE — FULLY RIGOROUS AND COMPLETE PROOF
+(With Correct Proof that All Diameters Have Same Middle)
+============================================================
+
+Let T be a tree.
+
+------------------------------------------------------------
+I. DEFINITIONS
+------------------------------------------------------------
+
+1) Distance
+
+For vertices u, v:
+
+    dist(u, v) = number of edges on the unique u–v path.
+
+(Trees have exactly one simple path between any two vertices.)
+
+------------------------------------------------------------
+
+2) Eccentricity
+
+For vertex u:
+
+    e(u) = max_v dist(u, v)
+
+------------------------------------------------------------
+
+3) Diameter
+
+    D = max_{u,v} dist(u, v)
+
+A pair (A, B) with dist(A, B) = D
+is called a pair of diameter endpoints.
+
+------------------------------------------------------------
+
+4) Centre
+
+A vertex c is a centre if
+
+    e(c) = min_x e(x)
+
+A tree has either:
+    • one centre, or
+    • two adjacent centres.
+
+We now prove everything rigorously.
+
+============================================================
+PART 1 — STRUCTURAL LEMMA
+============================================================
+
+Lemma 1.
+Let A, B be diameter endpoints.
+Then for every vertex x:
+
+    e(x) = max(dist(x, A), dist(x, B))
+
+Proof:
+
+Let x is a vertex of T.
+The farthest node from x is a diameter end-point. Thus,
+
+e(x) = max(dist(x, A), dist(x, B)).
+
+============================================================
+PART 2 — CENTRE LIES ON EVERY DIAMETER
+============================================================
+
+Lemma 2.
+Every centre lies on the path A–B.
+
+------------------------------------------------------------
+Proof
+------------------------------------------------------------
+
+Let c be a centre.
+
+Assume c is NOT on A–B.
+
+Let p be the unique vertex of A–B
+where the branch containing c attaches.
+(Existence and uniqueness follow from acyclicity.)
+
+Because paths are unique:
+
+    dist(c, A)
+    = dist(c, p) + dist(p, A)
+
+    dist(c, B)
+    = dist(c, p) + dist(p, B)
+
+By Lemma 1:
+
+    e(c)
+    = max(dist(c, A), dist(c, B))
+    = dist(c, p)
+      + max(dist(p, A), dist(p, B))
+    = dist(c, p) + e(p)
+
+Since c ≠ p:
+
+    dist(c, p) > 0
+
+Therefore:
+
+    e(c) > e(p)
+
+This contradicts minimality of e(c).
+
+Hence c lies on A–B.
+
+
+============================================================
+PART 3 — MINIMIZING ECCENTRICITY ALONG A DIAMETER
+============================================================
+
+Now restrict to vertices on A–B.
+
+Let D = dist(A, B).
+
+Let x be a vertex on A–B
+with:
+
+    t = dist(A, x)
+
+Then:
+
+    dist(x, A) = t
+    dist(x, B) = D − t
+
+By Lemma 1:
+
+    e(x) = max(t, D − t)
+
+Define:
+
+    f(t) = max(t, D − t)
+
+We minimize f(t).
+
+Case 1: D even
+
+Minimum occurs uniquely at:
+
+    t = D/2
+
+Thus there is exactly ONE centre.
+
+Case 2: D odd
+
+Minimum occurs exactly at:
+
+    t = floor(D/2)
+    t = ceil(D/2)
+
+Thus exactly TWO adjacent centres.
+
+Therefore:
+
+The centre(s) are exactly
+the middle vertex (or two middle vertices)
+of A–B.
+
+
+============================================================
+PART 4 — UNIQUENESS OF THE MIDDLE OF ALL DIAMETERS
+============================================================
+
+Now we prove the crucial statement:
+
+THEOREM.
+All diameter paths of a tree
+have the same middle vertex
+(if D even)
+or the same middle edge
+(if D odd).
+
+------------------------------------------------------------
+Proof
+------------------------------------------------------------
+
+Let A–B be one diameter.
+Let C be its middle set
+(one vertex or two adjacent vertices).
+
+From Part 3:
+
+C is exactly the set of vertices
+with minimum eccentricity.
+
+Thus:
+
+    C = { x : e(x) = min_y e(y) }
+
+Now let U–V be ANY other diameter.
+
+Since dist(U, V) = D,
+consider its midpoint(s).
+Call this set C'.
+
+We prove:
+
+    C' = C
+
+
+Step 1:
+The midpoint(s) of U–V minimize
+the function:
+
+    x ↦ max(dist(x, U), dist(x, V))
+
+Along U–V,
+this is minimized exactly at its middle(s).
+
+
+Step 2:
+But since U–V is also a diameter,
+we may apply Lemma 1 to U and V:
+
+    e(x) = max(dist(x, U), dist(x, V))
+
+Thus the midpoint(s) of U–V
+are exactly the vertices
+of minimum eccentricity.
+
+
+Step 3:
+But the set of vertices
+with minimum eccentricity
+was already shown to be C,
+which is uniquely determined
+from A–B.
+
+Hence:
+
+    C' = C
+
+Therefore every diameter
+has the same midpoint(s).
+
+============================================================
+FINAL STRUCTURAL RESULT
+============================================================
+
+• The centre of a tree is exactly
+  the vertex (or two adjacent vertices)
+  of minimum eccentricity.
+
+• These vertices are exactly
+  the middle vertex/edge
+  of any diameter path.
+
+• Therefore all diameters
+  share the same middle point(s).
+
+• A tree has either:
+      – one centre (D even)
+      – two adjacent centres (D odd)
+
+============================================================
+
+
+73. Tree Centres
+
+A Centre of a tree is a node that minimizes the distance to the furthest node. 
+
+If you root the tree at a centre, the height of the tree is minimized. 
+The middle vertex (if diameter is even)/edge (if diameter is odd) of all the diameter paths, of the tree are the same.
+
+If the diameter of a tree is even, there is exactly one centre, the middle node on a diameter path.
+
+If the diameter of a tree is odd, there are two centres, the two middle nodes on a diameter path.
+
+74. Topological Peeling Algorithm for finding Tree Centres
+
+Given: A tree T with n vertices.
+Goal: Find its centre(s).
+
+i. Idea:
+
+Repeatedly remove all leaves (degree = 1 vertices) layer by layer.
+Eventually:
+
+a. Either one vertex remains -> unique centre
+b. Or two adjacent vertices remain -> two centres
+
+It works because a tree shrinks inwards symmetrically from its outermost layer.
+
+ii. Algorithm
+
+Input: Tree T with n vertices
+
+1. If n = 1: return that vertex.
+2. Compute degree of every vertex.
+3. Initialize a queue Q with all leaves (vertices whose degree = 1).
+
+4. remaining_vertices = n
+
+5. while (remaining_vertices > 2):
+    new queue Q'
+    let k = size of Q
+    remanining_vertices -= k
+
+    for each leaf u in Q:
+        remove u from the tree
+        for its neighbours v:
+            decrease degree[v] by 1
+            if degree[v] becomes 1:
+                push v into Q'
+
+    replace Q with Q'
+
+6. Return the remaining 1 or 2 vertices in the queue.
+
+Time Complexity: O(n)
+Each edge and vertex is processed once.
+
+75. Modifying a Tree in-place
+
+To modify a tree in place, you do not need to create a new tree. You need to identify the local change (swap, delete, rotate) and trust recursion to apply it everywhere.
+
+Always return the root after modification. Even if you change the tree in place, returning the root makes the function composable and easier to test.
+
+76. Tree Diameter and Centres
+
+The diameter of a tree is the length of the longest path between any two nodes of the tree. Not the longest path from the root (that is height of the tree), but the longest path anywhere in the tree.
+
+This measurement tells us how "spread out" a tree is. A long skinny tree has high diameter. A bushy tree might have lower diameter despite having more nodes.
+
+Diameter also helps us to find the centre of the tree, which is the node that minimizes maximum distance to all other nodes (i.e, if the tree is rooted at its centre, its height is minimized).
+
+i. The Two-BFS Trick to find Tree Diameter
+
+Start BFS from any random node. Find the farthest node from it. Call that node u. Now run BFS from u and find the farthest node from u. Call that v. The distance from u to v is the diameter.
+
+This runs in O(n) time and O(n) memory.
+
+This works the farthest node from any starting node will always be a diameter end point.
+
+Two BFS is fast and simple. Run BFS twice and return the distance. The first BFS can start from any node. It guarantees finding a diameter endpoint. The second BFS from that endpoint finds the other end and computes the diameter.
+
+This pattern appears in many tree problems. When you need extremal paths in trees, consider whether two traversals from endpoints can solve it. The technique generalizes beyond diameter to finding tree centres and computing all-pairs farthest distance.
+
+ii. When you see a tree problem asking for a global property, consider whether post-order DFS with a global variable works.
+
+iii. The center of a tree is the node (or nodes) that minimizes the maximum distance to all other nodes. In other words, the node that is as close as possible to everything.
+
+Every tree has either one centre or two centres. If diameter is even, there is one centre (the middle node on a diameter path). If diameter is odd, there are two centres (the nodes on the middle edge of a diameter path).
+
+Finding the center helps you choose the best root for a rooted tree, or the best location for a server.
+
+Start with all leaves (nodes with degree 1). Remove them. The remaining form a smaller tree. Repeat: find the new leaves, remove them. Keep going until 1 or 2 nodes remaing. Those are the centers.
+
+This is like peeling an onion. The centre is what is left at the core.
+
+Implementation: use BFS-like layer removal, tracking degrees. When a node's degree drops to 1, add it to the next removal layer.
+
+If you already know a pair of diameter endpoints, the centre is the middle node(s) of that path. Run BFS from one endpoint, track parent pointers, and reconstruct the path to the other endpoint.
+
+Walk halfway along the path to find the center. If the diameter has odd length, there are two centers (the middle edge's endpoints.) If even length, there is one center node.
+
+The center minimizes the maximum distance to any other node. This property is useful in facility location problems and network design. 
+
+iv. The eccentricity of a node is the maximum distance from that node to any other node. The radius of a tree is the minimum eccentricity across all nodes.
+
+The center of a tree has eccentricity equal to the radius. The diameter equals twice the radius (if diameter is even), or twice the radius + 1 (if odd).
+
+77. The Diameter Dominance Theorem
+
+Let T is a tree.
+Let u, v be the endpoints of a diameter in T.
+Then, for any node s in T, the farthest node from s is either u or v.
+
+Mathematically max_dist(s) = max(d(s, u), d(s, v)) for all nodes s in T.
+
+Setup and Definitions:
+
+i. Let d(x, y) denote the distance between nodes x and y in T.
+ii. Let the path u-v be a Diamter of T. By definition, d(u, v) is maximal. No simple path in T is strictly longer than d(u, v).
+iii. Let s be an arbitrary node in T.
+iv. Let t be a junction node. This is the unique node on the diameter path u-v that is closest to s. (Note: If s is on the diameter, then s = t).
+
+Because T is a tree, the path from s to any node on the diameter u-v must pass through t. Therefore
+
+d(s, u) = d(s, t) + d(t, u)
+d(s, v) = d(s, t) + d(t, v)
+
+PROOF(By Contradiction):
+
+Assume there exists a node w such that w is strictly farther from s than both u and v, i.e,
+
+A. d(s, w) > d(s, u) , and
+B. d(s, w) > d(s, v)
+
+We analyze the position of w relative to the junction t. The path from s to w must either go through t, or branch off before t.
+
+Case 1: The path from s to w passes through t.
+
+s -> t -> w
+
+In this case, d(s, w) = d(s, t) + d(t, w).
+Using assumption A:
+
+d(s, t) + d(t, w) > d(s, u)
+d(s, t) + d(t, w) > d(s, t) + d(t, u)
+d(t, w) > d(t, u) --- (I)
+
+Using assumption B:
+d(s, t) + d(t, w) > d(s, v)
+d(s, t) + d(t, w) > d(s, t) + d(t, v)
+d(t, w) > d(t, v) --- (II)
+
+Now consider the path u-w. Since w connects via t, the path is u -> t -> w. Thus, 
+
+d(u, w) = d(u, t) + d(t, w)
+From (II), we then get
+
+d(u, w) > d(u, t) + d(t, v)
+Since t is on diameter u-v, d(u, t) + d(t, v) = d(u, v).
+Thus, 
+
+d(u, w) > d(u, v), a contradiction since d(u, w) cannot be strictly longer than the diameter d(u, v).
+
+Case 2: The path from s to w does NOT pass through t.
+
+The branch to w splits off s, or is "behind" s.
+In this case, the path from diameter to w must go through s.
+
+Therefore, the path from u to w is u -> t -> s -> w.
+
+d(u, w) = d(u, t) + d(t, s) + d(s, w) --- (III)
+
+From assumtion A, we know d(s, w) > d(s, u)
+Substitute d(s, u) with d(s, t) + d(t, u):
+
+d(s, w) > d(s, t) + d(t, u)
+
+Then, from (III), we get
+
+d(u, w) > d(u, t) + d(t, s) + d(s, t) + d(t, u)
+d(u, w) > 2 * d(s, t) + d(u, t) + d(t, u)
+d(u, w) > 2 * d(s, t) + 2 * d(u, t)
+
+Thus, d(u, w) > 2 * d(u, t) --- (IV)
+
+Now since d(u, v) = d(u, t) + d(t, v), if d(u, t) >= d(t, v), from (IV), we then have
+
+d(u, w) > 2 * d(u, t) >= d(u, t) + d(t, v) = d(u, v), a contradiction since u, v is a diameter.
+
+If d(u, t) < d(t, v), then, we can similarly analyze the path v -> t -> s -> w and get the inequality
+
+d(v, w) > 2 * d(v, t), from which we conclude that
+
+d(v, w) > 2 * d(v, t) > d(v, t) + d(t, u) = d(u, v), again a contradiction since u, v is a diameter.
+
+Conclusion:
+
+Both geometric cases lead to a contradiction where a path strictly longer than the diameter d(u, v) is created. Therefore, the assumption must be false.
+
+It is impossible for any node w to be strictly farther from s than both u and v. 
+
+Q.E.D 
+
+78. 
+
+Let T is a tree. Let x, y be nodes of T such that x <-> y is a diameter. Then, for any node v of T, if u is the node farthest from v in T, then, 
+
+i. dist(v, u) = max(dist(u, x), dist(u, y)).
+
+ii. Also, the node farthest from any node v of T is always a diameter endpoint of T.
+
+These are effective observations that turn an O(n^2) problems into O(n). The pattern: find extremal points first, then use them to answer queries. 
+
+Diameter endpoints act like "anchors" that bound all other distances. When you see "for each node, find X" in a tree problem, ask whether extremal nodes or rerooting can avoid the O(n^2) blowup.
+
+iii. Rerooting DP: compute the answer for root, then update incrementally when you move the root to each child.
+
+Rerooting DP is an effective technique for tree problems where you need to answer queries for every node as root. 
+
+You compute the answer for one root, then efficiently update as you change roots. The insight is finding the update formula: what changes when you move the root from parent to child?
+
+iv.
+
+Diameter is the longest path between any two nodes in a tree. You can find it with two-BFS or DP.
+
+The center of a tree minimizes maximum distance to all other nodes. It is the middle of the diameter path. Radius is the half of diameter (rounded up).
+
+For distance queries, you try to use diameter endpoints and rerooting DP. Both techniques turn O(n^2) problems into O(n).
+
+79. Some observations on Trees.
+
+i. Let T is a tree with n >= 3 vertices.
+
+Suppose we have to choose 3 distinct vertices x, y and z such that the number of unique edges on the simple paths between x and y, y and z, and, z and x is the maximum.
+
+Then, it is optimal to do the following:
+
+Select two diameter nodes of the tree x, y.
+Then, from all the nodes on the diameter path x-y, run a multi-source BFS and update and dist array accordingly. The third vertex z should be such that z != x, y and dist[z] >= dist[v] for all nodes v in T.
+
+ii. Let T is a tree with n vertices.
+Let some vertices of the tree be marked.
+
+Let f(v) = maximum distance from node v to any of the marked nodes.
+
+Suppose we have to find the minimum value of f(v) for all vertices v of T.
+
+Let one of the marked nodes be the root of T.
+
+To do this, create a modified tree such that the only difference between this new tree and T is that only the nodes and edges on the path from root to the marked nodes are included in the tree.
+
+The answer then is the radius of this new tree.
+
+80. Subtree DP
+
+Subtree DP processes trees from leaves to root. You compute values for leaf nodes first, then use those to compute values for their parents, and so on up to the root.
+
+The pattern:
+
+dp[node] = f(dp[child_1], dp[child_2], ...)
+
+You combine child answers to get the parent answers.
+
+This works because trees have no cycles, each node depends only on descendants.
+
+Use DFS with post-order processing. Visit children before processing the current node. This ensures you have all child results before computing the parent's result.
+
+The recursion naturally handles the tree structure. Post-order means you work from leaves up to the root. This bottom-up flow is the essence of subtree DP.
+
+Use subtree DP when:
+
+1. The input is a tree (acyclic, connected graph).
+
+2. The problem asks for something aggregated (count, max, sum) over nodes or subtrees.
+
+3. The answer for a node depends only on its descendants, not ancestors.
+
+If you see these patterns, the approach is: define state on nodes, write recurrence combining children, implement DFS with post-order traversal. This structure solves most tree DP problems.
+
+i. Define clearly what dp[node] represents. It should be something like "... for the subtree rooted at node". This value should be returned by dfs(node).
+
+ii. An unrooted tree has no designated root. To use subtree DP, pick any node as root (often node 1). Once rooted, edges have direction (parent to child). Subtrees are well-defined. 
+
+Some problems care about the root choice (path queries). Others do not (subtree sizes). The choice of root changes which nodes are ancestors v/s descendants, but not the tree structure itself.
+
+iii. Core pattern: define state, write the recurrence, handle the base case of the leaf nodes, implement DFS.
+
+iv. Some problems need two DP values per node: one if you include the node in the solution, one if you exclude it.
+
+Transitions depend on whether you include or exclude each node. The constraint (eg, cannot pick adjacent nodes) determines how you combine child values.
+
+When its needed to calculate multiple values per node, return a tuple of all those values from the DFS. This eliminates the need for a DP table.
+
+v. Some problems ask for the best path in a tree. A path is a sequence of nodes connected by edges.
+
+Core Idea: Every path has a highest node (turning point) (the path closest to the root that is on the path). All the other nodes on the path are in the subtree of this turning point. The turning point v of a path breaks it into two parts: the path goes up to v from one of the childsubtrees of v and may continue into some other child subtree of v.
+
+Consider each node as a potential highest node and base your DP on this, i.e, dp[node] = "... for paths having node as their turning point." Such paths lie entirely in the subtree rooted at node.
+
+For node v, the best path having v as its turning point combines the best paths going down into its different child subtrees. You pick the two best downwards paths and connect them through v, forming a path that has a turning point at v.
+
+Many tree path problems need two values: one for the global answer (path through node), one for recursion (path extending from node). The returned value is what the parent uses to extend its own path. The global variable tracks the overall best path found.
+
+88.
+
+Whenever the problem talks about subtree queries and updates, think of tree linearization using Euler Tour.
+
+89. Some Observations regarding Euler Tour of a Tree and LCA
+
+i. Distance Formula using LCA
+
+Let T be a tree rooted at node x.
+For any two nodes u and v:
+
+    dist(u, v) = depth(u) + depth(v) - 2 * depth(lca(u, v))
+
+Explanation:
+
+The path from u to v goes through their Lowest Common Ancestor.
+The path can be decomposed as: u → lca(u, v) → v
+
+Now,
+    dist(u, lca) = depth(u) - depth(lca)
+    dist(v, lca) = depth(v) - depth(lca)
+
+Therefore,
+    dist(u, v)
+    = dist(u, lca) + dist(v, lca)
+    = (depth(u) - depth(lca)) + (depth(v) - depth(lca))
+    = depth(u) + depth(v) - 2 * depth(lca)
+
+Thus if we know the depth of every node and can compute LCA quickly, we can compute distances in O(1).
+Depths can be precomputed with a single DFS/BFS in O(N).
+
+---------------------------------------------------------------------
+
+ii. Euler Tour Flattening of a Tree
+
+Let T be a rooted tree with root x and N >= 1 nodes.
+
+A DFS traversal of the tree can be used to flatten the tree into an array.
+This process is called an Euler Tour.
+
+Flattening is useful because many complex hierarchical tree problems can then be converted into simple range problems on 1D arrays, which can be solved using Segment Trees, Fenwick Trees (BIT), Sparse Tables, etc.
+
+An Euler Tour can be constructed in O(N).
+
+---------------------------------------------------------------------
+
+iii. Euler Tour Type 1 — Entry Time Only (Size N)
+
+During DFS, record the timer when we first visit a node.
+Timer increments exactly once per node.
+
+    in[v] = timer++
+
+We also maintain the out-time (when we finish the subtree):
+    out[v] = timer - 1
+
+Property:
+Then every node in the subtree of v will occupy a contiguous segment:
+    [ in[v], out[v] ]
+
+Why this works:
+DFS completely processes a node's subtree before returning to its parent.
+Therefore all nodes of a subtree appear consecutively in the DFS order.
+
+Uses:
+• Subtree sum/minimum/maximum queries
+• Subtree updates
+• Counting nodes in a subtree with specific properties
+• Maintaining subtree information with Segment Trees or Fenwick Trees
+
+---------------------------------------------------------------------
+
+iv. Euler Tour Type 2 — Entry and Exit Times (Size 2N)
+
+During DFS, the timer increments when we enter AND when we exit a node.
+Each node is pushed to an array E of size 2N twice.
+
+    start[v] = ++timer
+    E[timer]  = v
+    // process children
+    end[v]   = ++timer
+    E[timer]  = v
+
+Invariants & Properties:
+
+1. Ancestor Relationship:
+    u is an ancestor of v  <=>  start[u] <= start[v] <= end[u]
+
+2. The Cancellation Trick (Path Sums):
+    If we want to query path sums, we map values to a flattened array A:
+        A[start[x]] =  value[x]
+        A[end[x]]   = -value[x]
+
+3. Root-to-Node Path Queries:
+    The prefix sum of A from start[root] = 1 to start[v] gives the exact sum of values on the path from the root to v.
+    Why? Because any node x that is NOT on the path to v (i.e., it was visited but we already exited its subtree) will have both A[start[x]] and A[end[x]] included in the prefix sum. They cancel out (+value - value = 0). Only the nodes currently "open" (ancestors of v) contribute to the sum.
+
+4. Ancestor-to-Descendant Path Queries:
+    If u is an ancestor of v, the range sum of A from [start[u], start[v]] gives the path sum from u to v.
+    Why? All nodes visited between entering u and entering v (that are not on the direct path) are fully explored subtrees. They appear twice in this range (entry and exit) and cancel to 0. 
+
+5. Node-to-Node Path Queries (General Case):
+    If u is NOT an ancestor of v (assume start[u] < start[v]):
+    The range sum of A from [end[u], start[v]] leaves EXACTLY the path from u to v, EXCEPT for their LCA.
+    Why? Moving from end[u] to start[v], we go up the tree and back down. Subtrees fully explored between them cancel out. However, the LCA(u, v) encloses both, so its start time is BEFORE start[u], meaning it is completely excluded from the range [end[u], start[v]].
+    Path Sum = RangeSum(A, end[u], start[v]) + value[LCA(u, v)]
+
+Uses:
+• Point updates and Path sum queries in O(log N) using a Fenwick/Segment Tree.
+• Checking ancestor relationships in O(1).
+• Path tricks, tree difference arrays, and offline queries involving paths.
+
+---------------------------------------------------------------------
+
+v. Euler Tour Type 3 — Full Euler Tour (Used for LCA, Size 2N-1)
+
+In this version we record every time a node is visited during DFS.
+When DFS moves parent -> child OR child -> parent, we log the node.
+
+Example:
+Tree: 1 -> 2 -> 4, 1 -> 3
+Euler tour: 1 2 4 2 1 3 1
+
+We record:
+    first[v] = first position of v in the Euler array
+    depth[]  = the depth of the node at each step of the tour
+
+Observation:
+The LCA of u and v is the node with the minimum depth in the Euler tour segment:
+    [ min(first[u], first[v]), max(first[u], first[v]) ]
+
+Proof idea:
+During DFS, when we move from u to v in the traversal, we must pass through their LCA. The highest point (minimum depth) reached between visiting u and v is exactly the LCA. 
+
+By building a Sparse Table over the depth array:
+    Precomputation:  O(N log N)
+    Query:           O(1)
+
+This successfully reduces LCA queries to a standard Range Minimum Query (RMQ).
+
+---------------------------------------------------------------------
+
+vi. Summary of Euler Tour Variants
+
+1. Entry Time Only (Size N array)
+    Purpose: Subtree queries and Subtree updates.
+    Key property: subtree(v) -> contiguous segment in DFS order.
+    Common tools: Segment Tree / Fenwick Tree.
+
+2. Entry + Exit Times (Size 2N array)
+    Purpose: Path sum queries, Point updates on paths, Ancestor checks.
+    Key property: Nodes not on the path appear twice and cancel out (+val, -val).
+    Common tools: Fenwick Tree (BIT), Prefix Sums.
+
+3. Full Euler Tour (Size 2N-1 array)
+    Purpose: Fast O(1) LCA queries.
+    Key idea: LCA becomes RMQ over the depth array.
+    Common tools: Sparse Table.
+
+---------------------------------------------------------------------
+
+Key Insight
+
+The main power of the Euler Tour is that it converts non-linear hierarchical tree structures into linear 1D arrays. 
+By strategically defining WHEN we write to the array (Entry, Exit, or Every Visit) and WHAT we write (Values, Cancelled Values, or Depths), difficult tree routing problems are reduced to standard array range queries.

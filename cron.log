@@ -4520,3 +4520,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    00a273de..c155d1d2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a664cfcd] Practiced CF problems
+ 6 files changed, 414 insertions(+), 8 deletions(-)
+ create mode 100644 notes/Tree.txt
+To https://github.com/neofytr/Codeforces.git
+   c155d1d2..a664cfcd  main -> main
+branch 'main' set up to track 'origin/main'.
