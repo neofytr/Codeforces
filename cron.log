@@ -4499,3 +4499,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    cb061b22..13aac48e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 451187a4] Worked on Codeforces problems
+ 5 files changed, 118 insertions(+), 5 deletions(-)
+ create mode 100644 DataStructures/lazyProp.cpp
+ create mode 100644 random/newYearTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   13aac48e..451187a4  main -> main
+branch 'main' set up to track 'origin/main'.
