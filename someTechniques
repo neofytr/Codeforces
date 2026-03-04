@@ -3825,3 +3825,19 @@ Mental Model
 ------------
 "Always spend your limited operations where they buy you the
 largest immediate reduction in error."
+
+87. Counting number of unique elements with a Segment Tree
+
+If the values in the array lie in a small bounded range such as 0 ≤ v ≤ 63, we can efficiently maintain the number of distinct elements in any segment using a segment tree with bitmasks. Instead of storing frequencies, each node stores a 64-bit integer mask representing which values appear in its segment. The i-th bit of the mask is set if the value i occurs at least once in that segment.
+
+For a leaf node corresponding to element a[i], the mask is simply (1 << a[i]). For an internal node, the mask is computed as the bitwise OR of the masks of its two children, because a value appears in the parent segment if it appears in either child.
+
+To answer a query for a range [l, r], we combine the masks of the segment tree nodes that cover the range using bitwise OR. The resulting mask represents all values present in that range. The number of unique elements is then obtained by counting the number of set bits (popcount) in the final mask.
+
+Point updates are handled by updating the mask at the leaf and recomputing masks along the path to the root using OR. Since each node stores only a fixed-size 64-bit mask, both queries and updates run in O(log n) time with very small constant factors.
+
+Range updates are a bit trickier to handle and I've done a question regarding this in random/newYearTree.cpp
+
+88.
+
+Whenever the problem talks about subtree queries and updates, think of tree linearization using Euler Tour.

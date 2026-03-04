@@ -24,7 +24,7 @@ void dfs(int node, int parent) {
 	post[node] = t;
 }
 
-void build(int l, int r, int idx) {
+void build(int l, int r, int idx) { 
 	if (l == r) {
 		tree[idx] = (1ll << lin[l]);
 		return;
@@ -74,7 +74,7 @@ void update(int ql, int qr, int v, int l, int r, int idx) {
 int32_t main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	
+
 	int n, m; cin >> n >> m;
 	for (int i = 1; i <= n; i++) cin >> c[i];
 	int u, v;
