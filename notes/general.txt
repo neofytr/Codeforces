@@ -1522,3 +1522,105 @@ To answer a query for a range [l, r], we combine the masks of the segment tree n
 Point updates are handled by updating the mask at the leaf and recomputing masks along the path to the root using OR. Since each node stores only a fixed-size 64-bit mask, both queries and updates run in O(log n) time with very small constant factors.
 
 Range updates are a bit trickier to handle and I've done a question regarding this in random/newYearTree.cpp
+
+88. Technique: Logarithm Trick for Products
+
+Idea
+
+Multiplication grows extremely fast and easily overflows.  
+Use logarithms to convert multiplication into addition.
+
+Key identities:
+
+    log(a * b) = log(a) + log(b)
+    log(a / b) = log(a) - log(b)
+
+Thus we store:
+
+    log(value)
+
+instead of:
+
+    value
+
+------------------------------------------------------------
+
+Product Queries
+
+If
+
+    product = a1 * a2 * ... * ak
+
+then
+
+    log(product) = log(a1) + log(a2) + ... + log(ak)
+
+So a product query becomes a **sum query over logs**.
+
+Example:
+
+    store log(arr[i])
+
+    product(l, r)
+        = exp(sum(log(arr[l..r])))
+
+Often the exp step is avoided if only comparison is needed.
+
+------------------------------------------------------------
+
+Ratio Queries
+
+For
+
+    ratio = A / B
+
+take logs:
+
+    log(ratio) = log(A) - log(B)
+
+Thus:
+
+    ratio = exp(log(A) - log(B))
+
+If we only need to check bounds:
+
+    if log(A) - log(B) > log(LIMIT)
+        ratio > LIMIT
+
+------------------------------------------------------------
+
+Comparing Products
+
+To compare
+
+    a*b*c  vs  x*y*z
+
+compare
+
+    log(a)+log(b)+log(c)
+    log(x)+log(y)+log(z)
+
+No multiplication needed.
+
+------------------------------------------------------------
+
+Typical Usage
+
+Use this technique when problems involve:
+
+    • large products
+    • ratios of products
+    • product range queries
+    • comparing products
+    • multiplication of many values
+
+Implementation pattern:
+
+    store: log(value)
+    product → sum(logs)
+    ratio   → difference of sums
+    recover value → exp(result) (only if safe)
+
+Constraints
+
+    value must be > 0  (log undefined for 0)

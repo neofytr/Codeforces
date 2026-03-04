@@ -4526,3 +4526,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c155d1d2..a664cfcd  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1740b117] Solved a CF problem
+ 8 files changed, 4970 insertions(+), 3403 deletions(-)
+ create mode 100644 notes/DP.txt
+ create mode 100644 notes/general.txt
+ create mode 100644 random/filthyRich.cpp
+To https://github.com/neofytr/Codeforces.git
+   a664cfcd..1740b117  main -> main
+branch 'main' set up to track 'origin/main'.
