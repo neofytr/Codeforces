@@ -4534,3 +4534,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a664cfcd..1740b117  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 765adf02] Solved problem
+ 6 files changed, 334 insertions(+), 44 deletions(-)
+ create mode 100644 random/aGrowingTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   1740b117..765adf02  main -> main
+branch 'main' set up to track 'origin/main'.
