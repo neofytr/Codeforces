@@ -4552,3 +4552,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    230395b9..3e05d946  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 54dc88f6] Solved a CF problem
+ 5 files changed, 101 insertions(+), 28 deletions(-)
+ create mode 100644 random/danilPartTime.cpp
+ delete mode 100644 random/waterTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   3e05d946..54dc88f6  main -> main
+branch 'main' set up to track 'origin/main'.

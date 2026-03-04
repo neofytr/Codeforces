@@ -1668,3 +1668,107 @@ Super-root technique:
 
 This allows any tree algorithm (DFS order, LCA, subtree queries,
 binary lifting, DP) to work on forests without modifying the core logic.
+
+91. Converting Edge Values to Node Values
+
+i. Problem:
+
+Many tree problems assign values to edges, but most powerful tree techniques (Euler Tour, HLD, etc.) naturally operate on nodes.
+
+To apply these techniques, we convert edge values into node values.
+
+ii. Core Idea:
+
+Root the tree at some node (say 1).
+
+for every edge (u, v)
+    if u is the parent of v
+        store edge value on node v
+    else
+        store edge value on node u
+
+The root has no parent edge, so its value is zero.
+
+iii. Why This works:
+
+In a rooted tree, every node except the root has exactly one incoming edge, i.e, the edge from it's parent. Thus each node uniquely represents the edge connecting it to its parent.
+
+This creates a 1-1 mapping: node v <=> edge(parent[v], v)
+
+Therefore, storing the edge value in the child node preserves all edge information.
+
+iv. Some general properties
+
+Suppose we have a Tree T rooted at 1 with n nodes (1 to n) that has edges with weights.
+We map all the edges to node values and linearize the tree values using Euler Tour:
+
+
+---------------------------------------------
+int root = 1;
+int val[n + 1];
+vector<pair<int, int>> tree[n + 1];
+
+for (int i = 1; i <= n; i++) val[i] = -1;
+
+val[root] = 0; // since root has no incoming edge
+queue<int> q; q.push(root);
+while (!q.empty()) {
+    int x = q.front(); q.pop();
+    for (auto [v, w] : tree[x])
+        if (val[v] == -1)
+            val[v] = w, q.push(v);
+}
+
+int t = 0;
+int lin[2 * n + 1], start[n + 1], finish[n + 1];
+void dfs(int node, int parent) {
+    ++t;
+    start[node] = t; lin[t] = val[node];
+    for (auto [v, w] : tree[x])
+         if (v != parent) dfs(v, node);
+    ++t;
+    finish[node] = t; lin[t] = -val[node];
+}
+
+dfs(root, -1)
+---------------------------------------------
+
+The following properties hold:
+
+i. The value of the nodes in the subtree of a node v correspond to the edge weights of the edges in the subtree, except for the value of node v.
+
+Thus, since subtree(v) = continuous range lin[start[v], finish[v]], the edge weights of the edges in the subtree of v are represented by:
+
+lin[start[v] + 1, finish(v) - 1]
+
+ii. 
+
+Let sum(u, v) represent the sum of the edge weights on the path from node u to node v.
+
+Let s(u, v) represent the sum of node values on the path from node u to node v.
+
+Since each node value contributes the edge weight of the edge connecting it to its parent, we have
+
+    - sum(root, v) = s(root, v)
+
+Also since sum(u, v) = sum(root, u) + sum(root, v) - 2 * sum(root, lca(u, v)), we have:
+
+    - sum(u, v) = s(root, u) + s(root, v) - 2 * s(root, lca(u, v))
+
+iii. 
+
+To calculate s(root, u) for a node u, its sufficient to calculate the sum on the segment lin[start[root], start[u]] since any node whose subtree has been finished by the time we reach node u would have its contribution zero in the sum, and any node whose subtree hasn't been finished yet would have a positive contribution and these nodes are exactly the ancestors of u.
+
+iv. 
+
+If an edge (u, v) changes weight:
+
+    determine which node is the child
+        if parent[v] = u -> update node v
+        else -> update node u
+
+Then, perform a normal node update in the segment tree.
+
+
+
+
