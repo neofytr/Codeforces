@@ -4565,3 +4565,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    54dc88f6..e03ddd60  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8883f13d] Practiced CF problems
+ 5 files changed, 119 insertions(+), 20 deletions(-)
+ create mode 100644 random/beautifulSum.cpp
+To https://github.com/neofytr/Codeforces.git
+   e03ddd60..8883f13d  main -> main
+branch 'main' set up to track 'origin/main'.
