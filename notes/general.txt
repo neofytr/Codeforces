@@ -1789,3 +1789,44 @@ inside any segment can be answered using binary search.
 
 This method generalizes well to many problems where we need to query
 value-based properties inside a range.
+
+90. XOR Pair Sum Trick + Range XOR Updates
+
+i. Goal:
+
+Efficiently calculate the sum of XOR over all unordered pairs in a set/array:
+
+            S = Σ_{i < j} (a[i] XOR a[j])
+
+ii. Observation
+
+XOR operates independently on each bit. Therefore we can compute the contribution of every bit position separately and sum them.
+
+Consider a fixed bit position b. Let:
+    - ones_b = number of elements where bit b = 1
+    - zeroes_b = number of elements where bit b = 0
+
+Total elements: n = ones_b + zeroes_b
+
+A pair contributes to the XOR at the bit b only if the bits differ. Number of such pairs: ones_b * zeroes_b, and each such pair contributes 2^b to the sum.
+
+Therefore, the contribution of bit b is ones_b * zeroes_b * (1ll << b)
+
+Thus, S = Σ_b (ones_b * zeros_b * 2^b), where b iterates over all the bit positions.
+
+iii. Solution
+
+We maintain the size of the array/set and an array cnt[] where cnt[x] is the number of elements in the array/set such that the xth bit of the element is set.
+
+Then, S = Σ_x (cnt[x] * (size - cnt[x])) * (1ll << b) 
+
+iv. Range Update
+
+If we have to XOR the elements of the entire array/set with value x, then, each bit of the elements where x has bit = 1 flips.
+
+Thus, for each bit b which is set in x, cnt[b] = size - cnt[b].
+This allows for very cheap range updates.
+
+v. Range Query and Range Update
+
+If we want to support support queries that calculate the sum S but in some range of the array/set, and want to support range update xors to some range of the array/set, we can do this by maintaining a segment tree over the array.

@@ -1359,7 +1359,7 @@ i. Distance Formula using LCA
 Let T be a tree rooted at node x.
 For any two nodes u and v:
 
-    dist(u, v) = depth(u) + depth(v) - 2 * depth(lca(u, v))
+  1.  dist(u, v) = depth(u) + depth(v) - 2 * depth(lca(u, v))
 
 Explanation:
 
@@ -1378,6 +1378,13 @@ Therefore,
 
 Thus if we know the depth of every node and can compute LCA quickly, we can compute distances in O(1).
 Depths can be precomputed with a single DFS/BFS in O(N).
+
+    2. xor(u, v) = (xor(root, u)) XOR (xor(root, v))
+
+where xor(u, v) can be any of the two following things:
+        
+        - the xor of all the node values of the nodes on the path from u to v
+        - the xor of all the edge weights of the edges on the path from u to v
 
 ---------------------------------------------------------------------
 
@@ -1434,7 +1441,8 @@ Each node is pushed to an array E of size 2N twice.
 Invariants & Properties:
 
 1. Ancestor Relationship:
-    u is an ancestor of v  <=>  start[u] <= start[v] <= end[u]
+    i. u is an ancestor of v  <=>  start[u] <= start[v] <= end[u]
+    ii. u is not an ancestor of v iff either (start[u] <= end[u] <= start[v] or start[v] <= end[v] <= start[u])
 
 2. The Cancellation Trick (Path Sums):
     If we want to query path sums, we map values to a flattened array A:
@@ -1445,15 +1453,53 @@ Invariants & Properties:
     The prefix sum of A from start[root] = 1 to start[v] gives the exact sum of values on the path from the root to v.
     Why? Because any node x that is NOT on the path to v (i.e., it was visited but we already exited its subtree) will have both A[start[x]] and A[end[x]] included in the prefix sum. They cancel out (+value - value = 0). Only the nodes currently "open" (ancestors of v) contribute to the sum.
 
+    This works for any operation which we can invert using its second entry in the subarray [start[root], start[v]], like XOR (by placing the same value at both the points since the inverse of XOR is XOR itself).
+
 4. Ancestor-to-Descendant Path Queries:
-    If u is an ancestor of v, the range sum of A from [start[u], start[v]] gives the path sum from u to v.
+    If u is an ancestor of v (i.e, lca(u, v) = u), the range sum of A from [start[u], start[v]] gives the path sum from u to v.
     Why? All nodes visited between entering u and entering v (that are not on the direct path) are fully explored subtrees. They appear twice in this range (entry and exit) and cancel to 0. 
 
 5. Node-to-Node Path Queries (General Case):
-    If u is NOT an ancestor of v (assume start[u] < start[v]):
-    The range sum of A from [end[u], start[v]] leaves EXACTLY the path from u to v, EXCEPT for their LCA.
-    Why? Moving from end[u] to start[v], we go up the tree and back down. Subtrees fully explored between them cancel out. However, the LCA(u, v) encloses both, so its start time is BEFORE start[u], meaning it is completely excluded from the range [end[u], start[v]].
-    Path Sum = RangeSum(A, end[u], start[v]) + value[LCA(u, v)]
+    General Case: u is not an ancestor of v (i.e, lca(u, v) != u or v) (assume end[u] < start[v])
+    
+    Observation
+    -----------
+    In the Euler tour array A, every node appears twice:
+        A[start[x]] = +value[x]
+        A[end[x]]   = -value[x]
+    
+    Taking a prefix sum therefore represents the sum of values on the path from the root to the current node.
+    
+    To compute the path sum between u and v when u is NOT an ancestor of v:
+    
+        PathSum(u, v) = RangeSum(A, end[u], start[v]) + value[LCA(u, v)]
+    
+    Why this works
+    --------------
+    When moving in the Euler tour from end[u] to start[v], the traversal first moves upward from u toward the LCA, and then downward from the LCA to  v.
+    
+    • Nodes on the path from u → LCA(u,v) (excluding the LCA):
+      Their start times occur before start[u], while their end times lie in the interval [start[u], start[v]]. Therefore exactly one occurrence of each such node appears in the range [end[u], start[v]].
+    
+    • Nodes on the path from LCA(u,v) → v (excluding the LCA):
+      Their start times lie before start[v] while their end times occur after end[v]. Thus exactly one occurrence of each such node also lies inside the range.
+    
+    • Nodes NOT on the u–v path:
+      Their subtrees are completely explored within the interval, meaning   both their start and end entries appear. Since these contribute +value and -value, they cancel out.
+    
+    • The LCA:
+      Since LCA(u,v) encloses both nodes, its start time occurs before start[u] and its end time occurs after start[v]. Therefore it does NOT appear in the range [end[u], start[v]], and must be added separately.
+    
+    Thus the range [end[u], start[v]] contains exactly one contribution forevery node on the path between u and v except the LCA.
+    
+    Generalization
+    --------------
+    This technique works for any operation where the effect of a node can be inverted using its second appearance in the Euler tour. For example:
+    
+    • Sum → use +value at start and -value at end
+    • XOR → place value at both start and end (since XOR is its own     inverse)
+    
+    In such cases, a range query over the Euler tour can isolate the  nodes on the desired path by ensuring that nodes outside the path contribute twiceand cancel out.
 
 Uses:
 • Point updates and Path sum queries in O(log N) using a Fenwick/Segment Tree.
@@ -1754,6 +1800,18 @@ Since each node value contributes the edge weight of the edge connecting it to i
 Also since sum(u, v) = sum(root, u) + sum(root, v) - 2 * sum(root, lca(u, v)), we have:
 
     - sum(u, v) = s(root, u) + s(root, v) - 2 * s(root, lca(u, v))
+
+Let f(u, v) represent the xor of the edge weights on the path from u to v.
+
+Let g(u, v) represent the xor of the node values on the path from u to v.
+
+Then, since each node value contributes the edge weight of its parent, we have:
+
+    - f(root, u) = g(root, u)
+
+Also, since f(u, v) = f(root, u) XOR f(root, v), we have
+    
+    - f(u, v) = g(root, u) XOR g(root, v). 
 
 iii. 
 
