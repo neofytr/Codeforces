@@ -4559,3 +4559,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    3e05d946..54dc88f6  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e03ddd60] Worked on Codeforces problems
+ 3 files changed, 175 insertions(+), 1 deletion(-)
+ create mode 100644 random/distanceQueriesOnTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   54dc88f6..e03ddd60  main -> main
+branch 'main' set up to track 'origin/main'.
