@@ -19,7 +19,7 @@ void solve() {
 	}
 
 	int x = 0;
-	for (int bit = 30; bit >= 0; bit--)
+	for (int bit = 25; bit >= 0; bit--)
 		x |= (1ll << bit);
 
 	if ((n / 2) & 1) {
@@ -30,28 +30,28 @@ void solve() {
 			a[j] = k, a[j + 2] = k + 1;
 
 			int m;
-			for (int bit = 30; bit >= 0; bit--)
+			for (int bit = 25; bit >= 0; bit--)
 				if (a[j] & (1ll << bit)) {
 				 	m = bit;
 				 	break;
 				}
 
-			for (int bit = 30; bit >= 0; bit--)
+			for (int bit = 25; bit >= 0; bit--)
 				if (a[j + 2] & (1ll << bit)) {
 				 	m = max(m, bit);
 				 	break;
 				}
 
 
-			for (int bit = 30; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= m + 1; bit--)
 				a[j] |= (1ll << bit);
-			for (int bit = 30; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= m + 1; bit--)
 				a[j + 2] |= (1ll << bit);
 			i += 4, j += 4, k += 3;
 		}
 
-		a[1] = f + 1, a[3] = f + 2;
-		a[2] = f + 3, a[4] = f + 4;
+		a[1] = (1ll << 29), a[3] = (1ll << 28);
+		a[2] = (1ll << 27), a[4] = (1ll << 26);
 		a[n - 1] = a[1] ^ a[3] ^ (1ll << 30);
 		a[n] = a[2] ^ a[4] ^ (1ll << 30);
 
@@ -68,24 +68,23 @@ void solve() {
 			a[j] = k, a[j + 2] = k + 1;
 
 			int m;
-			for (int bit = 30; bit >= 0; bit--)
+			for (int bit = 25; bit >= 0; bit--)
 				if (a[j] & (1ll << bit)) {
 				 	m = bit;
 				 	break;
 				}
 
-			for (int bit = 30; bit >= 0; bit--)
+			for (int bit = 25; bit >= 0; bit--)
 				if (a[j + 2] & (1ll << bit)) {
 				 	m = max(m, bit);
 				 	break;
 				}
 
-			cout << m << endl;
-			for (int bit = 30; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= m + 1; bit--)
 				a[j] |= (1ll << bit);
-			for (int bit = 30; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= m + 1; bit--)
 				a[j + 2] |= (1ll << bit);
-			i += 4, j += 4, k += 3;
+			i += 4, j += 4, k += 2;
 		}	
 
 		for (int m = 1; m <= n; m++)
@@ -94,14 +93,6 @@ void solve() {
 			cout << a[f] << " ";
 		cout << endl;
 	}
-
-	int even = 0, odd = 0;
-	for (int i = 1; i <= f; i += 2)
-		odd ^= a[i];
-	for (int i = 2; i <= f; i += 2)
-		even ^= a[i];
-
-	cout << (a[1] ^ a[3]) << " " << (a[2] ^ a[4]) << endl;
 }
 
 int32_t main() {

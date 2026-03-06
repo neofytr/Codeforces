@@ -4608,3 +4608,9 @@ branch 'main' set up to track 'origin/main'.
 [main 1c10440e] Practiced CF problems
  1 file changed, 7 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main 894f3942] Worked on Codeforces problems
+ 6 files changed, 126 insertions(+), 27 deletions(-)
+ create mode 100644 random/1500/evenOddXOR.cpp
+To https://github.com/neofytr/Codeforces.git
+   acc2ad4b..894f3942  main -> main
+branch 'main' set up to track 'origin/main'.
