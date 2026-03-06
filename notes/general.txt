@@ -1911,3 +1911,164 @@ Now, f(2n) = g(n) ^ h(n)
               = (f(n) << 1) ^ h(n)
 
 Thus, h(n) = f(2n) ^ (f(n) << 1)
+
+91. Technique: Skipping Multiples with Memoization (for dynamic MEX-like queries)
+
+Problem pattern
+---------------
+We maintain a set S of integers with two operations:
+
+1) + x
+   insert x into S
+
+2) ? k
+   find the smallest multiple of k that is NOT in S
+
+Formally we want the minimum value:
+    i * k
+such that
+    i * k ∉ S
+
+
+Naive approach
+--------------
+For each query:
+
+    for (i = 0; ; i++)
+        if (i*k not in S)
+            return i*k
+
+This is too slow because i could go up to O(n/k) every time.
+
+
+Key idea
+--------
+Maintain a hashmap:
+
+    f[k] = largest multiplier already checked for k
+
+Interpretation:
+    all multiples
+        0*k, 1*k, 2*k, ... , f[k]*k
+    have already been confirmed to exist in S.
+
+So the next search can start from:
+
+    i = f[k]
+
+instead of restarting from 0.
+
+
+Implementation sketch
+---------------------
+
+set<int> s
+unordered_map<int,int> f
+
+query(k):
+    m = largest element in S
+
+    for (i = f[k]; i*k <= m+k; i++)
+        if (i*k not in S):
+            answer = i*k
+            f[k] = i
+            break
+
+
+Why this works
+--------------
+If a multiple i*k is missing, it will remain missing forever because the only operation that modifies S is insertion.
+
+Therefore once we discover that a multiple exists, we never need to recheck it.
+
+
+Amortized complexity proof
+--------------------------
+
+Let N be the total number of insertions.
+
+Key observation:
+
+Each loop iteration corresponds to discovering that
+    i*k ∈ S
+and therefore increasing f[k].
+
+This means each iteration "consumes" one element of S that is a multiple of k.
+
+
+Important property
+------------------
+
+For any element x inserted into S, it can only be discovered once for a given k when checking the multiple:
+    i = x / k
+
+
+Total work bound
+----------------
+
+Across all queries with the same k:
+    i increases monotonically.
+
+Therefore each multiple of k in S is checked at most once.
+Thus total work for a fixed k is:
+    O(number of multiples of k in S)
+
+
+Summing over all k
+------------------
+
+Each iteration corresponds to some element x ∈ S.
+The iteration happens only when:
+
+    x = i*k
+
+so k divides x.
+
+Therefore every iteration corresponds to a divisor of x.
+Number of divisors of x:
+
+    d(x) ≤ ~100 for x ≤ 1e9
+    d(x) ≤ ~1000 even for very large numbers
+
+Thus each element contributes at most d(x) iterations.
+
+
+Total bound
+-----------
+
+Total loop iterations across all queries:
+
+    ≤ Σ d(x) for x ∈ S
+
+For N insertions:
+
+    ≤ N * average_divisors
+
+≈ N log N (very loose bound)
+≈ N * ~100 in practice
+
+
+Final complexity
+----------------
+
+Set lookup:
+    O(log N)
+
+Total loop iterations:
+    O(N log N)
+
+Therefore total query complexity:
+
+    O(N log N)
+
+
+Key takeaway
+------------
+
+This technique works because:
+
+1) search pointers f[k] only move forward
+2) each iteration "consumes" a multiple that exists in S
+3) each element has only limited divisors
+
+This is a classic amortized trick for dynamic "missing multiple" queries.
