@@ -4598,3 +4598,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    fb495626..254d227c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main acc2ad4b] Solved a CF problem
+ 4 files changed, 288 insertions(+), 12 deletions(-)
+ create mode 100755 DataStructures/SQRT/main
+ create mode 100644 DataStructures/SQRT/test
+To https://github.com/neofytr/Codeforces.git
+   254d227c..acc2ad4b  main -> main
+branch 'main' set up to track 'origin/main'.
