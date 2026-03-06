@@ -1830,3 +1830,41 @@ This allows for very cheap range updates.
 v. Range Query and Range Update
 
 If we want to support support queries that calculate the sum S but in some range of the array/set, and want to support range update xors to some range of the array/set, we can do this by maintaining a segment tree over the array.
+
+90. XOR Results
+
+These will be helpful in XOR constructive problems.
+
+i. If n is even, then n ^ (n + 1) = 1
+Proof:
+
+If n is even, then, n and n + 1 differ in only the LSB which is turned on in n + 1 and off in n. Thus, n ^ (n + 1) = 1.
+
+ii. XOR of three consecutive numbers
+
+Let f(n) = n ^ (n + 1) ^ (n + 2) for n >= 1
+    
+- If n is even, then f(n) = n + 3
+Proof:
+
+Since n is even, n ^ (n + 1) = 1
+Also, then, n + 2 is also even and thus has its LSB turned off. Thus, xoring it with 1 turns its LSB on and increases it by 1. Thus, f(n) = n + 3
+
+- If n odd, then f(n) = n - 1
+Proof:
+
+Since n is odd, n + 1 is even, thus (n + 1) ^ (n + 2) = 1
+Also, since n is odd, its LSB is on, thus, xoring it with 1 will turn its LSB off and thus decrease it by 1. Thus f(n) = n - 1.
+
+iii. XOR of four consecutive numbers
+
+Let f(n) = n ^ (n + 1) ^ (n + 2) ^ (n + 3) for n >= 1
+Then, if n is even, then f(n) = 0.
+
+Proof:
+
+Suppose n is even. Then n ^ (n + 1) ^ (n + 2) = n + 3. Thus, f(n) = 0.
+
+iv. XOR of first n natural numbers
+
+Let f(n) = 1 ^ 2 ... ^ n for n >= 1

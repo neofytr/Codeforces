@@ -19,7 +19,7 @@ void solve() {
 	}
 
 	int x = 0;
-	for (int bit = 25; bit >= 0; bit--)
+	for (int bit = 24; bit >= 0; bit--)
 		x |= (1ll << bit);
 
 	if ((n / 2) & 1) {
@@ -29,25 +29,11 @@ void solve() {
 			a[i] = k, a[i + 2] = k + 1;
 			a[j] = k, a[j + 2] = k + 1;
 
-			int m;
-			for (int bit = 25; bit >= 0; bit--)
-				if (a[j] & (1ll << bit)) {
-				 	m = bit;
-				 	break;
-				}
-
-			for (int bit = 25; bit >= 0; bit--)
-				if (a[j + 2] & (1ll << bit)) {
-				 	m = max(m, bit);
-				 	break;
-				}
-
-
-			for (int bit = 25; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= 19; bit--)
 				a[j] |= (1ll << bit);
-			for (int bit = 25; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= 19; bit--)
 				a[j + 2] |= (1ll << bit);
-			i += 4, j += 4, k += 3;
+			i += 4, j += 4, k += 2;
 		}
 
 		a[1] = (1ll << 29), a[3] = (1ll << 28);
@@ -67,22 +53,9 @@ void solve() {
 			a[i] = k, a[i + 2] = k + 1;
 			a[j] = k, a[j + 2] = k + 1;
 
-			int m;
-			for (int bit = 25; bit >= 0; bit--)
-				if (a[j] & (1ll << bit)) {
-				 	m = bit;
-				 	break;
-				}
-
-			for (int bit = 25; bit >= 0; bit--)
-				if (a[j + 2] & (1ll << bit)) {
-				 	m = max(m, bit);
-				 	break;
-				}
-
-			for (int bit = 25; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= 19; bit--)
 				a[j] |= (1ll << bit);
-			for (int bit = 25; bit >= m + 1; bit--)
+			for (int bit = 25; bit >= 19; bit--)
 				a[j + 2] |= (1ll << bit);
 			i += 4, j += 4, k += 2;
 		}	
@@ -92,6 +65,14 @@ void solve() {
 		if (f != n)
 			cout << a[f] << " ";
 		cout << endl;
+	}
+
+	int odd = 0, even = 0;
+	set<int> s;
+	for (int i = 1; i <= f; i++) {
+		if (i & 1) odd ^= a[i];
+		else even ^= a[i];
+		s.insert(a[i]);
 	}
 }
 
