@@ -4624,3 +4624,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    387d9696..7256a773  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e850bee2] Practiced CF problems
+ 3 files changed, 63 insertions(+), 1 deletion(-)
+ create mode 100644 random/1500/garage.cpp
+To https://github.com/neofytr/Codeforces.git
+   7256a773..e850bee2  main -> main
+branch 'main' set up to track 'origin/main'.
