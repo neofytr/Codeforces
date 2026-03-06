@@ -11,7 +11,7 @@ void solve() {
 
 	for (int i = 2; i <= n; i++)
 		cin >> p, tree[p].push_back(i);
-	for (int i = 1; i <= n; i++) cin >> a[i];
+	for (int i = 1; i <= n; i++) cin >> a[i];r
 
 }
 
