@@ -4592,3 +4592,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    09bfb91b..fb495626  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 254d227c] CF grind
+ 5 files changed, 50 insertions(+), 21 deletions(-)
+ create mode 100644 DataStructures/SQRT/decomposition.cpp
+To https://github.com/neofytr/Codeforces.git
+   fb495626..254d227c  main -> main
+branch 'main' set up to track 'origin/main'.
