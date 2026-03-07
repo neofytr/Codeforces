@@ -2,62 +2,36 @@
 using namespace std;
 
 #define int long long
-#define MAX (int)(1e5)
 
-int tree[4 * MAX + 1];
+void solve() {
+	int n,m,k;
+	cin>>n>>m>>k;
 
-void update(int ql, int qr, int v, int l, int r, int idx) {
-	if (r < ql || qr < l) return;
-	if (l >= ql && r <= qr) {
-		tree[idx] += v;
-		return;
+	vector<int>a(m);
+	for(int &x:a) cin>>x;
+
+	int q = n/k;
+	int r = n%k;
+
+	int big=0;
+
+	for(int x:a){
+		if(x>q+1){
+			cout<<"NO\n";
+			return;
+		}
+		if(x==q+1) big++;
 	}
 
-	int m = (l + r) >> 1;
-	update(ql, qr, v, l, m, idx << 1), update(ql, qr, v, m + 1, r, (idx << 1) | 1);
+	if(big>r) cout<<"NO\n";
+	else cout<<"YES\n";
 }
 
-int get(int i, int l, int r, int idx) {
-	if (l == r) return tree[idx];
-	int m = (l + r) >> 1;
-	if (i <= m) return tree[idx] + get(i, l, m, idx << 1);
-	return tree[idx] + get(i, m + 1, r, (idx << 1) | 1);
-}
+int32_t main(){
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
 
-void solve(int t) {
-	int n, m, k; cin >> n >> m >> k;
-	vector<int> a(m + 1);
-	for (int i = 1; i <= m; i++) cin >> a[i];
-
-	if (k > m) {
-		cout << "NO" << endl;
-		return;
-	}
-
-	for (int i = 1; i <= 4 * m; i++) tree[i] = 0;
-
-	sort(a.begin() + 1, a.end());
-	int cnt = 0;
-	for (int i = 1; i <= m - k + 1; i++) {
-		a[i] -= get(i, 1, m, 1);
-		cnt += a[i];
-		update(i, m, a[i], 1, m, 1);
-		a[i] = 0;
-	}
-
-	for (int i = 1; i <= m; i++)
-		cout << a[i] - get(i, 1, m, 1) << " ";
-	cout << endl;
-	if (cnt < (n / k) * k) {
-		cout << "NO" << endl;
-		return;
-	}
-	
-	cout << "YES" << endl;
-}
-
-int32_t main() {
-	int t; cin >> t;
-	for (int i = 1; i <= t; i++) solve(i);
-	return 0;
+	int t;
+	cin>>t;
+	while(t--) solve();
 }
