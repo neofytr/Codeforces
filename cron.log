@@ -4658,3 +4658,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    90160d5b..4333ce15  main -> main
 branch 'main' set up to track 'origin/main'.
+[main cd8f868c] Solved problem
+ 6 files changed, 71 insertions(+), 24 deletions(-)
+ create mode 100644 random/1500/divisibleNumbers.cpp
+ create mode 100644 random/1500/makeNonZeroSum.cpp
+To https://github.com/neofytr/Codeforces.git
+   4333ce15..cd8f868c  main -> main
+branch 'main' set up to track 'origin/main'.
