@@ -34,32 +34,25 @@ void solve(int t) {
 		return;
 	}
 
-	int cnt = 0;
-	for (int i = 1; i <= 4 * n; i++) tree[i] = 0;
+	for (int i = 1; i <= 4 * m; i++) tree[i] = 0;
+
 	sort(a.begin() + 1, a.end());
-	for (int i = 1; i <= m; i++)
-		cout << a[i] << " ";
-	cout << endl;
+	int cnt = 0;
 	for (int i = 1; i <= m - k + 1; i++) {
-		int elt = a[i] - get(i, 1, n, 1);
-		cnt += elt;
-		update(i, i + k - 1, elt, 1, n, 1);
+		a[i] -= get(i, 1, m, 1);
+		cnt += a[i];
+		update(i, m, a[i], 1, m, 1);
+		a[i] = 0;
 	}
 
-	if (cnt < n / k) {
-		cout << "NO" << endl;
-		return;
-	}
-
-	int unique = 0;
 	for (int i = 1; i <= m; i++)
-		if (a[i] - get(i, 1, n, 1)) unique++;
-
-	if (unique < (n % k)) {
+		cout << a[i] - get(i, 1, m, 1) << " ";
+	cout << endl;
+	if (cnt < (n / k) * k) {
 		cout << "NO" << endl;
 		return;
 	}
-
+	
 	cout << "YES" << endl;
 }
 
