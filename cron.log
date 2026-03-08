@@ -4726,3 +4726,8 @@ branch 'main' set up to track 'origin/main'.
  5 files changed, 105 insertions(+), 10 deletions(-)
  create mode 100644 random/1500/rangeUpdatePointQuery.cpp
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main cda8fb70] Solved a few problems
+ 1 file changed, 4 insertions(+)
+To https://github.com/neofytr/Codeforces.git
+   166a471e..cda8fb70  main -> main
+branch 'main' set up to track 'origin/main'.
