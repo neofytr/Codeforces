@@ -4722,3 +4722,7 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    b8cb125c..166a471e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8e30b744] Solved a few problems
+ 5 files changed, 105 insertions(+), 10 deletions(-)
+ create mode 100644 random/1500/rangeUpdatePointQuery.cpp
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
