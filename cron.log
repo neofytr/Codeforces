@@ -5046,3 +5046,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f695e2b2..15b0cb90  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 5d6257e2] Solved a few problems
+ 2 files changed, 40 insertions(+)
+ create mode 100644 random/1500/bearFriendship.cpp
+To https://github.com/neofytr/Codeforces.git
+   15b0cb90..5d6257e2  main -> main
+branch 'main' set up to track 'origin/main'.

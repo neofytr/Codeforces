@@ -29,7 +29,11 @@ int32_t main() {
 			}
 
 			edges >>= 1;
-			if ()
+			if ((nodes * (nodes - 1)) / 2 != edges) {
+				cout << "NO" << endl;
+				return 0;
+			}
 		}
+	cout << "YES" << endl;
 	return 0;
 }
