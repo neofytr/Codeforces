@@ -7,6 +7,14 @@ int32_t main() {
 	int n; cin >> n;
 	vector<int> a(n + 1);
 	for (int i = 1; i <= n; i++) cin >> a[i];
-	
+
+	int sum = 0, cnt = 0;
+	for (int i = 1; i <= n; i++) {
+		sum += a[i];
+		if (!sum)
+			cnt++, sum = a[i];
+	}
+
+	cout << cnt << endl;
 	return 0;
 }

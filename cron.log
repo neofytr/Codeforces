@@ -5052,3 +5052,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    15b0cb90..5d6257e2  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 91d27f63] Solved a CF problem
+ 5 files changed, 26 insertions(+), 17 deletions(-)
+ create mode 100644 random/1500/nonZeroSegments.cpp
+To https://github.com/neofytr/Codeforces.git
+   5d6257e2..91d27f63  main -> main
+branch 'main' set up to track 'origin/main'.
