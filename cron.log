@@ -5099,3 +5099,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    cab4b6c1..bae659c0  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3796f206] More problems solved
+ 3 files changed, 51 insertions(+)
+ create mode 100644 random/1500/new.cpp
+ create mode 100644 random/1500/solve.cpp
+To https://github.com/neofytr/Codeforces.git
+   bae659c0..3796f206  main -> main
+branch 'main' set up to track 'origin/main'.

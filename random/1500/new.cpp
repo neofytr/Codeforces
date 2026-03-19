@@ -9,15 +9,15 @@ int maxProfit(vector<int> &prices) {
 
 	for (int price : prices) {
 		minpr = min(minpr, price);
-		maxprofit = max(maxprofit, price);
+		maxprofit = max(maxprofit, price - minpr);
 	}
 
 	return maxprofit;
 }
 
 int32_t main() {
-	vector<int> prices = {7, 1, 5, 3, 6, 4};
+	vector<int> prices = {7,6,4,3,1};
 
-	cout << maxprofit(prices) << endl;
+	cout << maxProfit(prices) << endl;
 	return 0;
 }
