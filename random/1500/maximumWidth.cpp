@@ -27,7 +27,7 @@ int32_t main() {
 	vector<int> mini(m + 1);
 	mini[1] = *f[t[1]].begin();
 	for (int i = 2; i <= m; i++) {
-		auto itr = lower_bound(f[t[i]].begin(), f[t[i]].end(), mini[i - 1]);
+		auto itr = upper_bound(f[t[i]].begin(), f[t[i]].end(), mini[i - 1]);
 		mini[i] = *itr;
 	}
 
