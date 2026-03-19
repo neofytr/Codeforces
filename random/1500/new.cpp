@@ -21,3 +21,11 @@ int32_t main() {
 	cout << maxProfit(prices) << endl;
 	return 0;
 }
+
+mirahi 
+hult prize (top 8)
+60,000 per month
+startup was in VR space
+it was unofficial, i was working for the founding member senior (mihika deshpande)
+
+in the range 50-70k would be appreciated
