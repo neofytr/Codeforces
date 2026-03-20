@@ -5154,3 +5154,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    4d8d0d70..299a89cf  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 73365927] Solved some problems
+ 5 files changed, 29 insertions(+), 3 deletions(-)
+ create mode 100644 random/1500/sageBirthday.cpp
+ create mode 100644 random/1500/sageBirthdayHard.cpp
+To https://github.com/neofytr/Codeforces.git
+   299a89cf..73365927  main -> main
+branch 'main' set up to track 'origin/main'.
