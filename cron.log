@@ -5253,3 +5253,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    03a6a952..d1085575  main -> main
 branch 'main' set up to track 'origin/main'.
+[main ac86ed01] Solved problem
+ 5 files changed, 78 insertions(+), 50 deletions(-)
+ create mode 100644 random/1500/ABBC.cpp
+To https://github.com/neofytr/Codeforces.git
+   d1085575..ac86ed01  main -> main
+branch 'main' set up to track 'origin/main'.
