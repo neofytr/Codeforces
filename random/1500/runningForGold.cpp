@@ -5,24 +5,28 @@ using namespace std;
 
 void solve() {
 	int n; cin >> n;
-	vector<vector<int>> r(n + 1, vector<int>(6, 0)), v(6, vector<int>(n + 1, 0));
+	vector<vector<int>> r(n + 1, vector<int>(6, 0));
 	for (int i = 1; i <= n; i++)
 		for (int j = 1; j <= 5; j++)
-			cin >> r[i][j], v[j][i] = r[i][j];
-
-	for (int j = 1; j <= 5; j++) sort(v[j].begin() + 1, v[j].end());
+			cin >> r[i][j];
+	vector<bool> done(n + 1, false);
 
 	vector<int> c;
-	for (int i = 1; i <= n; i++) {
-		int cnt = 0;
-		for (int j = 1; j <= 5; j++) {
-			int rank = r[i][j];
-			int k = lower_bound(v[j].begin() + 1, v[j].end(), rank) - v[j].begin();
-			cnt += (n - k + 1);
+	
+	for (int i = 1; i <= n; i++)
+		if (!done[i]) {
+			for (int j = i + 1; (j <= n) && (!done[i]); j++) {
+				int cnt = 0;
+				for (int k = 1; k <= 5; k++)
+					cnt += (r[i][k] < r[j][k]);
+				if (cnt <= 2) done[i] = true;
+				else done[j] = true;
+			}
+
+			if (!done[i]) c.push_back(i);
+			done[i] = true;
 		}
 
-		if (cnt >= 3 * n) c.push_back(i);
-	}
 
 	for (int i : c) {
 		bool ok = true;
@@ -46,7 +50,6 @@ void solve() {
 			return;
 		}
 	}
-
 	cout << -1 << endl;
 }
 
