@@ -5225,3 +5225,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    72177b47..b50c9720  main -> main
 branch 'main' set up to track 'origin/main'.
+[main c795b4dd] CF grind
+ 6 files changed, 169 insertions(+), 12 deletions(-)
+ create mode 100644 random/1500/runningForGold.cpp
+ create mode 100644 random/1500/sagheerNubian.cpp
+To https://github.com/neofytr/Codeforces.git
+   b50c9720..c795b4dd  main -> main
+branch 'main' set up to track 'origin/main'.
