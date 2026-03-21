@@ -2072,3 +2072,29 @@ This technique works because:
 3) each element has only limited divisors
 
 This is a classic amortized trick for dynamic "missing multiple" queries.
+
+92. Rolling Hashes
+
+Let n >= 1.
+Let s[0, n - 1] is a string of lowercase latin characters. We create an array str[1, n] such that
+    
+        str[i] = s[i] - 'a' + 1;
+
+Let p, MOD are positive integers.
+We define the rolling hash of a substring str[l, r] for 1 <= l <= r <= n as follows:
+
+    hash(l, r) = (summation (i = l to r) s[i] * p^(r - i)) % MOD
+
+Define h[i] to be the rolling hash of the substring str[1, i] for 1 <= i <= n. Also, define h[0] = 0. Then, 
+
+i. h[i] = (h[i - 1] * p % MOD + str[i]) % MOD for all 1 <= i <= n
+
+ii. hash(l, r) = (hash[r] - hash[l - 1] * (r - l + 1) % MOD + MOD) % MOD;
+
+A rolling hash turns a string into a number so that:
+
+i. equal strings are guaranteed to have the same hash
+ii. different string probably have different hashes
+
+General bases p = 31 (for lowercase), 131 (general)
+General MOD = 1e9 + 7
