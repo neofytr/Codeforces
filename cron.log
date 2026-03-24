@@ -5490,3 +5490,9 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certi
 [main c7a47121] Worked on Codeforces problems
  1 file changed, 3 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main e800f819] Solved problem
+ 2 files changed, 16 insertions(+)
+ create mode 100644 random/1500/didWeGet.cpp
+To https://github.com/neofytr/Codeforces.git
+   4d6dded6..e800f819  main -> main
+branch 'main' set up to track 'origin/main'.
