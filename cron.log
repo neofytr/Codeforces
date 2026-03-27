@@ -5702,3 +5702,6 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a85cd1de..df1457d8  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 781c037d] Worked on Codeforces problems
+ 1 file changed, 5 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Failed to connect to github.com port 443 after 134657 ms: Couldn't connect to server
