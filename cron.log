@@ -5705,3 +5705,6 @@ branch 'main' set up to track 'origin/main'.
 [main 781c037d] Worked on Codeforces problems
  1 file changed, 5 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Failed to connect to github.com port 443 after 134657 ms: Couldn't connect to server
+[main d2914f9f] Practiced CF problems
+ 1 file changed, 3 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
