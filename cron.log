@@ -6140,3 +6140,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    57f21207..cf63a2fb  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 19b536a4] Worked on Codeforces problems
+ 2 files changed, 43 insertions(+)
+ create mode 100644 random/1500/airConditioners.cpp
+To https://github.com/neofytr/Codeforces.git
+   cf63a2fb..19b536a4  main -> main
+branch 'main' set up to track 'origin/main'.
