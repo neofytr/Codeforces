@@ -78,8 +78,10 @@ int32_t main() {{
             json.dump(self.config, f, indent=2)
 
     def create_topic(self, topic_name):
-        """Create a new topic folder structure"""
-        topic_path = self.root_dir / topic_name
+        """Create a new topic folder structure under topics/"""
+        topics_dir = self.root_dir / 'topics'
+        topics_dir.mkdir(exist_ok=True)
+        topic_path = topics_dir / topic_name
 
         if topic_path.exists():
             print(f"❌ Topic '{topic_name}' already exists!")
@@ -121,8 +123,8 @@ Collection of problems and solutions for {topic_name}.
 """)
 
         print(f"✅ Created topic '{topic_name}' successfully!")
-        print(f"📁 Structure: {topic_name}/{{problems, journal, prog, README.md}}")
-        print(f"🚀 Usage: cd {topic_name} && ./prog <problem_name>")
+        print(f"📁 Structure: topics/{topic_name}/{{problems, journal, prog, README.md}}")
+        print(f"🚀 Usage: cd topics/{topic_name} && ./prog <problem_name>")
 
         return True
 
@@ -132,7 +134,9 @@ Collection of problems and solutions for {topic_name}.
 import sys
 import os
 from pathlib import Path
-sys.path.append('{self.root_dir}')
+# Root is 2 levels up from topics/<topic>/
+root = str(Path(__file__).resolve().parent.parent.parent)
+sys.path.append(root)
 from {Path(__file__).stem} import ProblemManager
 
 if __name__ == "__main__":
@@ -152,7 +156,11 @@ class ProblemManager:
         self.journal_dir = self.topic_path / 'journal'
         self.summary_file = self.topic_path / 'README.md'
 
-        config_file = self.topic_path.parent / '.cf_config.json'
+        # Config is at repo root, which is 2 levels up (topics/<topic>/)
+        config_file = self.topic_path.parent.parent / '.cf_config.json'
+        if not config_file.exists():
+            # Fallback: 1 level up (in case topic is directly under root)
+            config_file = self.topic_path.parent / '.cf_config.json'
         with open(config_file, 'r') as f:
             self.config = json.load(f)
 
@@ -366,7 +374,9 @@ Examples:
 
         print("Pushing to github...")
         gitCommitMsg = f"Done with {problem_name}"
-        command = f"cd .. && git add . && git commit -m '{gitCommitMsg}' && git push -u origin main"
+        # Navigate to repo root (2 levels up from topics/<topic>/)
+        repo_root = self.topic_path.parent.parent
+        command = f"cd {repo_root} && git add . && git commit -m '{gitCommitMsg}' && git push -u origin main"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print(result.stdout, end="")
         print("Done!")
