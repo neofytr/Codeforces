@@ -13751,3 +13751,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9bce9a03..ca7269c0  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4cd224e1] Problem solving session
+ 3 files changed, 55 insertions(+)
+ create mode 100644 practice/random/1600/stayOrMirror.cpp
+ create mode 100644 practice/random/1600/test
+To https://github.com/neofytr/Codeforces.git
+   ca7269c0..4cd224e1  main -> main
+branch 'main' set up to track 'origin/main'.
