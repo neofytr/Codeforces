@@ -14522,3 +14522,8 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certi
 To https://github.com/neofytr/Codeforces.git
    033f49db..0ea96757  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0f25ef3f] Solved a CF problem
+ 1 file changed, 5 insertions(+)
+To https://github.com/neofytr/Codeforces.git
+   0ea96757..0f25ef3f  main -> main
+branch 'main' set up to track 'origin/main'.
