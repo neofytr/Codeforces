@@ -14547,3 +14547,6 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c832cc89..c5a3ccec  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e3f679b8] Problem solving session
+ 1 file changed, 5 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
