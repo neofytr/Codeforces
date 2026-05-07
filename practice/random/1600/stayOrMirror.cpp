@@ -36,10 +36,11 @@ void solve() {
 	dp[1] = 0, update(p[1], 1, m, 1);
 	for (int i = 2; i <= n; i++) {
 		dp[i][0] = min(dp[i - 1][0], dp[i - 1][1])  + query(p[i] + 1, m, 1, m, 1);
-		dp[i][1] = min(dp[i - 1][0], dp[i - 1][1]) + query(2 * n - p[i] + 1, m, 1, m, 1)
+		dp[i][1] = min(dp[i - 1][0], dp[i - 1][1]) + query(2 * n - p[i] + 1, m, 1, m, 1);
+		
 
 	}
-	
+
 	cout << min(dp[i][0], dp[i][1]) << endl;
 }
 
