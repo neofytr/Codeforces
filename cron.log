@@ -16102,3 +16102,8 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certi
 [main b0171fb9] Solved some problems
  1 file changed, 3 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': SSL: certificate subject name (*.bits-pilani.ac.in) does not match target host name 'github.com'
+[main 9ee8d587] Solved a few problems
+ 1 file changed, 3 insertions(+)
+To https://github.com/neofytr/Codeforces.git
+   a9f32843..9ee8d587  main -> main
+branch 'main' set up to track 'origin/main'.
