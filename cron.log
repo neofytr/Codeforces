@@ -16351,3 +16351,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e6e0eab4..c0f2ad93  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 93f4465e] CF grind
+ 5 files changed, 87 insertions(+), 3 deletions(-)
+ create mode 100644 practice/random/bracketSequence.cpp
+ create mode 100644 practice/random/noPrimeDiff.cpp
+To https://github.com/neofytr/Codeforces.git
+   c0f2ad93..93f4465e  main -> main
+branch 'main' set up to track 'origin/main'.
