@@ -16407,3 +16407,6 @@ branch 'main' set up to track 'origin/main'.
  5 files changed, 45 insertions(+), 15 deletions(-)
  create mode 100644 practice/random/insertZeroInvert.cpp
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main 80c1b52c] Worked on Codeforces problems
+ 1 file changed, 4 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
