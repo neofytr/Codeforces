@@ -16403,3 +16403,7 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    fc1c6e46..c692cba8  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f47ac22e] Practiced CF problems
+ 5 files changed, 45 insertions(+), 15 deletions(-)
+ create mode 100644 practice/random/insertZeroInvert.cpp
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
