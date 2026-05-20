@@ -16424,3 +16424,6 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 To https://github.com/neofytr/Codeforces.git
    c692cba8..e7888160  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 3af269e2] Solved some problems
+ 1 file changed, 5 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
