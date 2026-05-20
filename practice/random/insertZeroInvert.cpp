@@ -15,7 +15,7 @@ void solve() {
 	}
 
 	int i = n; 
-	while (i >= 0) {
+	while (i >= 1) {
 		if (!a[i]) {
 			p[n - i + 1] = 0;
 			i--;
@@ -23,14 +23,18 @@ void solve() {
 		}
 
 		int j = i;
-		while (j >= 0 && a[j])
-			j--;
+		while (j >= 1 && a[j])
+			p[n - j + 1] = 0, j--;
 
 		int len = i - j;
-
-
+		p[n - j] = len;
 		i = j;
 	}
+
+	cout << "YES" << endl;
+	for (int i = 1; i <= n; i++)
+		cout << p[i] << " ";
+	cout << endl;
 }
 
 int32_t main() {
