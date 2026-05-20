@@ -16432,3 +16432,10 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 To https://github.com/neofytr/Codeforces.git
    e7888160..0ac488ca  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 93113db6] Solved some problems
+ 6 files changed, 91 insertions(+), 11 deletions(-)
+ create mode 100644 practice/random/particles.cpp
+ create mode 100644 practice/random/woodenToyFestival.cpp
+To https://github.com/neofytr/Codeforces.git
+   0ac488ca..93113db6  main -> main
+branch 'main' set up to track 'origin/main'.
