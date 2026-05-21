@@ -16515,3 +16515,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    bff849f7..76ae3a94  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9ad17276] Solved a CF problem
+ 5 files changed, 53 insertions(+), 11 deletions(-)
+ create mode 100644 practice/random/vampiricPowers.cpp
+To https://github.com/neofytr/Codeforces.git
+   76ae3a94..9ad17276  main -> main
+branch 'main' set up to track 'origin/main'.
