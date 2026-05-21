@@ -16473,3 +16473,6 @@ branch 'main' set up to track 'origin/main'.
 [main 3fb71d62] Problem solving session
  4 files changed, 36 insertions(+), 10 deletions(-)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main ce4a960e] Solved problem
+ 1 file changed, 3 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
