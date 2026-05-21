@@ -16544,3 +16544,10 @@ branch 'main' set up to track 'origin/main'.
 [main 15a6473b] Solved problem
  1 file changed, 5 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main 076db6a7] CF grind
+ 3 files changed, 84 insertions(+)
+ create mode 100755 topics/DataStructures/Trie/main
+ create mode 100644 topics/DataStructures/Trie/stringTrie.cpp
+To https://github.com/neofytr/Codeforces.git
+   ad526f64..076db6a7  main -> main
+branch 'main' set up to track 'origin/main'.

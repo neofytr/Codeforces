@@ -15,6 +15,7 @@ struct Node {
 };
 
 // accepts only lowercase latin characters
+// node->arr[c] is null iff the character c doesn't exist at the node
 class Trie {
 private:
 	Node *root;
@@ -33,19 +34,20 @@ private:
 
 	bool _contains(Node *node, const string &s, int i) const {
 		int n = s.length();
-		if (!node) return false;
 		if (i >= n) return node->end;
 
 		int c = s[i] - 'a';
+		if (!node->arr[c]) return false;
 		return _contains(node->arr[c], s, i + 1);
 	}
 
 	bool _starts_with(Node *node, const string &s, int i) const {
 		int n = s.length();
-		if (!node) return false;
 		if (i >= n) return true;
+		
 		int c = s[i] - 'a';
-		return _starts_with(node->arr[c], s, 0); 
+		if (!node->arr[c]) return false;
+		return _starts_with(node->arr[c], s, i + 1);
 	}
 
 public:
@@ -73,9 +75,6 @@ int32_t main() {
 	tree.insert("hell");
 	tree.insert("old");
 
-	cout << tree.contains("hello") << endl;
 	cout << tree.starts_with("he") << endl;
-	cout << tree.contains("lets") << endl;
-	cout << tree.starts_with("x") << endl;
 	return 0;
 }
