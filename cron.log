@@ -16476,3 +16476,9 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 [main ce4a960e] Solved problem
  1 file changed, 3 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main a0967851] More problems solved
+ 2 files changed, 28 insertions(+)
+ create mode 100644 practice/random/strongPassword.cpp
+To https://github.com/neofytr/Codeforces.git
+   fdb62e82..a0967851  main -> main
+branch 'main' set up to track 'origin/main'.
