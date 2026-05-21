@@ -11,43 +11,35 @@ void solve() {
 	for (int i = 1; i <= n; i++) 
 		str[i] = s[i - 1] - '0';
 
-	vector<int> first(9, -1);
-	for (int i = 1; i <= n; i++)
-		if (first[str[i]] == -1)
-			first[str[i]] = i;
-
 	cin >> m;
 	string l, r; cin >> l >> r;
 	vector<int> low(m + 1), up(m + 1);
 	for (int i = 1; i <= m; i++) 
 		low[i] = l[i - 1] - '0', up[i] = r[i - 1] - '0';
 
-	if (m == 1) {
-		for (int i = low[1]; i <= up[1]; i++)
-			if (first[i] == -1) {
-				cout << "YES" << endl;
-				return;
-			}
+	vector<set<int>> f(10);
+	for (int i = 1; i <= n; i++)
+		f[str[i]].insert(i);
 
-		cout << "NO" << endl;
-		return;
-	}
-
-	for (int i = low[1]; i <= up[1]; i++) {
-		if (first[i] == -1) {
+	vector<int> ear(10, -1), tmp(10, -1);
+	for (int i = low[1]; i <= up[1]; i++)
+		if (!f[i].empty()) ear[i] = *f[i].begin();
+		else {
 			cout << "YES" << endl;
 			return;
 		}
 
-		set<int> s;
-		for (int j = first[i] + 1; j <= n; j++)
-			s.insert(str[j]);
-
-		for (int j = low[2]; j <= up[2]; j++)
-			if (s.find(j) == s.end()) {
-				cout << "YES" << endl;
-				return;
-			}
+	for (int i = 2; i <= m; i++) {
+		for (int j = low[i]; j <= up[i]; j++) {
+			tmp[j] = -1;
+			for (int k = low[i - 1]; k <= up[i - 1]; k++)
+				if (f[j].lower_bound(ear[k] + 1) == f[j].end()) {
+					cout << "YES" << endl;
+					return;
+				} else 
+					tmp[j] = max(tmp[j], *f[j].lower_bound(ear[k] + 1));
+		}
+		swap(tmp, ear);
 	}
 
 	cout << "NO" << endl;
