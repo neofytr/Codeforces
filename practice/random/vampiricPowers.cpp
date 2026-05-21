@@ -2,6 +2,7 @@
 using namespace std;
 
 #define int long long
+#define MAX (int)(1e5)
 
 void solve() {
 	int n; cin >> n;
