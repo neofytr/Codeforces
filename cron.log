@@ -16492,3 +16492,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    a3fcf808..6bcb7e4a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6c00a57f] More problems solved
+ 5 files changed, 91 insertions(+), 4 deletions(-)
+ create mode 100644 practice/random/rudolfCompetition.cpp
+ create mode 100644 practice/random/rudolfTree.cpp
+To https://github.com/neofytr/Codeforces.git
+   6bcb7e4a..6c00a57f  main -> main
+branch 'main' set up to track 'origin/main'.
