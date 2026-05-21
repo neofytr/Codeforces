@@ -5,6 +5,8 @@ using namespace std;
 
 void solve() {
 	int n; cin >> n;
+
+	int b = 1;
 }
 
 int32_t main() {
