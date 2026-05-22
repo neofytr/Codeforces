@@ -16603,3 +16603,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    fd777980..fd8293cd  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f7e11b70] Solved a CF problem
+ 6 files changed, 168 insertions(+), 20 deletions(-)
+ create mode 100644 practice/random/todo.cpp
+ create mode 100644 practice/random/tryComp.cpp
+To https://github.com/neofytr/Codeforces.git
+   fd8293cd..f7e11b70  main -> main
+branch 'main' set up to track 'origin/main'.

@@ -6,52 +6,46 @@ using namespace std;
 
 struct Node {
 	Node *arr[MAX];
-	bool end;
-	int cnt;
+	int cntbest; string str; // best word in the current prefix subtree and its count
+	int cnt; // the number of occurrences of the current prefix as a word
 
 	Node() {
 		for (int i = 0; i < MAX; i++) arr[i] = nullptr;
-		end = false; cnt = 0;
+		cnt = cntbest = 0; str = "";
 	}
 };
 
 Node *root;
-void insert(string &s) {
+void insert(string s) {
+	int n = s.length();
 	Node *curr = root;
-	curr->cnt++;
-	for (int i = 0; i < s.length(); i++) {
+	for (int i = 0; i < n; i++) {
 		int c = s[i] - 'a';
 		if (!curr->arr[c]) curr->arr[c] = new Node();
 		curr = curr->arr[c];
 	}
-	curr->end = true; curr->cnt++;
-}
+	int j = ++curr->cnt;
 
-string str; int res = -1;
-void dfs(Node *node, string &build) {
-	if (node->end) 
-		if (node->cnt > res) str = build, res = node->cnt;
-		else if (node->cnt == res && build < str) str = build;
-
-	for (int i = 0; i < 26; i++) 
-		if (node->arr[i]) {
-			build.push_back((char)(i + 'a'));
-			dfs(node->arr[i], build);
-			build.pop_back();
-		}
+	curr = root;
+	for (int i = 0; i < n; i++) {
+		int c = s[i] - 'a';
+		Node *nxt = curr->arr[c];
+		if (nxt->cntbest < j) nxt->cntbest = j, nxt->str = s;
+		else if (nxt->cntbest == j && nxt->str > s) nxt->str = s;
+		curr = nxt;
+	}
 }
 
 int32_t main() {
 	int n; cin >> n;
-	string s;
-	root = new Node();
-	for (int i = 1; i <= n; i++) cin >> s, insert(s);
+	root = new Node(); string s;
+	for (int i = 1; i <= n; i++)
+		cin >> s, insert(s);
 
 	int q; cin >> q;
-	while(q--) {
+	while (q--) {
 		cin >> s;
-
-		Node *curr = root; res = 0, str = "";
+		Node *curr = root;
 		bool ok = true;
 		for (int i = 0; i < s.length(); i++) {
 			int c = s[i] - 'a';
@@ -60,15 +54,10 @@ int32_t main() {
 				ok = false;
 				break;
 			}
-
 			curr = curr->arr[c];
 		}
-
-		if (ok) {
-			dfs(curr, s);
-			cout << str << " " << res << endl;
-		}
+		if (ok) 
+			cout << curr->str << " " << curr->cntbest << endl;
 	}
-
 	return 0;
 }
