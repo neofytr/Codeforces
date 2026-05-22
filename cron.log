@@ -16587,3 +16587,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6bbefe7f..67ab0077  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 36a5d0b6] Worked on Codeforces problems
+ 5 files changed, 68 insertions(+), 31 deletions(-)
+ create mode 100644 practice/random/subXor.cpp
+To https://github.com/neofytr/Codeforces.git
+   67ab0077..36a5d0b6  main -> main
+branch 'main' set up to track 'origin/main'.
