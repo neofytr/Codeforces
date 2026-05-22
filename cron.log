@@ -16576,3 +16576,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    761042c4..45d5515c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6bbefe7f] CF grind
+ 2 files changed, 16 insertions(+)
+ create mode 100644 practice/random/maxXor.cpp
+To https://github.com/neofytr/Codeforces.git
+   45d5515c..6bbefe7f  main -> main
+branch 'main' set up to track 'origin/main'.
