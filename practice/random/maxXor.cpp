@@ -27,42 +27,31 @@ void insert(int num) {
 
 void solve() {
 	int n, m; cin >> n >> m;
-	vector<int> a(n + 1);
-	for (int i = 1; i <= n; i++) cin >> a[i];
+	vector<int> a(n);
+	for (int i = 0; i < n; i++) cin >> a[i];
+
+	int i = 0;
+	sort(a.begin(), a.end());
+
+	vector<pair<int, int>> q(m);
+	for (auto &[y, x] : q) cin >> x >> y;
+	sort(q.begin(), q.end());
 
 	root = new Node(); root->end = true;
-	for (int i = 1; i <= n; i++) insert(a[i]);
+	for (auto &[y, x] : q) {
+		while (a[i] <= y) insert(a[i++]);
 
-	int x, y;
-	while (m--) {
-		cin >> x >> y;
-
-		Node *currnode = root;
-		int curr = 0;
-		bool canchoseany = false;
-		bool bad = false;
+		Node *currnode = root; int curr = 0;
+		if (!currnode->arr[0] && !currnode->arr[1]) {
+			cout << -1 << " ";
+			continue;
+		}
 		for (int bit = 30; bit >= 0; bit--) {
 			int want = !((x >> bit) & 1);
-			int c = -1;
-			if (!((y >> bit) & 1)) {
-				if (want && canchoseany) {
-					if (!currnode->arr[want]) curr |= ((!want) << bit), c = !want;
-					else curr |= (want << bit), c = want;
-				} else if (!currnode->arr[0]) {
-						cout << -1 << " ";
-						bad = true;
-						break;
-					} else c = 0;
-			} else {
-				if (!currnode->arr[want]) curr |= ((!want) << bit), c = !want;
-				else curr |= (want << bit), c = want;
-
-				if (!want && currnode->arr[want]) canchoseany = true;
-			}
-			currnode = currnode->arr[c];
+			if (!currnode->arr[want]) curr |= ((!want) << bit), currnode = currnode->arr[!want];
+			else curr |= (want << bit), currnode = currnode->arr[want];
 		}
-		if (!bad)
-			cout << (x ^ curr) << " ";
+		cout << (x ^ curr) << " ";
 	}
 	cout << endl;
 }

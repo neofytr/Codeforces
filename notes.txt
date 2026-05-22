@@ -135,3 +135,5 @@ signed main() {
 	cout << ans << '\n';
 }
 --------------------------------------------------------
+
+2. If the order of queries doesn't matter (queries are offline), think of reordering the queries in a manner that make the solution easier
