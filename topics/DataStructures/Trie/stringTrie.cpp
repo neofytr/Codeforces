@@ -9,7 +9,12 @@ using namespace std;
 // Can I treat this as walking character-by-character or bit-by-bit?
 
 // We should start thinking about a trie whenever the problem is fundamentally about prefixes, characters,
-// or bitwise paths instead of whole values.
+// or bitwise paths instead of whole values
+
+// Tries are also very helpful for compressing strings since strings with common prefixes do not take
+// separate space for their common prefix; they are the same nodes in the Trie
+
+// XOR with Tries is also a popular question format
 
 struct Node {
 	Node *arr[NUM];
