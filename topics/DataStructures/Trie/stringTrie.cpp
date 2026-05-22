@@ -4,6 +4,13 @@ using namespace std;
 #define int long long
 #define NUM (int)(26)
 
+// In a trie, the information about a character is stored in that character's trie node
+// The biggest signal to use trie in problems is:
+// Can I treat this as walking character-by-character or bit-by-bit?
+
+// We should start thinking about a trie whenever the problem is fundamentally about prefixes, characters,
+// or bitwise paths instead of whole values.
+
 struct Node {
 	Node *arr[NUM];
 	bool end;

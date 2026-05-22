@@ -16554,3 +16554,13 @@ branch 'main' set up to track 'origin/main'.
 [main 3f63bb3d] Problem solving session
  3 files changed, 12 insertions(+), 6 deletions(-)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main 72ccf93b] More problems solved
+ 10 files changed, 347 insertions(+), 1802 deletions(-)
+ delete mode 100644 CMakeLists.txt
+ delete mode 100644 cf_manager.py
+ create mode 100644 notes.txt
+ delete mode 100644 template.cpp
+ create mode 100644 topics/DataStructures/Trie/BinaryTrie.cpp
+To https://github.com/neofytr/Codeforces.git
+   076db6a7..72ccf93b  main -> main
+branch 'main' set up to track 'origin/main'.
