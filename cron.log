@@ -25917,3 +25917,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    517071c7..f984a9bb  main -> main
 branch 'main' set up to track 'origin/main'.
+[main c42d4b45] Worked on Codeforces problems
+ 6 files changed, 116 insertions(+), 20 deletions(-)
+ create mode 100644 practice/random/shortestNames.cpp
+ create mode 100644 practice/random/vasiliysMultiset.cpp
+To https://github.com/neofytr/Codeforces.git
+   f984a9bb..c42d4b45  main -> main
+branch 'main' set up to track 'origin/main'.
