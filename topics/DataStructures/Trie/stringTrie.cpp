@@ -15,6 +15,7 @@ using namespace std;
 // separate space for their common prefix; they are the same nodes in the Trie
 
 // XOR with Tries is also a popular question format
+// Another way to identify Trie problems is constraint on the sum of lengths of all the given strings, or something like that
 
 struct Node {
 	Node *arr[NUM];
