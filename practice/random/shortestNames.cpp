@@ -11,7 +11,7 @@ struct Node {
 		for (int i = 0; i < MAX; i++) arr[i] = nullptr;
 		cnt = 0;
 	}
-};
+};	
 
 Node *root;
 void insert(string &s) {
@@ -24,22 +24,31 @@ void insert(string &s) {
 	}
 }
 
-int32_t main() {
+void solve() {
 	int n; cin >> n;
 	root = new Node();
-	vector<string> v(n);
-	for (string &s : v) cin >> s, insert(s);
-	for (string &s : v) {
-		int len = 0;
+	vector<string> names(n);
+	for (string &s : names) cin >> s, insert(s);
+
+	int cnt = 0;
+	for (string &s : names) {
 		Node *curr = root;
 		for (int i = 0; i < s.length(); i++) {
 			int c = s[i] - 'a';
-			if (curr->arr[c]->cnt > 1) len++;
-			else break;
+			if (curr->arr[c]->cnt == 1) {
+				cnt++;
+				break;
+			}
+			cnt++;
 			curr = curr->arr[c];
 		}
-
-		cout << len << endl;
 	}
+
+	cout << cnt << endl;
+}
+
+int32_t main() {
+	int t; cin >> t;
+	while (t--) solve();
 	return 0;
 }
