@@ -29,4 +29,21 @@ int32_t main() {
 	int n; cin >> n;
 	vector<string> a(n);
 	for (string &s : a) cin >> s;
+
+	root = new Node();
+	for (string &s : a) insert(s);
+	for (int i = 0; i < n; i++) {
+		Node *curr = root;
+		int maxi = -1;
+		for (int j = 0; j < a[i].length(); j++) {
+			int c = a[i][j] - 'a';
+			curr = curr->arr[c];
+			if (curr->end) 
+				if (j + 1 < a[i].length() || curr->cnt > 1)
+					maxi = max(maxi, j + 1);
+		}
+		if (curr->cnt > 1) maxi = max(maxi, (int)a[i].length());
+		cout << maxi << endl;
+	}
+	return 0;
 }
