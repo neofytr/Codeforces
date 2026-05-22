@@ -1,0 +1,127 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+// each trie node stores two children:
+// nxt[0] -> bit 0
+// nxt[1] -> bit 1
+struct Node {
+	Node *nxt[2];
+
+	Node() {
+		nxt[0] = nxt[1] = nullptr;
+	}
+};
+
+class BinaryTrie {
+private:
+	Node *root;
+
+public:
+	BinaryTrie() {
+		root = new Node();
+	}
+
+	// inserts a number into the trie
+	void insert(int x) {
+		Node *cur = root;
+
+		// we go from most significant bit -> least significant bit
+		// because larger bits contribute more to the xor value
+		for (int b = 62; b >= 0; b--) {
+
+			// extract current bit
+			int bit = (x >> b) & 1;
+
+			// create path if it doesn't exist
+			if (cur->nxt[bit] == nullptr)
+				cur->nxt[bit] = new Node();
+
+			// move downward
+			cur = cur->nxt[bit];
+		}
+	}
+
+	// returns maximum possible value of (x ^ y)
+	// where y is some number already inserted
+	int max_xor(int x) {
+		Node *cur = root;
+
+		int ans = 0;
+
+		// again process bits from msb -> lsb
+		for (int b = 62; b >= 0; b--) {
+
+			int bit = (x >> b) & 1;
+
+			// for xor:
+			// 0 ^ 1 = 1
+			// 1 ^ 0 = 1
+			//
+			// so ideally we want opposite bit
+			int want = bit ^ 1;
+
+			// if opposite bit exists,
+			// we can make this xor bit = 1
+			if (cur->nxt[want] != nullptr) {
+
+				// set this bit in answer
+				ans |= (1LL << b);
+
+				// move to preferred branch
+				cur = cur->nxt[want];
+			}
+
+			// otherwise we are forced to take same bit
+			else {
+				cur = cur->nxt[bit];
+			}
+		}
+
+		return ans;
+	}
+};
+
+signed main() {
+	int n;
+	cin >> n;
+
+	vector<int> a(n + 1);
+
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+
+	BinaryTrie trie;
+
+	// prefix xor
+	int px = 0;
+
+	// important:
+	// insert p[0] = 0 first
+	//
+	// because subarrays can start from index 1
+	trie.insert(0);
+
+	int ans = 0;
+
+	for (int i = 1; i <= n; i++) {
+
+		// current prefix xor
+		px ^= a[i];
+
+		// find best previous prefix xor
+		// that maximizes:
+		//
+		// px ^ previous_prefix
+		//
+		// which equals some subarray xor
+		ans = max(ans, trie.max_xor(px));
+
+		// now insert current prefix xor
+		// so future positions can use it
+		trie.insert(px);
+	}
+
+	cout << ans << '\n';
+}

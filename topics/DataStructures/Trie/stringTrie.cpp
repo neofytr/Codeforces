@@ -8,9 +8,9 @@ struct Node {
 	Node *arr[NUM];
 	bool end;
 
-	Node (bool end) {
-		this->end = end;
-		for (int i = 0; i < NUM; i++) arr[i] = nullptr;
+	Node() {
+		this->end = false;
+		for (int i = 0; i < NUM; i++) this->arr[i] = nullptr;
 	}
 };
 
@@ -20,51 +20,45 @@ class Trie {
 private:
 	Node *root;
 
-	void _insert(Node *node, const string &s, int i) {
-		int n = s.length();
-		if (i >= n) {
-			node->end = true;
-			return;
-		}
-
-		int c = s[i] - 'a';
-		if (!node->arr[c]) node->arr[c] = new Node(false);
-		_insert(node->arr[c], s, i + 1);
-	}
-
-	bool _contains(Node *node, const string &s, int i) const {
-		int n = s.length();
-		if (i >= n) return node->end;
-
-		int c = s[i] - 'a';
-		if (!node->arr[c]) return false;
-		return _contains(node->arr[c], s, i + 1);
-	}
-
-	bool _starts_with(Node *node, const string &s, int i) const {
-		int n = s.length();
-		if (i >= n) return true;
-		
-		int c = s[i] - 'a';
-		if (!node->arr[c]) return false;
-		return _starts_with(node->arr[c], s, i + 1);
-	}
-
 public:
 	Trie() {
-		this->root = new Node(false);
+		root = new Node();
 	}
 
 	void insert(const string &s) {
-		_insert(root, s, 0);
+		int n = s.length();
+		Node *curr = root;
+
+		for (int i = 0; i < n; i++) {
+			int c = s[i] - 'a';
+			if (!curr->arr[c]) curr->arr[c] = new Node();
+			curr = curr->arr[c];
+		}
+		curr->end = true;
 	}
 
 	bool contains(const string &s) const {
-		return _contains(root, s, 0);
+		int n = s.length();
+		const Node *curr = root;
+
+		for (int i = 0; i < n; i++) {
+			int c = s[i] - 'a';
+			if (!curr->arr[c]) return false;
+			curr = curr->arr[c];
+		}
+		return curr->end;
 	}
 
 	bool starts_with(const string &s) const {
-		return _starts_with(root, s, 0);
+		int n = s.length();
+		Node *curr = root;
+
+		for (int i = 0; i < n; i++) {
+			int c = s[i] - 'a';
+			if (!curr->arr[c]) return false;
+			curr = curr->arr[c];
+		}
+		return true;
 	}
 };
 
