@@ -25948,3 +25948,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    267a18b0..201ed213  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 873f0b0c] Worked on Codeforces problems
+ 4 files changed, 43 insertions(+), 21 deletions(-)
+ create mode 100644 practice/random/shortenTheArray.cpp
+To https://github.com/neofytr/Codeforces.git
+   201ed213..873f0b0c  main -> main
+branch 'main' set up to track 'origin/main'.
