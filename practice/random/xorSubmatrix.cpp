@@ -55,6 +55,7 @@ int32_t main() {
 				maxi = max(maxi, pv[r2] ^ pv[r1 - 1]);
 			} else {
 				// assume c2 - c1 + 1 is even
+				// possible iff m >= 2
 				int p = 0;
 				Node *currnode = rooteven; int curr = 0;
 				if (m >= 2) {
@@ -67,7 +68,6 @@ int32_t main() {
 				}
 
 				// assume c2 - c1 + 1 is odd
-				// possible iff m >= 2
 				p = pv[r2] ^ pv[r1 - 1];
 				currnode = rootodd; curr = 0;
 				for (int bit = 29; bit >= 0; bit--) {
