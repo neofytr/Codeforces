@@ -25942,3 +25942,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6914bc80..267a18b0  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 201ed213] Solved problem
+ 6 files changed, 60 insertions(+), 5 deletions(-)
+ create mode 100644 practice/random/goodSubstrings.cpp
+To https://github.com/neofytr/Codeforces.git
+   267a18b0..201ed213  main -> main
+branch 'main' set up to track 'origin/main'.

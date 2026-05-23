@@ -2,18 +2,18 @@
 using namespace std;
 
 #define int long long
+#define MAX (int)(26)
 
-using u64 = uint64_t;
-u64 hash_string(const string &s) {
-	const u64 P = 1315423911ULL;
-	u64 h = 0;
-	for (char c : s) {
-		h = h * P + (unsigned char)c + 1;
+struct Node {
+	Node *arr[MAX];
+	Node() {
+		for (int i = 0; i < MAX; i++) arr[i] = nullptr;
 	}
-	return h;
-}
+};
 
+int res = 0; Node *root;
 int32_t main() {
+	root = new Node();
 	string s; cin >> s;
 	int n = s.length();
 	vector<int> str(n + 1);
@@ -24,24 +24,24 @@ int32_t main() {
 	for (int i = 0; i < 26; i++)
 		f[i] = s[i] - '0';
 
-	unordered_map<int, bool> g;
 	int k; cin >> k;
-	int l = 1; int cnt = 0;
-	int res = 0;
-	for (int r = 1; r <= n; r++) {
-		if (!f[str[r]]) cnt++;
-		while (l <= r && cnt > k) {
-			if (!f[str[l]]) cnt--;
-			l++;
+	int r = 1; int cnt = 0;
+	for (int l = 1; l <= n; l++) {
+		while (r <= n && cnt + (!f[str[r]]) <= k) {
+			if (!f[str[r]]) cnt++;
+			r++;
 		}
 
-		if (l <= r) {
-			string j;
-			for (int i = r; i >= l; i--) {
-				j.insert(j.begin(), str[i] + 'a');
-				if (!g[hash_string(j)]) g[hash_string(j)] = true, res++;
+		if (l <= r - 1) {
+			Node *curr = root;
+			for (int i = l; i <= r - 1; i++) {
+				int c = str[i];
+				if (!curr->arr[c])
+					res++, curr->arr[c] = new Node();
+				curr = curr->arr[c];
 			}
 		}
+		if (!f[str[l]]) cnt--;
 	}
 
 	cout << res << endl;
