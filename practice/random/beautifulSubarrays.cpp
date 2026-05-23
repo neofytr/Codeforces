@@ -28,6 +28,7 @@ void insert(int num) {
 int32_t main() {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
+	
 	int n, k; cin >> n >> k;
 	vector<int> arr(n + 1), p(n + 1, 0);
 	for (int i = 1; i <= n; i++) cin >> arr[i], p[i] = p[i - 1] ^ arr[i];

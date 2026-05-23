@@ -25931,3 +25931,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c42d4b45..95991063  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6914bc80] More problems solved
+ 2 files changed, 15 insertions(+)
+ create mode 100644 practice/random/xorSubmatrix.cpp
+To https://github.com/neofytr/Codeforces.git
+   95991063..6914bc80  main -> main
+branch 'main' set up to track 'origin/main'.
