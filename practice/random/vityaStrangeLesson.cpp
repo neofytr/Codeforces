@@ -46,6 +46,8 @@ int dfs(Node *currnode, int bit, int curr) {
 }
 
 int32_t main() {
+	ios_base::sync_with_stdio(false);
+		cin.tie(NULL);
 	int n, m;
 	cin >> n >> m;
 
@@ -58,8 +60,6 @@ int32_t main() {
 
 	p = 0;
 	while (m--) {
-		ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
 		int x;
 		cin >> x;
 		p ^= x;
