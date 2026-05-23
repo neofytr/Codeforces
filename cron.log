@@ -25990,3 +25990,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9b4c552a..ec047943  main -> main
 branch 'main' set up to track 'origin/main'.
+[main c87dd5bc] Practiced CF problems
+ 5 files changed, 105 insertions(+), 40 deletions(-)
+ create mode 100644 practice/random/wordCombinations.cpp
+To https://github.com/neofytr/Codeforces.git
+   ec047943..c87dd5bc  main -> main
+branch 'main' set up to track 'origin/main'.
