@@ -25924,3 +25924,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f984a9bb..c42d4b45  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 95991063] More problems solved
+ 6 files changed, 190 insertions(+), 8 deletions(-)
+ create mode 100644 practice/random/beautifulSubarrays.cpp
+ create mode 100644 practice/random/setXorMin.cpp
+To https://github.com/neofytr/Codeforces.git
+   c42d4b45..95991063  main -> main
+branch 'main' set up to track 'origin/main'.
