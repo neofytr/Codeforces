@@ -137,3 +137,55 @@ signed main() {
 --------------------------------------------------------
 
 2. If the order of queries doesn't matter (queries are offline), think of reordering the queries in a manner that make the solution easier
+
+3. 
+
+When doing DP/string problems where transitions depend on substrings ending at position i:
+
+	dp[i] depends on substrings s[j...i]
+
+we usually iterate:
+
+	for (int j = i; j >= 1; j--)
+
+Trying to build the substring manually is inefficient because:
+
+	tmp = s[j] + tmp
+
+requires insertion at the front of the string, which is costly.
+
+A better approach is to store all dictionary/pattern strings in a trie in REVERSED order.
+
+Example:
+	"abc" is stored as:
+		c -> b -> a
+
+Now while iterating backwards from i to 1:
+
+	for (int j = i; j >= 1; j--)
+
+we can walk the trie directly using s[j].
+
+This naturally matches the reverse traversal order and avoids:
+	- building temporary substrings
+	- front insertions
+	- repeated hashing/comparisons
+
+Pattern:
+	- substring ends at i
+	- iterate j backwards
+	- store dictionary strings reversed in trie
+	- traverse trie while moving j backwards
+
+This converts substring existence checks from:
+	O(length of substring construction/check)
+
+to:
+	O(1) trie transition per character.
+
+Very common in:
+	- word break DP
+	- dictionary DP
+	- suffix-based transitions
+	- substring existence queries
+	- automaton/string DP problems
