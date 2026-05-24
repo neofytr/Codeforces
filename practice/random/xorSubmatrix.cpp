@@ -29,7 +29,6 @@ void insert_odd(int num) {
 	}
 }
 
-
 int32_t main() {
 	int n, m; cin >> n >> m;
 	vector<int> v(n + 1), u(m + 1);
