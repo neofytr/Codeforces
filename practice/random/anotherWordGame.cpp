@@ -21,7 +21,7 @@ void insert(string &s, int w) {
 		if (!curr->nxt[c]) curr->nxt[c] = new Node();
 		curr = curr->nxt[c];
 	}
-	curr->end = true, curr->w = w;
+	curr->end = true, curr->w = max(w, curr->w);
 }
 
 void solve(int t) {
@@ -45,17 +45,18 @@ void solve(int t) {
 			int c = str[j];
 			if (!curr->nxt[c])
 				break;
-			if (curr->nxt[c]->end && dp[j - 1] != LLONG_MIN) 
-				dp[i] = max(dp[i], dp[j - 1] + curr->nxt[c]->w);
 			curr = curr->nxt[c];
+			if (curr->end && dp[j - 1] != LLONG_MIN)
+				dp[i] = max(dp[i], dp[j - 1] + curr->w);
 		}
+
 		if (!f.empty())
 			dp[i] = max(dp[i], *f.rbegin() - p * i);
 		if (dp[i] != LLONG_MIN)
 			f.insert(dp[i] + p * i);
 	}
 
-	cout << dp[m] << endl;
+	cout << "Case " << t << ": " << dp[m] << endl;
 }
 
 int32_t main() {
