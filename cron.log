@@ -26034,3 +26034,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f5313375..370fdd1c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 1f48d570] Solved a few problems
+ 4 files changed, 20 insertions(+), 4 deletions(-)
+ create mode 100644 practice/random/xorInverse.cpp
+To https://github.com/neofytr/Codeforces.git
+   370fdd1c..1f48d570  main -> main
+branch 'main' set up to track 'origin/main'.
