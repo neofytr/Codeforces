@@ -26006,3 +26006,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    06021f2e..db19cbbc  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e7187e1e] More problems solved
+ 6 files changed, 98 insertions(+), 7 deletions(-)
+ create mode 100644 practice/random/shortCode.cpp
+ create mode 100644 practice/random/typePrinter.cpp
+To https://github.com/neofytr/Codeforces.git
+   db19cbbc..e7187e1e  main -> main
+branch 'main' set up to track 'origin/main'.
