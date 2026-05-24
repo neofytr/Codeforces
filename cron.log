@@ -26058,3 +26058,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    fb61e50a..f1ca9a72  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 24f583e3] Solved a CF problem
+ 4 files changed, 92 insertions(+), 25 deletions(-)
+ create mode 100644 practice/random/fibonaccharsis.cpp
+To https://github.com/neofytr/Codeforces.git
+   f1ca9a72..24f583e3  main -> main
+branch 'main' set up to track 'origin/main'.
