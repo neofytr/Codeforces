@@ -26023,3 +26023,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    9d9e79c8..bdf40206  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f5313375] Practiced CF problems
+ 6 files changed, 81 insertions(+), 4 deletions(-)
+ create mode 100644 practice/random/anotherWordGame.cpp
+To https://github.com/neofytr/Codeforces.git
+   bdf40206..f5313375  main -> main
+branch 'main' set up to track 'origin/main'.
