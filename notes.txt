@@ -189,3 +189,7 @@ Very common in:
 	- suffix-based transitions
 	- substring existence queries
 	- automaton/string DP problems
+
+4. 
+
+Usually in tree DP, we first optimize the child subtree before solving for the parent (post-order traveral). We can also solve for the parent first and then recurse to solve for the children (pre-order traversal). Prove and choose the one which is correct.
