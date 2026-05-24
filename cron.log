@@ -26064,3 +26064,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    f1ca9a72..24f583e3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7bac0653] CF grind
+ 4 files changed, 48 insertions(+), 9 deletions(-)
+ create mode 100644 practice/random/assemblyViaMinimums.cpp
+To https://github.com/neofytr/Codeforces.git
+   24f583e3..7bac0653  main -> main
+branch 'main' set up to track 'origin/main'.
