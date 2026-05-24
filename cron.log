@@ -26045,3 +26045,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    1f48d570..8c8384e5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main fb61e50a] Practiced CF problems
+ 6 files changed, 84 insertions(+), 22 deletions(-)
+ create mode 100644 practice/random/prefixPermutationSums.cpp
+ create mode 100644 practice/random/weWereBothChildren.cpp
+ delete mode 100644 practice/random/xorInverse.cpp
+To https://github.com/neofytr/Codeforces.git
+   8c8384e5..fb61e50a  main -> main
+branch 'main' set up to track 'origin/main'.
