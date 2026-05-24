@@ -193,3 +193,178 @@ Very common in:
 4. 
 
 Usually in tree DP, we first optimize the child subtree before solving for the parent (post-order traveral). We can also solve for the parent first and then recurse to solve for the children (pre-order traversal). Prove and choose the one which is correct.
+
+5. DSU Successor / Predecessor Compression Trick
+=============================================
+
+1. Problem
+
+Maintain a subset S ⊆ U where:
+	U = {0,1,2,...,n}
+under permanent deletions while supporting either:
+
+Predecessor queries:
+	pred(x) = max { y ∈ S | y ≤ x }
+
+or successor queries:
+	succ(x) = min { y ∈ S | y ≥ x }
+
+Target complexity:
+	O(α(n)) amortized per operation.
+
+2. Predecessor Structure
+
+Invariant:
+	find(x) = pred(x)
+
+Representation:
+	parent[x] stores the next candidate to check for pred(x).
+
+Initially:
+	S = U
+	parent[x] = x
+
+Thus:
+	find(x) = x
+
+meaning x is alive.
+
+3. Deletion
+
+Suppose x is deleted.
+Deletion basically binds a chain from x to x - 1.
+
+Observation:
+	pred(x) = pred(x-1)
+
+Therefore:
+	parent[x] = find(x-1)
+
+Interpretation:
+	x redirects to the largest alive element below it.
+
+4. Query
+
+find(x):
+	if parent[x] == x:
+		return x
+
+	return parent[x] = find(parent[x])
+
+Path compression preserves:
+	find(x) = pred(x)
+
+while flattening chains.
+
+5. Example
+
+Initially:
+	S = {1,2,3,4,5,6,7}
+
+Delete 5:
+	parent[5] = find(4) = 4
+
+Delete 4:
+	parent[4] = find(3) = 3
+
+Then:
+	find(5)
+	→ find(4)
+	→ find(3)
+	= 3
+
+Thus:
+	pred(5) = 3
+
+After compression:
+	parent[5] = 3
+
+6. Sentinel
+
+Use:
+	0
+
+as dummy null node.
+
+Then:
+	find(x)=0
+
+iff no alive element ≤ x exists.
+
+7. Successor Variant
+
+Invariant:
+	find(x)=succ(x)
+
+Deletion:
+	parent[x]=find(x+1)
+
+Sentinel:
+	n+1
+
+8. Correctness
+
+Invariant:
+	find(x) always equals the nearest alive candidate.
+
+Base:
+	initially every element is alive,
+	thus find(x)=x.
+
+Induction:
+	after deleting x,
+
+	best alive ≤ x
+	=
+	best alive ≤ x-1
+	=
+	find(x-1)
+
+thus:
+	parent[x]=find(x-1)
+
+preserves the invariant.
+
+9. Complexity
+
+With path compression:
+	find   : O(α(n)) amortized
+	delete : O(α(n)) amortized
+
+No union-by-rank is needed since edges are directional.
+
+10. Applicability Conditions
+
+This technique applies when:
+1. Universe is contiguous.
+2. Updates are monotonic (permanent deletions only).
+3. Queries are predecessor/successor type.
+4. Reinsertion is not needed.
+
+11. Common Forms
+
+- largest unused ≤ x
+- smallest unused ≥ x
+- next free slot
+- next unvisited index
+- skip processed positions
+- next valid state/index
+
+12. Typical Applications
+
+- scheduling
+- greedy assignment
+- interval painting
+- offline range processing
+- parking/room allocation
+- skipping deleted indices
+
+13. Limitations
+
+Does NOT support:
+- reinsertion
+- arbitrary insertions
+- kth order statistics
+- fully dynamic ordered set operations
+
+Use balanced BST / PBDS / Fenwick / segment tree for those.

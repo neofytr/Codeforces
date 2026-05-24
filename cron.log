@@ -26080,3 +26080,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    2a66cf56..9a911cf0  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 342c1049] Solved a few problems
+ 5 files changed, 65 insertions(+), 8 deletions(-)
+ create mode 100644 practice/random/anotherPermutationProblem.cpp
+ create mode 100644 practice/random/strongVertices.cpp
+To https://github.com/neofytr/Codeforces.git
+   9a911cf0..342c1049  main -> main
+branch 'main' set up to track 'origin/main'.
