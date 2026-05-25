@@ -26144,3 +26144,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    8769958d..b462e533  main -> main
 branch 'main' set up to track 'origin/main'.
+[main d0d5bc40] Solved problem
+ 6 files changed, 62 insertions(+), 6 deletions(-)
+ create mode 100644 topics/SuffixStructures/practice/substringSearch.cpp
+To https://github.com/neofytr/Codeforces.git
+   b462e533..d0d5bc40  main -> main
+branch 'main' set up to track 'origin/main'.
