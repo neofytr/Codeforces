@@ -294,3 +294,59 @@ Common LeetCode / Codeforces Paradigms:
 - Activity Scheduling / Greedy Deadline Allocation: Given jobs with deadlines, try to place 
   each job at its deadline. If taken, place at predecessor DSU `find(deadline)`.
 - Sieve Optimization: Quickly advance to the next un-eliminated element during skips.
+
+6. 
+
+Let A[1, n] be an array for n >= 2
+A sorting algorithm B acts on A to transform it into sorted order A'[1, n] = B(A)
+
+The sorting algorithm B is stable iff
+
+i < j and A[i] = A[j] -> pos(A[i]) < pos(A[j])
+
+where pos(x) denotes the index of x in array A'
+
+7. Counting Sort
+
+This is a non-comparison-based sorting algorithm for sorting distinct keys from a bounded integer domain.
+
+Given:
+
+i. input array A of length n
+ii. keys in the range [0, k]
+
+counting sort constructs the sorted order using frequency and prefix sums instead of comparisons.
+
+The idea is:
+
+For each key x:
+i. count occurrences of x in A
+ii. determine the interval occupied by x in the sorted order
+iii. place elements directly into their final positions.
+
+Define:
+
+c[i] = number of elements equal to i in A, for 0 <= i <= K
+
+To construct it, we use:
+
+vector<int> c(k + 1, 0);
+for (int i = 1; i <= n; i++)
+	c[A[i]]++;
+
+We then transform this array c using prefix sums as:
+c[i] <- c[i] + c[i - 1] for 1 <= i <= k
+
+for (int i = 1; i <= k; i++) c[i] += c[i - 1];
+
+After transformation, c[i] = number of elements in A <= i for 0 <= i <= k
+
+Thus, c[i] = position of key i in the final sorted array
+
+To construct the sorted array A'[1, n] stably, we do the following:
+
+for (int i = n; i >= 1; i--)
+	A'[c[A[i]]--] = A[i];
+
+The backward traversal ensures stabilty in the sorting procedure.
+
