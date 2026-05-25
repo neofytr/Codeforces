@@ -3,51 +3,69 @@ using namespace std;
 
 #define int long long
 
-vector<int> count_sort_two(vector<int> &rank, vector<int> &v) {
-	vector<int> res;
-	unordered_map<int, vector<int>> buckets;
-	for (int e : v)
-		buckets[rank[e]].push_back(e);
-
-	for (int i = 0; i < n; i++)
-		for (int j : buckets[i])
-			res.push_back(j);
-	return res;
-}
-
-vector<int> count_sort_one(vector<int> &rank, int k) {
-	unordered_map<int, vector<int>> buckets;
-	vector<int> res;
-	for (int i = 0; i < n; i++) 
-		buckets[(i + k < n ? rank[i + k] : -1)].push_back(i);
-	for (int i = -1; i < n; i++)
-		for (int j : buckets[i]) res.push_back(j);
-	return res;
-}
-
 vector<int> build_sa(string &s) {
 	int n = s.length();
-	vector<int> sa(n), rank(n), tmp(n);
+	int m = *max_element(s.begin(), s.end());
+	vector<int> sa(n + 1), rank(n + 1), tmp(n + 1);
+	for (int i = 1; i <= n; i++)
+		sa[i] = i, rank[i] = s[i - 1] - m + 1;
 
-	for (int i = 0; i < n; i++) sa[i] = i, rank[i] = s[i] - 'a';
 	for (int k = 1; k < n; k <<= 1) {
-		// (rank(i), (i + k < n ? rank[i + k] : -1)) 
-		auto cmp = [&] (int a, int b) {
-			if (rank[a] != rank[b]) 
+		auto cmp = [&](int a, int b) {
+			if (rank[a] != rank[b])
 				return rank[a] < rank[b];
-			int ra = (a + k < n ? rank[a + k] : -1);
-			int rb = (b + k < n ? rank[b + k] : -1);
+
+			int ra = (a + k <= n ? rank[a + k] : 0);
+			int rb = (b + k <= n ? rank[b + k] : 0);
 			return ra < rb;
 		};
-		vector<int> v = count_sort_one(rank, k);
-		v = count_sort_two(rank, v);
-		for (int i = 0; i < n; i++) 
-			sa[i] = v[i];
 
-		tmp[sa[0]] = 0;
-		for (int i = 1; i < n; i++)
+		vector<int> cntrank(n + 1, 0), startrank(n + 1, 0);
+		for (int suf = 1; suf <= n; suf++)
+			cntrank[((suf + k <= n) ? rank[suf + k] : 0)]++;
+
+		startrank[0] = 1;
+		for (int r = 1; r <= n; r++)
+			startrank[r] = startrank[r - 1] + cntrank[r - 1];
+
+		for (int suf = 1; suf <= n; suf++) {
+			int r = (suf + k <= n ? rank[suf + k] : 0);
+			sa[startrank[r]++] = suf;
+		}
+
+		for (int i = 0; i <= n; i++) 
+			cntrank[i] = startrank[i] = 0;
+
+		for (int i = 1; i <= n; i++) {
+			int suf = sa[i];
+			cntrank[rank[suf]]++;
+		}
+
+		startrank[0] = 1;
+		for (int r = 1; r <= n; r++)
+			startrank[r] = startrank[r - 1] + cntrank[r - 1];
+		for (int i = 1; i <= n; i++) {
+			int suf = sa[i]; int r = rank[suf];
+			tmp[startrank[r]++] = suf;
+		}
+		swap(tmp, sa);
+
+		tmp[sa[1]] = 1;
+		for (int i = 2; i <= n; i++)
 			tmp[sa[i]] = tmp[sa[i - 1]] + cmp(sa[i - 1], sa[i]);
-		swap(rank, tmp);
+		swap(tmp, rank);
 	}
+
+	sa[0] = n;
+	for (int i = 1; i <= n; i++) --sa[i];
 	return sa;
+}
+
+int32_t main() {
+	string s; cin >> s;
+	for (int e : build_sa(s))
+		cout << e << " ";
+	cout << endl;
+
+	return 0;
 }
