@@ -350,3 +350,5 @@ for (int i = n; i >= 1; i--)
 
 The backward traversal ensures stabilty in the sorting procedure.
 
+It may be such that the elements of A need to be sorted according to the value of some function f on the elements. In this case, these values become the key and must be bounded. To stably sort the array in this case, just replace A[i] in the above algorithm by f(A[i]).
+
