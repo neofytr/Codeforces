@@ -26108,3 +26108,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    895afd1d..ec431eec  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 870a8f56] Worked on Codeforces problems
+ 3 files changed, 135 insertions(+), 6 deletions(-)
+ create mode 100644 topics/SuffixStructures/prac.cpp
+To https://github.com/neofytr/Codeforces.git
+   ec431eec..870a8f56  main -> main
+branch 'main' set up to track 'origin/main'.
