@@ -26114,3 +26114,12 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ec431eec..870a8f56  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 2245dca5] More problems solved
+ 5 files changed, 36 insertions(+)
+ create mode 100755 topics/SuffixStructures/practice/main
+ create mode 100644 topics/SuffixStructures/practice/suffixArray1.cpp
+ create mode 100644 topics/SuffixStructures/practice/test
+ create mode 100644 topics/SuffixStructures/suffixArrayRadix.cpp
+To https://github.com/neofytr/Codeforces.git
+   870a8f56..2245dca5  main -> main
+branch 'main' set up to track 'origin/main'.
