@@ -5,10 +5,23 @@ using namespace std;
 
 vector<int> build_sa(string &s) {
 	int n = s.length();
-	int m = *max_element(s.begin(), s.end());
+
 	vector<int> sa(n + 1), rank(n + 1), tmp(n + 1);
+	vector<pair<char, int>> vals;
 	for (int i = 1; i <= n; i++)
-		sa[i] = i, rank[i] = s[i - 1] - m + 1;
+		vals.push_back({s[i - 1], i});
+	sort(vals.begin(), vals.end());
+
+	int r = 1;
+	rank[vals[0].second] = r;
+	for (int i = 1; i < n; i++) {
+		if (vals[i].first != vals[i - 1].first)
+			r++;
+		rank[vals[i].second] = r;
+	}
+
+	for (int i = 0; i < n; i++)
+		sa[i + 1] = vals[i].second;
 
 	for (int k = 1; k < n; k <<= 1) {
 		auto cmp = [&](int a, int b) {
@@ -66,6 +79,5 @@ int32_t main() {
 	for (int e : build_sa(s))
 		cout << e << " ";
 	cout << endl;
-
 	return 0;
 }
