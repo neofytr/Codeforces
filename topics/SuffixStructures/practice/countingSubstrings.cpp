@@ -35,7 +35,7 @@ int main() {
 		int left = 0;
 		int right = n - 1;
 
-		bool fnd = false;
+		int first = -1;
 		while (left <= right) {
 			int m = left + ((right - left) >> 1);
 			int i = sa[m];
@@ -44,13 +44,31 @@ int main() {
 			else if (t.substr(i, l) > s)
 				right = m - 1;
 			else {
-				fnd = true;
-				cout << "Yes" << endl; 
-				break;
+				first = m;
+				right = m - 1;
 			}
 		}
-		if (!fnd)
-			cout << "No" << endl;
+		if (first == -1) {
+			cout << 0 << endl;
+			continue;
+		}
+
+		left = 0; right = n - 1;
+		int last = -1;
+		while (left <= right) {
+			int m = left + ((right - left) >> 1);
+			int i = sa[m];
+			if (t.substr(i, l) < s)
+				left = m + 1;
+			else if (t.substr(i, l) > s)
+				right = m - 1;
+			else {
+				last = m;
+				left = m + 1;
+			}
+		}
+
+		cout << last - first + 1 << endl;
 	}
 	return 0;
 }
