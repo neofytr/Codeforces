@@ -26225,3 +26225,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    95ed290c..ab91bc1d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 649746fe] Solved some problems
+ 5 files changed, 190 insertions(+), 1 deletion(-)
+ create mode 100644 topics/SuffixStructures/practice/longestCommonSubstring.cpp
+ create mode 100644 topics/SuffixStructures/practice/sortingSubstrings.cpp
+To https://github.com/neofytr/Codeforces.git
+   ab91bc1d..649746fe  main -> main
+branch 'main' set up to track 'origin/main'.
