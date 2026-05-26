@@ -26214,3 +26214,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    241b9209..f6de2419  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 95ed290c] Solved a CF problem
+ 6 files changed, 107 insertions(+), 1 deletion(-)
+ create mode 100644 topics/SuffixStructures/practice/numDiffSubstrings.cpp
+To https://github.com/neofytr/Codeforces.git
+   f6de2419..95ed290c  main -> main
+branch 'main' set up to track 'origin/main'.

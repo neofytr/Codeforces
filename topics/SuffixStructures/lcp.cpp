@@ -152,6 +152,7 @@ vector<int> build_lcp(string &s, vector<int> &sa) {
 		int r = rank[i];
 		if (r == 1) {
 			lcp[r] = 0;
+			h = 0;
 			continue;
 		}
 

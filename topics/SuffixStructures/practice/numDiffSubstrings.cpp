@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+#define int long long
+
+int32_t main() {
 	string s; cin >> s;
 	int n = s.length();
 
@@ -12,8 +14,8 @@ int main() {
 		auto cmp = [&] (int a, int b) {
 			if (rank[a] != rank[b])
 				return rank[a] < rank[b];
-			int ra = (a + k <= n ? rank[a] : 0);
-			int rb = (b + k <= n ? rank[b] : 0);
+			int ra = (a + k <= n ? rank[a + k] : 0);
+			int rb = (b + k <= n ? rank[b + k] : 0);
 			return ra < rb;
 		};
 
@@ -31,6 +33,7 @@ int main() {
 	for (int i = 1; i <= n; i++) {
 		if (rank[i] == 1) {
 			lcp[rank[i]] = 0;
+			h = 0;
 			continue;
 		}
 
