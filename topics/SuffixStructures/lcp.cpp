@@ -101,10 +101,9 @@ using namespace std;
 // smaller than S[i]
 //
 // Therefore:
-//
 //      LCP(i', i) >= h - 1
 //
-// since otherwise S[j'] could not lie lexicographically between
+// since otherwise S[j'] would lie lexicographically between
 // S[i'] and S[i]
 
 // Thus, LCP(i', i) = lcp[rank[i]] >= h - 1 = lcp[rank[i - 1]] - 1
@@ -137,41 +136,38 @@ int LCP(int i, int j, vector<int> &rank) {
 	return query(rank[i] + 1, rank[j], 1, n, 1);
 }
 
-vector<int> build_lcp(string &s, vector<int> &sa, vector<int> &rank) {
+vector<int> build_lcp(string &s, vector<int> &sa) {
 	int n = s.length();
-	vector<int> str(n + 1);
-	for (int i = 1; i <= n; i++)
+	vector<int> lcp(n + 1), str(n + 1);
+	for (int i = 1; i <= n; i++) 
 		str[i] = s[i - 1] - 'a';
 
-	// Let i >= 2
-	// Let j = sa[rank[i - 1] - 1];
-	// Let h = LCP(i - 1, j) = lcp[rank[i - 1]] >= 1
-	// Then LCP(i, j + 1) >= h - 1
-	// Let j' = j + 1
-	// Thus, LCP(i, j') >= h - 1
-
-	// Since S[j] < S[i - 1] and have atleast 1 character common in their prefix (because h >= 1), it follows that
-	// S[j + 1] < S[i], i.e, S[j'] < S[i]
-
-	// Thus, there is a suffix S[j'] that is lexicographically smaller than S[i] and has at least h - 1 characters
-	// in its prefix common with S[i]
-	// It then follows that the suffix S[sa[rank[i] - 1]], which is the lexicographically closest to S[i] from the smaller side
-	// must also have at least h - 1 characters in common with S[i]
-	// Thus, LCP(sa[rank[i] - 1], i) = lcp[rank[i]] >= h - 1
-	// Thus, lcp[rank[i]] >= lcp[rank[i - 1]] - 1
-
 	int h = 0;
-	vector<int> lcp(n + 1);
 	for (int i = 1; i <= n; i++) {
 		int r = rank[i];
 		if (r == 1) {
-			lcp[r] = h = 0;
+			lcp[r] = 0;
 			continue;
 		}
 
+		int j = sa[r - 1];
 
+		// We know suffixes i and j already have h characters common at least
+		while (i + h <= n && j + h <= n && str[i + h] == str[j + h])
+			h++;
+		lcp[r] = h;
 
+		// Theorem
+		// lcp[rank[i]] >= lcp[rank[i - 1]] - 1
+		if (h) h--;
 	}
-
-	return lcp;
+	return lcp; 
 }
+
+// The important theorems that matter:
+
+// Let 1 <= i, j <= n such that rank[i] < rank[j]
+// Then, LCP(i, j) = min(lcp[r] for rank[i] + 1 <= r <= rank[j])
+
+// Let i >= 2 such that lcp[rank[i - 1]] >= 1
+// Then, lcp[rank[i]] >= lcp[rank[i - 1]] - 1
