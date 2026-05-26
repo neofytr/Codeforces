@@ -2,6 +2,7 @@
 using namespace std;
 
 #define int long long
+#define MAX (int)(1e5)
 
 // Let s[1, n] is a string for some n >= 1
 
@@ -20,6 +21,7 @@ using namespace std;
 
 // Let 1 <= i, j <= n such that rank[i] < rank[j]
 // Let ri = rank[i], and rj = rank[j]
+// Let LCP(i, j) = k
 
 // Lemma 1:
 // For any r in the range sa[ri, rj], the suffix S[r] has in common with suffixes S[i] and S[j] a prefix of length
@@ -28,25 +30,47 @@ using namespace std;
 // Proof 1:
 // The lemma is trivial for r = sa[ri] = i and r = sa[rj] = j. So, we prove it for r in the range sa[ri + 1, rj - 1] (if possible)
 // We prove the lemma via contradiction
-// Assume that the lemma is false. Thus, there is an r in the range sa[ri + 1, rj - 1] such that S[r] has in common with suffixes S[i]
-// and S[j] a prefix of length p < k
+// Assume that the lemma is false. Thus, there is an r in the range sa[ri + 1, rj - 1] such that S[r] has in common with atleast one
+// of the suffixes S[i] or S[j], a prefix of length exactly p < k
+// Without a loss in generality, we can assume that there is an r in the range sa[ri + 1, rj - 1] such that
+// S[r] has in common with suffix S[i] a prefix of length exactly p < k
 
-// Since the suffix array is sorted in lexicographical order, we have:
-// 			S[i] < S[r] < S[j]
+// Now, since the suffix array is sorted in lexicographical order, we have
+// 					S[i] < S[r] < S[j]
 
-// Now, since S[i] and S[r] have their first p characters common, it then follows from lexicographical ordering that s[i + p] < s[r + p]
-// Similarly, we have s[r + p] < s[j + p]
-// Thus, we conclude that s[i + p] < s[j + p]
-// Since p < k, this is a contradiction to the fact that the first k characters of S[i] and S[j] are equal (because
-// LCP(i, j) = k)
+// Since S[i] and S[r] have their first p characters equal, it then follows from lexicographical ordering that
+// 					s[i + p] < s[r + p]
+
+// Also, LCP(i, j) = k > p, it follows that s[i + p] = s[j + p], and thus s[j + p] < s[r + p]
+// Now, since S[i] and S[r] have their first p characters equal, and LCP(i, j) = k > p, it follows that
+// S[j] and S[r] have their first p characters common
+// Then, since s[j + p] < s[r + p], it follows that S[j] < S[r], which is a contradiction to the fact that S[r] < S[j]
+
 
 // Lemma 2:
-// There is some ri + 1 <= r <= rj such that lcp[rank[r]] <= k
+// There is some ri + 1 <= r <= rj such that lcp[r] <= k
 
 // Proof 2:
 // We prove the lemma via contradiction
-// Assume that the lemma is false, i.e, for any r in the range sa[ri + 1, rj] we have lcp[rank[r]] > k
-// Thus, for any r in the range sa[ri + 1, rj], the suffixes S[r] and S[r - 1] have in common a prefix of length > k
-// It then follows using transitivity that suffixes S[sa[ri]] = S[i] and S[sa[rj]] = S[j] have in common a prefix of
-// length > k
-// This is a contradiction to the fact that the longest common prefix of the suffixes S[i] and S[j] is k
+// Assume that the lemma is false, i.e, for any ri + 1 <= r <= rj, we have lcp[r] > k
+// Thus, the suffixes S[sa[r]] and S[sa[r - 1]] have in common a prefix of length > k for ri + 1 <= r <= rj
+// It then follows from transitivity that S[sa[ri]] = S[i] and S[sa[rj]] = S[j] have in common a prefix of length > k
+// This is a contradiction to the fact that the length of the longest common prefix of S[i] and S[j] is k, i.e, LCP(i, j) = k
+
+// Theorem
+// LCP(i, j) = min(lcp[r] for rank[i] + 1 <= r <= rank[j])
+
+// Proof:
+// Let t = min(lcp[r] for ri + 1 <= r <= rj)
+// We show that t <= k and t >= k. The theorem then follows.
+
+// Using lemma 1, we conclude that all suffixes S[sa[r]] for ri + 1 <= r <= rj have in common a prefix of length atleast k
+// Thus, lcp[r] >= k for any ri + 1 <= r <= rj, and thus t >= k
+
+// Also, using lemma 2, we conclude that there is a ri + 1 <= b <= rj such that lcp[b] <= k
+// Thus, since t <= lcp[b], it follows that t <= k
+
+int tree[4 * MAX + 1];
+void build(vector<int> &lcp, int l, int r, int idx) {
+
+}
