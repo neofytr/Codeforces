@@ -359,3 +359,50 @@ All substrings of a string are some prefix of some suffix of a string.
 Let s[1, n] is a string for n >= 1
 Then, s[i, j] for 1 <= i <= j <= n is the prefix of length j - i + 1 of the suffix with index i.
 
+9.
+
+Let s[1, n] is a string for n >= 1
+Let sa[1, n] is the suffix array of the string s
+Let lcp[1, n] is the lcp array of the string s
+
+The number of different substrings of the string s, denoted sub(s), is given by:
+
+sub(s) = (n * (n + 1)) / 2 - summation (lcp[i] for 1 <= i <= n)
+
+Proof:
+
+Every substring of s is a prefix of some suffix of s.
+Let the suffixes in lexicographic order be
+
+    s[sa[1]..], s[sa[2]..], ..., s[sa[n]..]
+
+Consider the suffix starting at j = sa[i].
+This suffix has n - j + 1 prefixes, so naively it contributes that many substrings.
+
+Now we remove the prefixes that were already counted from previous suffixes.
+
+Among all previous suffixes, the one with the largest common prefix with s[sa[i]..] is exactly s[sa[i-1]..].
+
+Therefore, the number of prefixes already counted is exactly lcp[i]
+
+where lcp[i] = LCP(s[sa[i]..], s[sa[i-1]..]).
+
+Why is considering only the previous suffix enough?
+
+Suppose there were an earlier suffix s[sa[o]..] with o < i - 1 sharing a longer common prefix with s[sa[i]..] than s[sa[i-1]..].
+
+Since suffixes are sorted lexicographically,
+
+    s[sa[o]..] < s[sa[i-1]..] < s[sa[i]..]
+
+If s[sa[o]..] and s[sa[i]..] share a prefix of length k,
+then every suffix between them in sorted order must also share that same prefix of length k. In particular, s[sa[i-1]..] would too.
+
+This contradicts the definition of lcp[i].
+
+Hence, the duplicated prefixes are exactly the first lcp[i] prefixes, so the number of new distinct substrings contributed by this suffix is
+
+    (n - sa[i] + 1) - lcp[i]
+
+Summing this over all suffixes gives the total number of distinct substrings.
+

@@ -108,6 +108,11 @@ using namespace std;
 
 // Thus, LCP(i', i) = lcp[rank[i]] >= h - 1 = lcp[rank[i - 1]] - 1
 
+// Theorem
+// Let i >= 1
+// The suffix S[i] shares the longest common prefix with the suffix[S[sa[rank[i] - 1]]], i.e, with the suffix
+// immediately preceding suffix i in the suffix array
+
 
 int tree[4 * MAX + 1];
 void build(vector<int> &lcp, int l, int r, int idx) {
