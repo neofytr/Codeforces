@@ -26155,3 +26155,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    d0d5bc40..f8cee07a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 4defa4e0] Solved problem
+ 5 files changed, 82 insertions(+), 3 deletions(-)
+ create mode 100644 topics/SuffixStructures/practice/countingSubstrings.cpp
+To https://github.com/neofytr/Codeforces.git
+   f8cee07a..4defa4e0  main -> main
+branch 'main' set up to track 'origin/main'.
