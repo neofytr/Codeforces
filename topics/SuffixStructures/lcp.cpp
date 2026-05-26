@@ -75,6 +75,13 @@ using namespace std;
 // LCP(i + 1, j + 1) >= LCP(i, j) - 1
 // since removing the first equal character leaves atleast LCP(i, j) - 1 equal characters
 
+// Theorem
+// Let i >= 2
+// Let j = sa[rank[i - 1]] - 1;
+// Let h = LCP(i - 1, j) = lcp[rank[i - 1]] >= 1
+// We then claim that lcp[rank[i]] >= lcp[rank[i - 1]] - 1;
+
+
 int tree[4 * MAX + 1];
 void build(vector<int> &lcp, int l, int r, int idx) {
 	if (l == r) {
@@ -108,6 +115,23 @@ vector<int> build_lcp(string &s, vector<int> &sa, vector<int> &rank) {
 	for (int i = 1; i <= n; i++)
 		str[i] = s[i - 1] - 'a';
 
+	// Let i >= 2
+	// Let j = sa[rank[i - 1] - 1];
+	// Let h = LCP(i - 1, j) = lcp[rank[i - 1]] >= 1
+	// Then LCP(i, j + 1) >= h - 1
+	// Let j' = j + 1
+	// Thus, LCP(i, j') >= h - 1
+
+	// Since S[j] < S[i - 1] and have atleast 1 character common in their prefix (because h >= 1), it follows that
+	// S[j + 1] < S[i], i.e, S[j'] < S[i]
+
+	// Thus, there is a suffix S[j'] that is lexicographically smaller than S[i] and has at least h - 1 characters
+	// in its prefix common with S[i]
+	// It then follows that the suffix S[sa[rank[i] - 1]], which is the lexicographically closest to S[i] from the smaller side
+	// must also have at least h - 1 characters in common with S[i]
+	// Thus, LCP(sa[rank[i] - 1], i) = lcp[rank[i]] >= h - 1
+	// Thus, lcp[rank[i]] >= lcp[rank[i - 1]] - 1
+
 	int h = 0;
 	vector<int> lcp(n + 1);
 	for (int i = 1; i <= n; i++) {
@@ -117,9 +141,7 @@ vector<int> build_lcp(string &s, vector<int> &sa, vector<int> &rank) {
 			continue;
 		}
 
-		// We know that lcp[rank[i - 1]] = h
-		// Let j = rank[i - 1] - 1
-		// Thus LCP(i - 1, j) = h
+
 
 	}
 
