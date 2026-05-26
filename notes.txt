@@ -352,3 +352,10 @@ The backward traversal ensures stabilty in the sorting procedure.
 
 It may be such that the elements of A need to be sorted according to the value of some function f on the elements. In this case, these values become the key and must be bounded. To stably sort the array in this case, just replace A[i] in the above algorithm by f(A[i]).
 
+8.
+
+All substrings of a string are some prefix of some suffix of a string.
+
+Let s[1, n] is a string for n >= 1
+Then, s[i, j] for 1 <= i <= j <= n is the prefix of length j - i + 1 of the suffix with index i.
+
