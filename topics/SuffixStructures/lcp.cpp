@@ -77,9 +77,37 @@ using namespace std;
 
 // Theorem
 // Let i >= 2
-// Let j = sa[rank[i - 1]] - 1;
+// Let j = sa[rank[i - 1] - 1]
 // Let h = LCP(i - 1, j) = lcp[rank[i - 1]] >= 1
-// We then claim that lcp[rank[i]] >= lcp[rank[i - 1]] - 1;
+// We then claim that lcp[rank[i]] >= lcp[rank[i - 1]] - 1 = h - 1
+
+// Proof:
+// We give a direct proof of the claim
+// Let j' = j + 1
+// Since LCP(i - 1, j) = h, it follows that LCP(i, j + 1) = LCP(i, j') >= h - 1
+// Also, since rank[j] = rank[sa[rank[i - 1] - 1]] = rank[i - 1] - 1 < rank[i - 1], it follows that
+// S[j] < S[i - 1]
+
+// Also, since LCP(i - 1, j) >= 1, it follows that S[j] and S[i - 1] have atleast one prefix character in common
+// Therefore, removing the first character from both suffixes
+// preserves lexicographical ordering, giving:
+// S[j] < S[i - 1] -> S[j + 1] = S[j'] < S[i - 1 + 1] = S[i]
+
+// We can then conclude from LCP(i, j') >= h - 1 that there is a suffix that is lexicographically smaller that
+// S[i] and has at least h - 1 prefix characters in common with S[i]
+
+// Let i' = sa[rank[i] - 1]
+// Then S[i'] is the lexicographically greatest suffix strictly
+// smaller than S[i]
+//
+// Therefore:
+//
+//      LCP(i', i) >= h - 1
+//
+// since otherwise S[j'] could not lie lexicographically between
+// S[i'] and S[i]
+
+// Thus, LCP(i', i) = lcp[rank[i]] >= h - 1 = lcp[rank[i - 1]] - 1
 
 
 int tree[4 * MAX + 1];
