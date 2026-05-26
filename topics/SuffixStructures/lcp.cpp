@@ -3,6 +3,7 @@ using namespace std;
 
 #define int long long
 #define MAX (int)(1e5)
+#define INF (int)(1e17)
 
 // Let s[1, n] is a string for some n >= 1
 
@@ -70,7 +71,57 @@ using namespace std;
 // Also, using lemma 2, we conclude that there is a ri + 1 <= b <= rj such that lcp[b] <= k
 // Thus, since t <= lcp[b], it follows that t <= k
 
+// For 1 <= i, j < n, 
+// LCP(i + 1, j + 1) >= LCP(i, j) - 1
+// since removing the first equal character leaves atleast LCP(i, j) - 1 equal characters
+
 int tree[4 * MAX + 1];
 void build(vector<int> &lcp, int l, int r, int idx) {
+	if (l == r) {
+		tree[idx] = lcp[l];
+		return;
+	}
+	int m = (l + r) >> 1;
+	build(lcp, l, m, idx << 1), build(lcp, m + 1, r, (idx << 1) | 1);
+	tree[idx] = min(tree[idx << 1], tree[(idx << 1) | 1]);
+}
 
+int query(int ql, int qr, int l, int r, int idx) {
+	if (r < ql || qr < l) return INF;
+	if (l >= ql && r <= qr) return tree[idx];
+	int m = (l + r) >> 1;
+	return min(query(ql, qr, l, m, idx << 1), query(ql, qr, m + 1, r, (idx << 1) | 1));
+}
+
+int LCP(int i, int j, vector<int> &rank) {
+	int n = rank.size() - 1;
+	if (i == j)
+		return n - i + 1;
+	if (rank[j] < rank[i])
+		swap(i, j);
+	return query(rank[i] + 1, rank[j], 1, n, 1);
+}
+
+vector<int> build_lcp(string &s, vector<int> &sa, vector<int> &rank) {
+	int n = s.length();
+	vector<int> str(n + 1);
+	for (int i = 1; i <= n; i++)
+		str[i] = s[i - 1] - 'a';
+
+	int h = 0;
+	vector<int> lcp(n + 1);
+	for (int i = 1; i <= n; i++) {
+		int r = rank[i];
+		if (r == 1) {
+			lcp[r] = h = 0;
+			continue;
+		}
+
+		// We know that lcp[rank[i - 1]] = h
+		// Let j = rank[i - 1] - 1
+		// Thus LCP(i - 1, j) = h
+
+	}
+
+	return lcp;
 }
