@@ -9,6 +9,27 @@ int32_t main() {
 	vector<int> sa(n + 1), rank(n + 1), tmp(n + 1);
 	vector<int> t(n + 1), cnt(n + 1);
 
+	vector<int> f(26 + 1);
+	for (int i = 1; i <= n; i++)
+		f[s[i - 1] - 'a' + 1]++;
+	for (int i = 1; i <= 26; i++)
+		f[i] += f[i - 1];
+
+	for (int i = n; i >= 1; i--) {
+		int c = s[i - 1] - 'a' + 1;
+		sa[f[c]--] = i;
+	}
+	tmp[sa[1]] = 1;
+	for (int i = 2; i <= n; i++)
+		tmp[sa[i]] = tmp[sa[i - 1]] + (s[sa[i - 1] - 1] != s[sa[i] - 1]);
+
+	auto cmp = [&](int a, int b, int k) {
+		if (rank[a] != rank[b])
+			return rank[a] < rank[b];
+		int ra = (a + k <= n ? rank[a + k] : 0);
+		int rb = (b + k <= n ? rank[b + k] : 0);
+		return ra < rb;
+	};
 	for (int k = 1; k < n; k <<= 1) {
 		int ptr = 1;
 		for (int i = n - k + 1; i <= n; i++)
@@ -31,7 +52,37 @@ int32_t main() {
 
 		tmp[sa[1]] = 1;
 		for (int i = 1; i <= n; i++)
-			tmp[sa[i]] = tmp[sa[i - 1]] + cmp(sa[i - 1], sa[i]);
+			tmp[sa[i]] = tmp[sa[i - 1]] + cmp(sa[i - 1], sa[i], k);
+		swap(tmp, rank);
+		if (rank[sa[n]] == n)
+			break;
+	}
+
+	int h = 0;
+	vector<int> lcp(n + 1);
+	for (int i = 1; i <= n; i++) {
+		if (rank[i] == 1) {
+			lcp[rank[i]] = h = 0;
+			continue;
+		}
+
+		int j = sa[rank[i] - 1];
+		while (i + h <= n && j + h <= n && s[i + h - 1] == s[j + h - 1])
+			h++;
+		lcp[rank[i]] = h;
+		if (h)
+			h--;
+	}
+
+	set<pair<int, int>> s;
+	unordered_map<int, int> f;
+	for (int i = 1; i <= n; i++) {
+		s.insert({lcp[i], i});
+		int p = -1;
+		for (auto itr = s.begin(); itr != s.end(); ++itr) {
+			if (itr->second < p) break;
+			f[itr->first] += i - p + 1;
+		}
 	}
 	return 0;
 }
