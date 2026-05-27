@@ -26276,3 +26276,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    09ad627d..cbb207df  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6c4752ca] Practiced CF problems
+ 3 files changed, 73 insertions(+)
+ create mode 100644 topics/SuffixStructures/practice/countingPatterns.cpp
+To https://github.com/neofytr/Codeforces.git
+   cbb207df..6c4752ca  main -> main
+branch 'main' set up to track 'origin/main'.
