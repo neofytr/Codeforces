@@ -531,4 +531,77 @@ You should think of Suffix Array and LCP whenever the question is about substrin
 
 iii.
 
-If you've a lot of queries involving comparing substrings of a static string, use LCP + RMQ to do the queries in O(1)
+If you have a lot of queries involving comparing substrings of the same static string, build a suffix array (or suffix tree), compute the LCP array, and build an RMQ/sparse table over the LCP array.
+
+Let rank[i] denote the rank of suffix s[i...] in the suffix array.
+
+To compute LCP(i, j):
+- take the minimum value in the LCP array over the range between rank[i] and rank[j]
+- this can be answered in O(1) using RMQ
+
+Now two substrings:
+
+	s[l1...r1]
+	s[l2...r2]
+
+can be compared lexicographically by:
+- first computing their LCP in O(1)
+- then comparing the first differing character
+
+So after preprocessing:
+- substring LCP queries become O(1)
+- substring lexicographic comparisons become O(1)
+
+
+iv.
+
+Suppose you have a static string s, and many query strings t, and in each query you need to compare substrings/prefixes of s and t multiple times.
+
+Since t is not part of the suffix structure of s, suffix-array LCP queries cannot be used directly.
+
+In this case:
+- precompute rolling hashes for s
+- for each query string t, compute its rolling hashes once
+- to compare a substring/prefix of s and t:
+	- binary search the longest common prefix length
+	- use hash equality checks to test whether prefixes match
+	- after finding the LCP, compare the next differing character
+
+This gives:
+- O(1) substring hash queries
+- O(log L) substring comparisons, where L is the common-prefix length
+
+This technique is useful when:
+- there are many online query strings
+- strings are repetitive
+- naive comparisons repeatedly rescan long prefixes
+
+Typical examples:
+- suffix-array pattern matching
+- online lexicographic comparisons
+- comparing dynamic/generated strings against a static text
+
+v. 
+
+We can binary search the length of the LCP of two strings s and t:
+
+int n = s.length(), m = t.length();
+
+int left = 0;
+int right = min(n, m);
+
+int lcp = 0;
+while (left <= right) {
+	int mid = left + (right - left) / 2;
+	if (s[0, mid - 1] != t[0, mid - 1])
+		right = mid - 1;
+	else
+		lcp = mid, left = mid + 1;
+}
+
+We can use string hashing to do the substring comparisons in O(1)
+
+vi.
+
+If you have static strings s and t, and you are to do substrings comparisons on them, build a new string T = s + # + t, and then
+do LCP queries in O(1) for substring comparisons.
