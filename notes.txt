@@ -528,3 +528,7 @@ otherwise, if b is less than lengths of both the substrings, the substring with 
 ii.
 
 You should think of Suffix Array and LCP whenever the question is about substrings
+
+iii.
+
+If you've a lot of queries involving comparing substrings of a static string, use LCP + RMQ to do the queries in O(1)

@@ -26287,3 +26287,11 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    6c4752ca..e8869fc1  main -> main
 branch 'main' set up to track 'origin/main'.
+[main d9fd5f4a] Problem solving session
+ 5 files changed, 81 insertions(+), 11 deletions(-)
+ delete mode 100755 topics/SuffixStructures/a.out
+ delete mode 100755 topics/SuffixStructures/main
+ create mode 100644 topics/SuffixStructures/stringHash.cpp
+To https://github.com/neofytr/Codeforces.git
+   e8869fc1..d9fd5f4a  main -> main
+branch 'main' set up to track 'origin/main'.
