@@ -508,3 +508,23 @@ Thus, S' = S'' and S = 2 * S' = 2 * S''
 
 12.
 
+Let s[1, n] is a string for n >= 1
+Let sa[1, n] is the suffix array of s
+Let rank[1, n] is the rank array of s
+Let lcp[1, n] is the lcp array of s
+
+i.
+
+To compare two substrings s[l1, r1] and s[l2, r2] for 1 <= l1 <= r1 <= n, 1 <= l2 <= r2 <= n, calculate first
+
+b = LCP(l1, l2)
+
+if b is greater than either of the substrings length, both substrings are equal
+
+if b is equal to the minimum of the lengths of the two substrings, the smaller length substring is smaller of the two
+
+otherwise, if b is less than lengths of both the substrings, the substring with smaller s[l + b] will be smaller
+
+ii.
+
+You should think of Suffix Array and LCP whenever the question is about substrings
