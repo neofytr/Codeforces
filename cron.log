@@ -26300,3 +26300,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    d9fd5f4a..96379275  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 36cc8737] Solved a few problems
+ 7 files changed, 276 insertions(+), 22 deletions(-)
+ create mode 100644 topics/SuffixStructures/practice/repeatingSubstring.cpp
+To https://github.com/neofytr/Codeforces.git
+   96379275..36cc8737  main -> main
+branch 'main' set up to track 'origin/main'.
