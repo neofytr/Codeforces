@@ -2,20 +2,25 @@
 using namespace std;
 
 #define int long long
+#define get_hash(l, r, hash) ((ipw[(l) - 1]) * ((hash)[r] - (hash)[l - 1] + MOD) % MOD)
+
+const int p = 33;
+const int MOD = (int)(1e9) + 7;
 
 string s; int n;
-inline int cmp_substr(int pos, const string &t) {
-	int m = t.length();
 
-	for (int i = 0; i < m; i++) {
-		if (pos + i >= n)
-			return -1;
-		if (s[pos + i] < t[i])
-			return -1;
-		if (s[pos + i] > t[i])
-			return 1;
+vector<int> hashs, hasht, pw, ipw;
+vector<int> str;
+
+int pow(int base, int exp) {
+	int res = 1;
+	while (exp) {
+		if (exp & 1)
+			res = res * base % MOD;
+		base = base * base % MOD;
+		exp >>= 1;
 	}
-	return 0;
+	return res;
 }
 
 int32_t main() {
@@ -23,6 +28,17 @@ int32_t main() {
     std::cin.tie(NULL);
 	cin >> s;
 	n = s.length();
+
+	hashs.resize(n + 1), pw.resize(n + 1), ipw.resize(n + 1), str.resize(n + 1);
+	for (int i = 1; i <= n; i++)
+		str[i] = s[i - 1] - 'a' + 1;
+
+	hashs[0] = 0;
+	pw[0] = ipw[0] = 1;
+	for (int i = 1; i <= n; i++)
+		pw[i] = (p * pw[i - 1]) % MOD, ipw[i] = pow(p[i], MOD - 2);
+	for (int i = 1; i <= n; i++)
+		hashs[i] = (hashs[i - 1] + str[i] * pw[i - 1]) % MOD;
 
 	vector<int> sa(n + 1), rank(n + 1), tmp(n + 1);
 	vector<int> t(n + 1), cnt(n + 1);
