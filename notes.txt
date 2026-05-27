@@ -406,3 +406,57 @@ Hence, the duplicated prefixes are exactly the first lcp[i] prefixes, so the num
 
 Summing this over all suffixes gives the total number of distinct substrings.
 
+10.
+
+Let a[1, n] is an array with n >= 1
+We want to calculate the sum of minimums of all subarrays of a, i.e, 
+
+S = summation over 1 <= i <= j <= n of min(a[r] for i <= r <= j)
+
+The method to do this is the contribution technique with monotonic stacks. Instead of iterating over all subarrays, compute:
+
+	For how many subarrays is a[i] the minimum? Let this number be c[i], for 1 <= i <= n
+
+Then, S = summation (1 <= i <= n) c[i] * a[i]
+
+For each 1 <= i <= n, define:
+
+L[i] = the largest index j < i such that a[j] < a[i]
+     = 0 if no such index exists
+
+R[i] = the smallest index j > i such that a[j] <= a[i]
+     = n + 1 if no such index exists
+
+We count the subarrays where a[i] is the chosen minimum.
+
+A valid subarray must:
+- start in [L[i] + 1, i]
+  since extending further left would include an element smaller than a[i]
+
+- end in [i, R[i] - 1]
+  since extending further right would include an element <= a[i]
+
+Thus, the number of subarrays where a[i] contributes as the minimum is
+
+c[i] = (i - L[i]) * (R[i] - i)
+
+So the final answer is
+
+Σ a[i] * c[i]
+
+Why does this count every subarray exactly once?
+
+Take any subarray a[l, r], and let b be its minimum value.
+Let k be the rightmost position in [l, r] such that a[k] = b.
+
+Then:
+- there is no element < a[k] inside the subarray
+- there is no element <= a[k] to the right of k inside the subarray
+
+Hence the subarray satisfies the conditions for k and is counted in c[k].
+
+Now consider any earlier position x < k with a[x] = b.
+Since there is an equal value to the right of x, we have R[x] <= k, so the subarray cannot extend far enough right to include k.
+Therefore the same subarray is not counted in c[x].
+
+Thus every subarray is counted exactly once.

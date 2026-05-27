@@ -19,9 +19,9 @@ int32_t main() {
 		int c = s[i - 1] - 'a' + 1;
 		sa[f[c]--] = i;
 	}
-	tmp[sa[1]] = 1;
+	rank[sa[1]] = 1;
 	for (int i = 2; i <= n; i++)
-		tmp[sa[i]] = tmp[sa[i - 1]] + (s[sa[i - 1] - 1] != s[sa[i] - 1]);
+		rank[sa[i]] = rank[sa[i - 1]] + (s[sa[i - 1] - 1] != s[sa[i] - 1]);
 
 	auto cmp = [&](int a, int b, int k) {
 		if (rank[a] != rank[b])
@@ -45,7 +45,7 @@ int32_t main() {
 			cnt[rank[t[i]]]++;
 		for (int i = 1; i <= n; i++)
 			cnt[i] += cnt[i - 1];
-		for (i = n; i >= 1; i--) {
+		for (int i = n; i >= 1; i--) {
 			int r = rank[t[i]];
 			sa[cnt[r]--] = t[i];
 		}
@@ -74,15 +74,15 @@ int32_t main() {
 			h--;
 	}
 
-	set<pair<int, int>> s;
-	unordered_map<int, int> f;
-	for (int i = 1; i <= n; i++) {
-		s.insert({lcp[i], i});
-		int p = -1;
-		for (auto itr = s.begin(); itr != s.end(); ++itr) {
-			if (itr->second < p) break;
-			f[itr->first] += i - p + 1;
-		}
-	}
+	
+
+	for (int i = 1; i <= n; i++)
+		cout << lcp[i] << " ";
+	cout << endl;
+
+	int sum = 0;
+	for (auto &[num, c] : ft)
+		sum += num * c;
+	cout << sum - accumulate(lcp.begin() + 1, lcp.end(), 0ll) + (n * (n + 1)) / 2 << endl;
 	return 0;
 }
