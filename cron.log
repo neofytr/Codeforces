@@ -26238,3 +26238,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    649746fe..19fe9f2f  main -> main
 branch 'main' set up to track 'origin/main'.
+[main e68e92c5] Practiced CF problems
+ 2 files changed, 6 insertions(+)
+ create mode 100644 topics/SuffixStructures/practice/border.cpp
+To https://github.com/neofytr/Codeforces.git
+   19fe9f2f..e68e92c5  main -> main
+branch 'main' set up to track 'origin/main'.
