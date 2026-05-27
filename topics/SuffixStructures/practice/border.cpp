@@ -74,15 +74,27 @@ int32_t main() {
 			h--;
 	}
 
-	
+	deque<int> d, q;
+	vector<int> l(n + 1, 0), r(n + 1, n + 1);
+	for (int i = 1; i <= n; i++) {
+		while (!d.empty() && lcp[d.back()] >= lcp[i])
+			d.pop_back();
+		if (!d.empty())
+			l[i] = d.back();
+		d.push_back(i);
+	}
 
-	for (int i = 1; i <= n; i++)
-		cout << lcp[i] << " ";
-	cout << endl;
+	for (int i = n; i >= 1; i--) {
+		while (!q.empty() && lcp[q.back()] > lcp[i])
+			q.pop_back();
+		if (!q.empty())
+			r[i] = q.back();
+		q.push_back(i);
+	}
 
 	int sum = 0;
-	for (auto &[num, c] : ft)
-		sum += num * c;
-	cout << sum - accumulate(lcp.begin() + 1, lcp.end(), 0ll) + (n * (n + 1)) / 2 << endl;
+	for (int i = 1; i <= n; i++)
+		sum += lcp[i] * (i - l[i]) * (r[i] - i);
+	cout << sum + (n * (n + 1)) / 2 << endl;
 	return 0;
 }

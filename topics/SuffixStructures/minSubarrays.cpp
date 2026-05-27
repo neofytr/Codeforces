@@ -27,8 +27,47 @@ int32_t main() {
 	// since all their R values stop just shy of the first equal value on the right.
 
 	deque<int> dq;
-	vector<int> L(i + 1, 0);
+	vector<int> L(n + 1, 0);
 
+	// the invariant maintained in the dequeues is that at the beginning of every step, we contain
+	// all the relevant minimums in decreasing order of indexes from back to the front of the queue
+	for (int i = 1; i <= n; i++) {
+		// we can safely remove any previous indexes that have values >= a[i] since
+		// for any a[j] for j > i, either a[j] will be the minimum of the whole current a[1, i], or
+		// if it is not, the value strictly less than it to its left won't be any of the removed values since
+		// a[i] is less than all of the removed values anyway 
+		while (!dq.empty() && a[dq.back()] >= a[i])
+			dq.pop_back(); 
+		if (!dq.empty())
+			L[i] = dq.back();
+		dq.push_back(i);
+	}
 
+	deque<int> q;
+	vector<int> R(n + 1, n + 1);
+	for (int i = n; i >= 1; i--) {
+		// we can safely remove any previous indexes that have values > a[i] since for any a[j] for j < i, either
+		// it will be the minimum of a[j, n] itself, or the value to its right that is less than or equal to it won't
+		// be any of the removed values since they are larger than a[i] anyway
+		while (!q.empty() && a[q.back()] > a[i])
+			q.pop_back();
+		if (!q.empty())
+			R[i] = q.back();
+		q.push_back(i);
+	}
+
+	int sum = 0;
+	for (int i = 1; i <= n; i++)
+		sum += a[i] * (i - L[i]) * (R[i] - i);
+
+	int res = 0;
+	for (int i = 1; i <= n; i++) {
+		int mini = LLONG_MAX;
+		for (int j = i; j <= n; j++)
+			for (int k = i; k <= j; k++)
+				mini = min(mini, a[k]);
+		res += mini;
+	}
+	cout << sum << " " << res << endl;
 	return 0;
 }

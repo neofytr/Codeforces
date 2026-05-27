@@ -460,3 +460,5 @@ Since there is an equal value to the right of x, we have R[x] <= k, so the subar
 Therefore the same subarray is not counted in c[x].
 
 Thus every subarray is counted exactly once.
+
+See implementation in topics/SuffixStructures/minSubarrays.cpp for more details and the exact algorithm
