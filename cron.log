@@ -26265,3 +26265,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    18c934a6..236d4f35  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 09ad627d] Solved a CF problem
+ 8 files changed, 69 insertions(+), 10 deletions(-)
+ create mode 100755 topics/SuffixStructures/a.out
+To https://github.com/neofytr/Codeforces.git
+   236d4f35..09ad627d  main -> main
+branch 'main' set up to track 'origin/main'.

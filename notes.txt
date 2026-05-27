@@ -462,3 +462,49 @@ Therefore the same subarray is not counted in c[x].
 Thus every subarray is counted exactly once.
 
 See implementation in topics/SuffixStructures/minSubarrays.cpp for more details and the exact algorithm
+
+11.
+
+Let s[1, n] is a string for n >= 1
+Let sa[1, n] is the suffix array of s
+Let rank[1, n] is the rank array of s
+Let lcp[1, n] is the lcp array of s
+
+We have to calculate
+
+S = summation (1 <= i, j <= n and i != j) LCP(i, j)
+
+Since for any 1 <= i, j <= n, we have LCP(i, j) = LCP(j, i)
+S = 2 * S' where
+
+S' = summation (1 <= i < j <= n) LCP(i, j)
+
+Now, LCP(i, j) = min(lcp[r] for ri + 1 <= r <= rj) where ri = min(rank[i], rank[j]) and rj = max(rank[i], rank[j]) for 1 <= i, j <= n
+Also, rank[i] = rank[j] iff i = j for 1 <= i, j <= n
+Also, if 1 <= i <= n, rank[i] takes on each value in the set [1, n] exactly once
+Thus, S = summation (1 <= i <= n, 1 <= j <= n, i != j) LCP(i, j)
+				= summation(1 <= i <= n, 1 <= j <= n, i != j) min(lcp[r] for ri + 1 <= r <= rj)
+				= summation(1 <= rank[i] <= n, 1 <= rank[j] <= n, rank[i] != rank[j]) min(lcp[r] for min(rank[i], rank[j]) + 1 <= r <= max(rank[i], rank[j])) (since i and j are independent summations)
+
+				= summation(1 <= i <= n, 1 <= j <= n, i != j) min(lcp[r] for min(i, j) + 1 <= r <= max(i, j))
+
+Let A(i, j) = min(lcp[r] for min(i, j) + 1 <= r <= max(i, j)) for 1 <= i <= n, 1 <= j <= n and i != j
+Then, A(i, j) = A(j, i) for 1 <= i <= n, 1 <= j <= n and i != j
+Thus, S = summation (1 <= i <= n, 1 <= j <= n and i != j) A(i, j)
+				= 2 * summation (1 <= i < j <= n) A(i, j)
+
+Let S'' = summation (1 <= i < j <= n) A(i, j)
+Thus S' = S''
+
+Now, S'' = summation (1 <= i < j <= n) min (lcp[r] for i + 1 <= r <= j)
+Let p = i + 1, then,
+
+S'' = summation (2 <= p <= j <= n) min (lcp[r] for p <= r <= j)
+	= summation (2 <= i <= j <= n) min (lcp[r] for p <= r <= j)
+	= summation (1 <= i <= j <= n) min (lcp[r] for i <= r <= j) since lcp[1] = 0 < lcp[r] for 1 < r <= n
+
+Thus, S'' is the sum of minimums of all subarrays of lcp
+Thus, S' = S'' and S = 2 * S' = 2 * S''
+
+12.
+
