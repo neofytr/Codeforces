@@ -19,9 +19,17 @@ using namespace std;
 // Equivalently, a string f is a border of s iff there is a 0 <= k < n such that
 // 				   f = s[1, k] = s[n - k + 1, n]
 
+// A border of s, of length 0 <= k < n, if it exists, is unique
+// This is true since a border of length k of s, if it exists, is the prefix s[1, k], and
+// all the prefixes of a string are distinct (atleast in length)
+
 // We define the set 
-//			B(s) = {k such that 0 <= k < n and s[1, k] = s[n - k + 1, n]}
+//			b(s) = {k such that 0 <= k < n and s[1, k] = s[n - k + 1, n]}
 // to be the set of border lengths of s
+
+// We define the set
+// 			B(s) = {s[1, k] for k in b(s)}
+// to be the border set of s
 
 // The empty string (length 0) is in B(s)
 
@@ -82,3 +90,14 @@ using namespace std;
 // 1. 0 <= p[i] < i
 // 2. p[1] = 0
 // 3. p[i] = k implies s[1, k] == s[i - k + 1, i]
+
+// We define the function pi(s): [1, |s|] -> J
+// 		pi(s)[j] = s[1, p(j)] for 1 <= j <= |s|
+// for some string s, where p is the prefix function of s, and J is the set of all the
+// strings over the alphabet the string s is made from
+
+// --------------------------------------------------------------------------------------------------------
+
+// The Border Structure Theorem
+
+
