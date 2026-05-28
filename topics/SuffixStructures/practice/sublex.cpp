@@ -53,16 +53,6 @@ int32_t main() {
 	for (int i = 1; i <= n; i++)
 		cnt[i] = cnt[i - 1] + (n - sa[i] + 1) - lcp[i];
 
-	for (int i = 1; i <= n; i++)
-		cout << sa[i] << " ";
-	cout << endl;
-	for (int i = 1; i <= n; i++)
-		cout << lcp[i] << " ";
-	cout << endl;
-	for (int i = 1; i <= n; i++)
-		cout << cnt[i] << " ";
-	cout << endl;
-
 	for (int i = 1; i <= q; i++) {
 		int k = queries[i];
 		int j = upper_bound(cnt + 1, cnt + n + 1, k) - cnt;
