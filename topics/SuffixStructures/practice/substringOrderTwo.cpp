@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long
 #define MAX (int)(1e5)
 
 string s; int n;
@@ -42,8 +41,7 @@ int get_cnt(string &sub) {
 		else
 			last = mid, left = mid + 1; 
 	}
-
-	return p[last] - p[first - 1];
+	return p[last] - p[first - 1] - (last - first + 1) * (len - 1);
 }
 
 int get_exact(string &sub) {
@@ -107,37 +105,17 @@ int32_t main() {
 			break;
 	}
 
-	int h = 0;
-	for (int i = 1; i <= n; i++) {
-		if (rnk[i] == 1) {
-			lcp[rnk[i]] = h = 0;
-			continue;
-		}
-
-		int j = sa[rnk[i] - 1];
-		while (i + h <= n && j + h <= n && s[i + h - 1] == s[j + h - 1])
-			h++;
-		lcp[rnk[i]] = h;
-		if (h) 
-			h--;
-	}
-
 	p[0] = 0;
 	for (int i = 1; i <= n; i++)
 		p[i] = p[i - 1] + (n - sa[i] + 1);
-
-	string str = "aa";
-	cout << get_cnt(str) << endl;
 
 	int k; cin >> k;
 	string res; 
 	int cnt = 0;
 	char curr = 'a';
-	while (false) {
+	while (true) {
 		res.push_back(curr);
 		int c = get_cnt(res);
-
-		sleep(2);
 		if (cnt + c < k) {
 			curr++;
 			cnt += c;

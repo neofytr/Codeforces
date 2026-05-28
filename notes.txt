@@ -583,7 +583,10 @@ Typical examples:
 
 v. 
 
-We can binary search the length of the LCP of two strings s and t:
+Let s and t be two strings to be compared
+We first build the rolling hashes of s and t
+We can then binary search the length of the LCP of s and t, in O(log min(|s|, |t|)), and then do the comparison in O(1) instead of the naive O(min(|s|, |t|)).
+We use string hashing to do the substring comparisons in O(1) in the binary search itself.
 
 int n = s.length(), m = t.length();
 
@@ -599,12 +602,76 @@ while (left <= right) {
 		lcp = mid, left = mid + 1;
 }
 
-We can use string hashing to do the substring comparisons in O(1)
 
 vi.
 
 If you have static strings s and t, and you are to do substrings comparisons on them, build a new string T = s + # + t, and then
 do LCP queries in O(1) for substring comparisons.
+
+vii.
+
+Suppose we want to count all substrings of a string s
+(not necessarily distinct) that are prefixed by a string str.
+
+First, construct the suffix array of s.
+
+All suffixes that begin with str will appear consecutively
+in lexicographic order inside the suffix array.
+
+Using binary search on the suffix array, find:
+- first = first suffix where str is a prefix
+- last  = last suffix where str is a prefix
+
+Now consider every suffix in the range sa[first ... last].
+
+If a suffix starts at position i, then its length is:
+
+    n - i + 1
+
+Every prefix of this suffix forms a substring of s,
+so the total number of substrings contributed by this suffix
+equals its length.
+
+Using a prefix sum array over suffix lengths, we can compute:
+
+    sum(lengths of suffixes in sa[first ... last])
+
+However, not all of these substrings start with str.
+
+For a suffix of length L, only prefixes of length at least |str|
+are valid. The shorter prefixes (there are |str| - 1 of them)
+must be removed.
+
+Since there are (last - first + 1) suffixes in the range,
+the total invalid count is:
+
+    (|str| - 1) * (last - first + 1)
+
+Therefore, the final answer is:
+
+    sum(lengths of suffixes in sa[first ... last])
+    - (|str| - 1) * (last - first + 1)
+
+On the other hand, suppose you wanted to count just the number of occurrences of the substring str in the string s, then, the answer would be last - first + 1.
+
+viii.
+
+- If we have to do a lot of lexicographical string comparisons between
+  substrings of the same string s, use suffix arrays + LCP RMQ.
+  After O(n log n) preprocessing, any two substrings of s can be
+  lexicographically compared in O(1).
+
+- If we have to compare substrings belonging to different strings,
+  concatenate all strings using unique separator characters such as
+  '#', '$', etc. Then build the suffix array/LCP structure on the
+  combined string and use the same method.
+
+- If we have rolling hashes of two strings, we can binary search on
+  the LCP length using hash comparisons. This computes the LCP in
+  O(log n), after which lexicographical comparison takes O(1).
+
+  Therefore, lexicographical comparison using rolling hashes takes
+  O(log n).
 
 13. Lexicographic Ordering of Distinct Substrings using SA + LCP
 
