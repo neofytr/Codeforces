@@ -49,15 +49,34 @@ int32_t main() {
 			h--;
 	}
 
-
 	cnt[0] = 0;
 	for (int i = 1; i <= n; i++)
-		cnt[i] = cnt[i - 1] + (n - sa[i] + 1) - lcp[i], cout << cnt[i] << endl;
+		cnt[i] = cnt[i - 1] + (n - sa[i] + 1) - lcp[i];
+
+	for (int i = 1; i <= n; i++)
+		cout << sa[i] << " ";
+	cout << endl;
+	for (int i = 1; i <= n; i++)
+		cout << lcp[i] << " ";
+	cout << endl;
+	for (int i = 1; i <= n; i++)
+		cout << cnt[i] << " ";
+	cout << endl;
 
 	for (int i = 1; i <= q; i++) {
 		int k = queries[i];
 		int j = upper_bound(cnt + 1, cnt + n + 1, k) - cnt;
-		cout << j << endl;
+		
+		if (cnt[j - 1] == k) {
+			int start = sa[j - 1] - 1;
+			cout << s.substr(sa[j - 1] - 1, n - start) << endl;
+			continue;
+		}
+
+		int need = k - cnt[j - 1] - 1;
+		int start = sa[j] - 1;
+		int end = sa[j] + lcp[j] + need - 1;
+		cout << s.substr(start, end - start + 1) << endl;
 	}
 	return 0;
 }

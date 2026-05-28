@@ -26333,3 +26333,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    34b8f3ae..ba096f0c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main ce43da3a] Solved problem
+ 5 files changed, 72 insertions(+), 2 deletions(-)
+ create mode 100755 topics/SuffixStructures/practice/a.out
+ create mode 100644 topics/SuffixStructures/practice/sublex.cpp
+To https://github.com/neofytr/Codeforces.git
+   ba096f0c..ce43da3a  main -> main
+branch 'main' set up to track 'origin/main'.
