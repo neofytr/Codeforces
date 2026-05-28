@@ -26306,3 +26306,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    96379275..36cc8737  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6e021c3d] Solved problem
+ 5 files changed, 144 insertions(+), 1 deletion(-)
+ create mode 100644 topics/SuffixStructures/practice/substringOrderOne.cpp
+To https://github.com/neofytr/Codeforces.git
+   36cc8737..6e021c3d  main -> main
+branch 'main' set up to track 'origin/main'.
