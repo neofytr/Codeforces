@@ -24,3 +24,61 @@ using namespace std;
 // to be the set of border lengths of s
 
 // The empty string (length 0) is in B(s)
+
+// --------------------------------------------------------------------------------------------------------
+
+// The Nested-Borders Lemma
+// Let s[1, n] is a string for n >= 1
+
+// 1.1 If a string p is a border of s, and a string q is a border of p, then q is a border of s
+// Proof
+// Let p is a border of s, and let q is a border of p
+// We then claim that q is a border of s. We give a direct proof of the claim
+
+// Let |p| = i, and |q| = j
+// Then, n > i > j by our assumption
+// Also, by definition of border strings, there exist  0 <= k1 < n, 0 <= k2 < i such that
+
+// p = s[1, k1] = s[n - k1 + 1, n] and q = p[1, k2] = p[i - k2 + 1, i]
+// Now, since p = s[1, k1] and q = p[1, k2], it follows that k2 < k1, and that q = s[1, k2]
+// It also follows from p = s[1, k1] that i = k1 - 1 + 1 = k1
+// Thus, it follows from q = p[i - k2 + 1, i] = p[k1 - k2 + 1, k1]
+// We can then conclude from p = s[n - k1 + 1, n] that q = s[n - k2 + 1, n]
+
+// Thus, q = s[1, k2] = s[n - k1 + 1, n], from which the claim follows.
+
+// 1.2 If strings p and q are borders of string s such that |q| < |p|, then q is a border of p
+// Proof
+// Let p and q are borders of s such that |q| = i < |p| = j
+// We then claim that q is a border of p. We give a direct proof of the claim
+// It follows from the definition of borders that there exist
+// 			0 <= k1 < n and 0 <= k2 < n such that
+//				p = s[1, k1] = s[n - k1 + 1, n], and
+//				q = s[1, k2] = s[n - k2 + 1, n]
+
+// Also, since i < j, it follows that k2 < k1
+// It then follows from p = s[1, k1] and q = s[1, k2] that q = p[1, k2]
+// Similarly, we can conclude from p = s[n - k1 + 1, n] and q = s[n - k2 + 1, n] that 
+// q = p[n - k2 + 1, n]
+
+// Thus, q = p[1, k2] = p[n - k2 + 1, n], from which the claim follows directly
+
+// --------------------------------------------------------------------------------------------------------
+
+// The Prefix Function
+
+// Let s[1, n] is a string for n >= 1
+// We define the prefix function of s, p: [1, n] -> W such that
+//	 p(i) = max {k such that 0 <= k < i and s[1, k] == s[i - k + 1, i]} for 1 <= i <= n
+// Since the empty string (k = 0) always works and k is bounded in [0, i), the maximum of this set always exists
+
+// We define the prefix function array p[1, n] of s as p[i] = p(i) for 1 <= i <= n
+// Thus, p[i] is the length of the longest proper border of the prefix s[1, i] for 1 <= i <= n
+// Equivalently, p[i] = max(B(s[1, i])) for 1 <= i <= n
+
+// p[1] = 0 (the empty string is the only solution)
+
+// For 1 <= i <= n, the following properties hold:
+// 1. 0 <= p[i] < i
+// 2. p[1] = 0
+// 3. p[i] = k implies s[1, k] == s[i - k + 1, i]

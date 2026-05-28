@@ -26355,3 +26355,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    d01c2066..d926e265  main -> main
 branch 'main' set up to track 'origin/main'.
+[main bd51a735] Solved a CF problem
+ 4 files changed, 1406 insertions(+), 10 deletions(-)
+ create mode 100644 topics/KMP/Lesson/guides.md
+ create mode 100644 topics/KMP/code.cpp
+To https://github.com/neofytr/Codeforces.git
+   d926e265..bd51a735  main -> main
+branch 'main' set up to track 'origin/main'.
