@@ -26312,3 +26312,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    36cc8737..6e021c3d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0eca40b5] More problems solved
+ 4 files changed, 7 insertions(+), 1 deletion(-)
+ create mode 100644 topics/SuffixStructures/practice/substringOrderTwo.cpp
+To https://github.com/neofytr/Codeforces.git
+   6e021c3d..0eca40b5  main -> main
+branch 'main' set up to track 'origin/main'.
