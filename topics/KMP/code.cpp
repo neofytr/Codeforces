@@ -266,3 +266,24 @@ using namespace std;
 // Theorem 11
 // Let t is a non-empty string and let 1 <= i <= |t|
 // If t[1, j] is a border of t[1, i], then, t[1, j - 1] is a border of t[1, i - 1]
+//
+// Rough Proof:
+// If i = 1, then t[1, 1] has only one border and that is the empty string, i.e, j = 0
+// Then, t[1, i - 1] is also an empty string, and t[1, j - 1] is also an empty string, and an empty
+// string is a border of an empty string. The claim holds
+//
+// Now for i > 1
+// If t[1, j] is the empty string, i.e, j = 0, then t[1, j - 1] is empty string too, which is indeed a border
+// of t[1, i - 1]
+//
+// Suppose j > 1 (and i > 1) (non-empty border), then,
+// s[1, j] = s[i - j + 1, i]
+//
+// Also j < i
+//
+// Taking a character out from either end (we can do this since the border is non-empty), we get
+// s[1, j - 1] = s[i - j + 1, i - 1]
+// and j - 1 < i - 1
+// from which we can conclude that s[1, j - 1] is a border of s[1, i - 1]
+//
+// Our theorem thus holds in all the cases
