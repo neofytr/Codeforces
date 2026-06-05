@@ -26571,3 +26571,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    64e2f97a..a9d3217c  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 6bfdefb2] Solved problem
+ 2 files changed, 8 insertions(+)
+ create mode 100644 .vscode/settings.json
+To https://github.com/neofytr/Codeforces.git
+   a9d3217c..6bfdefb2  main -> main
+branch 'main' set up to track 'origin/main'.
