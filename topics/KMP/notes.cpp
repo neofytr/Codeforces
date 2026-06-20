@@ -258,24 +258,37 @@ vector<int> prefix(const string &s) {
 
 // Counting occurrences of each prefix
 vector<int> _cnt(const string &s) {
-	int n = s.length();
+    int n = s.length();
 
-	// cnt[i] is the number of the times the prefix s[1, i]
-	// occurs in the string s as a substring
-	vector<int> cnt(n + 1, 1);
-	vector<int> p = prefix(s);
+    // cnt[i] = number of times s[1, i] occurs in s as a substring
+    // initialized to 1 since s[1, i] always occurs as the prefix itself
+    vector<int> cnt(n + 1, 1);
 
-	// any prefix s[1, i] occurs as a substring of s in exactly one of the 
-	// following two ways:
-	// 1. as the prefix s[1, i] itself (+ 1)
-	// 2. as s[j - i + 1, j] = s[i, i] for some j > i, i.e., as a border of some
-	// s[1, j] for j > i
+    // m[i] = number of times we still need to increment cnt[k] for all
+    // borders k of s[1, i]; contributed to by all j > i that have i as
+    // their longest border (since those j's border-increment obligations
+    // for i and below fall on i to propagate further)
+    vector<int> m(n + 1, 0);
+    vector<int> p = prefix(s);
 
-	// Thus, while iterating j = 1 to n, we increment the cnt value of each border length
-	// of s[1, j] by 1
-	for (int i = n; i >= 1; i--) {
-		cnt[p[i]]++;
-	}
-	return cnt;
+    // for each prefix s[1, i], s[1, i] occurs as a substring of s iff it
+    // occurs as the prefix itself (counted in the initialization), or as a
+    // border of some s[1, j] for j > i
+    // so for each j, we want to increment cnt[k] for every k in b(s[1, j])
+    //
+    // the main idea is that incrementing cnt for all borders of s[1, i] = increment cnt[p[i]]
+    // once, then do the same for all borders of s[1, p[i]] (by corollary of T5)
+    // so we break the obligation: "increment borders of s[1, i] m[i] times"
+    // into: add m[i] to cnt[p[i]], then pass m[i] down to p[i]
+    //
+    // iterating backwards ensures that when we process i, all j > i with
+    // p[j] = i have already contributed their m[j] into m[i]
+    for (int i = n; i >= 1; i--) {
+        ++m[i];              // i itself needs its own borders incremented once
+        cnt[p[i]] += m[i];  // fulfill m[i] increments to the longest border of s[1, i]
+        m[p[i]] += m[i];    // pass the obligation down: borders of s[1, p[i]] also need m[i] increments
+    }
+    return cnt;
 }
+
 
