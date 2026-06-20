@@ -222,23 +222,25 @@ using namespace std;
 // and thus pi[i + 1] <= pi[i] + 1 which is a contradiction to our assumption
 // -------------------------------------------------------------------------------------------------
 
+// Computing the prefix array
 vector<int> prefix(const string &s) {
 	int n = s.length();
-	vector<int> p(n + 1, 0);
+	vector<int> p(n + 1);
 
 	p[1] = 0;
-
 	int j = p[1];
 	for (int i = 2; i <= n; i++) {
-		// any non-empty border of s[1, i] with its last character removed is
-		// a border of s[1, i - 1]
-		// so, to find the largest border of s[1, i], we try all the borders of
-		// s[1, i - 1] in decreasing order and take the first one whose next character
-		// matches s[i]
+		// we want p[i], the length of the largest border of s[1, i]
+		// every non-empty border of s[1, i] without the last character is a border
+		// of s[1, i - 1]; and conversely, every border of s[1, i - 1] can be a border
+		// of s[1, i] if s[i] and the next character of the border match
 
-		while (j > 0 && s[j + 1 - 1] != s[i - 1])
+		// so, we iterate in decreasing order through all the borders of s[1, i - 1]
+		// and try to find the first one whose next character matches with s[i]
+		while (j > 0 && s[j + 1 - 1] != s[i - 1]) 
 			j = p[j];
-		if (s[j + 1 - 1] == s[i - 1]) ++j;
+		if (s[j + 1 - 1] == s[i - 1])
+			++j;
 		p[i] = j;
 	}
 
@@ -253,3 +255,11 @@ vector<int> prefix(const string &s) {
     // Hence the while loop runs O(n) times in total, not per iteration.
 	return p;
 }
+
+// Counting occurrences of each prefix
+vector<int> _cnt(const string &s) {
+	int n = s.length();
+	vector<int> cnt(n + 1, 0);
+
+}
+
