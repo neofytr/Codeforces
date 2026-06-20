@@ -198,3 +198,20 @@ using namespace std;
 // Since both the base and inductive steps are established, it follows from the axiom
 // of strong induction that P(n) is true for all n >= 1
 // -------------------------------------------------------------------------------------------------
+
+// Let s is a string of length n >= 1
+// We define pi[i] = L[s[1, i]] for 1 <= i <= n
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 9
+// pi[i + 1] <= p[i] + 1 for 1 <= i < n
+
+// Proof
+// The theorem is trivially true for n = 1
+
+// We prove the theorem for n >= 2 by contradiction
+// Assume that p[i + 1] = c > p[i] + 1 for some 1 <= i < n
+// Since p[i] = L[s[1, i]] >= 0, it follows that c >= 1
+
+// Also, it follows that s[i + 1, i - c + 2] == s[1, c]
+// -------------------------------------------------------------------------------------------------
