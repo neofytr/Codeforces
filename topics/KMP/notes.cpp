@@ -160,7 +160,8 @@ using namespace std;
 // -------------------------------------------------------------------------------------------------
 // Theorem 10
 // Let t is a non-empty string
-// Then, B(t) = {U[1](t), ..., U[V(t)](t)}
+// Then, B(t) = {U[1](t), ..., U[V(t)](t)} and
+// |U[1](t)| > |U[2](t)| > ... > |U[V(t)](t)|
 
 // Proof
 // Let P(n) be the predicate that "for every string t of length n, the claim is true"
@@ -214,4 +215,41 @@ using namespace std;
 // Since p[i] = L[s[1, i]] >= 0, it follows that c >= 1
 
 // Also, it follows that s[i + 1, i - c + 2] == s[1, c]
+// Dropping the last characters from both substrings (this is valid since c >= 1), we get
+// s[i, i - c + 2] == s[1, c - 1]
+
+// From this we conclude that s[1, c - 1] is a border of s[1, i] and thus c - 1 <= L(s[1, i]) = pi[i]
+// and thus pi[i + 1] <= pi[i] + 1 which is a contradiction to our assumption
 // -------------------------------------------------------------------------------------------------
+
+vector<int> prefix(const string &s) {
+	int n = s.length();
+	vector<int> p(n + 1, 0);
+
+	p[1] = 0;
+
+	int j = p[1];
+	for (int i = 2; i <= n; i++) {
+		// any non-empty border of s[1, i] with its last character removed is
+		// a border of s[1, i - 1]
+		// so, to find the largest border of s[1, i], we try all the borders of
+		// s[1, i - 1] in decreasing order and take the first one whose next character
+		// matches s[i]
+
+		while (j > 0 && s[j + 1 - 1] != s[i - 1])
+			j = p[j];
+		if (s[j + 1 - 1] == s[i - 1]) ++j;
+		p[i] = j;
+	}
+
+	// Time Complexity Analysis:
+    // j counts the current matched border length.
+    // j >= 0 throughout (the while loop stops before j goes below 0).
+    // j increases by at most 1 per outer iteration (the ++j step),
+    // so total increases across all iterations <= n.
+    // Each while-loop iteration strictly decreases j by at least 1
+    // (since p[j] < j — a border is strictly shorter than the string),
+    // so total decreases <= total increases <= n.
+    // Hence the while loop runs O(n) times in total, not per iteration.
+	return p;
+}
