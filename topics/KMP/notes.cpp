@@ -259,7 +259,23 @@ vector<int> prefix(const string &s) {
 // Counting occurrences of each prefix
 vector<int> _cnt(const string &s) {
 	int n = s.length();
-	vector<int> cnt(n + 1, 0);
 
+	// cnt[i] is the number of the times the prefix s[1, i]
+	// occurs in the string s as a substring
+	vector<int> cnt(n + 1, 1);
+	vector<int> p = prefix(s);
+
+	// any prefix s[1, i] occurs as a substring of s in exactly one of the 
+	// following two ways:
+	// 1. as the prefix s[1, i] itself (+ 1)
+	// 2. as s[j - i + 1, j] = s[i, i] for some j > i, i.e., as a border of some
+	// s[1, j] for j > i
+
+	// Thus, while iterating j = 1 to n, we increment the cnt value of each border length
+	// of s[1, j] by 1
+	for (int i = n; i >= 1; i--) {
+		cnt[p[i]]++;
+	}
+	return cnt;
 }
 
