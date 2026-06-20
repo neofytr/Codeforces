@@ -105,7 +105,7 @@ using namespace std;
 // Theorem 6
 // Let t is a non-empty string
 // Then, there exists unique k >= 1, denoted V(t), such that
-// U[i](t) > 0 for 1 <= i < V(t) and U[V(t)](t) = 0
+// |U[i](t)| > 0 for 1 <= i < V(t) and U[V(t)](t) = ""
 
 // Proof
 // We consider two cases and show that the claim holds in both of them
@@ -113,11 +113,88 @@ using namespace std;
 // Then, the claim is trivially true with k = 1
 
 // 2. Assume L(t) != 0
-// We can then conclude that U[1](t) is non-empty
-// We then consider the sequence |U[1](t)|, |U[2](t)|, ... |U[i](t)| where U[j](t) is non-empty
-// for 1 <= j <= i
+// Consider the sequence |U[1](t)|, |U[2](t)|, ... 
+
+// If U[j](t) is non-empty (for some j >= 1)
 // It follows from Theorem 1 that |U[j + 1](t)| < |U[j](t)| since U[j + 1](t)
-// is the longest border of the non-empty string U[j](t), for any i >= j >= 1
-// Also, since U[j](t) (for 1 <= j <= i + 1) are strings, it follows that |U[j](t)| >= 0
-// Thus, the considered sequence 
+// is the longest border of the non-empty string U[j](t),
+// Also, since U[j](t) is a string, it follows that |U[j](t)| >= 0
+// Also, by our assumption, U[1](t) is non-empty
+
+// It then follows that the sequence is a strictly decreasing non-negative sequence
+// starting from a positive number, and thus reaches 0 in finitely many steps
+// Let V(t) be the smallest such index in the sequence 
+// Then, |U[1](t)| > |U[2](t)| ... > |U[V(t)](t)| = 0
+// Thus, |U[i](t)| > 0 for all 1 <= i < V(t) and |U[V(t)](t)| = 0
+// V(t) is unique due to it's minimality
+// -------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 7 
+// Let t is a non-empty string
+// Then, the sequence
+// |U[1](t)|, ..., |U[V(t)](t)|
+// is a strictly decreasing non-negative integral sequence
+// -------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 8
+// Let t is a non-empty string
+// Then, U[j](t) = U[j - 1](U(t)) for any j >= 2
+// -------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 9
+// Let t is a non-empty string with L(t) > 0
+// Then, V(t) = V(U(t)) + 1
+
+// Rough Proof
+// Let s = U(t)
+// Now, |U[i](t)| > 0 for 1 <= i < V(t) and |U[V(t)](t)| = 0
+// Since U[j](t) = U[j - 1](U(t)) = U[j - 1](s) for j >= 2, we have
+// |U[i](s)| > 0 for 1 <= i < V(t) - 1 and |U[V(t) - 1](s)| = 0
+// It then follows that V(s) = V(t) - 1, and thus, 
+// V(t) = V(U(t)) + 1
+// -------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 10
+// Let t is a non-empty string
+// Then, B(t) = {U[1](t), ..., U[V(t)](t)}
+
+// Proof
+// Let P(n) be the predicate that "for every string t of length n, the claim is true"
+// for n >= 1
+
+// We show that P(n) holds for all n >= 1 using strong induction
+// The claim then follows
+
+// Base Step (n = 1)
+// Let f is any string of length n = 1
+// Then the only border of f is the empty string
+// Thus, U(f) = "" and hence B(f) = {""} = {U[1](f)}
+// The base step is thus established
+
+// Inductive Step 
+// Let k >= 1
+// Suppose that P(n) is true for 1 <= n <= k
+// We show that P(k + 1) is true to establish the inductive step
+
+// Let f is a string of length k + 1
+// We show that B(f) = {U[1](f), ..., U[V(f)](f)} to prove P(k + 1)
+// We consider two cases and show that it holds in both
+
+// 1. Assume that L(f) = 0
+// In this case V(f) = 1 and, the only border f has is the empty one
+// Thus, B(f) = {U[V(f)](f) = ""}
+
+// 2. Assume that L(f) != 0
+// By C5.1, it follows that B(f) = U(f) union B(U(f))
+// Since |U(f)| < k + 1, it follows from our assumption that P(|U(f)|) is true
+// Thus, B(U(f)) = {U[1](U(f)), ..., U[V(U(f))](U(f))}
+//				 = {U[2](f), ..., U[V(f)](f)}
+// Thus, B(f) = {U[1](f), ..., U[V(f)](f)}
+
+// Since both the base and inductive steps are established, it follows from the axiom
+// of strong induction that P(n) is true for all n >= 1
 // -------------------------------------------------------------------------------------------------
