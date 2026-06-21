@@ -338,18 +338,100 @@ vector<int> kmp(const string &t, const string &p) {
     return pos;
 }
 
-// The Failure Tree
+// ============================================================================
+// THE FAILURE TREE
+// ============================================================================
+// Given the prefix array pi[1..n] for a string s of length n >= 1, define a
+// graph G as follows:
+//
+//   Vertices : { 0, 1, ..., n }                     (n + 1 vertices total)
+//   Edges    : { {v, pi[v]} : 1 <= v <= n }         (one edge per non-root vertex)
 
-// Given the pi array for a string s of length n (>= 1), define a directed graph G as follows
+// Since 1 <= pi[v] <= n for 1 <= v <= n, both the vertices in an element of the edge
+// set are vertices of G itself
+//
+// We claim G is a tree (we generally root it at 0).  To prove this we show:
+//   (1) G has no self-edges           (Lemma 1)
+//   (2) G has exactly n edges         (Lemma 2)
+//   (3) G is connected                (Lemma 3)
+//
+// A connected graph on n+1 vertices with exactly n = (n+1) - 1 edges is a tree,
+// so (2) + (3) are sufficient.  (1) is a sanity check that edges are well-formed.
+// ----------------------------------------------------------------------------
+// Lemma 1 (No Self-Edges)
+// No edge of G is a self-loop.
+//
+// Proof.
+// An edge {v, pi[v]} is a self-loop iff pi[v] = v.
+// But pi[v] < v for all 1 <= v <= n (a border is strictly shorter than the
+// string), so pi[v] != v.  Hence no self-loops exist.  QED.
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// Lemma 2 (Edge Count)
+// G has exactly n edges.
+//
+// Proof.
+// The edge set is { {v, pi[v]} : 1 <= v <= n }. 
+// Thus, the number of elements of this set is exactly equal to the number of distinct
+// integral values in the range [1, n], which is trivially n.
+// Therefore |E| = n.  QED.
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// Lemma 3 (Connectivity)
+// For every vertex u in {0, 1, ..., n}, there is a path from u to 0 in G.
+// Hence G is connected.
+//
+// Proof.
+// The case u = 0 is trivial (zero-length path).
+// For 1 <= u <= n, consider the sequence:
+//
+//     u,  pi[u],  pi^2[u],  pi^3[u],  ...
+//
+// By the pi-chain theorem, this is a strictly decreasing sequence of
+// non-negative integers that terminates at 0 after finitely many steps.
+// Every consecutive pair (a, b) in the sequence satisfies b = pi[a] with
+// a >= 1, so the edge {a, b} exists in G.
+// Therefore the sequence is a walk from u to 0 in G.  QED.
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// Conclusion
+// G is a tree rooted at 0.
+//
+// Proof.
+// By Lemma 2, |E| = n = (n + 1) - 1 = |V| - 1.
+// By Lemma 3, G is connected.
+// A connected graph satisfying |E| = |V| - 1 is a tree.  QED.
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// Interpretation
+// The failure tree gives the border structure of s a geometric form:
+//
+//   - The path from vertex i to the root 0 spells out exactly the border
+//     lengths of s[1..i] in strictly decreasing order (by the pi-chain theorem).
+//
+//   - The depth of vertex i equals the number of proper borders of s[1..i]
+//     (including the empty one).
+//
+//   - The subtree rooted at vertex k contains exactly those indices i for
+//     which s[1..k] is a border of s[1..i].
+// ----------------------------------------------------------------------------
 
-// Vertices are {0, 1, ..., n}
-// There is an edge (u, v), for 0 <= u, v <= n, iff u = pi[v]
+vector<vector<int>> failure_tree(const string &s) {
+    int n = s.length();
+    vector<vector<int>> tree(n + 1);
+    vector<int> p(n + 1);
 
-// Lemma 1
-// There is a path from any vertex u, for 0 <= u <= n, to vertex 0
-// Rough Proof
-// The lemma is trivial for u = 0
-// Assume 0 < u <= n
-// Consider the sequence u, pi[1][u], pi[2][u], ...,
-// This sequence is a strictly-decreasing sequence of non-negative integers 
-// that ends at 0 after a finite number of steps
+    p[1] = 0;
+    int j = p[1];
+    for (int i = 2; i <= n; i++) {
+        while (j > 0 && s[j + 1 - 1] != s[i - 1])
+            j = p[j];
+        if (s[j + 1 - 1] == s[i - 1])
+            ++j;
+        p[i] = j;
+    }
+
+    for (int i = 1; i <= n; i++)
+        tree[i].push_back(p[i]), tree[p[i]].push_back(i);
+    return tree;
+}

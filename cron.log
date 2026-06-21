@@ -27736,3 +27736,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    92bf48d8..0c8a9b1a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7ed262c3] Worked on Codeforces problems
+ 3 files changed, 63 insertions(+), 268 deletions(-)
+ delete mode 100644 topics/KMP/Lesson/notes_part_1.cpp
+To https://github.com/neofytr/Codeforces.git
+   0c8a9b1a..7ed262c3  main -> main
+branch 'main' set up to track 'origin/main'.
