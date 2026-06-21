@@ -435,3 +435,31 @@ vector<vector<int>> failure_tree(const string &s) {
         tree[i].push_back(p[i]), tree[p[i]].push_back(i);
     return tree;
 }
+
+// Prefix Occurrence Counting
+// For a string of length n (>= 1), compute for each 1 <= k <= n,
+// cnt[k] = number of times the prefix s[1, k] occurs as a substring of s
+
+// Now,
+// cnt[k] = 1 + the number of prefixes of s which have s[1, k] as its border
+//        = number of nodes in the subtree of vertex k in the failure tree of s
+// for all 1 <= k <= n
+
+int dfs(int node, int parent, vector<int> &sz, vector<vector<int>> &tree) {
+    if (tree[node].size() == 1) 
+        return sz[node] = 1;
+
+    for (auto x : tree[node])
+        if (x != parent)
+            sz[node] += dfs(x, node, sz, tree);
+    return sz[node];
+}
+
+vector<int> _cnt_two(const string &s) {
+    int n = s.length();
+    auto tree = failure_tree(s);
+
+    vector<int> sz(n + 1, 0);
+    dfs(0, -1, sz, tree);
+    return sz;
+}
