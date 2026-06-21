@@ -27783,3 +27783,8 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 [main 20752589] Solved problem
  1 file changed, 3 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main caa5f32a] Solved some problems
+ 1 file changed, 3 insertions(+)
+To https://github.com/neofytr/Codeforces.git
+   9caac19a..caa5f32a  main -> main
+branch 'main' set up to track 'origin/main'.
