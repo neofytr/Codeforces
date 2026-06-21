@@ -291,13 +291,65 @@ vector<int> _cnt(const string &s) {
     return cnt;
 }
 
-// Number of distinct substrings
-// Given string s of length n (>= 1), count the total number of distinct substrings of s
+// KMP Pattern Matching
+// Given a pattern p of length m (>= 1) and a text t of length n (>= 1), find 
+// all the starting positions in t where p occurs as a substring
 
-int cnt_distinct(const string &s) {
-	int n = s.length(), cnt = 0;
+vector<int> kmp(const string &t, const string &p) {
+    int n = t.length(), m = p.length();
+    vector<int> pos;
+    vector<int> pi = prefix(p);
 
+    // j = length of the longest suffix of t[1..i] that equals a prefix of p.
+    // Equivalently, we have matched p[1..j] against the last j characters of
+    // t seen so far.  j == 0 means no prefix of p is currently matched.
+    int j = 0;
 
+    for (int i = 1; i <= n; i++) {
+        // The while condition has two cases; both call for falling back via pi:
+        //
+        // Case 1 (j == m): we had a FULL match at the previous step.
+        //   We must fall back before trying to extend, so that we can find
+        //   overlapping occurrences.  pi[m] gives the longest PROPER border
+        //   of p, which is already lined up as the next candidate prefix.
+        //
+        // Case 2 (j > 0 && p[j] != t[i-1]): PARTIAL match but mismatch at
+        //   the next character.  By the pi-chain theorem, the next-longest
+        //   border of p[1..j] has length pi[j], so we fall back to that and
+        //   retry the same text character t[i].
+        //
+        // In both cases pi[j] is the right fall-back: it gives the longest
+        // border of what we have matched so far, preserving as much progress
+        // as possible before retrying.
+        while (j == m || (j > 0 && p[j + 1 - 1] != t[i - 1]))
+            j = pi[j];
 
-	return cnt;
+        // After the while, either j == 0 or p[j+1] == t[i] (0-indexed: p[j] == t[i-1]).
+        // If they match, extend the current border by one character.
+        if (p[j + 1 - 1] == t[i - 1])
+            ++j;
+
+        // A full match of p ends at t[i].  The 0-indexed start position in t
+        // is i - m  (since the match occupies t[i-m .. i-1] in 0-indexed).
+        if (j == m)
+            pos.push_back(i - m);
+    }
+
+    return pos;
 }
+
+// The Failure Tree
+
+// Given the pi array for a string s of length n (>= 1), define a directed graph G as follows
+
+// Vertices are {0, 1, ..., n}
+// There is an edge (u, v), for 0 <= u, v <= n, iff u = pi[v]
+
+// Lemma 1
+// There is a path from any vertex u, for 0 <= u <= n, to vertex 0
+// Rough Proof
+// The lemma is trivial for u = 0
+// Assume 0 < u <= n
+// Consider the sequence u, pi[1][u], pi[2][u], ...,
+// This sequence is a strictly-decreasing sequence of non-negative integers 
+// that ends at 0 after a finite number of steps
