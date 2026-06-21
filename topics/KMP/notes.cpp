@@ -291,4 +291,13 @@ vector<int> _cnt(const string &s) {
     return cnt;
 }
 
+// Number of distinct substrings
+// Given string s of length n (>= 1), count the total number of distinct substrings of s
 
+int cnt_distinct(const string &s) {
+	int n = s.length(), cnt = 0;
+
+
+
+	return cnt;
+}
