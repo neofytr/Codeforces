@@ -27742,3 +27742,8 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    0c8a9b1a..7ed262c3  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 77f7702e] CF grind
+ 2 files changed, 100 insertions(+), 12 deletions(-)
+To https://github.com/neofytr/Codeforces.git
+   7ed262c3..77f7702e  main -> main
+branch 'main' set up to track 'origin/main'.
