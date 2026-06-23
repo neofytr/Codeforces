@@ -530,7 +530,19 @@ int smallest_period(const string &s) {
 
 // KMP Automaton
 
-// Let A is a non-empty alphabet and let p is a string over characters from A of length n >= 1
-// Then,
-// t[j][c] = the length of the longest prefix of p that is also a suffix of (p[1, j] + c)
-// for 1 <= j <= n and c belongs to A
+// Let A be a non-empty alphabet, p a string over A of length n >= 1,
+// and pi[1..n] the prefix array of p.
+//
+// Definition (for 0 <= j <= n, c in A):
+//   t[j][c] = length of the longest prefix of p that is also a
+//             suffix of (p[1..j] . c)
+//
+// Meaning: in state j (we have matched p[1..j]), after reading c we
+// land in state t[j][c] (we now have matched p[1..t[j][c]]).
+// State 0 = nothing matched; state n = full pattern matched.
+// Transition (computed for j = 0, 1, ..., n in increasing order, so
+// that pi[j] < j is already filled):
+//
+//   if (j < n && p[j + 1] == c)   t[j][c] = j + 1;        // extend the match
+//   else if (j == 0)              t[j][c] = 0;            // cannot fall back
+//   else                          t[j][c] = t[pi[j]][c];  // fall back to pi[j]
