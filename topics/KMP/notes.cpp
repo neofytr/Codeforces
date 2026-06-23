@@ -465,9 +465,54 @@ vector<int> _cnt_two(const string &s) {
 }
 
 // Let s is a string of length n (>= 1)
-// A positive integer p is a period of string s iff s[i] = s[i + p] for 1 <= i <= n - p
+// A non-negative integer p (0 <= p <= n) is a period of string s iff s[i] = s[i + p] for 1 <= i <= n - p
+// n and 0 are the trivial periods of s
+
+// Lemma 2.1
+// If p (0 <= p <= n) is a period of s, then s[1, n - p] = s[p + 1, n]
+// This follows immediately from the definition of a period 
 
 // -------------------------------------------------------------------------------------------------
 // Theorem 2.1
-
+// Let 1 <= p <= n
+// p is a period of s iff n - p is a border length of s
+// Proof
+// 1. Assume p is a period of s
+// We claim then that n - p is a border length of s
+// We give a direct proof of the claim
+// By our assumption, we conclude that s[i] = s[i + p] for all 1 <= i <= n - p
+// Thus, s[1, n - p] = s[p + 1, n] = s[n - (n - p) + 1, n], from which our claim follows directly
+// 2. Assume n - p is a period of s
+// We then claim that p is a period of s
+// We give a direct proof of the claim
+// By our assumption, s[1, n - p] = s[n - (n - p) + 1, n] = s[p + 1, n], which
+// is equivalent to s[i] = s[i + p] for all 1 <= i <= n - p
+// The claim then follows immediately
 // -------------------------------------------------------------------------------------------------
+
+// Theorem 2.2
+// The smallest period of s is n - pi[n]
+// This is trivial from 2.1
+// Periods and borders are two views of the same things; anytime a problem talks
+// about repeating, cyclic, or shifting a string, translate it to borders and let the
+// prefix function do the work
+
+int smallest_period(const string &s) {
+    int n = s.length();
+    vector<int> p(n + 1, 0);
+
+    p[1] = 0;
+    int j = p[1];
+    for (int i = 2; i <= n; i++) {
+        while (j > 0 && s[j + 1 - 1] != s[i - 1])
+            j = p[j];
+        if (s[j + 1 - 1] == s[i - 1])
+            ++j;
+        p[i] = j;
+    }
+
+    return n - p[n];
+}
+
+// String compression
+// Let s is a string of length n (>= 1)
