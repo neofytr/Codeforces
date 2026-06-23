@@ -501,8 +501,6 @@ vector<int> _cnt_two(const string &s) {
 // The claim then follows immediately
 // -------------------------------------------------------------------------------------------------
 
-
-
 // -------------------------------------------------------------------------------------------------
 // Theorem 2.4
 // The smallest period of s is n - pi[n]
@@ -530,9 +528,9 @@ int smallest_period(const string &s) {
     return n - p[n];
 }
 
-// String compression
-// Let s is a string of length n (>= 1)
+// KMP Automaton
 
-// Lemma 3.1
-// Let 1 <= q < p <= n be periods of s such that p + q <= n
-// Then, p - q is also a period of s
+// Let A is a non-empty alphabet and let p is a string over characters from A of length n >= 1
+// Then,
+// t[j][c] = the length of the longest prefix of p that is also a suffix of (p[1, j] + c)
+// for 1 <= j <= n and c belongs to A
