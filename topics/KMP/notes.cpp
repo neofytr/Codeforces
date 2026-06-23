@@ -463,3 +463,11 @@ vector<int> _cnt_two(const string &s) {
     dfs(0, -1, sz, tree);
     return sz;
 }
+
+// Let s is a string of length n (>= 1)
+// A positive integer p is a period of string s iff s[i] = s[i + p] for 1 <= i <= n - p
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 2.1
+
+// -------------------------------------------------------------------------------------------------
