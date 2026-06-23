@@ -468,12 +468,23 @@ vector<int> _cnt_two(const string &s) {
 // A non-negative integer p (0 <= p <= n) is a period of string s iff s[i] = s[i + p] for 1 <= i <= n - p
 // n and 0 are the trivial periods of s
 
-// Lemma 2.1
-// If p (0 <= p <= n) is a period of s, then s[1, n - p] = s[p + 1, n]
-// This follows immediately from the definition of a period 
 
 // -------------------------------------------------------------------------------------------------
 // Theorem 2.1
+// If p (0 <= p <= n) is a period of s, then s[1, n - p] = s[p + 1, n]
+// -------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 2.2
+// Let 1 <= p <= n
+// If p is a period of s, then s[i] = s[i + c * p] for all c >= 0, 1 <= i <= n such that i + c * p <= n
+
+// A consequence of this is that all positions that share the same remainder modulo p carry the
+// same character 
+// -------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 2.3
 // Let 1 <= p <= n
 // p is a period of s iff n - p is a border length of s
 // Proof
@@ -490,9 +501,14 @@ vector<int> _cnt_two(const string &s) {
 // The claim then follows immediately
 // -------------------------------------------------------------------------------------------------
 
-// Theorem 2.2
+
+
+// -------------------------------------------------------------------------------------------------
+// Theorem 2.4
 // The smallest period of s is n - pi[n]
-// This is trivial from 2.1
+// -------------------------------------------------------------------------------------------------
+
+
 // Periods and borders are two views of the same things; anytime a problem talks
 // about repeating, cyclic, or shifting a string, translate it to borders and let the
 // prefix function do the work
@@ -516,3 +532,7 @@ int smallest_period(const string &s) {
 
 // String compression
 // Let s is a string of length n (>= 1)
+
+// Lemma 3.1
+// Let 1 <= q < p <= n be periods of s such that p + q <= n
+// Then, p - q is also a period of s
