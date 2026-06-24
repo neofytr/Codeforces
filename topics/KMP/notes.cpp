@@ -530,19 +530,57 @@ int smallest_period(const string &s) {
 
 // KMP Automaton
 
-// Let A be a non-empty alphabet, p a string over A of length n >= 1,
-// and pi[1..n] the prefix array of p.
-//
-// Definition (for 0 <= j <= n, c in A):
-//   t[j][c] = length of the longest prefix of p that is also a
-//             suffix of (p[1..j] . c)
-//
-// Meaning: in state j (we have matched p[1..j]), after reading c we
-// land in state t[j][c] (we now have matched p[1..t[j][c]]).
-// State 0 = nothing matched; state n = full pattern matched.
-// Transition (computed for j = 0, 1, ..., n in increasing order, so
-// that pi[j] < j is already filled):
-//
-//   if (j < n && p[j + 1] == c)   t[j][c] = j + 1;        // extend the match
-//   else if (j == 0)              t[j][c] = 0;            // cannot fall back
-//   else                          t[j][c] = t[pi[j]][c];  // fall back to pi[j]
+// Let A be a non-empty alphabet, s be a string of length n >= 1 over A, and
+// p[1, n] be the prefix array of s
+
+// Define
+// t[j][c] := the longest prefix of s that is equal to a suffix of (s[1, j] + c)
+// for all 1 <= j <= n and c in A
+
+// Transitions (computed for j = 0, 1, ..., n in increasing order)
+// if (s[j + 1] = c) t[j][c] = j + 1
+// else if (j = 0) t[j][c] = 0
+// else t[j][c] = t[p[j]][c]
+
+// consider s to be from the lowercase latin character alphabet
+vector<vector<int>> kmp_auto(const string &s) {
+    int n = s.length();
+    vector<vector<int>> aut(n + 1, vector<int>(26, 0));
+    vector<int> p(n + 1, 0);
+
+    int j = p[1];
+    for (int i = 2; i <= n; i++) {
+        while (j > 0 && s[j + 1 - 1] != s[i - 1])
+            j = p[j];
+        if (s[j + 1 - 1] == s[i - 1])
+            ++j;
+        p[i] = j;
+    }
+
+    for (int i = 0; i <= n; i++)
+        for (int c = 0; c < 26; c++)
+            if (i + 1 <= n && s[i + 1 - 1] - 'a' == c)
+                aut[i][c] = j + 1;
+            else if (!j)
+                aut[i][c] = 0;
+            else 
+                aut[i][c] = aut[p[i]][c];
+    return aut;
+}
+
+vector<int> kmp_with_auto(const string &s, const string &p) {
+    int n = s.length(), m = p.length();
+    auto aut = kmp_auto(p);
+    vector<int> pos;
+
+    int j = 0;
+    for (int i = 1; i <= n; i++) {
+        j = aut[j][s[i - 1] - 'a'];
+        if (j == m)
+            pos.push_back(i - m + 1);
+    }
+    return pos;
+}
+
+
+
