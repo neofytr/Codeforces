@@ -28179,3 +28179,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    3ef5c307..cc78ecc5  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 538e06f0] Worked on Codeforces problems
+ 5 files changed, 63 insertions(+), 2 deletions(-)
+ create mode 100644 topics/KMP/practice/findingBorders.cpp
+ create mode 100644 topics/KMP/practice/findingPeriods.cpp
+To https://github.com/neofytr/Codeforces.git
+   cc78ecc5..538e06f0  main -> main
+branch 'main' set up to track 'origin/main'.

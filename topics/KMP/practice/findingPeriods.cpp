@@ -7,7 +7,7 @@ int32_t main() {
 	string s; cin >> s;
 	int n = s.length();
 
-	vector<int> p(n + 1, 0);
+	vector<int> p(n + 1, 0); p[0] = -1;
 	int j = p[1];
 	for (int i = 2; i <= n; i++) {
 		while (j > 0 && s[j + 1 - 1] != s[i - 1])
@@ -17,7 +17,9 @@ int32_t main() {
 		p[i] = j;
 	}
 
-	int j = p[n];
-	while (j > 0)
+	j = p[n];
+	while (j >= 0)
+		cout << n - j << " ", j = p[j];
+	cout << endl;
 	return 0;
 }
