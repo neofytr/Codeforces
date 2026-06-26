@@ -10,23 +10,33 @@ int res(int l, int r, const string &s) {
 	p[l] = 0;
 	int j = p[l];
 	for (int i = l + 1; i <= r; i++) {
-		while (j > 0 && s[j + 1 - 1] != s[i - 1])
+		while (j > 0 && s[l + j - 1] != s[i - 1])
 			j = p[j];
-		if (s[j + 1 - 1] == s[i - 1])
+		if (s[l + j - 1] == s[i - 1])
 			++j;
 		p[i] = j;
 	}
 
 	int len = r - l + 1;
-	if (!((p[r] - len) % len))
-		return (p[r] - len);
-	return len;
+	int period = len - p[r];
+	return period + len % period;
 }
 
 int32_t main() {
 	string s;
 	while (cin >> s, s != "*") {
 		int n = s.length();
+
+		// dp[r] is the minimal weight for s[1, r]
+		vector<int> dp(n + 1, LLONG_MAX);
+		dp[0] = 0;
+		for (int i = 1; i <= n; i++)
+			for (int j = 1; j <= i; j++)
+				dp[i] = min(dp[i], res(j, i, s) + dp[j - 1]);
+
+		
+		cout << dp[n] << endl;
+		cout << res(3, 9, s) << endl;
 	}
 	return 0;
 }
