@@ -41,7 +41,3 @@ int32_t main() {
 	return 0;
 }
 
-PR ATT IC
-
-ARP ARP ARP ARP AR
-
