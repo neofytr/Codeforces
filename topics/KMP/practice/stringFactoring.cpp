@@ -36,7 +36,12 @@ int32_t main() {
 
 		
 		cout << dp[n] << endl;
-		cout << res(3, 9, s) << endl;
+		// cout << res(3, 9, s) << endl;
 	}
 	return 0;
 }
+
+PR ATT IC
+
+ARP ARP ARP ARP AR
+
