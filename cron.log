@@ -28360,3 +28360,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ce3cce0b..ea3f3725  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 0fc94e2a] CF grind
+ 4 files changed, 63 insertions(+), 13 deletions(-)
+ create mode 100644 topics/KMP/practice/patternFind.cpp
+To https://github.com/neofytr/Codeforces.git
+   ea3f3725..0fc94e2a  main -> main
+branch 'main' set up to track 'origin/main'.
