@@ -21,20 +21,7 @@ int32_t main() {
 		p[i] = j;
 	}
 
-	int x = 0;
-	j = 0;
-	int cnt = 0;
-	for (int i = 1; i <= n; i++) {
-		while (j > 0 && b[j + 1] + x != a[i])
-			j = p[j];
-		if (b[j + 1] + x == a[i])
-			++j;
-		if (!j) 
-			j = 1, x = a[i] - b[j];
-		cout << i << " " << j << " " << x << endl;
-		if (j == w)
-			j = p[j], cnt++;
-	}
+	
 
 	cout << cnt << endl;
 	return 0;
