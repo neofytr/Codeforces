@@ -28523,3 +28523,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e0c955a2..275ae048  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 12a2539b] Solved some problems
+ 5 files changed, 38 insertions(+), 8 deletions(-)
+ create mode 100644 topics/KMP/practice/warCorp.cpp
+To https://github.com/neofytr/Codeforces.git
+   275ae048..12a2539b  main -> main
+branch 'main' set up to track 'origin/main'.
