@@ -3,7 +3,7 @@ using namespace std;
 
 #define int long long
 
-int32_t main( {
+int32_t main() {
 	string a, b; cin >> a >> b;
 	int n = a.length(), m = b.length();
 
@@ -18,21 +18,20 @@ int32_t main( {
 	}
 
 	j = 0;
+	int last = 0;
+	int cnt = 0;
 	for (int i = 1; i <= n; i++) {
 		while (j > 0 && b[j + 1 - 1] != a[i - 1])
 			j = p[j];
 		if (b[j + 1 - 1] == a[i - 1])
 			++j;
-		if (j == m) {
-			cmn[i - j + 1]++;
-			cmn[i + 1]--;
+		if (j == m) { 
 			j = p[j];
+			if (i - m + 1 > last)
+				last = i, cnt++;
 		}
 	}
 
-	for (int i = 1; i <= n; i++)
-		cmn[i] += cmn[i - 1];
-
-	sort(cmn.begin() + 1, cmn.end()); reverse(cmn.begin() + 1, cmn.end());
+	cout << cnt << endl;
 	return 0;
 }
