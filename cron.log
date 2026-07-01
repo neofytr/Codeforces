@@ -28639,3 +28639,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    06d67027..ccfdb490  main -> main
 branch 'main' set up to track 'origin/main'.
+[main bfe080f3] Practiced CF problems
+ 5 files changed, 37 insertions(+), 11 deletions(-)
+ create mode 100644 topics/KMP/practice/stringFunctions.cpp
+To https://github.com/neofytr/Codeforces.git
+   ccfdb490..bfe080f3  main -> main
+branch 'main' set up to track 'origin/main'.
