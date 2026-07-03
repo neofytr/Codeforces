@@ -28746,3 +28746,10 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    e5fbc561..0bb8038a  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 8f87c2c2] Worked on Codeforces problems
+ 3 files changed, 5 insertions(+)
+ create mode 100644 topics/KMP/practice/mesTransError.cpp
+ create mode 100644 topics/KMP/practice/messageTransError.cpp
+To https://github.com/neofytr/Codeforces.git
+   0bb8038a..8f87c2c2  main -> main
+branch 'main' set up to track 'origin/main'.
