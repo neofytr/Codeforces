@@ -28839,3 +28839,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    ff8de422..2e98a685  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 025545e9] Solved a few problems
+ 2 files changed, 41 insertions(+)
+ create mode 100644 topics/KMP/practice/extendToPalindromes.cpp
+To https://github.com/neofytr/Codeforces.git
+   2e98a685..025545e9  main -> main
+branch 'main' set up to track 'origin/main'.
