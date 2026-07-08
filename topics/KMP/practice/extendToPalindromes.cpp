@@ -7,30 +7,33 @@ int32_t main() {
 	string s;
 	while (cin >> s) {
 		int n = s.length();
-		int r = n - 1;
-		int l = 0;
+		string t = s; reverse(t.begin(), t.end());
+		vector<int> p(n + 1, 0);
 
-		int first = -1;
-		while (l <= r && l <= n - 1) {
-			if (l <= n - 1 && s[l] != s[r]) {
-				l++; continue;
-			}
-
-			first = l;
-			l++, r--;
+		int j = p[1];
+		for (int i = 2; i <= n; i++) {
+			while (j > 0 && t[j + 1 - 1] != t[i - 1])
+				j = p[j];
+			if (t[j + 1 - 1] == t[i - 1])
+				++j;
+			p[i] = j;
 		}
 
-		if (r == n - 1) {
-			string t = s;
-			reverse(t.begin(), t.end());
-			cout << s << t << endl;
+		j = 0;
+		int want = LLONG_MAX;
+		for (int i = 1; i <= n; i++) {
+			while (j > 0 && t[j + 1 - 1] != s[i - 1])
+				j = p[j];
+			if (t[j + 1 - 1] == s[i - 1])
+				++j;
+
+			int left = n - i + 1;
+			if (left == j || j + 1 == left)
+				want = min(want, i - j);
 		}
 
-		if (s[r + 1] == s[l - 1]) {
-			string t = s.substr(0, first);
-			reverse(t.begin(), t.end());
-			cout << s << t << endl;
-		}
+		string k = s.substr(0, want); reverse(k.begin(), k.end());
+		cout << s + k << endl;
 	}
 	return 0;
 }
