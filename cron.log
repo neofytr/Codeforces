@@ -29082,3 +29082,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    77715b61..55b93f32  main -> main
 branch 'main' set up to track 'origin/main'.
+[main f09697b5] Problem solving session
+ 4 files changed, 37 insertions(+), 3 deletions(-)
+ create mode 100644 topics/KMP/practice/powerStrings.cpp
+To https://github.com/neofytr/Codeforces.git
+   55b93f32..f09697b5  main -> main
+branch 'main' set up to track 'origin/main'.
