@@ -29283,3 +29283,6 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    c10f88b1..899b2e48  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 7bcfcf59] Solved a CF problem
+ 1 file changed, 5 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
