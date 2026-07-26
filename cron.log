@@ -29507,3 +29507,6 @@ fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not 
 [main 8dd95cb7] CF grind
  1 file changed, 3 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main 391d5295] Solved a few problems
+ 1 file changed, 3 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
