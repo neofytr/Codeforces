@@ -29637,3 +29637,6 @@ branch 'main' set up to track 'origin/main'.
 [main 717c7393] More problems solved
  1 file changed, 5 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main 53f4a8ff] Solved some problems
+ 1 file changed, 3 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
