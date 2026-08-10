@@ -29779,3 +29779,6 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    663c9bab..6b6a906e  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 9add7287] Practiced CF problems
+ 1 file changed, 5 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Recv failure: Connection reset by peer
