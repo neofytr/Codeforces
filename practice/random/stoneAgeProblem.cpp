@@ -5,8 +5,9 @@ using namespace std;
 
 int32_t main() {
 	int n, q; cin >> n >> q;
-	vector<int> arr(n + 1);
-	for (int i = 1; i <= n; i++) cin >> arr[i];
-	
+	vector<pair<int, int>> arr(n + 1);
+	for (int i = 1; i <= n; i++) cin >> arr[i].first, arr[i].second = 0;
+
+	int latest_x = 0;
 	return 0;
 }
