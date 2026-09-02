@@ -30207,3 +30207,9 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    2be6ba70..8397d510  main -> main
 branch 'main' set up to track 'origin/main'.
+[main a54396ac] Solved a few problems
+ 2 files changed, 34 insertions(+)
+ create mode 100644 practice/random/binaryDequeue.cpp
+To https://github.com/neofytr/Codeforces.git
+   8397d510..a54396ac  main -> main
+branch 'main' set up to track 'origin/main'.
