@@ -30188,3 +30188,6 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    191a9cc7..a7ce53f0  main -> main
 branch 'main' set up to track 'origin/main'.
+[main bffe1152] Solved problem
+ 1 file changed, 5 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
