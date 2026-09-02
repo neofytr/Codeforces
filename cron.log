@@ -30191,3 +30191,8 @@ branch 'main' set up to track 'origin/main'.
 [main bffe1152] Solved problem
  1 file changed, 5 insertions(+)
 fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
+[main 6e994c55] Practiced CF problems
+ 1 file changed, 3 insertions(+)
+To https://github.com/neofytr/Codeforces.git
+   a7ce53f0..6e994c55  main -> main
+branch 'main' set up to track 'origin/main'.
