@@ -30798,3 +30798,6 @@ branch 'main' set up to track 'origin/main'.
 To https://github.com/neofytr/Codeforces.git
    7d42f6c7..86a3232d  main -> main
 branch 'main' set up to track 'origin/main'.
+[main 873aa757] Worked on Codeforces problems
+ 1 file changed, 5 insertions(+)
+fatal: unable to access 'https://github.com/neofytr/Codeforces.git/': Could not resolve host: github.com
